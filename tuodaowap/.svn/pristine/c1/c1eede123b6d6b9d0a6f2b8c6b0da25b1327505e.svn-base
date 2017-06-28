@@ -1,0 +1,41 @@
+	$(".borrower_tab a").bind("click",function(){
+			var index = $(this).parent().index();
+			$(".borrower_tab a").removeClass("li_on")
+			$(this).addClass("li_on").siblings('li').attr('class','taba');
+			$('.tabcontent').eq(index).show(200).siblings('.tabcontent').hide();
+		});
+		$("#click_add").bind("click",function(){
+			$("#add_borrow").animate({
+				top:'0'
+			},500);
+
+		})
+		$(".add_cancel").bind("click",function(){
+			$("#add_borrow").animate({
+				top:'100%'
+			},500);
+
+		})
+		$("#select_bank").bind("click",function(){
+
+			$("#add_borrow").animate({
+				left:'-100%'
+			},500);
+
+		})
+
+		$(".bank_return").bind("click",function(){
+
+			$("#add_borrow").animate({
+				left:'0'
+			},500);
+
+		})
+		
+		$(".bank_ul li").bind("click",function(){
+			alert('点击了')
+			$(".bank_ul li").removeClass("bank_on")
+			$(this).addClass("bank_on");
+			var bankName = $(this).find('h4').html();
+
+		})

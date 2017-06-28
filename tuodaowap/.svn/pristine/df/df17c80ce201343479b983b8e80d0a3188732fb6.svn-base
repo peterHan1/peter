@@ -1,0 +1,65 @@
+	$(".borrower_tab a").bind("click",function(){
+			var index = $(this).parent().index();
+			$(".borrower_tab a").removeClass("li_on")
+			$(this).addClass("li_on").siblings('li').attr('class','taba');
+			$('.tabcontent').eq(index).show(200).siblings('.tabcontent').hide();
+		});
+		$("#click_add").bind("click",function(){
+			$("#add_borrow").animate({
+				top:'0'
+			},500);
+
+		})
+		$(".add_cancel").bind("click",function(){
+			$("#add_borrow").animate({
+				top:'100%'
+			},500);
+
+		})
+		$("#select_bank").bind("click",function(){
+
+			$("#add_borrow").animate({
+				left:'-100%'
+			},500);
+
+		})
+
+		$(".bank_return").bind("click",function(){
+
+			$("#add_borrow").animate({
+				left:'0'
+			},500);
+
+		})
+		
+		$("#bank_ul li").bind("click",function(){
+			$("#bank_ul li").removeClass("bank_on")
+			$(this).addClass("bank_on");
+			var bankName = $(this).find('h4').html();
+			$(".bank_name").html(bankName);
+			$("#add_borrow").animate({
+				left:'0'
+			},500);
+		});
+		
+		$("#keyword").on('keydown',function(e) {  
+            var keycode = e.keyCode;  
+            var searchName = $(this).val();  
+            if(keycode=='13') {  
+            	alert("你按下了搜索键" + keycode)
+                e.preventDefault();    
+                //请求搜索接口    
+            }  
+     	}); 
+     	$(".keyword").on("click",function(){
+			$(".top_hid").hide();
+			$(".search input").css("width","80%")
+			$(".search_show,.sea_can").show();
+     	})
+     	$(".sea_can").on("click",function(){
+     		$(".top_hid").show();
+			$(".search input").css("width","90%");
+			$(".search input").val(" ");
+			$(".search_show,.sea_can").hide();
+     		
+     	})

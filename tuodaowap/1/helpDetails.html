@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>帮助中心-注册登录</title>
+	<script type="text/javascript" src="js/base.js"></script>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/help.css">
+	<script type="text/javascript" src="js/zepto/zepto.js"></script>
+	<script type="text/javascript" src="js/zepto/touch.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+</head>
+<body>
+	<div class="max_width help">
+		
+
+		
+		<ul>
+			<li>
+				<div><p>注册时手机收不到验证码怎么办？</p><p class="iconfont adclass1">&#xe83a;</p></div>
+				<dl style="display:block">
+					<dd>1、请确认手机是否安装短信拦截或过滤软件；</dd>
+					<dd>2、请确认手机是否能够正常接收短信（信号问题、欠费、停机等）；</dd>
+					<dd>3、短信收发过程中可能会存在延迟，请耐心等待；</dd>
+					<dd>4、可能由于以前该号码被通信供应商系统列为黑名单，请联系在线客服，或者拨打热线电话：4008-365-078。</dd>
+				</dl>
+			</li>
+			<li>
+				<div><p>注册时手机收不到验证码怎么办？</p><p class="iconfont">&#xe83a;</p></div>
+				<dl>
+					<dd>1、请确认手机是否安装短信拦截或过滤软件；</dd>
+					<dd>2、请确认手机是否能够正常接收短信（信号问题、欠费、停机等）；</dd>
+					<dd>3、短信收发过程中可能会存在延迟，请耐心等待；</dd>
+					<dd>4、可能由于以前该号码被通信供应商系统列为黑名单，请联系在线客服，或者拨打热线电话：4008-365-078。</dd>
+				</dl>
+			</li>
+			<li>
+				<div><p>注册时手机收不到验证码怎么办？</p><p class="iconfont">&#xe83a;</p></div>
+				<dl>
+					<dd>1、请确认手机是否安装短信拦截或过滤软件；</dd>
+					<dd>2、请确认手机是否能够正常接收短信（信号问题、欠费、停机等）；</dd>
+					<dd>3、短信收发过程中可能会存在延迟，请耐心等待；</dd>
+					<dd>4、可能由于以前该号码被通信供应商系统列为黑名单，请联系在线客服，或者拨打热线电话：4008-365-078。</dd>
+				</dl>
+			</li>
+		</ul>
+
+		
+	</div>
+
+	
+	<script type="text/javascript">
+		$(function(){
+			$('ul li div').tap(function(){
+				if($(this).next().css('display')=='block'){
+					$(this).find('p').eq(1).removeClass('adclass1')
+					$(this).next().hide();
+				}else{
+					
+					$(this).find('p').eq(1).addClass('adclass1')
+					$(this).next().show();
+				}
+					
+			})
+
+			$('.contact').tap(function(){
+				layer.open({
+			    content: $('#footer_tel').html(),
+			    btn: ['取消'],
+			    className: 'footer_tel'   
+			    ,skin: 'footer'
+			   
+			  });
+			})
+
+			 
+		})
+	</script>
+</body>
+</html>

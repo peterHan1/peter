@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title></title>
+		<link rel="stylesheet" href="../../common/css/base.css" />
+    	<script src="../../common/js/plug/zepto.min.js"></script>
+    	<script src="../../common/js/base.js"></script>
+	</head>
+	<body>
+		<div class="max_width select_bank">
+			<div class="ul_bank">
+				<ul id="bank_ul">
+					<li>
+						<span class="ICBC"></span>
+						<div>
+							<h4>中国工商银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CCB"></span>
+						<div>
+							<h4>中国建设银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>	
+					</li>
+					<li>
+						<span class="BOC"></span>
+						<div>
+							<h4>中国银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="ABC"></span>
+						<div>
+							<h4>中国农业银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CMB"></span>
+						<div>
+							<h4>招商银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CITIC"></span>
+						<div>
+							<h4>中信银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="SPDB"></span>
+						<div>
+							<h4>浦发银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CIB"></span>
+						<div>
+							<h4>兴业银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					
+					
+					<li>
+						<span class="CMBC"></span>
+						<div>
+							<h4>中国民生银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CEB"></span>
+						<div>
+							<h4>中国光大银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="PAB"></span>
+						<div>
+							<h4>平安银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="HXB"></span>
+						<div>
+							<h4>华夏银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="BOB"></span>
+						<div>
+							<h4>北京银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="CGB"></span>
+						<div>
+							<h4>广发银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="NBCB"></span>
+						<div>
+							<h4>宁波银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="HZB"></span>
+						<div>
+							<h4>杭州银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="BOS"></span>
+						<div>
+							<h4>上海银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="PSBC"></span>
+						<div>
+							<h4>中国邮政</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>
+					</li>
+					<li>
+						<span class="BCM"></span>
+						<div>
+							<h4>交通银行</h4>
+							<p>单笔1万 单日10万 单月20万</p>
+						</div>	
+					</li>
+				</ul>
+			</div>
+		</div>	
+	</body>
+</html>
+<script>
+	 $("#bank_ul li").bind("click",function(){
+			$(this).addClass("on");
+			$(this).siblings().removeClass("on");
+		})
+</script>

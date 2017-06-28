@@ -1,0 +1,52 @@
+<div class="borrower">
+	<div class="top">
+		<span class="fl" id="borrower_return">返回</span> 借款人信息
+	</div>
+	<div id="add_borrow">
+		<div class="add_borrower fl">
+			<div class="add_cont" id="add_cont">
+				<div class="add_cont_top">
+					<p>基本信息</p>
+					<ul> 
+						<li>
+							<span class="fl">车主姓名</span> <span class="fr">张三</span>
+						</li>
+						<li>
+							<span class="fl">身份证号</span> <span class="fr">330105198206221626</span>
+						</li>
+						<li>
+							<span class="fl">手机号</span> <span class="fr">15839188888</span>
+						</li>
+					</ul>
+				</div>
+				<div class="add_cont_bot">			
+					<ul>
+						<li class="border_no">
+							<p class="fl">银行卡信息</p> <span class="font_red">*银行卡的开户行必须是车主</span> <span class="fr">更换银行卡</span>
+						</li>
+						<li id="select_bank">
+							<span>开户银行</span> <span class="fr" >工商银行 </span>						
+						</li>
+						<li id="select_province">
+							<span>开户省份</span> <span class="fr" >浙江 </span>
+						</li>
+						<li id="select_city">
+							<span>开户城市</span> <span class="fr" >**** **** **** 2017</span>
+						</li>
+						<li>
+							<span>开户支行</span> <span class="fr" >工行西湖支行</span>
+						</li>
+						<li>
+							<input type="text" name="" placeholder="开户支行">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+
+			
+	

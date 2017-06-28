@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+    	<title>我的信息</title>
+    	<link rel="stylesheet" href="../../common/css/base.css" />
+    	<script src="../../common/js/plug/zepto.min.js"></script>
+    	<script src="../../common/js/plug/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<div id="left_ment"></div>
+			<div id="right_cont">
+				<div class="top">我的信息</div>
+				<section class="uc_box">
+					<div>
+						<p>基本信息</p>
+						<ul>
+							<li>
+								<span class="fl">姓名</span><span class="fr">张三</span>
+							</li>
+							<li>
+								<span class="fl">岗位</span><span class="fr">门店经理</span>
+							</li>
+							<li>
+								<span class="fl">手机号</span><span class="fr">1586668888  > </span>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<p>账户信息</p>
+						<ul>
+							<li>
+								<span class="fl">账户名称</span><span class="fr">张三</span>
+							</li>
+							<li>
+								<span class="fl">登录密码</span><span class="fr">修改密码  > </span>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li class="txt_c">
+								退出登录
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+		
+	</body>
+<script src="../../common/js/base.js"></script>
+<script src="../../common/js/index.js"></script>
+</html>
+<script>
+$('#left_ment').load('../../common/view/menu.html',function(){
+		$('#left_ment a').eq(0).addClass("on");
+});	
+</script>
+
+

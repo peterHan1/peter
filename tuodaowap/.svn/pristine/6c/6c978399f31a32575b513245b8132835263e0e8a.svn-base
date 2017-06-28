@@ -1,0 +1,85 @@
+/**
+ * Created by ChengYa on 2016/6/18.
+ */
+
+//判断手机类型
+window.onload = function () {
+    var u = navigator.userAgent;
+    if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+    } else if (u.indexOf('iPhone') > -1) {//苹果手机
+    	alert(666)
+        //屏蔽ios下上下弹性
+        $(window).on('scroll.elasticity', function (e) {
+            e.preventDefault();
+        }).on('touchmove.elasticity', function (e) {
+            e.preventDefault();
+        });
+    } 
+    //预加载
+    loading();
+}
+//加载页面
+function loading() {
+    $(function progressbar() {
+       $.ajax({       
+	    type:"get",
+	    url:"js/txt.json", 
+	    dataType: "json",
+	     async : false,
+	    success: function(data){
+			var tagHtml = "";
+	    	$.each(data,function(i,item){ 				        
+                tagHtml += ' <div id="first" ><p>只是第<span>'+ item.ids +'</span><span>'+ item.text +'</dpsn></p></div>';        
+			})
+	    	$(".flipbook").append(tagHtml);
+            $(".flipbook-viewport").show();  
+	    }
+	})  
+    });
+    //配置turn.js
+    function loadApp() {
+        var w = $(window).width();
+        var h = $(window).height();
+        $('.flipboox').width(w).height(h);
+        $(window).resize(function () {
+            w = $(window).width();
+            h = $(window).height();
+            $('.flipboox').width(w).height(h);
+        });
+        $('.flipbook').turn({
+            // Width
+            width: w,
+            // Height
+            height: h,
+            // Elevation
+            elevation: 500,
+            display: 'single',
+            // Enable gradients
+            gradients: true,
+            // Auto center this flipbook
+            autoCenter: true,
+            when: {
+                turning: function (e, page, view) {
+                   
+                },
+                turned: function (e, page, view) {
+                    var total = $(".flipbook").turn("pages");//总页数
+                    if (page == 2) {
+                        
+                    } else {
+                       
+                    }
+                }
+            }
+        })
+    }
+    yepnope({
+        test: Modernizr.csstransforms,
+        yep: ['js/turn.js'],
+        complete: loadApp
+    });   
+}
+
+
+
+
