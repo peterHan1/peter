@@ -1,10 +1,11 @@
 $(function(){
-	$(".borrower_tab a").on("click",function(){
-			var index = $(this).parent().index();
-			$(".borrower_tab a").removeClass("li_on")
-			$(this).addClass("li_on").siblings('li').attr('class','taba');
-			$('.tabcon').eq(index).show(200).siblings('.tabcon').hide();
-		});
+	$(".list_tab a").on("click",function(){
+		var index = $(this).parent().index();
+		console.log(index)
+		$(".list_tab a").removeClass("li_on")
+		$(this).addClass("li_on").siblings('li').attr('class','taba');
+		$('.tabcon').eq(index).show(200).siblings('.tabcon').hide();
+	});
 		$("#click_add").on("click",function(){
 			$("#add_borrow").animate({
 				top:'0'
@@ -45,14 +46,12 @@ $(function(){
      		var ish = $(".keyword").height();
      		console.log(h)
 			$(".top_hid").hide();
-			$(".search input").css("width","80%")
 			$(".search_show,.sea_can").show();
 			$('section').hide();
 			$(".search_show").height(h-ish);
      	});
      	$(".sea_can").on("click",function(){
      		$(".top_hid").show();
-			$(".search input").css("width","90%");
 			$(".search input").val("");
 			$(".search_show,.sea_can").hide();
 			$('section').show();
