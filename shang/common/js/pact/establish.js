@@ -1,7 +1,8 @@
 $(function(){
-	$(".establish_ul li").on('click',function(){
-		var index = $(this).index();
-		$(".establish_ul li").removeClass("li_on");
+	$(".establish_ul li a").on('click',function(){
+		var index = $(this).parent().index();
+		console.log(index)
+		$(".establish_ul li a").removeClass("li_on");
 		$(this).addClass("li_on");
 		$('.est_conts').eq(index).show().siblings('.est_conts').hide();
 	})

@@ -4,12 +4,14 @@ $(document).ready(function(e) {
 	});
 	w();
 	function w(){
-		$(".move_con").width($(".move_li").width() + $(".move_conR").width());
-    	$(".move_conL").width($(".move_li").width());
+//		$(".move_con").width($(".move_li").width() + $(".move_conR").width());
+//  	$(".move_conL").width('687px');
+    	var shabi = document.getElementById('right_cont').offsetWidth;
+		console.log($("#right_cont").width())
 	}
     
     
-    var lines = $(".move_con");
+    var lines = $(".move_conL");
     var len = lines.length; 
     var lastX, lastXForMobile;
     var pressedObj; 
@@ -44,7 +46,7 @@ $(document).ready(function(e) {
             }
             var diffX = e.changedTouches[0].pageX - lastXForMobile;
             if (diffX < -130) {
-                $(pressedObj).animate({marginLeft:"-1rem"}, 500);
+                $(pressedObj).animate({marginLeft:"-14%"}, 500);
                 lastLeftObj && lastLeftObj != pressedObj && 
                     $(lastLeftObj).animate({marginLeft:"0"}, 500);
                 lastLeftObj = pressedObj; 
