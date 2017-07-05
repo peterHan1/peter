@@ -41,18 +41,18 @@ $(document).ready(function(e) {
         });
         lines[i].addEventListener('touchend', function(e){
             if (lastLeftObj && pressedObj != lastLeftObj) {
-                $(lastLeftObj).animate({marginLeft:"0"}, 500);
+                $(lastLeftObj).animate({marginLeft:"0"}, 300);
                 lastLeftObj = null;
             }
             var diffX = e.changedTouches[0].pageX - lastXForMobile;
             if (diffX < -130) {
-                $(pressedObj).animate({marginLeft:"-14%"}, 500);
+                $(pressedObj).animate({marginLeft:"-14%"}, 300);
                 lastLeftObj && lastLeftObj != pressedObj && 
-                    $(lastLeftObj).animate({marginLeft:"0"}, 500);
+                    $(lastLeftObj).animate({marginLeft:"0"}, 300);
                 lastLeftObj = pressedObj; 
             } else if (diffX > 130) {
               if (pressedObj == lastLeftObj) {
-                $(pressedObj).animate({marginLeft:"0"}, 500); 
+                $(pressedObj).animate({marginLeft:"0"}, 300); 
                 lastLeftObj = null; 
               }
             }

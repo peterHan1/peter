@@ -4,14 +4,14 @@ $(function(){
 		console.log(index)
 		$(".establish_ul li a").removeClass("li_on");
 		$(this).addClass("li_on");
-		$('.est_conts').eq(index).show().siblings('.est_conts').hide();
+		$('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
 	})
 	
-	$(".est_contTop li").on('click',function(){
-		var index = $(this).index();
-		$(".est_contTop li").removeClass("on");
-		$(this).addClass("on");
-		$('.est_audit').eq(index).show().siblings('.est_audit').hide();		
+	$(".list_tab li a").on('click',function(){
+		var index = $(this).parent().index();
+		$(".list_tab li a").removeClass("li_on");
+		$(this).addClass("li_on");
+		$('.list_ul').eq(index).show().siblings('.list_ul').hide();		
 	});
 	$(".est_contR").on("click",function(){
  		layer.open({
