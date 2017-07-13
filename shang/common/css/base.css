@@ -43,14 +43,21 @@ body{font-family: "Microsoft YaHei";background-color: #33374a;}
 .login_show .layui-m-layerbtn span[yes]{color:gray;font-size:0.45rem;background-color:white;border:none;}
 /*搜索*/
 .search{height:0.9rem;font-size:0.3rem;line-height:0.9rem;background-color:#e2e3e7;}
+.search .search_left{display: inline-block;width:0.25rem;height:0.25rem;background:url(../img/search_l.png) no-repeat;background-size:100% 100%;margin:0.16rem 0.2rem;}
+.search_x{width:0.28rem;height:0.28rem;background:url(../img/search_x.png) no-repeat;background-size:100% 100%;margin:0.16rem 0.25rem;}
+.search_no{width:100%;height:100%;}
+.search_no .search_no_bg{display:inline-block;width:1.66rem;height:1.75rem;background:url(../img/search_no.png) no-repeat;background-size:100% 100%;margin:4.8rem 0 0 4rem;}
 .search form{width:100%;height:100%;overflow: hidden;}
 .search form div{height:0.58rem;width:94%;line-height:0.58rem;border-radius: 3px;margin:0.15rem 3%;font-size:0.28rem;background-color:#fff;}
-.search input{width:80%;height:100%;border:none;letter-spacing:2px;}
+.search input{width:80%;height:100%;border:none;letter-spacing:0.5px;}
 .search input::-webkit-input-placeholder{color:#b0b0b0;}
 .search input::-webkit-input-placeholder {color: #b0b0b0; } 
 .search input:-moz-placeholder {color: #b0b0b0; } 
 .search input::-moz-placeholder {color: #b0b0b0; } 
 .search input:-ms-input-placeholder {color: #b0b0b0; }
+.sea_can{color:white;}
+.opa_d{position:absolute;width:100%;height:100%;background-color:rgba(0,0,0,0.3);z-index: 99999;}
+
 .search_show{width:100%;height:100%;margin-top:0;clear: both;}
 .search_layer{width: 100%;height: 100%;background-color:#e2e3e7;z-index: 9999;}
 /*菜单*/
@@ -80,6 +87,11 @@ body{font-family: "Microsoft YaHei";background-color: #33374a;}
 .list_tab li b{display:inline-block;width:0.01rem;height:0.4rem;border-right:2px solid #e4e4e4;font-size:0.4rem;margin:0.3rem 0;}
 .list_tab .li_on{height:1rem;color:#4776c8;border-bottom:0.05rem solid #4776c8;}
 /*列表*/
+section{height:100%;overflow: hidden;}
+#tabcon_all,#tabcon_o,#tabcon_n,#list_ul_o,#list_ul_n{height:100%;}
+.uc_box ul{padding-bottom: 0;}
+section ul{z-index: 999;}
+.list_section{height:100%;overflow: hidden;}
 .tabcontent li{height:1.85rem;font-size:0.28rem;background-color:#fff;margin-top:0.2rem;padding:0 3.5%;}
 .tabcontent li .cont_top{height:67%;border-bottom:1px solid #e4e4e4;overflow: hidden;}
 .tabcontent li .cont_top p{margin-top:0.15rem;}
@@ -93,15 +105,15 @@ body{font-family: "Microsoft YaHei";background-color: #33374a;}
 #click_add{margin-right:0.4rem;color:#4776c8;}
 #add_borrow{width:200%;height:100%;position:absolute;top:100%;left:0;font-size:0.25rem;overflow: hidden;z-index:99;}
 .borrower{height:100%;width:100%;overflow: hidden;}
-.borrower{background-color:#f2f3f7;}
-.borrower .add_borrower{width:50%;height:100%;background-color:white;}
-.borrower .add_borrower .add_title{width:100%;height:0.8rem;text-align: center;line-height:0.8rem;}
-.borrower .add_borrower .add_cont li{width:100%;height:0.5rem;border-bottom:1px solid gray;}
-.borrower .add_borrower .add_cont li a{display:block;width:100%;height:100%;}
-.borrower .add_borrower .add_cont_top li input{width:100%;height:0.48rem;border:none;font-size:0.28rem;}
-.borrower .add_borrower .add_cont_bot li input{width:50%;height:0.48rem;border:none;font-size:0.28rem;text-align:right;}
-.borrower .add_borrower .add_cont li .inpw{width:100%;text-align:left;}
-.borrower .add_borrower .add_cont .border_no{border:none;}
+.borrower{background-color:#f2f3f7;position:relative;}
+.add_borrower{width:50%;height:100%;background-color:white;}
+.add_borrower .add_title{width:100%;height:0.8rem;text-align: center;line-height:0.8rem;}
+.add_borrower .add_cont li{width:100%;height:0.5rem;border-bottom:1px solid gray;}
+.add_borrower .add_cont li a{display:block;width:100%;height:100%;}
+.add_borrower .add_cont_top li input{width:100%;height:0.48rem;border:none;font-size:0.28rem;}
+.add_borrower .add_cont_bot li input{width:50%;height:0.48rem;border:none;font-size:0.28rem;text-align:right;}
+.add_borrower .add_cont li .inpw{width:100%;text-align:left;}
+.add_borrower .add_cont .border_no{border:none;}
 /*借款人详情页*/
 .borrow_details .add_borrower {font-size:0.26rem;width:100%;}
 .borrow_details .add_borrower .bg_g{background-color:#F2F2F2;}
@@ -211,6 +223,7 @@ body{font-family: "Microsoft YaHei";background-color: #33374a;}
 
 /*竖屏*/
 @media screen and (orientation: portrait) {	
+	
     .login .td_log{margin:3.25rem auto 0;}
 }   
 /*横屏*/

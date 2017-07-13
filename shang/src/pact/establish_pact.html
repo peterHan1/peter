@@ -9,12 +9,7 @@
 		<meta name="full-screen" content="yes">
     	<meta name="x5-fullscreen" content="true">
     	<title>创建合同</title>
-    	<link rel="stylesheet" href="../../common/css/base.css" />
-    	<!--<script src="../../common/js/plug/zepto.min.js"></script>-->
-    	<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-		<script src="../../common/js/plug/layer/layer.js"></script>
-    	
-    	<script src="../../common/js/plug/iscroll.js"></script>
+    	<link rel="stylesheet" href="../../common/css/base.css" />    	
 	</head>
 	<body>
 		<div class="box">
@@ -35,16 +30,85 @@
 				<div class="borrower borrower_est">
 					<div class="search">
 						<form action="" method="post" >
-							<div>
-								<span class="iconfont fl">666</span>
+							<div class="search_d fl">
+								<span class="iconfont fl search_left"></span>
 								<input class="keyword fl" type="search" placeholder="请输入手机号或身份证号" /> 
-								<span class="fl sea_can dis_no">取消</span>
+								<span class="search_x fr dis_no"></span>
 							</div>
+							<span class="fl sea_can dis_no">取消</span>
 						</form>
+
+					</div>
+					<!--遮罩-->
+					<div class="opa_d dis_no"></div>
+					<!--搜索为空-->
+					<div class="search_no dis_no">
+						<span class="search_no_bg"></span>
+					</div>
+						<!--搜索-->
+					<div class="search_show dis_no">
+						<div class="tabcontent">
+							<ul class="search_data">
+								<!--<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>-->
+							</ul>
+						</div>
+						<div class="search_layer"></div>
 					</div>
 					<section>
-						<div class="tabcontent tabcon">
+						<div class="tabcontent tabcon" id="tabcon_n">
 							<ul>
+								<li class="move_li">
+									<div class="est_cont move_con">
+										<div class="est_contL move_conL">
+											<div class="cont_top">
+												<p><span>20160606001</span> <span class="font_ora fr">照片未打码</span></p>
+												<p class="p_cont">
+													<span class="fl">张三</span>
+													<span>18866668888</span>
+													<span class="fr">浙A521N0</span>
+												</p>
+											</div>
+											<div class="cont_bot">
+												<p>2017-04-01  11:45:30</p>
+											</div>	
+										</div>
+										<div class="est_contR move_conR">
+											<span>作废</span>
+										</div>
+									</div>
+								</li>
+								<li class="move_li">
+									<div class="est_cont move_con">
+										<div class="est_contL move_conL">
+											<div class="cont_top">
+												<p><span>20160606001</span> <span class="font_ora fr">照片未打码</span></p>
+												<p class="p_cont">
+													<span class="fl">张三</span>
+													<span>18866668888</span>
+													<span class="fr">浙A521N0</span>
+												</p>
+											</div>
+											<div class="cont_bot">
+												<p>2017-04-01  11:45:30</p>
+											</div>	
+										</div>
+										<div class="est_contR move_conR">
+											<span>作废</span>
+										</div>
+									</div>
+								</li>
 								<li class="move_li">
 									<div class="est_cont move_con">
 										<div class="est_contL move_conL">
@@ -239,7 +303,9 @@
 								</li>
 							</ul>
 						</div>
-							<ul class="list_ul">
+						<div class="list_section">
+							<div class="list_ul" id="list_ul_n">
+							<ul>
 								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> </p>
@@ -292,8 +358,166 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
 							</ul>
-							<ul class="list_ul dis_no">
+						</div>
+						<div class="list_ul dis_no" id="list_ul_o">
+							<ul>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18866668888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18866668888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18866668888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> </p>
+										<p class="p_cont">
+											<span class="fl">李四</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
 								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> </p>
@@ -347,6 +571,10 @@
 									</div>
 								</li>
 							</ul>
+						</div>	
+						</div>
+						
+							
 						</div>
 					</section>
 				</div>
@@ -366,25 +594,86 @@
 		</div>
 		
 	</body>
+<script src="../../common/js/plug/zepto.min.js"></script>
+<script src="../../common/js/plug/jquery-1.9.1.min.js"></script>
+<script src="../../common/js/plug/layer/layer.js"></script>
+<script src="../../common/js/plug/iscroll.js"></script>
 <script src="../../common/js/base.js"></script>
-<script src="../../common/js/pact/establish.js"></script>
 <script src="../../common/js/pact/move.js"></script>
+<script src="../../common/js/search.js"></script>
+<script src="../../common/js/pact/establish.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(1).addClass("on");
 	});
+	
 	$(function(){
-		$("#keyword").on('keypress',function(e) {  
+		var myScroll = new IScroll("#tabcon_n",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+		
+		$(".establish_ul li a").on('click',function(){
+			var index = $(this).parent().index();
+			$(".establish_ul li a").removeClass("li_on");
+			$(this).addClass("li_on");
+			$('.tabcon').eq(index).removeClass("dis_no").siblings('.tabcon').addClass("dis_no");
+			
+			myScroll2 = new IScroll("#list_ul_n",{
+				scrollX:false,
+				scrollY:true,
+				click:true
+			});
+		
+			$(".list_tab li a").on('click',function(){
+				var index = $(this).parent().index();
+				$(".list_tab li a").removeClass("li_on");
+				$(this).addClass("li_on");
+				$('.list_ul').eq(index).removeClass("dis_no").siblings('.list_ul').addClass("dis_no");	
+		
+				var myScroll3 = new IScroll("#list_ul_o",{
+					scrollX:false,
+					scrollY:true,
+					click:true
+				});
+			});	
+		})
+		
+		
+		$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  
             if(keycode=='13') {  
             	alert("你按下了搜索键" + keycode)
                 e.preventDefault();    
-                //请求搜索接口  
-                  
+                //请求搜索接口    
+                 // 搜索为空
+                $(".opa_d,section").hide();
+               	$(".search_no").show();
+               	
+				// 搜素成功
+                $(".opa_d,section").hide();
+                $(".search_show").show();
+                var data_li = '<li><div class="cont_top"><p><span>张三</span></p><p class="p_cont"><span class="fl">13659845263</span><span>330105198904510062</span><span class="fr font_ok">可签署</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				$(".search_data").append(data_li);
             }  
-     	});  
+     	}); 
+     	
+     	
+	$(".est_contR").on("click",function(){
+ 		layer.open({
+			type: 1, 
+			title:"6666",
+			content:$('#can_show'),
+			closeBtn: 0,
+			area: ['50%', '20%']
+		}); 
+    })
+	$("#remark_reset").on("click",function(){
+		layer.closeAll();
+	})
      	
 	})
 	

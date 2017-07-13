@@ -4,7 +4,20 @@ $(function(){
 		console.log(index)
 		$(".list_tab a").removeClass("li_on")
 		$(this).addClass("li_on").siblings('li').attr('class','taba');
-		$('.tabcon').eq(index).show(200).siblings('.tabcon').hide();
+		$('.tabcon').eq(index).removeClass("dis_no").siblings('.tabcon').addClass("dis_no");
+		
+		var myScroll2,myScroll3;
+		myScroll2 = new IScroll("#tabcon_o",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+		myScroll3 = new IScroll("#tabcon_n",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+
 	});
 		$("#click_add").on("click",function(){
 			$("#add_borrow").animate({
@@ -32,30 +45,25 @@ $(function(){
 			},500);
 		})
 		
-		$("#keyword").on('keydown',function(e) {  
+		$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  
             if(keycode=='13') {  
             	alert("你按下了搜索键" + keycode)
                 e.preventDefault();    
                 //请求搜索接口    
+                 // 搜索为空
+                $(".opa_d,section").hide();
+               	$(".search_no").show();
+               	
+				// 搜素成功
+                $(".opa_d,section").hide();
+                $(".search_show").show();
+                var data_li = '<li><div class="cont_top"><p><span>张三</span></p><p class="p_cont"><span class="fl">13659845263</span><span>330105198904510062</span><span class="fr font_ok">可签署</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				$(".search_data").append(data_li);
             }  
      	}); 
-     	$(".keyword").on("click",function(){
-     		var h = $("#left_ment").height();
-     		var ish = $(".keyword").height();
-     		console.log(h)
-			$(".top_hid").hide();
-			$(".search_show,.sea_can").show();
-			$('section').hide();
-			$(".search_show").height(h-ish);
-     	});
-     	$(".sea_can").on("click",function(){
-     		$(".top_hid").show();
-			$(".search input").val("");
-			$(".search_show,.sea_can").hide();
-			$('section').show();
-     	});
+     	
      	$(".tabcontent ul li").on("click",function(){
 			 window.location.href="../../src/borrower/borrower_details.html";
      	});

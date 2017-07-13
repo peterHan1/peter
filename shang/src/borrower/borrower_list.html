@@ -23,20 +23,26 @@
 				<div class="borrower" >
 					<div class="search">
 						<form action="" method="post" >
-							<div>
-								<span class="iconfont fl">666</span>
+							<div class="search_d fl">
+								<span class="iconfont fl search_left"></span>
 								<input class="keyword fl" type="search" placeholder="请输入手机号或身份证号" /> 
-								<span class="fl sea_can dis_no">取消</span>
+								<span class="search_x fr dis_no"></span>
 							</div>
-							
+							<span class="fl sea_can dis_no">取消</span>
 						</form>
 
+					</div>
+					<!--遮罩-->
+					<div class="opa_d dis_no"></div>
+					<!--搜索为空-->
+					<div class="search_no dis_no">
+						<span class="search_no_bg"></span>
 					</div>
 						<!--搜索-->
 					<div class="search_show dis_no">
 						<div class="tabcontent">
-							<ul>
-								<li>
+							<ul class="search_data">
+								<!--<li>
 									<div class="cont_top">
 										<p><span>张三</span></p>
 										<p class="p_cont">
@@ -48,13 +54,12 @@
 									<div class="cont_bot">
 										<p>2017-04-01  11:45:30</p>
 									</div>
-								</li>
+								</li>-->
 							</ul>
 						</div>
 						<div class="search_layer"></div>
 					</div>	
-					<section>
-						<div class="list_tab">
+					<div class="list_tab">
 							<ul>
 								<li class="fl">
 									<a href="### " class="li_on">全部 <span> 10 </span></a>
@@ -70,7 +75,9 @@
 							</ul>
 						</div>
 						
-						<div class="tabcontent tabcon">
+					<section>
+						
+						<div class="tabcontent tabcon" id="tabcon_all">
 							<ul>
 								<li>
 									<div class="cont_top">
@@ -118,6 +125,110 @@
 											<span class="fl">13659845263</span>
 											<span>330105198904510062</span>
 											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
 										</p>
 									</div>
 									<div class="cont_bot">
@@ -126,8 +237,112 @@
 								</li>
 							</ul>
 						</div>
-						<div class="tabcontent tabcon" style="display: none">
+						<div class="tabcontent tabcon dis_no" id="tabcon_o">
 							<ul>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>	
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>	
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_ok">可签署</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>	
 								<li>
 									<div class="cont_top">
 										<p><span>张三</span></p>
@@ -156,8 +371,112 @@
 								</li>	
 							</ul>
 						</div>
-						<div class="tabcontent tabcon" style="display: none">
+						<div class="tabcontent tabcon dis_no" id="tabcon_n">
 							<ul>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>张三</span></p>
+										<p class="p_cont">
+											<span class="fl">13659845263</span>
+											<span>330105198904510062</span>
+											<span class="fr font_no">不可签署 </span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
 								<li>
 									<div class="cont_top">
 										<p><span>张三</span></p>
@@ -188,6 +507,13 @@
 						</div>
 				
 			</section>
+
+		</div>
+				
+				
+				
+		</div>
+		
 			<div id="add_borrow">
 				<div class="add_borrower fl">
 					<div class="add_title">
@@ -238,22 +564,26 @@
 				
 				</div>
 			</div>
-		</div>
-				
-				
-				
-		</div>
+		
 	</div>
 		
 	</body>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
 <script src="../../common/js/borrower/borrower_list.js"></script>	
+<script src="../../common/js/search.js"></script>
 </html>
 <script>
 $('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(0).addClass("on");
 });
+$(function(){
+		var myScroll1 = new IScroll("#tabcon_all",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+})		
 	
 </script>
 		

@@ -23,16 +23,44 @@
 				<div class="borrower">
 					<div class="search">
 						<form action="" method="post" >
-							<div>
-								<span class="iconfont fl">666</span>
-								<input class="keyword fl" type="search" placeholder="请输入手机号或车牌号或档案编号" /> 
-								<span class="fl sea_can dis_no">取消</span>
+							<div class="search_d fl">
+								<span class="iconfont fl search_left"></span>
+								<input class="keyword fl" type="search" placeholder="请输入手机号或身份证号" /> 
+								<span class="search_x fr dis_no"></span>
 							</div>
-							
+							<span class="fl sea_can dis_no">取消</span>
 						</form>
+
+					</div>
+					<!--遮罩-->
+					<div class="opa_d dis_no"></div>
+					<!--搜索为空-->
+					<div class="search_no dis_no">
+						<span class="search_no_bg"></span>
+					</div>
+						<!--搜索-->
+					<div class="search_show dis_no">
+						<div class="tabcontent">
+							<ul class="search_data">
+								<!--<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">周杰伦</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>-->
+							</ul>
+						</div>
+						<div class="search_layer"></div>
 					</div>
 					<section>
-						<div class="tabcontent tabcon">
+						<div class="tabcontent tabcon" id="tabcon_o">
 								<ul>
 									<li>
 										<div class="cont_top">
@@ -86,6 +114,110 @@
 											<p>2017-04-01  11:45:30</p>
 										</div>
 									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">薛之谦</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">吴彦祖</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">薛之谦</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">吴彦祖</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">薛之谦</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">吴彦祖</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">薛之谦</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
+									<li>
+										<div class="cont_top">
+											<p><span>20170606006</span></p>
+											<p class="p_cont">
+												<span class="fl">吴彦祖</span>
+												<span>18539188888</span>
+												<span class="fr">浙A521N0</span>
+											</p>
+										</div>
+										<div class="cont_bot">
+											<p>2017-04-01  11:45:30</p>
+										</div>
+									</li>
 								</ul>
 						</div>
 					</section>
@@ -96,22 +228,38 @@
 	</body>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
+<script src="../../common/js/search.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(3).addClass("on");
 	});
-	$("#keyword").on('keypress',function(e) {  
+	$(function(){
+		var myScroll1 = new IScroll("#tabcon_o",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+	$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  
             if(keycode=='13') {  
-            alert("你按下了搜索键" + keycode)
-
+            	alert("你按下了搜索键" + keycode)
                 e.preventDefault();    
-                //请求搜索接口  
-                  
+                //请求搜索接口    
+                 // 搜索为空
+                $(".opa_d,section").hide();
+               	$(".search_no").show();
+               	
+				// 搜素成功
+                $(".opa_d,section").hide();
+                $(".search_show").show();
+                var data_li = '<li><div class="cont_top"><p><span>20170606006</span></p><p class="p_cont"><span class="fl">周杰伦</span><span>18539188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				$(".search_data").append(data_li);
             }  
-     });  	
+     	}); 	
+	})
+	
 </script>
 
 
