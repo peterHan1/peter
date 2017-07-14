@@ -10,8 +10,6 @@
     	<meta name="x5-fullscreen" content="true">
     	<title>已签署的合同</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
-    	<script src="../../common/js/plug/zepto.min.js"></script>
-    	<script src="../../common/js/plug/iscroll.js"></script>
 	</head>
 	<body>
 		<div class="box">
@@ -61,6 +59,8 @@
 					</div>
 					<section>
 						<div class="tabcontent tabcon" id="tabcon_o">
+							<div class="tabcon_uls" id="tabcon_o_ul">
+								<p class="refresh pulldown">下拉刷新</p>
 								<ul>
 									<li>
 										<div class="cont_top">
@@ -219,6 +219,8 @@
 										</div>
 									</li>
 								</ul>
+								<p class="refresh pullUpLabel">上拉加载更多</p>
+							</div>	
 						</div>
 					</section>
 				</div>
@@ -226,19 +228,39 @@
 		</div>
 		
 	</body>
+<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
+<!--<script src="../../common/js/plug/iscroll.js"></script>-->
+<script src="../../common/js/plug/iscroll-probe.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
 <script src="../../common/js/search.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
-		$('#left_ment dd').eq(3).addClass("on");
+		$('#left_ment dd').eq(4).addClass("on");
 	});
-	$(function(){
-		var myScroll1 = new IScroll("#tabcon_o",{
+	$(window).load(function(){
+		var myScroll1 = new iScroll("tabcon_o",{
 			scrollX:false,
 			scrollY:true,
-			click:true
+			click:true,
+			onRefresh: function(){
+				console.log(555)
+			},
+			onScrollMove: function () {
+				console.log("this.y" + this.y);
+				console.log("this.maxScrollY" + this.maxScrollY);
+				if(this.y > 40 ){
+					$(".pulldown").html("释放刷新");
+				}else if(this.y < 40){
+					$(".pulldown").html("下拉刷新");
+				}else if(this.y < (this.maxScrollY - 40)){
+					alert(666)
+					$(".pullUpLabel").html("释放加载更多");
+				}else if(this.y > (this.maxScrollY + 40))
+					$(".pullUpLabel").html("松开加载更多");
+				
+			}
 		});
 	$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  

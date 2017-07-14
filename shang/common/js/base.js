@@ -1,4 +1,3 @@
-
 (function (doc, win) {
     var docEl = doc.documentElement,
     resizeEvt = 'onorientationchange' in window ? 'orientationchange' : 'resize',
@@ -19,5 +18,6 @@
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
 
-    
 })(document, window);
+
+   

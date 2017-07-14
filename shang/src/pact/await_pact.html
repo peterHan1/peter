@@ -10,8 +10,6 @@
     	<meta name="x5-fullscreen" content="true">
     	<title>待签署的合同</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
-    	<script src="../../common/js/plug/zepto.min.js"></script>
-    	<script src="../../common/js/plug/iscroll.js"></script>
 	</head>
 	<body>
 		<div class="box">
@@ -61,6 +59,7 @@
 					</div>
 					<section>
 						<div class="tabcontent tabcon" id="tabcon_n">
+							<div class="tabcon_uls" id="tabcon_n_ul">
 								<ul>
 									<li>
 										<div class="cont_top">
@@ -219,6 +218,7 @@
 										</div>
 									</li>
 								</ul>
+							</div>	
 						</div>
 					</section>
 				</div>
@@ -226,15 +226,17 @@
 		</div>
 		
 	</body>
+<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
+<script src="../../common/js/plug/iscroll.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/pact/await.js"></script>
 <script src="../../common/js/search.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
-		$('#left_ment dd').eq(2).addClass("on");
+		$('#left_ment dd').eq(3).addClass("on");
 	});
-	$(function(){
+	$(window).load(function(){
 		var myScroll1 = new IScroll("#tabcon_n",{
 			scrollX:false,
 			scrollY:true,

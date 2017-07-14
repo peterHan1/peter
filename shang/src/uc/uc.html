@@ -10,8 +10,6 @@
     	<meta name="x5-fullscreen" content="true">
     	<title>我的信息</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
-    	<script src="../../common/js/plug/zepto.min.js"></script>
-    	<script src="../../common/js/plug/iscroll.js"></script>
 	</head>
 	<body>
 		<div class="box">
@@ -69,12 +67,13 @@
 		</div>
 		
 	</body>
+<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
 </html>
 <script>
 $('#left_ment').load('../../common/view/menu.html',function(){
-		$('.uc').addClass("on");
+		$('#left_ment dd').eq(0).addClass("on");
 });	
 $(function(){
 	

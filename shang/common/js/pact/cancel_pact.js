@@ -1,21 +1,11 @@
 $(function(){
-		var myScroll1 = new IScroll("#tabcon_all",{
-				scrollX:false,
-				scrollY:true,
-				click:true
-			});
-
 		$(".list_tab a").on("click",function(){
 			var index = $(this).parent().index();
 			$(".list_tab a").removeClass("li_on")
 			$(this).addClass("li_on").siblings('li').attr('class','taba');
 			$('.tabcon').eq(index).removeClass("dis_no").siblings('.tabcon').addClass("dis_no");
-			var myScroll1,myScroll2,myScroll3;
-			myScroll1 = new IScroll("#tabcon_all",{
-				scrollX:false,
-				scrollY:true,
-				click:true
-			});
+			var myScroll2,myScroll3;
+			
 			myScroll2 = new IScroll("#tabcon_o",{
 				scrollX:false,
 				scrollY:true,
