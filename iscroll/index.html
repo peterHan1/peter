@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>iScroll demo</title>
+
+<script type="text/javascript" src="iscroll.js"></script>
+
+<script type="text/javascript">
+
+var myScroll;
+
+function loaded () {
+	myScroll = new IScroll('#wrapper', {minScrollY: 40});
+	myScroll.on("scrollEnd",function(){
+		//判断是否下拉刷新
+		if(this.y==40){
+			//此处执行下拉刷新部分的代码，目前采用
+			setTimeout(function(){
+				myScroll.scrollTo(0, 0, 600);
+			}, 1500);	
+		}
+		//判断是否上拉加载分页数据
+		if(this.y < (document.querySelector('#scroller').clientHeight - document.querySelector('#wrapper').clientHeight)){
+			document.querySelector('#loading').style.display = 'block';
+			setTimeout(function(){
+				document.querySelector('#loading').style.display = 'none';
+			},1500);
+		}	
+	});
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+</script>
+
+<style type="text/css">
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	-ms-touch-action: none;
+}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: ubuntu, helvetica, arial;
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
+#header {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	background: #CD235C;
+	padding: 0;
+	color: #eee;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#footer {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 48px;
+	background: #444;
+	padding: 0;
+	border-top: 1px solid #444;
+}
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 48px;
+	left: 0;
+	width: 100%;
+	background: #ccc;
+	overflow: hidden;
+	padding-top: 45px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#scroller {
+	position: absolute;
+	min-height: 101%;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#scroller:after{
+	content: '';
+	height: 48px;
+	width: 100%;
+	display: block;
+}
+#scroller ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: left;
+}
+
+#scroller li {
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+	background-color: #fafafa;
+	font-size: 14px;
+}
+#down {
+	margin-top: -40px;
+	width: 100%;
+	height: 40px;
+	background: #ffffff;
+}
+#loading {
+	position: fixed;
+	z-index: 100;
+	top: 50%;
+	left: 0;
+	line-height: 40px;
+	height: 40px;
+	margin-top: -20px;
+	display: none;
+	text-align: center;
+	width: 100%;
+}
+#loading span{
+	display: inline-block;
+	background: rgba(0,0,0,0.2);
+	padding: 0 10px;
+	font-size: 20px;
+}
+</style>
+</head>
+<body onload="loaded()">
+<div id="header">iScroll</div>
+<div id="wrapper">
+	<div id="scroller">
+		<div id="down">Down!</div>
+		<ul>
+			<li>Pretty row 2</li>
+			<li>Pretty row 3</li>
+			<li>Pretty row 4</li>
+			<li>Pretty row 2</li>
+		</ul>
+	</div>
+</div>
+<div id="loading">Loading</div>
+<div id="footer"></div>
+</body>
+</html>
