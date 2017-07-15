@@ -93,9 +93,10 @@ section{height:100%;overflow: hidden;}
 #tabcon_all,#tabcon_o,#tabcon_n,#list_ul_o,#list_ul_n{height:100%;}
 .uc_box ul{padding-bottom: 0;}
 section .tabcon_ul{z-index: 999;padding-bottom:3.3rem;background-color:#f2f3f7;}
-section .tabcon_uls{z-index: 999;padding-bottom:1rem;background-color:#f2f3f7;margin-top:-0.4rem;}
+section .tabcon_uls{z-index: 999;padding-bottom:1rem;background-color:#f2f3f7;margin-top:-0.5rem;}
 section .tabcon{height:100%;}
-.refresh{height:0.4rem;font-size:0.3rem;color:#333;text-align:center;line-height:0.4rem;}
+#pulldown,#pullUp{height:0.5rem;font-size:0.3rem;color:#333;text-align:center;line-height:0.5rem;}
+/*#pullUp{margin-top:0.1rem;}*/
 .pullUpLabel{margin-top:0.3rem;}
 .list_section{height:100%;overflow: hidden;display: block;}
 .tabcontent li{height:1.85rem;font-size:0.28rem;background-color:#fff;margin-top:0.2rem;padding:0 3.5%;}

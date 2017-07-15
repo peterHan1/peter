@@ -60,7 +60,7 @@
 					<section>
 						<div class="tabcontent tabcon" id="tabcon_o">
 							<div class="tabcon_uls" id="tabcon_o_ul">
-								<p class="refresh pulldown">下拉刷新</p>
+								<p id="pulldown">下拉刷新</p>
 								<ul>
 									<li>
 										<div class="cont_top">
@@ -219,7 +219,7 @@
 										</div>
 									</li>
 								</ul>
-								<p class="refresh pullUpLabel">上拉加载更多</p>
+								<p id="pullUp">上拉加载更多</p>
 							</div>	
 						</div>
 					</section>
@@ -240,28 +240,71 @@
 		$('#left_ment dd').eq(4).addClass("on");
 	});
 	$(window).load(function(){
+		var generatedCount = 0;
 		var myScroll1 = new iScroll("tabcon_o",{
 			scrollX:false,
 			scrollY:true,
 			click:true,
 			onRefresh: function(){
-				console.log(555)
+				if($("#pulldown").hasClass('loading')) {
+					console.log(111)
+					$("#pulldown").attr("class","");
+					$("#pulldown").html('下拉刷新');
+				}else if($("#pullUp").hasClass('loading')) {
+					$("#pullUp").attr("class","");
+					$("#pullUp").html('上拉加载更多');
+				}
 			},
 			onScrollMove: function () {
-				console.log("this.y" + this.y);
-				console.log("this.maxScrollY" + this.maxScrollY);
-				if(this.y > 40 ){
-					$(".pulldown").html("释放刷新");
-				}else if(this.y < 40){
-					$(".pulldown").html("下拉刷新");
-				}else if(this.y < (this.maxScrollY - 40)){
-					alert(666)
-					$(".pullUpLabel").html("释放加载更多");
-				}else if(this.y > (this.maxScrollY + 40))
-					$(".pullUpLabel").html("松开加载更多");
-				
+				if(this.y > 50 && !$("#pulldown").hasClass("flip")){
+					$("#pulldown").addClass("flip")
+					$("#pulldown").html("释放刷新");
+				}else if(this.y < 40 && $("#pulldown").hasClass("flip")){
+					$("#pulldown").removeClass("flip")
+					$("#pulldown").html("下拉刷新");
+				}else if(this.y < (this.maxScrollY - 40) && !$("#pullUp").hasClass("flip")){
+					$("#pullUp").addClass("flip")
+					$("#pullUp").html ("释放刷新");
+					this.maxScrollY = this.maxScrollY;
+				}else if(this.y > (this.maxScrollY + 40) && $("#pullUp").hasClass("flip")){
+					$("#pullUp").removeClass("flip")
+					$("#pullUp").html("松开加载更多");
+				}
+			},
+			onScrollEnd: function () {
+				if($("#pulldown").hasClass("flip")) {
+					$("#pulldown").attr("class","loading");
+					$("#pulldown").html("加载中");
+					pullDownAction();	//执行回调函数 下拉刷新
+				}else if($("#pullUp").hasClass("flip")){
+					$("#pullUp").attr("class","loading");
+					$("#pullUp").html("加载中");
+//					pullUpAction();	// 执行回调函数 上拉加载
+				}
 			}
 		});
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);//阻止冒泡
+		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 0); }, false);
+		//下拉刷新当前数据
+		function pullDownAction () {
+			setTimeout(function () {
+				//这里执行刷新操作
+				myScroll1.refresh();	
+			}, 400);
+		}
+		//上拉加载更多数据
+		/*function pullUpAction () {
+			setTimeout(function () {
+				var el, li;
+				el = document.getElementById('tabcon_o_ul');
+				for (i=0; i<10; i++) {
+					li = document.createElement('li');
+					li.innerText = '上拉加载--' + (++generatedCount);
+					el.appendChild(li, el.childNodes[0]);
+				}
+				myScroll1.refresh();
+			}, 400);
+		}*/
 	$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  
