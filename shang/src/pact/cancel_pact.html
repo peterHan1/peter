@@ -60,35 +60,26 @@
 					<div class="list_tab">
 					<ul>
 						<li class="fl">
-							<a href="### " class="li_on">全部 <span> 10 </span></a>
+							<a href="#tab1 " class="li_on">全部 <span> 10 </span></a>
 							<b class="fr"></b>
 						</li>
 						<li class="fl">
-							<a href="###">已签署 <span> 5 </span></a>
+							<a href="#tab2">已签署 <span> 5 </span></a>
 							<b class="fr"></b>
 						</li>
 						<li class="fl">
-							<a href="###">未签署 <span> 5 </span> </a>
+							<a href="#tab3">未签署 <span> 5 </span> </a>
 						</li>
 					</ul>
 				</div>
 				<section>
-					<div class="tabcontent tabcon" id="tabcon_all">
+					<div class="tabcontent tabcon " id="tabcon_all">
 						<div class="tabcon_ul" id="tabcon_all_ul">
-							<ul>
-								<li>
-									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
-										<p class="p_cont">
-											<span class="fl">张三</span>
-											<span>18866668888</span>
-											<span class="fr">浙A521N0</span>
-										</p>
-									</div>
-									<div class="cont_bot">
-										<p>2017-04-01  11:45:30</p>
-									</div>
-								</li>
+							<div class="pulldowns">
+								<p id="pulldown" >下拉刷新</p>
+							</div>
+							<ul id="txt_list">
+								
 								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
@@ -117,7 +108,7 @@
 								</li>
 								<li>
 									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
 										<p class="p_cont">
 											<span class="fl">张三</span>
 											<span>18839188888</span>
@@ -143,7 +134,7 @@
 								</li>
 								<li>
 									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
 										<p class="p_cont">
 											<span class="fl">张三</span>
 											<span>18839188888</span>
@@ -182,7 +173,7 @@
 								</li>
 								<li>
 									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
 											<span class="fl">张三</span>
 											<span>18839188888</span>
@@ -208,7 +199,7 @@
 								</li>
 								<li>
 									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
 											<span class="fl">张三</span>
 											<span>18839188888</span>
@@ -232,28 +223,72 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								
 							</ul>
-							<!--<ul>
-								<li>
-									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
-										<p class="p_cont">
-											<span class="fl">动态添加</span>
-											<span>18866668888</span>
-											<span class="fr">浙A521N0</span>
-										</p>
-									</div>
-									<div class="cont_bot">
-										<p>2017-04-01  11:45:30</p>
-									</div>
-								</li>
-							</ul>	-->
+							<div class="pullUps" id="pullUps">
+								<p id="pullUp">上拉加载更多</p>
+							</div>
 						</div>
 						
 					</div>
-					<div class="tabcontent tabcon dis_no" id="tabcon_o">
+					<div class="tabcontent tabcon" id="tabcon_o" style="display: none;">
 						<div class="tabcon_ul" id="tabcon_o_ul">
-							<ul>
+							<div class="pulldowns">
+								<p id="pulldowntwo" >下拉刷新</p>
+							</div>
+							<ul id="txt_list_o">
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
 								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p>
@@ -385,51 +420,18 @@
 									</div>
 								</li>
 							</ul>
+							<div class="pullUps" id="pullUps_o">
+								<p id="pullUptwo" >上拉加载更多</p>
+							</div>
 						</div>	
 					</div>
-					<div class="tabcontent tabcon dis_no" id="tabcon_n">
+					<div class="tabcontent tabcon " id="tabcon_n" style="display: none;">
 						<div class="tabcon_ul" id="tabcon_n_ul">
-							<ul>
+							<div class="pulldowns">
+								<p id="pulldownthree" >下拉刷新</p>
+							</div>
+							<ul id="txt_list_n">
 								<li>
-									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
-										<p class="p_cont">
-											<span class="fl">张三</span>
-											<span>18839188888</span>
-											<span class="fr">浙A521N0</span>
-										</p>
-									</div>
-									<div class="cont_bot">
-										<p>2017-04-01  11:45:30</p>
-									</div>
-								</li>
-									<li>
-									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
-										<p class="p_cont">
-											<span class="fl">张三</span>
-											<span>18839188888</span>
-											<span class="fr">浙A521N0</span>
-										</p>
-									</div>
-									<div class="cont_bot">
-										<p>2017-04-01  11:45:30</p>
-									</div>
-								</li>
-								<li>
-									<div class="cont_top">
-										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
-										<p class="p_cont">
-											<span class="fl">张三</span>
-											<span>18839188888</span>
-											<span class="fr">浙A521N0</span>
-										</p>
-									</div>
-									<div class="cont_bot">
-										<p>2017-04-01  11:45:30</p>
-									</div>
-								</li>
-									<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
@@ -455,7 +457,7 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
-									<li>
+								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
@@ -481,7 +483,7 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
-									<li>
+								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
@@ -507,7 +509,7 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
-									<li>
+								<li>
 									<div class="cont_top">
 										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
 										<p class="p_cont">
@@ -520,7 +522,77 @@
 										<p>2017-04-01  11:45:30</p>
 									</div>
 								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>	
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								<li>
+									<div class="cont_top">
+										<p><span>20160606001</span> <span class="font_ora fr">信息填写错误，不符合法律明文规定...</span></p>
+										<p class="p_cont">
+											<span class="fl">张三</span>
+											<span>18839188888</span>
+											<span class="fr">浙A521N0</span>
+										</p>
+									</div>
+									<div class="cont_bot">
+										<p>2017-04-01  11:45:30</p>
+									</div>
+								</li>
+								
+								
 							</ul>
+							<div class="pullUps"id="pullUps_n">
+								<p id="pullUpthree" >上拉加载更多</p>
+							</div>
 						</div>	
 					</div>
 				</section>
@@ -543,10 +615,12 @@
 				
 	</body>
 <script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-<script src="../../common/js/plug/iscroll.js"></script>	
+<!--<script src="../../common/js/plug/iscroll.js"></script>-->	
+<script src="../../common/js/plug/iscroll-probe.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
 <script src="../../common/js/search.js"></script>
+<script src="../../common/js/toLoad.js"></script>
 <script src="../../common/js/pact/cancel_pact.js"></script>
 </html>
 <script>
@@ -554,12 +628,105 @@
 		$('#left_ment dd').eq(5).addClass("on");
 	});
 	$(window).load(function(){
-		var myScroll1 = new IScroll("#tabcon_all",{
-			scrollX:false,
-			scrollY:true,
-			click:true,
-			scrollbars: true
-		});
+		var tabid= window.location.hash;
+		console.log(tabid)
+	    if(tabid && tabid.length>0){
+	        var tab = document.querySelector(tabid);
+	        	
+	    }
+		
+		
+		
+		
+		
+		if($('.tabcon').eq(0).is(":visible")){
+			iscrolls('tabcon_all','pulldown','pullUp',pullDownfun,pullUpfun);
+		}else if($('.tabcon').eq(1).is(":visible")){
+			iscrolls('tabcon_o','pulldowntwo','pullUptwo',pullDownfuns,pullUpfuns);		
+		}else if($('.tabcon').eq(2).is(":visible")){
+			iscrolls('tabcon_n','pulldownthree','pullUpthree',pullDownfunss,pullUpfunss);
+		}
+		var li_list = $("#txt_list li").length;
+		var li_list_o = $("#txt_list_o li").length;
+		var li_list_n = $("#txt_list_n li").length;
+		
+//		iscrolls('tabcon_all','pulldown','pullUp',pullDownfun,pullUpfun);
+		//全部
+		if(li_list > 10){
+			$("#pullUps").removeClass("dis_no");
+		}else{
+			$("#pullUps").addClass("dis_no");
+		}
+		//下拉刷新函数
+		function pullDownfun(){
+			console.log(666);
+			li_list = $("#txt_list li").length;
+		}
+		//上划加载函数
+		function pullUpfun(){
+			if(li_list > 10){
+				$("#pullUps").removeClass("dis_no");
+				var txt = $("#txt_list");
+				for (i=0;i<10;i++){
+					var li = '<li><div class="cont_top"><p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p><p class="p_cont"><span class="fl">张三'+ i +'</span><span>18839188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+					txt.append(li);
+				}
+			}else if(li_list <= 10){
+				$("#pullUps").addClass("dis_no");
+			}
+		}
+		//已签署
+		if(li_list_o > 10){
+			$("#pullUps_o").removeClass("dis_no");
+		}else{
+			$("#pullUps_o").addClass("dis_no");
+		}
+//		iscrolls('tabcon_o','pulldowntwo','pullUptwo',pullDownfuns,pullUpfuns);
+			//下拉刷新函数
+			function pullDownfuns(){
+				console.log(666)
+			}
+			
+			//上划加载函数
+			function pullUpfuns(){
+				if(li_list_o > 10){
+					$("#pullUps_o").removeClass("dis_no");
+					var txt = $("#txt_list_o");
+					for (i=0;i<10;i++){
+						var li = '<li><div class="cont_top"><p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p><p class="p_cont"><span class="fl">张三'+ i +'</span><span>18839188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+						txt.append(li);
+					}
+				}else if(li_list_o <= 10){
+					$("#pullUps_o").addClass("dis_no");
+					console.log(888)	
+				}
+			}
+			
+		//未签署
+		if(li_list_n > 10){
+			$("#pullUps_n").removeClass("dis_no");
+		}else{
+			$("#pullUps_n").addClass("dis_no");
+		}
+//		iscrolls('tabcon_n','pulldownthree','pullUpthree',pullDownfunss,pullUpfunss);
+			//下拉刷新函数
+			function pullDownfunss(){
+				console.log(666)
+			}
+			//上划加载函数
+			function pullUpfunss(){
+				if(li_list_n > 10){
+					$("#pullUps_n").removeClass("dis_no");
+					var txt = $("#txt_list_n");
+					for (i=0;i<10;i++){
+						var li = '<li><div class="cont_top"><p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p><p class="p_cont"><span class="fl">张三'+ i +'</span><span>18839188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+						txt.append(li);
+					}
+				}else if(li_list_n<=10){
+					$("#pullUps_n").addClass("dis_no");
+					console.log(888)
+				}
+		}
 	})
 </script>
 

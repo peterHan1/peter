@@ -1,22 +1,16 @@
-$(function(){
-		$(".list_tab a").on("click",function(){
+$(window).load(function(){
+			$(".list_tab a").on("click",function(){
 			var index = $(this).parent().index();
 			$(".list_tab a").removeClass("li_on")
 			$(this).addClass("li_on").siblings('li').attr('class','taba');
-			$('.tabcon').eq(index).removeClass("dis_no").siblings('.tabcon').addClass("dis_no");
-			var myScroll2,myScroll3;
+			$('.tabcon').eq(index).show().siblings('.tabcon').hide();
 			
-			myScroll2 = new IScroll("#tabcon_o",{
-				scrollX:false,
-				scrollY:true,
-				click:true
-			});
-			myScroll3 = new IScroll("#tabcon_n",{
-				scrollX:false,
-				scrollY:true,
-				click:true
-			});
+//			myScroll.scrollTo(0, 0);
+//			myScroll.refresh();
+
+
 		});
+		
 		$(".keyword").on('keydown',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  

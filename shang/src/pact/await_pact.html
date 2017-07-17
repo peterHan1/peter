@@ -60,7 +60,10 @@
 					<section>
 						<div class="tabcontent tabcon" id="tabcon_n">
 							<div class="tabcon_uls" id="tabcon_n_ul">
-								<ul>
+								<div class="pulldowns">
+									<p id="pulldown" >下拉刷新</p>
+								</div>
+								<ul id="txt_list">
 									<li>
 										<div class="cont_top">
 											<p><span>20170606006</span></p>
@@ -218,6 +221,9 @@
 										</div>
 									</li>
 								</ul>
+								<div class="pullUps">
+									<p id="pullUp" >上拉加载更多</p>
+								</div>
 							</div>	
 						</div>
 					</section>
@@ -227,21 +233,33 @@
 		
 	</body>
 <script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-<script src="../../common/js/plug/iscroll.js"></script>
+<!--<script src="../../common/js/plug/iscroll.js"></script>-->
+<script src="../../common/js/plug/iscroll-probe.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/pact/await.js"></script>
 <script src="../../common/js/search.js"></script>
+<script src="../../common/js/toLoad.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(3).addClass("on");
 	});
 	$(window).load(function(){
-		var myScroll1 = new IScroll("#tabcon_n",{
-			scrollX:false,
-			scrollY:true,
-			click:true
-		});
+		iscrolls('tabcon_n','pulldown','pullUp',pullDownfun,pullUpfun);
+		//下拉刷新函数
+		function pullDownfun(){
+			console.log(666)
+		}
+		//上划加载函数
+		function pullUpfun(){
+			var txt = $("#txt_list");
+			for (i=0;i<10;i++){
+				var li = '<li><div class="cont_top"><p><span>20170606006</span></p><p class="p_cont"><span class="fl">吴彦祖'+ i +'</span><span>18539188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				txt.append(li);
+			}
+			console.log(888)
+		}
+
 	})
 </script>
 

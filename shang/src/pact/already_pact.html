@@ -60,8 +60,11 @@
 					<section>
 						<div class="tabcontent tabcon" id="tabcon_o">
 							<div class="tabcon_uls" id="tabcon_o_ul">
-								<p id="pulldown">下拉刷新</p>
-								<ul>
+								<div class="pulldowns">
+									<p id="pulldown" >下拉刷新</p>
+								</div>
+
+								<ul id="txt_list">
 									<li>
 										<div class="cont_top">
 											<p><span>20170606006</span></p>
@@ -219,7 +222,10 @@
 										</div>
 									</li>
 								</ul>
-								<p id="pullUp">上拉加载更多</p>
+								<div class="pullUps">
+									<p id="pullUp" >上拉加载更多</p>
+								</div>
+
 							</div>	
 						</div>
 					</section>
@@ -229,100 +235,49 @@
 		
 	</body>
 <script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-<!--<script src="../../common/js/plug/iscroll.js"></script>-->
 <script src="../../common/js/plug/iscroll-probe.js"></script>
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/index.js"></script>
 <script src="../../common/js/search.js"></script>
+<script src="../../common/js/toLoad.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(4).addClass("on");
 	});
 	$(window).load(function(){
-		var generatedCount = 0;
-		var myScroll1 = new iScroll("tabcon_o",{
-			scrollX:false,
-			scrollY:true,
-			click:true,
-			onRefresh: function(){
-				if($("#pulldown").hasClass('loading')) {
-					console.log(111)
-					$("#pulldown").attr("class","");
-					$("#pulldown").html('下拉刷新');
-				}else if($("#pullUp").hasClass('loading')) {
-					$("#pullUp").attr("class","");
-					$("#pullUp").html('上拉加载更多');
-				}
-			},
-			onScrollMove: function () {
-				if(this.y > 50 && !$("#pulldown").hasClass("flip")){
-					$("#pulldown").addClass("flip")
-					$("#pulldown").html("释放刷新");
-				}else if(this.y < 40 && $("#pulldown").hasClass("flip")){
-					$("#pulldown").removeClass("flip")
-					$("#pulldown").html("下拉刷新");
-				}else if(this.y < (this.maxScrollY - 40) && !$("#pullUp").hasClass("flip")){
-					$("#pullUp").addClass("flip")
-					$("#pullUp").html ("释放刷新");
-					this.maxScrollY = this.maxScrollY;
-				}else if(this.y > (this.maxScrollY + 40) && $("#pullUp").hasClass("flip")){
-					$("#pullUp").removeClass("flip")
-					$("#pullUp").html("松开加载更多");
-				}
-			},
-			onScrollEnd: function () {
-				if($("#pulldown").hasClass("flip")) {
-					$("#pulldown").attr("class","loading");
-					$("#pulldown").html("加载中");
-					pullDownAction();	//执行回调函数 下拉刷新
-				}else if($("#pullUp").hasClass("flip")){
-					$("#pullUp").attr("class","loading");
-					$("#pullUp").html("加载中");
-//					pullUpAction();	// 执行回调函数 上拉加载
-				}
-			}
-		});
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);//阻止冒泡
-		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 0); }, false);
-		//下拉刷新当前数据
-		function pullDownAction () {
-			setTimeout(function () {
-				//这里执行刷新操作
-				myScroll1.refresh();	
-			}, 400);
+		iscrolls('tabcon_o','pulldown','pullUp',pullDownfun,pullUpfun);
+		//下拉刷新函数
+		function pullDownfun(){
+			console.log(666)
 		}
-		//上拉加载更多数据
-		/*function pullUpAction () {
-			setTimeout(function () {
-				var el, li;
-				el = document.getElementById('tabcon_o_ul');
-				for (i=0; i<10; i++) {
-					li = document.createElement('li');
-					li.innerText = '上拉加载--' + (++generatedCount);
-					el.appendChild(li, el.childNodes[0]);
-				}
-				myScroll1.refresh();
-			}, 400);
-		}*/
-	$(".keyword").on('keydown',function(e) {  
-            var keycode = e.keyCode;  
-            var searchName = $(this).val();  
-            if(keycode=='13') {  
-            	alert("你按下了搜索键" + keycode)
-                e.preventDefault();    
-                //请求搜索接口    
-                 // 搜索为空
-                $(".opa_d,section").hide();
-               	$(".search_no").show();
-               	
-				// 搜素成功
-                $(".opa_d,section").hide();
-                $(".search_show").show();
-                var data_li = '<li><div class="cont_top"><p><span>20170606006</span></p><p class="p_cont"><span class="fl">周杰伦</span><span>18539188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
-				$(".search_data").append(data_li);
-            }  
-     	}); 	
+		//上划加载函数
+		function pullUpfun(){
+			var txt = $("#txt_list");
+			for (i=0;i<10;i++){
+				var li = '<li><div class="cont_top"><p><span>20170606006</span></p><p class="p_cont"><span class="fl">吴彦祖'+ i +'</span><span>18539188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				txt.append(li);
+			}
+			console.log(888)
+		}
+		$(".keyword").on('keydown',function(e) {  
+	            var keycode = e.keyCode;  
+	            var searchName = $(this).val();  
+	            if(keycode=='13') {  
+	            	alert("你按下了搜索键" + keycode)
+	                e.preventDefault();    
+	                //请求搜索接口    
+	                 // 搜索为空
+	                $(".opa_d,section").hide();
+	               	$(".search_no").show();
+	               	
+					// 搜素成功
+	                $(".opa_d,section").hide();
+	                $(".search_show").show();
+	                var data_li = '<li><div class="cont_top"><p><span>20170606006</span></p><p class="p_cont"><span class="fl">周杰伦</span><span>18539188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+					$(".search_data").append(data_li);
+	            }  
+	     	}); 	
 	})
 	
 </script>
