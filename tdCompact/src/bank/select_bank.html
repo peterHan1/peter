@@ -1,0 +1,113 @@
+
+	<div class="bank_title">
+		<span class="fl bank_return">返回</span>
+		<span>开户银行</span> 
+	</div>
+	<div class="ul_bank" id="ul_bank">
+		<ul id="bank_ul">
+			<li name="ICBC">
+				<span class="ICBC"></span>
+				<h4>中国工商银行</h4>
+			</li>
+			<li name="CCB">
+				<span class="CCB"></span>
+				<h4>中国建设银行</h4>
+			</li>
+			<li name="BOC">
+				<span class="BOC"></span>
+				<h4>中国银行</h4>
+			</li>
+			<li name="ABC">
+				<span class="ABC"></span>
+				<h4>中国农业银行</h4>
+			</li>
+			<li name="CMB">
+				<span class="CMB"></span>
+				<h4>招商银行</h4>
+			</li>
+			<li name="CITIC">
+				<span class="CITIC"></span>
+				<h4>中信银行</h4>
+			</li>
+			<li name="SPDB">
+				<span class="SPDB"></span>
+				<h4>浦发银行</h4>
+			</li>
+			<li name="CIB">
+				<span class="CIB"></span>
+				<h4>兴业银行</h4>
+			</li>				
+			<li name="CMBC">
+				<span class="CMBC"></span>
+				<h4>中国民生银行</h4>
+			</li>
+			<li name="CEB">
+				<span class="CEB"></span>
+				<h4>中国光大银行</h4>
+			</li>
+			<li name="PAB">
+				<span class="PAB"></span>
+				<h4>平安银行</h4>
+			</li>
+			<li name="HXB">
+				<span class="HXB"></span>
+				<h4>华夏银行</h4>
+			</li>
+			<li name="BOB">
+				<span class="BOB"></span>
+				<h4>北京银行</h4>
+			</li>
+			<li name="CGB">
+				<span class="CGB"></span>
+				<h4>广发银行</h4>
+			</li>
+			<li name="NBCB">
+				<span class="NBCB"></span>
+				<h4>宁波银行</h4>
+			</li>
+			<li name="HZB">
+				<span class="HZB"></span>
+				<h4>杭州银行</h4>
+			</li>
+			<li name="BOS">
+				<span class="BOS"></span>
+				<h4>上海银行</h4>
+			</li>
+			<li name="PSBC">
+				<span class="PSBC"></span>
+				<h4>中国邮政</h4>
+			</li>
+			<li name="BCM">
+				<span class="BCM"></span>
+				<h4>交通银行</h4>
+			</li>
+		</ul>
+	</div>
+<script>
+	$(function(){
+		var myScroll = new iScroll(ul_bank,{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+		$(".select_bank .bank_return").on("click",function(){
+			$("#add_borrow").animate({
+				left:'0'
+			},500);
+
+		})
+		$("#bank_ul li").on("click",function(){
+			var bank_name = $(this).attr('name');
+			var bankName = $(this).find('h4').html();
+			$("#bank_ul li").removeClass("bank_on")
+			$(this).addClass("bank_on");
+			$(".bank_name").val(bankName);
+			$(".bank_name").change();
+			
+
+		});  
+		
+
+	})
+</script>	
+
