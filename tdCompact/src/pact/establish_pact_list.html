@@ -22,7 +22,7 @@
 							<b class="fr"></b>
 						</li>
 						<li class="fl">
-							<a href="#sub" class="subo">已提交 <span> 5 </span> </a>
+							<a href="#sub" class="sub">已提交 <span> 5 </span> </a>
 						</li>
 					</ul>
 					<a href="establish_details.html" class="fr esta_pact">创建</a>
@@ -303,16 +303,16 @@
 						<div class="list_tab ul_alist">
 							<ul>
 								<li class="fl">
-									<a href="#subn" class="subos">未审核 <span> 10 </span></a>
+									<a href="#subn" class="subn">未审核 <span> 10 </span></a>
 									<b class="fr"></b>
 								</li>
 								<li class="fl">
-									<a href="#subo" class="subt" >已审核 <span> 5 </span></a>
+									<a href="#subo">已审核 <span> 5 </span></a>
 								</li>
 							</ul>
 						</div>
 						<div class="list_section">
-							<div class="list_ul" id="list_ul_n">
+							<div class="list_ul" id="list_ul_n" style="display: none;">
 								<div class="tabcon_ul" id="list_n_ul">
 									<div class="pulldowns">
 										<p id="pulldowntwo" >下拉刷新</p>
@@ -454,7 +454,7 @@
 									</div>
 							</div>	
 						</div>
-						<div class="list_ul dis_no" id="list_ul_o">
+						<div class="list_ul" id="list_ul_o" style="display: none;">
 							<div class="tabcon_ul" id="list_o_ul">
 								<div class="pulldowns">
 									<p id="pulldownthree" >下拉刷新</p>
@@ -603,12 +603,18 @@
 				
 			<!--弹窗-->
 				<div class="can_show dis_no" id="can_show">
+					<p class="p_title">作废备注</p>
 					<form>
-						<p class="txt">作废备注</p>
-							<textarea name="" placeholder="请填写备注" ></textarea>	
-						<div class="menu">
-	    					<input type="reset" value="取消" class="reset" id="remark_reset" />
-							<input type="submit" value="注销" class="get" id="remark_sub" />
+						<div class="larey_cont">
+							<textarea placeholder="例：信息填写错误" id="inp_txt" class="inp_txt" name="remark" value=""></textarea>
+							<p class= "layer_num">
+								<i><b id="lengthnums" class="">0</b>/20</i>
+							</p>
+						</div>
+						
+						<div class="layer_btn">
+							<a href="javascript:;" class="cancel">返回</a>
+							<a href="javascript:;" class="sub_btn">作废</a>
 						</div>
 					</form>				
 				</div>	
@@ -636,29 +642,40 @@ $(window).load(function(){
 				window.location.reload();
 			},100)
 		});
-		
-		var currUrl = window.location.href;
-		console.log(currUrl)
+		var currUrl = window.location.href;		
+		//第一层tab切换
 	   	var currStyle = function (links){
 	     	links.each(function(){
 		        var url = $(this).attr('href');
+		        if(currUrl.indexOf('#sub') != -1 && currUrl.indexOf('#subo') != -1){
+		        	$('.sub').addClass("li_on");
+			        $('.tabcon').eq(1).show().siblings('.tabcon').hide();
+		        	$(".subn").removeClass("li_on");
+		        }else if(currUrl.indexOf(url) != -1){
+		          	$(this).addClass("li_on");
+		          	var tab_index = $(this).parent().index();
+			        $('.tabcon').eq(tab_index).show().siblings('.tabcon').hide();
+			        $(".subn").addClass("li_on");
+			        $('.list_ul').eq(0).show().siblings('.list_ul').hide();
+		          	return false;
+		        }
+	    	});
+		}
+		//第二层tab切换
+	   	var currStyles = function (links){
+	     	links.each(function(){	     		
+		        var url = $(this).attr('href');
 		        if (currUrl.indexOf(url) != -1){
-		          $(this).addClass("li_on");
+		          $(this).addClass("li_on").siblings(links).removeClass("li_on");
 		          var tab_index = $(this).parent().index();
-		          
-		          console.log(tab_index)
-		          $('.tabcon').eq(tab_index).show().siblings('.tabcon').hide();
+		          $('.list_ul').eq(tab_index).show().siblings('.list_ul').hide();
 		          return false;
 		        }
 	    	});
 		}
-		currStyle($(".establish_ul  a")); 
-//		currStyle($(".list_tab  a")); 
-		$(".list_tab  a").on('click',function(){
-	        var tab_index = $(this).parent().index();
-	        console.log(tab_index)
-		currStyle($(".list_tab a")); 
-		})
+		currStyle($(".establish_ul a")); 
+		currStyles($(".list_tab a")); 
+		
 		
 		if($('.tabcon').eq(0).is(":visible")){
 			//执行iscroll
@@ -667,7 +684,11 @@ $(window).load(function(){
 			list_num('txt_list','pullUps');
 			//下拉刷新函数
 			function pullDownfun(){
-				console.log(666);
+				//刷新成功执行
+				setTimeout(function(){
+					
+				},1000)
+			
 				list_num('txt_list','pullUps');//刷新后重新获取列表条数
 			}
 			//上划加载函数
@@ -676,7 +697,7 @@ $(window).load(function(){
 				var lis = '<li class="move_li"><div class="est_cont move_con"><div class="est_contL move_conL"><div class="cont_top"><p><span>20160606001</span> <span class="font_ora fr">照片未打码</span></p><p class="p_cont"><span class="fl">张三</span><span>18866668888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></div><div class="est_contR move_conR"><span>作废</span></div></div></li>';
 				upload('txt_list','pullUps','txt_list',lis);
 			}
-		}else if($('.tabcon').eq(1).is(":visible")){
+		}else if($('.list_ul').eq(0).is(":visible")){
 			//执行iscroll
 			iscrolls('list_ul_n','pulldowntwo','pullUptwo',pullDownfuns,pullUpfuns);	
 			//已签署、tab下判断列表加载文案是否显示
@@ -694,7 +715,7 @@ $(window).load(function(){
 				upload('txt_list_o','pullUps_o','txt_list_o',lis);
 			
 			}
-		}else if($('.tabcon').eq(2).is(":visible")){
+		}else if($('.list_ul').eq(1).is(":visible")){
 			//执行iscroll
 			iscrolls('list_ul_o','pulldownthree','pullUpthree',pullDownfunss,pullUpfunss);
 			//未签署、tab下判断列表加载文案是否显示
@@ -706,7 +727,7 @@ $(window).load(function(){
 			//上划加载函数
 			function pullUpfunss(){
 				//ajax请求拼接lis传值
-				var lis = '<li><div class="cont_top"><p><span>20160606001</span> <span class="font_ora fr">存在法律隐患，条款变更</span></p><p class="p_cont"><span class="fl">张三</span><span>18839188888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
+				var lis = '<li><div class="cont_top"><p><span>20160606001</span> </p><p class="p_cont"><span class="fl">张三</span><span>18866668888</span><span class="fr">浙A521N0</span></p></div><div class="cont_bot"><p>2017-04-01  11:45:30</p></div></li>';
 				upload('txt_list_n','pullUps_n','txt_list_n',lis);
 			}
 		}

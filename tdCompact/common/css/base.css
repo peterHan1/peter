@@ -187,13 +187,22 @@ section .tabcon{height:100%;}
 
 
 /*作废弹窗*/
-.can_show{width:100%;height:100%;font-size:0.26rem;text-align:center;background-color:white;}
-.can_show .txt{line-height:0.8rem;}
+.can_show{width:100%;height:100%;border-top:8px solid #4776c8;font-size:0.26rem;text-align:center;background-color:white;}
+.can_show .p_title{text-align:left;font-size:0.3rem;color:#333;margin:0.4rem 0;padding:0 0.4rem;}
+.can_show .larey_cont{position:relative;padding:0 0.4rem;}
+.can_show .inp_txt{width:100%; height: 2.2rem;border:1px solid #b0b0b0;outline:none;overflow:hidden; resize:none;padding:0.15rem 0.2rem;}
+.can_show .orange{border-color:#ff7a00;color:#ff7a00;}
+.can_show .layer_num{position:absolute;right:0.55rem;bottom:0.2rem;color:#a1a1a1;}
+.can_show .layer_btn{width:100%;height:0.9rem;margin-top:0.28rem;}
+.can_show .layer_btn a{display:inline-block;width:50%;float:left;line-height:0.95rem;text-align:center;color:#333;background-color:#f2f3f7;}
+.can_show .layer_btn .sub_btn{background-color:#5187e7;color:#a4bcf1;}
+.can_show .layer_btn .obs{background-color:#4776c8;color:#fff;}
+/*.can_show .txt{line-height:0.8rem;}
 .can_show textarea{width:90%;height:1rem;font-size:0.26rem;resize:none;outline:none;}
 .can_show .menu {width:100%;height:0.8rem;}
 .can_show .menu input{background-color:white;}
 .can_show .menu .get {display: inline-block;width:48%;line-height: 0.8rem;text-align: center;border-radius: 5px;}
-.can_show .menu .reset {display: inline-block;width:48%;line-height: 0.8rem;text-align: center;border-radius: 5px;}
+.can_show .menu .reset {display: inline-block;width:48%;line-height: 0.8rem;text-align: center;border-radius: 5px;}*/
 
 /*信息*/
 .uc_box{font-size:0.24rem;height:100%;width:100%;background-color:#f2f3f7;}
