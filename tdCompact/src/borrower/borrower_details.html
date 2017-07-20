@@ -10,26 +10,23 @@
     	<meta name="x5-fullscreen" content="true">
     	<title>借款人信息</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
-    	<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-    	<script src="../../common/js/plug/iscroll.js"></script>
 	</head>
 	<body>
 		<div class="box">
 			<div id="left_ment"></div>
-			<div id="right_cont" class="posi_abs">
+			<div id="right_cont">
 				<div class="bor_detas">
 					<div class="bor_details">
 						<div class="borrower borrowers fl">
 							<div class="top">
-								<a href="borrower_list.html" class="fl re_list">返回</a> <span class="cancel fl dis_no"> < 取消 </span>借款人信息
+								<a href="borrower_list.html#all" class="fl re_list"> < 返回</a> <span class="cancel fl dis_no"> < 返回 </span>借款人信息
 							</div>
-							<div class="borrow_details">
 								<div class="add_borrower fl">
-									<div class="add_cont" id="add_cont">
+									<div class="add_cont add_conts" id="add_cont">
 										<div class="add_cont_top">
 											<ul> 
 												<li class="border_no bg_g">
-													<p class="fl">基本信息</p><span class="fr compile">编辑</span>
+													<p class="fl font_black">基本信息</p><span class="fr compile">编辑 > </span>
 												</li>
 												<li>
 													<span class="fl">车主姓名</span> <input type="text" value="张三" class="fr inp_name" readOnly="true" />
@@ -38,15 +35,18 @@
 													<span class="fl">身份证号</span><input type="text" value="330105198206221626" class="fr inp_sfz" readOnly="true" />
 												</li>
 												<li>
-													<span class="fl">手机号</span><input type="number" class="fr inp_phone" value="1588888888" readOnly="true" />
+													<span class="fl">手机号</span><input type="text" class="fr inp_phone" maxlength="11" value="18539123456" readOnly="true" />
 												</li>
 											</ul>
-											<p class="name_sub p_sub dis_no">提交</p>
+											<div class="btn dis_no name_btn">
+												<input type="button" value="提交" class="inp_bg"/>
+											</div>
+
 										</div>
 										<div class="add_cont_bot">			
 											<ul class="ul_top">
 												<li class="border_no bg_g">
-													<p class="fl">银行卡信息</p> <span class="font_red">*银行卡的开户行必须是车主</span> <span class="fr ch_bank">更换银行卡</span>
+													<p class="fl font_black">银行卡信息</p> <span class="font_red">&nbsp;&nbsp; 开户人必须是车主</span> <span class="fr ch_bank">更换银行卡 > </span>
 												</li>
 												<li>
 													<span>开户银行</span> <span class="fr" >工商银行 </span>						
@@ -62,8 +62,8 @@
 												</li>
 											</ul>
 											<ul class="dis_no bank_ul">
-												<li class="border_no">
-													<p class="fl">银行卡信息</p> <span class="fr font_red">*银行卡的开户行必须是车主</span>
+												<li class="border_no bg_g">
+													<p class="fl">银行卡信息</p> <span class="fr font_red">开户人必须是车主</span>
 												</li>
 												<li class="select_bnk">
 													<span>开户银行</span> <input class="fr bank_name" name="" value="" placeholder="请选择开户银行 >" readOnly="true"/>						
@@ -75,19 +75,23 @@
 													<span>开户城市</span> <input class="fr city" name="" value="" placeholder="选择城市 >" readOnly="true"/> 
 												</li>
 												<li>
-													<input class="inpw bank_code" type="text" name="" placeholder="银行卡号">
+													<span>银行卡号</span><input class="fr bank_code" type="text" name="" placeholder="银行卡号">
 												</li>
 												<li>
-													<input class="inpw subbranch" type="text" name="" placeholder="开户支行">
+													<span>开户支行</span><input class="fr subbranch" type="text" name="" placeholder="开户支行">
 												</li>
 											</ul>
-											<p class="bank_btn p_sub dis_no">提交</p>
+											<div class="btn dis_no bank_btn">
+												<input type="button" value="提交" class="inp_bg"/>
+											</div>
+
 											
 										</div>
-						
+										<div class="btn">
+											<input type="button" value="获取认证" class="dis_no ca_affirm"/>
+										</div>
 									</div>
 								</div>
-							</div>
 						</div>
 						<div class="select_bank select_bankda fl">
 						
@@ -101,107 +105,15 @@
 		</div>
 		
 	</body>
+<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
+<script src="../../common/js/plug/iscroll-probe.js"></script>
 <script src="../../common/js/base.js"></script>
-<script src="../../common/js/index.js"></script>
+<script src="../../common/js/borrower/borrower_details.js"></script>
+<script src="../../common/js/plug/layer/layer.js"></script>
 </html>
 <script>
 $('#left_ment').load('../../common/view/menu.html',function(){
-		$('#left_ment dd').eq(0).addClass("on");
+		$('#left_ment dd').eq(1).addClass("on");
 });	
-$(function(){
-	var name = $(".inp_name").val();
-	var fsz = $(".inp_fsz").val();
-	var phone =  $(".inp_phone").val();
-//	编辑
-	$(".compile").on('click',function(){
- 		$(".add_cont_bot,.re_list,.compile").hide();
- 		$(".name_sub,.cancel").show();
- 		$(".inp_name,.inp_phone").removeAttr('readOnly');
- 	});
- 	
- 	
- 	$(".inp_name,.inp_phone").on('keyup',function(){
-		if($(".inp_name").val() != name || $(".inp_phone").val() != phone){
-			$(".name_sub").addClass("basic_sub")
-		}else{
-			$(".name_sub").removeClass("basic_sub")			
-		}
-		
-	});
 
-//	编辑姓名提交
-	$(document).on("click",".basic_sub",function(){
-		
-	});
-	//更换银行卡提交
-	$(document).on("click",".bank_sub",function(){
-		
-	});
-	
-	$(".cancel").on('click',function(){
-		$(".inp_name").val(name);
-		$(".inp_phone").val(phone);
-		
- 		$(".add_cont_bot,.add_cont_top,.re_list,.compile,.ul_top").show();
- 		$(".name_sub,.bank_btn,.cancel,.bank_ul").hide();
- 		$(".inp_name,.inp_phone").attr("readOnly", true); 			
- 		$(".name_sub").removeClass("basic_sub");
- 		
- 	});
- 	$(".ch_bank").on("click",function(){
- 		$(".add_cont_top,.re_list,.ul_top").hide();
- 		$(".bank_btn,.cancel,.bank_ul").show();
- 	});
-// 	选择银行
-	$(".select_bnk").on("click",function(){
-		$('.select_bank').load('../../src/bank/select_bank.html');
-		$(".borrowers").animate({
-			marginLeft:'-100%'
-		},500);
-	})
-//	点击返回左滑
-	$(document).on('click','.bank_return',function(){
-		$(".borrowers").animate({
-			marginLeft:'0'
-		},500);
-	});
-//	选择后左滑
-	$(document).on("click","#bank_ul li",function(){
-		$(".borrowers").animate({
-			marginLeft:'0'
-		},500);
-	});
-
-	
-	$('.bank_name').change(function(){
-		isval()
-	});
-//	内容不为空 提交按钮颜色更换
-	function isval(){
-		var name = $(".bank_name").val();
-		var province = $(".province").val();
-		var city = $(".city").val();
-		var bank_code = $(".bank_code").val();
-		var subbranch = $(".subbranch").val();
-		if(name != "" && province != "" && city != "" && bank_code != "" && subbranch != "" ){
-			$(".bank_btn").addClass("bank_sub");
-		}else{
-			$(".bank_btn").removeClass("bank_sub");
-			
-		}
-	};
- 
-})
-		
-     	
- 	
-     	
-	
-</script>
-
-
-
-		
-
-			
-	
+</script>	

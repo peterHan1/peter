@@ -1,28 +1,42 @@
 $(function(){
+	
+			$(".empty_x").bind('input propertychange', function() { 
+				if($(this).find('input').val() != ""){
+			    	$(this).find('.search_x ').show();
+			    }else{
+			    	$(this).find('.search_x ').hide();
+			    };
+			    $(this).find('.search_x ').on('click',function(){
+			    	$(this).siblings('input').val('');
+			    	$(this).hide();
+			    })
+			})
+		
+	
 		$("#click_add").on("click",function(){
 			$("#add_borrow").animate({
 				top:'0'
-			},500);
+			},800);
 
 		})
 		$(".add_cancel").on("click",function(){
 
 			$("#add_borrow").animate({
 				top:'100%'
-			},500);
+			},800);
 
 		})
 		$("#select_bank").on("click",function(){
 			$('.select_bank').load('../../src/bank/select_bank.html');
 			$("#add_borrow").animate({
 				left:'-100%'
-			},500);
+			},800);
 
 		})
 		$(document).on("click","#bank_ul li",function(){
 			$("#add_borrow").animate({
 				left:'0'
-			},500);
+			},800);
 		})
 		
 		$(".keyword").on('keydown',function(e) {  

@@ -21,7 +21,7 @@
 				<div class="borrower">
 					<div class="search">
 						<form action="" method="post" >
-							<div class="search_d fl">
+							<div class="fl search_d">
 								<span class="iconfont fl search_left"></span>
 								<input class="keyword fl" type="search" placeholder="请输入手机号或身份证号" /> 
 								<span class="search_x fr dis_no"></span>
@@ -550,42 +550,51 @@
 					<div class="add_title">
 						<span class="add_cancel fl">取消</span>
 						<span class="add_tit">添加借款人</span>
-						<span class="add_accomplish fr">完成</span>
+						<span class="add_sub fr">完成</span>
 					</div>
 					<div class="add_cont" id="add_cont">
 						<div class="add_cont_top">
-							<p>基本信息</p>
+							<p class="add_top_p">基本信息</p>
 							<ul>
-								<li>
+								<li class="empty_x">
 									<input type="text" name="" placeholder="车主姓名">
+									<span class="fr search_x dis_no"></span>
 								</li>
-								<li>
+								<li class="empty_x">
 									<input type="text" name="" placeholder="身份证号">
+									<span class="fr search_x dis_no"></span>
 								</li>
-								<li>
+								<li class="empty_x">
 									<input type="text" name="" placeholder="手机号">
+									<span class="fr search_x dis_no"></span>
 								</li>
 							</ul>
 						</div>
-						<div class="add_cont_bot">			
+						<div class="add_cont_bot">
+							<p  class="add_bot_p"> 
+							<span class="fl">银行卡信息</span>
+							<span class="fr font_red">银行卡的开户人必须是车主</span>
+								
+							</p>
+
+							
 							<ul>
-								<li class="border_no">
-									<p class="fl">银行卡信息</p> <span class="fr font_red">*银行卡的开户行必须是车主</span>
-								</li>
 								<li id="select_bank">
-									<span>开户银行</span> <input class="fr bank_name" name="" value="请选择开户银行 >" readOnly="true"/>						
+									<span>开户银行</span> <input class="fr bank_name" name="" value="" placeholder="请选择开户银行 >" readOnly="true"/>						
 								</li>
 								<li id="select_province">
-									<span>开户省份</span> <input class="fr" name="" value="选择省份 >" readOnly="true"/>
+									<span>开户省份</span> <input class="fr" name="" placeholder="选择省份 >" readOnly="true"/>
 								</li>
 								<li id="select_city">
-									<span>开户城市</span> <input class="fr" name="" value="选择城市 >" readOnly="true"/> 
+									<span>开户城市</span> <input class="fr" name="" placeholder="选择城市 >" readOnly="true"/> 
 								</li>
-								<li>
+								<li class="empty_x">
 									<input class="inpw" type="text" name="" placeholder="银行卡号">
+									<span class="fr search_x dis_no"></span>
 								</li>
-								<li>
+								<li class="empty_x">
 									<input class="inpw" type="text" name="" placeholder="开户支行">
+									<span class="fr search_x dis_no"></span>
 								</li>
 							</ul>
 						</div>
