@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+    	<title>被打回合同</title>
+    	<link rel="stylesheet" href="../../common/css/base.css" />
+	</head>
+	<body>
+		<div class="box">
+			<div class="back_box" id="right_cont">
+				<div class="top back_t">
+					<a href="establish_pact_list.html#back" class="fl"> < 取消</a>
+					<span class="back_title">修改合同-预览</span>
+					<span class="fr back_cancel">作废</span>
+					<span class="fr dis_no" id="back_sub" >提交</span>
+				</div>
+				<section class="back_section">
+					<div class="back_top">
+						<p>审批备注：信息填写错误，不符合法律文明规定的范围。</p>
+					</div>
+					<div class="back_cont" id="back_cont">
+						<div class="back_ul">
+							<ul>
+								<li>
+									<span>借款人姓名</span>
+									<input type="text" value="吴彦祖" disabled />
+								</li>
+								<li>
+									<span>身份证号码</span>
+									<input type="text" value="301234567896325875" disabled />
+								</li>
+								<li>
+									<span>借款人地址</span>
+									<input type="text" value="内蒙古自治区呼伦贝尔市莫力达瓦达翰尔族自治旗杜拉尔鄂温克民族乡尼西空海拉松村456号" disabled />
+								</li>
+								<li>
+									<span>车牌号</span>
+									<input type="text" value="浙A88888" disabled />
+								</li>
+								<li>
+									<span>汽车型号</span>
+									<input type="text" value="奇瑞QQ" disabled />
+								</li>
+								<li>
+									<span>汽车发动机号</span>
+									<input type="text" value="123456789123456789QQ" disabled />
+								</li>
+								<li>
+									<span>车架号</span>
+									<input type="text" value="123456789123456789" disabled />
+								</li>
+								<li>
+									<span>押金金额（元）</span>
+									<input type="text" value="壹仟元整" disabled />
+								</li>
+								<li>
+									<span>银行卡户名</span>
+									<input type="text" value="吴彦祖" disabled />
+								</li>
+								<li>
+									<span>银行卡号</span>
+									<input type="text" value="6222 3054 8965 201" disabled />
+								</li>
+								<li>
+									<span>开户银行</span>
+									<input type="text" value="工商银行奇瑞支行" disabled />
+								</li>
+								<li>
+									<span>联系手机号</span>
+									<input type="text" value="15839123456" disabled />
+								</li>
+								<li>
+									<span>开户银行</span>
+									<input type="text" value="工商银行奇瑞支行" disabled />
+								</li>
+								<li>
+									<span>联系手机号</span>
+									<input type="text" value="15839123456" disabled />
+								</li>
+								<li>
+									<span>开户银行</span>
+									<input type="text" value="工商银行奇瑞支行" disabled />
+								</li>
+								<li>
+									<span>联系手机号</span>
+									<input type="text" value="15839123456" disabled />
+								</li>
+								<li>
+									<span>开户银行</span>
+									<input type="text" value="工商银行奇瑞支行" disabled />
+								</li>
+								<li>
+									<span>联系手机号</span>
+									<input type="text" value="15839123456" disabled />
+								</li>
+								
+							</ul>
+							
+						</div>
+
+					</div>
+				</section>
+					
+				<div class="footer">
+					<input type="button" value="编辑" class="footer_btn"/>
+				</div>
+			</div>
+			
+		</div>
+
+		<!--弹窗-->
+		<div class="can_show dis_no" id="can_show">
+			<p class="p_title">作废备注</p>
+			<form>
+				<div class="larey_cont">
+					<textarea placeholder="例：信息填写错误" id="inp_txt" class="inp_txt" name="remark" value=""></textarea>
+					<p class= "layer_num">
+						<i><b id="lengthnums" class="">0</b>/20</i>
+					</p>
+				</div>
+				
+				<div class="layer_btn">
+					<a href="javascript:;" class="cancel">返回</a>
+					<a href="javascript:;" class="sub_btn">作废</a>
+				</div>
+			</form>				
+		</div>	
+	</body>
+<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
+<script src="../../common/js/plug/iscroll-probe.js"></script>
+<script src="../../common/js/plug/layer/layer.js"></script>	
+<script src="../../common/js/base.js"></script>
+<script src="../../common/js/pact/establish_back.js"></script>
+</html>
+<script>
+	$('#left_ment').load('../../common/view/menu.html',function(){
+		$('#left_ment dd').eq(2).addClass("on");
+	});
+	$(window).load(function(){
+		var myScroll = new iScroll(back_cont,{
+			scrollX:false,
+			scrollY:true,
+			click:true,
+		})
+	})
+</script>
+

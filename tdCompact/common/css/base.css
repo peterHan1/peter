@@ -1,6 +1,6 @@
 /*html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {margin: 0;padding: 0;}*/
 a,body,dd,div,dl,dt,em,form,h1,h2,h3,h4,h5,h6,html,iframe,img,input,label,li,ol,p,b,i,pre,span,strong,table,td,textarea,th,ul {margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;vertical-align: baseline}
-*{font-family: "Microsoft Yahei";box-sizing: border-box;}
+*{font-family: "Microsoft Yahei";box-sizing: border-box;  -webkit-overflow-scrolling: touch;}
 h1, h2, h3, h4, h5, h6{font-weight:normal;}
 ul,ol {list-style: none;}
 img {border: none;vertical-align: middle;}
@@ -29,7 +29,8 @@ input:-moz-placeholder {color: #b0b0b0; }
 input::-moz-placeholder {color: #b0b0b0; } 
 input:-ms-input-placeholder {color: #b0b0b0; }
 /*登录*/
-
+.top a{font-size:0.28rem;color:#333;}
+.top a:visited{color:#333;}
 .login .td_log{width:2.58rem;height:1.23rem;margin:24% auto 0;background:url(../img/log.png) no-repeat;background-size:100%;}
 .td_login{width:7.35rem;margin:1.85rem auto 0;overflow: hidden;}
 .login li{width:100%;height:0.75rem;line-height:0.7rem;margin-top:0.85rem;font-size:0.4rem;border-bottom:1px solid #697196;}
@@ -97,10 +98,10 @@ section .tabcon_ul{z-index: 999;padding-bottom:2.5rem;background-color:#f2f3f7;m
 section .tabcon_uls{z-index: 999;padding-bottom:1rem;background-color:#f2f3f7;margin-top:-0.5rem;}
 section .tabcon{height:100%;}
 .pulldowns,.pullUps{height:0.5rem;font-size:0.3rem;color:#333;text-align:center;line-height:0.5rem;}
-/*#pullUp{margin-top:0.1rem;}*/
 .pullUpLabel{margin-top:0.3rem;}
 .list_section{height:100%;overflow: hidden;display: block;}
 .tabcontent li{height:1.85rem;font-size:0.28rem;background-color:#fff;margin-top:0.2rem;padding:0 3.5%;}
+.tabcontent li a{color:#333;}
 .tabcontent li .cont_top{height:67%;border-bottom:1px solid #e4e4e4;overflow: hidden;}
 .tabcontent li .cont_top p{margin-top:0.15rem;}
 .tabcontent li .cont_top .p_cont{text-align: center;}
@@ -133,7 +134,6 @@ section .tabcon{height:100%;}
 .bor_detas{width:100%;height:100%;overflow: hidden;}
 .bor_details{width:200%;height:100%;overflow: hidden;}
 .borrowers{width:50%;}
-.borrowers .top a{font-size:0.28rem;color:#333;}
 .borrowers .top .cancel{font-size:0.3rem;}
 .borrowers .add_conts{padding:0;font-size:0.28rem;color:#333;}
 .borrowers .add_conts li{padding:0 0.4rem;margin:0;height:0.88rem;line-height:0.88rem;background-color:white;}
@@ -242,8 +242,17 @@ section .tabcon{height:100%;}
 .pact_con .iscrol_pact{height:20rem;background-color:white;}
 .pact_foot{width:100%;height:1rem;line-height:1rem;text-align: center;font-size:0.26rem;background-color:gainsboro;color:white;}
 
-
-
+/*被打回合同详情页*/
+.back_box .back_top{width:100%;height:0.88rem;font-size:0.26rem;text-align:center;line-height:0.88rem;color:#ff7a00;background-color:#f2f3f7;}
+.back_box .back_t .back_sub{color:#4776c8;}
+.back_box .back_cont{height:100%;background-color:white;font-size:0.26rem;}
+.back_box .back_cont .back_ul{z-index: 999;padding-bottom:2.5rem;}
+.back_box .back_cont li{width:100%;height:1rem;line-height:1rem;border-bottom:1px solid #cdcdcd;padding:0 0.4rem;}
+.back_box .back_cont li span{display:inline-block;height:100%;width:15%;color:#999;}
+.back_box .back_cont li input{width:83%;color:#333;}
+.back_box .back_cont li input:disabled{background-color:#fff;color:#333;-webkit-text-fill-color:#333; -webkit-opacity:1; opacity: 1;}
+.back_box .footer{position:fixed;left:0;bottom:0;width:100%;}
+.back_box .footer .footer_btn{width:100%;height:1rem;background-color:#4776c8;font-size:0.34rem;color:#fff;}
 
 /*不同的分辨率设置不同的比例*/
 /*大于1356宽度时*/

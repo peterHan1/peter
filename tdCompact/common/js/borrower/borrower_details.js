@@ -16,6 +16,7 @@ $(function(){
 	var phone =  $(".inp_phone").val();
 //	编辑
 	$(".compile").on('click',function(){
+		$(".top_tilte").html("修改基本信息");
  		$(".add_cont_bot,.re_list,.compile").hide();
  		$(".name_sub,.cancel,.name_btn").show();
  		$(".inp_name,.inp_phone").removeAttr('readOnly');
@@ -44,6 +45,7 @@ $(function(){
 	});
 	
 	$(".cancel").on('click',function(){
+		$(".top_tilte").html("借款人信息");
 		$(".inp_name").val(name);
 		$(".inp_phone").val(phone);
  		$(".add_cont_bot,.add_cont_top,.re_list,.compile,.ul_top").show();
@@ -55,6 +57,7 @@ $(function(){
  	});
  	//更换银行
  	$(".ch_bank").on("click",function(){
+ 		$(".top_tilte").html("更换银行卡");
  		$(".add_cont_top,.re_list,.ul_top").hide();
  		$(".bank_btn,.cancel,.bank_ul").show();
  	});

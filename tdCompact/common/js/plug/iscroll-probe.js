@@ -126,7 +126,14 @@ var m = Math,
 
 			// Events
 			onRefresh: null,
-			onBeforeScrollStart: function (e) { e.preventDefault(); },
+//			onBeforeScrollStart: function (e) { e.preventDefault(); },
+			onBeforeScrollStart: function (e) {   
+			//  使用iScroll时input复选框不能选中解决方法  
+			    var target = e.target;  
+			    while (target.nodeType != 1) target = target.parentNode;  
+			    if (target.tagName != 'INPUT')  
+			    e.preventDefault();  
+			},
 			onScrollStart: null,
 			onBeforeScrollMove: null,
 			onScrollMove: null,
