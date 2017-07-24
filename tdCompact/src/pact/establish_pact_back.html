@@ -3,13 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta name="format-detection" content="telephone=no"/>
-		<meta name="full-screen" content="yes">
-    	<meta name="x5-fullscreen" content="true">
+		<meta name="full-screen" content="yes" />
+    	<meta name="x5-fullscreen" content="true" />
     	<title>被打回合同</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
+    	<script src="../../common/js/plug/fastclick.js"></script>
 	</head>
 	<body>
 		<div class="box">
@@ -20,10 +21,11 @@
 					<span class="fr back_cancel">作废</span>
 					<span class="fr dis_no" id="back_sub" >提交</span>
 				</div>
+				<div class="back_top">
+					<p>审批备注：信息填写错误，不符合法律文明规定的范围。</p>
+				</div>
 				<section class="back_section">
-					<div class="back_top">
-						<p>审批备注：信息填写错误，不符合法律文明规定的范围。</p>
-					</div>
+					
 					<div class="back_cont" id="back_cont">
 						<div class="back_ul">
 							<ul>
@@ -56,7 +58,7 @@
 									<input type="text" value="123456789123456789" disabled />
 								</li>
 								<li>
-									<span>押金金额（元）</span>
+									<span>押金金额 (元)</span>
 									<input type="text" value="壹仟元整" disabled />
 								</li>
 								<li>
@@ -133,7 +135,7 @@
 		</div>	
 	</body>
 <script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-<script src="../../common/js/plug/iscroll-probe.js"></script>
+<script src="../../common/js/plug/iscroll.js"></script>
 <script src="../../common/js/plug/layer/layer.js"></script>	
 <script src="../../common/js/base.js"></script>
 <script src="../../common/js/pact/establish_back.js"></script>
@@ -143,11 +145,20 @@
 		$('#left_ment dd').eq(2).addClass("on");
 	});
 	$(window).load(function(){
-		var myScroll = new iScroll(back_cont,{
+		var myScroll = new IScroll(back_cont,{
 			scrollX:false,
 			scrollY:true,
 			click:true,
-		})
+			scrollbars: true,
+			fadeScrollbars:true
+		});
+		myScroll.on('scrollStart', function(){
+			setTimeout(function(){
+				$(".back_cont input").blur();
+			},100)
+
+		});
+
 	})
 </script>
 

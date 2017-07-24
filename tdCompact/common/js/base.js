@@ -17,6 +17,7 @@
     if (!doc.addEventListener) return;
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
+    doc.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  
 
 })(document, window);
 

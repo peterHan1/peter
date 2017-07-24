@@ -1,4 +1,5 @@
 $(function(){
+	FastClick.attach(document.body);
 		$(".footer_btn").on("click",function(){
 			$(".back_title").html("修改合同-编辑");
 			$(".back_cancel").hide();
@@ -16,7 +17,7 @@ $(function(){
 				area: ['5.8rem', 'auto']
 			}); 
 		})
-		
+
 		inp('back_cont');
 		function inp(inp){
 			var inps = $("."+inp).find("li input");
@@ -45,12 +46,8 @@ $(function(){
 			   }
 			})
 		}
-		
-		$(".back_cont input").on("click",function(){
-			
-		})
-		
-		$(document).on("click",".back_sub",function(){
+
+		$(document).on("click touchstart",".back_sub",function(){
 			//有值发生改变的话 提交执行
 			alert(666)
 		})
@@ -94,10 +91,10 @@ $(function(){
 			}
 		});
 	
-	
-	
-	$(".cancel").on("click",function(){
-		layer.closeAll();
-	})
-     	
+		
+		
+		$(".cancel").on("click",function(){
+			layer.closeAll();
+		})
+	     	
 })

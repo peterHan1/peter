@@ -14,14 +14,14 @@
 	<body>
 		<div class="box back_box">
 			<div id="right_cont">
-				<div class="top">
+				<div class="top back_t">
 					<a href="establish_pact_list.html#back" class="fl"> < 取消</a>
 					<span class="back_title">修改合同-预览</span>
 					<span class="fr back_cancel">作废</span>
 					<span class="fr dis_no" id="back_sub" >提交</span>
 				</div>
 				<div class="borrower">
-					<div class="back_top">
+					<div class="back_top ">
 						<p>审批备注：信息填写错误，不符合法律文明规定的范围。</p>
 
 					</div>
@@ -146,17 +146,18 @@
 		</div>	
 	</body>
 <script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
-<script src="../../common/js/plug/iscroll-probe.js"></script>
+<!--<script src="../../common/js/plug/iscroll-probe.js"></script>-->
+<script src="../../common/js/plug/iscroll.js"></script>
 <script src="../../common/js/plug/layer/layer.js"></script>	
 <script src="../../common/js/base.js"></script>
-<!--<script src="../../common/js/pact/establish_back.js"></script>-->
+<script src="../../common/js/pact/establish_back.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(2).addClass("on");
 	});
 	$(window).load(function(){
-		var myScroll = new iScroll(back_cont,{
+		var myScroll = new IScroll(back_cont,{
 			scrollX:false,
 			scrollY:true,
 			click:true,

@@ -10,26 +10,122 @@
     	<meta name="x5-fullscreen" content="true">
     	<title>创建合同</title>
     	<link rel="stylesheet" href="../../common/css/base.css" />
+    	<script src="../../common/js/plug/fastclick.js"></script>
+    	
 	</head>
 	<body>
-		<div class="box">
-			<div id="left_ment"></div>
+		<div class="box pactNew_box">
 			<div id="right_cont">
 				<div class="top">
-					<a href="establish_pact_list.html#back" class="fl">取消</a>
-					<span>创建合同</span>
-					<form action="" class="fr form_re">
-						<input type="search" class="keywords" placeholder="请输入合同ID或名称" />
-					</form>
-					<div class="search_cont dis_no">
-						<a href=""> 合同一 </a>
-						<a href="">合同二</a>
-						<a href="">合同三</a>
-						<a href="">合同四</a>
+					<a href="establish_pact_list.html#back" class="fl"> < 取消</a>
+					<span class="fl pactNew_tit">创建合同</span>
+					<div class="fr search">
+						<form action="" method="post" >
+							<div class="search_d fl">
+								<span class="iconfont fl search_left"></span>
+								<input class="keywords fl" type="search" placeholder="请输入合同ID或名称" /> 
+								<span class="search_x fr dis_no"></span>
+							</div>
+						</form>
+						<div class="pactNew_res dis_no">
+							<p>历史记录</p>
+							<ul>
+								<li>汽车抵押借款合同001</li>
+								<li>20160101001</li>
+								<li>20160101002</li>
+								<li>20160101003</li>
+							</ul>
+						</div>
 					</div>
+					
 				</div>
-				<section class="establish_det">
-					<div class="ext_shade"></div><!--遮罩-->
+				<section class="pact_new">
+					<div class="ext_shade dis_no"></div><!--遮罩-->
+					<div class="pact_models">
+						<div class="pact_model" id="pact_model">
+							<!--无结果-->
+							<div class="search_no dis_no">
+								<div class="search_no_bg"></div>
+							</div>
+							<ul class="pactNew_search">
+								<!--搜索结果-->
+								<li>
+									<div>
+										<a href="###">
+											<div class="pact_pg"></div>
+											<p>汽车抵押借款合同001</p>
+											<p>20170101001</p>
+										</a>	
+									</div>
+								</li>
+								<li>
+									<div>
+										<a href="###">
+											<div class="pact_pg"></div>
+											<p>汽车抵押借款合同001</p>
+											<p>20170101001</p>
+										</a>	
+									</div>
+								</li>
+							</ul>
+							<ul>
+								<li>
+									<div>
+										<a href="###">
+											<div class="pact_pg"></div>
+											<p>汽车抵押借款合同001</p>
+											<p>20170101001</p>
+										</a>	
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+									<div>
+										<div class="pact_pg"></div>
+										<p>汽车抵押借款合同001</p>
+										<p>20170101001</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
 				</section>
 				
 
@@ -41,14 +137,23 @@
 <script src="../../common/js/plug/iscroll.js"></script>
 <script src="../../common/js/plug/layer/layer.js"></script>	
 <script src="../../common/js/base.js"></script>
-<script src="../../common/js/pact/establish.js"></script>
 <script src="../../common/js/pact/move.js"></script>
 </html>
 <script>
 	$('#left_ment').load('../../common/view/menu.html',function(){
 		$('#left_ment dd').eq(2).addClass("on");
 	});
-	$(function(){
+	$(window).load(function(){
+		FastClick.attach(document.body);
+		
+		var myScroll = new IScroll(pact_model,{
+			scrollX:false,
+			scrollY:true,
+			click:true,
+			scrollbars: true,
+			fadeScrollbars:true
+		});
+		 
 		$(".keywords").on('keypress',function(e) {  
             var keycode = e.keyCode;  
             var searchName = $(this).val();  
@@ -60,15 +165,33 @@
             }  
      	});
      	$(".keywords").focus(function() {  
-    		$(".search_cont").removeClass("dis_no");
-		})
-		$(".keywords").blur(function() {  
-    		$(".search_cont").addClass("dis_no");
-    		
-		})
+			$(".pactNew_res,.ext_shade").show()
 		
+		});
+		$('.keywords').bind('input propertychange', function() {  
+		    if($(this).val() != ""){
+		    	$(".search_x").show();
+		    }else{
+		    	$(".search_x").hide();	
+		    }
+		}); 
 
-     	
+     	$(".search_x").on("click",function(){
+     		$('.keywords').val("").focus();
+   			$(".search_x").hide();
+     	});
+     	$(".ext_shade").on("click",function(){
+     		$(".keywords").blur();
+     		$(".keywords").val("");
+			$(".pactNew_res,.ext_shade,.search_x").hide()
+     		
+     	});
+     	$(".pactNew_res li").on("click",function(){
+     		$(".keywords").val("");
+     		var txt = $(this).html();
+     		$(".keywords").val(txt).focus();
+     		$(".search_x").show();
+     	})
 	})
 	
 </script>
