@@ -11,7 +11,9 @@ $(function(){
 			    	$(this).hide();
 			    })
 			})
-		
+		$(".empty_x input").focus(function(){
+		    $(".search_x").hide();
+		})
 	
 		$("#click_add").on("click",function(){
 			$("#add_borrow").animate({
