@@ -16,29 +16,25 @@ $(function(){
 		})
 	
 		$("#click_add").on("click",function(){
-			$("#add_borrow").animate({
-				top:'0'
-			},800);
+			$("#add_borrow").css("top","0");
 
 		})
 		$(".add_cancel").on("click",function(){
-
-			$("#add_borrow").animate({
-				top:'100%'
-			},800);
+			$("#add_borrow").css("top","100%");
+			
 
 		})
 		$("#select_bank").on("click",function(){
 			$('.select_bank').load('../../src/bank/select_bank.html');
-			$("#add_borrow").animate({
-				left:'-100%'
-			},800);
+			$("#add_borrow").css("left","-100%");
+			
 
 		})
 		$(document).on("click","#bank_ul li",function(){
-			$("#add_borrow").animate({
-				left:'0'
-			},800);
+			$("#add_borrow").css("left","0");	
+		});
+		$(document).on("click",".bank_title .bank_return",function(){
+			$("#add_borrow").css("left","0");
 		})
 		
 		$(".keyword").on('keydown',function(e) {  

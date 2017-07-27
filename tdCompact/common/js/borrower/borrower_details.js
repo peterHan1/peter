@@ -62,40 +62,41 @@ $(function(){
  		$(".bank_btn,.cancel,.bank_ul").show();
  	});
 // 	选择银行
-	$(".select_bnk").on("click",function(){
+	$(".bank_name").on("click",function(){
 		$('.select_bank').load('../../src/bank/select_bank.html');
-		$(".borrowers").animate({
-			marginLeft:'-100%'
-		},500);
+		$(".borrowers").css("marginLeft","-100%");	
 	})
 //	点击返回左滑
 	$(document).on('click','.bank_return',function(){
-		$(".borrowers").animate({
-			marginLeft:'0'
-		},500);
+		$(".borrowers").css("marginLeft","0");	
+		
 	});
 //	选择后左滑
 	$(document).on("click","#bank_ul li",function(){
-		$(".borrowers").animate({
-			marginLeft:'0'
-		},500);
+		var bank_name = $(this).attr('name');
+		var bankName = $(this).find('h4').html();
+		$(this).addClass("bank_on");
+		$(".bank_name").val(bankName);
+		$(".borrowers").css("marginLeft","0");	
+		isval();
 	});
 
-	
-	$('.bank_name').change(function(){
+	$('.bank_ul li').bind('input propertychange', function() {
+		
 		isval()
 	});
 //	内容不为空 提交按钮颜色更换
 	function isval(){
+		console.log(666)
 		var name = $(".bank_name").val();
 		var province = $(".province").val();
 		var city = $(".city").val();
 		var bank_code = $(".bank_code").val();
 		var subbranch = $(".subbranch").val();
 		if(name != "" && province != "" && city != "" && bank_code != "" && subbranch != "" ){
-			$(".bank_btn").addClass("bank_sub");
+			$(".bank_btn input").addClass("bank_sub");
 		}else{
-			$(".bank_btn").removeClass("bank_sub");
+			$(".bank_btn input").removeClass("bank_sub");
 			
 		}
 	};

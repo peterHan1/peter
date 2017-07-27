@@ -90,19 +90,13 @@
 			scrollY:true,
 			click:true
 		});
-		$(".select_bank .bank_return").on("click",function(){
-			$("#add_borrow").animate({
-				left:'0'
-			},800);
-
-		})
+	
 		$("#bank_ul li").on("click",function(){
-			var bank_name = $(this).attr('name');
+			/*var bank_name = $(this).attr('name');
 			var bankName = $(this).find('h4').html();
-			$("#bank_ul li").removeClass("bank_on")
 			$(this).addClass("bank_on");
 			$(".bank_name").val(bankName);
-			$(".bank_name").change();
+			$(".bank_name").change();*/
 			
 		});  
 		
