@@ -1,0 +1,149 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+}
+
+#calendar {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.month {
+    width: 100%;
+    background: #00B8EC;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.year-month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.year-month:hover {
+    background: rgba(150, 2, 12, 0.1);
+}
+
+.choose-year {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.choose-month {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.arrow {
+    padding: 30px;
+}
+
+.arrow:hover {
+    background: rgba(100, 2, 12, 0.1);
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #00B8EC;
+    display: flex;
+    flex-wrap: wrap;
+    color: #FFFFFF;
+    justify-content: space-around;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+}
+
+.days {
+    padding: 0;
+    background: #FFFFFF;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 14.2%;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size: 1rem;
+    color: #000;
+}
+
+.days li .active {
+    padding: 6px 10px;
+    border-radius: 50%;
+    background: #00B8EC;
+    color: #fff;
+}
+
+.days li .other-month {
+    padding: 5px;
+    color: gainsboro;
+}
+
+/*通用*/
+.cWhite {
+    color: #FFFFFF;
+}
+.cText3 {
+    color: #333;
+}
+.cText6 {
+    color: #666;
+}
+.f12px {
+    font-size: 12px;
+}
+
+/*顶部*/
+.sign_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(#d91f2f, #ed5918);
+    background-size: 100%;
+    padding: 20px 0 16px;
+    position: relative;
+}
+.sign_item {
+    margin: 8px 0 16px;
+}
+.sign_btn {
+    display: block;
+    position: absolute;
+    height: 28px;
+    font-size: 12px;
+    line-height: 28px;
+    border-radius: 14px 0 0 14px;
+    background: #fff;
+    color: #d91f2f;
+    top: 20px;
+    right: 0;
+    padding: 0 14px 0 12px;
+}
