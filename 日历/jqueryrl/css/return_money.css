@@ -11,9 +11,10 @@ address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
 .fl{float:left;}
 .fr{float:right;}
 .dis_none{display: none;}
-.datas_inp{color:red;}
-.ipt_date{width: 123px;height: 34px;padding-left: 10px;border: 1px solid #e7e7e7;}
-.account_box{width:240px;background: #F9EADE;}
+.calendar_box{width:725px;}
+.calendar{width:725px;height:375px;border:1px solid #ececec;}
+
+.account_box{width:240px;height:375px;background: #F9EADE;border-right:1px solid #ececec;}
 .account_title{height: 50px;line-height: 50px;font-size: 16px;overflow: hidden;}
 .account_title .data_top{height:40px;background-color:#fff;padding:0 10px;text-align:center;margin-top:5px;}
 .account_title .data_top .data_top_btn{height: 20px;width: 20px;line-height:16px; border: 1px solid #ccc;margin-top:10px;text-align: center;background: #ececec;color: #666;border-radius: 50%;cursor: pointer;}
@@ -30,7 +31,27 @@ address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
 .data_table .yet_money{background:url(../images/2.png) no-repeat;background-size:100% 100%;}
 .data_table .datas_on{background-color:#FF9900;color: #fff;}
 .data_table .data_number{cursor: pointer;}
+.datas_title{height:30px;line-height:30px;}
+.datas_title span{display:inline-block;margin-left:10px;}
+.datas_title span i{display: inline-block;width:10px;height:10px;margin-right:5px;}
+.datas_title span .red_dot{background:url(../images/dot_1.png) no-repeat;background-size: 100% 100%;}
+.datas_title span .gray_dot{background:url(../images/dot_2.png) no-repeat;background-size: 100% 100%;}
 .data_btn_mon{height: 30px;line-height: 30px;color: #f77b10;border: 1px solid #f77b10;font-size: 14px;display: block;width: 85px;text-align: center;border-radius: 4px;cursor: pointer;margin-top: 10px;margin-left: 20px;}
 
+/*right回款金额*/
+.re_money_box{width:460px;height:375px;padding-left:20px;}
+.re_money_box .re_money_tlt{height:30px;line-height:30px;color:#CCCCCC;}
+.re_money_box .re_money_cont{height:340px;width:100%;}
+.re_money_box .re_money_cont div{width:50%;margin-top:28%;text-align: center;}
+.re_money_box .re_money_cont .re_money_num{font-size:28px;}
+.re_money_box .re_money_cont .re_money_txt{font-size:16px;}
+
+/*回款列表*/
+.re_money_table{width:100%;}
+.re_money_table table{width:100%;border-collapse: collapse;border-spacing: 0;}
+.re_money_table table tr{height:30px;line-height:30px;border:1px solid #ECECEC;}
+.re_money_table table th,td{text-align:center;}
 
 
+/*无回款日历*/
+.account_boxs{height:345px;}
