@@ -34,15 +34,15 @@ var devConfig = {
 	module: {
 		preLoaders: [{
 			test: /\.js$/,
-			loader: 'eslint-loader',
+			loader: 'eslint-loader!babel-loader',
 			exclude: /node_modules/
 		}],
 		loaders: [
 			{test: /\.css$/,loader: ExtractTextPlugin.extract('style-loader','css-loader')},
 			{test: /\.png$/, loader: "file-loader?name=images/[name].[ext]" },
-			{test: /\.json$/,loader: "json-loader"}
+			{test: /\.json$/,loader: "json-loader"},
+			{test: /\.js$/,loader: 'babel',exclude: /node_modules/, query: {presets: ['es2015']}}
 		]
-
 	},
 	plugins: [
 		// new webpack.HotModuleReplacementPlugin(),
@@ -56,11 +56,6 @@ var devConfig = {
 			name : 'common',
 			filename : 'js/base.js',
 		}),
-		new webpack.ProvidePlugin({
-	      $:"jquery",
-	      jQuery:"jquery",
-	      "window.jQuery":"jquery"
-	    }),
 		new ExtractTextPlugin('css/[name].css'),
 
 		new HtmlWebpackPlugin(getHtmlConfig('index')),

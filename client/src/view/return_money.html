@@ -7,9 +7,18 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>回款日历</title>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+
 </head>
 
 <body>
+	<div class="datas_inp">
+		<p class="layer_date ">请选择开始时间</p> 至
+		<p class="layer_date ">请选择开始时间</p>
+	</div>
+	<div>
+		<p>回款日历：</p>
+	</div>
 	<div class="calendar_box">
 	    <div class="calendar">
 	    	<!--left日历-->
@@ -54,3 +63,16 @@
 	</div>
 </body>
 </html>
+<script>
+$(function(){
+	$(".layer_date").on("click",function(){
+		laydate({
+			format: 'YYYY-MM-DD',
+		 	choose: function(dates){ //选择时间后回调
+		 		console.log(dates);
+		  	}
+		});
+		
+	});
+})	
+</script>
