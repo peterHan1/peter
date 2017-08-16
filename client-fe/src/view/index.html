@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title>首页</title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+hello world!!~~~~~~~
+
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

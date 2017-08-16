@@ -1,0 +1,39 @@
+{
+  "name": "client-fe",
+  "version": "1.0.0",
+  "description": "重构PCv1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=dev supervisor -w src/routes,src/view,app.js -e node,css,js,html app",
+    "webpack": "webpack --config webpack.production.config.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.51tuodao.com/Internet-financial-platform/client-fe.git"
+  },
+  "author": "hanwei",
+  "license": "ISC",
+  "devDependencies": {
+    "consolidate": "^0.14.5",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "ejs": "^2.5.6",
+    "eslint": "^4.3.0",
+    "eslint-loader": "^1.9.0",
+    "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.29.0",
+    "node-sass": "^3.13.0",
+    "reload": "^2.0.1",
+    "sass-loader": "^3.2.1",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^1.15.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-dev-server": "^1.16.5",
+    "webpack-hot-middleware": "^2.0.0"
+  }
+}
