@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<script src="excanvas.js"></script>
+		<style>
+			*{margin: 0;padding: 0;}
+			.banner{width: 1100px;height: 500px;margin: 100px auto;border: 1px solid #CCCCCC;}
+			.cropper{width: 200px;height: 200px;background-color: #CCCCCC;border-radius: 100px;behavior: url(PIE.htc);float:left;margin-left: 20px;margin-top:20px;}
+			.cropper #crop_img{width: 200px;height:200px;border-radius:100px;border-color:#FFFFFF;}
+			.btn{width:200px;height:50px;border: 1px solid #ff8a10;float: left;margin: 100px 0 0 50px;color:#ff8a10;text-align: center;line-height: 50px;}
+			.windows_show{width:800px!important; height: 500px!important;border: 1px solid #C2CCD1;overflow: hidden;}
+			.windows_show .top{width: 100%; height:50px;background-color: #C9C5C5; line-height: 50px;color: #FFFFFF;}
+			.windows_show .top .left{float: left; margin-left: 10px;}
+			.windows_show .top .right{float: right;margin-right: 10px;cursor: pointer;}
+			.windows_show .mid{overflow: hidden;height:322px;}
+			.windows_show .mid .imageBox{position: relative;height: 300px;width: 300px;border:1px solid #aaa;background: #fff;overflow: hidden;background-repeat: no-repeat;cursor:move;float: left;margin-top:20px;margin-left:20px;}
+			.windows_show .mid .imageBox .thumbBox{position: absolute;top: 33%;left: 33%;width: 300px;height: 300px;border-radius: 150px;behavior: url(PIE.htc);margin-top: -100px;margin-left: -100px;box-sizing: border-box;border: 1px solid rgb(102, 102, 102);box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);background: none repeat scroll 0% 0% transparent;}
+			.windows_show .mid .btn1{float:left;width:200px;height:50px;border: 1px solid #ff8a10;margin: 80px 0 0 100px;color:#ff8a10;text-align: center;line-height: 50px;}
+			.action{width: 400px;height: 30px;margin: 10px 0;overflow: hidden;margin-left: 20px;}
+			.action #btnZoomIn{margin-right: 2px;float:left;}
+			.action #ZoomDist {float:left;height:20px;position:relative;width:280px}
+			.action #ZoomDist #ZoomBar {-moz-border-radius:2px 2px 10px 10px;-moz-box-shadow:0 1px 3px 0 #666;background:#ff8a10;border-radius:2px 2px 10px 10px;box-shadow:0 1px 3px 0 #666;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80);height:20px;left:0;opacity:0.8;position:absolute;width:10px}
+			.action #ZoomDist .progress {-moz-border-radius:15px;border-radius:15px;background:#999;display:block;float:left;height:8px;margin-top:4px;overflow:hidden;width:100%}
+			.windows_show .footer{width:100%;border-top: 1px solid #CCCCCC;}
+			.windows_show .footer .save{width:300px; height: 50px;margin-left:50px;margin-top: 15px;float:left;text-align: center;line-height: 50px;border:1px solid #C2CCD1;background-color: #ff8a10;}
+			.windows_show .footer .cancel{width:300px; height: 50px;margin-left:50px;margin-top: 15px;float:left;text-align: center;line-height: 50px;border:1px solid #C2CCD1;}
+			.dis_none{display: none;}
+        	.color{background-color: #CCCCCC!important;}
+			
+</style>
+	
+	<script src="jquery-1.9.1.min.js"></script>
+	<script src="layer/layer.js"></script>
+	<script src="main.js"></script>
+	<script src="cropper.js"></script>
+	</head>
+	<body>
+		<div class="banner">
+			<div class="cropper"><img src="images/1.jpg" alt="" id="crop_img"/></div>
+			<div class="btn">更换头像</div>
+		</div>
+		
+		<div class="windows_show dis_none" id="windows_show">
+			<div class="top">
+				<div class="left">更换头像</div>
+				<span class="right">X</span>
+			</div>
+			<div class="mid container">
+				<div class="cropper" id="cropper"><img src="images/1.jpg" alt="" id="crop_img"/></div>
+				<div class="imageBox dis_none" id="imageBox">
+					<div class="img thumbBox"></div>
+				</div>
+				<label  class="btn1">
+					上传本地图片
+				</label>
+			</div>
+			<div class="action dis_none">
+				        <input type="file" id="inp" style="display:none;"/>
+				        <input type="button" id="btnZoomIn" value="+" />
+				        <div class="ZoomDist" id="ZoomDist">
+	                        <div id="ZoomBar"></div>
+	                        <span class="progress"></span>
+                		</div>
+						<input type="button" id="btnZoomOut" value="-" />
+			</div>
+			<div class="footer">
+				<div class="save">保存</div>
+				<div class="cancel">取消</div>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				$(".btn1").on("click",function(){
+					return $("#inp").click();
+				});
+			})
+		</script>
+	</body>
+</html>
