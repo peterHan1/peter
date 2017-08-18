@@ -1,0 +1,57 @@
+	<div class="left_ment">
+		<ul>
+			<li class="uc">
+				<dl>
+					<dd>
+						<a href="../uc/uc.html">
+							<p><i class="iconfont"></i><span class="name">张三</span></p>
+							<p class="top_p"><b class="left_b">杭州城西店</b><b>门店经理</b></p>
+						</a>	
+					</dd>
+				</dl>
+							
+			</li>
+			<li>
+				<div>
+					<b>借款人管理</b>
+				</div>
+				<dl>
+					<dd>
+						<i lass="iconfont"></i>
+						<a href="../borrower/borrower_list.html">借款人信息</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<div>
+					<b>合同管理</b>
+				</div>
+				<dl>
+					<dd>
+						<i lass="iconfont"></i>
+						<a href="../pact/establish_pact.html">创建合同</a>
+					</dd>
+					<dd>
+						<i lass="iconfont"></i>
+						<a href="../pact/await_pact.html">待签署的合同</a>
+					</dd>
+					<dd>
+						<i lass="iconfont"></i>
+						<a href="../pact/already_pact.html">已签署的合同</a>
+					</dd>
+					<dd>
+						<i lass="iconfont"></i>
+						<a href="../pact/cancel_pact.html#all">作废的合同</a>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+<script>
+	$(function(){
+		$('#left_ment dd').on("click",function(){
+			$(this).addClass("on");
+		})
+	})
+	 
+</script>

@@ -1,0 +1,90 @@
+.car_list_box {
+    display: block;
+}
+.car_list_box .car_list {
+    position: fixed;
+    top: 1rem;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+  
+}
+.scroller-hook{
+	padding-bottom:1rem;
+}
+.car_list_box .car_list .cities .title {
+    height: 28px;
+    padding-left: 16px;
+    line-height: 28px;
+    background-color: #f5f5f5;
+    font-family: Helvetica;
+    font-size:0.16rem;
+    color: #878787;
+}
+.car_list_box .car_list .cities .item {
+    height: 44px;
+    padding: 0 16px;
+    line-height: 44px;
+    font-size: 0.16rem;
+    background-color:#fff;
+}
+.car_list_box .car_list .cities .item .name {
+    display: block;
+    position: relative;
+}
+.car_list_box .car_list .cities .item .name:before,
+.car_list_box .car_list .cities .item .name:after {
+    display: block;
+    position: absolute;
+    border-top: 1px solid #e5e5e5;
+    left: 0;
+    width: 100%;
+    content: ' ';
+}
+.car_list_box .car_list .cities .item .name:before {
+    display: none;
+    top: 0;
+}
+.car_list_box .car_list .cities .item .name:after {
+    display: block;
+    bottom: 0;
+}
+.car_list_box .car_list .cities .item:active {
+    background-color: #f0f0f0;
+}
+.car_list_box .car_list .cities .item:last-child .name:after {
+    display: none;
+}
+.car_list_box .car_list .shortcut {
+    position: absolute;
+    z-index: 30;
+    width: 0.4rem;
+    right: 0;
+    font-family: Helvetica;
+}
+.car_list_box .car_list .shortcut .item {
+    height: 12px;
+    padding-top: 4px;
+    text-align: center;
+    font-size: 0.12rem;
+    color: #fa8919;
+}
+.jump-tips{
+	position: fixed;
+    top: 45%;
+    right: 36%;
+    z-index: 100;
+    display: none;
+    width: 1.4rem;
+    padding: 0.5rem 0rem;
+    font-size: 0.5rem;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    background-color: rgba(0,0,0,0.8);
+    }
+@media only screen and (max-height: 600px) {
+    .car_list_box .car_list .shortcut .item {
+        padding-top: 3px;
+    }
+}

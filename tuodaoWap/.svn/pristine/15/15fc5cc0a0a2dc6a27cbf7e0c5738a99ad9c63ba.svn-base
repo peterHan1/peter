@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>拓道</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/deposit.css" />
+		<script src="js/base.js"></script>
+		<script src="js/jquery-1.11.2.min.js"></script>
+	</head>
+	<body>
+		<div class="max_width">
+			<div class="deposit_top"></div>
+			<div class="deposit_what">
+				<h2>
+					<i class="i1"></i><i class="i2"></i>
+					&nbsp;什么是银行资金存管？&nbsp;
+					<i class="i2"></i><i class="i1"></i>
+				</h2>
+				<p>银行存管是指客户在银行开通独立账户，将资金存入该独立账户，并由银行根据投资人发出的指令以及借款项目的合同约定，进行资金使用管理和监督。</p>
+			</div>
+			<div class="deposit_how">
+				<h2>
+					<i class="i1"></i><i class="i2"></i>
+					&nbsp;北京银行如何保障资金安全？&nbsp;
+					<i class="i2"></i><i class="i1"></i>
+				</h2>
+				
+				<p>拓道金服作为一家致力合规、长远发展的平台，存管系统上线后，用户开户建立独立存管子账户，充值、投资、提现都通过存管子账户，完全分离平台与资金的接触。</p>
+				<div class="bg_img"></div>
+			</div>
+			<div class="deposit_todo">
+				<h2>存管上线后如何操作？</h2>
+				<div>
+					<dl>
+						<dt class="dl_left"></dt>
+						<dd>如果您还未注册，欢迎您注册体验银行资金存管系统理财的安全与便利。</dd>
+					</dl>
+					<dl>
+						<dt class="dl_right"></dt>
+						<dd>如果您是已注册用户，登录后即可开通北京银行存管账户，资金受银行监管更安全。</dd>
+					</dl>
+				</div>
+				<a href=" " id="btns">立即前往</a>
+			</div>
+			<div class="deposit_question">
+				<h2>
+					<i class="i1"></i><i class="i2"></i>
+					&nbsp; 存管上线常见问题 &nbsp;
+					<i class="i2"></i><i class="i1"></i>
+				</h2>
+				<div class="one">
+					<i></i><h3>开通存管账户相关</h3>
+					<p>上线后新注册用户充值、投资、提现前需开通银行存管账户；上线前已实名认证用户充值、投资、提现前需重新绑定银行卡。</p>
+					<p class="p_color">注：开通存管后用户可通过北京银行微信公众号进行查询。</p>
+				</div>
+				<div class="two">
+					<i></i><h3>支付密码相关</h3>
+					<p>开通存管账户后，用户需要设置新的支付密码；支付密码在投资、提现、转让中使用。</p>
+				</div>
+				<div class="thr">
+					<i></i><h3>充值相关</h3>
+					<p>存管系统上线后，理财产品通过账户余额来购买；充值金额进入存管账户，即时到账且不收取任何手续费。</p>
+				</div>
+				<div class="fr">
+					<i></i><h3>提现相关</h3>
+					<ul>
+						<li> <span></span>达到相应会员等级，每月享有免费提现次数（含未投资过可提金额）;</li>
+						<li> <span></span>无免费提现次数：提现金额中含有未投资可提金额则收取0.5%的手续费（不满3元，按最低3元收取），不含则收取3元/笔手续费;</li>
+						<li> <span></span>由于存管资金清算T+1完成，即用户当天充值金额当天不可提现，可用于投资;</li>
+						<li><span></span>提现单笔限额：100元~1000万元;</li>
+						<li><span></span>提现到账时间：0点-9点提交提现申请，当日9点到账；9点-21点提交提现申请，实时到账；21点-24点提交提现申请，次日9点到账;</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+		<script>
+			$(function(){
+				$("#btns").bind("click",function(){
+					$(this).css("backgroundColor","#377efb");
+				})
+			})
+		</script>

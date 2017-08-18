@@ -1,0 +1,187 @@
+	html,body{
+		height:100%;
+		width:100%;
+		background-color:#f3f3f3;
+	}
+	.box{
+		font-size:0.28rem;
+	}
+	.todayData{
+		width:100%;
+		height:6.1rem;
+		box-sizing: border-box;
+		border-bottom:1px solid #ddd;
+		background:#fff;
+	}
+	.todayTop{
+		width:100%;
+		height:2.7rem;
+		padding-top:0.5rem;
+		text-align: center;
+		overflow: hidden;
+	}
+	.leftText{
+		font-size:0.26rem;
+		color:#777;
+		line-height:0.45rem;
+	}
+	.leftNumber{
+		font-size:0.34rem;
+		font-family: "Microsoft YaHei";
+	}
+	.todayTop h3{
+		font-size:0.32rem;
+		color:#ff711c;
+	}
+	.todayTop dl{
+		color:#ff711c;
+		margin-top:0.5rem;
+	}
+	.todayTop dl dt{
+		font-size:0.8rem;
+		color:#ff711c;
+	}
+	.todaybot{
+		width:100%;
+		height:2.72rem;
+		display:-webkit-box;
+		display: -moz-box;
+		font-size:0.26rem;
+		color:#ff711c;
+	}
+	.todaybot div{
+		-webkit-box-flex: 1;
+		-moz-box-flex: 1;
+		-ms-box-flex: 1;
+		box-flex: 1;
+		text-align:center;
+	}
+	.todaybot dl {
+		margin-top:0.6rem;
+	}
+	.todaybot dl dt{
+		font-size:0.8rem;
+		color:#ff711c;
+	}
+	.todaybot dl p{
+		font-size:0.26rem;
+		color:#777;
+		line-height:0.46rem;
+	}
+	.ranking{
+		width:100%;
+		height:4.6rem;
+		background:#fff;
+		padding-top:0.5rem;
+		text-align:center;
+	}
+	.ranking h3{
+		font-size:0.32rem;
+		color:#ff711c;
+		margin-bottom:0.5rem;
+	}
+	.ranking .rankingbox{
+		width:100%;
+		display:-webkit-box;
+		display: -moz-box;
+		font-family: "Microsoft YaHei";
+	}
+	.ranLeft{
+		text-align:left;
+		padding-left:0.8rem;
+	}
+	.ranRight{
+		text-align:left;
+		
+		padding-left:0.8rem;
+	}
+	.ranking .rankingbox div{
+		-webkit-box-flex: 1;
+		-moz-box-flex: 1;
+		-ms-box-flex: 1;
+		box-flex: 1;
+		font-size:0.26rem;
+		color:#777;
+	}
+	.ranking .rankingbox div p{
+		line-height:0.55rem;
+	}
+	.ranking .rankingbox div p span{
+		color:#333;
+		font-size:0.28rem;
+	}
+	.dataBox{
+		width:100%;
+		height:17.30rem;
+		background-color:#fff;
+		margin-top:0.2rem;
+	}
+	.sevenData{
+		width:100%;
+		height:6.07rem;
+		border-bottom:1px solid #d8d8d8;
+		overflow: hidden;
+	}
+	.dataBox h3{
+		font-size:0.32rem;
+		color:#ff711c;
+		text-align:center;
+		margin-top:0.49rem;
+	}
+	#main{
+		width:100%;
+		height:4.1rem;
+		margin-left:3%;
+	}
+	.iconTxt{
+		font-size:0.18rem;
+		color:#777;
+        margin:0 auto;   
+        line-height:0.22rem; 
+        margin-left:40%;
+        margin-top:0.43rem;
+  }
+	.iconTxt span{
+		display:block;
+		width:0.68rem;
+		height:0.2rem;
+		background-color:#ff711c;
+		float:left;
+	}
+	.monthsData{
+		width:100%;
+		height:6.09rem;
+		border-bottom:1px solid #d8d8d8;
+		overflow: hidden;
+	}
+	#mainM{
+		width:100%;
+		height:4.1rem;
+		margin-left:3%;
+		
+	}
+	.RankingM{
+		width:100%;
+		height:4.9rem;
+		background:pink;
+	}
+	.ranking h3{
+		margin-top:0;
+	}
+	.current{
+		width:100%;
+		height:9rem;
+		margin-top:0.2rem;
+		background-color:#fff;
+		text-align:center;
+		overflow: hidden;
+	}
+	.current h3{
+		font-size:0.32rem;
+		color:#ff711c;
+		margin-top:0.5rem;
+	}
+	#eachData{
+		width:100%;
+		height:7.65rem;
+	}

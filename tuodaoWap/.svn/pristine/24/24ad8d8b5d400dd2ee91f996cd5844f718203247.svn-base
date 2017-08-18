@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<!-- <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title></title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/details.css">
+	<link rel="stylesheet" href="js/swiper/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/swipebox.min.css">
+	<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.swipebox.min.js"></script>
+	<script type="text/javascript">
+		re_size()
+
+		window.onresize = re_size;
+
+		function re_size(){
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 414) deviceWidth = 414;
+			document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		}
+	</script>
+</head>
+<body>
+	<div class="max_width pro">
+		<p class="t">项目概述</p>
+		<div class="pro_gs">
+			<ol>
+				<li>1、借款人因经营需求，申请借款244000元，用于经营流动，还款来源为经营收入。</li>
+				<li>2、借款人从事广告行业，现业务运转正常，借款人信誉良好，无不良记录</li>
+			</ol>
+		</div>
+		<p class="t">借款人档案</p>
+		<div class="pro_da">
+			<ul>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>姓名</div>
+					<div>任**</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>性别</div>
+					<div>女</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>年龄</div>
+					<div>27</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>户籍</div>
+					<div>四川</div>
+				</li>
+			</ul>
+		</div>
+		<p class="t">车辆信息</p>
+		<div class="pro_da">
+			<ul>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>车辆品牌</div>
+					<div>日产</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>购买价格</div>
+					<div>103000元</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>行驶公里</div>
+					<div>64164公里</div>
+				</li>
+				<li class="flex flex_pack_justify flex_align_center mr_justify">
+					<div>二手评估</div>
+					<div>63000元</div>
+				</li>
+			</ul>
+		</div>
+		<p class="t">资料信息</p>
+
+		<div class="swiper-container">
+		        <div class="swiper-wrapper my-simple-gallery" itemscope >
+		            <!-- <div class="swiper-slide"> -->
+						<figure itemscope class="swiper-slide">
+						      <a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+								</a>
+
+    					</figure>
+						<figure itemscope class="swiper-slide">
+					     	<a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+							</a>
+
+					    </figure>
+					    <figure itemscope class="swiper-slide">
+						      <a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+							</a>
+    					</figure>
+						<figure itemscope class="swiper-slide">
+					      <a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+							</a>
+					    </figure>
+					    <figure itemscope class="swiper-slide">
+						      <a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+							</a>
+    					</figure>
+						<figure itemscope class="swiper-slide">
+						      <a href="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" class="swipebox" title="Mustache Guy">
+								<img src="http://192.168.0.243:8080/data/upfiles/images/2016-12/21/11_attestations_attestation_1482289856146.jpg" alt="image">
+							</a>
+					    </figure>
+
+		            
+		        </div>
+		        
+    	</div>
+
+    	<p class="t">门店信息</p>
+    	<div class="store mr_justify">
+    		<img src="img/default_0.png">
+			<p class="flex"><i class="iconfont">&#xe835;</i><span>杭州市江干区通盛路和九乔路交叉口蓝桥名苑底商56号商铺（杭州市江干区九堡镇蓝桥名苑56号）</span></p>
+			<p class="flex"><i class="iconfont">&#xe834;</i><span>0571-86791930</span></p>
+    	</div>
+	</div>
+
+
+
+
+<script src="js/swiper/js/swiper.min.js"></script>
+
+<script>
+	var swiper = new Swiper('.swiper-container', {
+		pagination: '.swiper-pagination',
+		slidesPerView: 3,
+		paginationClickable: true,
+		spaceBetween: 30,
+		freeMode: true
+	});
+
+
+$( document ).ready(function() {
+	$( '.swipebox' ).swipebox();
+		
+});
+</script>	
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+    	<title>待签署的合同</title>
+    	<link rel="stylesheet" href="../../common/css/base.css" />
+    	<script src="../../common/js/plug/jquery-2.1.0.min.js"></script>
+    	<script src="../../common/js/plug/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="pact_box">
+			<div class="pact_top">
+				<span class="fl can_pact">作废</span>
+				<span class="">浏览合同</span>
+				<span class="fr save_pact">保存</span>
+			</div>
+			<div class="pact_con">
+				<div class="iscrol_pact">
+					<ul>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+						<li>666</li>
+					</ul>
+				</div>
+			</div>
+			<div class="pact_foot">
+				<p>预览签署</p>
+			</div>
+		</div>
+		
+	</body>
+<script src="../../common/js/base.js"></script>
+<script src="../../common/js/pact/await.js"></script>
+</html>
+<script>
+	$(function(){
+		var myScroll = new IScroll(".pact_con",{
+			scrollX:false,
+			scrollY:true,
+			click:true
+		});
+		myScroll.on('scrollEnd', function() {
+			if (this.y == this.maxScrollY) {
+		       $(".pact_foot").css('backgroundColor','#FF9900');
+		    }
+
+		});
+	})
+</script>
+
+

@@ -1,0 +1,6 @@
+.member{padding:0 5%;}
+.member p{font-size: .28rem;color:#333;margin-top: .30rem; }
+.member table{text-align: center;border-collapse: collapse;border:1px solid #777;font-size: .28rem;color: #333;height:2.78rem;width:6rem;margin: .2rem auto;}
+
+.member table tr th{border:1px solid #777;background: #d8d8d8;}
+.member table tr td{border:1px solid #777;}
