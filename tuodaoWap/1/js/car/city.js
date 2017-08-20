@@ -4,12 +4,18 @@ var cityData = [
 		cities: [
 			{
 				name: "奥迪",
+				carid:"1",
+				series:[	'奥迪A4','奥迪A6','奥迪A6L','奥迪A7','奥迪A8',]
 			},
 			{
 				name: "阿斯顿·马丁",
+				carid:"2",
+				series:[	'马丁自行车','马丁电动车','马丁跑车']
+				
 			},
 			{
 				name: "阿尔法·罗密欧",
+				carid:"3",
 			}
 		]
 	},
@@ -18,33 +24,43 @@ var cityData = [
 		cities: [
 			{
 				name: "奔驰",
+				carid:"4",
 			},
 			{
 				name: "本田",
+				carid:"5",
 			},
 			{
 				name: "宝骏",
+				carid:"6",
 			},
 			{
 				name: "标致",
+				carid:"7",
 			},
 			{
 				name: "保时捷",
+				carid:"8",
 			},
 			{
 				name: "北汽绅宝",
+				carid:"8",
 			},
 			{
 				name: "宾利",
+				carid:"9",
 			},
 			{
 				name: "奔腾",
+				carid:"10",
 			},
 			{
 				name: "北汽幻速",
+				carid:"11",
 			},
 			{
 				name: "布加迪",
+				carid:"12",
 			}
 		]
 	},
@@ -53,15 +69,19 @@ var cityData = [
 		cities: [
 			{
 				name: "长安",
+				carid:"13",
 			},
 			{
 				name: "长城",
+				carid:"14",
 			},
 			{
 				name: "长安欧尚",
+				carid:"15",
 			},
 			{
 				name: "昌河",
+				carid:"16",
 			}
 		]
 	},
@@ -70,21 +90,27 @@ var cityData = [
 		cities: [
 			{
 				name: "大众",
+				carid:"18",
 			},
 			{
 				name: "东风风行",
+				carid:"19",
 			},
 			{
 				name: "DS",
+				carid:"20",
 			},
 			{
 				name: "东风风光",
+				carid:"21",
 			},
 			{
 				name: "东南",
+				carid:"22",
 			},
 			{
 				name: "道奇",
+				carid:"23",
 			}
 		]
 	},
@@ -93,15 +119,19 @@ var cityData = [
 		cities: [
 			{
 				name: "丰田",
+				carid:"24",
 			},
 			{
 				name: "福特",
+				carid:"25",
 			},
 			{
 				name: "法拉利",
+				carid:"26",
 			},
 			{
 				name: "菲亚特",
+				carid:"27",
 			}
 		]	
 	},
@@ -110,12 +140,15 @@ var cityData = [
 		cities: [
 			{
 				name: "广汽传祺",
+				carid:"28",
 			},
 			{
 				name: "观致",
+				carid:"29",
 			},
 			{
 				name: "GMC",
+				carid:"30",
 			}
 		]
 	},
@@ -124,15 +157,19 @@ var cityData = [
 		cities: [
 			{
 				name: "哈弗",
+				carid:"31",
 			},
 			{
 				name: "海马",
+				carid:"32",
 			},
 			{
 				name: "红旗",
+				carid:"33",
 			},
 			{
 				name: "悍马",
+				carid:"33",
 
 			}
 		]

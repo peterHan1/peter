@@ -36,7 +36,7 @@
 			.loan_box .sub_loan{margin-top:1rem;text-align:center;}
 			.loan_box .sub_loan a{display:inline-block;color:#333;width:50%;height:0.8rem;text-align:center;line-height:0.8rem;border:1px solid #ededed;border-radius:5px;}
 			.car_list_box{width:50%;height:100%;font-size:0.2rem;}
-			.car_list_box .car_list_nav{width:100%;height:1rem;line-height:1rem;font-size:0.2rem;border-bottom:1px solid #EDEDED;z-index:99999;position:fixed;top:0;background-color:#fff;}
+			.car_list_box .car_list_nav{width:100%;height:1rem;line-height:1rem;font-size:0.2rem;border-bottom:1px solid #EDEDED;z-index:999;position:fixed;top:0;background-color:#fff;}
 			.car_list_box .car_list_nav ul{width:100%;height:1rem;}
 			.car_list_box .car_list_nav ul li{height:1rem;width:20%;text-align:center;}
 			.car_list_box .car_list_nav ul li b{display: inline-block;height:1rem;box-sizing: border-box;}
@@ -104,14 +104,17 @@
 							</li>
 						</ul>
 					</div>
-					<div class="car_list_box">
 						<div class="car_list car_list-hook">
 							<div class="scroller-hook">
 								<div class="cities cities-hook"></div>
 							</div>
 							<div class="shortcut shortcut-hook"></div>
 						</div>
-					</div>
+						<div class="car_list_bot">
+							<ul class="car_list_botul">
+								
+							</ul>
+						</div>
 				</div>
 			</div>
 		</div>		
@@ -124,114 +127,111 @@
 		$(".car_btn").on("click",function(){
 			$(".box").css("left","-100%");
 		})
+		var cityWrapper = document.querySelector('.car_list-hook');
+		var cityScroller = document.querySelector('.scroller-hook');
+		var cities = document.querySelector('.cities-hook');
+		var shortcut = document.querySelector('.shortcut-hook');
+		var scroll;
+		var shortcutList = [];
+		var anchorMap = {};
 
-var cityWrapper = document.querySelector('.car_list-hook');
-var cityScroller = document.querySelector('.scroller-hook');
-var cities = document.querySelector('.cities-hook');
-var shortcut = document.querySelector('.shortcut-hook');
+		function initCities() {
+			var y = 0,titleHeight = 28,itemHeight = 44,lists = '';
+			var lists = '';
+			var ul = '<ul class="shortcut_ul">';
+		   $.ajax({
+				 url: 'js/car/city.json',
+				 type: 'get',
+				 success:function(data){
+					$.each(data,function(i,item){
+						var name = item.name;
 
+						lists += '<div class="title">'+name+'</div>'; 
+		    				lists += '<ul>';
+		    				$.each(item.carlist,function(k,items){
+							var txts = items.series;
+		    					lists += '<li class="item" data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</li>';
+		    					
+		    					cities.addEventListener('touchend', function (e) {
 
-var scroll;
+					    			var txt = e.target.getAttribute('data-name');
+					    			$(".car_list").hide();
+					    			$(".car_list_bot").show();
+								if(txt == items.name){
+		    							for(var i=0;i<txts.length;i++){
+		    								var lis = "<li>" + txts[i] + "</li>"
+		    								$(".car_list_botul").append(lis);
+		    							}
+								}
+						});
+		    				});
+		    				lists += '</ul>';
+					    var name = item.name.substr(0, 1);
+					    shortcutList.push(name);
+					    ul += '<li data-anchor="'+name+'" class="item">'+name+'</li>';
+					    var len = item.carlist.length;
+					    anchorMap[name] = y;
+					    y -= titleHeight + len * itemHeight;
+					 
+					});
+					ul += '</ul><div class="jump-tips"></div>';
 
-var shortcutList = [];
-var anchorMap = {};
+					cities.innerHTML = lists;
+					shortcut.innerHTML = ul;
+					shortcut.style.top = (cityWrapper.clientHeight - shortcut.clientHeight) / 2 + 'px';
+					
+					  scroll = new window.BScroll(cityWrapper, {
+					    probeType: 3
+					  });
+					  scroll.scrollTo(0, 0);
 
-function initCities() {
-  var y = 0;
-  var titleHeight = 28;
-  var itemHeight = 44;
+					
+				 }
+			});	 
+		};
+//		//bind Event
+		function bindEvent() {
+		  var touch = {};
+		  var firstTouch;
+		  shortcut.addEventListener('touchstart', function (e) {
+		    var anchor = e.target.getAttribute('data-anchor');
+		    firstTouch = e.touches[0];
+		    touch.y1 = firstTouch.pageY;
+		    touch.anchor = anchor;
+		    $(".jump-tips").show();
+		    $(".jump-tips").html(anchor);
+		    scrollTo(anchor);
+		
+		  });
+		   shortcut.addEventListener('touchend', function (e) {
+		    	$(".jump-tips").hide();
+		  });
+		
+		  shortcut.addEventListener('touchmove', function (e) {
+		    firstTouch = e.touches[0];
+		    touch.y2 = firstTouch.pageY;
+		    var anchorHeight = 16;
+		    var delta = (touch.y2 - touch.y1) / anchorHeight | 0;
+		    var anchor = shortcutList[shortcutList.indexOf(touch.anchor) + delta];
+		    $(".jump-tips").html(anchor);
+		    scrollTo(anchor);
+		    e.preventDefault();
+		    e.stopPropagation();
+		
+		  });
+		
+		  function scrollTo(anchor) {
+		    var maxScrollY = cityWrapper.clientHeight - cityScroller.clientHeight;
+		    var y = Math.min(0, Math.max(maxScrollY, anchorMap[anchor]));
+		    if (typeof y !== 'undefined') {
+		      scroll.scrollTo(0, y);
+		    }
+		  }
+		}
+		
+		initCities();
+		bindEvent();
 
-  var lists = '';
-  var en = '<ul class="shortcut_ul">';
-  cityData.forEach(function (group) {
-    var name = group.name;
-    lists += '<div class="title">'+name+'</div>'; 
-    lists += '<ul>';
-    group.cities.forEach(function(g) {
-      lists += '<li class="item" data-name="'+ g.name +'" data-id="'+ g.cityid +'"><span class="border-1px name">'+ g.name +'</span></li>';
-    });
-    lists += '</ul>';
-
-
-    var name = group.name.substr(0, 1);
-    en += '<li data-anchor="'+name+'" class="item">'+name+'</li>';
-    var len = group.cities.length;
-    anchorMap[name] = y;
-    y -= titleHeight + len * itemHeight;
-
-  });
-  en += '</ul><div class="jump-tips"></div>';
-
-  cities.innerHTML = lists;
-
-  shortcut.innerHTML = en;
-  shortcut.style.top = (cityWrapper.clientHeight - shortcut.clientHeight) / 2 + 'px';
-
-  scroll = new window.BScroll(cityWrapper, {
-    probeType: 3
-  });
-
-  // scroll.on('scroll', function (pos) {
-  //   console.log(Math.round(pos.y));
-  // });
-
-  scroll.scrollTo(0, 0);
-}
-
-
-//bind Event
-function bindEvent() {
-  var touch = {};
-  var firstTouch;
-
-  shortcut.addEventListener('touchstart', function (e) {
-
-    var anchor = e.target.getAttribute('data-anchor');
-
-    firstTouch = e.touches[0];
-    touch.y1 = firstTouch.pageY;
-    touch.anchor = anchor;
-    $(".jump-tips").show();
-    $(".jump-tips").html(anchor);
-    scrollTo(anchor);
-
-  });
-   shortcut.addEventListener('touchend', function (e) {
-    	$(".jump-tips").hide();
-  });
-
-  shortcut.addEventListener('touchmove', function (e) {
-
-    firstTouch = e.touches[0];
-
-    touch.y2 = firstTouch.pageY;
-
-    var anchorHeight = 16;
-
-    var delta = (touch.y2 - touch.y1) / anchorHeight | 0;
-
-    var anchor = shortcutList[shortcutList.indexOf(touch.anchor) + delta];
-    console.log( delta )
-	
-    scrollTo(anchor);
-
-    e.preventDefault();
-    e.stopPropagation();
-
-  });
-
-  function scrollTo(anchor) {
-    var maxScrollY = cityWrapper.clientHeight - cityScroller.clientHeight;
-
-    var y = Math.min(0, Math.max(maxScrollY, anchorMap[anchor]));
-
-    if (typeof y !== 'undefined') {
-      scroll.scrollTo(0, y);
-    }
-  }
-}
-
-initCities();
-bindEvent();
 	})
+	
 </script>

@@ -9,6 +9,14 @@
     z-index: 99;
   
 }
+.car_list_box .car_list_bot {
+    position: fixed;
+    top: 1rem;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+  	display: none;
+}
 .scroller-hook{
 	padding-bottom:1rem;
 }
@@ -22,11 +30,22 @@
     color: #878787;
 }
 .car_list_box .car_list .cities .item {
+	z-index: 99999;
     height: 44px;
     padding: 0 16px;
     line-height: 44px;
     font-size: 0.16rem;
     background-color:#fff;
+    border-bottom:1px solid #ededed;
+}
+.car_list_box .car_list_bot ul li {
+	z-index: 99999;
+    height: 44px;
+    padding: 0 16px;
+    line-height: 44px;
+    font-size: 0.16rem;
+    background-color:#fff;
+    border-bottom:1px solid #ededed;
 }
 .car_list_box .car_list .cities .item .name {
     display: block;
