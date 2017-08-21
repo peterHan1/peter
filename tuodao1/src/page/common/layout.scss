@@ -1,0 +1,60 @@
+@import "mixin";
+/*css reset*/
+*{
+	margin: 0;
+	padding:0;
+}
+ul,li{
+  list-style:none;
+}
+body{
+	background: #fff;
+  font:14px/1.5 '\5FAE\8F6F\96C5\9ED1',arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+}
+@font-face {font-family: "iconfont";
+  src: url('./iconfont/iconfont.eot?t=1502862928761'); /* IE9*/
+  src: url('./iconfont/iconfont.eot?t=1502862928761#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./iconfont/iconfont.woff?t=1502862928761') format('woff'), /* chrome, firefox */
+  url('./iconfont/iconfont.ttf?t=1502862928761') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./iconfont/iconfont.svg?t=1502862928761#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.max_width{
+	@include width-max;
+}
+.top{
+	width: 100%;
+	background: $bgColor;
+	@include height-line(42px);
+  font-size:$fontSize12;
+  color:$fontColor9e;
+  .left{
+    float:left;
+    span{
+      float:left
+    }
+    dl{
+      float:left;
+      dd{
+        float:left;
+      }
+    }
+  }
+  .right{
+    float:right;
+    ul li{
+      float:left;
+      margin-left:30px;
+    }
+  }
+}
+
+
+// .fl{float:left}
