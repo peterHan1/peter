@@ -2,12 +2,14 @@
 <html>
 	<head>
 	<%= require('html-loader!./layout/header.html') %>
-	<title>首页</title>
+	<title><%= htmlWebpackPlugin.options.title%></title>
 	</head>
 <body>
 	<%= require('html-loader!./layout/top.html') %>
-hello world!!~~~~~~~
+	<%= require('html-loader!./layout/nav.html') %>
 
+	<div class="xx">body~~~~~~~~~~~</div>body~~~~~~~~~~~
+	<%= require('html-loader!./layout/footer_nav.html') %>
 	<%= require('html-loader!./layout/footer.html') %>
 	<% if (env !== "production") { %>
 	<script src="/reload/reload.js"></script>

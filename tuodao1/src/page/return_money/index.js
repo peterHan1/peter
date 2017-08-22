@@ -1,10 +1,10 @@
 var a = require('./js/date_time.js');
 require('./return_money.scss');
-// require('./js/laydate/laydate.css');
+require('./js/laydate/laydate.scss');
 require('./js/laydate/laydate.js');
 var config = require('./js/time.json');
-console.log(config);
 
+// 选择时间调用日历
 $(".layer_date").on("click",function(){
 	laydate({
 		format: 'YYYY-MM-DD',
@@ -15,7 +15,7 @@ $(".layer_date").on("click",function(){
 	});
 });
 
-
+// 回款日历两个加载函数
 window.time_list = function(yyyy,mm){
 	// $.ajax({
 	// 	url: './time.json',

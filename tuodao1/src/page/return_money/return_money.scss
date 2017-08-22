@@ -39,12 +39,30 @@ address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
 .data_btn_mon{height: 30px;line-height: 30px;color: #f77b10;border: 1px solid #f77b10;font-size: 14px;display: block;width: 85px;text-align: center;border-radius: 4px;cursor: pointer;margin-top: 10px;margin-left: 20px;}
 
 /*right回款金额*/
-.re_money_box{width:460px;height:375px;padding-left:20px;}
-.re_money_box .re_money_tlt{height:30px;line-height:30px;color:#CCCCCC;}
-.re_money_box .re_money_cont{height:340px;width:100%;}
-.re_money_box .re_money_cont div{width:50%;margin-top:28%;text-align: center;}
-.re_money_box .re_money_cont .re_money_num{font-size:28px;}
-.re_money_box .re_money_cont .re_money_txt{font-size:16px;}
+.re_money_box{
+	width:460px;
+	height:375px;
+	padding-left:20px;
+	.re_money_tlt{
+		height:30px;line-height:30px;color:#CCCCCC;
+	}
+	.re_money_cont{
+		height:340px;
+		width:100%;
+		div{
+			width:50%;
+			margin-top:28%
+			;text-align: center;
+		}
+		.re_money_num{
+			font-size:28px;
+		}
+		.re_money_txt{
+			font-size:16px;
+		}
+	}
+}
+
 
 /*回款列表*/
 .re_money_table{width:100%;}

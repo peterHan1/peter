@@ -7,7 +7,7 @@ var port = 3000;
 
 var ejs = require('ejs');
 
-app.set('views',path.join(__dirname , './src/view'));
+app.set('views',path.join(__dirname , './dist/view'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 

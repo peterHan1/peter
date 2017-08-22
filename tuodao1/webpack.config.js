@@ -1,22 +1,30 @@
 var webpack = require('webpack');
-var path = require('path');
-var env=process.env.NODE_ENV;
+var path 	= require('path');
+var env 	= process.env.NODE_ENV;
 // 独立打包CSS文件
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin 	= require("extract-text-webpack-plugin");
 // 自动生成HTML
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin 	= require('html-webpack-plugin');
 
 // 获取HTML
-var getHtmlConfig = function(name){
+var getHtmlConfig = function(name,title){
 	return {
 		template    : 'src/view/'+ name +'.html',
 		filename    : 'view/'+ name +'.html',
+		title       : title,
+		inject      : true,
+		hash        : true,
 		chunks      : ['common',name]
 	};
 
 };
 
+
+
+
+
 var publicPath = 'http://72.127.2.42:3000/';
+
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
@@ -24,9 +32,9 @@ var devConfig = {
 		'common': ['./src/page/common/index.js',hotMiddlewareScript],
 		'index': ['./src/page/index/index.js', hotMiddlewareScript,],
 		'login': ['./src/page/login/index.js', hotMiddlewareScript],
-		'paging': ['./src/page/paging/index.js', hotMiddlewareScript],
-		'slider': ['./src/page/slider/index.js', hotMiddlewareScript],
 		'return_money': ['./src/page/return_money/index.js', hotMiddlewareScript],
+		'invest': ['./src/page/invest/index.js', hotMiddlewareScript],
+		'register': ['./src/page/register/index.js', hotMiddlewareScript]
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -82,17 +90,17 @@ var devConfig = {
 		// css单独打包
 		new ExtractTextPlugin('css/[name].css'),
 		// HTML文件处理
-		new HtmlWebpackPlugin(getHtmlConfig('index')),
-		new HtmlWebpackPlugin(getHtmlConfig('login')),
-		new HtmlWebpackPlugin(getHtmlConfig('paging')),
-		new HtmlWebpackPlugin(getHtmlConfig('slider')),
-		new HtmlWebpackPlugin(getHtmlConfig('return_money')),
-		// new webpack.optimize.OccurenceOrderPlugin(), 
+
+		new HtmlWebpackPlugin(getHtmlConfig('register','注册页')),
+		// new webpack.optimize.OccurenceOrderPlugin(),
+		new HtmlWebpackPlugin(getHtmlConfig('return_money','回款日历')),
+		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
+
+		new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
+		new HtmlWebpackPlugin(getHtmlConfig('login','登录')),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
 	]
 };
 
 module.exports = devConfig;
-
-
