@@ -2,6 +2,7 @@
 body{
 	background-color:$bgColor;
 	.fl{float: left;}
+	.fr{float: right;}
 	.invest_top{
 		width:100%;
 		@include height-line(60px);
@@ -26,16 +27,20 @@ body{
 			margin-top:30px;
 			margin-bottom:10px;
 			.invest_list_txt{
+				@extend %clearfix;
 				color:$fontColorab;
 				padding-bottom:20px;
-				font-size:$fontSize14
+				font-size:$fontSize14;
+				a{
+					color:$fontColor74;
+				}
 			}
 			ul{
 				background-color: #fff;
 				padding:20px 30px;
-				overflow: hidden;
+				@extend %clearfix;
 				div{
-					overflow: hidden;
+					@extend %clearfix;
 				}
 				li{
 					float:left;
@@ -60,9 +65,9 @@ body{
 				background: #fff;
 				cursor: pointer;
 				position: relative;
-				overflow: hidden;
 				padding:30px;
 				border-bottom:1px solid #e5e5e5;
+				@extend %clearfix;
 				.full{
 					display: block;
 					width: 100%;
@@ -72,7 +77,7 @@ body{
 					left:0;
 				}
 				.invest_list_title{
-					overflow: hidden;
+					@extend %clearfix;
 					margin-bottom: 10px;
 					p{
 						font-size:$fontSize16;
@@ -80,6 +85,8 @@ body{
 					}
 					.type{
 						position: relative;
+						margin-left:10px;
+						padding-right:10px;
 						span{
 							width: 0;
 							height: 0;
@@ -90,17 +97,16 @@ body{
 						.tips{
 							@include height-line(20px);
 							@include border-style($b-radius:5px)
-							margin-left: 5px;
-							margin-top: -1px;
 							padding: 0 10px;
 							position: absolute;
 							background-color: #fff;
-							left: 40px;
+							left: 85px;
 							top: 0;
 							color: $fontColor9e;
 							font-size: $fontSize12;
 							white-space: nowrap;
 							z-index: 2;
+							display: none;
 						}
 						.bot{
 							border-width: 5px 6px;
@@ -118,37 +124,32 @@ body{
 							top: 50%;
 							margin-top: -5px;
 						}
+						&:hover{
+							.tips{
+								display:block;
+							}
+						}
 					}
-				}
-				.butt{
-					width:90px;
-					height:30px;
-					text-align:center;
-					line-height:30px;
-					border-radius: 10px;
-					margin-top:15px;
-				}
-				.finish{
-					color:$fontColor9e;
-				}
-				.btn{
-					color:$fontColor74;
 				}
 				dl{
 					float:left;
-					font-size:$fontSize16;
+					font-size:$fontSize12;
+					text-align:center;
 					dt{
 						@include height-line(44px);
 						color:$fontColor333;
+						.num_font{
+							font-size:$fontSize14;
+						}
 					}
 					dd{
-						font-size:$fontSize14;
+						font-size:$fontSize12;
 						color:$fontColor9e;
 					}
 				}
-				
 				.expect{
-					width:160px;
+					width:130px;
+					text-align:left;
 					dt{
 						color:$fontColor74;
 					}
@@ -157,23 +158,24 @@ body{
 					}
 				}
 				.data{
-					width:138px;
+					width:129px;
 				}
 				.refund{
-					width:190px;
+					width:183px;
 				}
 				.summoney{
 					width:175px;
 				}
 				.residue{
-					width:195px;
+					width:200px;
 				}
 				.bars{
 					width:100px;
-					margin-right:70px;
+					margin:0 65px 0 45px;
 				}
 				.progress{
 					height: 15px;
+					padding-top:15px;
 					.progress_wrapper{
 						width: 100%;
 						float: left;
@@ -189,15 +191,62 @@ body{
 					}
 						
 				}
-			}
-			li:hover{
-				box-shadow: 0 0 20px 8px #efeff2;
-				z-index: 9;
-				.btn{
-					background-color:$mainColor;
-					color:#fff;
+				.butt{
+					width:90px;
+					height:30px;
+					text-align:center;
+					line-height:30px;
+					border-radius: 16px;
+					margin-top:15px;
+				}
+				.finish{
+					color:$fontColor9e;
+					dt{
+						color:$fontColor70;
+					}
+				}
+				.btn_tim,.btn{
+					color:$fontColor74;
+				}
+				&:hover{
+					box-shadow: 0 0 20px 8px #efeff2;
+					z-index: 9;
+					.btn{
+						background-color:$mainColor;
+						color:#fff;
+					}
+					.btn_tim{
+						@include border-style($b-radius:16px,$b-color:$mainColor)
+					}
 				}
 			}
+
+			.debt{
+				.expect{
+					width:100px;
+					text-align:left;
+				}
+				.data{
+					width:138px;
+				}
+				.refund{
+					width:160px;
+				}
+				.transfer{
+					width:140px;
+				}
+				.summoney{
+					width:145px;
+				}
+				.residue{
+					width:165px;
+				}
+				.bars{
+					width:100px;
+					margin:0 50px 0 20px;
+				}
+			}
+			
 		}
 	}
 }

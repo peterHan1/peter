@@ -1,5 +1,8 @@
+require('page/common/top/index.js');
+require('page/common/nav/index.js');
 require('./index.scss');
-var _td = require('util/td.js');
+require('page/common/footer-nav/index.scss');
+// var _td = require('util/td.js');
 
 // alert(1);
 // 测试网络请求

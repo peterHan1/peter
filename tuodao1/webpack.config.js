@@ -33,8 +33,15 @@ var devConfig = {
 		'index': ['./src/page/index/index.js', hotMiddlewareScript,],
 		'login': ['./src/page/login/index.js', hotMiddlewareScript],
 		'return_money': ['./src/page/return_money/index.js', hotMiddlewareScript],
+		'register': ['./src/page/register/index.js', hotMiddlewareScript],
+		'userlogin': ['./src/page/userlogin/index.js', hotMiddlewareScript],
+		'setpassword': ['./src/page/setpassword/index.js', hotMiddlewareScript],
+		'setpay': ['./src/page/setpay/index.js', hotMiddlewareScript],
 		'invest': ['./src/page/invest/index.js', hotMiddlewareScript],
-		'register': ['./src/page/register/index.js', hotMiddlewareScript]
+		'invest_detail': ['./src/page/invest_detail/index.js', hotMiddlewareScript],
+		'active_newuser': ['./src/page/active_newuser/index.js', hotMiddlewareScript],
+		'active_user': ['./src/page/active_user/index.js', hotMiddlewareScript],
+
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -92,9 +99,17 @@ var devConfig = {
 		// HTML文件处理
 
 		new HtmlWebpackPlugin(getHtmlConfig('register','注册页')),
+		new HtmlWebpackPlugin(getHtmlConfig('userlogin','登录页')),
+		new HtmlWebpackPlugin(getHtmlConfig('setpassword','忘记密码')),
+		new HtmlWebpackPlugin(getHtmlConfig('setpay','忘记支付密码')),
+		new HtmlWebpackPlugin(getHtmlConfig('active_newuser','激活存管新用户')),
+		new HtmlWebpackPlugin(getHtmlConfig('active_user','激活存管存量用户')),
 		// new webpack.optimize.OccurenceOrderPlugin(),
 		new HtmlWebpackPlugin(getHtmlConfig('return_money','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
+		new HtmlWebpackPlugin(getHtmlConfig('invest_detail','理财专区-详情页')),
+
+
 
 		new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
 		new HtmlWebpackPlugin(getHtmlConfig('login','登录')),

@@ -1,4 +1,5 @@
 require('./layout.scss');
+require('../common/iconfont/index.scss');
 $('#navigate li').mouseover(function(){
 	// console.log($(this).children().length);
 	// $('#navigate li').find('dl').show();

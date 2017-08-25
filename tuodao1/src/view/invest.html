@@ -20,21 +20,50 @@
 		<div class="invest_list">
 			<div class="invest_list_top">
 			<!-- 债券转让显示 -->
+			<div class="invest_list_txt">
+				<p class="fl">温馨提示：未转让成功标的按照转让时间的先后顺序显示</p>
+				<a href="###" class="fr">查看债权转让规则 > </a>
+			</div>
 			<!-- 精选计划显示 -->
-				<ul>
+			<ul>
+				<li class="on">全部</li>
+				<li>3个月以内</li>
+				<li>3-6个月</li>
+			</ul>
+			<!-- 散标项目显示 -->
+			<ul>
+				<div>
 					<li class="on">全部</li>
 					<li>3个月以内</li>
 					<li>3-6个月</li>
-				</ul>
+					<li>7-12个月</li>
+					<li>12个月以上</li>
+				</div>
+				<div class="invest_nav_mou">
+					<li class="on">全部</li>
+					<li class="invest_nav_type">等额本息</li>
+					<li class="invest_nav_type">按月付息</li>
+					<li class="invest_nav_type">按天计息</li>
+				</div>
+			</ul>
+			<!-- 债券转让显示 -->
+			<ul>
+				<li class="on">全部</li>
+				<li>3个月以内</li>
+				<li>3-6个月</li>
+				<li>7-12个月</li>
+				<li>12个月以上</li>
+			</ul>
 			</div>
 			<div class="invest_list_bot">
 				<ul>
+					<!-- 精选计划 -->
 					<li>
 						<a href="" class="full"></a> 
 						<div class="invest_list_title">
 							<p class="fl">精选计划 201707281</p>
 							<div class="fl type">
-								<img src="../image/logo.png" class="fl">
+								<img src="../image/exclusive.png" class="fl">
 								<div class="tips">仅限新注册用户首次投资<span class="bot"></span><span class="bot2"></span></div>
 							</div>
 						</div>
@@ -44,7 +73,7 @@
 								<dd>预期年化</dd>
 							</dl>
 							<dl class="data">
-								<dt>1个月</dt>
+								<dt><span class="num_font">1</span>个月</dt>
 								<dd>投资期限</dd>
 							</dl>
 							<dl class="refund">
@@ -52,11 +81,11 @@
 								<dd>还款方式</dd>
 							</dl>
 							<dl class="summoney">
-								<dt>999.99万元</dt>
+								<dt><span class="num_font">999.99</span>万元</dt>
 								<dd>预计项目总额</dd>
 							</dl>
 							<dl class="residue">
-								<dt>9,999,999.99元</dt>
+								<dt><span class="num_font">9,999,999.99</span>元</dt>
 								<dd>剩余可投</dd>
 							</dl>
 							<dl class="bars">
@@ -67,117 +96,204 @@
 										</div>
 									</div>
 								</dt>
-								<dd>投资进度 <span>80%</span></dd>
+								<dd>加入进度 <span>80%</span></dd>
 							</dl>
 							<div class="fl butt btn">立即加入</div>
+						</div>
+					</li>					
+					<li>
+						<a href="" class="full"></a> 
+						<div class="invest_list_title">
+							<p class="fl">精选计划 201707281</p>
+						</div>
+						<div class="invest_list_con">
+							<dl class="expect">
+								<dt><span>14</span>%+3.2%</dt>
+								<dd>预期年化</dd>
+							</dl>
+							<dl class="data">
+								<dt><span class="num_font">1</span>个月</dt>
+								<dd>投资期限</dd>
+							</dl>
+							<dl class="refund">
+								<dt>月付息到期还本</dt>
+								<dd>还款方式</dd>
+							</dl>
+							<dl class="summoney">
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>预计项目总额</dd>
+							</dl>
+							<dl class="residue">
+								<dt><span class="num_font">9,999,999.99</span>元</dt>
+								<dd>剩余可投</dd>
+							</dl>
+							<dl class="bars">
+								<dt>
+									<div class="progress">
+										<div class="progress_wrapper">
+											<div class="bar" style="width:0%;"></div>
+										</div>
+									</div>
+								</dt>
+								<dd>加入进度 <span>0%</span></dd>
+							</dl>
+							<!-- 时间到移除:btn_tim 添加:btn -->
+							<div class="fl butt btn_tim">17:00开抢</div>
 						</div>
 					</li>
 					<li>
 						<a href="" class="full"></a> 
 						<div class="invest_list_title">
 							<p class="fl">精选计划 201707281</p>
+						</div>
+						<div class="invest_list_con">
+							<!-- 已抢完的标 添加:finish 改变字体颜色 -->
+							<dl class="expect finish">
+								<dt><span>14</span>%+3.2%</dt>
+								<dd>预期年化</dd>
+							</dl>
+							<dl class="data">
+								<dt><span class="num_font">1</span>个月</dt>
+								<dd>投资期限</dd>
+							</dl>
+							<dl class="refund">
+								<dt>月付息到期还本</dt>
+								<dd>还款方式</dd>
+							</dl>
+							<dl class="summoney">
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>预计项目总额</dd>
+							</dl>
+							<dl class="residue">
+								<dt>0元</dt>
+								<dd>剩余可投</dd>
+							</dl>
+							<dl class="bars">
+								<dt>
+									<div class="progress">
+										<div class="progress_wrapper">
+											<div class="bar" style="width:100%;"></div>
+										</div>
+									</div>
+								</dt>
+								<dd>加入进度 <span>100%</span></dd>
+							</dl>
+							<!-- 已抢完的标 移除:btn 添加:finish -->
+							<div class="fl butt finish">已抢完</div>
+						</div>
+					</li>
+					<!-- 散标项目 -->
+					<li>
+						<a href="" class="full"></a> 
+						<div class="invest_list_title">
+							<p class="fl">宝马 X5 抵押标</p>
 							<div class="fl type">
-								<img src="../image/logo.png" class="fl">
-								<div class="tips">仅限新注册用户首次投资<span class="bot"></span><span class="bot2"></span></div>
+								<img src="../image/cooperate.png" class="fl">
 							</div>
 						</div>
 						<div class="invest_list_con">
 							<dl class="expect">
-								<dt><span>14</span>%+3.2%</dt>
+								<dt><span>14.5</span>%+3.2%</dt>
 								<dd>预期年化</dd>
 							</dl>
 							<dl class="data">
-								<dt>1个月</dt>
+								<dt><span class="num_font">1</span>个月</dt>
 								<dd>投资期限</dd>
 							</dl>
 							<dl class="refund">
-								<dt>月付息到期还本</dt>
+								<dt>按月付息到期还本</dt>
 								<dd>还款方式</dd>
 							</dl>
 							<dl class="summoney">
-								<dt>999.99万元</dt>
-								<dd>预计项目总额</dd>
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>项目总额</dd>
 							</dl>
 							<dl class="residue">
-								<dt>9,999,999.99元</dt>
+								<dt><span class="num_font">9,999,999.99</span>元</dt>
 								<dd>剩余可投</dd>
 							</dl>
 							<dl class="bars">
 								<dt>
 									<div class="progress">
 										<div class="progress_wrapper">
-											<div class="bar" style="width:20%;"></div>
+											<div class="bar" style="width:30%;"></div>
 										</div>
 									</div>
 								</dt>
-								<dd>投资进度 <span>20%</span></dd>
+								<dd>投资进度 <span>30%</span></dd>
 							</dl>
-							<div class="fl butt btn">立即加入</div>
+							<div class="fl butt btn">立即投资</div>
 						</div>
 					</li>
 					<li>
 						<a href="" class="full"></a> 
 						<div class="invest_list_title">
-							<p class="fl">精选计划 201707281</p>
+							<p class="fl">宝马 X5 抵押标</p>
+							<div class="fl type">
+								<img src="../image/cooperate.png" class="fl">
+							</div>
 						</div>
 						<div class="invest_list_con">
 							<dl class="expect">
-								<dt><span>14</span>%+3.2%</dt>
+								<dt><span>14.5</span>%+3.2%</dt>
 								<dd>预期年化</dd>
 							</dl>
 							<dl class="data">
-								<dt>1个月</dt>
+								<dt><span class="num_font">1</span>个月</dt>
 								<dd>投资期限</dd>
 							</dl>
 							<dl class="refund">
-								<dt>月付息到期还本</dt>
+								<dt>按月付息到期还本</dt>
 								<dd>还款方式</dd>
 							</dl>
 							<dl class="summoney">
-								<dt>999.99万元</dt>
-								<dd>预计项目总额</dd>
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>项目总额</dd>
 							</dl>
 							<dl class="residue">
-								<dt>9,999,999.99元</dt>
+								<dt><span class="num_font">9,999,999.99</span>元</dt>
 								<dd>剩余可投</dd>
 							</dl>
 							<dl class="bars">
 								<dt>
 									<div class="progress">
 										<div class="progress_wrapper">
-											<div class="bar" style="width:20%;"></div>
+											<div class="bar" style="width:0%;"></div>
 										</div>
 									</div>
 								</dt>
-								<dd>投资进度 <span>20%</span></dd>
+								<dd>投资进度 <span>0%</span></dd>
 							</dl>
-							<div class="fl butt btn">立即加入</div>
+							<div class="fl butt btn_tim">17:00开抢</div>
 						</div>
 					</li>
 					<li>
 						<a href="" class="full"></a> 
 						<div class="invest_list_title">
-							<p class="fl">精选计划 201707281</p>
+							<p class="fl">宝马 X5 抵押标</p>
+							<div class="fl type">
+								<img src="../image/cooperate.png" class="fl">
+							</div>
 						</div>
 						<div class="invest_list_con">
-							<dl class="expect">
-								<dt><span>14</span>%+3.2%</dt>
+							<dl class="expect finish">
+								<dt><span>14.5</span>%+3.2%</dt>
 								<dd>预期年化</dd>
 							</dl>
 							<dl class="data">
-								<dt>1个月</dt>
+								<dt><span class="num_font">1</span>个月</dt>
 								<dd>投资期限</dd>
 							</dl>
 							<dl class="refund">
-								<dt>月付息到期还本</dt>
+								<dt>按月付息到期还本</dt>
 								<dd>还款方式</dd>
 							</dl>
 							<dl class="summoney">
-								<dt>999.99万元</dt>
-								<dd>预计项目总额</dd>
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>项目总额</dd>
 							</dl>
 							<dl class="residue">
-								<dt>9,999,999.99元</dt>
+								<dt>0元</dt>
 								<dd>剩余可投</dd>
 							</dl>
 							<dl class="bars">
@@ -193,7 +309,50 @@
 							<div class="fl butt finish">已抢完</div>
 						</div>
 					</li>
-
+					<!-- 债权转让 -->
+					<li class="debt">
+						<a href="" class="full"></a> 
+						<div class="invest_list_title">
+							<p class="fl">奔驰 S600 抵押标</p>
+						</div>
+						<div class="invest_list_con">
+							<dl class="expect">
+								<dt><span>14</span>%</dt>
+								<dd>预期年化</dd>
+							</dl>
+							<dl class="data">
+								<dt><span class="num_font">1</span>个月</dt>
+								<dd>剩余期限</dd>
+							</dl>
+							<dl class="refund">
+								<dt><span class="num_font">999.99</span>万元</dt>
+								<dd>债权价值</dd>
+							</dl>
+							<dl class="transfer">
+								<dt><span class="num_font">100.00</span>元</dt>
+								<dd>奖励金额</dd>
+							</dl>
+							<dl class="summoney">
+								<dt><span class="num_font">999.99</span>元</dt>
+								<dd>转让金额</dd>
+							</dl>
+							<dl class="residue">
+								<dt><span class="num_font">9,999,999.99</span>元</dt>
+								<dd>剩余可投</dd>
+							</dl>
+							<dl class="bars">
+								<dt>
+									<div class="progress">
+										<div class="progress_wrapper">
+											<div class="bar" style="width:60%;"></div>
+										</div>
+									</div>
+								</dt>
+								<dd>投资进度 <span>60%</span></dd>
+							</dl>
+							<div class="fl butt btn">立即投资</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>

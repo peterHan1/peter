@@ -1,0 +1,38 @@
+@import '../mixin';
+.footer_nav{
+            @extend %clearfix;
+            width:100%;
+            background:#fff;
+            padding:20px 0;
+            .kf{
+                color:$fontColor9e;
+                
+                float:left;
+                ol{
+                    @extend %clearfix;
+                    li{
+                        float:left;
+                        margin-right:20px;
+                        dd{font-size:24px;color:$fontColor333}
+                    }
+                }
+                p{
+                  margin-top:5px
+                }
+                a{
+                  @include border-style($b-radius:15px);
+                  margin-top:10px;
+                  display:inline-block;
+                  color:$fontColor9e;
+                  padding:0 10px;
+                }     
+            }
+            .fnav{
+                  float:left;
+
+                  dl{
+                    float:left;
+                    margin:0 0 0 50px;
+                  }
+            }
+}

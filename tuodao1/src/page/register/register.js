@@ -12,8 +12,10 @@ $(function() {
 		successColor: "#fff",
 		time: 400,
 		callback: function(result) {
-			// $("#result").html(result);
-			if (result == true && $(".phoneNum input").val() != "") {
+			// console.log(res);
+			if ($(".phoneNum input").val() == "") {
+				location.reload();
+			} else if (result == true && res == true) {
 				$(".btn").addClass("kd");
 			}
 		}
@@ -23,12 +25,39 @@ $(function() {
 		$(".personNum").toggle();
 	});
 	// 验证手机号码
-	$(".phoneNum input").on("blur", function() {
-		var phone = $(".phoneNum input").val();
-		if (phone == "" || !(/^1[34578]\d{9}$/.test(phone))) {
-			return false;
-		}
+	$(".phoneNum input").on("keyup", function() {
+		var re = checkPhone("phone_Num", "jg", "wz");
+		res = re;
+		return res;
 	});
+	$(".phoneNum input").on("focus", function() {
+		$(document).slider("restore");
+	});
+
+	function checkPhone(input, ts, wz) {
+		var data = "15649387762";
+		var _this = $("." + input);
+		var val = _this.val();
+		if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
+			$("." + wz).text("手机号必须由11位纯数字组成");
+			$(".btn").removeClass("kd");
+			$("." + ts).show();
+			_this.addClass("red");
+		} else {
+			$("." + ts).hide();
+			_this.removeClass("red");
+			if (val !== data) {
+				$("." + ts).show();
+				$("." + wz).text("该手机号尚未注册拓道金服");
+				_this.removeClass("red");
+				return false;
+			} else {
+				$("." + ts).hide();
+				_this.removeClass("red");
+				return true;
+			}
+		}
+	}
 	// 验证码
 	Num("demo", "border");
 
@@ -62,7 +91,8 @@ $(function() {
 		str = $("#demo input").eq(0).val() + $("#demo input").eq(1).val() + $("#demo input").eq(2).val() + $("#demo input").eq(3).val() + $("#demo input").eq(4).val() + $("#demo input").eq(5).val();
 		console.log(str);
 		if (str == data) {
-			console.log("success");
+			$(".yanzhengma").hide();
+			$(".set_password").show();
 			$(".wrong_ts").hide();
 			$(".ts").show();
 		} else {
@@ -117,6 +147,7 @@ $(function() {
 	}
 	// 页面跳转
 	$(".btn").on("click", function() {
+
 		if ($(".btn").hasClass("kd")) {
 			$(".register").hide();
 			$(".yanzhengma").show();
@@ -131,21 +162,22 @@ $(function() {
 		location.reload();
 	});
 	// 点击眼睛显示明码密码
-	var index=1;
-	$(".set_password .yan").on("click", function() {
-		index++;
-		if(index%2!=1){
-			$(".set_password .pas_box .pas").attr("type", "text");
-		}else{
-			$(".set_password .pas_box .pas").attr("type", "password");
-		}
+	$(" .yan_kai").on("click", function() {
+		$(this).hide();
+		$(".yan").show();
+		$(".pas_box input").attr("type", "text");
+	});
+	$(".yan").on("click", function() {
+		$(this).hide();
+		$(".yan_kai").show();
+		$(".pas_box input").attr("type", "password");
 	});
 	// 密码强度判断
 	$('.set_password .pas_box .pas').keyup(function(e) {
 		var val = $(".set_password .pas_box .pas").val();
 		if (val !== "") {
 			$(".register_btn").addClass("kd");
-		}else{
+		} else {
 			$(".register_btn").removeClass("kd");
 		}
 		$(".set_password .psd_til_1").hide();
@@ -184,6 +216,7 @@ $(function() {
 			return false;
 		} else {
 			$(".set_password").hide();
+			$(".success_page").show();
 		}
 	});
 });

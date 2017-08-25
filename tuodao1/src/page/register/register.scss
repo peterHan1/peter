@@ -16,6 +16,9 @@
 .border{
 	border: 1px solid $mainColor;
 	}
+.red{
+	border-color:red!important;
+}
 #space{
 	margin-right: 30px;
 		}
@@ -49,6 +52,7 @@
 				height: 80%;
 				margin: 100px auto 0 auto;
 				.phoneNum{
+						position:relative;
 						input{
 							width: 320px;
 							height: 30px;
@@ -56,6 +60,19 @@
 							padding-left: 15px;
 							outline:none;
 							margin-left: 155px;
+							border: 1px solid $fontColor9e;
+						}
+						.jg{
+							text-align:center;
+							color:red;
+							z-index:999;
+							background-color: #f2f2f2;
+							width:339px;
+							height:30px;
+							position:absolute;
+							top:32px;
+							left:154px;
+							display:none;
 						}
 				}
 				.slider{
@@ -182,8 +199,16 @@
 				margin-top:60px;
 				border-radius:5px;
 				outline:none;
+				border: 1px solid $fontColor9e;
 			}
 			.yan{
+				position:absolute;
+				right: 422px;
+				top: 69px;
+				cursor:pointer;
+				display:none;
+			}
+			.yan_kai{
 				position:absolute;
 				right: 422px;
 				top: 69px;
@@ -260,6 +285,12 @@
 		}
 		.page_l{
 			border-right:1px solid $fontColor9e;
+			.logo{
+				margin: 20px auto;
+				width:115px;
+				height:96px;
+				background:url("../../image/end.png")
+			}
 			p.zh{
 				margin-top:128px;
 				color:$fontColor9e;
@@ -269,9 +300,25 @@
 			}
 		}
 		.page_r{
+			.bank_logo{
+				width:296px;
+				height:63px;
+				background:url("../../image/bgbank.png") no-repeat;
+				margin: 20px auto 10px auto;
+				position:relative;
+				a{
+					position:absolute;
+					right: 7px;
+					top: -18px;
+				}
+			}
+			p{
+				font-size:17px;
+			}
 			p.gg{
+				font-size:12px;
 				color:red;
-				margin-bottom:96px;
+				margin-bottom:90px;
 			}
 			.cg_btn{
 				display:block;

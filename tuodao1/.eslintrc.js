@@ -10,6 +10,6 @@ module.exports = {
 		// 禁止行内注释
 		'no-inline-comments':2,
 		// 缩进
-		// "indent": ["error", "tab"]
+		"indent": ["error", "tab"]
 	}
 }

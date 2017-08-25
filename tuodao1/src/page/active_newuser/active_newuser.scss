@@ -1,0 +1,305 @@
+@import "../common/mixin";
+@import "../common/layout";
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.dis_none{
+	display:none;
+}
+.dis_color{
+	background-color:#EBEBE4;
+}
+.red{
+	border-color:red!important;
+}
+.border{
+	border-color:#ff7400!important;
+}
+.kd{
+	background-color: $mainColor!important;
+}
+i{
+	font-style:normal;
+}
+.main{
+	height:990px;
+	background-color: #fff;
+	margin: 30px auto 0 auto;
+	.main_top{
+		height:60px;
+		span{
+			height:100%;
+			line-height: 60px;
+			color: $fontColor9e;
+			a{
+				color:$mainColor;
+			}
+		}
+		span.title{
+			padding-left:30px;
+		}
+		span.help{
+			padding-right:30px;
+		}
+	}
+	.ts{
+		width:1120px;
+		height:35px;
+		margin: 0 30px;
+		line-height:35px;
+		text-align:center;
+		background-color: #f2f2f2;
+		color:#333333;
+		font-size:12px;
+		span{
+			color:$fontColor9e;
+			vertical-align: middle;
+		}
+	}
+	.js_box{
+		width:260px;
+		height:30px;
+		vertical-align:middle;
+		color:red;
+		padding-left:13px;
+		line-height:30px;
+		display:none;
+		margin: 20px auto;
+	}
+	.person_info{
+		width:80%;
+		margin: 30px auto;
+		text-align:center;
+		.bt{
+			width:100%;
+			height:20px;
+			font-size:17px;
+			color:#333333;
+			line-height: 20px;
+			margin:30px auto;
+		}
+		div{
+			// overflow:hidden;
+			position:relative;
+			input{
+				width: 338px;
+				height: 38px;
+				border: 1px solid $fontColor9e;
+				border-radius:5px;
+				padding-left:44px;
+				outline:none;
+				margin-bottom:20px;
+			}
+			span{
+				z-index: 999;
+				color:$fontColor9e;
+				position:absolute;
+				left:296px;
+				top:8px;
+			}
+		}
+	}
+	.jg{
+		width:380px;
+		margin:0 auto;
+		color:$fontColor9e;
+		margin-bottom:10px;
+		text-align: left;
+		span{
+			color:$mainColor;
+		}
+	}
+	.bank_all{
+		margin: 20px auto;
+		#wen{
+			left:676px;
+			top:8px;
+			cursor:pointer;
+		}
+		.tips{
+			display:block;
+			width: 219px;
+			height: 22px;
+			background:url("../../image/ts.png") no-repeat;
+			position:absolute;
+			left: 700px;
+			top:  8px;
+			display:none;
+		}
+	}
+	.bank_num{
+		.jg_box{
+			width:368px;
+			height: 30px;
+			vertical-align:middle;
+			color:red;
+			background-color: #f2f2f2;
+			padding-left:13px;
+			line-height:30px;
+			position:absolute;
+			left:282px;
+			top:40px;
+			z-index: 99;
+			display:none;
+		}
+		.big_font{
+			width:368px;
+			height: 30px;
+			color:#000;
+			background-color: #f2f2f2;
+			padding-left:13px;
+			line-height:30px;
+			position:absolute;
+			left:282px;
+			top:40px;
+			z-index: 99;
+			font-size: 16px;
+			font-weight:800;
+			display:none;
+			text-align: left;
+		}
+	}
+	.phone_Num{
+		.phone_box{
+			width:368px;
+			height: 30px;
+			vertical-align:middle;
+			color:red;
+			background-color: #f2f2f2;
+			padding-left:13px;
+			line-height:30px;
+			position:absolute;
+			left:282px;
+			top:40px;
+			z-index: 99;
+			display:none;
+		}
+	}
+	.paynum{
+		.yan{
+			left:640px;
+			top:8px;
+			cursor:pointer;
+			display:none;
+		}
+		.yan_kai{
+			left:640px;
+			top:8px;
+			cursor:pointer;
+		}
+		.pay_box{
+			width:368px;
+			height: 30px;
+			vertical-align:middle;
+			color:red;
+			background-color: #f2f2f2;
+			padding-left:13px;
+			line-height:30px;
+			position:absolute;
+			left:282px;
+			top:40px;
+			z-index: 99;
+			display:none;
+		}
+	}
+	.btn{
+		width: 260px;
+		height: 40px;
+		border-radius:20px;
+		line-height:40px;
+		text-align:center;
+		background-color: $fontColor9e;
+		color:#fff;
+		border:none;
+		outline:none;
+		margin-top:30px;
+	}
+}
+
+.success_box{
+	margin: 30px auto;
+	height:600px;
+	background-color: #fff;
+	a{
+		color:$mainColor;
+	}
+	.top{
+		height:40px;
+		padding: 20px 0 0 20px;
+		color:$fontColor9e;
+		a{
+			padding-right:20px;
+		}
+	}
+	.mid{
+		width: 340px;
+		height: 300px;
+		margin: 126px auto;
+		text-align:center;
+		.box{
+			width:115px;
+			height: 96px;
+			margin: 0 auto;
+			background:url(../../image/end.png);
+			margin-bottom:30px;
+		}
+		p{
+			font-size:17px;
+			margin-bottom:18px;
+		}
+		.tz{
+			display:block;
+			width: 260px;
+			height: 40px;
+			line-height:40px;
+			text-align:center;
+			color:#fff;
+			background-color: $mainColor;
+			margin: 50px auto;
+			border-radius:20px;
+		}
+	}
+}
+
+.wait_box{
+	margin: 30px auto;
+	height:600px;
+	background-color: #fff;
+	a{
+		color:$mainColor;
+	}
+	.top{
+		height:40px;
+		padding: 20px 0 0 20px;
+		color:$fontColor9e;
+		a{
+			padding-right:20px;
+		}
+	}
+	.mid{
+		width: 510px;
+		height: 300px;
+		margin: 126px auto;
+		text-align:center;
+		.box{
+			width:115px;
+			height:114px;
+			margin: 0 auto;
+			background:url(../../image/waiting.png);
+			margin-bottom:30px;
+		}
+		p{
+			color:$mainColor;
+			font-size:17px;
+			margin-bottom:10px;
+		}
+		p.last{
+			margin-top:32px;
+			color:#333;
+			font-size:12px;
+		}
+	}
+}

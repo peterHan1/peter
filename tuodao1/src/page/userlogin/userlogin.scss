@@ -1,0 +1,118 @@
+@import "../common/mixin";
+@import "../common/layout";
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.red{
+	border-color:red!important;
+}
+.kd{
+	background-color: $mainColor!important;
+}
+.main{
+	background-color:#fff;
+	height:600px;
+	margin-top:30px;
+	.login_top{
+		height: 41px;
+		color:$fontColor9e;
+		font-size:12px;
+		span.til{
+			padding: 22px 0 0 30px;
+		}
+		span.zc{
+			padding: 22px 30px 0 0;
+			a{
+				color:$mainColor;
+			}
+		}
+	}
+	.main_mid{
+		text-align:center;
+		input{
+			// display:block;
+			width:340px;
+			height:40px;
+			margin: 0px auto 30px auto;
+			border:1px solid #dddddd;
+			border-radius:5px;
+			outline:none;
+			padding-left: 14px;
+			color:$fontColor9e;
+			font-size:12px;
+			font-family:"微软雅黑";
+		}
+		.login_logo{
+			width: 179px;
+			height: 78px;
+			background:url("../../image/login.png") no-repeat;
+			margin: 58px auto 0 auto;
+		}
+		.user_name{
+			position:relative;
+			#phoneNum_del{
+				position:absolute;
+				left:744px;
+				top:59px;
+				cursor:pointer;
+				display:none;
+			}
+			input.phoneNum{
+				margin-top: 50px;
+				position:relative;
+			}
+			.til{
+				width:340px;
+				height:20px;
+				line-height:20px;
+				color:red;
+				font-size:12px;
+				position:absolute;
+				top:93px;
+				left:420px;
+				background:#f2f2f2;
+				display:none;
+			}
+		}
+		.user_password{
+			position:relative;
+			#password_del{
+				position:absolute;
+				left:744px;
+				top:10px;
+				cursor:pointer;
+				display:none;
+			}
+			.psd_til{
+				color:red;
+				font-size:12px;
+				position:absolute;
+				top:11px;
+				left:790px;
+				display:none;
+			}
+		}
+		.slider{
+			margin-left:412px;
+			margin-bottom:50px;
+		}
+		.login_btn{
+			display:block;
+			width:260px;
+			height:40px;
+			background-color:$fontColor9e;
+			color:#fff;
+			border-radius:20px;
+			font-size:12px;
+			cursor: pointer;
+			margin-bottom:20px;
+			padding-left:0;
+		}
+		.foget_psd{
+			color:$fontColor9e;
+		}
+	}
+}

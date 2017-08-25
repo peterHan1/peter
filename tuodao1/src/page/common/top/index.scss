@@ -1,0 +1,46 @@
+@import "../mixin";
+.top{
+      width: 100%;
+      background: $bgColor;
+      height: 42px;
+      line-height: 40px;
+      font-size:$fontSize12;
+      color:$fontColor9e;
+      overflow:hidden;
+      .left{
+            float:left;
+            span{
+                  float:left
+            }
+            dl{
+                float:left;
+                dd{
+                    float:left;
+                    margin-right:10px;
+                    &.iconfont{
+                                font-size:22px;
+
+                    }
+                }
+            }
+      }
+      .right{
+              float:right;
+              ul li{    
+                    float:left;
+                    margin-left:30px;
+                    /*vertical-align: top;*/
+                    a{
+                      color:$fontColor9e;
+                      &:hover{
+                              color:$mainColor;
+                      }
+                      .iconfont{
+                                font-size:20px;
+                                vertical-align: top;
+                                margin-right: 5px;
+                      }
+                    }
+              }
+    }
+}
