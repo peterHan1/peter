@@ -23,7 +23,7 @@ var getHtmlConfig = function(name,title){
 
 
 
-var publicPath = 'http://72.127.2.42:3000/';
+var publicPath = 'http://192.168.10.101:3000/';
 
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 

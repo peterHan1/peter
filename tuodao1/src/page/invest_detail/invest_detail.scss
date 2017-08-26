@@ -234,7 +234,7 @@
 		}
 		.current_money {
 			@extend %clearfix;
-			height:60px;
+			height:65px;
 			margin-top:20px;
 			font-size:$fontSize14;
 			color: #a3a3a3;
@@ -277,10 +277,17 @@
 			span{
 				float: left;
 				display: block;
-				width:100%;
+				width:95%;
+				padding-left:5%;
 				@include height-line(30px);
 				background-color:#f2f2f2;
 				border-radius: 3px;
+				font-size:$fontSize12;
+				color: #e82030;
+				i{
+					font-size: $fontSize12;
+					margin-right:3px;
+				}
 			}
 		}
 		.com_styl{
@@ -289,6 +296,7 @@
 			@include border-style($b-radius:3px);
 			margin-top:10px;
 			cursor: pointer;
+			position:relative;
 			input{
 				height:100%;
 				float: left;
@@ -302,8 +310,27 @@
 				font-size:$fontSize14;
 				text-align: right;
 				color: $fontColor70;
+				background-color:#fff;
 				a{
 					color: $fontColor70;
+				}
+			}
+			.in_span{
+				position:absolute;
+				bottom:-31px;
+				left:0;
+				display: block;
+				width:95%;
+				padding-left:5%;
+				@include height-line(30px);
+				background-color:#f2f2f2;
+				border-radius: 3px;
+				font-size:$fontSize12;
+				color: #e82030;
+				z-index: 999;
+				i{
+					font-size: $fontSize12;
+					margin-right:3px;
 				}
 			}
 			.fontcol:hover{
@@ -316,13 +343,19 @@
 				}
 			}
 		}
+		.bor_col{
+			border-color:red;
+			&:hover{
+				border-color:red;
+			}
+		}
 		.com_sty{
 			border-color:#ff8722;
 			&:hover{
 				border-color:#ff8722;
 			}
 		}
-		.predict_money{
+		.predict{
 			color: #666;
 			font-size:$fontSize14;
 			margin-top:12px;
