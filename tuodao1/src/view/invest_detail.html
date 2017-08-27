@@ -7,7 +7,20 @@
 <body>
 	<%= require('html-loader!./layout/top.html') %>
 	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max_width">
+			<ul class="invest_tab">
+				<li class="on" data="a">精选计划</li>
+				<li data="b">散标项目</li>
+				<li data="c">债权转让</li>
+			</ul>
+		</div>
+	</div>
 	<div class="max_width">
+		<div class="clearing" style="display:none">
+			<p><i class="iconfont">&#xe694;</i>当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</p>
+			<p><i class="iconfont">&#xe68f;</i>这是新手专享标的，只有未投资过的新用户才可享受加息3%的新手奖励。 您已经投资过了，快去看看其它标的吧!</p>
+		</div>
 		<div class="detail_top">
 			<div class="left">
 				<div class="title">
@@ -159,8 +172,8 @@
 							<p class="txt ">
 									可用余额
 							</p>
-							<div class="money ">
-								<b>122,900.00<i>元</i></b>
+							<div class="money">
+								<b><span class="moneys">122,900.00</span><i>元</i></b>
 								<a href="###">充值</a>
 							</div>
 						</div>
@@ -170,10 +183,10 @@
 						<!-- <input type="text" placeholder="本项目剩余可投499元"> -->
 
 						<input type="text" placeholder="500元起投，单笔限额50万元" class="sub_money">
-						<div class="iconfont fontcol"><em></em><i>余额全投&nbsp;</i></div>
+						<div class="iconfont fontcol all_money"><em></em><i>余额全投&nbsp;</i></div>
 					</div>
 					<div class="com_styl add_ticket" >
-						<input type="text" placeholder="请选择优惠券" disabled>
+						<input type="text" placeholder="请选择优惠券" disabled class="inp_ticket">
 						<div class="fontcol ticket">优惠券&nbsp;</div>
 
 						<!-- 没有可用优惠券 -->
@@ -184,6 +197,9 @@
 						<input type="password" placeholder="请输入支付密码" class="sub_psw">
 						<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
 					</div>
+					<!-- <div class="com_styl input_pwd" >
+						<input type="password" placeholder="请输入约标密码" class="yue_psw">
+					</div> -->
 					<div class="predict">预计收益：<b class="predict_money">00.00</b>元</div>
 					<div class="input_sub">
 						<!-- 倒计时 -->
@@ -202,9 +218,17 @@
 						<!-- <div class="login_a"><a href="">立即登录</a></div> -->
 						
 					</div>
+					<!-- app专享标 -->
+					<div class="app_invest" style="display: none;">
+						<div class="ewm"></div>
+						<p>本标的仅限在APP端投资</p>
+						<b>扫描二维码下载手机客户端</b>
+					</div>
 					<div class="agreement" id="protocol">
 						<div>
 							<input type="checkbox" id="ag" checked=""><label for="ag">已阅读并同意<a href="###">《借款协议》</a></label>
+							<!-- 债权转让显示 -->
+							<!-- <input type="checkbox" id="ag" checked=""><label for="ag">我已阅读并同意<a href="###">《债权转让及受让协议》</a></label> -->
 						</div>
 						<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
 					</div>
@@ -220,6 +244,16 @@
 						<p><em class="iconfont">&#xe698;</em>1234****1234千元首投，获得两倍积分</p>
 						<p><em class="iconfont">&#xe696;</em>1234****1234脱颖而出，获得积分 +5</p>
 					</div>
+					<!-- 散标显示 -->
+					<div class="finish_auto">
+						<p>抢不到标？ 没关系，立即开启 <a href="">自动投标 ></a></p>
+					</div>
+				</div>	
+				<!-- 已转让 -->
+				<div class="shift" style="display: none;">
+					<p>该标的已转让成功</p>
+					<p><a href="">去看看其他标 > </a></p>
+					<span></span>
 				</div>	
 			</div>
 		</div>
@@ -427,36 +461,42 @@
 								<img class="lazy" src="../resource/ancun.png" alt="身份证">
 							</a>
 							<p>身份证正面</p>
+							<b class='magnify'></b>
 						</li>
 						<li>
 							<a class="fancybox" href="../resource/logo.png" data-fancybox-group="gallery">
 								<img class="lazy" src="../resource/logo.png" alt="行驶证">
 							</a>
 							<p>行驶证</p>
+							<b class='magnify'></b>
 						</li>
 						<li>
 							<a class="fancybox" href="../resource/logo.png" data-fancybox-group="gallery">
 								<img class="lazy" src="../resource/logo.png" alt="仪表盘">
 							</a>
 							<p>仪表盘</p>
+							<b class='magnify'></b>
 						</li>
 						<li>
 							<a class="fancybox" href="../resource/logo.png" data-fancybox-group="gallery">
 								<img class="lazy" src="../resource/logo.png" alt="车辆正面">
 							</a>
 							<p>车辆正面</p>
+							<b class='magnify'></b>
 						</li>
 						<li>
 							<a class="fancybox" href="../resource/logo.png" data-fancybox-group="gallery">
 								<img class="lazy" src="../resource/logo.png"  alt="车辆背面">
 							</a>
 							<p>车辆背面</p>
+							<b class='magnify'></b>
 						</li>
 						<li>
 							<a class="fancybox" href="../resource/logo.png" data-fancybox-group="gallery">
 								<img class="lazy" src="../resource/logo.png" alt="车钥匙">
 							</a>
 							<p>车钥匙</p>
+							<b class='magnify'></b>
 						</li>
 					</ul>
 				</div>
@@ -661,6 +701,115 @@
 					</table>
 					<div class="zxf_pagediv"></div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 加入成功 -->
+	<div class="hint_show dis_none" id="succeed_show">
+		<div class="txt">
+			<div class="ltxt">加入成功</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com succeed">
+			<div class="icon"></div>
+			<p>恭喜您成功加入10,000.00元！</p>
+			<b>您可以 <a href="">继续加入</a> 或 <a href="">查看已加入项目</a></b>
+			<!-- 散标和转让显示 -->
+			<!-- <p>恭喜您成功投资10,000.00元！</p> -->
+			<!-- <b>您可以 <a href="">继续投资</a> 或 <a href="">查看已投项目</a></b> -->
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 加入失败 -->
+	<div class="hint_show dis_none" id="failed_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com failed">
+			<div class="icon"></div>
+			<p>加入失败，项目已满额！</p>
+			<b>这个项目太抢手啦，试试 <a href="">其他精选计划</a>吧！</b>
+			<!-- 散标和转让显示 -->
+			<!-- <p>投资失败，项目已满额！</p> -->
+			<!-- <b>这个项目太抢手啦，试试 <a href="">其他散标项目</a>吧！</b> -->
+			<!-- <b>这个项目太抢手啦，试试 <a href="">其他转让项目</a>吧！</b> -->
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 激活存管 -->
+	<div class="hint_show dis_none" id="bank_show">
+		<div class="txt">
+			<div class="ltxt">
+				激活存管账户
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips">银行存管是指用户在P2P平台上的交易资金交由银行管理，平台无法接触交易资金的一种资金管理模式。借款人、投资人和平台通过银行方开设存管账户，来实现交易和资金的结算。<span class="bot"></span><span class="bot2"></span></div>
+				</div>
+			</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com bank">
+			<div class="icon"></div>
+			<p>拓道金服正式启用北京银行资金存管系统</p>
+			<b>为保障您的资金安全,请在充值、投资、提现前激活存管</b>
+			<span class="iskonw">
+				<a href="">立即激活存管账户</a>
+			</span>
+		</div>
+	</div>
+	<!-- 优惠券弹窗 -->
+	<div class="hint_show discount_show dis_none" id="discount_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="discount_con">
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用优惠券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+			<!-- <div class="discount_txt">单笔加入精选计划只能使用1张优惠券。</div> -->
+			<!-- 散标显示 -->
+			<div class="discount_txt">单笔投资散标项目只能使用1张优惠券。</div>
+
+			<!-- 债权转让显示 -->
+			<!-- <div class="discount_txt">单笔投资债权转让只能使用1张加息券（债权转让项目不可使用抵用券）。</div> -->
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用加息券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+
+			<ul class="ul_select">
+				<li class="jxq" data="1%加息券">
+					<p class="p_txt"><span>1</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="jxq" data="3%加息券">
+					<p class="p_txt"><span>3</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="15元抵用券">
+					<p class="p_txt">￥<span>15</span>抵用券</p>
+					<p>投资满10,000元，1个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="30元抵用券">
+					<p class="p_txt">￥<span>30</span>抵用券</p>
+					<p>投资满30,000元，3个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="70元抵用券">
+					<p class="p_txt">￥<span>70</span>抵用券</p>
+					<p>投资满10,000元，6个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="100元抵用券">
+					<p class="p_txt">￥<span>100</span>抵用券</p>
+					<p>投资满10,000元，12个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+			</ul>
+			<div class="discount_bot">
+				<span class="yes">确定</span>
+				<span class="no">取消</span>
+				<!-- <span class="iskonw">我知道了</span> -->
 			</div>
 		</div>
 	</div>
