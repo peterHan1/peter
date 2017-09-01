@@ -1,10 +1,70 @@
 $(function(){
 	$(".car_btn").on("click",function(){
-			$(".box").css("left","-100%");
-			$(".car_btn b").removeClass("bcolor");
-			$(".car_conf").attr("car","");
-			$(".car_conf").attr("car-data","");
+		$(".box").css("left","-100%");
+		$(".car_list_box").show();
+		$(".city_list_box").hide();
+		
+		$(".car_btn b").removeClass("bcolor");
+		$(".car_conf").attr("car","");
+		$(".car_conf").attr("car-data","");
+	})
+	var flag = true;
+	$("#city_text").on("click", function(e){
+		$(".box").css("left","-100%");
+		$(".city_list_box").show();
+		$(".car_list_box").hide();
+		if(flag == true){
+			var scroll1 = new BScroll(city_left, {
+		   		probeType: 3,
+		   		click:true
+		 	});
+		}
+		flag = false;
+	});
+
+	
+	var flags = true;
+	$(".province_ul li").on("click",function(){
+		$(".province_ul li").removeClass("onli");
+		$(this).addClass("onli");
+		var citys = $(this).attr("province-name");
+		console.log(citys)
+		
+		$.ajax({
+			url: 'js/loan/city.json',
+			type: 'get',
+			success:function(data){
+				$.each(data,function(i,item){
+					var txts = item.citys;
+					var ul = '<ul class="city_ul">';							
+					if(citys == item.provinceName){
+						for(var i=0;i<txts.length;i++){
+							var li = "<li>"+ txts[i].citysName +"</li>";
+							ul += li;
+						}
+						$("#city_ul").html(ul);
+					};
+				});
+				var scroll2 = new BScroll(city_ul, {
+			   		probeType: 3,
+			   		click:true
+				});	
+				
+				$("#city_ul li").on("click",function(){
+					console.log(666);
+					var txt = $(this).html();
+					$(".city_ul li").removeClass("onli");
+					$(this).addClass("onli");
+					$(".box").css("left","0");
+					var city = citys+'-'+txt;
+					$("#city_text").val(city);
+				});
+			}
+			
 		})
+	});
+	
+	
 		var carWrapper = document.querySelector('.car_list_hook'),carScroller = document.querySelector('.scroller_hook'),cities = document.querySelector('.cities_hook'),shortcut = document.querySelector('.shortcut_hook'),car_list_bot = document.querySelector('.car_list_bot');
 		var scroll;
 		var shortcutList = [];
@@ -26,17 +86,13 @@ $(function(){
 		    					lists += '<li class="item itemli" data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</li>';
 		    					$(document).on("click",".itemli",function(e){
 									var txt = e.target.getAttribute('data-name');
-					    			$(".car_list").hide();
-					    			$(".car_list_bot").show();
 									if(txt == items.name){
 		    							for(var i=0;i<txts.length;i++){
 		    								var lis = "<li>" + txts[i] + "</li>"
 		    								$(".car_list_botul").append(lis);
 		    							}
 									};
-									$(".car_conf").attr("car",txt)
-									$(".car_list_nav li b").removeClass("on");
-									$(".car_list_nav .car_ty b").addClass("on");
+									$(".car_conf").attr("car",txt);
 								})
 
 		    				});
@@ -102,33 +158,39 @@ $(function(){
 		
 		initCities();
 		bindEvent();
-		$(".car_list_nav .car_bra").on("click",function(){
-			$(this).find("b").addClass("on");
-			$(".car_list_nav .car_ty b").removeClass("on");
-			$(".car_list").show();
-			$(".car_list_bot").hide();
-			$(".car_list_botul li").remove();
-
+		$(".cancel").on("click",function(){
+			$(".box").css("left","0");
+			setTimeout(function(){
+				$(".list_one").show();
+				$(".list_two").hide();
+//				$(".car_list_botul li").remove();
+			},500)
+			
+		})
+		$(".get_car").on("click",function(){
+			$(".list_one").show();
+			$(".list_two").hide();
+//			$(".car_list_botul li").remove();
+		})
+		$(document).on("click",".cities_hook li",function(){
+			$(".cities_hook li").removeClass("onli");
+			$(this).addClass("onli");
+			$(".list_one").hide();
+			$(".list_two").show();
+//			$(".car_list_botul li").remove();	
 		});
 		$(document).on("click",".car_list_botul li",function(){
-			$(".car_conf").addClass("car_confirm");
+			var car = $(this).html();
 			$(".car_list_botul li").removeClass("onli");
 			$(this).addClass("onli");
-			$(".car_confirm").attr("car-data",$(this).html());
-		});
-		$(document).on("click",".car_confirm",function(){
-			var car = $(this).attr("car");
-			var cardata = $(this).attr("car-data");
-			$(this).attr("class","fr car_conf");
 			$(".box").css("left","0");
-			$(".car_btn b").html(car +"-"+cardata);
-			$(".car_btn b").addClass("bcolor");
-			setTimeout(function () {
-				$(".car_list_nav .car_ty b").removeClass("on");
-				$(".car_bra b").addClass("on");
-		        $(".car_list").fadeIn();
-				$(".car_list_bot").fadeOut();
-				$(".car_list_botul li").remove();
-		    }, 500);
+			$("#car_text").val(car);
+			setTimeout(function(){
+				$(".list_one").show();
+				$(".list_two").hide();
+//				$(".car_list_botul li").remove();
+			},500)
 		});
+		
+
 })

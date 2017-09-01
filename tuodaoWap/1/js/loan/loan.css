@@ -1,4 +1,4 @@
-*{ -webkit-tap-highlight-color: transparent;}
+*{ -webkit-tap-highlight-color: transparent;-webkit-overflow-scrolling: touch;}
 input::-webkit-input-placeholder{color: #D3D3D3;}
 input:-moz-placeholder{color:#D3D3D3;}
 input::-moz-placeholder{color:#D3D3D3;}
@@ -7,8 +7,12 @@ b { font-weight:normal;}
 html,body{background-color:#FBFAFA;height:100%;}
 .fl{float:left;}
 .fr{float:right;}
+.dis_none{display: none;}
 .max_widths{height:100%;overflow: hidden;position: relative;}
 .box{width:200%;height:100%;overflow:hidden;transition: all 0.5s;-moz-transition: all 0.5s;-webkit-transition: all 0.5s; -o-transition:all 0.5s;position: absolute;top:0;left:0;}
+.box .nav{width:96%;height:1rem;line-height:1rem;padding:0 2%;text-align:center;border-bottom:1px solid #EDEDED;z-index:999;position:fixed;top:0;background-color:#fff;}
+.box .nav h3{display: inline-block;font-weight: normal;font-size:0.3rem;}
+.box .nav span{color:#999;}
 .loan_box{width:50%;font-size:0.2rem;height:100%;}
 .loan_box .loan_fill{margin-top:0.2rem;}
 .loan_box .loan_fill .loan_litxt{background-color:#FBFAFA;border:none;color:#D3D3D3;}
@@ -21,20 +25,11 @@ html,body{background-color:#FBFAFA;height:100%;}
 .loan_box .loan_fill ul li .bcolor {color: #000;}
 .loan_box .sub_loan{margin-top:1rem;text-align:center;}
 .loan_box .sub_loan a{display:inline-block;color:#333;width:50%;height:0.8rem;text-align:center;line-height:0.8rem;border:1px solid #ededed;border-radius:5px;}
-.car_list_box {display: block;}
-.car_list_box{width:50%;height:100%;font-size:0.2rem;}
-.car_list_box .car_list_nav{width:100%;height:1rem;line-height:1rem;font-size:0.2rem;border-bottom:1px solid #EDEDED;z-index:999;position:fixed;top:0;background-color:#fff;}
-.car_list_box .car_list_nav ul{width:100%;height:1rem;}
-.car_list_box .car_list_nav ul li{height:1rem;width:20%;text-align:center;}
-.car_list_box .car_list_nav ul li b{display: inline-block;height:1rem;box-sizing: border-box;}
-.car_list_box .car_list_nav ul .on{border-bottom:2px solid #000;}
-.car_list_box .car_list_nav .car_conf a {color: #999;}
-.car_list_box .car_list_nav .car_confirm a {color: blue;}
-.car_list_box .car_list {position: fixed;top: 1rem;bottom: 0;width: 100%;height:100%;z-index: 99;}
-.car_list_box .car_list_bot {position: fixed;top: 1rem;bottom: 0;height: 100%;width: 100%;z-index: 9999;display: none;overflow-y: scroll;}
+.car_list_box,.city_list_box{width:50%;height:100%;font-size:0.2rem;overflow: hidden;}
+.car_list_box .car_list,.city_list_box .city_list{position: fixed;top: 1rem;bottom: 0;width: 100%;height:100%;z-index: 99;}
 .car_list_box .car_list .cities .title {height: 28px;padding-left: 5%;line-height: 28px;background-color: #f5f5f5;font-family: Helvetica;font-size: 0.22rem;color: #878787;}
 .car_list_box .car_list .cities .item {z-index: 99999;height: 44px;padding: 0 5%;line-height: 44px;font-size: 0.26rem;background-color: #fff;border-bottom: 1px solid #ededed;}
-.car_list_box .car_list_bot ul li {z-index: 99999;height: 44px;padding: 0 16px;line-height: 44px;font-size: 0.16rem;background-color: #fff;cursor:pointer;border-bottom: 1px solid #ededed;}
+.car_list_box .car_list .cities .onli {background-color: #ededed;}
 .car_list_box .car_list .cities .item .name {display: block;position: relative;}
 .car_list_box .car_list .cities .item .name:before,
 .car_list_box .car_list .cities .item .name:after {display: block;position: absolute;border-top: 1px solid #e5e5e5;left: 0;width: 100%;content: ' ';}
@@ -46,7 +41,26 @@ html,body{background-color:#FBFAFA;height:100%;}
 .car_list_box .car_list .shortcut .item {height: 0.32rem;line-height:0.32rem;padding-left:0.2rem;padding-top:0.1rem;text-align: center;font-size: 0.32rem;color: #fa8919;}
 .car_list_box .car_list .shortcut .jump_tips {position: fixed;top: 45%;right: 36%;z-index: 100;display: none;width: 1.4rem;padding: 0.5rem 0rem;font-size: 0.5rem;color: #fff;text-align: center;line-height: 1;background-color: rgba(0, 0, 0, 0.8);}
 .car_list_box .car_list .scroller_hook {padding-bottom: 1rem;}
-.car_list_box .car_list_bot .car_list_botul .onli {background-color: #ededed;}
-.car_list_box .car_list_bot .car_list_botul {height: 100%;}
+.car_list_box .list_one,.car_list_box .list_two{width:100%;height:100%;}
+#car_list_botul{height: 100%;width:100%;overflow-x: scroll;padding-bottom:1.5rem;}
+.car_list_box .list_two .car_list_botul {padding-bottom:1.5rem;}
+.car_list_box .list_two ul li {z-index: 99999;height: 44px;padding: 0 16px;line-height: 44px;font-size: 0.16rem;background-color: #fff;cursor:pointer;border-bottom: 1px solid #ededed;}
+.car_list_box .list_two ul .onli{background-color: #ededed;}
+.car_nav{width:96%;height:1rem;line-height:1rem;padding:0 2%;text-align:center;border-bottom:1px solid #EDEDED;}
+.car_nav h3{display: inline-block;font-weight: normal;font-size:0.3rem;}
+.car_nav span{color:#999;}
 
+.city_list .city_nav{height:0.5rem;line-height: 0.5rem;border-bottom: 1px solid #ededed;background-color:#F2F2F2;}
+.city_list .city_nav div{width:50%;float:left;text-align:center;}
+.city_list .city{width:100%;height:100%;overflow: hidden;}
+.city_list .city .city_left,.city_right{width:50%;float: left;height:100%;}
+.city_list .city .city_left{width:49.5%;border-right:1px solid #ededed;}
+.city_list .city .city_right{position: relative;}
+#city_ul{position: absolute;width:100%;height:100%;}
+.province_ul{padding-bottom:1.5rem;}
+.province_ul li{height:1rem;line-height: 1rem;text-align:center;background-color:#F2F2F2;}
+.province_ul li.onli{background-color:#fff}
+.city_ul li{height:1rem;line-height: 1rem;text-align:center;background-color:#fff;border-bottom: 1px solid #ededed;}
+.city_ul{padding-bottom:1.5rem;position: absolute;width:100%;}
+.city_ul li.onli{background-color:#ededed;}
 
