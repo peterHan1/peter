@@ -24,3 +24,25 @@
 .incident{height:5.78rem;}
 .incident .incident_bg{width:6.51rem;height:3.6rem;background:url(../img/oper/m_7_general12.png) no-repeat;background-size:100% 100%;}
 .box .footer{height:4.55rem;height:4.52;background:url(../img/oper/m_7_footer.png) no-repeat;background-size:100% 100%;}
+
+.m_8 div{width:100%;background-color:#fff;text-align:center;}
+.m_8 div span{display:inline-block;margin-top:0.9rem;}
+.m_8 .oper_title{height:3.26rem;background:url(../img/oper/m_8_banner.png) no-repeat;background-size:100% 100%;}
+
+.m_8 .abos_bg{margin-top:0.7rem;width:6.49rem;height:4.25rem;background:url(../img/oper/m_8_general.png) no-repeat;background-size:100% 100%;}
+.m_8 .trends_bg{width:6.51rem;height:1.88rem;background:url(../img/oper/m_8_general2.png) no-repeat;background-size:100% 100%;}
+.m_8 .stands_out{width:6.61rem;height:3.01rem;background:url(../img/oper/m_8_general3.png) no-repeat;background-size:100% 100%;}
+.m_8 .datas{height:16.9rem;background-color:#fff;margin-top:0.9rem;}
+.m_8 .datass_bg{margin-top:0;height:16.9rem;width:7.5rem;background:url(../img/oper/m_8_general4.png) no-repeat;background-size:100% 100%;}
+.m_8 .invests_bg{width:6.5rem;height:3rem;background:url(../img/oper/m_8_general5.png) no-repeat;background-size:100% 100%;}
+.m_8 .deadlines_bg{margin-top:1.4rem;width:6.5rem;height:3.08rem;background:url(../img/oper/m_8_general6.png) no-repeat;background-size:100% 100%;}
+.m_8 .statisticss_bg {margin-top:1.4rem;width: 5.1rem;height: 3.51rem;background: url(../img/oper/m_8_general7.png) no-repeat;background-size: 100% 100%;}
+.m_8 .ranking{height:11.6rem;background-color:#fff;margin-top:1.7rem;}
+.m_8 .rankings_city{width:6.53rem;height:10.3rem;margin-top:0;background:url(../img/oper/m_8_general8.png) no-repeat;background-size: 100% 100%;}
+.m_8 .ratios_bg {margin-top:0.8rem;width: 6.75rem;height: 6.61rem;background: url(../img/oper/m_8_general9.png) no-repeat;background-size: 100% 100%;}
+.m_8 .conss_bg {width: 6.4rem;height: 6.9rem;background: url(../img/oper/m_8_general10.png) no-repeat;background-size: 100% 100%;}
+.m_8 .incident{height:13.53rem;margin-top:0.9rem;}
+.m_8 .incidents_bg {width:6.5rem;height:13.03rem;margin-top:0;background: url(../img/oper/m_8_general11.png) no-repeat;background-size: 100% 100%;}
+.m_8 .footer {height:3.97rem;background: url(../img/oper/m_8_footer.png) no-repeat;background-size: 100% 100%;}
+
+

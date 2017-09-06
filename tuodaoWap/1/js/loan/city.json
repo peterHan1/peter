@@ -5,7 +5,7 @@
                 "citysName": "北京市"
             }
         ],
-        "provinceName": "北京市"
+        "provinceName": "北京"
     },
     {
         "citys": [
@@ -13,7 +13,7 @@
                 "citysName": "天津市"
             }
         ],
-        "provinceName": "天津市"
+        "provinceName": "天津"
     },
     {
         "citys": [
@@ -21,7 +21,7 @@
                 "citysName": "上海市"
             }
         ],
-        "provinceName": "上海市"
+        "provinceName": "上海"
     },
     {
         "citys": [
@@ -29,7 +29,7 @@
                 "citysName": "重庆市"
             }
         ],
-        "provinceName": "重庆市"
+        "provinceName": "重庆"
     },
     {
         "citys": [

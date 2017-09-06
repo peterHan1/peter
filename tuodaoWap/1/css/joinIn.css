@@ -72,7 +72,7 @@ input,textarea{-webkit-appearance: normal; -moz-appearance: normal; -o-appearanc
 .joinIn .bot li .bot_tab span.on{color:#fff;background-color:#ff7400;border-color:#ff7400;}
 .joinIn .bot li.nature_li .bot_tab span{width:1.89rem;padding:0.1rem 0;text-align:center;margin-right:0.3rem;}
 .joinIn .bot li.nature_li .bot_tab span:nth-child(3){margin-right:0;}
-.joinIn .bot li.reason_li{height:1.6rem;}
+.joinIn .bot li.reason_li{height:1.6rem;border-bottom: none;}
 .joinIn .div_btn{width:100%;padding:0 0.3rem;margin-top:0.6rem;text-align: center;}
 .joinIn .div_btn .btn{display: inline-block;width:100%;height:0.8rem;line-height:0.8rem;text-align:center;border-radius:5px;background-color:#cacaca;color:#fff;}
 .joinIn .div_btn .sub_btn{background-color:#d3b580;}

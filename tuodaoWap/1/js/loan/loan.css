@@ -25,6 +25,7 @@ html,body{background-color:#FBFAFA;height:100%;}
 .loan_box .loan_fill ul li .bcolor {color: #000;}
 .loan_box .sub_loan{margin-top:1rem;text-align:center;}
 .loan_box .sub_loan a{display:inline-block;color:#333;width:50%;height:0.8rem;text-align:center;line-height:0.8rem;border:1px solid #ededed;border-radius:5px;}
+
 .car_list_box,.city_list_box{width:50%;height:100%;font-size:0.2rem;overflow: hidden;}
 .car_list_box .car_list,.city_list_box .city_list{position: fixed;top: 1rem;bottom: 0;width: 100%;height:100%;z-index: 99;}
 .car_list_box .car_list .cities .title {height: 28px;padding-left: 5%;line-height: 28px;background-color: #f5f5f5;font-family: Helvetica;font-size: 0.22rem;color: #878787;}

@@ -23,7 +23,7 @@ $(function(){
 	});
 
 	
-	var flags = true;
+
 	$(".province_ul li").on("click",function(){
 		$(".province_ul li").removeClass("onli");
 		$(this).addClass("onli");

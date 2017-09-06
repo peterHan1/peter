@@ -54,40 +54,38 @@ $(function(){
 			}
 		});
 		$(".site_inp").focus(function(){
-			$(this).parent(".tex_bot").addClass("inp_bot");
-			$(this).parents("li").find(".p_top").show();
-			$(this).attr("placeholder","请输入联系地址");
-			$(this).parents("li").find(".p_top").css("color","#ff7400");
-			
+			var th = $(this);
+			inp_focus(th,'请输入联系地址');
 		});
 		$(".site_inp").blur(function(){
-			if($(this).val() == ""){
-				$(this).parents("li").find(".p_top").hide();
-				$(this).attr("placeholder","联系地址");
-				$(this).parent(".tex_bot").removeClass("inp_bot");
-			}else{
-				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
-				$(this).scrollTop("0");
-			}
+			var th = $(this);
+			inp_blur(th,'联系地址')
 		});
+		
 		$(".sites_inp").focus(function(){
-			$(this).parent(".tex_bot").addClass("inp_bot");
-			$(this).parents("li").find(".p_top").show();
-			$(this).attr("placeholder","请输入意向区域详细地址");
-			$(this).parents("li").find(".p_top").css("color","#ff7400");
-			
+			var th = $(this);
+			inp_focus(th,'请输入意向区域详细地址');
 		});
 		$(".sites_inp").blur(function(){
-			if($(this).val() == ""){
-				$(this).parents("li").find(".p_top").hide();
-				$(this).attr("placeholder","意向区域详细地址");
-				$(this).parent(".tex_bot").removeClass("inp_bot");
-			}else{
-				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
-				$(this).scrollTop("0");
-				
-			}
+			var th = $(this);
+			inp_blur(th,'意向区域详细地址');
 		});
+		function inp_focus(ths,txt){
+			ths.parent(".tex_bot").addClass("inp_bot");
+			ths.parents("li").find(".p_top").show();
+			ths.attr("placeholder",txt);
+			ths.parents("li").find(".p_top").css("color","#ff7400");
+		}
+		function inp_blur(ths,txt){
+			if(ths.val() == ""){
+				ths.parents("li").find(".p_top").hide();
+				ths.attr("placeholder",txt);
+				ths.parent(".tex_bot").removeClass("inp_bot");
+			}else{
+				ths.parents("li").find(".p_top").css("color","#b6b5b6");
+				ths.scrollTop("0");
+			}
+		}
 		
 		var city_picker = new mui.PopPicker({layer:3});
 		city_picker.setData(init_city_picker);
