@@ -135,6 +135,10 @@ $(function(){
 		$(".loan_box").css("left","-100%");
 		$(".car_list_box").show();
 		$(".city_list_box").hide();
+		var car_name = $(".inp_car").attr("car-name");
+		if(car_name != ""){
+			$(".cities_hook li").removeClass("onli");
+		}
 	})
 //	城市选择
 	var flag = true;
@@ -142,31 +146,29 @@ $(function(){
 		$(".loan_box").css("left","-100%");
 		$(".city_list_box").show();
 		$(".car_list_box").hide();
-		var citys = $(".city_inp").attr('province');
-
-		
-
-		
-		if(citys != ""){
+		var prov = $(".city_inp").attr('province');
+		var citys = $(".city_inp").attr('city');
+		if(prov != ""){
 			$(".province_ul li").removeClass("onli");
 			$(".province_ul li").each(function(){
 				var pro = $(this).attr("province-name");
-	//			console.log("获取的省份："+ citys  + "所有的li省份："+ pro);
-				if(citys == pro){
+				if(prov == pro){
 					$(this).addClass("onli");
-					console.log("666" + $(this).attr("class"));
 				}
-			})
-			city(citys);
+			});
+			fn_city(prov,citys);
 		}else{
-			city('北京');
-		}
-
-
+			$(".province_ul li").each(function(){
+				var pro = $(this).attr("province-name");
+				if(pro == "北京"){
+					$(this).addClass("onli");
+				}
+			});
+			fn_city('北京','北京');
+		} 
 
 		if(flag == true){
 			var scroll1 = new BScroll(city_left, {
-		   		probeType: 3,
 		   		click:true
 		 	});
 		}
@@ -176,47 +178,42 @@ $(function(){
 			$(".province_ul li").removeClass("onli");
 			$(this).addClass("onli");
 			var citys = $(this).attr("province-name");
-			console.log(citys)
-			city(citys);
+			fn_city(citys);
+			$(".city_right").scrollTop("0");
 		});
-		function city(citys){
-			$.ajax({
-				url: 'js/loan/city.json',
-				type: 'get',
-				success:function(data){
-					$.each(data,function(i,item){
-						var txts = item.citys;
-						var ul = '<ul class="city_ul">';							
-						if(citys == item.provinceName){
-							for(var i=0;i<txts.length;i++){
-								var li = "<li>"+ txts[i].citysName +"</li>";
-								ul += li;
-							}
-							$("#city_ul").html(ul);
-						};
-					});
-				/*	var scroll2 = new BScroll(city_ul, {
-				   		probeType: 3,
-				   		click:true
-					});	*/
-					
-					$("#city_ul li").on("click",function(){
-						console.log(666);
-						var txt = $(this).html();
-						$(".city_ul li").removeClass("onli");
-						$(this).addClass("onli");
-						$(".loan_box").css("left","0");
-						var city = citys+'-'+txt;
-						$(".city_inp").val(city);
-						$(".city_inp").attr("province",citys);
-						$(".city_inp").attr("city",txt);
-						
-						$("#city_p").html(city);
-						$(".city .p_top").show().css("color","#b6b5b6");
-					});
-				}
-				
-			})
+		
+		function fn_city(citys,cityn){
+			$("#city_ul").scrollTop("0");
+			$.each(citys_list,function(i,item){
+				var txts = item.citys;
+				var ul = '<ul class="city_ul">';							
+				if(citys == item.provinceName){
+					for(var i=0;i<txts.length;i++){
+						if(txts[i].citysName == cityn){
+							var li = "<li city-name='"+txts[i].citysName+"' class='onli'>";
+						}else{
+							var li = "<li city-name='"+txts[i].citysName+"'>";							
+						}
+						li += txts[i].citysName ;
+						li += "</li>"
+						ul += li;
+					}
+					$("#city_ul").html(ul);
+				};
+			});
+			$("#city_ul li").on("click",function(){
+				console.log(666);
+				var txt = $(this).html();
+				$(".city_ul li").removeClass("onli");
+				$(this).addClass("onli");
+				$(".loan_box").css("left","0");
+				var city = citys+'-'+txt;
+				$(".city_inp").val(city);
+				$(".city_inp").attr("province",citys);
+				$(".city_inp").attr("city",txt);
+				$("#city_p").html(city);
+				$(".city .p_top").show().css("color","#b6b5b6");
+			});
 		}
 
 //	汽车品牌列表
@@ -229,51 +226,45 @@ $(function(){
 			var y = 0,titleHeight = 28,itemHeight = 44,lists = '';
 			var lists = '';
 			var ul = '<ul class="shortcut_ul">';
-		   $.ajax({
-				 url: 'js/loan/car.json',
-				 type: 'get',
-				 success:function(data){
-					$.each(data,function(i,item){
-						var name = item.name;
-						lists += '<div class="title">'+name+'</div>'; 
-		    				lists += '<ul>';
-		    				$.each(item.carlist,function(k,items){
-								var txts = items.series;
-		    					lists += '<li class="item itemli" data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</li>';
-		    					$(document).on("click",".itemli",function(e){
-									var txt = e.target.getAttribute('data-name');
-									if(txt == items.name){
-		    							for(var i=0;i<txts.length;i++){
-		    								var lis = "<li>" + txts[i] + "</li>"
-		    								$(".car_list_botul").append(lis);
-		    							}
-									};
-									$(".car_conf").attr("car",txt);
-								})
+			$.each(cars_list,function(i,item){
+				var name = item.name;
+				lists += '<div class="title">'+name+'</div>'; 
+    				lists += '<ul>';
+    				$.each(item.carlist,function(k,items){
+						var txts = items.series;
+    					lists += '<li class="item itemli" data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</li>';
+    					$(document).on("click",".itemli",function(e){
+							var txt = e.target.getAttribute('data-name');
+							if(txt == items.name){
+    							for(var i=0;i<txts.length;i++){
+    								var lis = "<li>" + txts[i] + "</li>"
+    								$(".car_list_botul").append(lis);
+    							}
+							};
+							$(".car_conf").attr("car",txt);
+						})
 
-		    				});
-		    				lists += '</ul>';
-					    var name = item.name.substr(0, 1);
-					    shortcutList.push(name);
-					    ul += '<li data-anchor="'+name+'" class="item">'+name+'</li>';
-					    var len = item.carlist.length;
-					    anchorMap[name] = y;
-					    y -= titleHeight + len * itemHeight;
-					 
-					});
-					ul += '</ul><div class="jump_tips"></div>';
+    				});
+    				lists += '</ul>';
+			    var name = item.name.substr(0, 1);
+			    shortcutList.push(name);
+			    ul += '<li data-anchor="'+name+'" class="item">'+name+'</li>';
+			    var len = item.carlist.length;
+			    anchorMap[name] = y;
+			    y -= titleHeight + len * itemHeight;
+			 
+			});
+			ul += '</ul><div class="jump_tips"></div>';
 
-					cities.innerHTML = lists;
-					shortcut.innerHTML = ul;
-					shortcut.style.top = (carWrapper.clientHeight - shortcut.clientHeight) / 2 -30 + 'px';
-					
-				  	scroll = new window.BScroll(carWrapper, {
-				   		probeType: 3,
-				   		click:true
-				 	 });
-					  scroll.scrollTo(0, 0);					
-				 }
-			});	 
+			cities.innerHTML = lists;
+			shortcut.innerHTML = ul;
+			shortcut.style.top = (carWrapper.clientHeight - shortcut.clientHeight) / 2 -30 + 'px';
+			
+		  	scroll = new window.BScroll(carWrapper, {
+		   		probeType: 3,
+		   		click:true
+		 	 });
+			  scroll.scrollTo(0, 0);
 		};
 		function bindEvent() {
 			var touch = {};
@@ -319,34 +310,47 @@ $(function(){
 		setTimeout(function(){
 			$(".list_one").show();
 			$(".list_two").hide();
-//			$(".car_list_botul li").remove();
+			$(".car_list_botul li").remove();
+			$(".province_ul li").removeClass("onli");
 		},500)
 		
 	})
 	$(".get_car").on("click",function(){
 		$(".list_one").show();
 		$(".list_two").hide();
-//		$(".car_list_botul li").remove();
 	})
 	$(document).on("click",".cities_hook li",function(){
 		$(".cities_hook li").removeClass("onli");
 		$(this).addClass("onli");
 		$(".list_one").hide();
 		$(".list_two").show();
-//		$(".car_list_botul li").remove();	
 	});
 	$(document).on("click",".car_list_botul li",function(){
 		var car = $(this).html();
 		$(".car_list_botul li").removeClass("onli");
 		$(this).addClass("onli");
 		$(".loan_box").css("left","0");
+		$(".inp_car").attr('car-name',car);
 		$(".inp_car").val(car);
 		$("#car_p").html(car);
 		$(".car .p_top").show().css("color","#b6b5b6");
 		setTimeout(function(){
 			$(".list_one").show();
 			$(".list_two").hide();
-//			$(".car_list_botul li").remove();
+			$(".car_list_botul li").remove();
 		},500)
+	});
+//	拨打电话
+	$(".phone").on("click",function(){
+		layer.open({
+			type:0,
+			skin:"phone_show",
+			area: "1.1rem",
+			content:$(".phone_show").html(),
+	
+		})
+	});
+	$(document).on("click",".close",function(){
+		layer.closeAll();
 	});
 })

@@ -10,52 +10,93 @@
     	<meta name="x5-fullscreen" content="true">
 		<title>申请借款</title>
 		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="js/loan/loan.css" />
+		<link rel="stylesheet" href="css/loan.css" />
 	</head>
 	<body>
-		<div class="max_widths">
-			<div class="box">
-				<div class="loan_box fl">
-					<div class="loan_fill">
+		<div class="loan">
+			<div class="loan_box">
+				<div class="loan_list fl">
+					<div class="top">
 						<ul>
 							<li>
-								<span>借款金额</span>
-								<input type="text" placeholder="您需要多少资金？"/>
+								<div class="div_top">
+									<p class="p_top">借款金额</p>
+								</div>
+								<div class="div_bot">
+									<input type="text" placeholder="借款金额" class="money_inp" />
+									<div class="dis_none empty"></div>
+								</div>
 							</li>
-							<li class="car_btn">
-								<span>车辆型号</span>
-								<input id="car_text" name="" value="" placeholder="请选择车辆型号信息 " readonly="true" onfocus="this.blur()" >
-								<i> > </i>
-							</li>
-							<li class="loan_litxt">
-								<p>填写个人信息，便于拓道安排专人为您提供服务</p>
-							</li>
-							<li>
-								<span>您的姓名</span>
-								<input type="text" placeholder="请填写您的姓名？"/>
-							</li>
-							<li>
-								<span>手机号</span>
-								<input type="text" placeholder="请输入手机号，便于我们联系您"/>
-							</li>
-							<li>
-								<span>短信验证码</span>
-								<input type="text" placeholder="请输入收到短信的验证码"/>
-								<span class="code_btn">| 获取</span>
+							<li class="car">
+								<div class="div_top">
+									<p class="p_top">车辆型号</p>
+								</div>
+								<div class="div_bot" id="car">
+									<p class="p" id="car_p">车辆型号</p>
+									<input type="hidden" class="inp_car" car-name/>
+									<span class="iconfont">&#xe83d;</span>
+								</div>
 							</li>
 							<li>
-								<span>所在地区</span>
-								<input id="city_text" name="" value="" placeholder="请选择您所在的城市 " readonly="true" onfocus="this.blur()" >
-								<i> > </i>
+								<div class="div_top">
+									<p class="p_top">车牌号码</p>
+								</div>
+								<div class="div_bot">
+									<input type="text" placeholder="车牌号码" class="car_code" />
+									<div class="dis_none empty"></div>
+								</div>
 							</li>
 						</ul>
-						<div class="sub_loan">
-							<a href="###">提交申请</a>
-							<a href="tel:18539123451">18539123451</a>
-						</div>
+					</div>
+					<p class="txt">填写个人信息，我们将安排专人为您提供服务</p>
+					<div class="bot">
+						<ul>
+							<li>
+								<div class="div_top">
+									<p class="p_top">您的姓名</p>
+								</div>
+								<div class="div_bot">
+									<input type="text" placeholder="您的姓名" class="name_inp" />
+									<div class="dis_none empty"></div>
+								</div>
+							</li>
+							<li>
+								<div class="div_top">
+									<p class="p_top">手机号</p>
+								</div>
+								<div class="div_bot">
+									<input type="number" placeholder="手机号" class="phone_inp" />
+									<div class="dis_none empty"></div>
+								</div>
+							</li>
+							<li>
+								<div class="div_top">
+									<p class="p_top">短信验证码</p>
+								</div>
+								<div class="div_bot">
+									<input type="number" placeholder="短信验证码" class="code_inp" />
+									<span class="code_btn">获取验证码</span>
+								</div>
+							</li>
+							<li class="city">
+								<div class="div_top">
+									<p class="p_top">所在地区</p>
+								</div>
+								<div class="div_bot" id="city">
+									<p class="p" id="city_p">所在地区</p>
+									<input type="hidden" class="city_inp" province city/>
+									<span class="iconfont">&#xe83d;</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="div_btn">
+						<span class="btn">申请加盟</span>
+						<p>如有问题请咨询拓道客服：<span class="phone">40085-777-85</span></p>
+						<span class="log"></span>
 					</div>
 				</div>
-				<div class=" car_list_box fl">
+				<div class="fl car_list_box">
 					<div class="list_one">
 						<div class="nav">
 							<h3>选择品牌</h3>
@@ -95,10 +136,10 @@
 						<div class="city">
 							<div class="city_left" id="city_left">
 								<ul class="province_ul">
-									<li province-name="北京市" class="onli">北京市</li>
-									<li province-name="天津市">天津市</li>
-									<li province-name="上海市">上海市</li>
-									<li province-name="重庆市">重庆市</li>
+									<li province-name="北京" class="onli">北京</li>
+									<li province-name="天津">天津</li>
+									<li province-name="上海">上海</li>
+									<li province-name="重庆">重庆</li>
 									<li province-name="河北省">河北省</li>
 									<li province-name="山西省">山西省</li>
 									<li province-name="内蒙古自治区">内蒙古自治区</li>
@@ -140,11 +181,31 @@
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</body>
+	<div class="phone_show dis_none">
+		<p>拓道金服：40085-777-85</p>
+		<div class="phone_btn">
+			<span class="close">取消</span>
+			<span>	
+				<a href="tel:4008577785">拨打</a>
+			</span>
+		</div>
+	</div>
 </html>
+<script src="js/loan/car.js"></script>
+<script src="js/loan/city.js"></script>
 <script src="js/loan/plug/bscroll.min.js"></script>
 <script src='js/jquery-2.1.0.min.js'></script>
 <script src="js/base.js"></script>
-<script src="js/loan/city.js"></script>
-<script src="js/loan/car.js"></script>
+<script src="js/loan/loan.js"></script>
+<script src="js/layer/layer.js"></script>
+
+
+
+<script>
+	$(function(){
+//		console.log(car_list);
+	})
+</script>
+
