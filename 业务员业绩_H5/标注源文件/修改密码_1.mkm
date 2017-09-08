@@ -1,0 +1,34 @@
+<MKM version="2.0" minAppVer="2.0.0" imageFileUrl="">
+  <Marks>
+    <LengthMark x="121" y="912" color="16711680" length="510" direction="12"/>
+    <LengthMark x="0" y="911" color="16711680" length="120" direction="12"/>
+    <LengthMark x="631" y="912" color="16711680" length="120" direction="12"/>
+    <TextMark x="263" y="267" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="220" text="#393b41 透明度50%"/>
+    <LengthMark x="167" y="815" color="16711680" length="80" direction="3"/>
+    <LengthMark x="350" y="814" color="16711680" length="1" direction="3"/>
+    <LengthMark x="375" y="856" color="16711680" length="1" direction="12"/>
+    <ColorMark x="374" y="814" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" colorSystem="hex"/>
+    <TextMark x="459" y="840" color="16711680" offsetX="19" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="165" text="苹方 中等 30px  #ffb48d"/>
+    <TextMark x="224" y="840" color="16711680" offsetX="19" offsetY="9" defaultDirection="9" direction="9" textMaxWidth="160" text="苹方 中等 30px #626262"/>
+    <LengthMark x="209" y="839" color="16711680" length="32" direction="3"/>
+    <LengthMark x="593" y="519" color="16711680" length="60" direction="3"/>
+    <LengthMark x="335" y="519" color="16711680" length="1" direction="3"/>
+    <ColorMark x="189" y="519" color="16711680" offsetX="29" offsetY="7" defaultDirection="9" colorSystem="hex"/>
+    <TextMark x="143" y="528" color="16711680" offsetX="72" offsetY="33" defaultDirection="9" direction="9" textMaxWidth="100" text="圆角4px"/>
+    <LengthMark x="142" y="584" color="16711680" length="138" direction="12"/>
+    <LengthMark x="141" y="678" color="16711680" length="470" direction="12"/>
+    <LengthMark x="121" y="642" color="16711680" length="20" direction="12"/>
+    <LengthMark x="610" y="647" color="16711680" length="20" direction="12"/>
+    <LengthMark x="617" y="578" color="16711680" length="30" direction="3"/>
+    <TextMark x="185" y="628" color="16711680" offsetX="19" offsetY="8" defaultDirection="9" direction="9" textMaxWidth="171" text="苹方 中等 24px #626262"/>
+    <LengthMark x="163" y="626" color="16711680" length="26" direction="3"/>
+    <LengthMark x="447" y="367" color="16711680" length="60" direction="3"/>
+    <LengthMark x="451" y="459" color="16711680" length="60" direction="3"/>
+    <TextMark x="425" y="425" color="16711680" offsetX="23" offsetY="11" defaultDirection="5" direction="5" textMaxWidth="234" text="苹方 中等 32px #212a36 "/>
+    <LengthMark x="297" y="427" color="16711680" length="34" direction="3"/>
+    <LengthMark x="134" y="754.5" color="16711680" length="60" direction="3"/>
+    <LengthMark x="657" y="366" color="16711680" length="530" direction="3"/>
+    <LengthMark x="280" y="571" color="16711680" length="20" direction="12"/>
+    <TextMark x="372" y="628" color="16711680" offsetX="27" offsetY="7" defaultDirection="9" direction="9" textMaxWidth="185" text="苹方 中等 24px #cacaca"/>
+  </Marks>
+</MKM>
