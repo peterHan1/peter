@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>登录</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/perfor.css" />
+	</head>
+	<body>
+		<div class="box">
+			<div class="login">
+				<div class="login_top">
+					<div class="iconfont">&#xe694;</div>
+				</div>
+	
+				<form action="" class="form">
+					<ul>
+						<li>
+							<span class="fl iconfont">&#xe68e;</span>
+							<input class="fl" type="number" placeholder="请输入员工工号" id="username">
+						</li>
+						<li>
+							<span class="fl iconfont">&#xe688;</span>
+							<input class="fl" type="password" placeholder="请输入登录密码" id="pwd">
+							<span class="fr iconfont psw_show">&#xe692;</span>
+	
+						</li>
+					</ul>
+					<div class="sub">
+						<!--填写完成可登陆 input添加  class="sub_btn"-->
+						<input type="button" value="登录" class="sub_btn">
+					</div>
+				</form>
+			</div>
+			<!--加载中-->
+			<div class="loading dis_none">
+				<div class="loading_top">
+					<div class="left"></div>
+					<div class="right"></div>
+					<div class="icon_log">
+						<span class="iconfont">&#xe693;</span>
+					</div>
+					<div class="pro"></div>
+				</div>
+				<p>加载中...</p>
+			</div>
+		</div>
+		
+	</body>
+</html>
+
+<script src='js/plug/jquery-2.1.0.min.js'></script>
+<script src="js/base.js"></script>
+<script src="js/plug/layer/layer.js"></script>
+
+<script>
+	$(function(){
+		$("#pwd").focus(function(){
+			$(".psw_show").show();
+		});
+		$("#pwd").blur(function(){
+			if($(this).val() == ""){
+				$(".psw_show").hide();	
+			}
+		})
+		$(".psw_show").on("click",function(){
+			var typ = $("#pwd").attr("type");
+			$("#pwd").focus();
+			if(typ == 'password'){
+				$("#pwd").attr("type","text");
+				$(".psw_show").html("&#xe68a;")
+			}else{
+				$("#pwd").attr("type","password");
+				$(".psw_show").html("&#xe692;")
+			}
+
+		});
+		$(".sub_btn").on("click",function(){
+			//加载中
+//			$(".loading").show();
+			//账户密码错误提示
+			layer.open({
+				style:'background-color:#393b41;color:#fff;',
+				time: 2,
+				skin:'login_show',
+				shade: false,
+				content:'<span class="iconfont">&#xe68d;</span>账户或密码错误，请重新输入'
+			});
+			
+		})
+	})
+</script>
+
