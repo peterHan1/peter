@@ -106,7 +106,8 @@
 				 		</div>
 				 	</div>
 				 </div>
-				<div class="perfor_table ">
+			</div>
+			<div class="perfor_table">
 					<div class="perfor_table_top">
 						<p class="dis_none">杭州西湖店业务员业绩排名</p>
 						<ul class="tab_ul">
@@ -116,11 +117,11 @@
 						</ul>
 					</div>
 					<div class="perfor_table_com">
-						<p class="txt">浙江省业务员业绩排名</p>
-						<p class="txt dis_none">浙江省团队业绩排名</p>
-						<p class="txt dis_none">浙江省门店业绩排名</p>
-						<div class="table_box">
-							<!--业务员业绩-->
+					<div id="iscroll1">
+						<div class="iscroll1">
+					   		<p class="txt">浙江省业务员业绩排名</p>
+							<div class="table_box">
+						<!--业务员业绩-->
 							<table class="">
 								<thead>
 									<tr>
@@ -130,7 +131,7 @@
 										<th>团队名称</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbodys">
 									<tr>
 										<td>1</td>
 										<td>张三</td>
@@ -193,8 +194,15 @@
 									</tr>
 								</tbody>
 							</table>
+				    	</div>
+				    	</div>
+					</div>
+					<div id="pullrefresh2" class="dis_none">
+				   		<div id="mui_scroll1">
+							<p class="txt">浙江省团队业绩排名</p>
+							<div class="table_box">
 							<!--团队业绩-->
-							<table class="dis_none">
+							<table>
 								<thead>
 									<tr>
 										<th>店内排名</th>
@@ -202,7 +210,7 @@
 										<th>借款金额(元)</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbodys">
 									<tr>
 										<td>1</td>
 										<td>战狼队</td>
@@ -255,9 +263,15 @@
 									</tr>
 								</tbody>
 							</table>
-							
+						</div>
+					</div>
+				</div>	
+					<div id="pullrefresh3" class="dis_none">
+				   		<div id="mui_scroll2">
+							<p class="txt">浙江省门店业绩排名</p>
+							<div class="table_box">
 							<!--门店业绩-->
-							<table class="dis_none">
+							<table>
 								<thead>
 									<tr>
 										<th>店内排名</th>
@@ -265,7 +279,7 @@
 										<th>借款金额(元)</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbodys">
 									<tr>
 										<td>1</td>
 										<td>城西店</td>
@@ -320,6 +334,8 @@
 							</table>
 						</div>
 					</div>
+				</div>	
+					
 				</div>
 				 <!--无数据-->
 				 <div class="not_data dis_none">
@@ -333,39 +349,42 @@
 				 	</div>
 				 </div>
 			</div>
-		</div>
+	</div>	
 		<!--修改密码弹窗-->
-		<div class="psw_show dis_none">
-			<div class="amend_psw">
-				<p class="title">修改密码</p>
-				<div class="txt">
-					<p class="hint dis_none">密码不一致，请重新输入</p>
+		<div id="psw_show" class="dis_none">
+			<div class="psw_show ">
+				<div class="amend_psw">
+					<p class="title">修改密码</p>
+					<div class="txt">
+						<p class="hint dis_none">密码不一致，请重新输入</p>
+					</div>
+					<ul>
+						<li>
+							<span>旧密码</span>
+							<input type="password" class="old_psw" placeholder="请输入旧的登录密码 "/>
+						</li>
+						<li>
+							<span>新密码</span>
+							<input type="password" class="new_psw" placeholder="请输入6-16位新密码 "/>
+						</li>
+						<li>
+							<span>确认密码</span>
+							<input type="password" class="new_psws" placeholder="请再次确认6-16位新密码 "/>
+						</li>
+					</ul>
+					<div class="psw_bot">
+						<span class="cancel">取消</span>
+						<!--输入密码后可以点击添加class="affirm"-->
+						<span class="affirm">确认修改</span>
+					</div>
 				</div>
-				<ul>
-					<li>
-						<span>旧密码</span>
-						<input type="password" class="old_psw" placeholder="请输入旧的登录密码 "/>
-					</li>
-					<li>
-						<span>新密码</span>
-						<input type="password" class="new_psw" placeholder="请输入6-16位新密码 "/>
-					</li>
-					<li>
-						<span>确认密码</span>
-						<input type="password" class="new_psws" placeholder="请再次确认6-16位新密码 "/>
-					</li>
-				</ul>
-				<div class="psw_bot">
-					<span class="cancel">取消</span>
-					<!--输入密码后可以点击添加class="affirm"-->
-					<span class="affirm">确认修改</span>
+				<div class="suc dis_none">
+					<span class="iconfont">&#xe68f;</span>
+					<p>修改成功</p>
 				</div>
-			</div>
-			<div class="suc dis_none">
-				<span class="iconfont">&#xe68f;</span>
-				<p>修改成功</p>
 			</div>
 		</div>
+		
 		
 	</body>
 </html>
@@ -374,19 +393,69 @@
 <script src="js/plug/layer/layer.js"></script>
 <script src="js/plug/mui.min.js"></script>
 <script src="js/plug/mui.picker.min.js"></script>
-
-
-
+<script src="js/plug/iscroll-probe.js"></script>
+<script src='js/perfor.js'></script>
 <script>
+
 	$(function(){
+		//上拉加载
+		/*mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+		
+			
+		// 下拉刷新具体业务实现
+		function pulldownRefresh() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			}, 1500);
+		}
+		var count = 0;
+		// 上拉加载具体业务实现
+		function pullupRefresh() {
+		setTimeout(function() {
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count >= 2)); //参数为true代表没有更多数据了。
+			var table = document.body.querySelector('.tbody_o');
+				for (var i = 10, len = i + 10; i < len; i++) {
+					var tr = document.createElement('tr');
+					tr.innerHTML = '<td>'+ (i+1) +'</td><td>'+ "薛之谦" +'</td><td>'+ "100,000.00" +'</td><td>'+"自己的队"+'</td>';
+					table.appendChild(tr);
+				};
+			//设置表单高度	
+			$(".perfor_table_com").height("8.2rem");
+			var h = $(document).height()-$(window).height();
+ 			$(document).scrollTop(h);
+
+		}, 1500);
+		
+		}*/
+
 		//确认修改密码
-		$(".affirm").on("click",function(){
+		$(document).on("click",".affirm",function(){
 			$(".amend_psw").hide();
 			$(".suc").show();
+			setTimeout(function(){
+				layer.closeAll();
+			},2000)
+		});
+		$(document).on("click",".cancel",function(){
+			layer.closeAll();
 		});
 		//编辑
 		$(".compile").on("click",function(){
-			
+			layer.open({
+				skin:"psw_show",
+				content:$("#psw_show").html()
+			});
 		});
 		//退出按钮
 		$(".out").on("click",function(){
@@ -413,9 +482,29 @@
 			var ins = $(this).index();
 			$(this).siblings().removeClass("on");
 			$(this).addClass("on");
-			$(".table_box table").eq(ins).show().siblings().hide();
-			$(".perfor_table_com .txt").eq(ins).show().siblings(".txt").hide();
-		})
+			$(".perfor_table_com>div").eq(ins).show().siblings().hide();
+//			heigh(ins)
+		});
+//		heigh();
+		//根据表单高度动态赋值
+		function heigh(ins){
+			if(ins != null){
+				var tabl = $("#mui_scroll"+ins)
+				var hei = tabl.height();
+				$(".perfor_table_com").height(hei);
+				var h = $(document).height()-$(window).height();
+	 			$(document).scrollTop(h);
+				console.log(666);
+	 			
+			}else{
+				var tablhe = $("#mui_scroll0").height();
+				$(".perfor_table_com").height(tablhe);
+				console.log(555);
+			}
+			
+		}
 	})
+	
+
 </script>
 

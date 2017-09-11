@@ -28,7 +28,7 @@
 						<li>
 							<span class="fl iconfont">&#xe688;</span>
 							<input class="fl" type="password" placeholder="请输入登录密码" id="pwd">
-							<span class="fr iconfont psw_show">&#xe692;</span>
+							<span class="fr iconfont psw_shw">&#xe692;</span>
 	
 						</li>
 					</ul>
@@ -61,23 +61,26 @@
 
 <script>
 	$(function(){
+		$("#username").focus(function(){
+			$(".psw_shw").hide();
+		});
 		$("#pwd").focus(function(){
-			$(".psw_show").show();
+			$(".psw_shw").show();
 		});
 		$("#pwd").blur(function(){
 			if($(this).val() == ""){
-				$(".psw_show").hide();	
+				$(".psw_shw").hide();	
 			}
 		})
-		$(".psw_show").on("click",function(){
+		$(".psw_shw").on("click",function(){
 			var typ = $("#pwd").attr("type");
 			$("#pwd").focus();
 			if(typ == 'password'){
 				$("#pwd").attr("type","text");
-				$(".psw_show").html("&#xe68a;")
+				$(".psw_shw").html("&#xe68a;")
 			}else{
 				$("#pwd").attr("type","password");
-				$(".psw_show").html("&#xe692;")
+				$(".psw_shw").html("&#xe692;")
 			}
 
 		});
