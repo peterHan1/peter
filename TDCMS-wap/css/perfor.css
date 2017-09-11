@@ -72,20 +72,16 @@ input:-ms-input-placeholder{color:#cacaca;}
 .perfor .perfor_report .report_con p{font-size:0.42rem;color:#212a36;}
 .perfor .perfor_report .report_con span{display:inline-block;font-size:0.24rem;color:#7e7e7e;margin-top:0.16rem;}
 
-.perfor .perfor_table{width:100%;height:100%;margin-top:0.2rem;position: relative;}
-.perfor .perfor_table .perfor_table_top{width:100%;height:0.8rem;line-height:0.8rem;background-color:#fff;border-bottom: 1px solid #e4e4e4;padding:0 0.3rem;font-size:0.24rem;color:#212a36;}
+.perfor .perfor_table{height:100%;margin-top:0.2rem;position: relative; overflow: hidden;}
+.perfor .perfor_table .perfor_table_top{width:100%;height:0.8rem;line-height:0.8rem;background-color:#fff;border-bottom: 1px solid #e4e4e4;padding:0 0.3rem;font-size:0.24rem;color:#212a36;z-index: 999;}
 .perfor .perfor_table .perfor_table_top li{float:left;margin-right:0.5rem;padding:0 0.1rem;}
 .perfor .perfor_table .perfor_table_top li.on{height:0.8rem;border-bottom: 0.04rem solid #ff7400;color:#ff7400;}
-.perfor .perfor_table .perfor_table_com{width:100%;height:100%;padding:0 0.3rem;background-color:#fff;}
-.perfor .perfor_table .perfor_table_com .iscroll1{z-index: 99;}
-.perfor .perfor_table .perfor_table_com .txt{font-size:0.24rem;color:#21236;padding:0.4rem 0.3rem 0;background-color:#fff;}
-
-/*
-
-
-.perfor .perfor_table .perfor_table_com .table_box{width:100%;background-color:#fff;padding:0.4rem 0.3rem 0.1rem 0.3rem;}*/
-
-/*#pullrefresh{height:100%;}*/
+.perfor .perfor_table .perfor_table_com{height:100%;background-color:#f2f3f7;}
+.perfor .perfor_table .perfor_table_com .iscrolls{margin-top:-0.5rem;background-color:#fff;z-index: 99;}
+.perfor .perfor_table .perfor_table_com #iscroll1{height:100%;}
+.perfor .perfor_table .perfor_table_com .txt{font-size:0.24rem;color:#212a36;padding:0.4rem 0.3rem 0;background-color:#fff;}
+.perfor .perfor_table .perfor_table_com .table_box{padding:0 0.2rem 0.2rem;}
+.pulldowns, .pullUps {font-size: 0.22rem; color: #333;text-align: center;line-height: 0.5rem;background-color:red;}
 
 .table_box table{width:100%;}
 .table_box table tr{border:1px solid #cacaca;height:0.55rem;line-height:0.55rem;background-color:#fff;}

@@ -1,7 +1,8 @@
 $(function(){
 	var myScroll = new iScroll(iscroll1,{
 		scrollX:false,
-		scrollY:false,
+		scrollY:true,
+		scrollbars: false,
 		click:true,
 		onRefresh: function(){
 //			if(top_id.hasClass('loading')) {
@@ -69,5 +70,15 @@ $(function(){
 			pullUpfun()
 			myScroll.refresh();
 		}, 400);
-	}
+	};
+	var myScroll = new iScroll(iscroll2,{
+		scrollX:false,
+		scrollY:false,
+		click:true,
+	});
+	var myScroll = new iScroll(iscroll3,{
+		scrollX:false,
+		scrollY:false,
+		click:true,
+	})
 })
