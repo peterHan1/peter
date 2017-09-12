@@ -17,7 +17,8 @@
 		<script src="js/base.js"></script>
 	</head>
 	<body>
-		<div class="perfor">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+		<div class="perfor mui-scroll">
 			<div class="perfor_top">
 				<div class="top_mess">
 					<div class="top_l fl">
@@ -40,30 +41,52 @@
 					</div>
 				</div>
 				<div class="bot_mess">
-					<span class="iconfont">&#xe687;</span>
-					<div class="bot_mess_box flex">
-						<div class="mess_com flex-1">
-							<p>150,000.00</p>
-							<p>个人昨日业绩（元）</p>
-							<p><i class="iconfont">&#xe690;</i>个人上升<span>2</span>个名次 </p>
-						</div>
-						<span class="wire"></span>
-						<div class="mess_com flex-1">	
-							<p>150,000.00</p>
-							<p>团队昨日业绩（元）</p>
-							<p><i class="iconfont">&#xe690;</i>个人上升<span>2</span>个名次 </p>
-						</div>
+					<span class="iconfont fl" id="left">&#xe687;</span><!--信息超过两个显示左侧点击按钮-->
+					<div class="bot_mess_view">
+						<ul>
+							<li>
+								<div class="bot_mess_box flex">
+									<div class="mess_com flex-1">
+										<p>150,000.00</p>
+										<p>个人昨日业绩（元）</p>
+										<p><i class="iconfont">&#xe690;</i>个人上升<span>2</span>个名次 </p>
+									</div>
+									<span class="wire"></span><!--分界线内容超过两个显示-->
+									<div class="mess_com flex-1">	
+										<p>150,000.00</p>
+										<p>团队昨日业绩（元）</p>
+										<p><i class="iconfont">&#xe690;</i>个人上升<span>3</span>个名次 </p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="bot_mess_box flex">
+									<div class="mess_com flex-1">
+										<p>150,000.00</p>
+										<p>门店昨日业绩（元）</p>
+										<p><i class="iconfont">&#xe690;</i>个人上升<span>5</span>个名次 </p>
+									</div>
+									<span class="wire"></span><!--分界线内容超过两个显示-->
+									<div class="mess_com flex-1">	
+										<p>150,000.00</p>
+										<p>西湖店昨日业绩（元）</p>
+										<p><i class="iconfont">&#xe690;</i>个人上升<span>1</span>个名次 </p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-					
-					<span class="iconfont">&#xe68b;</span>
+					<span class="iconfont fr" id="right">&#xe68b;</span><!--信息超过两个显示右侧点击按钮-->
 					
 				</div>
 			</div>
-			<div class="perfor_con">
-				 <div class="con_date">
-				 	<span class="fl select_date">2017年9月</span>
-				 	<span class="fr iconfont" id="select_date">&#xe689;</span>
-				 </div>
+			<!--日期选择-->
+			<div class="con_date">
+			 	<span class="fl select_date">2017年9月</span>
+			 	<span class="fr iconfont" id="select_date">&#xe689;</span>
+			 </div>
+			 <!--有数据展示-->
+			<div class="perfor_con ">
 				 <!--个人业绩-->
 				 <div class="perfor_report ">
 				 	<div class="report_top">
@@ -106,423 +129,248 @@
 				 		</div>
 				 	</div>
 				 </div>
-			</div>
 			<div class="perfor_table">
 					<div class="perfor_table_top">
 						<p class="dis_none">杭州西湖店业务员业绩排名</p>
 						<ul class="tab_ul">
-							<li class="on">业务员</li>
-							<li>团队</li>
-							<li>门店</li>
+							<li class="sales_li on">业务员</li>
+							<li class="tream_li">团队</li>
+							<li class="shop_li">门店</li>
 						</ul>
 					</div>
 					<div class="perfor_table_com">
-					<div id="iscroll1">
-						<div class="iscrolls">
-							<div class="pulldowns">
-								<p id="pulldown" >下拉刷新</p>
-							</div>
+						<div class="iscrolls iscroll_o">
 					   		<p class="txt">浙江省业务员业绩排名</p>
 							<div class="table_box">
-						<!--业务员业绩-->
-							<table class="">
-								<thead>
-									<tr>
-										<th>店内排名</th>
-										<th>姓名</th>
-										<th>借款金额(元)</th>
-										<th>团队名称</th>
-									</tr>
-								</thead>
-								<tbody class="tbodys">
-									<tr>
-										<td>1</td>
-										<td>张三</td>
-										<td>1150,000.00</td>
-										<td>战狼队</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>李四</td>
-										<td>1200.00</td>
-										<td>猛虎队</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>赵五</td>
-										<td>118,900.00</td>
-										<td>琅琊队</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>李六</td>
-										<td>118,900.00</td>
-										<td>飞虎队</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>赵启动</td>
-										<td>1,100.00</td>
-										<td>霹雳队</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td>欧阳星辰</td>
-										<td>118,900.00</td>
-										<td>蒙奇奇队</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td>金大大</td>
-										<td>100.00</td>
-										<td>冲锋队</td>
-									</tr>
-									<tr class="tr_on">
-										<td>8</td>
-										<td>王力</td>
-										<td>118,900.00</td>
-										<td>万八队</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td>曾小小</td>
-										<td>118,900.00</td>
-										<td>千亿队</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td>苏灿灿</td>
-										<td>118,900.00</td>
-										<td>厉害的队</td>
-									</tr>
-								</tbody>
-							</table>
-				    	</div>
-				    	<div class="pullUps">
-						<p id="pullUp" >上拉加载更多</p>
-					</div>
-				    	</div>
-					</div>
-					<div id="iscroll2" class="dis_none">
-				   		<div class="iscrolls">
-				   			<!--<div class="pulldowns">
-								<p id="pulldown" >下拉刷新</p>
-							</div>-->
+							<!--业务员业绩-->
+								<table class="">
+									<thead>
+										<tr>
+											<th>店内排名</th>
+											<th>姓名</th>
+											<th>借款金额(元)</th>
+											<th>团队名称</th>
+										</tr>
+									</thead>
+									<tbody class="tbody_o">
+										<tr>
+											<td>1</td>
+											<td>张三</td>
+											<td>1150,000.00</td>
+											<td>战狼队</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>李四</td>
+											<td>1200.00</td>
+											<td>猛虎队</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>赵五</td>
+											<td>118,900.00</td>
+											<td>琅琊队</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>李六</td>
+											<td>118,900.00</td>
+											<td>飞虎队</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>赵启动</td>
+											<td>1,100.00</td>
+											<td>霹雳队</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td>欧阳星辰</td>
+											<td>118,900.00</td>
+											<td>蒙奇奇队</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td>金大大</td>
+											<td>100.00</td>
+											<td>冲锋队</td>
+										</tr>
+										<tr class="tr_on">
+											<td>8</td>
+											<td>王力</td>
+											<td>118,900.00</td>
+											<td>万八队</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td>曾小小</td>
+											<td>118,900.00</td>
+											<td>千亿队</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td>苏灿灿</td>
+											<td>118,900.00</td>
+											<td>厉害的队</td>
+										</tr>
+									</tbody>
+								</table>
+					    	</div>
+				  		</div>
+				   		<div class="iscrolls dis_none iscroll_t">
 							<p class="txt">浙江省团队业绩排名</p>
 							<div class="table_box">
-							<!--团队业绩-->
-							<table>
-								<thead>
-									<tr>
-										<th>店内排名</th>
-										<th>团队名称</th>
-										<th>借款金额(元)</th>
-									</tr>
-								</thead>
-								<tbody class="tbodys">
-									<tr>
-										<td>1</td>
-										<td>战狼队</td>
-										<td>1150,000.00</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>猛虎队</td>
-										<td>1200.00</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>琅琊队</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>飞虎队</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>霹雳队</td>
-										<td>1,100.00</td>
-									</tr>
-									<tr class="tr_on">
-										<td>6</td>
-										<td>蒙奇奇队</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td>冲锋队</td>
-										<td>100.00</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td>万八队</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td>千亿队</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td>厉害的队</td>
-										<td>118,900.00</td>
-									</tr>
-								</tbody>
-							</table>
+								<!--团队业绩-->
+								<table>
+									<thead>
+										<tr>
+											<th>店内排名</th>
+											<th>团队名称</th>
+											<th>借款金额(元)</th>
+										</tr>
+									</thead>
+									<tbody class="tbody_t">
+										<tr>
+											<td>1</td>
+											<td>战狼队</td>
+											<td>1150,000.00</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>猛虎队</td>
+											<td>1200.00</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>琅琊队</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>飞虎队</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>霹雳队</td>
+											<td>1,100.00</td>
+										</tr>
+										<tr class="tr_on">
+											<td>6</td>
+											<td>蒙奇奇队</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td>冲锋队</td>
+											<td>100.00</td>
+										</tr>
+										<tr>
+											<td>8</td>
+											<td>万八队</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td>千亿队</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td>厉害的队</td>
+											<td>118,900.00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-						<!--<div class="pullUps">
-							<p id="pullUp" >上拉加载更多</p>
-						</div>-->
-					</div>
-				</div>	
-					<div id="iscroll3" class="dis_none">
-				   		<div class="iscrolls">
-				   			<!--<div class="pulldowns">
-								<p id="pulldown" >下拉刷新</p>
-							</div>-->
+				   		<div class="iscrolls dis_none iscroll_f">
 							<p class="txt">浙江省门店业绩排名</p>
 							<div class="table_box">
-							<!--门店业绩-->
-							<table>
-								<thead>
-									<tr>
-										<th>店内排名</th>
-										<th>门店名称</th>
-										<th>借款金额(元)</th>
-									</tr>
-								</thead>
-								<tbody class="tbodys">
-									<tr>
-										<td>1</td>
-										<td>城西店</td>
-										<td>1150,000.00</td>
-									</tr>
-									<tr class="tr_on">
-										<td>2</td>
-										<td>西溪店</td>
-										<td>1200.00</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>下沙店</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>武林店</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>余杭店</td>
-										<td>1,100.00</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td>闲林店</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td>文三路店</td>
-										<td>100.00</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td>文二路店</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td>文一路店</td>
-										<td>118,900.00</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td>庆春店</td>
-										<td>118,900.00</td>
-									</tr>
-								</tbody>
-							</table>
+								<!--门店业绩-->
+								<table>
+									<thead>
+										<tr>
+											<th>店内排名</th>
+											<th>门店名称</th>
+											<th>借款金额(元)</th>
+										</tr>
+									</thead>
+									<tbody class="tbody_f">
+										<tr>
+											<td>1</td>
+											<td>城西店</td>
+											<td>1150,000.00</td>
+										</tr>
+										<tr class="tr_on">
+											<td>2</td>
+											<td>西溪店</td>
+											<td>1200.00</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>下沙店</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>武林店</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>余杭店</td>
+											<td>1,100.00</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td>闲林店</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td>文三路店</td>
+											<td>100.00</td>
+										</tr>
+										<tr>
+											<td>8</td>
+											<td>文二路店</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td>文一路店</td>
+											<td>118,900.00</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td>庆春店</td>
+											<td>118,900.00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-						<!--<div class="pullUps">
-							<p id="pullUp" >上拉加载更多</p>
-						</div>-->
 					</div>
-				</div>	
-					
-				</div>
-				 <!--无数据-->
-				 <div class="not_data dis_none">
-				 	<div class="no_data"></div>
-				 </div>
-				 <!--加载中-->
-				 <div class="Loading dis_none">
-				 	<div>
-				 		<span></span>
-				 		<p>加载中</p>
-				 	</div>
-				 </div>
-			</div>
-	</div>	
-		<!--修改密码弹窗-->
-		<div id="psw_show" class="dis_none">
-			<div class="psw_show ">
-				<div class="amend_psw">
-					<p class="title">修改密码</p>
-					<div class="txt">
-						<p class="hint dis_none">密码不一致，请重新输入</p>
-					</div>
-					<ul>
-						<li>
-							<span>旧密码</span>
-							<input type="password" class="old_psw" placeholder="请输入旧的登录密码 "/>
-						</li>
-						<li>
-							<span>新密码</span>
-							<input type="password" class="new_psw" placeholder="请输入6-16位新密码 "/>
-						</li>
-						<li>
-							<span>确认密码</span>
-							<input type="password" class="new_psws" placeholder="请再次确认6-16位新密码 "/>
-						</li>
-					</ul>
-					<div class="psw_bot">
-						<span class="cancel">取消</span>
-						<!--输入密码后可以点击添加class="affirm"-->
-						<span class="affirm">确认修改</span>
-					</div>
-				</div>
-				<div class="suc dis_none">
-					<span class="iconfont">&#xe68f;</span>
-					<p>修改成功</p>
 				</div>
 			</div>
+			 <!--无数据展示-->
+			<div class="not_data dis_none">
+			 	<div class="no_data"></div>
+			</div>
+			<!--加载中-->
+			 <div class="Loading dis_none">
+			 	<div>
+			 		<span></span>
+			 		<p>加载中</p>
+			 	</div>
+			 </div>
 		</div>
-		
-		
-	</body>
+	</div>	
+</body>
 </html>
-
 
 <script src="js/plug/layer/layer.js"></script>
 <script src="js/plug/mui.min.js"></script>
 <script src="js/plug/mui.picker.min.js"></script>
-<script src="js/plug/iscroll-probe.js"></script>
 <script src='js/perfor.js'></script>
-<script>
-
-	$(function(){
-		//上拉加载
-		/*mui.init({
-			pullRefresh: {
-				container: '#pullrefresh',
-				down: {
-					callback: pulldownRefresh
-				},
-				up: {
-					contentrefresh: '正在加载...',
-					callback: pullupRefresh
-				}
-			}
-		});
-		
-			
-		// 下拉刷新具体业务实现
-		function pulldownRefresh() {
-			setTimeout(function() {
-				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-			}, 1500);
-		}
-		var count = 0;
-		// 上拉加载具体业务实现
-		function pullupRefresh() {
-		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count >= 2)); //参数为true代表没有更多数据了。
-			var table = document.body.querySelector('.tbody_o');
-				for (var i = 10, len = i + 10; i < len; i++) {
-					var tr = document.createElement('tr');
-					tr.innerHTML = '<td>'+ (i+1) +'</td><td>'+ "薛之谦" +'</td><td>'+ "100,000.00" +'</td><td>'+"自己的队"+'</td>';
-					table.appendChild(tr);
-				};
-			//设置表单高度	
-			$(".perfor_table_com").height("8.2rem");
-			var h = $(document).height()-$(window).height();
- 			$(document).scrollTop(h);
-
-		}, 1500);
-		
-		}*/
-
-		//确认修改密码
-		$(document).on("click",".affirm",function(){
-			$(".amend_psw").hide();
-			$(".suc").show();
-			setTimeout(function(){
-				layer.closeAll();
-			},2000)
-		});
-		$(document).on("click",".cancel",function(){
-			layer.closeAll();
-		});
-		//编辑
-		$(".compile").on("click",function(){
-			layer.open({
-				skin:"psw_show",
-				content:$("#psw_show").html()
-			});
-		});
-		//退出按钮
-		$(".out").on("click",function(){
-			layer.open({
-				skin:'out_show',
-				content:'确认退出',
-				btn:['退出','取消'],
-				yes: function(){
-//					退出操作
-				}
-			});
-		});
-		//日历选择
-		$("#select_date").on("click",function(){
-			var picker = new mui.DtPicker({'type':'month','endYear':'2030','beginYear':'2013'});
-			picker.show(function(rs) {
-				var arr = rs.text.split('-');
-				$(".select_date").html(arr[0]+'年'+arr[1]+'月');
-				picker.dispose();
-			})
-		});
-		//tab切换
-		$(".tab_ul li").on("click",function(){
-			var ins = $(this).index();
-			$(this).siblings().removeClass("on");
-			$(this).addClass("on");
-			$(".perfor_table_com>div").eq(ins).show().siblings().hide();
-//			heigh(ins)
-		});
-//		heigh();
-		//根据表单高度动态赋值
-		function heigh(ins){
-			if(ins != null){
-				var tabl = $("#mui_scroll"+ins)
-				var hei = tabl.height();
-				$(".perfor_table_com").height(hei);
-				var h = $(document).height()-$(window).height();
-	 			$(document).scrollTop(h);
-				console.log(666);
-	 			
-			}else{
-				var tablhe = $("#mui_scroll0").height();
-				$(".perfor_table_com").height(tablhe);
-				console.log(555);
-			}
-			
-		}
-	})
-	
-
-</script>
-

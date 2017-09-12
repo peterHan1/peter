@@ -106,8 +106,8 @@ var m = Math,
 			handleClick: true,
 
 			// Scrollbar
-			hScrollbar: true,
-			vScrollbar: true,
+			hScrollbar: false,
+			vScrollbar: false,
 			fixedScrollbar: isAndroid,
 			hideScrollbar: isIDevice,
 			fadeScrollbar: isIDevice && has3d,
