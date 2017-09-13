@@ -1,12 +1,12 @@
 $(function(){
 	//	清空
 	$(".loan li .empty").on("mousedown",function(){
-		$(this).siblings("input").val("");
+		$(this).siblings("input").val("").focus();
 	});
 	$(".loan li input").focus(function(){
 		var clas = $(this).attr("class");
 		$(this).parent(".div_bot").addClass("inp_bot");
-		$(this).parents("li").find(".p_top").show();
+		$(this).parents("li").find(".p_top").animate({marginTop:"0"});
 		$(this).parents("li").find(".p_top").css("color","#ff7400");
 		$(this).siblings("div").show();
 		if(clas == 'money_inp'){
@@ -33,13 +33,21 @@ $(function(){
 				$(this).attr("placeholder","手机号");
 			}
 			$(this).parent(".div_bot").removeClass("inp_bot");
-			$(this).parents("li").find(".p_top").hide();
+			$(this).parents("li").find(".p_top").animate({marginTop:"0.3rem"});
 		}else{
 			$(this).parents("li").find(".p_top").css("color","#b6b5b6");
 			
 		}
 	});
-
+//输入金额添加小数
+	$(".money_inp").keyup(function(){
+			var $amountInput = $(this);
+			$amountInput.val($amountInput.val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
+		});
+	$(".money_inp").blur(function(){
+			var th = $(this);
+			overFormat(th);
+		})	
 //	手机号验证
 	$(".phone_inp").blur(function(){
 		if($(this).val() != ""){
@@ -47,70 +55,82 @@ $(function(){
 			if(!(/^1[34578]\d{9}$/.test(phone))){
 				layer.open({
 					style:'background-color:#393b41;color:#fff;',
+					skin:'code_show',
 					time: 2,
 					shade: false,
-					content:'请输入正确的手机号'
+					content:'<span class="iconfont">&#xe68d;</span><p>请输入正确的手机号</p>'
 				})
 				return false; 
 			}
 		}
 	});
-//	验证码获取
+//	点击验证码获取 
 	$(".code_btn").on("click",function(){
-		if($(".phone_inp").val() == ""){
+		if($(".phone_inp").val() == "" || !(/^1[34578]\d{9}$/.test($(".phone_inp").val()))){ // 手机号为空报错
 			layer.open({
 				style:'background-color:#393b41;color:#fff;',
 				time: 2,
+				skin:'code_show',
 				shade: false,
-				content:'请输入正确的手机号'
-			})
+				content:'<span class="iconfont">&#xe68d;</span><p>请输入正确的手机号</p>'
+			});
+			return false;
 		}else{
-			layer.open({
-				style:'background-color:#393b41;color:#fff;',
-				time: 2,
-				shade: false,
-				content:'验证码已发送，请注意查收'
-			})
-	  		invokeSettime($(this));
+			var flag = false;//暂时写的条件判断验证码发送失败
+			if(flag == false){
+				//	验证码发送失败
+				layer.open({
+					style:'background-color:#393b41;color:#fff;',
+					time: 2,
+					skin:'code_show',
+					shade: false,
+					content:'<span class="iconfont">&#xe68d;</span><p>验证码发送失败，请重新获取</p>'
+				})
+				return false;
+			}else{
+				// 验证码发送成功
+				layer.open({
+					style:'background-color:#393b41;color:#fff;',
+					time: 2,
+					skin:'code_show',
+					shade: false,
+					content:'<span class="iconfont">&#xe618;</span><p>验证码已发送到您手机</p>'
+				})
+		  		invokeSettime($(this));
+			}
+			
 		}
 		
 	});
-	//	验证码错误
+	//	验证码输入错误提示
 	/*layer.open({
 		style:'background-color:#393b41;color:#fff;',
 		time: 2,
+		skin:'code_show',
 		shade: false,
-		content:'验证码错误，请重新输入'
+		content:'<span class="iconfont">&#xe68d;</span><p>验证码错误，请重新输入</p>'
 	})*/
-//	验证码发送失败
-	/*layer.open({
-		style:'background-color:#393b41;color:#fff;',
-		time: 2,
-		shade: false,
-		content:'验证码发送失败，请重新获取'
-	})*/
+
 //	申请加盟按钮
 	$(".btn").on("click",function(){
-		layer.open({
-			time: 2,
-			skin:'mess_show',
-			shade: false,
-			content:'您今天已提交过借款申请，我们会尽快联系您',
-			btn:'知道了',
-			yes: function(){
-				 layer.closeAll();
-			}
-		});
+		// 已经申请过提示弹窗
 		/*layer.open({
-			time: 2,
 			skin:'mess_show',
-			shade: false,
-			content:'您今天的借款申请次数已达上限，我们会尽快联系您',
+			content:'<p class="lay_txtp">您今天已提交过借款申请，我们会尽快联系您</p>',
 			btn:'知道了',
 			yes: function(){
 				 layer.closeAll();
 			}
-		})*/
+		});*/
+		// 已经申请次数上限弹窗
+		layer.open({
+			skin:'mess_show',
+			content:'<p class="lay_txtp">您今天的借款申请次数已达上限，我们会尽快联系您</p>',
+			btn:'知道了',
+			yes: function(){
+				 layer.closeAll();
+			}
+		})
 	})
 	function invokeSettime(obj){
 	    var countdown=60;
@@ -190,7 +210,7 @@ $(function(){
 				if(citys == item.provinceName){
 					for(var i=0;i<txts.length;i++){
 						if(txts[i].citysName == cityn){
-							var li = "<li city-name='"+txts[i].citysName+"' class='onli'>";
+							var li = "<li city-name='"+txts[i].citysName+"' class='li_ok'>";
 						}else{
 							var li = "<li city-name='"+txts[i].citysName+"'>";							
 						}
@@ -202,10 +222,9 @@ $(function(){
 				};
 			});
 			$("#city_ul li").on("click",function(){
-				console.log(666);
 				var txt = $(this).html();
-				$(".city_ul li").removeClass("onli");
-				$(this).addClass("onli");
+//				$(".city_ul li").removeClass("li_ok");
+//				$(this).addClass("li_ok");
 				$(".loan_box").css("left","0");
 				var city = citys+'-'+txt;
 				$(".city_inp").val(city);
@@ -232,12 +251,13 @@ $(function(){
     				lists += '<ul>';
     				$.each(item.carlist,function(k,items){
 						var txts = items.series;
-    					lists += '<li class="item itemli" data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</li>';
+    					lists += '<li class="item itemli"><p data-name="'+ items.name +'" data-id="'+ items.carid +'">' + items.name +'</p></li>';
     					$(document).on("click",".itemli",function(e){
 							var txt = e.target.getAttribute('data-name');
+							console.log(txt)
 							if(txt == items.name){
     							for(var i=0;i<txts.length;i++){
-    								var lis = "<li>" + txts[i] + "</li>"
+    								var lis = "<li brand='"+items.name+"'><p>" + txts[i] + "</p></li>"
     								$(".car_list_botul").append(lis);
     							}
 							};
@@ -318,6 +338,7 @@ $(function(){
 	$(".get_car").on("click",function(){
 		$(".list_one").show();
 		$(".list_two").hide();
+		$(".car_list_botul li").remove();
 	})
 	$(document).on("click",".cities_hook li",function(){
 		$(".cities_hook li").removeClass("onli");
@@ -345,7 +366,6 @@ $(function(){
 		layer.open({
 			type:0,
 			skin:"phone_show",
-			area: "1.1rem",
 			content:$(".phone_show").html(),
 	
 		})
@@ -353,4 +373,36 @@ $(function(){
 	$(document).on("click",".close",function(){
 		layer.closeAll();
 	});
+	function overFormat(th){
+	    var v = th.val();  
+	   	if(v === '0'){ 
+	        v = '0.00';  
+	    }else if(v === '0.'){  
+	        v = '0.00';  
+	    }else if(/^0+\d+\.?\d*.*$/.test(v)){  
+	        v = v.replace(/^0+(\d+\.?\d*).*$/, '$1');  
+	        v = inp.getRightPriceFormat(v).val;  
+	    }else if(/^0\.\d$/.test(v)){  
+	        v = v + '0';  
+	    }else if(!/^\d+\.\d{2}$/.test(v)){  
+	        if(/^\d+\.\d{2}.+/.test(v)){  
+	            v = v.replace(/^(\d+\.\d{2}).*$/, '$1');  
+	        }else if(/^\d+$/.test(v)){  
+	            v = v + '.00';  
+	        }else if(/^\d+\.$/.test(v)){  
+	            v = v + '00';  
+	        }else if(/^\d+\.\d$/.test(v)){  
+	            v = v + '0';  
+	        }else if(/^[^\d]+\d+\.?\d*$/.test(v)){  
+	            v = v.replace(/^[^\d]+(\d+\.?\d*)$/, '$1');  
+	        }else if(/\d+/.test(v)){  
+	            v = v.replace(/^[^\d]*(\d+\.?\d*).*$/, '$1');  
+	            ty = false;  
+	        }else if(/^0+\d+\.?\d*$/.test(v)){  
+	            v = v.replace(/^0+(\d+\.?\d*)$/, '$1');  
+	            ty = false;  
+	        }
+	    }  
+	    th.val(v);   
+	} 
 })
