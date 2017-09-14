@@ -18,93 +18,90 @@
 		<div class="loan">
 			<div class="loan_box">
 				<div class="loan_list fl">
-					<div class="nav">
-						<a href="###" class="fl iconfont">&#xe687;</a>
-						<h3>申请借款</h3>
-					</div>
-					<div class="top">
-						<ul>
-							<li>
-								<div class="div_top">
-									<p class="p_top">借款金额</p>
-								</div>
-								<div class="div_bot">
-									<input type="text" placeholder="借款金额" class="money_inp" />
-									<div class="dis_none empty"></div>
-								</div>
-							</li>
-							<li class="car">
-								<div class="div_top">
-									<p class="p_top">车辆型号</p>
-								</div>
-								<div class="div_bot" id="car">
-									<p class="p" id="car_p">车辆型号</p>
-									<input type="hidden" class="inp_car" car-name/>
-									<span class="iconfont">&#xe83d;</span>
-								</div>
-							</li>
-							<li>
-								<div class="div_top">
-									<p class="p_top">车牌号码</p>
-								</div>
-								<div class="div_bot">
-									<input type="text" placeholder="车牌号码" class="car_code" />
-									<div class="dis_none empty"></div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<p class="txt">填写个人信息，我们将安排专人为您提供服务</p>
-					<div class="bot">
-						<ul>
-							<li>
-								<div class="div_top">
-									<p class="p_top">您的姓名</p>
-								</div>
-								<div class="div_bot">
-									<input type="text" placeholder="您的姓名" class="name_inp" />
-									<div class="dis_none empty"></div>
-								</div>
-							</li>
-							<li>
-								<div class="div_top">
-									<p class="p_top">手机号</p>
-								</div>
-								<div class="div_bot">
-									<input type="number" placeholder="手机号" class="phone_inp" />
-									<div class="dis_none empty"></div>
-								</div>
-							</li>
-							<li>
-								<div class="div_top">
-									<p class="p_top">短信验证码</p>
-								</div>
-								<div class="div_bot">
-									<input type="number" placeholder="短信验证码" class="code_inp" />
-									<span class="code_btn">获取验证码</span>
-								</div>
-							</li>
-							<li class="city">
-								<div class="div_top">
-									<p class="p_top">所在地区</p>
-								</div>
-								<div class="div_bot" id="city">
-									<p class="p" id="city_p">所在地区</p>
-									<input type="hidden" class="city_inp" province city/>
-									<span class="iconfont">&#xe83d;</span>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="div_btn">
-						<span class="btn">申请加盟</span>
-						<p>如有问题请咨询拓道客服：<span class="phone">40085-777-85</span></p>
-						<p class="log"><span class="iconfont">&#xe693;</span>&nbsp;让汽车生活更精彩</p>
+					<div id="loan_list">	
+						<div class="top">
+							<ul>
+								<li>
+									<div class="div_top">
+										<p class="p_top">借款金额</p>
+									</div>
+									<div class="div_bot">
+										<input type="number" placeholder="借款金额" class="money_inp" />
+										<div class="dis_none empty"></div>
+									</div>
+								</li>
+								<li class="car">
+									<div class="div_top">
+										<p class="p_top">车辆型号</p>
+									</div>
+									<div class="div_bot" id="car">
+										<input type="button" class="inp_com inp_car" value="车辆型号" bran-name car-name/>
+										<span class="iconfont">&#xe83d;</span>
+									</div>
+								</li>
+								<li>
+									<div class="div_top">
+										<p class="p_top">车牌号码</p>
+									</div>
+									<div class="div_bot">
+										<input type="text" placeholder="车牌号码" class="car_code" />
+										<div class="dis_none empty"></div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<p class="txt">填写个人信息，我们将安排专人为您提供服务</p>
+						<div class="bot">
+							<ul>
+								<li>
+									<div class="div_top">
+										<p class="p_top">您的姓名</p>
+									</div>
+									<div class="div_bot">
+										<input type="text" placeholder="您的姓名" class="name_inp" />
+										<div class="dis_none empty"></div>
+									</div>
+								</li>
+								<li>
+									<div class="div_top">
+										<p class="p_top">手机号</p>
+									</div>
+									<div class="div_bot">
+										<input type="number" placeholder="手机号" class="phone_inp" />
+										<div class="dis_none empty"></div>
+									</div>
+								</li>
+								<li>
+									<div class="div_top">
+										<p class="p_top">短信验证码</p>
+									</div>
+									<div class="div_bot">
+										<input type="number" placeholder="短信验证码" class="code_inp" />
+										<span class="code_btn">获取验证码</span>
+									</div>
+								</li>
+								<li class="city">
+									<div class="div_top">
+										<p class="p_top">所在地区</p>
+									</div>
+									<div class="div_bot" id="city">
+										<input type="button" class="inp_com city_inp" province city value="所在地区"/>
+										<span class="iconfont">&#xe83d;</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="div_btn">
+							<span class="btn">提交申请</span>
+							<p>如有问题请咨询拓道客服：<span class="phone">40085-777-85</span></p>
+							<p class="log"><span class="iconfont">&#xe693;</span>&nbsp;让汽车生活更精彩</p>
+						</div>
 					</div>
 				</div>
 				<div class="fl car_list_box">
 					<div class="list_one">
 						<div class="nav">
+							<span class="iconfont fl">&#xe687;</span>
 							<h3>选择品牌</h3>
 							<span class="fr cancel">取消</span>
 						</div>
@@ -131,6 +128,7 @@
 				</div>
 				<div class="city_list_box fl dis_none">
 					<div class="nav">
+						<span class="iconfont fl">&#xe687;</span>
 						<h3>选择所在地区</h3>
 						<span class="fr cancel">取消</span>
 					</div>
@@ -198,18 +196,36 @@
 			</span>
 		</div>
 	</div>
+	
+<!--加载中-->
+<div class="spinner_box dis_none">
+	<div class="spinner">
+	  <div class="spinner-container container1">
+	    <div class="circle1"></div>
+	    <div class="circle2"></div>
+	    <div class="circle3"></div>
+	    <div class="circle4"></div>
+	  </div>
+	  <div class="spinner-container container2">
+	    <div class="circle1"></div>
+	    <div class="circle2"></div>
+	    <div class="circle3"></div>
+	    <div class="circle4"></div>
+	  </div>
+	  <div class="spinner-container container3">
+	    <div class="circle1"></div>
+	    <div class="circle2"></div>
+	    <div class="circle3"></div>
+	    <div class="circle4"></div>
+	  </div>
+	</div>
+</div>	
+
+
+
 </html>
 <script src="js/loan/car.js"></script>
 <script src="js/loan/city.js"></script>
 <script src="js/loan/plug/bscroll.min.js"></script>
 <script src="js/loan/loan.js"></script>
 <script src="js/layer/layer.js"></script>
-
-
-
-<script>
-	$(function(){
-//		console.log(car_list);
-	})
-</script>
-
