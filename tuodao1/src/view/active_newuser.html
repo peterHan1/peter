@@ -5,10 +5,11 @@
 	<title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
-<div class="main max_width">
+<%= require('html-loader!./layout/top.html') %>
+<div class="main max-width">
 	<div class="main_top">
 		<span class="fl title">拓道金服安全中心-北京银行存管账户激活</span>
-		<span class="fr help">对银行存管有疑问？点击查看 <a href="">帮助中心&nbsp;></a></span>
+		<span class="fr help">对银行存管有疑问？点击查看 <a href="#">帮助中心&nbsp;></a></span>
 	</div>
 	<div class="ts">
 		<p><span class="iconfont ld">&#xe684;</span> 为保障您的资金安全，请在充值、投资、提现前激活存管</p>
@@ -17,10 +18,10 @@
 	<div class="person_info">
 		<p class="bt">身份认证</p>
 		<div class="username">
-			<span class="iconfont">&#xe67a;</span><input type="text" placeholder="请输入您的真实姓名">
+			<span class="iconfont">&#xe67a;</span><input type="text" class="user" placeholder="请输入您的真实姓名"><i class="iconfont del">&#xe68b;</i>
 		</div>
 		<div class="idcard">
-			<span class="iconfont">&#xe674;</span><input type="number" readonly maxlength="18" placeholder="请输入您的身份证号码">
+			<span class="iconfont">&#xe674;</span><input type="text" maxlength="18" class="card" placeholder="请输入您的身份证号码"><i class="iconfont del">&#xe68b;</i>
 		</div>
 		<p class="bt">绑定银行卡</p>
 		<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
@@ -28,11 +29,11 @@
 			<span class="iconfont">&#xe679;</span>
 			<div class="sel_bank">
 	            <div id="Bank_sel" class="ipt_bank_select">
-	                <input type="text" placeholder="请选择银行" id="xx">
+	                <input type="text" placeholder="请选择银行" id="xx" readonly>
 	                <div class="iconfont" id="xx">&#xe67d;</div>
 	            </div>
 	            <div id="Bank_sel_hid" class="div_bank_select dis_none">
-	                <div id="xx"></div>
+	                <div id="xx" class="xx"></div>
 	                <span class="iconfont" id="xy">&#xe67d;</span>
 	            </div>
 	            <div id="Bank" class="dis_none"></div>
@@ -40,19 +41,21 @@
         <span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
 		</div>
 		<div class="bank_num">
-			<span class="iconfont">&#xe689;</span><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')"  placeholder="请输入您的银行卡号" readonly>
+			<span class="iconfont">&#xe689;</span><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" onpaste="return false;" placeholder="请输入您的银行卡号" maxlength="19" class="card_num" \><i class="iconfont del">&#xe68b;</i>
 			<p class="big_font"></p>
 			<div class="jg_box">
 				<P><i class="iconfont">&#xe671;</i>&nbsp;请输入正确的银行卡号</P>
 			</div>
 		</div>
 		<div class="phone_Num">
-			<span class="iconfont">&#xe66f;</span><input type="text" placeholder="请输入您的银行预留手机号" readonly><p class="phone_box"><i class="iconfont">&#xe671;</i>&nbsp;手机号必须由11位纯数字组成！</p>
+			<span class="iconfont">&#xe66f;</span>
+			<input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+			<p class="phone_box"><i class="iconfont">&#xe671;</i>&nbsp;手机号必须由11位纯数字组成！</p>
 		</div>
 		<p class="bt">设置支付密码</p>
 		<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
 		<div class="paynum">
-			<span class="iconfont">&#xe672;</span><input type="password" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')" readonly><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span>
+			<span class="iconfont">&#xe672;</span><input type="password" maxlength="6" placeholder="请输入6位数字支付密码" class="pay" onkeyup="this.value=this.value.replace(/\D/g,'')" ><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
 			<p class="pay_box"><i class="iconfont">&#xe671;</i>&nbsp;支付密码必须是6位纯数字。</p>
 		</div>
 		<input type="submit" class="btn" value="立即激活">
@@ -83,6 +86,8 @@
 		<p class="last">由此给您造成不便，敬请谅解！！</p>
 	</div>
 </div>
+<%= require('html-loader!./layout/footer.html') %>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js "></script>
 </body>
+
 </html>

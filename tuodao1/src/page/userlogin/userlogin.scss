@@ -12,6 +12,9 @@
 .kd{
 	background-color: $mainColor!important;
 }
+.border-color{
+	border-color: #ff7400!important;
+}
 .main{
 	background-color:#fff;
 	height:600px;
@@ -34,8 +37,8 @@
 		text-align:center;
 		input{
 			// display:block;
-			width:340px;
-			height:40px;
+			width:324px;
+			height:38px;
 			margin: 0px auto 30px auto;
 			border:1px solid #dddddd;
 			border-radius:5px;
@@ -55,7 +58,7 @@
 			position:relative;
 			#phoneNum_del{
 				position:absolute;
-				left:744px;
+				left:735px;
 				top:59px;
 				cursor:pointer;
 				display:none;
@@ -64,24 +67,33 @@
 				margin-top: 50px;
 				position:relative;
 			}
+			input.phoneNum:hover{
+				border-color:#707070;
+			}
 			.til{
-				width:340px;
-				height:20px;
-				line-height:20px;
+				text-align:left;
+				width:326px;
+				height:30px;
+				line-height:30px;
 				color:red;
 				font-size:12px;
 				position:absolute;
-				top:93px;
+				top:90px;
 				left:420px;
 				background:#f2f2f2;
 				display:none;
+				padding-left:12px;
+				z-index: 99;
 			}
 		}
 		.user_password{
 			position:relative;
+			 	input#password:hover{
+				border-color:#707070;
+			}
 			#password_del{
 				position:absolute;
-				left:744px;
+				left:735px;
 				top:10px;
 				cursor:pointer;
 				display:none;

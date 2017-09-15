@@ -1,0 +1,19 @@
+@import "../mixin";
+.footer{
+	@extend %clearfix;
+	background:#fff;
+	padding:20px 0 50px 0;
+	dl{
+		@include width-max;
+		@extend %clearfix;
+		dd{
+			float:left;
+			margin-right:20px;
+		}
+	}
+	div{
+		@include width-max;
+		color:$fontColor9e;
+		margin-top:10px;
+	}
+}

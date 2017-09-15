@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 
-var isDev = process.env.NODE_ENV !== 'production';
+var isDev = process.env.NODE_ENV !== 'online';
 var app = express();
 var port = 3000;
 
@@ -23,10 +23,8 @@ if (isDev){
 
 	var compiler = webpack(webpackDevConfig);
 
-	// attach to the compiler & the server
 	app.use(webpackDevMiddleware(compiler, {
 
-	// public path should be the same with webpack config
 		publicPath: webpackDevConfig.output.publicPath,
 		noInfo: true,
 		stats: {
@@ -34,8 +32,8 @@ if (isDev){
 		}
 	}));
 	app.use(webpackHotMiddleware(compiler));
-	var birds = require('./src/routes');
-	app.use('/', birds);
+	// var birds = require('./src/routes');
+	// app.use('/', birds);
 	// require('./src/routes')(app);
 
 	var reload = require('reload');
@@ -48,7 +46,7 @@ if (isDev){
 		console.log('App (dev) is now running on port 3000!');
 	});
 } else {
-	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(express.static(path.join(__dirname, 'dist/view')));
 	// require('./src/routes')(app);
 	app.listen(port, function () {
     	console.log('App (production) is now running on port 3000!');

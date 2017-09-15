@@ -1,0 +1,316 @@
+<div class="title">
+	<div class="tit"><i>新手福利</i>&nbsp;&nbsp;|&nbsp;&nbsp;百元起投&nbsp;&nbsp;体验理财快乐</div>
+	<div class="new-hand">新手任务</div>
+</div>
+<ul>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li class="hand-img">
+		<a href=""><img src="../../image/new-hand1.png"></a>
+	</li>
+</ul>
+
+<div class="title">
+	<div class="tit"><i>精选计划</i>&nbsp;&nbsp;|&nbsp;&nbsp;优质资产&nbsp;&nbsp;理财有规划</div>
+	<div class="more"><a href="#">更多项目<i class="iconfont">&#xe69a;</i></a></div>
+</div>
+<ul>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+</ul>
+
+<div class="title">
+	<div class="tit"><i>散标项目</i>&nbsp;&nbsp;|&nbsp;&nbsp;定期理财&nbsp;&nbsp;稳健收益</div>
+	<div class="more">更多项目</div>
+</div>
+<ul>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+</ul>
+
+<div class="title">
+	<div class="tit"><i>债权转让</i>&nbsp;&nbsp;|&nbsp;&nbsp;灵活资金&nbsp;&nbsp;更多收益</div>
+	<div class="more">更多项目</div>
+</div>
+<ul>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+	<li>
+		<a href="">
+		<div class="pro-list">
+			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="year">
+				<dl class="profit">
+					<dt>10<b>%+3.2%</b></dt>
+					<dd>预期年化</dd>
+				</dl>
+				<dl class="deadline">
+					<dt>1<b>个月</b></dt>
+					<dd>投资期限</dd>
+				</dl>
+			</div>
+			<div class="bar">
+				<div class="out"><div class="in" style="width: 10%"></div></div>
+			</div>
+			<div class="money">
+				<span class="total">项目总额：999.99万元</span>
+				<span class="surplus">剩余：99,999,999.99</span>
+			</div>
+			<div class="btn">100起投</div>
+			<div class="now-invest">立即投资</div>
+		</div>
+		</a>	
+	</li>
+</ul>

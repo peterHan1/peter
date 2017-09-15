@@ -122,26 +122,26 @@
 	}, c.festival = function(a, b) {
 		var c;
 		switch (b) {
-			case "1.1":
-				c = "元旦";
-				break;
-			case "3.8":
-				c = "妇女";
-				break;
-			case "4.5":
-				c = "清明";
-				break;
-			case "5.1":
-				c = "劳动";
-				break;
-			case "6.1":
-				c = "儿童";
-				break;
-			case "9.10":
-				c = "教师";
-				break;
-			case "10.1":
-				c = "国庆";
+		case "1.1":
+			c = "元旦";
+			break;
+		case "3.8":
+			c = "妇女";
+			break;
+		case "4.5":
+			c = "清明";
+			break;
+		case "5.1":
+			c = "劳动";
+			break;
+		case "6.1":
+			c = "儿童";
+			break;
+		case "9.10":
+			c = "教师";
+			break;
+		case "10.1":
+			c = "国庆";
 		}
 		c && (a.innerHTML = c), c = null;
 	}, c.viewYears = function(a) {

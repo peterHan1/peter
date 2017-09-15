@@ -1,8 +1,10 @@
 @import "../common/mixin";
+@import "../common/layout";
 body{
 	background-color:$bgColor;
 	.fl{float: left;}
 	.fr{float: right;}
+	.dis_none{display:none;}
 	.invest_top{
 		width:100%;
 		@include height-line(60px);
@@ -24,7 +26,7 @@ body{
 	}
 	.invest_list{
 		.invest_list_top{
-			margin-top:30px;
+			margin-top:25px;
 			margin-bottom:10px;
 			.invest_list_txt{
 				@extend %clearfix;
@@ -43,9 +45,11 @@ body{
 					@extend %clearfix;
 				}
 				li{
+					font-size:$fontSize14;	
 					float:left;
 					margin-right:110px;
 					cursor: pointer;
+					color:$fontColor333;
 				}
 				.on{
 					color:$fontColor74;
@@ -65,7 +69,7 @@ body{
 				background: #fff;
 				cursor: pointer;
 				position: relative;
-				padding:30px;
+				padding:25px 30px;
 				border-bottom:1px solid #e5e5e5;
 				@extend %clearfix;
 				.full{
@@ -87,6 +91,9 @@ body{
 						position: relative;
 						margin-left:10px;
 						padding-right:10px;
+						img{
+							margin-top:4px;
+						}
 						span{
 							width: 0;
 							height: 0;
@@ -100,8 +107,8 @@ body{
 							padding: 0 10px;
 							position: absolute;
 							background-color: #fff;
-							left: 85px;
-							top: 0;
+							left: 80px;
+							top: 1px;
 							color: $fontColor9e;
 							font-size: $fontSize12;
 							white-space: nowrap;
@@ -138,12 +145,13 @@ body{
 					dt{
 						@include height-line(44px);
 						color:$fontColor333;
+						font-size:$fontSize14;
 						.num_font{
-							font-size:$fontSize14;
+							font-size:$fontSize16;
 						}
 					}
 					dd{
-						font-size:$fontSize12;
+						font-size:13px;
 						color:$fontColor9e;
 					}
 				}
@@ -210,6 +218,8 @@ body{
 				}
 				&:hover{
 					box-shadow: 0 0 20px 8px #efeff2;
+					-webkit-box-shadow: 0 0 20px 8px #efeff2;  
+					-moz-box-shadow: 0 0 20px 8px #efeff2;  
 					z-index: 9;
 					.btn{
 						background-color:$mainColor;

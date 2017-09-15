@@ -122,9 +122,9 @@ $(function() {
 		} else {
 			$(".register_btn").removeClass("kd");
 		}
-		$(".set_password .psd_til_1").hide();
-		$(".set_password .psd_til_2").hide();
-		$(".set_password .psd_til_3").hide();
+		$(".set_password .psd_til_1").css("visibility","hidden");
+		$(".set_password .psd_til_2").css("visibility","hidden");
+		$(".set_password .psd_til_3").css("visibility","hidden");
 		var strongRegex = new RegExp("^(?=.{15,18})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
 		var mediumRegex = new RegExp("^(?=.{6,12})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
 		var enoughRegex = new RegExp("(?=.{1,6}).*", "g");
@@ -134,20 +134,20 @@ $(function() {
 			$(".set_password .line .line3").css("background-color", "#dddddd");
 
 		} else if (strongRegex.test($(this).val())) {
-			$(".set_password .line .line1").css("background-color", "green");
-			$(".set_password .line .line2").css("background-color", "green");
-			$(".set_password .line .line3").css("background-color", "green");
-			$(".set_password .psd_til_3").show();
+			$(".set_password .line .line1").css("background-color", "#30a744");
+			$(".set_password .line .line2").css("background-color", "#30a744");
+			$(".set_password .line .line3").css("background-color", "#30a744");
+			$(".set_password .psd_til_3").css("visibility","visible");
 		} else if (mediumRegex.test($(this).val())) {
-			$(".set_password .line .line1").css("background-color", "yellow");
-			$(".set_password .line .line2").css("background-color", "yellow");
+			$(".set_password .line .line1").css("background-color", "#ffc424");
+			$(".set_password .line .line2").css("background-color", "#ffc424");
 			$(".set_password .line .line3").css("background-color", "#dddddd");
-			$(".set_password .psd_til_2").show();
+			$(".set_password .psd_til_2").css("visibility","visible");
 		} else {
-			$(".set_password .line .line1").css("background-color", "red");
+			$(".set_password .line .line1").css("background-color", "#e60012");
 			$(".set_password .line .line2").css("background-color", "#dddddd");
 			$(".set_password .line .line3").css("background-color", "#dddddd");
-			$(".set_password .psd_til_1").show();
+			$(".set_password .psd_til_1").css("visibility","visible");
 		}
 		return true;
 	});

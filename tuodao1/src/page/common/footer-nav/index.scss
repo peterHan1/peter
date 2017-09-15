@@ -1,38 +1,81 @@
 @import '../mixin';
-.footer_nav{
+.footer-nav{
             @extend %clearfix;
             width:100%;
             background:#fff;
-            padding:20px 0;
+            .max-width{
+              @extend %clearfix;
+              border-bottom:1px solid #ddd;
+              padding:50px 0;
+            }
             .kf{
-                color:$fontColor9e;
-                
+                color:$fontColor9e;  
                 float:left;
                 ol{
                     @extend %clearfix;
+                    width:380px;
+                    overflow:hidden;
                     li{
                         float:left;
-                        margin-right:20px;
-                        dd{font-size:24px;color:$fontColor333}
+                        &.dk{
+                            float:right;
+                        }
+                        dd{
+                          font-size:24px;
+                          color:$fontColor333;
+
+                        }
                     }
                 }
                 p{
-                  margin-top:5px
+                  margin-top:10px
                 }
                 a{
-                  @include border-style($b-radius:15px);
+                  @include border-style($b-radius:15px,$b-color:#bfbfbf);
                   margin-top:10px;
                   display:inline-block;
                   color:$fontColor9e;
                   padding:0 10px;
+                  .iconfont{
+                        margin-right:5px;
+                  }
                 }     
             }
             .fnav{
                   float:left;
-
+                  margin-left:125px;
                   dl{
                     float:left;
-                    margin:0 0 0 50px;
+                    margin-right:70px;
+
+                    dt{
+                        color:$fontColor333;
+                    }
+                    dd{
+                        margin-top:10px;
+                      a{
+                        color:$fontColor9e;
+                        &:hover{
+                          color:$mainColor;
+                        }
+                      }
+                    }
                   }
+            }
+
+            .er-code{
+                float:left;
+                margin-left:60px;
+                .wx{
+                  float:left;
+                }
+                .app{
+                  float:left;
+                  margin-left:60px;
+                }
+                p{
+                  margin-bottom:20px;
+                }
+                
             }
 }

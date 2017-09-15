@@ -1,4 +1,5 @@
 /* ! layer-v2.1 弹层组件 License LGPL  http://layer.layui.com/ By 贤心 */ 
+/* eslint-disable */
 ! function(a, b) {
 	"use strict";
 	var c, d, e = {

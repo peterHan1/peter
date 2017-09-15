@@ -1,10 +1,21 @@
 require('util/paging/zxf_page.scss');
 require('util/paging/zxf_page.js');
 
-console.log("理财详情页");
-
 $(function(){
 	$(".detail_tab li a").on("click",function(){
+		$(".detail_con>div").hide();
+		var txt = $(this).html();
+		if(txt == "项目详情"){
+			$(".details").show();
+		}else if(txt == "审核资料"){
+			$(".audit").show();
+		}else if(txt == "安全保障"){
+			$(".safety").show();
+		}else if(txt == "常见问题"){
+			$(".issue").show();
+		}else if(txt.indexOf("加入记录") != -1){
+			$(".con_record").show();
+		}
 		$(this).addClass("on");
 		$(this).parent().siblings().find('a').removeClass('on');
 	});
@@ -22,75 +33,16 @@ $(function(){
 	$(".investting input").blur(function(){
 		$(this).parent().removeClass("com_sty");
 	});
-	// 余额全投
-	$(".all_money").on("click",function(){
-		var money = $(".moneys").html();
-		$(".sub_money").keyup();
-		$(".sub_money").val(money);
-		var inputs = $(".sub_money");
-		inp(inputs);
 
-	});
-	// 支付按钮点击的状态
-	$(".sub_btn").on("click",function(){
-		var money = $(".sub_money").val();
-		var psw = $(".sub_psw").val();
-	/*	if(money == "" && psw == ""){
-			show_mess("请填写加入金额! 和 请填写加入金额和支付密码!");
-		}else if(money == ""){
-			show_mess("请填写加入金额!");
-		}else if(psw == ""){
-			show_mess("请填写支付密码!");
-		}else if(psw != "123"){
-			show_mess("密码错误，请重新输入!");
-		}else{
-			if($(".mess").length > 0){
-				$(".current_money").removeClass("cur_money");
-				$(".mess").remove();
-			}
-		} */
-		// 加入成功弹窗
-		layer.open({
-			type: 1,
-			title:'',
-			skin: 'succeed_show',
-			area:['560px','360px'],
-			content: $('#bank_show')
-		});
-	});
-	$(".iskonw,.rclose").on("click",function(){
-		layer.closeAll();
-	});
-
-	$(".ul_select li").on("click",function(){
-		var clas = $(this).attr("class");
-		var sel = '<b class="select_b"></b>';
-		if(clas != "yhq_no"){
-			var datas = $(this).attr('data');
-			$(".ul_select li .select_b").remove();
-			$(this).append(sel);
-			$(".yes").addClass("add_quan");
-			$(".yes").attr("data",datas);
-		}
-	});
-	$(document).on("click",".discount_bot .add_quan",function(){
-		var dat = $(this).attr("data");
-		$(".inp_ticket").val(dat);
-		$(this).removeClass("add_quan");
-		layer.closeAll();
-	});
-	$(".discount_bot .no").on("click",function(){
-		$(".ul_select li .select_b").remove();
-		$(".yes").removeClass("add_quan");
-		layer.closeAll();
-	});
 	// 优惠券点击
 	$(".ticket").on("click",function(){
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
 		if($(".sub_money").val() == ""){
-			var a = $(".sub_money").parent(".invest_money");
-			input_mess("选择优惠券前需要填写加入金额！",a);
+			input_mess("选择优惠券前需要填写加入金额！",null,false);
+			return false;
+		}else if($(".invest_money").hasClass('bor_col')){
+			return false;
 		}else{
 			$(".ul_select li").each(function(){
 				var vals = $(this).attr("data");
@@ -107,29 +59,197 @@ $(function(){
 			});
 		}
 	});
+	// 清空按钮
+	$(".btn_empty").on("click",function(){
+		$(this).hide();
+		$(".sub_money").val("");
+		$(".invest_money").removeClass("bor_col");
+		$(".in_span").remove();
+		$(".sub_money").css("color","#333");
+		$(".sub_money").focus();
+		setinput($(".sub_money"));
+		return false;
+	});
+	// 余额全投
+	$(".all_money").on("click",function(){
+		// 账户余额
+		var money = $(".moneys").html();
+		money = parseFloat(money.replace(/,/g,''));
+		console.log("111: "+money);
+		// 可投金额
+		var a_money = 666666;
+		if(money >= a_money){
+			$(".sub_money").val(a_money);
+			console.log("555: "+a_money);
+		}else{
+			$(".sub_money").val(money);
+			console.log("666: "+money);
+		}
+		$(".sub_money").keyup();
+		var inputs = $(".sub_money");
+		setinput(inputs);
+		import_money(money,a_money);
+	});
 	// 输入金额input输入状态
 	$(".sub_money").keyup(function(){
+		var money = $(".moneys").html();
+		money = parseFloat(money.replace(/,/g,''));
+		// 可投金额
+		var a_money = 666666;
 		var inputs = $(this);
-		inp(inputs);
+		setinput(inputs);
+		import_money(money,a_money);
+		$(".inp_ticket").val("");
+		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
+		if(inputs.val() != ""){
+			$(".btn_empty").show();
+		}else{
+			$(".btn_empty").hide();
+		}
 	});
-	function inp(ins){
+	// 输入金额input失去焦点状态
+	/* $(".sub_money").blur(function(){
+		var inputs = $(this);
+		import_money();
+		setinput(inputs);
+	}); */
+	// 判断输入金额
+	function import_money(bal_money,in_money){
+		var inpt = $(".sub_money");
+		var money = $(".sub_money").val();
+		var a = $(".invest_money");
+		// 账户余额
+		// var bal_money = 5000;
+		// 可投金额
+		// var in_money = 6666;
+		if(money != "" && money != 0 && money < 100   && in_money < 500){
+			console.log("输入的金额：" + money);
+			console.log("剩余可投的金额：" + in_money);
+			input_mess("不得低于起投金额100元！",inpt,true);
+			return false;
+		}else if(money != "" && money != 0  && money < 500 && in_money >= 500){
+			console.log("输入的金额：" + money);
+			console.log("剩余可投的金额：" + in_money);
+			input_mess("不得低于起投金额500元！",inpt,true);
+			return false;
+		}else if(money != "" && money != 0  && money > in_money){
+			console.log("输入的金额：" + money);
+			console.log("剩余可投的金额：" + in_money);
+			input_mess("您输入的金额大于当前剩余可投金额！",inpt,true);
+			return false;
+		}else if(money != "" && money != 0  && money > 500000){
+			console.log("输入的金额：" + money);
+			console.log("剩余可投的金额：" + in_money);
+			input_mess("单笔限额为500,000元！",inpt,true);
+			return false;
+		}else if(money != "" && money != 0  && money > bal_money){
+			console.log("输入的金额：" + money);
+			console.log("余额: " + bal_money);
+			input_mess("余额不足",inpt,true);
+			return false;
+		}else{
+			a.removeClass("bor_col");
+			$(".in_span").remove();
+			inpt.css("color","#333");
+		}
+	};
+	// 支付按钮点击的状态
+	$(document).on("click",".sub_btn",function(){
+		var mon = $(".invest_money");
+		var pswd = $(".input_pwd");
+		var money = $(".sub_money").val();
+		var psw = $(".sub_psw").val();
+		if(money == "" && psw == ""){
+			show_mess("请填写加入金额! 和 请填写加入金额和支付密码!");
+			mon.addClass("bor_col");
+			pswd.addClass("bor_col");
+			return false;
+		}else if(money == ""){
+			mon.addClass("bor_col");
+			show_mess("请填写加入金额!");
+			return false;
+		}else if(psw == ""){
+			pswd.addClass("bor_col");
+			show_mess("请填写支付密码!");
+			return false;
+		}else if(psw != "123" && $(".in_span").length <= 0){
+			show_mess("密码错误，请重新输入!");
+			pswd.addClass("bor_col");
+			return false;
+		}else{
+			$(".current_money").removeClass("cur_money");
+			$(".mess").remove();
+			if($(".in_span").length <= 0){
+				mon.removeClass('bor_col');
+				pswd.removeClass('bor_col');
+				// 加入成功弹窗
+				layer.open({
+					type: 1,
+					title:'',
+					skin: 'succeed_show',
+					area:['560px','360px'],
+					content: $('#bank_show')
+				});
+			}
+		}
+	});
+	$(".iskonw,.rclose").on("click",function(){
+		layer.closeAll();
+	});
+	// 优惠券弹窗选择
+	$(".ul_select li").on("click",function(){
+		var clas = $(this).attr("class");
+		var sel = '<b class="select_b"></b>';
+		if(clas != "yhq_no"){
+			var datas = $(this).attr('data');
+			$(".ul_select li .select_b").remove();
+			$(this).append(sel);
+			$(".yes").addClass("add_quan");
+			$(".yes").attr("data",datas);
+		}
+	});
+	$(document).on("click",".discount_bot .add_quan",function(){
+		var dat = $(this).attr("data");
+		var a = $(".sub_money");
+		var d = $(".inp_ticket").val();
+		$(".p_ticket").html(dat).css('color','#333');
+		$(".inp_ticket").val(dat);
+		$(this).removeClass("add_quan");
+		layer.closeAll();
+		var b = Math.floor((a.val()*0.09/12)*100)/100;
+		var e = Math.floor((a.val()*0.09/12)*100)/100;
+		$(".predict_money").html(b +"+"+e);
+	});
+	$(".discount_bot .no").on("click",function(){
+		$(".ul_select li .select_b").remove();
+		$(".yes").removeClass("add_quan");
+		layer.closeAll();
+	});
+	// 已阅读
+	$('#checkinp').on('click',function(){
+		if($('#checkinp').is(':checked')){
+			$('#sub_btn').attr('class','sub_btn');
+		}else{
+			$('#sub_btn').attr('class','no_btn');
+		}
+	});
+	// 输入金额计算
+	function setinput(ins){
+		var $amountInput = ins;
+		event = window.event || event;
+		if (event.keyCode == 37 | event.keyCode == 39) {
+			return;
+		}
+		$amountInput.val($amountInput.val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/^0/g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
 		var a=ins;
-		if(/[^\d]/.test(a.val())){
-			var temp_amount=a.val().replace(/[^\d.]/g,'');
-			a.val(temp_amount);
-		};
 		// 最后根据算法优化
-		var b = a.val();
+		var b = Math.floor((a.val()*0.09/12)*100)/100;
 		// 有奖励
 		var flag = false;
 		var c = 6;
-		// 使用加息券
-		var quan = false;
-		var d = 10;
+
 		if(flag == true && quan == true){
 			$(".predict_money").html(b +"+"+ c +"+"+ d);
-		}else if(quan == true){
-			$(".predict_money").html(b +"+"+d);
 		}else if(flag == true ){
 			$(".predict_money").html(b +"+"+c);
 		}else{
@@ -143,36 +263,21 @@ $(function(){
 			$(".sub_btn").val("实付"+m+"元，立即投资");
 		}
 	};
-
-	// 输入金额input失去焦点状态
-	$(".sub_money").blur(function(){
-		var money = $(this).val();
-		var a = $(this).parent(".invest_money");
-		if(money == 666){
-			input_mess("余额不足",a);
-		}else if(money == 500){
-			input_mess("不得低于起投金额500元！",a);
-		}else if(money > 50000){
-			input_mess("单笔限额为500,000元！",a);
-		}else if(money == 123){
-			input_mess("您输入的金额大于当前剩余可投金额！",a);
-		}else if(money < 100){
-			input_mess("不得低于起投金额100元！",a);
-		}else{
-			a.removeClass("bor_col");
-			$(".in_span").remove();
-		}
-
-	});
-
 	// input状态提示
-	function input_mess(str,par){
+	function input_mess(str,inp,flag){
+		inp = inp || null;
 		if ($(".in_span").length>0) {
 			$(".in_span").remove();
 		}
-			var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
-			par.addClass("bor_col");
-			par.append(txts);
+		if(flag == true){
+			// $(".btn_empty").show();
+		}
+		if(inp != null){
+			inp.css("color","red");
+		}
+		var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
+		 $(".invest_money").addClass("bor_col");
+		 $(".invest_money").append(txts);
 	}
 	// top提示错误
 	function show_mess(str){
@@ -209,4 +314,35 @@ $(function(){
 			}
 		}
 	});
+	// countdown(".times","2017/08/28,09:18:00");
+	function countdown(obj,time){
+		var html = '<input type="submit" value="实付0.00元，立即投资" class="sub_btn">';
+		var ss=setInterval(function(){
+			var endtime=new Date(time),
+				nowtime = new Date(),
+				leftsecond=parseInt((endtime.getTime()-nowtime.getTime())/1000),
+				d=parseInt(leftsecond/3600/24),
+				h=parseInt((leftsecond/3600)%24),
+				m=parseInt((leftsecond/60)%60),
+				m1=parseInt((leftsecond/3600)%24*60),
+				s=parseInt(leftsecond%60);
+			h= (h<10) ? "0"+h : h;
+			m= (m<10) ? "0"+m : m;
+			s= (s<10) ? "0"+s : s;
+			if(leftsecond<=0){
+				h=0;
+				m=0;
+				s=0;
+			}
+			$(obj).find("span b").text(h);
+			$(obj).find("span i").text(m);
+			$(obj).find("span em").text(s);
+			if(leftsecond<=0){
+				$('.countdown').remove();
+				$('.input_sub').append(html);
+				clearInterval(ss);
+			}else{
+			}
+		},100);
+	}
 });

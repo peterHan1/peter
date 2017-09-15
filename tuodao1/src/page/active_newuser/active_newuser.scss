@@ -13,7 +13,7 @@
 	background-color:#EBEBE4;
 }
 .red{
-	border-color:red!important;
+	border-color:#e60012!important;
 }
 .border{
 	border-color:#ff7400!important;
@@ -24,10 +24,25 @@
 i{
 	font-style:normal;
 }
+.border-color{
+	border-color: #ff7400!important;
+}
+i.del{
+	position:absolute;
+	right:289px;
+	top:6px;
+	cursor:default;
+	font-size:18px;
+	display:none;
+	color:#9e9e9e;
+}
+i.del:hover{
+	color:#ff7400;
+}
 .main{
 	height:990px;
 	background-color: #fff;
-	margin: 30px auto 0 auto;
+	margin: 30px auto 160px auto;
 	.main_top{
 		height:60px;
 		span{
@@ -189,6 +204,16 @@ i{
 			left:640px;
 			top:8px;
 			cursor:pointer;
+		}
+		.yan:hover{
+				color:#ff7e12;
+			}
+		.yan_kai:hover{
+			color:#ff7e12;
+		}
+		i.del{
+			top:6px;
+			right:310px;
 		}
 		.pay_box{
 			width:368px;

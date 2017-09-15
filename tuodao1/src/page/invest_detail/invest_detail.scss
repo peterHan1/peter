@@ -15,16 +15,23 @@ b,i,em{
 		li{
 			float: left;
 			font-size:$fontSize16;
-			height:58px;
-			color:$fontColor333;
-			padding:0 10px;
+			height:60px;
 			margin-right:80px;
 			cursor: pointer;
+			a{
+				color:$fontColor333;
+				display: inline-block;
+				text-align: center;
+				width:100%;
+				height:58px;
+				padding:0 10px;
+			}
+			.on{
+				color:$fontColor74;
+				border-bottom: 2px solid #ff8e2a;
+			}
 		}
-		.on{
-			color:$fontColor74;
-			border-bottom: 2px solid #ff8e2a;
-		}
+		
 	}
 .clearing{
 	font-size:$fontSize14;
@@ -95,7 +102,7 @@ b,i,em{
 		}
 		.major{
 			@extend %clearfix;
-			margin-top:90px;
+			margin-top:85px;
 			padding:0 30px;
 			dl{
 				float: left;
@@ -268,7 +275,7 @@ b,i,em{
 		}
 		.current_money {
 			@extend %clearfix;
-			height:55px;
+			height:58px;
 			margin-top:20px;
 			font-size:$fontSize14;
 			color: #a3a3a3;
@@ -308,7 +315,7 @@ b,i,em{
 			a{
 				margin-left:60px;
 			}
-			span{
+			.mess{
 				float: left;
 				display: block;
 				width:95%;
@@ -332,16 +339,20 @@ b,i,em{
 			cursor: pointer;
 			position:relative;
 			@extend %clearfix;
+			input::-ms-input-placeholder{color:#9e9e9e}
+			input::-webkit-input-placeholder{color:#9e9e9e}
+			input::-moz-placeholder{color:#9e9e9e}
 			input{
 				float: left;
 				padding-left:10px;
-				width:200px;
-				height:38px;
+				width:205px;
+				@include height-line(38px);
 				background-color:#fff;
+				color:$fontColor333;
 			}
 			div{
-				float: left;
-				width: 88px;
+				float: right;
+				width: 65px;
 				height:38px;
 				font-size:$fontSize14;
 				text-align: right;
@@ -349,6 +360,20 @@ b,i,em{
 				background-color:#fff;
 				a{
 					color: $fontColor70;
+				}
+			}
+			.p_ticket{
+				padding-left:10px;
+				display:inline-block;
+				width:205px;
+				@include height-line(38px);
+				float: left;
+			}
+			.btn_empty{
+				float: left;
+				display: none;
+				&:hover{
+					color:$fontColor74;
 				}
 			}
 			.in_span{
@@ -795,10 +820,15 @@ b,i,em{
 					position: absolute;
 					right:15px;
 					bottom:35px;
-					display: inline-block;
 					width:21px;
 					height:23px;
+					display: none;
 					background:url(../../image/magnify.png) no-repeat;
+				}
+				&:hover{
+					.magnify{
+						display: block;
+					}
 				}
 			}
 		}
@@ -916,6 +946,7 @@ b,i,em{
 		}
 	}
 	.show_com{
+		width:100%;
 		text-align: center;
 		overflow: hidden;
 		.icon{
@@ -1050,7 +1081,7 @@ b,i,em{
 		.discount_txt{
 			font-size:$fontSize12;
 			color:$fontColor9e;
-			margin-top:20px;
+			line-height:40px;
 			padding:0 20px;
 			i{
 				color:$fontColor74;
@@ -1058,10 +1089,10 @@ b,i,em{
 			}
 		}
 		ul{
-			height:302px;
+			height:305px;
 			overflow-y:auto;
 			li{
-				margin-top:20px;
+				margin-bottom:20px;
 				overflow: hidden;
 				float: left;
 				margin-left:20px;

@@ -4,9 +4,9 @@
   "description": "重构PCv1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=dev IETEST=ie supervisor -w src/routes,src/view,app.js -e node,css,js,html app",
     "start": "cross-env NODE_ENV=dev supervisor -w src/routes,src/view,app.js -e node,css,js,html app",
-    "webpack": "webpack --config webpack.production.config.js "
+    "dist_test": "NODE_ENV=online webpack"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "express": "^4.15.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.11.2",
+    "hogan.js": "^3.0.2",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.29.0",
     "json-loader": "^0.5.7",

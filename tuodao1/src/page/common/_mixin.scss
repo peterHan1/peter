@@ -1,24 +1,26 @@
 // 主色
-$mainColor:			#ff7400;
+$mainColor:     #ff7400;
 // 主背景
-$bgColor:			#f2f2f2;
+$bgColor:       #f2f2f2;
 
 // 辅色
-$assistColor:		#d7c08e;
+$assistColor:   #d7c08e;
 // 分割线和线框
-$borderColor: 		#ddd;
+$borderColor:   #ddd;
 // 说明性或辅助线文字
-$fontColor9e: 		#9e9e9e;
-$fontColor333:    #333;
-$fontColor70:		#707070;
-$fontColor74:		#ff7400;
-$fontColorab:		#ababab;
+$fontColor9e:   #9e9e9e;
+$fontColor333:  #333;
+$fontColor70:   #707070;
+$fontColor74:   #ff7400;
+$fontColorab:   #ababab;
 
 // 字号
-$fontSize12:		12px;
-$fontSize14:		14px;
+$fontSize12:    12px;
+$fontSize14:    14px;
 $fontSize16:    16px;
-$fontSize20:		20px;
+$fontSize20:    20px;
+
+
 // 网站定宽
 @mixin width-max{
     width:1180px; 
@@ -34,6 +36,13 @@ $fontSize20:		20px;
     border:$b-width $b-style $b-color;
     border-radius:$b-radius;
 }
+@mixin no-border{
+  border:0;
+}
+@mixin loading{
+  background:url(../../image/loading.gif) center no-repeat;
+}
+
 // 清楚浮动
 %clearfix{
   *zoom: 1;
@@ -52,10 +61,88 @@ $fontSize20:		20px;
 
 
 
+
+
 .rotate{
-	transform: rotate(-180deg);
+  transform: rotate(-180deg);
   -webkit-transform: rotate(-180deg);
   -moz-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
-}       
+} 
+
+
+
+.tips{
+    @include border-style($b-color:#ddd,$b-radius:5px);
+    padding: 0 10px;
+    display:none;
+    position: absolute;
+    background: #fff;
+    left: 0;
+    top: 0;
+    color: $fontColor9e;
+    font-size: $fontSize12;
+    line-height: 20px;
+    white-space: nowrap;
+    z-index: 2;
+    &.no-tips{
+      border:0;
+      padding:0;
+      border-radius:0;
+      background:none;
+      left:15px;
+    }
+    span{
+      width: 0;
+      height: 0;
+      font-size: 0;
+      overflow: hidden;
+      position: absolute;
+      border-width: 5px 6px;
+      border-style: solid;
+      // top: 0;
+      // left:50%;
+      // margin-left:-6px;
+      &.b{
+        
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color:transparent;
+        border-left-color: transparent;
+        // top:-10px;
+      }
+      &.t{
+          border-top-color: transparent;
+          border-right-color: transparent;
+          border-bottom-color:transparent;
+          border-left-color:transparent;
+          // top:-9px;
+      }
+    }
+    
+    &.top-tips span{top:0;left:50%;margin-left:-6px}
+    &.top-tips span.b{border-bottom-color: #ddd;top:-10px;}
+    &.top-tips span.t{border-bottom-color: #fff;top:-9px;}
+
+    &.right-tips span{right:0;top:50%;margin-top:-5px}
+    &.right-tips span.b{border-left-color: #ddd;right:-12px}
+    &.right-tips span.t{border-left-color: #fff;right:-11px}
+
+    &.bottom-tips span{bottom:0;left:50%;margin-left:-6px}
+    &.bottom-tips span.b{border-top-color: #ddd;bottom:-10px;}
+    &.bottom-tips span.t{border-top-color: #fff;bottom:-9px;}
+  
+    &.left-tips span{left:0;top:50%;margin-top:-5px}
+    &.left-tips span.b{border-right-color: #ddd;left:-12px}
+    &.left-tips span.t{border-right-color: #fff;left:-11px}
+
+}
+
+
+
+
+
+
+
+
