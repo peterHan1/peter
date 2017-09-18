@@ -75,17 +75,14 @@ $(function(){
 		// 账户余额
 		var money = $(".moneys").html();
 		money = parseFloat(money.replace(/,/g,''));
-		console.log("111: "+money);
 		// 可投金额
 		var a_money = 666666;
 		if(money >= a_money){
 			$(".sub_money").val(a_money);
-			console.log("555: "+a_money);
 		}else{
 			$(".sub_money").val(money);
-			console.log("666: "+money);
 		}
-		$(".sub_money").keyup();
+		$(".sub_money").focus();
 		var inputs = $(".sub_money");
 		setinput(inputs);
 		import_money(money,a_money);
@@ -107,45 +104,40 @@ $(function(){
 			$(".btn_empty").hide();
 		}
 	});
+	// 输入金额input得到光标状态
+	$(".sub_money").focus(function(){
+		var v = $(this).val();
+		if(v == '0.00'){
+			$(this).val('');
+		}else{
+			$(this).val($(this).val().replace(/\.00/, '').replace(/(\.\d)0/,'$1'));
+		}
+	});
 	// 输入金额input失去焦点状态
-	/* $(".sub_money").blur(function(){
-		var inputs = $(this);
-		import_money();
-		setinput(inputs);
-	}); */
+	 $(".sub_money").blur(function(){
+	 	var inputs = $(this);
+		overFormat(inputs);
+		// setinput(inputs);
+	});
 	// 判断输入金额
 	function import_money(bal_money,in_money){
 		var inpt = $(".sub_money");
 		var money = $(".sub_money").val();
 		var a = $(".invest_money");
-		// 账户余额
-		// var bal_money = 5000;
-		// 可投金额
-		// var in_money = 6666;
 		if(money != "" && money != 0 && money < 100   && in_money < 500){
-			console.log("输入的金额：" + money);
-			console.log("剩余可投的金额：" + in_money);
 			input_mess("不得低于起投金额100元！",inpt,true);
 			return false;
 		}else if(money != "" && money != 0  && money < 500 && in_money >= 500){
-			console.log("输入的金额：" + money);
-			console.log("剩余可投的金额：" + in_money);
 			input_mess("不得低于起投金额500元！",inpt,true);
 			return false;
-		}else if(money != "" && money != 0  && money > in_money){
-			console.log("输入的金额：" + money);
-			console.log("剩余可投的金额：" + in_money);
-			input_mess("您输入的金额大于当前剩余可投金额！",inpt,true);
+		}else if(money != "" && money != 0  && money > bal_money){
+			input_mess("余额不足",inpt,true);
 			return false;
 		}else if(money != "" && money != 0  && money > 500000){
-			console.log("输入的金额：" + money);
-			console.log("剩余可投的金额：" + in_money);
 			input_mess("单笔限额为500,000元！",inpt,true);
 			return false;
-		}else if(money != "" && money != 0  && money > bal_money){
-			console.log("输入的金额：" + money);
-			console.log("余额: " + bal_money);
-			input_mess("余额不足",inpt,true);
+		}else if(money != "" && money != 0  && money > in_money){
+			input_mess("您输入的金额大于当前剩余可投金额！",inpt,true);
 			return false;
 		}else{
 			a.removeClass("bor_col");
@@ -164,11 +156,11 @@ $(function(){
 			mon.addClass("bor_col");
 			pswd.addClass("bor_col");
 			return false;
-		}else if(money == ""){
+		}else if(money == "" && $(".in_span").length <= 0){
 			mon.addClass("bor_col");
 			show_mess("请填写加入金额!");
 			return false;
-		}else if(psw == ""){
+		}else if(psw == "" && $(".in_span").length <= 0){
 			pswd.addClass("bor_col");
 			show_mess("请填写支付密码!");
 			return false;
@@ -182,13 +174,32 @@ $(function(){
 			if($(".in_span").length <= 0){
 				mon.removeClass('bor_col');
 				pswd.removeClass('bor_col');
-				// 加入成功弹窗
-				layer.open({
+				// 激活存管弹窗
+				/* layer.open({
 					type: 1,
 					title:'',
+					closeBtn:0,
 					skin: 'succeed_show',
 					area:['560px','360px'],
 					content: $('#bank_show')
+				}); */
+				// 加入成功
+				/* layer.open({
+					type: 1,
+					title:'',
+					closeBtn:0,
+					skin: 'succeed_show',
+					area:['560px','360px'],
+					content: $('#succeed_show')
+				}); */
+				// 加入成功
+				layer.open({
+					type: 1,
+					title:'',
+					closeBtn:0,
+					skin: 'succeed_show',
+					area:['560px','360px'],
+					content: $('#failed_show')
 				});
 			}
 		}
@@ -240,7 +251,7 @@ $(function(){
 		if (event.keyCode == 37 | event.keyCode == 39) {
 			return;
 		}
-		$amountInput.val($amountInput.val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/^0/g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
+		$amountInput.val($amountInput.val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
 		var a=ins;
 		// 最后根据算法优化
 		var b = Math.floor((a.val()*0.09/12)*100)/100;
@@ -255,7 +266,7 @@ $(function(){
 		}else{
 			$(".predict_money").html(b);
 		}
-		var m = a.val();
+		var m = a.val().replace(/\d(?=(\d{3})+$)/g,'$&,');
 		if(m == ""){
 			$(".sub_btn").val("实付0.00元，立即投资");
 			$(".predict_money").html("0.00");
@@ -263,6 +274,21 @@ $(function(){
 			$(".sub_btn").val("实付"+m+"元，立即投资");
 		}
 	};
+	function overFormat(th){
+		if(th.val() != ""){
+			th.val(Number(th.val()).toFixed(2));
+			var logNum = th.val().toString();
+			integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
+			decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
+			var m = th.val();
+			if(m == ""){
+				$(".sub_btn").val("实付0.00元，立即投资");
+				$(".predict_money").html("0.00");
+			}else{
+				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
+			}
+		}
+	}
 	// input状态提示
 	function input_mess(str,inp,flag){
 		inp = inp || null;
@@ -344,5 +370,5 @@ $(function(){
 			}else{
 			}
 		},100);
-	}
+	};
 });
