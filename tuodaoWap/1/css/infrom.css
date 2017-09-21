@@ -1,6 +1,8 @@
 html,body{font-family:"Microsoft YaHei";-webkit-tap-highlight-color: transparent;}
 a{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color: transparent;outline:none;background: none;text-decoration: none;}
 h3,b,th{font-weight: normal;}
+.fl{float:left;}
+.fr{float:right;}
 .dis_none{display:none;}
 .about{background-color:#f2f3f7;}
 .about .nav{width:100%;height:0.8rem;line-height:0.8rem;background-color:white;}
@@ -107,9 +109,26 @@ h3{font-size:0.28rem;color:#212a36;height:0.8rem;line-height:0.8rem;border-botto
 .ranking_bot table tr td:nth-child(2){width:45%;text-align:left;}
 .ranking_bot table tr td:nth-child(3){width:15%;text-align:right;padding-right:0.25rem;}
 .ranking_bot .txt_p{line-height:0.8rem;font-size:0.2rem;color:#7e7e7e;margin-top:0.1rem;padding-left:0.25rem;}
-.echart_top{background-color:white;}
-.echart_bot{background-color:white;margin-top:0.2rem;}
-#ranking{width:100%;height:5.1rem;box-sizing: border-box;}
-#ranking >div{width:100%!important;height:100%!important;margin-left:0.3rem!important;margin-top:0.4rem!important;}
-#monthsData{width:100%;height:5.1rem;}
-#monthsData >div{width:100%!important;height:100%!important;margin-left:0.3rem!important;margin-top:0.4rem!important;}
+.echart_top{background-color:white;padding:0 0.3rem;}
+.echart_bot{background-color:white;margin-top:0.2rem;padding:0 0.3rem;}
+#ranking{width:100%;height:5.1rem;padding:0.4rem 0;box-sizing: border-box;}
+#monthsData{width:100%;height:5.1rem;padding:0.4rem 0;box-sizing: border-box;}
+
+
+.oper{position:relative;width:100%;height:100%;}
+.oper_tab{z-index: 99;position:relative;}
+.oper_tab .oper_date{padding:0 0.3rem;line-height:0.6rem;background-color:#f2f3f7;font-size:0.26rem;color:#212a36;overflow: hidden;}
+.oper_year{width:100%;padding:0 0.3rem;position:absolute;background-color: white;}
+.oper_year li{width:100%;height:0.8rem;line-height:0.8rem;}
+.oper_year li.li_on span{color:#FF7400;}
+.oper_year li:nth-child(1){border-bottom: 1px solid #e4e4e4;}
+.oper_year span{font-size:0.24rem;color:#212a36;}
+.oper_list{padding:0 0.3rem;overflow: hidden;padding-bottom:0.4rem;}
+.oper_list a{display:block;margin-top:0.4rem;}
+.dasahe{position:absolute;left:0;top:0;width:100%;height:100%;background-color:#000;opacity:0.5;z-index: 9;}
+
+.risk_top,.risk_com,.risk_bot{background-color:white;overflow: hidden;padding:0 0.3rem;margin-top:0.2rem;}
+.risk_topbg{width:6.64rem;height:3.63rem;background:url(../img/infrom/risk_top.png) no-repeat;background-size:100% 100%;margin:0.4rem auto;}
+.risk_combg{width:6.89rem;height:3.61rem;background:url(../img/infrom/risk_combg.png) no-repeat;background-size:100% 100%;margin:0.4rem auto;}
+.risk_botbg{width:6.92rem;height:3.31rem;background:url(../img/infrom/risk_botbg.png) no-repeat;background-size:100% 100%;margin:0.4rem auto;}
+

@@ -11,7 +11,6 @@
 		<title>平台数据</title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/infrom.css" />
-		<!--<link rel="stylesheet" href="css/platfrom.css" />-->
 		<script src='js/jquery-2.1.0.min.js'></script>
 		<script src="js/base.js"></script>
 		<style>
@@ -34,7 +33,7 @@
 				</ul>
 			</div>
 			<div class="platfrom_bot">
-				<div class="platfrom_a dis_none">
+				<div class="platfrom_a ">
 					<div class="platfrom_a_top">
 						<div class="flex">
 							<dl class="flex-1">
@@ -265,7 +264,7 @@
 					</div>
 					
 				</div>
-				<div class="platfrom_c ">
+				<div class="platfrom_c dis_none">
 					<div class="echart_top">
 						<h3>平台7日数据播报</h3>
 						<div id="ranking"></div>
@@ -281,13 +280,3 @@
 </html>
 <script src='js/new_platfrom.js'></script>
 <script src="js/echarts.common.min.js"></script>
-<script>
-	$(function(){
-		$(".platfrom_top li a").on("click",function(){
-			var index = $(this).parent("li").index();
-			$(".platfrom_top li a").removeClass("on");
-			$(this).addClass("on");
-			$(".platfrom_bot>div").eq(index).show().siblings().hide();
-		})
-	})
-</script>

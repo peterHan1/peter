@@ -1,6 +1,12 @@
 $(function(){
-	charts();
-	chartsM();
+	$(".platfrom_top li a").on("click",function(){
+			var index = $(this).parent("li").index();
+			$(".platfrom_top li a").removeClass("on");
+			$(this).addClass("on");
+			$(".platfrom_bot>div").eq(index).show().siblings().hide();
+			charts();
+			chartsM();
+		})
 	function charts(){
 	var myChart = echarts.init(document.getElementById('ranking'));
 	var seven = ['08-30', '08-31', '09-01', '09-02', '09-03', '09-04', '09-05'];
@@ -8,18 +14,20 @@ $(function(){
         option = {
     	  	title: {
 		        text: '成交量（万元）',
+				x:'-5px',
 		        textStyle:{
-		        	fontSize: 14,
+		        		fontSize: 12,
 				    fontWeight: 'normal',
 				    color: '#626262',
 				    fontFamily:'Microsoft YaHei'
 		        }
 		    },
 		    grid: {
-		    	left:'1%',
-		    	right:'10%',
-		    	top:'15%',
-		        containLabel: true
+		    	left:'0',
+		    	right:'2%',
+		    	top:'17%',
+		    	bottom:'1%',
+		    containLabel: true
 		    },
 		    xAxis : [
 		        {
@@ -89,17 +97,19 @@ $(function(){
         option = {
 		   title: {
 		        text: '成交量（万元）',
+		        x:'-5px',
 		        textStyle:{
-		        	fontSize: 14,
+		        	fontSize: 12,
 				    fontWeight: 'normal',
 				    color: '#626262',
 				    fontFamily:'Microsoft YaHei'
 		        }
 		    },
 		    grid: {
-		    	left:'1%',
-		    	right:'10%',
-		    	top:'15%',
+		    	left:'0',
+		    	right:'2%',
+		    	top:'17%',
+		    	bottom:'1%',
 		        containLabel: true
 		    },
 		    xAxis : [
