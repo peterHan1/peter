@@ -140,7 +140,7 @@ $(function(){
 		content:'<span class="iconfont">&#xe68d;</span><p>验证码错误，请重新输入</p>'
 	})*/
 
-//	申请加盟按钮
+//	申请借款按钮
 	$(document).on("click",".loadn_btn",function(){
 		// 已经申请过提示弹窗
 		/*layer.open({
