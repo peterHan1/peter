@@ -46,7 +46,7 @@ $(function(){
 		            axisTick: {show:false},
 		            splitLine:{show:true,lineStyle: {
 						            color: ['#e4e4e4'],
-						            width: 1,
+						            width: 0.5,
 						            type: 'solid'
 						        }},
 		            axisLine:{		
@@ -129,7 +129,7 @@ $(function(){
 		            axisTick: {show:false},
 		            splitLine:{ show:true,lineStyle: {
 						            color: ['#e4e4e4'],
-						            width: 1,
+						            width: 0.5,
 						            type: 'solid'
 						        }},
 		            axisLine:{		
