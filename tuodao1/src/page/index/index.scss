@@ -304,8 +304,8 @@
 			margin-right:20px;
 			position:relative;
 			// background:#fff;
-			a{display:inline-block;height:100%;width:100%;background:#fff;-webkit-transition: all .3s;}
-			a:hover{box-shadow:0 5px 30px #888;margin-top:-2px;}
+			a{display:inline-block;height:100%;width:100%;background:#fff;}
+			a:hover{box-shadow:0 5px 30px #888;}
 			.pro-list{
 						width:323px;
 						margin:0 auto;
@@ -380,7 +380,8 @@
 							margin-top:30px;
 						}
 						.now-invest{
-							display:none;
+							// display:none;
+							// opacity: 0;
 							font-size:$fontSize16;
 							background:$mainColor;
 							width:200px;
@@ -392,11 +393,16 @@
 							text-align:center;
 							color:#fff;
 							border-radius:30px;
+							-webkit-transition: all 1s;
+
 						}		
 			}
 			&.hand-img a{
 				background:none;
-				@include loading;			
+				@include loading;
+				&:hover{
+					box-shadow:none!important;
+				}			
 			}
 		}	
 	}

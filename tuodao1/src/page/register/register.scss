@@ -13,18 +13,12 @@
 .kd{
 	background-color: $mainColor!important;
 }
-.border{
-	border: 1px solid $mainColor;
-	}
-.red{
-	border-color:red!important;
-}
-.border-color{
-	border-color: #ff7400!important;
+.color{
+	background-color: #f25d14!important;
 }
 i.del{
 	position:absolute;
-	right:222px;
+	right:8px;
 	top:6px;
 	cursor:default;
 	font-size:18px;
@@ -40,9 +34,8 @@ i.del:hover{
 .main{
 	width:1180px;
 	height:601px;
-	margin: 0 auto;
+	margin: 30px auto 198px auto;
 	background-color: #FFF;
-	margin-top: 50px;
 	.register{
 		.main_top{
 			width: 100%;
@@ -65,7 +58,11 @@ i.del:hover{
 				width: 60%;
 				height: 80%;
 				margin: 100px auto 0 auto;
+				text-align:center;
 				.phoneNum{
+						width:340px;
+						height:40px;
+						margin:0 auto;
 						position:relative;
 						input{
 							width: 323px;
@@ -73,68 +70,59 @@ i.del:hover{
 							border-radius: 5px;
 							padding-left: 15px;
 							outline:none;
-							margin-left: 155px;
-							border: 1px solid $fontColor9e;
-						}
-						.jg{
-							text-align:center;
-							color:red;
-							z-index:999;
-							background-color: #f2f2f2;
-							width:339px;
-							height:30px;
-							position:absolute;
-							top:32px;
-							left:154px;
-							display:none;
+							border: 1px solid #dddddd;
 						}
 				}
 				.slider{
-					margin: 20px 155px 30px 155px;
+					margin: 20px 184px 25px 184px;
 				}
 				.til{
-					margin-left: 155px;
+					text-align:left;
+					padding-left:186px;
+					.more{
+						color:#d6d6d6;
+						margin-right:10px;
+						font-size:16px;
+					}
 					color:$fontColor9e;
 					cursor: pointer;
 					margin-bottom:5px;
+					font-size:12px;
 				}
 				.personNum{
+					width:340px;
+					height:40px;
+					margin:0 auto;
 					position:relative;
 					input{
 						width: 323px;
 						height: 38px;
-						margin-left: 155px;
 						border-radius: 5px;
 						padding-left: 15px;
 						outline:none;
 						border: 1px solid #dddddd;
+						font-size:12px;
 					}
 				}
 				.btn{
 					width: 340px;
 					height: 40px;
-					margin-left: 155px;
-					margin-top: 30px;
+					margin-top: 50px;
 					background-color: $fontColor9e;
 					color:#fff;
 					border-radius: 20px;
 					outline: none;
 					border: none;
 				}
-				.xian{
-					border-bottom:1px solid $fontColor9e;
+				.xy{
 					margin-top:20px;
-					width: 340px;
-					margin-left: 155px;
-					a{
-						color:$mainColor;
-						position:relative;
-						top: 12px;
-						left: 80px;
-						font-size: 16px;
-						padding: 0 10px;
-						background-color: #FFF;
-					}
+					text-align:center;
+					display:block;
+					color:$mainColor;
+					top: 12px;
+					left: 80px;
+					font-size: 14px;
+					background-color: #FFF;
 				}
 			}
 		}
@@ -157,39 +145,14 @@ i.del:hover{
 		}
 		.wrong_ts{
 				margin-top:10px;
-				color:red;
+				color:#e60012;
 			}
-		.demo{
-			width: 500px;
-			margin: 30px auto 28px auto;
-			height: 62px;
-			position: relative;
-			input{
-				width: 58px;
-				height: 58px;
-				display: inline-block;
-				float: left;
-				margin-left: 10px;
-				outline: none;
-				text-align: center;
-				line-height: 58px;
-				font-size: 35px;
-				font-weight: 800;
-			}
-			#spa{
-				font-size: 50px;
-				position: absolute;
-				left: 221px;
-				color:#C0C0C0;
-				height: 56px;
-				line-height: 56px;
-			}
-		}
 		.count_time{
 			color:$mainColor;
 			display:inline-block;
 			text-decoration:underline;
 			display:none;
+			cursor:pointer;
 		}
 		.djs{
 			color:$fontColor9e;
@@ -207,22 +170,23 @@ i.del:hover{
 			margin-top:118px;
 		}
 		.pas_box{
-			overflow:hidden;
+			width:340px;
+			height:40px;
+			margin:60px auto 0 auto;
 			position:relative;
 			.pas{
-				width: 338px;
+				width: 326px;
 				height:38px;
-				padding-left:14px;
+				padding-left:12px;
 				color:$fontColor9e;
-				margin-top:60px;
 				border-radius:5px;
 				outline:none;
-				border: 1px solid $fontColor9e;
+				border: 1px solid #dddddd;
 			}
 			.yan{
 				position:absolute;
-				right: 422px;
-				top: 69px;
+				right: 6px;
+				top: 8px;
 				cursor:pointer;
 				display:none;
 			}
@@ -231,12 +195,21 @@ i.del:hover{
 			}
 			.yan_kai{
 				position:absolute;
-				right: 422px;
-				top: 69px;
+				right: 6px;
+				top: 8px;
 				cursor:pointer;
 			}
 			.yan_kai:hover{
 				color:#ff7e12;
+			}
+			i.del{
+				position:absolute;
+				right:30px;
+				top:6px;
+				cursor:default;
+				font-size:18px;
+				display:none;
+				color:#9e9e9e;
 			}
 		}
 		.line{
@@ -257,18 +230,16 @@ i.del:hover{
 				height: 12px;
 				margin-left:2px;
 				font-size:10px;
+				visibility:hidden;
 			}
 			.psd_til_1{
 				color:#e60012;
-				display:none;
 			}
 			.psd_til_2{
 				color:#ffc424;
-				display:none;
 			}
 			.psd_til_3{
 				color:#30a744;
-				display:none;
 			}
 		}
 		.say{
@@ -341,7 +312,7 @@ i.del:hover{
 			}
 			p.gg{
 				font-size:12px;
-				color:red;
+				color:#e60012;
 				margin-bottom:90px;
 			}
 			.cg_btn{
@@ -355,6 +326,9 @@ i.del:hover{
 				color:#fff;
 				border: none;
 				margin: 29px auto 0 auto;
+			}
+			.cg_btn:hover{
+				background-color: #f25d14;
 			}
 		}
 	}

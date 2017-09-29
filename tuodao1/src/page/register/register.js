@@ -1,34 +1,14 @@
+var _inp = require('util/yz.js');
+var _regular = require('util/regular.js');
+var _yzm = require('util/security/security.js');
 $(function() {
-	// input框交互效果
-	verify();
-	function verify() {
-			$("input").on("focus", function() {
-				var type = $(this).attr("type");
-				if(type == "button" || type == "submit" || $(this).attr("readonly")=="readonly" || $(this).attr("disabled")=="disabled" || $(this).hasClass("jz")) {
-					return false;
-				}
-				$("input").removeClass("border-color");
-				$(this).addClass("border-color");
-			});
-			$("input").on("blur", function() {
-				$(this).removeClass("border-color");
-			});
-			$("input").on("mouseover", function() {
-				var type = $(this).attr("type");
-				if(type == "button" || type == "submit" || $(this).attr("readonly")=="readonly" || $(this).attr("disabled")=="disabled" || $(this).hasClass("jz")) {
-					return false;
-				}
-				$(this).css("border-color", "#707070");
-			});
-			$("input").on("mouseleave", function() {
-				var type = $(this).attr("type");
-				if(type == "button" || type == "submit" || $(this).attr("readonly")=="readonly" || $(this).attr("disabled")=="disabled" || $(this).hasClass("jz")) {
-					return false;
-				}
-				$(this).css("border-color", "#DDDDDD");
-			});
-		}
-	// 引用滑动验证
+	_inp.focus("input");
+	_inp.blur("input");
+	_inp.mouseover("input");
+	_inp.mouseleave("input");
+	var res;
+	var results;
+	// 初始化
 	$("#slider2").slider({
 		width: 340,
 		height: 40,
@@ -41,78 +21,65 @@ $(function() {
 		successColor: "#fff",
 		time: 400,
 		callback: function(result) {
-			// console.log(res);
-			if ($(".phoneNum input").val() == "") {
-				location.reload();
-			} else if (result == true && res == true) {
-				$(".btn").addClass("kd");
-			}
+			results = result;
+			// console.log(results);
+			checkform();
 		}
 	});
+	_regular.checkPhoneOnkey({
+		elm: "phone_Num",
+		cls:"wrong_mess",
+		callback: function(result) {
+			res = result;
+		}
+	});
+	_regular.checkPhoneOnBlur({
+		elm: "phone_Num",
+		cls:"wrong_mess",
+		callback: function(result) {
+			res = result;
+		}
+	});
+	$(".phone_Num").on("keyup", function() {
+		// var length = $(this).val().length;
+		// if (length <= 11) {
+		// 	$(".btn").removeClass("kd");
+		// }
+		checkform();
+	});
+	$(".phone_Num").on("blur", function() {
+		checkform();
+	});
+
+	function checkform() {
+		if (results == true && res == true) {
+			$(".btn").addClass("kd");
+			$(".btn").on("mouseover", function() {
+				$(this).addClass('color');
+			});
+			$(".btn").on("mouseleave", function() {
+				$(this).removeClass('color');
+			});
+		} else {
+			$(".btn").removeClass("kd");
+			$(".btn").on("mouseover", function() {
+				$(this).removeClass('color');
+			});
+		}
+	}
 	// 提示文本的显示隐藏
+	var count = 1;
 	$(".til").on("click", function() {
+		count++;
+		if (count % 2 == 0) {
+			$(".til .more").html("&#xe69c;");
+		} else {
+			$(".til .more").html("&#xe69a;");
+		}
 		$(".personNum").toggle();
 	});
-	// 验证手机号码
-	$(".phoneNum input").on("keyup", function() {
-		if($(this).val().length>=11){
-			var re = checkPhone("phone_Num", "jg", "wz");
-			res = re;
-			return res;
-		}
-	});
-	// $(".phoneNum input").on("focus", function() {
-	// 	$(document).slider("restore");
-	// });
-	function checkPhone(input, ts, wz) {
-		var data = "15649387762";
-		var _this = $("." + input);
-		var val = _this.val();
-		if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
-			$("." + wz).text("手机号必须由11位纯数字组成");
-			$(".btn").removeClass("kd");
-			$("." + ts).show();
-			_this.addClass("red");
-		} else {
-			$("." + ts).hide();
-			_this.removeClass("red");
-			if (val !== data) {
-				$("." + ts).show();
-				$("." + wz).text("该手机号尚未注册拓道金服");
-				_this.removeClass("red");
-				return false;
-			} else {
-				$("." + ts).hide();
-				_this.removeClass("red");
-				return true;
-			}
-		}
-	}
 	// 验证码
-	Num("demo", "border");
-	function Num(box, cls) {
-		var wrap = document.getElementById(box);
-		var txts = wrap.getElementsByTagName("input");
-		for (var i = 0; i < txts.length; i++) {
-			var t = txts[i];
-			t.index = i;
-			t.setAttribute("readonly", "readonly");
-			t.onkeyup = function() {
-				this.value = this.value.replace(/\D/g, '');
-				if (this.value == "") {
-					return false;
-				}
-				var next = this.index + 1;
-				var last = this.index;
-				if (next > txts.length - 1) return;
-				txts[next].removeAttribute("readonly");
-				txts[next].focus();
-				txts[next].className = cls;
-				txts[last].classList.remove(cls);
-			};
-		}
-		txts[0].removeAttribute("readonly");
-	}
+	_yzm.check("demo", "border");
 	// 判断是否最后一位密码输入完毕
 	var data = "123456";
 	$(".lastnum").on("keyup", function() {
@@ -128,7 +95,7 @@ $(function() {
 			$(".wrong_ts").show();
 			$(".ts").hide();
 			$("#demo input").val("");
-			Num("demo", "border");
+			_yzm.check("demo", "border");
 			$("#demo input").eq(5).removeClass("border");
 			$("#demo input").eq(0).focus();
 			$("#demo input").eq(0).addClass("border");
@@ -144,7 +111,7 @@ $(function() {
 		if (flag == false) {
 			return false;
 		} else {
-			$(".count_num").text(5);
+			$(".count_num").text(59);
 			num = $(".count_num").text();
 			flag = false;
 			var timer = setInterval(function() {
@@ -175,8 +142,8 @@ $(function() {
 	$(".btn").on("click", function() {
 		if ($(".btn").hasClass("kd")) {
 			$(".register").hide();
-			$(".yanzhengma").show();
 			$("#dy").attr("autofocus","autofocus");
+			$(".yanzhengma").show();
 			CutTime();
 		} else {
 			return false;
@@ -201,14 +168,24 @@ $(function() {
 	// 密码强度判断
 	$('.set_password .pas_box .pas').keyup(function(e) {
 		var val = $(".set_password .pas_box .pas").val();
-		if (val !== "") {
+		var length = val.length;
+		if (val !== "" && length >= 6) {
 			$(".register_btn").addClass("kd");
+			$(".register_btn").on("mouseover", function() {
+				$(this).addClass('color');
+			});
+			$(".register_btn").on("mouseleave", function() {
+				$(this).removeClass('color');
+			});
 		} else {
 			$(".register_btn").removeClass("kd");
+			$(".register_btn").on("mouseover", function() {
+				$(this).removeClass('color');
+			});
 		}
-		$(".set_password .psd_til_1").hide();
-		$(".set_password .psd_til_2").hide();
-		$(".set_password .psd_til_3").hide();
+		$(".set_password .psd_til_1").css("visibility", "hidden");
+		$(".set_password .psd_til_2").css("visibility", "hidden");
+		$(".set_password .psd_til_3").css("visibility", "hidden");
 		var strongRegex = new RegExp("^(?=.{15,18})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
 		var mediumRegex = new RegExp("^(?=.{6,12})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
 		var enoughRegex = new RegExp("(?=.{1,6}).*", "g");
@@ -216,60 +193,68 @@ $(function() {
 			$(".set_password .line .line1").css("background-color", "#dddddd");
 			$(".set_password .line .line2").css("background-color", "#dddddd");
 			$(".set_password .line .line3").css("background-color", "#dddddd");
-
 		} else if (strongRegex.test($(this).val())) {
 			$(".set_password .line .line1").css("background-color", "#30a744");
 			$(".set_password .line .line2").css("background-color", "#30a744");
 			$(".set_password .line .line3").css("background-color", "#30a744");
-			$(".set_password .psd_til_3").show();
+			$(".set_password .psd_til_3").css("visibility", "visible");
 		} else if (mediumRegex.test($(this).val())) {
 			$(".set_password .line .line1").css("background-color", "#ffc424");
 			$(".set_password .line .line2").css("background-color", "#ffc424");
 			$(".set_password .line .line3").css("background-color", "#dddddd");
-			$(".set_password .psd_til_2").show();
+			$(".set_password .psd_til_2").css("visibility", "visible");
 		} else {
 			$(".set_password .line .line1").css("background-color", "#e60012");
 			$(".set_password .line .line2").css("background-color", "#dddddd");
 			$(".set_password .line .line3").css("background-color", "#dddddd");
-			$(".set_password .psd_til_1").show();
+			$(".set_password .psd_til_1").css("visibility", "visible");
 		}
 		return true;
 	});
-	// 确认注册
-	$(".register_btn").on("click", function() {
-		var val = $(".set_password .pas_box .pas").val();
-		if (val == "") {
-			return false;
-		} else {
-			$(".set_password").hide();
-			$(".success_page").show();
+	$('.set_password .pas_box .pas').on("blur", function() {
+		if ($(this).val().length < 6) {
+			$(".register_btn").removeClass("kd");
 		}
 	});
-	del(".phone_Num");
+	// 确认注册
+	$(".register_btn").on("click", function() {
+		if ($(this).hasClass("kd")) {
+			$(".set_password").hide();
+			$(".success_page").show();
+		} else {
+			return false;
+		}
+	});
+	del(".phone_Num", ".btn");
 	del(".person_Num");
+	del(".pas", ".register_btn");
 	// 清空按钮显示
-	function del(name){
-		$(name).on("focus",function(){
-			if($(name).val()==""){
+	function del(name, el) {
+		$(name).on("focus", function() {
+			if ($(name).val() == "") {
 				$(this).siblings(".del").hide();
-			}else{
+			} else {
 				$(this).siblings(".del").show();
 			}
 		});
-		$(name).on("blur",function(){
-			setTimeout(function(){
+		$(name).on("blur", function() {
+			setTimeout(function() {
 				$(name).siblings(".del").hide();
-			},100);
+			}, 300);
 		});
-		$(name).on("keyup",function(){
-			if($(this).val()==""){
+		$(name).on("keyup", function() {
+			if ($(this).val() == "") {
 				$(this).siblings(".del").hide();
-			}else{
+			} else {
 				$(this).siblings(".del").show();
 			}
 		});
-		$(".del").on("click",function(){
-				$(this).siblings(name).val("");
+		$(".del").on("click", function() {
+			$(this).siblings(name).val("");
+			$(el).removeClass("kd");
+			$(el).on("mouseover", function() {
+				$(this).removeClass('color');
+			});
 		});
 	}
 });

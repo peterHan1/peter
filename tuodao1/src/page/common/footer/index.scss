@@ -2,18 +2,21 @@
 .footer{
 	@extend %clearfix;
 	background:#fff;
-	padding:20px 0 50px 0;
-	dl{
-		@include width-max;
+	&.footer2{background:none}
+	.max-width{
 		@extend %clearfix;
-		dd{
-			float:left;
-			margin-right:20px;
+		padding:20px 0;
+		border-top:1px solid #ddd;
+		dl{
+			@extend %clearfix;
+			dd{
+				float:left;
+				margin-right:20px;
+			}
 		}
-	}
-	div{
-		@include width-max;
-		color:$fontColor9e;
-		margin-top:10px;
+		div{
+			color:$fontColor9e;
+			margin-top:10px;
+		}
 	}
 }

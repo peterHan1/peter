@@ -1,2 +1,2 @@
 require('./index.scss');
-require('./unslider.js');
+require('./flexslider.js');

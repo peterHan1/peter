@@ -24,7 +24,7 @@ $(function() {
 	$('#Bank_sel_hid').on('click', function() {
 		// alert(e.target.);
 		// alert(12121)
-		if($(this).hasClass("dis_color")){
+		if($(this).hasClass("dis")){
 			return false;
 		}else{
 			$('#Bank').show();

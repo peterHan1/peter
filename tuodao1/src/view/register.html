@@ -5,6 +5,7 @@
 	<title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
+	<%= require('html-loader!./layout/nav2.html') %>
 	<div class="main">
 		<div class="register">
 			<div class="main_top">
@@ -14,18 +15,15 @@
 			<div class="main_mid">
 				<div class="box">
 					<div class="phoneNum">
-						<input type="text" class="phone_Num" autofocus="autofocus" placeholder="请输入手机号" class="phone_Num" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
-						<p class="jg">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span class="wz"></span></p>
+						<input type="text" class="phone_Num" placeholder="请输入手机号" class="phone_Num" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 					</div>
 					<div id="slider2" class="slider"></div><span id="result" class="dis_none"></span>
-					<p class="til">如有邀请人，可输入邀请人手机号/推荐码（选填）</p>
+					<p class="til"><em class="iconfont more">&#xe69a;</em>如有邀请人，可输入邀请人手机号/推荐码（选填）</p>
 					<div class="personNum dis_none">
 						<input type="text" class="person_Num" placeholder="请输入推荐人手机号/推荐码（选填）" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 					</div>
 					<button class="btn">同意协议并继续</button>
-					<div class="xian">
-						<a href=""><<拓道金服注册协议>></a>
-					</div>
+						<a href="" class="xy"><<拓道金服注册协议>></a>
 				</div>
 			</div>
 		</div>
@@ -36,12 +34,12 @@
 			</div>
 			<div class="wrong_ts dis_none">您输入的验证码有误，请重新输入！</div>
 			<div class="demo" id="demo">
-				<input type="text" class="border jz" maxlength="1" id="dy" autofocus="autofocus" />
-				<input type="text" class="jz" maxlength="1" readonly="readonly" />
-				<input type="text" class="jz" maxlength="1"/ id="space" readonly="readonly" >
-				<input type="text" class="jz" maxlength="1" readonly="readonly" />
-				<input type="text" class="jz" maxlength="1" readonly="readonly" />
-				<input type="text" maxlength="1" class="lastnum jz" readonly="readonly" />
+				<input type="text" jz="jz" class="border" maxlength="1" id="dy" />
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1" id="space" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" maxlength="1" class="lastnum" jz="jz" readonly="readonly" />
 				<span id="spa">-</span>
 			</div>
 			<span class="djs">(<i class="count_num">59</i>s)&nbsp;后可重新发送验证码</span><div class="count_time">重新发送验证码</div>
@@ -50,13 +48,13 @@
 		<div class="set_password dis_none">
 			<p class="til">最后一步，设置拓道金服登录密码</p>
 			<div class="pas_box">
-				<input type="password" placeholder="请输入登录密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span>
+				<input type="password" placeholder="请输入登录密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="line"><span class="line1"></span><span class="line2"></span><span class="line3"></span></p>
 			<p class="psd_til">
-				<span class="psd_til_1 dis_none">这个密码有危险啊！</span>
-				<span class="psd_til_2 dis_none">敢不敢再复杂点？</span>
-				<span class="psd_til_3 dis_none">很好很强大!</span>
+				<span class="psd_til_1">密码安全等级低</span>
+				<span class="psd_til_2">密码安全等级中</span>
+				<span class="psd_til_3">密码安全等级高</span>
 			</p>
 			<div class="say">
 				<p>登录密码不得少于6个字符。建议密码设置成较为复杂的字母、数</p>
@@ -82,6 +80,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js "></script>
+	<%= require('html-loader!./layout/footer.html') %>
 </body>
 </html>

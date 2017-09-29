@@ -9,27 +9,21 @@
 .dis_none{
 	display:none;
 }
-.dis_color{
-	background-color:#EBEBE4;
-}
-.red{
-	border-color:#e60012!important;
-}
-.border{
-	border-color:#ff7400!important;
-}
 .kd{
 	background-color: $mainColor!important;
+}
+.color{
+	background-color: #f25d14!important;
+}
+.dis{
+	background-color: #f2f2f2!important;
 }
 i{
 	font-style:normal;
 }
-.border-color{
-	border-color: #ff7400!important;
-}
 i.del{
 	position:absolute;
-	right:289px;
+	right:8px;
 	top:6px;
 	cursor:default;
 	font-size:18px;
@@ -78,7 +72,7 @@ i.del:hover{
 		width:260px;
 		height:30px;
 		vertical-align:middle;
-		color:red;
+		color:#e60012;
 		padding-left:13px;
 		line-height:30px;
 		display:none;
@@ -100,26 +94,26 @@ i.del:hover{
 			// overflow:hidden;
 			position:relative;
 			input{
-				width: 338px;
+				width: 294px;
 				height: 38px;
-				border: 1px solid $fontColor9e;
+				border: 1px solid #dddddd;
 				border-radius:5px;
 				padding-left:44px;
 				outline:none;
-				margin-bottom:20px;
 			}
 			span{
 				z-index: 999;
 				color:$fontColor9e;
 				position:absolute;
-				left:296px;
+				left:15px;
 				top:8px;
 			}
 		}
 	}
 	.jg{
-		width:380px;
+		width:340px;
 		margin:0 auto;
+		font-size:12px;
 		color:$fontColor9e;
 		margin-bottom:10px;
 		text-align: left;
@@ -127,10 +121,26 @@ i.del:hover{
 			color:$mainColor;
 		}
 	}
+	.username{
+		width:340px;
+		height:40px;
+		margin:0 auto 20px auto;
+	}
+	.idcard{
+		width:340px;
+		height:40px;
+		margin:0 auto 20px auto;
+	}
 	.bank_all{
+		position:relative;
+		width:340px;
+		height:42px;
 		margin: 20px auto;
+		input{
+			height:42px;
+		}
 		#wen{
-			left:676px;
+			left:350px;
 			top:8px;
 			cursor:pointer;
 		}
@@ -140,35 +150,24 @@ i.del:hover{
 			height: 22px;
 			background:url("../../image/ts.png") no-repeat;
 			position:absolute;
-			left: 700px;
+			left: 375px;
 			top:  8px;
+			border:none;
 			display:none;
 		}
 	}
 	.bank_num{
-		.jg_box{
-			width:368px;
-			height: 30px;
-			vertical-align:middle;
-			color:red;
-			background-color: #f2f2f2;
-			padding-left:13px;
-			line-height:30px;
-			position:absolute;
-			left:282px;
-			top:40px;
-			z-index: 99;
-			display:none;
-		}
+		width:340px;
+		height:40px;
+		margin:0 auto 20px auto;
 		.big_font{
-			width:368px;
+			width:327px;
 			height: 30px;
 			color:#000;
 			background-color: #f2f2f2;
 			padding-left:13px;
 			line-height:30px;
 			position:absolute;
-			left:282px;
 			top:40px;
 			z-index: 99;
 			font-size: 16px;
@@ -178,56 +177,36 @@ i.del:hover{
 		}
 	}
 	.phone_Num{
-		.phone_box{
-			width:368px;
-			height: 30px;
-			vertical-align:middle;
-			color:red;
-			background-color: #f2f2f2;
-			padding-left:13px;
-			line-height:30px;
-			position:absolute;
-			left:282px;
-			top:40px;
-			z-index: 99;
-			display:none;
-		}
+		width:340px;
+		height:40px;
+		margin:0 auto 20px auto;
 	}
 	.paynum{
+		width:340px;
+		height:40px;
+		margin:0 auto 20px auto;
 		.yan{
-			left:640px;
+			position:absolute;
+			right:6px;
 			top:8px;
 			cursor:pointer;
 			display:none;
 		}
 		.yan_kai{
-			left:640px;
+			position:absolute;
+			right:6px;
 			top:8px;
 			cursor:pointer;
 		}
 		.yan:hover{
-				color:#ff7e12;
+			color:#ff7e12;
 			}
 		.yan_kai:hover{
 			color:#ff7e12;
 		}
 		i.del{
 			top:6px;
-			right:310px;
-		}
-		.pay_box{
-			width:368px;
-			height: 30px;
-			vertical-align:middle;
-			color:red;
-			background-color: #f2f2f2;
-			padding-left:13px;
-			line-height:30px;
-			position:absolute;
-			left:282px;
-			top:40px;
-			z-index: 99;
-			display:none;
+			right:30px;
 		}
 	}
 	.btn{

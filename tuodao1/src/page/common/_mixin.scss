@@ -24,7 +24,7 @@ $fontSize20:    20px;
 // 网站定宽
 @mixin width-max{
     width:1180px; 
-    margin:auto;
+    margin:0 auto;
 }
 // 单行垂直居中
 @mixin height-line($height:40px){

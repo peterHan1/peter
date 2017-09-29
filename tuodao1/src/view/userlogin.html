@@ -5,6 +5,7 @@
 	<title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
+	<%= require('html-loader!./layout/nav2.html') %>
 	<div class="main max-width">
 		<div class="login_top">
 			<span class="fl til">您好，欢迎光临拓道金服</span>
@@ -13,16 +14,16 @@
 		<div class="main_mid">
 			<div class="login_logo"></div>
 			<div class="user_name">
-				<input type="text" class="phoneNum" maxlength="11" id="phoneNum" placeholder="请输入手机号" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><span id="phoneNum_del" class='iconfont'>&#xe68b;</span><div class="til"><i class="iconfont">&#xe671;</i>&nbsp;&nbsp;<span class="til_wz"></span></div>
+				<input type="text" class="phoneNum" id="phoneNum" placeholder="请输入手机号" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<div class="user_password">
-				<input type="password" id="password" placeholder="请输入登录密码"><span id="password_del" class='iconfont'>&#xe68b;</span><div class="psd_til"><i class="iconfont">&#xe671;</i>&nbsp;&nbsp;密码错误，请重新输入</div>
+				<input type="password" id="password" class="password" placeholder="请输入登录密码"><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<div id="slider2" class="slider"></div>
 			<input type="button" value="登录" class="login_btn">
 			<a href="setpassword.html" class="foget_psd">忘记密码</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js "></script>
+	<%= require('html-loader!./layout/footer.html') %>
 </body>
 </html>

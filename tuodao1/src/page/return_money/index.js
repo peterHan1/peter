@@ -3,7 +3,7 @@ require('./return_money.scss');
 require('./js/laydate/laydate.scss');
 require('./js/laydate/laydate.js');
 var config = require('./js/time.json');
-console.log(config);
+
 // 选择时间调用日历
 $(".layer_date").on("click",function(){
 	laydate({

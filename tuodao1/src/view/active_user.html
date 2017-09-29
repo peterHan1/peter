@@ -5,6 +5,7 @@
 	<title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
+<%= require('html-loader!./layout/nav2.html') %>
 <div class="main max-width">
 	<div class="main_top">
 		<span class="fl title">拓道金服安全中心-北京银行存管账户激活</span>
@@ -16,17 +17,17 @@
 	<div class="person_info">
 		<p class="bt">身份认证</p>
 		<div class="username">
-			<span class="iconfont">&#xe67a;</span><input type="text" disabled>
+			<span class="iconfont">&#xe67a;</span><input type="text" class="dis" disabled>
 		</div>
 		<div class="idcard">
-			<span class="iconfont">&#xe674;</span><input type="number" maxlength="18" disabled>
+			<span class="iconfont">&#xe674;</span><input type="number" class="dis" maxlength="18" disabled>
 		</div>
 		<p class="bt">绑定银行卡</p>
 		<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
 		<div class="bank_all">
 			<span class="iconfont">&#xe679;</span>
 			<div class="sel_bank">
-	            <div id="Bank_sel_hid" class="div_bank_select dis_color">
+	            <div id="Bank_sel_hid" class="div_bank_select dis">
 	                <div id="xx"><i class="Bank ICBC"></i>中国工商银行</div>
 	            </div>
 	            <div id="Bank" class="dis_none"></div>
@@ -34,22 +35,20 @@
        		<span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
 		</div>
 		<div class="bank_num">
-			<span class="iconfont">&#xe689;</span><input type="number" disabled>
+			<span class="iconfont">&#xe689;</span><input type="number" class="dis" disabled>
 		</div>
 		<div class="phone_Num">
 			<span class="iconfont">&#xe66f;</span><input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
-			<p class="phone_box"><i class="iconfont">&#xe671;</i>&nbsp;手机号必须由11位纯数字组成！</p>
 		</div>
 		<p class="bt">设置支付密码</p>
 		<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
 		<div class="paynum">
-			<span class="iconfont">&#xe672;</span><input type="password" class="pay" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
-			<p class="pay_box"><i class="iconfont">&#xe671;</i>&nbsp;支付密码必须是6位纯数字。</p>
+			<span class="iconfont">&#xe672;</span><input type="password" class="pay" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')"><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
 		</div>
 		<input type="submit" class="btn" value="立即激活">
 	</div>
 </div>
-<div class="success_box max_width dis_none">
+<div class="success_box max-width dis_none">
 	<div class="top">
 		<span class="fl">拓道金服安全中心&nbsp;-&nbsp;北京银行存管账户激活</span>
 		<span class="fr">对银行存管有疑问？点击查看&nbsp;<a href="">帮助中心></a></span>
@@ -62,7 +61,7 @@
 	</div>
 </div>
 
-<div class="wait_box max_width dis_none">
+<div class="wait_box max-width dis_none">
 	<div class="top">
 		<span class="fl">拓道金服安全中心&nbsp;-&nbsp;北京银行存管账户激活</span>
 		<span class="fr">对银行存管有疑问？点击查看&nbsp;<a href="">帮助中心></a></span>
@@ -74,6 +73,6 @@
 		<p class="last">由此给您造成不便，敬请谅解！！</p>
 	</div>
 </div>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js "></script>
+<%= require('html-loader!./layout/footer.html') %>
 </body>
 </html>

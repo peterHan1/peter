@@ -6,7 +6,7 @@ require('util/flexslider/index.js');
 var templateBanner  	= require('./banner.string');
 var templateProduct  	= require('./product.string');
 var templateActivity  	= require('./activity.string');
-var  _td 				= require('util/td.js');
+var _td 				= require('util/td.js');
 $(function(){
 	var bannerHtml 		= _td.renderHtml(templateBanner);
 	var productHtml 	= _td.renderHtml(templateProduct);
@@ -40,11 +40,13 @@ $(function(){
 		}
 		setTimeout(b,3000);
 	}
-	$('.index-main li').hover(function(){
+	$('.index-product li').hover(function(){
+		var html = '<div class="now-invest">立即投资</div>';
+		$(this).find('.pro-list').append(html);
 		// console.log();
-		$(this).find('.now-invest').show();
+		// $(this).find('.now-invest').show();
 	},function(){
-		$(this).find('.now-invest').hide();
+		$(this).find('.now-invest').remove();
 	});
 	// $('.banner img').load(function(){	
 	// });

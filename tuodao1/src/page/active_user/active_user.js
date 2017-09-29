@@ -5,26 +5,6 @@ $(function() {
 	_inp.blur("input");
 	_inp.mouseover("input");
 	_inp.mouseleave("input");
-	// 银行卡号验证
-	var bankNum;
-	_regular.checkBankNum({
-		elm: "card_num",
-		cls:"wrong_mess",
-		callback: function(result) {
-			bankNum = result;
-		}
-	});
-	$(".bank_num input").on("blur", function() {
-		$(".big_font").hide();
-		check_form();
-	});
-	$(".bank_num input").on("keyup", function() {
-		$(".bank_num .wrong_mess").remove();
-		$(this).removeClass('red');
-		var data = $(this).val();
-		$(".big_font").show();
-		$(".big_font").text(data);
-	});
 	// 手机号码正则验证
 	var phoneNum;
 	_regular.checkPhoneKey({
@@ -59,26 +39,8 @@ $(function() {
 	$(".paynum input").on("blur", function() {
 		check_form();
 	});
-	// 姓名验证
-	$(".username input").on("input  propertychange", function() {
-		check_form();
-	});
-	// 身份证号验证
-	$(".idcard input").on("input  propertychange", function() {
-		check_form();
-	});
-	// 身份证号验证
-	$(".idcard input").on("input  propertychange", function() {
-		setTimeout(function() {
-			check_form();
-		}, 300);
-	});
-
 	function check_form() {
-		var username = $(".username input").val();
-		var idcard = $(".idcard input").val();
-		var xx = $(".div_bank_select .xx").text();
-		if (username != "" && idcard != "" && xx != "" && bankNum == true && phoneNum == true && payNum == true) {
+		if (phoneNum == true && payNum == true) {
 			$(".btn").addClass("kd");
 			$(".btn").on("mouseover", function() {
 				$(this).addClass('color');
@@ -86,7 +48,7 @@ $(function() {
 			$(".btn").on("mouseleave", function() {
 				$(this).removeClass('color');
 			});
-		} else if (username == "" || idcard == "" || xx == "" || bankNum == "" || phoneNum == false || payNum == false) {
+		} else if (phoneNum == false || payNum == false) {
 			$(".btn").removeClass("kd");
 			$(".btn").on("mouseover", function() {
 				$(this).removeClass('color');
@@ -137,9 +99,6 @@ $(function() {
 			$(".success_box .mid span i").text(0);
 		}
 	}, 1000);
-	del(".user",".btn");
-	del(".card",".btn");
-	del(".card_num",".btn");
 	del(".phoneNum",".btn");
 	del(".pay",".btn");
 	// 清空按钮显示

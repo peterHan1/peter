@@ -1,0 +1,20 @@
+{
+    "code": 100000, 
+    "msg": "成功", 
+    "content": {
+        "banner": [
+            {
+                "order": 211, 
+                "picTarget": "http://www.51tuodao.com/upload/data/upfiles/images/2017-01/03/74640_scrollpic_new_1483440530438.jpg", 
+                "name": "A轮融资正式", 
+                "url": "https://www.51tuodao.com/html5/app/nt_detail?id=1853&typeId=gonggao"
+            }, 
+            {
+                "order": 226, 
+                "picTarget": "http://www.51tuodao.com/upload/data/upfiles/images/2017-01/10/79962_scrollpic_new_1484043144364.png", 
+                "name": "2016第4季度运营报告新app", 
+                "url": "http://e.eqxiu.com/s/XWgNVkcU?eqrcode=1&from=singlemessage&winzoom=1"
+            }
+        ]
+    }
+}

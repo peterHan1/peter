@@ -5,3 +5,4 @@ require("./active_newuser.scss");
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
+require('page/common/nav2/index.scss');

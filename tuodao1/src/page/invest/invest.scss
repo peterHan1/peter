@@ -1,3 +1,4 @@
+
 @import "../common/mixin";
 @import "../common/layout";
 body{
@@ -18,6 +19,9 @@ body{
 			padding:0 10px;
 			margin-right:80px;
 			cursor: pointer;
+			&:hover{
+				color:$fontColor74;	
+			}
 		}
 		.on{
 			color:$fontColor74;
@@ -50,6 +54,9 @@ body{
 					margin-right:110px;
 					cursor: pointer;
 					color:$fontColor333;
+					&:hover{
+						color:$fontColor74;	
+					}
 				}
 				.on{
 					color:$fontColor74;
@@ -217,9 +224,9 @@ body{
 					color:$fontColor74;
 				}
 				&:hover{
-					box-shadow: 0 0 20px 8px #efeff2;
-					-webkit-box-shadow: 0 0 20px 8px #efeff2;  
-					-moz-box-shadow: 0 0 20px 8px #efeff2;  
+					box-shadow: 0 0 20px 8px #ededf1;
+					-webkit-box-shadow: 0 0 20px 8px #ededf1;  
+					-moz-box-shadow: 0 0 20px 8px #ededf1;  
 					z-index: 9;
 					.btn{
 						background-color:$mainColor;

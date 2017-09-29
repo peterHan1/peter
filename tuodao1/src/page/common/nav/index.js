@@ -4,33 +4,25 @@ $(function(){
 		if($(this).children().length>1){
 			$(this).find('dl').show();
 			$(this).addClass('on');
-			// alert($(this).html());
 		}
 	});
 	$('#navigate li, .uc').mouseout(function(){
-
 		$(this).find('dl').hide();
 		$(this).removeClass('on');
+	});
+
+
+	$('#navigate a').each(function () {
+		if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+			$(this).addClass('cur');
+		} else {
+			$(this).removeClass('cur');
+		}
 	});
 
 	$(window).scroll(function(){
 		var h = $(window).scrollTop();
 		var topH = $('.top').height();
-		var srcNavH = $('#src-nav').height();
-		var fs = true;
-		if(h>(topH+srcNavH-10)){
-			$(".scrool-nav").stop();
-			$('.scrool-nav').animate({
-				top:"0"
-			});
-		}else{
-			$(".scrool-nav").stop();
-			$('.scrool-nav').animate({
-				top:"-80px"
-			},10);
-
-			fs = true;
-			// $('.scrool-nav').hide();
-		}
+		(h>topH) ?	$(".scroll-nav").addClass('active') : $(".scroll-nav").removeClass('active');
 	});
 });

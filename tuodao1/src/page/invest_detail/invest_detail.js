@@ -1,5 +1,6 @@
-require('util/paging/zxf_page.scss');
-require('util/paging/zxf_page.js');
+require('util/paging/page.scss');
+require('util/paging/page.js');
+var _inp = require('util/inp.js');
 
 $(function(){
 	$(".detail_tab li a").on("click",function(){
@@ -35,7 +36,7 @@ $(function(){
 	});
 
 	// 优惠券点击
-	$(".ticket").on("click",function(){
+	$(".add_ticket").on("click",function(){
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
 		if($(".sub_money").val() == ""){
@@ -54,21 +55,11 @@ $(function(){
 				type: 1,
 				title:'',
 				skin: '',
+				closeBtn:0,
 				area:['635px','485px'],
 				content: $('#discount_show')
 			});
 		}
-	});
-	// 清空按钮
-	$(".btn_empty").on("click",function(){
-		$(this).hide();
-		$(".sub_money").val("");
-		$(".invest_money").removeClass("bor_col");
-		$(".in_span").remove();
-		$(".sub_money").css("color","#333");
-		$(".sub_money").focus();
-		setinput($(".sub_money"));
-		return false;
 	});
 	// 余额全投
 	$(".all_money").on("click",function(){
@@ -82,13 +73,21 @@ $(function(){
 		}else{
 			$(".sub_money").val(money);
 		}
-		$(".sub_money").focus();
 		var inputs = $(".sub_money");
 		setinput(inputs);
 		import_money(money,a_money);
 	});
 	// 输入金额input输入状态
-	$(".sub_money").keyup(function(){
+	_inp.checkPhoneOnkey({
+		elm: "sub_money",
+		balance:6000,
+		invest:666666,
+		callback: function(result) {
+			res = result;
+			console.log("666: " + res);
+		}
+	});
+	/* $(".sub_money").keyup(function(){
 		var money = $(".moneys").html();
 		money = parseFloat(money.replace(/,/g,''));
 		// 可投金额
@@ -103,22 +102,7 @@ $(function(){
 		}else{
 			$(".btn_empty").hide();
 		}
-	});
-	// 输入金额input得到光标状态
-	$(".sub_money").focus(function(){
-		var v = $(this).val();
-		if(v == '0.00'){
-			$(this).val('');
-		}else{
-			$(this).val($(this).val().replace(/\.00/, '').replace(/(\.\d)0/,'$1'));
-		}
-	});
-	// 输入金额input失去焦点状态
-	 $(".sub_money").blur(function(){
-	 	var inputs = $(this);
-		overFormat(inputs);
-		// setinput(inputs);
-	});
+	}); */
 	// 判断输入金额
 	function import_money(bal_money,in_money){
 		var inpt = $(".sub_money");
@@ -145,6 +129,57 @@ $(function(){
 			inpt.css("color","#333");
 		}
 	};
+	// input状态错误提示
+	function input_mess(str,inp,flag){
+		inp = inp || null;
+		if ($(".in_span").length>0) {
+			$(".in_span").remove();
+		}
+		if(flag == true){
+			// $(".btn_empty").show();
+		}
+		if(inp != null){
+			inp.css("color","red");
+		}
+		var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
+		$(".invest_money").addClass("bor_col");
+		$(".invest_money").append(txts);
+	}
+	// 输入金额input得到光标状态
+	$(".sub_money").focus(function(){
+		var v = $(this).val();
+		if(v == '0.00'){
+			$(this).val('');
+		}else{
+			$(this).val($(this).val().replace(/\.00/, '').replace(/(\.\d)0/,'$1'));
+		};
+		if(v != ""){
+			$(".btn_empty").show();
+		}else{
+			$(".btn_empty").hide();
+		}
+	});
+	// 清空按钮
+	$(".btn_empty").on("click",function(){
+		$(".sub_money").val("");
+		$(".invest_money").removeClass("bor_col");
+		$(".in_span").remove();
+		$(".sub_money").css("color","#333");
+		$(".sub_money").focus();
+		setinput($(".sub_money"));
+		$(".inp_ticket").val("");
+		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
+		return false;
+	});
+	// 输入金额input失去焦点状态
+	 $(".sub_money").blur(function(){
+		var inputs = $(this);
+		setTimeout(function(){
+			overFormat(inputs);
+			$(".btn_empty").hide();
+		},200);
+	});
+	
 	// 支付按钮点击的状态
 	$(document).on("click",".sub_btn",function(){
 		var mon = $(".invest_money");
@@ -153,18 +188,22 @@ $(function(){
 		var psw = $(".sub_psw").val();
 		if(money == "" && psw == ""){
 			show_mess("请填写加入金额! 和 请填写加入金额和支付密码!");
+			$(".sub_money").focus();
 			mon.addClass("bor_col");
 			pswd.addClass("bor_col");
 			return false;
 		}else if(money == "" && $(".in_span").length <= 0){
+			$(".sub_money").focus();
 			mon.addClass("bor_col");
 			show_mess("请填写加入金额!");
 			return false;
 		}else if(psw == "" && $(".in_span").length <= 0){
+			$(".sub_psw").focus();
 			pswd.addClass("bor_col");
 			show_mess("请填写支付密码!");
 			return false;
 		}else if(psw != "123" && $(".in_span").length <= 0){
+			$(".sub_psw").focus();
 			show_mess("密码错误，请重新输入!");
 			pswd.addClass("bor_col");
 			return false;
@@ -192,7 +231,7 @@ $(function(){
 					area:['560px','360px'],
 					content: $('#succeed_show')
 				}); */
-				// 加入成功
+				// 加入失败
 				layer.open({
 					type: 1,
 					title:'',
@@ -288,22 +327,6 @@ $(function(){
 				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
 			}
 		}
-	}
-	// input状态提示
-	function input_mess(str,inp,flag){
-		inp = inp || null;
-		if ($(".in_span").length>0) {
-			$(".in_span").remove();
-		}
-		if(flag == true){
-			// $(".btn_empty").show();
-		}
-		if(inp != null){
-			inp.css("color","red");
-		}
-		var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
-		 $(".invest_money").addClass("bor_col");
-		 $(".invest_money").append(txts);
 	}
 	// top提示错误
 	function show_mess(str){

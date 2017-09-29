@@ -25,6 +25,9 @@ b,i,em{
 				width:100%;
 				height:58px;
 				padding:0 10px;
+				&:hover{
+					color:$fontColor74;	
+				}
 			}
 			.on{
 				color:$fontColor74;
@@ -380,7 +383,7 @@ b,i,em{
 				bottom:-31px;
 				left:0;
 				display: block;
-				width:95%;
+				width:96%;
 				padding-left:5%;
 				@include height-line(30px);
 				background-color:#f2f2f2;
@@ -392,20 +395,11 @@ b,i,em{
 					margin-right:3px;
 				}
 			}
-			.fontcol:hover{
-				color:$fontColor74;
-			}
 			&:hover{
 				border-color: #838383;
 				input{
 					cursor:default;
 				}
-			}
-		}
-		.bor_col{
-			border-color:red;
-			&:hover{
-				border-color:red;
 			}
 		}
 		.com_sty{
@@ -426,6 +420,11 @@ b,i,em{
 				text-align: left;
 				padding-left:3%;
 				background-color:#f2f2f2;
+			}
+			&:hover{
+				.fontcol{
+					color:$fontColor74;
+				}
 			}
 		}
 		.input_sub {

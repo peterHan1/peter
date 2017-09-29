@@ -1,6 +1,6 @@
 require('./invest.scss');
-require('util/paging/zxf_page.scss');
-require('util/paging/zxf_page.js');
+require('util/paging/page.scss');
+require('util/paging/page.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');

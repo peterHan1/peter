@@ -5,10 +5,9 @@
     <title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
-<div class="scrool-nav"><%= require('html-loader!./layout/nav.html') %></div>
-
+	<div class="scroll-nav"><%= require('html-loader!./layout/nav.html') %></div>
 	<%= require('html-loader!./layout/top.html') %>
-	<div id="src-nav"><%= require('html-loader!./layout/nav.html') %></div>
+	<%= require('html-loader!./layout/nav.html') %>
 	<div class="banner">
 	    <div class="flexslider"></div>
 	    <div class="fixed-left">
@@ -25,7 +24,7 @@
 	    		<dd>呼朋唤友共赚收益</dd>
 	    	</dl>
 			<dl class="last">
-	    		<dt><a href="">邀请好友</a></dt>
+	    		<dt><a href="">移动理财</a></dt>
 	    		<dd>随时随地投资理财</dd>
 	    	</dl>
 	    </div>

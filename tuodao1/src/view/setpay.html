@@ -5,6 +5,7 @@
 	<title><%= htmlWebpackPlugin.options.title%></title>
 </head>
 <body>
+	<%= require('html-loader!./layout/nav2.html') %>
 	<div class="main max-width">
 		<div class="title"><p>拓道金服安全中心&nbsp;-&nbsp;重置支付密码</p></div>
 		<div class="main_mid">
@@ -12,8 +13,9 @@
 				<p class="line"><i class="one"></i><span></span><i class="two"></i><span></span><i class="three"></i><span></span><i class="four"></i></p>
 				<p><b class="one">填写手机号</b><b class="two">验证手机号</b><b class="three">设置新密码</b><b class="four">完成</b></p>
 			</div>
-			<input type="number" class="phoneNum" placeholder="请输入手机号">
-			<p class="jg">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span class="wz"></span></p>
+			<div class="phone_Num">
+				<input type="text" class="phoneNum" placeholder="请输入手机号" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+			</div>
 			<div id="slider2" class="slider"></div>
 			<input type="button" value="下一步" class="set_btn">
 		</div>
@@ -26,17 +28,17 @@
 				<div class="ts write_ts">请输入6位验证码</div>
 				<div class="ts">验证短信已发送至手机号&nbsp;<span class="phone_Num">15649387762</span></div>
 			</div>
-			<div class="wrong_ts dis_none"><i class="iconfont">&#xe671;</i>您输入的验证码有误，请重新输入！</div>
+			<div class="wrong_ts dis_none"><i class="iconfont">&#xe671;</i>&nbsp;&nbsp;您输入的验证码有误，请重新输入！</div>
 			<div class="demo" id="demo">
-				<input type="text" class="border" autofocus="autofocus" maxlength="1" id="dy" />
-				<input type="text" maxlength="1"/>
-				<input type="text" maxlength="1"/ id="space">
-				<input type="text" maxlength="1"/>
-				<input type="text" maxlength="1"/>
-				<input type="text" maxlength="1" class="lastnum"/>
+				<input type="text" jz="jz" class="border" maxlength="1" id="dy" />
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1"/ id="space" readonly="readonly" >
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+				<input type="text" jz="jz" maxlength="1" class="lastnum" readonly="readonly" />
 				<span id="spa">-</span>
 			</div>
-			<span class="count_num">5</span><div class="count_time">s后可重新发送验证码</div>
+			<span class="djs">(<i class="count_num">59</i>s)&nbsp;后可重新发送验证码</span><div class="count_time">重新发送验证码</div>
 			<p class="back"><&nbsp;返回上一步</p>
 		</div>
 		<div class="set_password dis_none">
@@ -45,7 +47,7 @@
 				<p><b class="one">填写手机号</b><b class="two">验证手机号</b><b class="three">设置新密码</b><b class="four">完成</b></p>
 			</div>
 			<div class="pas_box">
-				<input type="password" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="6" placeholder="请输入6位数字支付密码密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span>
+				<input type="password" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="6" placeholder="请输入6位数字支付密码密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="pay_til">支付密码必须是6位数字</p>
 			<input type="button" value="提交" class="register_btn">
@@ -62,6 +64,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js "></script>
+	<%= require('html-loader!./layout/footer.html') %>
 </body>
 </html>
