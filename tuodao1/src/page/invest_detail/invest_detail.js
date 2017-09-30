@@ -63,28 +63,33 @@ $(function(){
 	});
 	// 余额全投
 	$(".all_money").on("click",function(){
+		var inp = $(".sub_money"),apen = $(".sub_money").parent(),money = $(".sub_money").val(),in_money = 88888,bal_money = 666666;
+		_inp.import_money(inp,apen,money,in_money,bal_money);
+		_inp.input_mess();
+		// $(".sub_money").keyup();
 		// 账户余额
-		var money = $(".moneys").html();
-		money = parseFloat(money.replace(/,/g,''));
+		var money = 666;
+		// money = parseFloat(money.replace(/,/g,''));
 		// 可投金额
-		var a_money = 666666;
+		var a_money = 600;
 		if(money >= a_money){
 			$(".sub_money").val(a_money);
 		}else{
 			$(".sub_money").val(money);
 		}
-		var inputs = $(".sub_money");
-		setinput(inputs);
-		import_money(money,a_money);
+		// var inputs = $(".sub_money");
+		// setinput(inputs);
+		// import_money(money,a_money);
 	});
 	// 输入金额input输入状态
 	_inp.checkPhoneOnkey({
 		elm: "sub_money",
-		balance:6000,
+		// 可以余额
+		balance:888888,
+		// 可投金额
 		invest:666666,
-		callback: function(result) {
-			res = result;
-			console.log("666: " + res);
+		callback: function(inp) {
+			setinput(inp);
 		}
 	});
 	/* $(".sub_money").keyup(function(){
@@ -104,7 +109,7 @@ $(function(){
 		}
 	}); */
 	// 判断输入金额
-	function import_money(bal_money,in_money){
+	/* function import_money(bal_money,in_money){
 		var inpt = $(".sub_money");
 		var money = $(".sub_money").val();
 		var a = $(".invest_money");
@@ -128,9 +133,9 @@ $(function(){
 			$(".in_span").remove();
 			inpt.css("color","#333");
 		}
-	};
+	}; */
 	// input状态错误提示
-	function input_mess(str,inp,flag){
+	/* function input_mess(str,inp,flag){
 		inp = inp || null;
 		if ($(".in_span").length>0) {
 			$(".in_span").remove();
@@ -144,7 +149,7 @@ $(function(){
 		var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
 		$(".invest_money").addClass("bor_col");
 		$(".invest_money").append(txts);
-	}
+	} */
 	// 输入金额input得到光标状态
 	$(".sub_money").focus(function(){
 		var v = $(this).val();
@@ -179,7 +184,6 @@ $(function(){
 			$(".btn_empty").hide();
 		},200);
 	});
-	
 	// 支付按钮点击的状态
 	$(document).on("click",".sub_btn",function(){
 		var mon = $(".invest_money");

@@ -10,11 +10,12 @@ var _regular = {
 			var in_money = data.balance;
 			// 可投金额
 			var bal_money = data.invest;
+			var inp = $(this);
 			var val = $(this).val();
 			var apen = $(this).parent();
-			_this.import_money(apen,val,in_money,bal_money);
-			// console.log(apen);
-			data.callback(val);
+			_this.import_money(inp,apen,val,in_money,bal_money);
+			data.callback(inp);
+			console.log(val);
 		});
 	},
 	// blur的时候 验证手机号码格式以及唯一性
@@ -24,53 +25,43 @@ var _regular = {
 		};
 	},
 	// 判断输入金额
-	import_money : function(apen,money,in_money,bal_money){
-		// var inpt = $(".sub_money");
-		// var a = $(".invest_money");
+	import_money : function(inp,apen,money,in_money,bal_money){
+		console.log("666: " + 666);
 		if(money != "" && money != 0 && money < 100   && bal_money < 500){
-			this.input_mess(true,apen,"不得低于起投金额100元！");
+			this.input_mess(inp,true,apen,"不得低于起投金额100元！");
 			return false;
 		}else if(money != "" && money != 0  && money < 500 && bal_money >= 500){
-			this.input_mess(true,apen,"不得低于起投金额500元！");
-			return false;
-		}else if(money != "" && money != 0  && money > in_money){
-			this.input_mess(true,apen,"余额不足");
-			return false;
-		}else if(money != "" && money != 0  && money > 500000){
-			this.input_mess(true,apen,"单笔限额为500,000元！");
+			this.input_mess(inp,true,apen,"不得低于起投金额500元！");
 			return false;
 		}else if(money != "" && money != 0  && money > bal_money){
-			this.input_mess(true,apen,"您输入的金额大于当前剩余可投金额！");
+			this.input_mess(inp,true,apen,"您输入的金额大于当前剩余可投金额！");
+			return false;
+		}else if(money != "" && money != 0  && money > in_money){
+			this.input_mess(inp,true,apen,"余额不足");
+			return false;
+		}else if(money != "" && money != 0  && money > 500000){
+			this.input_mess(inp,true,apen,"单笔限额为500,000元！");
 			return false;
 		}else{
-			this.input_mess(false,apen,"");
-			// inpt.css("color","#333");
-			console.log("牛逼了");
+			this.input_mess(inp,false,apen,"");
 		}
 	},
 	// input状态错误提示
-	input_mess : function(boole,apen,str){
+	input_mess : function(inp,boole,apen,str){
+		console.log(111);
 		var txts = '<span class="in_span"><i class="iconfont">&#xe671;</i>'+ str +'</span>';
 		if(boole == true){
 			if($(".in_span").length<=0){
 				apen.addClass('bor_col');
 				apen.append(txts);
+				inp.css("color","red");
 			}
 		}else if(boole == false){
 			apen.removeClass("bor_col");
 			$(".in_span").remove();
+			inp.css("color","#333");
+
 		}
-		// inp = inp || null;
-		// if ($(".in_span").length>0) {
-		// 	$(".in_span").remove();
-		// }
-		// if(flag == true){
-		// 	$(".btn_empty").show();
-		// }
-		// if(inp != null){
-		// 	inp.css("color","red");
-		// }
-		// $(".invest_money").addClass("bor_col");
 	}
 };
 module.exports = _regular;
