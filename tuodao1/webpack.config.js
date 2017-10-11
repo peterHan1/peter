@@ -37,6 +37,7 @@ var config = {
 		'invest_detail' 	: ['./src/page/invest_detail/index.js'],
 		'active_newuser' 	: ['./src/page/active_newuser/index.js'],
 		'active_user'		: ['./src/page/active_user/index.js'],
+		'uc'				: ['./src/page/uc/index.js'],
 
 	},
 	output: {
@@ -106,7 +107,8 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('active_user','激活存管存量用户')),
 		new HtmlWebpackPlugin(getHtmlConfig('return_money','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
-		new HtmlWebpackPlugin(getHtmlConfig('invest_detail','理财专区-详情页'))
+		new HtmlWebpackPlugin(getHtmlConfig('invest_detail','理财专区-详情页')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc','账户总览')),
 	]
 };
 

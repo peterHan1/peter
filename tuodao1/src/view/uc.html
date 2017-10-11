@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+
+	<div class="max-width">
+		<div class="uc_main">
+			<%= require('html-loader!./layout/uc_menu.html') %>
+			<div class="uc_right">
+				<!-- 1 -->
+				<div class="total_sign">
+					<div class="com_left total">
+						<div class="total_top">
+							<div class="assets">
+								<dl>
+									<dt>
+										<span>累计收益(元)</span>
+										<div class="hint">
+											<i class="iconfont">&#xe68d;</i>
+											<div class="tips left-tips">
+												存管上线后收到的收益总和
+											</div>
+										</div>
+									</dt>
+									<dd>9,999.99</dd>
+								</dl>
+							</div>
+							<div class="recharge_cash">
+								<a href="###" class="recharge">充值</a>
+								<a href="###" class="cash">提现</a>
+							</div>
+						</div>
+						<div class="total_bot">
+							<dl>
+								<dt>
+									<span>待收总额(元)</span>
+									<div class="hint">
+										<i class="iconfont">&#xe68d;</i>
+										<div class="tips left-tips">
+											待回款的本金与利息总和
+										</div>
+									</div>
+								</dt>
+								<dd>9,999.99</dd>
+							</dl>
+							<dl>
+								<dt>
+									<span>可用余额(元)</span>
+									<div class="hint">
+										<i class="iconfont">&#xe68d;</i>
+										<div class="tips left-tips">
+											充值资金，已回款资金和站岗资金的和。
+										</div>
+									</div>
+								</dt>
+								<dd>9,999.99</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="com_right sign">
+						<p class="sign_sum">您的签到总数</p>
+						<div class="sign_date">
+							<span>03</span>天
+						</div>
+						<div class="sign_integral">您的总积分<span>280</span>分</div>
+						<div class="sigin_btn">立即签到</div>
+					</div>
+				</div>
+
+				<!-- 2 -->
+				<div class="total_eachart">
+					<div class="com_left eachart">
+						
+					</div>
+					<div class="com_right welfare">
+						
+					</div>
+				</div>
+
+				<!-- 3 -->
+				<div class="return_money">
+					
+				</div>
+
+				<!-- 4 -->
+				<div class="recommend">
+					
+				</div>
+
+			</div>
+		</div>
+		
+	</div>
+	
+
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>
