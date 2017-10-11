@@ -26,7 +26,6 @@ var _regular = {
 	},
 	// 判断输入金额
 	import_money : function(inp,apen,money,in_money,bal_money){
-		console.log("666: " + 666);
 		if(money != "" && money != 0 && money < 100   && bal_money < 500){
 			this.input_mess(inp,true,apen,"不得低于起投金额100元！");
 			return false;
@@ -48,13 +47,17 @@ var _regular = {
 	},
 	// input状态错误提示
 	input_mess : function(inp,boole,apen,str){
-		console.log(111);
 		var txts = '<span class="in_span"><i class="iconfont">&#xe671;</i>'+ str +'</span>';
 		if(boole == true){
 			if($(".in_span").length<=0){
+				console.log('haha');
 				apen.addClass('bor_col');
 				apen.append(txts);
 				inp.css("color","red");
+			}else{
+				$(".in_span").remove();
+				apen.append(txts);
+				console.log('xixi');
 			}
 		}else if(boole == false){
 			apen.removeClass("bor_col");

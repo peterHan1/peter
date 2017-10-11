@@ -40,7 +40,8 @@ $(function(){
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
 		if($(".sub_money").val() == ""){
-			input_mess("选择优惠券前需要填写加入金额！",null,false);
+			// _inp.input_mess("选择优惠券前需要填写加入金额！",null,false);
+			_inp.input_mess($(".sub_money"),true,$(".sub_money").parent(),"选择优惠券前需要填写加入金额！");
 			return false;
 		}else if($(".invest_money").hasClass('bor_col')){
 			return false;
@@ -65,7 +66,7 @@ $(function(){
 	$(".all_money").on("click",function(){
 		var inp = $(".sub_money"),apen = $(".sub_money").parent(),money = $(".sub_money").val(),in_money = 88888,bal_money = 666666;
 		_inp.import_money(inp,apen,money,in_money,bal_money);
-		_inp.input_mess();
+		// _inp.input_mess();
 		// $(".sub_money").keyup();
 		// 账户余额
 		var money = 666;
