@@ -1,0 +1,164 @@
+@import "../common/mixin";
+b,i,em{
+	font-weight: normal;
+	font-style: normal;
+	font-family: 微软雅黑;
+}
+.dis_none{
+	display:none;
+}
+.max-width{
+	overflow: hidden;
+}
+.uc_main{
+	overflow: hidden;
+	margin:30px 0 50px;
+}
+.uc_right{
+	float:left;
+	margin-left:20px;
+	.com_left{
+		float:left;
+		width:670px;
+		height:300px;
+		background-color:#fff;
+	}
+	.com_right{
+		float:left;
+		margin-left:10px;
+		height:300px;
+		width:260px;
+		background-color:#fff;
+
+	}
+	.total_sign{
+		overflow: hidden;
+		margin-bottom:10px;
+		.total{
+			letter-spacing:1px;
+			.total_top{
+				padding:38px 0;
+				width:100%;
+				overflow: hidden;
+				border-bottom:1px solid $bgColor;
+				.assets{
+					float:left;
+				}
+				.recharge_cash{
+					float:right;
+					margin-right:60px;
+					padding:10px 0;
+					a{
+						font-size:16px;
+						display:inline-block;
+						width:110px;
+						@include height-line(40px);
+						text-align:center;
+						border-radius: 20px;
+					}
+					.recharge{
+						color:#fff;
+						background-color:$fontColor74;
+						margin-right:20px;
+						&:hover{
+							background-color:#f25d14;
+						}
+					}
+					.cash{
+						color:$fontColor74;
+						@include border-style($b-color:$fontColor74,$b-radius:20px);
+						&:hover{
+							color:#f25d14;
+							@include border-style($b-color:#f25d14,$b-radius:20px)
+						}
+					}
+				}
+			}
+			.total_bot{
+				padding:40px 0;
+				width:100%;
+				dl{
+					float:left;
+					width:225px;
+					dd{
+						color:$fontColor70;
+					}
+				}
+			}
+			dl{
+				text-align:left;
+				margin-left:70px;
+
+				// 问号tips
+				.hint{
+					float: left;
+					margin-left: 5px;
+					cursor: pointer;
+					position:relative;
+					i{
+						font-size:$fontSize16;
+					}
+				}
+			}
+			dt{
+				color:$fontColor9e;
+				font-size:$fontSize14;
+				span{
+					float:left;
+				}
+			}
+			dd{
+				color:$fontColor74;
+				font-size:30px;
+			}
+		}
+		.sign{
+			background:url(../../image/uc_sign.png) no-repeat;
+			text-align: center;
+			color:#fff;
+			letter-spacing:2px;
+			.sign_sum{
+				margin-top:25px;
+				font-size:$fontSize16;
+			}
+			.sign_date{
+				margin-top:20px;
+				font-size:18px;
+				span{
+					color:#fdffff;
+					font-size:50px;
+				}
+			}
+			.sign_integral{
+				margin-top:30px;
+				font-size:$fontSize14;
+				span{
+					font-size:18px;
+				}
+			}
+			.sigin_btn{
+				margin:10px auto 0;
+				border-radius: 20px;
+				font-size:$fontSize14;
+				width:180px;
+				@include height-line(40px);
+				background-color:#fff6ae;
+				color:#ff8783;
+			}
+		}
+	}
+	.total_eachart{
+		overflow: hidden;
+		margin-bottom:10px;
+	}
+	.return_money{
+		background-color:#fff;
+		height:360px;
+		margin-bottom:10px;
+
+	}
+	.recommend{
+		background-color:#fff;
+		height:360px;
+	}
+}
