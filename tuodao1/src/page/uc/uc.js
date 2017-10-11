@@ -8,4 +8,7 @@ $(function(){
 	$(".hint").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
+	$(".sigin_btn").on("click",function(){
+		console.log(666);
+	});
 });
