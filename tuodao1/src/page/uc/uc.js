@@ -1,4 +1,6 @@
 var _tips = require('util/tips/index.js');
+var echarts = require('echarts/lib/echarts');
+require('echarts/lib/chart/pie');
 require('util/return_date/date_time.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');
@@ -10,8 +12,15 @@ $(function(){
 	$(".hint").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
-	$(".sigin_btn").on("click",function(){
-		console.log(666);
+	$(".sigin_clik").on("click",function(){
+		var day = parseInt($(".sign_day").html())+1;
+		var integral = parseInt($(".sign_integral").html())+1;
+		if (day < 10) {
+			day = "0"+day;
+		}
+		$(".sign_day").html(day);
+		$(".sign_integral").html(integral);
+
 	});
 	var trs=document.getElementById("table_list").getElementsByTagName("tr");
 	for(var i=0;i<trs.length;i++){
@@ -19,25 +28,51 @@ $(function(){
 			trs[i].className +=" trColor";
 		}
 	};
-	// 得到总页数
-	$(".zxf_pagediv").createPage({
-		// 页数
-		pageNum: 2,
-		// 当前页
-		current: 1,
-		// 显示条数
-		shownum: 10,
-		backfun: function(e) {
-			console.log(e.current);
-			// $("#data-container").html(thisDate(e.current));
-		}
-	});
 	$('.recommends_list li').hover(function(){
 		var html = '<div class="now-invest">立即加入</div>';
 		$(this).find('.pro-list').append(html);
 	},function(){
 		$(this).find('.now-invest').remove();
 	});
+	var myChart = echarts.init(document.getElementById('eachart_main'));
+	var option = {
+	    legend: {
+			orient: 'vertical',
+			top:'100',
+			x: 'right',
+			align:'left',
+			itemHeight:'25',
+			data:['直接访问','邮件营销','联盟广告','视频广告']
+		},
+		color:['red', 'green','yellow','blue'],
+			series: [
+				{
+					type:'pie',
+					radius: ['50%', '45%'],
+					legendHoverLink:false,
+					avoidLabelOverlap: false,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data:[
+						{value:6660},
+						{value:3100},
+						{value:2340},
+						{value:1350}
+					]
+				}
+			]
+	};
+	myChart.setOption(option);
 });
 // 回款日历两个加载函数
 window.time_list = function(yyyy,mm){
@@ -71,9 +106,22 @@ window.time_list = function(yyyy,mm){
 	if(!$('.re_money_tbody tr').html()){
 		var dates = yyyy+'年'+mm+'月';
 		var htm = '<div class="return_noData"><div class="return_noData_bg"></div><p>'+dates+'没有回款信息</p></div>';
-		$(".table_data").html(htm);
+		$(".re_money_tbody").html(htm);
 		$(".re_money").html("0.00");
 	}
+	// 得到总页数
+	$(".zxf_pagediv").createPage({
+		// 页数
+		pageNum: 2,
+		// 当前页
+		current: 1,
+		// 显示条数
+		shownum: 10,
+		backfun: function(e) {
+			console.log(e.current);
+			// $("#data-container").html(thisDate(e.current));
+		}
+	});
 	// }
 	// });
 };
@@ -94,7 +142,7 @@ window.time_day = function(ht_html,zero,mid,thisy,thism,thisd){
 		var dates = thisy+'年'+thism+'月'+thisd+'日';
 		var htm = '<div class="return_noData"><div class="return_noData_bg"></div><p>'+dates+'没有回款信息</p></div>';
 		// var tr = "<tr><td colspan='4'>当前没有回款信息666</td></tr>";
-		$(".table_data").html(htm);
+		$(".re_money_tbody").html(htm);
 		$(".re_money").html("0.00");
 	}
 	// }

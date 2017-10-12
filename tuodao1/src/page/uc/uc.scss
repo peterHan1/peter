@@ -136,7 +136,7 @@ b,i,em{
 					font-size:50px;
 				}
 			}
-			.sign_integral{
+			.signs_integral{
 				margin-top:30px;
 				font-size:$fontSize14;
 				span{
@@ -158,6 +158,29 @@ b,i,em{
 	.total_eachart{
 		overflow: hidden;
 		margin-bottom:10px;
+		position: relative;
+		.sum_money{
+			position: absolute;
+			left:80px;
+			top:80px;
+			cursor: pointer;
+		}
+		#eachart_main{
+			float: left;
+			width:192px;
+			height:192px;
+		}
+		.eachart_R{
+			float:left;
+			li{
+				.eachart_Rtit{
+					float:left;
+				}
+				.hint{
+					float:left;
+				}
+			}
+		}
 		.welfare{
 			li{
 				overflow: hidden;
@@ -292,11 +315,11 @@ b,i,em{
 				}
 				.yet_money{
 					background:url(../../image/uc/yet_money.png) no-repeat;
-					background-position:20px 22px;
+					background-position:20px 24px;
 				}
 				.await_money{
 					background:url(../../image/uc/await_money.png) no-repeat;
-					background-position:20px 22px;
+					background-position:19px 24px;
 				}
 				.data_table_td{
 					margin-top:2px;
@@ -404,6 +427,7 @@ b,i,em{
 				}
 				.return_noData{
 					text-align: center;
+					@extend %clearfix;
 					.return_noData_bg{
 						margin:65px auto 15px;
 						width:85px;

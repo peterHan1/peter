@@ -98,7 +98,6 @@ $(function(){
 			var ht_html = thisy +'/'+ thism +'/'+ thisd;
 			var zero = new Date(ht_html+' 00:00:00').getTime();
 			var mid = new Date(ht_html+' 23:59:59').getTime();
-			//	        	console.log(thisy +'年'+ thism +'月'+ thisd +'日')
 			var oldTime = new Date(thisy+'-'+thism+'-'+thisd ).getTime();
 			var newTime = new Date(oldTime);
 			$(".re_money_tbody").empty();

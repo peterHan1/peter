@@ -3,7 +3,7 @@ var path          		= require('path');
 var ExtractTextPlugin 	= require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin 	= require('html-webpack-plugin');
 
-var publicPath = 'http://72.127.2.42:3000/';
+var publicPath = 'http://192.168.10.101:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 // 环境变量配置，dev / online
 var WEBPACK_ENV         = process.env.NODE_ENV || 'dev';
