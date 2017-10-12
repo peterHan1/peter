@@ -3,7 +3,7 @@ var path          		= require('path');
 var ExtractTextPlugin 	= require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin 	= require('html-webpack-plugin');
 
-var publicPath = 'http://192.168.10.101:3000/';
+var publicPath = 'http://72.127.2.42:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 // 环境变量配置，dev / online
 var WEBPACK_ENV         = process.env.NODE_ENV || 'dev';
@@ -37,7 +37,11 @@ var config = {
 		'invest_detail' 	: ['./src/page/invest_detail/index.js'],
 		'active_newuser' 	: ['./src/page/active_newuser/index.js'],
 		'active_user'		: ['./src/page/active_user/index.js'],
+		'uc_recharge'		: ['./src/page/uc_recharge/index.js'],
 		'uc'				: ['./src/page/uc/index.js'],
+		'uc_cash'			: ['./src/page/uc_cash/index.js'],
+		'uc_moneyRecord'	: ['./src/page/uc_moneyRecord/index.js'],
+		'uc_messageCenter'	: ['./src/page/uc_messageCenter/index.js']
 
 	},
 	output: {
@@ -108,7 +112,11 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('return_money','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest_detail','理财专区-详情页')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_recharge','账户充值')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc','账户总览')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_cash','账户提现')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_moneyRecord','资金记录')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','资金记录'))
 	]
 };
 

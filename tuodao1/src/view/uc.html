@@ -12,7 +12,6 @@
 		<div class="uc_main">
 			<%= require('html-loader!./layout/uc_menu.html') %>
 			<div class="uc_right">
-				<!-- 1 -->
 				<div class="total_sign">
 					<div class="com_left total">
 						<div class="total_top">
@@ -63,6 +62,12 @@
 						</div>
 					</div>
 					<div class="com_right sign">
+						<div class="hint">
+							<i class="iconfont">&#xe68d;</i>
+							<div class="tips left-tips">
+								每日签到可随机获得1-6积分哦！
+							</div>
+						</div>
 						<p class="sign_sum">您的签到总数</p>
 						<div class="sign_date">
 							<span>03</span>天
@@ -71,25 +76,163 @@
 						<div class="sigin_btn">立即签到</div>
 					</div>
 				</div>
-
-				<!-- 2 -->
 				<div class="total_eachart">
 					<div class="com_left eachart">
 						
 					</div>
 					<div class="com_right welfare">
-						
+						<ul>
+							<li>
+								<div class="welfare_txt">
+									<span>抵用券</span>
+									<!-- 数量为0的class名 -->
+									<p class="txt_null">0</p>
+								</div>
+								<div class="welfare_img">
+									<div class="dyq"></div>
+								</div>
+							</li>
+							<li>
+								<div class="welfare_txt">
+									<span>加息券</span>
+									<p>1</p>
+								</div>
+								<div class="welfare_img">
+									<div class="jxq"></div>
+								</div>
+							</li>
+							<li>
+								<div class="welfare_txt">
+									<span>我的积分</span>
+									<p>288</p>
+								</div>
+								<div class="welfare_img">
+									<div class="integral"></div>
+								</div>
+							</li>
+							<li class="li_borno">
+								<div class="welfare_txt">
+									<span>我的金币</span>
+									<p>100</p>
+								</div>
+								<div class="welfare_img">
+									<div class="gold"></div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
-
-				<!-- 3 -->
 				<div class="return_money">
-					
-				</div>
+					<div class="date_tit">
+						<div class="date_titL">
+							回款日历
+							<div class="hint">
+								<i class="iconfont">&#xe68d;</i>
+								<div class="tips left-tips">
+									点击日历中的具体日期可以查看当日的回款情况。
+								</div>
+							</div>
+						</div>
+						<div class="date_titR">
+							<a href="###">
+								查看更多
+								<i class="iconfont">&#xe69a;</i>
+							</a>
+						</div>
+					</div>
+					<div class="calendar">
+						<div class="account_box"></div>
+						<div class="calendarR">
+							<div class="re_money_tlt">
+					            <p><span class="re_money_y"></span>年<span class="re_money_m"></span>月<span class="re_money_d"></span>待收本息：<span class="re_money">99,999,999.99</span>元</p>
+					    	</div>
+					    	<div class="table_data">
+					    		<table id="table_list">
+									<tbody class="re_money_tbody">
+										
+									</tbody>	
+								</table>
 
-				<!-- 4 -->
-				<div class="recommend">
-					
+					    	</div>
+							<!-- <div class="zxf_pagediv"></div> -->
+						</div>
+					</div>
+				</div>
+				<div class="recommends">
+					<div class="recommends_txt">为您推荐</div>
+					<div class="recommends_list">
+						<ul>
+							<li>
+								<a href="">
+								<div class="pro-list">
+									<div class="t">精选计划20170607111<img src="<%= require('../image/activity.png') %>"></div>
+									<div class="year">
+										<dl class="profit">
+											<dt>7.2<b>%</b></dt>
+											<dd>预期年化</dd>
+										</dl>
+										<dl class="deadline">
+											<dt>1<b>个月</b></dt>
+											<dd>投资期限</dd>
+										</dl>
+									</div>
+									<div class="money">
+										<p class="total">预计项目总额：999.99 万元</p>
+										<p class="surplus">剩余可投：99,999,999.99 元</p>
+									</div>
+									<div class="btn">500 元起投</div>
+									
+								</div>
+								</a>	
+							</li>
+							<li>
+								<a href="">
+								<div class="pro-list">
+									<div class="t">精选计划20170607111<img src="<%= require('../image/new-type.png') %>"></div>
+									<div class="year">
+										<dl class="profit">
+											<dt>7.2<b>%</b></dt>
+											<dd>预期年化</dd>
+										</dl>
+										<dl class="deadline">
+											<dt>1<b>个月</b></dt>
+											<dd>投资期限</dd>
+										</dl>
+									</div>
+									<div class="money">
+										<p class="total">预计项目总额：999.99 万元</p>
+										<p class="surplus">剩余可投：99,999,999.99 元</p>
+									</div>
+									<div class="btn">500 元起投</div>
+									
+								</div>
+								</a>	
+							</li>
+							<li class="li_borno">
+								<a href="">
+								<div class="pro-list">
+									<div class="t">吉普指南者抵押标<img src="<%= require('../image/new-type.png') %>"><img src="<%= require('../image/cooperate.png') %>"></div>
+									<div class="year">
+										<dl class="profit">
+											<dt>7.2<b>%</b></dt>
+											<dd>预期年化</dd>
+										</dl>
+										<dl class="deadline">
+											<dt>1<b>个月</b></dt>
+											<dd>投资期限</dd>
+										</dl>
+									</div>
+									<div class="money">
+										<p class="total">预计项目总额：999.99 万元</p>
+										<p class="surplus">剩余可投：99,999,999.99 元</p>
+									</div>
+									<div class="btn">100 元起投</div>
+									
+								</div>
+								</a>	
+							</li>
+						</ul>
+					</div>
 				</div>
 
 			</div>

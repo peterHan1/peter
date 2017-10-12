@@ -1,0 +1,394 @@
+@import '../common/mixin';
+@import '../common/layout';
+.on{
+	color:#ff7400!important;
+	border-bottom:2px solid #ff7400;
+}
+.dis_none{
+	display:none;
+}
+.title{
+	margin:40px 0 20px 30px;
+	font-size:14px;
+	color:#333333;
+	font-weight:800;
+}
+.kd{
+	background-color: $mainColor!important;
+}
+.color{
+	background-color: #f25d14!important;
+}
+.get{
+	background:url(../../image/get.png) no-repeat;
+}
+.get_fast{
+	background:url(../../image/get_fast.png) no-repeat;
+}
+.recharge_box{
+	overflow:hidden;
+	margin: 30px auto 50px auto;
+}
+.main{
+	background-color: #fff;
+	width:940px;
+	float:left;
+	margin-left:20px;
+	.qs_time{
+		height:40px;
+		background-color: #f0e8db;
+		border-bottom:10px solid #f2f2f2;
+		color:#ff7400;
+		font-size:14px;
+		line-height:40px;
+		padding-left:12px;
+	}
+	.recharge_top{
+		width:940px;
+		height:50px;
+		border-bottom:10px solid #f2f2f2;
+		ul{
+			width:100%;
+			height:100%;
+			li{
+				float:left;
+				width:56px;
+				height:50px;
+				margin-right:29px;
+				margin-left:30px;
+				line-height:50px;
+				text-align:center;
+				font-size:14px;
+				color:#707070;
+				cursor:default;
+			}
+		}
+	}
+	.item0{
+		height:278px;
+		border-bottom:10px solid #f2f2f2;
+		text-align:center;
+		.logo{
+			width:363px;
+			height:48px;
+			margin:65px auto 15px auto;
+		}
+		p{
+			font-size:14px;
+			color:#333333;
+		}
+		.jh_btn{
+			display:block;
+			width:340px;
+			height:40px;
+			background-color: #ff7400;
+			color:#fff;
+			text-align:center;
+			line-height:40px;
+			font-size:14px;
+			border-radius:20px;
+			margin:30px auto;
+		}
+	}
+	.item1{
+		width:100%;
+		height:641px;
+		border-bottom:10px solid #f2f2f2;
+		.bank_select{
+			width: 833px;
+			height: 195px;
+			border:2px solid #eeeeee;
+			overflow-y: auto;
+			margin: 0 0 61px 30px;
+			background-color: #fafafa;
+			ul{
+				width:100%;
+				li{
+					width: 180px;
+					height:37px;
+					border:1px solid #dddddd;
+					float:left;
+					margin:8px 11px 11px 11px;
+					i{
+						width:150px;
+						height:35px;
+						overflow:hidden;
+					}
+				}
+			}
+		}
+		.zhye{
+			margin: 40px 0 0 30px;
+			color:#9e9e9e;
+			font-size:14px;
+		}
+		.number_show{
+			margin-left:30px;
+			font-size:14px;
+			color:#333333;
+			.money_number{
+				color:#ff7400;
+				font-family:'arial';
+				font-size:26px;
+			}
+		}
+		.money{
+			position: relative;
+			width:340px;
+			height:40px;
+			margin: 16px 0 20px 30px;
+			.money_input1{
+				width:328px;
+				height: 38px;
+				border:1px solid #dddddd;
+				outline:none;
+				padding-left: 10px;
+				border-radius:5px;
+			}
+			span{
+				position:absolute;
+				right:20px;
+				top:11px;
+				font-size:14px;
+				color:#707070;
+			}
+		}
+		.btn{
+			width:340px;
+			height:40px;
+			border-radius:20px;
+			background-color: #9e9e9e;
+			color:#fff;
+			margin-left:30px;
+			outline:none;
+			border:none;
+		}
+	}
+	.item2{
+		height:432px;
+		border-bottom:10px solid #f2f2f2;
+		.bank_card{
+			width: 411px;
+			height:37px;
+			margin:71px 0 100px 30px;
+			position:relative;
+			font-size:14px;
+			color:#333333;
+			font-weight:800;
+			.bank_logo{
+				width:150px;
+				height:37px;
+			}
+			.wen{
+				position:absolute;
+				right:-25px;
+				top:8px;
+				color:#b1b1b1;
+				cursor:pointer;
+			}
+			b{
+				display:block;
+				width:202px;
+				height:45px;
+				background: url(../../image/Tips.png) no-repeat;
+				position:absolute;
+				right:-233px;
+				top:8px;
+				display:none;
+			}
+		}
+		.zhye{
+			margin: 40px 0 0 30px;
+			color:#9e9e9e;
+			font-size:14px;
+		}
+		.number_show{
+			margin-left:30px;
+			font-size:14px;
+			color:#333333;
+			.money_number{
+				color:#ff7400;
+				font-family:'arial';
+				font-size:26px;
+			}
+		}
+		.money{
+			position: relative;
+			width:340px;
+			height:40px;
+			margin: 16px 0 20px 30px;
+			.money_input2{
+				width:328px;
+				height: 38px;
+				border:1px solid #dddddd;
+				outline:none;
+				padding-left: 10px;
+				border-radius:5px;
+			}
+			span{
+				position:absolute;
+				right:20px;
+				top:11px;
+				font-size:14px;
+				color:#707070;
+			}
+			i{
+				position:absolute;
+				right:-176px;
+				top:11px;
+				font-size:14px;
+				color:#9e9e9e;
+				b{
+					color:#ff7400;
+				}
+			}
+		}
+		.btn{
+			width:340px;
+			height:40px;
+			border-radius:20px;
+			background-color: #9e9e9e;
+			color:#fff;
+			margin-left:30px;
+			outline:none;
+			border:none;
+		}
+	}
+	.rule{
+		height:220px;
+		color:#9e9e9e;
+		font-size:14px;
+		.ts{
+			margin: 30px 0 17px 30px;
+		}
+		ul{
+			margin-left:45px;
+			li{
+				list-style:disc;
+				margin-bottom:5px;
+			}
+		}
+	}
+}
+// 网银跳转弹窗
+.success_box{
+	background-color: #fff;
+	.logo{
+		width:115px;
+		height:96px;
+		margin:29px auto 14px auto;
+	}
+	.ts{
+		font-size:16px;
+		color:#333;
+		margin-bottom:30px;
+		text-align:center;
+	}
+	.look{
+		font-size:14px;
+		color:#9e9e9e;
+		margin-bottom:18px;
+		text-align:center;
+		a{
+			color:#ff7400;
+		}
+	}
+	.know{
+		width: 250px;
+		height:40px;
+		border-radius:20px;
+		line-height:40px;
+		color:#fff;
+		background-color: #ff7400;
+		margin:0 auto;
+		text-align:center;
+		font-size:14px;
+	}
+	.know:hover{
+		background-color: #f25d14;
+	}
+}
+// 验证码弹窗
+.secity_box{
+	.main_box{
+		text-align:center;
+		p{
+		margin-top:56px;
+		}
+		.wrong_ts{
+			margin-top:10px;
+			color:#e60012;
+		}
+		.count_time{
+				color:$mainColor;
+				display:inline-block;
+				display:none;
+				cursor:pointer;
+				margin:0 auto;
+			}
+		.djs{
+			color:$fontColor9e;
+		}
+	}
+}
+// 充值成功弹窗
+.cz_success{
+	.logo{
+		width:115px;
+		height:96px;
+		margin:29px auto 14px auto;
+	}
+	.look{
+		font-size:14px;
+		color:#333333;
+		margin-bottom:18px;
+		text-align:center;
+		a{
+			color:#ff7400;
+		}
+	}
+	.know{
+		width: 250px;
+		height:40px;
+		border-radius:20px;
+		line-height:40px;
+		color:#fff;
+		background-color: #ff7400;
+		margin:0 auto;
+		text-align:center;
+		font-size:14px;
+	}
+	.know:hover{
+		background-color: #f25d14;
+	}
+}
+.cz_fail{
+	.logo{
+		width:116px;
+		height:106px;
+		margin:29px auto 14px auto;
+	}
+	.look{
+		font-size:14px;
+		color:#333333;
+		margin-bottom:18px;
+		text-align:center;
+		a{
+			color:#ff7400;
+		}
+	}
+	.know{
+		width: 250px;
+		height:40px;
+		border-radius:20px;
+		line-height:40px;
+		color:#fff;
+		background-color: #ff7400;
+		margin:0 auto;
+		text-align:center;
+		font-size:14px;
+	}
+	.know:hover{
+		background-color: #f25d14;
+	}
+}

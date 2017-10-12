@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+<%= require('html-loader!./layout/top.html') %>
+<%= require('html-loader!./layout/nav.html') %>
+<div class="recharge_box max-width">
+	<%= require('html-loader!./layout/uc_menu.html') %>
+	<div class="main">
+		<div class="qs_time dis_none"><i class="iconfont">&#xe694;</i>&nbsp;&nbsp;当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</div>
+		<div class="recharge_top">
+			<ul>
+				<li class="on">网银充值</li>
+				<li>快捷充值</li>
+			</ul>
+		</div>
+		<div class="recharge_window item0 dis_none">
+			<div class="logo"><img src="<%= require('../image/popup.png') %>"></div>
+			<p>为了保障您的资金安全,请在充值、投资、提现前开通存管</p>
+			<a href="" class="jh_btn">立即激活存管用户</a>
+		</div>
+		<div class="recharge_window item1">
+			<p class="title">第一步：选择充值银行</p>
+			<div class="bank_select">
+			</div>
+			<p class="title">第二步：填写充值金额</p>
+			<p class="zhye">账户余额</p>
+			<p class="number_show"><span class="money_number">2,900.00</span>&nbsp;<span>元</span></p>
+			<div class="money"><input type="number" placeholder="100元起充" class="money_input1"><span>元</span></div>
+			<input type="button" class="btn" value="立即充值">
+		</div>
+		<div class="recharge_window item2 dis_none">
+			<div class="bank_card get_fast"><span class="bank_logo Bank ICBC"></span><span>.... .... .... .... 5578</span><i class="iconfont wen">&#xe68d;</i><b></b></div>
+			<p class="zhye">账户余额</p>
+			<p class="number_show"><span class="money_number">2,900.00</span>&nbsp;<span>元</span></p>
+			<div class="money"><input type="number" placeholder="100元起充" class="money_input2"><span>元</span><i class="czts">本次最多可充值&nbsp;<b>50,000</b>&nbsp;元</i></div>
+			<input type="button" class="btn" value="立即充值">
+		</div>
+		<div class="rule">
+			<p class="ts">充值提示：</p>
+			<ul>
+				<li>拓道金服平台目前充值不收取任何费用。</li>
+				<li>您的账户资金将由北京银行存管。</li>
+				<li>网银充值需要开通网银支付功能，充值时最好选择IE浏览器。</li>
+				<li>快捷支付充值时，限额随银行变动调整，以银行限额为准。</li>
+				<li>如果充值金额未到账，请联系客服，电话 ： 40085-666-85</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="success_box dis_none" id="success_box">
+	<div class="logo"><img src="<%= require('../image/end.png') %>"></div>
+	<p class="ts">跳转成功，请在网银页面完成充值！</p>
+	<p class="look">您可以&nbsp;<a href="">查看资金记录</a>&nbsp;或&nbsp;<a href="">继续充值</a>&nbsp;</p>
+	<div class="know">我知道了</div>
+</div>
+<div class="secity_box dis_none" id="secity_box">
+	<div class="main_box">
+		<p> 验证短信已发送至手机号<span class="phoneNum">18768143339</span></p>
+		<div class="wrong_ts dis_none">您输入的验证码有误，请重新输入！</div>
+		<div class="demo" id="demo">
+			<input type="text" jz="jz" class="border" maxlength="1" id="dy" />
+			<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+			<input type="text" jz="jz" maxlength="1" id="space" readonly="readonly" />
+			<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+			<input type="text" jz="jz" maxlength="1" readonly="readonly" />
+			<input type="text" maxlength="1" class="lastnum" jz="jz" readonly="readonly" />
+			<span id="spa">-</span>
+		</div>
+		<span class="djs">(<i class="count_num">59</i>s)&nbsp;后可重新发送验证码</span><div class="count_time">重新发送验证码</div>
+	</div>
+</div>
+<div class="cz_success dis_none" id="cz_success">
+	<div class="main_box">
+		<div class="logo"><img src="<%= require('../image/end.png') %>"></div>
+		<p class="look">您已成功充值&nbsp;<span>100</span>&nbsp;元，点击可&nbsp;<a href="">继续充值</a>&nbsp;</p>
+		<div class="know">我知道了</div>
+	</div>
+</div>
+<div class="cz_fail dis_none" id="cz_fail">
+	<div class="main_box">
+		<div class="logo"><img src="<%= require('../image/fail.png') %>"></div>
+		<p class="look">充值失败，银行卡账户余额不足！</p>
+		<div class="know">我知道了</div>
+	</div>
+</div>
+<%= require('html-loader!./layout/footer_nav.html') %>
+<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

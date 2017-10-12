@@ -9,49 +9,56 @@ div.zxf_pagediv span,div.zxf_pagediv a{
 	margin: 0 5px;
 }
 span.disabled{
-	height: 35px;
-	width: 35px;
-	line-height: 35px;
+	height: 26px;
+	width: 26px;
+	line-height: 26px;
 	background: #f2f2f2;
 	margin: 0 5px;
 }
 .zxfPagenum{
 	color: #999999;
 	background: #FFFFFF;
-	width: 35px;
-	height: 35px;
-	line-height: 35px;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
 	border: 1px solid #dfdfdf;
 	margin: 0 5px;
+	font-size:12px;
 }
 .nextbtn,.prebtn{
 	color: #ff8a10;
 	background: #FFFFFF;
-	width: 35px;
-	height: 35px;
-	line-height: 35px;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
 	border: 1px solid #dfdfdf;
 }
 .zxfinput{
-	width: 35px;
-	height: 35px;
+	width: 42px;
+	height: 18px;
 	text-align: center;
 	box-sizing: border-box;
 	border: 1px solid #dfdfdf;
 	margin: 0 12px;
+	color:#9e9e9e;
+	border-radius:5px;
+	outline:none;
 }
 .zxfokbtn{
-	width: 45px;
-	height: 35px;
-	line-height: 35px;
+	width: 44px;
+	height: 20px;
+	line-height: 20px;
 	border: 1px solid #dfdfdf;
 	cursor: pointer;
+	font-size:14px;
+	color:#9e9e9e;
+	border-radius:5px;
 }
 .nextpage{
 	margin: 0 5px;
 }
 .current{
-	color: #ffffff;
-	background: #ff8a10;
-	border: none;
+	color: #ff7400;
+	background: #fff;
+	border: 1px solid #dddddd;
 }

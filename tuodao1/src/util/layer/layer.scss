@@ -1,10 +1,5 @@
-/*!
- 
- @Name: layer's style
- @Author: 贤心
- @Blog： sentsin.com
- 
- */
+
+
 html #layui_layer_skinlayercss {
 	display: none;
 	position: absolute;
@@ -449,11 +444,11 @@ html #layui_layer_skinlayercss {
 
 .layui-layer-setwin .layui-layer-close1 {
 	background-position: 0 -40px;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .layui-layer-setwin .layui-layer-close1:hover {
-	opacity: .7
+	background-position: -80px -40px;
 }
 
 .layui-layer-setwin .layui-layer-close2 {

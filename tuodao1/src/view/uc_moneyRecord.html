@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="moneyRecord max-width">
+		<%= require('html-loader!./layout/uc_menu.html') %>
+		<div class="main">
+			<div class="record_top">
+				<ul>
+					<li class="ones">全部</li>
+					<li>投资</li>
+					<li>回款</li>
+					<li>充值</li>
+					<li>提现</li>
+					<li>其它</li>
+				</ul>
+			</div>
+			<div class="record_box item0">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有资金记录</p>
+				</div>
+			</div>
+			<div class="record_box dis_none">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有投资记录</p>
+				</div>
+			</div>
+			<div class="record_box dis_none">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有回款记录</p>
+				</div>
+			</div>
+			<div class="record_box dis_none">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有充值记录</p>
+				</div>
+			</div>
+			<div class="record_box dis_none">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有提现记录</p>
+				</div>
+			</div>
+			<div class="record_box dis_none">
+				<table>
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>交易类型</th>
+							<th>交易金额（元）</th>
+							<th>账户余额（元）</th>
+							<th class="last">备注信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+						<tr>
+							<td>2017-05-08  14:09:00</td>
+							<td>投资</td>
+							<td>100.00</td>
+							<td>100.00</td>
+							<td class="iconfont last">&#xe670;</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="zxf_pagediv"></div>
+				<div class="no_data dis_none">
+					<img src="<%= require('../image/no_data.png') %>">
+					<p>当前没有资金记录</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

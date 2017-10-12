@@ -1,0 +1,73 @@
+@import '../common/mixin';
+@import '../common/layout';
+.dis_none{
+	display:none;
+}
+.color{
+	color:#ff7400!important;
+}
+.jy{
+	color:#dddddd!important;
+}
+.message_box{
+	overflow:hidden;
+	margin: 30px auto 50px auto;
+	.main{
+		float:left;
+		width:940px;
+		margin-left:20px;
+		background-color: #fff;
+		width:940px;
+		.message_top{
+			height:50px;
+			border-bottom: 1px solid #f2f2f2;
+			line-height:50px;
+			.count{
+				float:left;
+				font-size:16px;
+				color:#333333;
+				margin-left:20px;
+			}
+			.btn{
+				float:right;
+				font-size:14px;
+				margin-right:20px;
+				cursor:default;
+			}
+		}
+		.message_main{
+			ul{
+				margin-bottom:30px;
+				li{
+					height:50px;
+					margin: 0 20px 0 20px;
+					line-height:50px;
+					color:#333333;
+					font-size:14px;
+					border-bottom: 1px solid #f2f2f2;
+					cursor:default;
+					dl{
+						width:100%;
+						height:100%;
+						dt{
+							i{
+								color:#d6d6d6;
+								margin-right:16px;
+							}
+						}
+						dt:hover{
+							color:#ff7400;
+							i{
+								color:#ff7400;
+							}
+						}
+						dd{
+							color:#9e9e9e;
+							margin-left:32px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

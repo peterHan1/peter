@@ -204,6 +204,99 @@ var _regular = {
 			}
 			data.callback(flag);
 		});
+	},
+	// 验证金额
+	checkMoney: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var flag;
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<em class=wz>充值金额为100元起！</em></p>";
+		var _this = this;
+		$("." + data.elm).on("blur", function() {
+			var val = $("." + data.elm).val();
+			if (val < 100) {
+				if ($("." + data.elm).parent().find("." + data.cls).length > 0) {
+					return false;
+				} else {
+					$("." + data.elm).parent().append(ts);
+				}
+				$("." + data.elm).addClass("red");
+				flag = false;
+			} else {
+				$("." + data.elm).siblings('.' + data.cls).remove();
+				$("." + data.elm).removeClass('red');
+				flag = true;
+			}
+			data.callback(flag);
+		});
+	},
+	// 快捷充值验证金额
+	checkMoneyFast: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var flag;
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<em class=wz>本次充值金额范围：100元-5万元！</em></p>";
+		var _this = this;
+		$("." + data.elm).on("blur", function() {
+			var val = $("." + data.elm).val();
+			if (val < 100 || val > 50000) {
+				if ($("." + data.elm).parent().find("." + data.cls).length > 0) {
+					return false;
+				} else {
+					$("." + data.elm).parent().append(ts);
+				}
+				$("." + data.elm).addClass("red");
+				flag = false;
+			} else {
+				$("." + data.elm).siblings('.' + data.cls).remove();
+				$("." + data.elm).removeClass('red');
+				flag = true;
+			}
+			data.callback(flag);
+		});
+	},
+	checkCashMoney: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var flag;
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<em class=wz>单笔体现范围：100元-1000万元！</em></p>";
+		var _this = this;
+		$("." + data.elm).on("blur", function() {
+			var val = $("." + data.elm).val();
+			if (val < 100 || val > 10000000) {
+				$("." + data.elm).parent().append(ts);
+				$("." + data.elm).addClass("red");
+				flag = false;
+			} else {
+				$("." + data.elm).siblings('.' + data.cls).remove();
+				$("." + data.elm).removeClass('red');
+				flag=_this.moneyOnly(data.elm,data.cls);
+			}
+			data.callback(flag);
+		});
+	},
+	moneyOnly: function(elm, cls) {
+		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>您输入的金额大于可提现金额</span></p>";
+		var flag;
+		var number = 500;
+		var value = $("." + elm).val();
+		if (value != "" && value<=number) {
+			flag = true;
+			$("." + elm).removeClass("red");
+			$("." + elm).siblings('.' + cls).remove();
+		} else {
+			flag = false;
+			if ($("." + elm).parent().find("." + cls).length > 0) {
+				return false;
+			} else {
+				$("." + elm).parent().append(ts);
+			}
+			$("." + elm).addClass("red");
+		}
+		return flag;
 	}
 };
 module.exports = _regular;
