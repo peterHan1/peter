@@ -1,5 +1,5 @@
 ﻿.laydate-icon{height:22px; line-height:22px; padding-right:20px; border:1px solid #C6C6C6; background-repeat:no-repeat; background-position:right center;  background-color:#fff; outline:0;}
-.laydate_body .laydate_on{color:#FF9900;border-color:#FF9900;}
+.laydate_body .laydate_on{color:#ff711c;}
 .laydate_body .laydate_box{width:240px;z-index:99999999;}
 .laydate_body .laydate_box li{list-style:none;}
 .laydate_body .laydate_box .laydate_void{cursor:text!important;}
@@ -19,10 +19,10 @@
 .laydate_body .laydate_y .laydate_yms a{position:relative; display:block; height:20px;}
 .laydate_body .laydate_y .laydate_yms ul{height:139px; padding:0; *overflow:hidden;}
 .laydate_body .laydate_y .laydate_yms ul li{float:left; width:60px; height:20px; line-height: 20px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
-.laydate_body .laydate_m{width:98%;padding:0 1%;}
+.laydate_body .laydate_m{width:98%;padding:0 1%;text-align:center;}
 .laydate_body .laydate_m .laydate_yms{width:99px; padding:0;}
 .laydate_body .laydate_m input{width:50px;}
-.laydate_body .laydate_txt{height:24px;padding:0 55px;text-align:center;float: left;}
+.laydate_body .laydate_txt{height:24px;padding:0 45px;text-align:center;float: left;}
 .laydate_body .laydate_txt #laydate_m{width:30px;}
 .laydate_body .laydate_m .laydate_yms span{display:block; float:left; width:42px; margin: 5px 0 0 5px; line-height:24px; text-align:center; _display:inline;}
 .laydate_body .laydate_choose{display:block; float:left; position:relative; width:20px; height:20px;line-height:18px;border-radius: 50%;}
@@ -33,9 +33,9 @@
 .laydate_body .laydate_chnext cite{margin:-5px 0 0 -2px;}
 .laydate_body .laydate_ym label{right:28px;}
 .laydate_body .laydate_table{ width:230px; margin:0 5px; border-collapse:collapse; border-spacing:0px;}
-.laydate_body .laydate_table td{width:31px; height:19px; line-height:19px; text-align: center; cursor:pointer; font-size: 12px;}
+.laydate_body .laydate_table td{width:22px; height:22px; line-height:22px; text-align: center; cursor:pointer; font-size: 12px;}
 .laydate_body .laydate_table thead{height:22px; line-height:22px;}
-.laydate_body .laydate_table thead th{height:30px;font-weight:400; font-size:12px; text-align:center;}
+.laydate_body .laydate_table thead th{height:30px;font-weight:400; font-size:12px; text-align:center;color:#9e9e9e;}
 .laydate_body .laydate_bottom{position:relative; height:22px; line-height:20px; padding:5px; font-size:12px;}
 .laydate_body .laydate_bottom #laydate_hms{position: relative; z-index: 1; float:left; }
 .laydate_body .laydate_time{ position:absolute; left:5px; bottom: 26px; width:129px; height:125px; *overflow:hidden;}
@@ -55,33 +55,34 @@
 .laydate_body .laydate_bottom .laydate_btn{position:absolute; right:5px; top:5px;}
 .laydate_body .laydate_bottom .laydate_btn a{float:left; height:20px; padding:0 6px; _padding:0 5px;}
 .laydate_body .laydate_bottom .laydate_v{position:absolute; left:10px; top:6px; font-family:Courier; z-index:0;}
-
-
-.laydate-icon{border:1px solid #C6C6C6; background-image:url(icon.png)}
 .laydate_body .laydate_box, 
 .laydate_body .laydate_ym .laydate_yms,
 .laydate_body .laydate_time{box-shadow: 2px 2px 5px rgba(0,0,0,.1);}
-.laydate_body .laydate_box{border-top:none;  background-color:#F2F2F2; color:#333;padding:10px 5px 10px 5px;}
-.laydate_body .laydate_box:before{content: "";border-left:5px solid transparent;border-right:5px solid transparent ;border-top:10px solid transparent ;border-bottom:10px solid #F2F2F2;position:absolute;top:-20px;left:45%;}
+.laydate_body .laydate_box{border-top:none;  background-color:#fff; color:#333;padding:15px 5px;border:1px solid #e2e2e2;border-radius: 5px;}
+.laydate_body .laydate_box:after, .laydate_body .laydate_box:before {border: solid transparent;content: ' ';width: 0;height: 0;position: absolute;}
+.laydate_body .laydate_box:after {border-width: 9px;border-bottom-color: #fff;top: -18px;left: 45.4%;}
+.laydate_body .laydate_box:before {border-width: 10px;border-bottom-color: #e2e2e2;left: 45%;top: -20px;}
 .laydate_body .laydate_box input{color:#333;}
 .laydate_body .laydate_box .laydate_void{color:#ccc!important;}
 .laydate_body .laydate_box .laydate_void:hover{background-color:#fff!important}
 .laydate_body .laydate_box a, .laydate_body .laydate_box a:hover{color:#333;}
 .laydate_body .laydate_box a:hover{color:#666;}
-.laydate_body .laydate_click{background-color:#FF9900!important;}
+.laydate_body .laydate_click{background-color:#FF9900!important;color:#fff;}
 .laydate_body .laydate_top{background-color:#fff;}
 .laydate_body .laydate_ym .laydate_yms{border:1px solid #C6C6C6; background-color:#fff;}
 .laydate_body .laydate_y .laydate_yms a{border-bottom:1px solid #C6C6C6;}
 .laydate_body .laydate_y .laydate_yms .laydate_chdown{border-top:1px solid #C6C6C6; border-bottom:none;}
-.laydate_body .laydate_choose{text-align:center;font-size:16px;border:1px solid #C6C6C6;background-color:#ececec;}
-.laydate_body .laydate_choose:hover, 
-.laydate_body .laydate_y .laydate_yms a:hover{background-color:#fff;}
+.laydate_body .laydate_choose{text-align:center;font-size:16px;}
+.laydate_body .laydate_top .iconfont{font-size:20px;color:#9e9e9e;}
+.laydate_body .laydate_top .iconfont:hover{color:#ff7400;}
+.laydate_body .laydate_top .laydate_chnext{float: right;margin-right:10px;}
+.laydate_body .laydate_top .laydate_chprev{margin-left:10px;}
 .laydate_body .laydate_chtop cite{border-bottom-color:#666;}
 .laydate_body .laydate_chdown cite, .laydate_body .laydate_ym label{border-top-color:#666;}
 .laydate_body .laydate_chprev cite{border-right-style:solid; border-right-color:#666;}
 .laydate_body .laydate_chnext cite{border-left-style:solid; border-left-color:#666;}
-.laydate_body .laydate_table td{border:none;  height:21px!important; line-height:21px!important;}
-.laydate_body .laydate_table .laydate_nothis{color:#ccc;}
+.laydate_body .laydate_table td{border-radius:20px;border:none;width:22px!important;height:22px!important; line-height:22px!important;}
+.laydate_body .laydate_table .laydate_nothis{color:#9e9e9e;}
 .laydate_body .laydate_bottom{border-bottom:1px solid #C6C6C6;}
 .laydate_body .laydate_bottom #laydate_hms{background-color:#fff;}
 .laydate_body .laydate_time{background-color:#fff;}
@@ -97,4 +98,7 @@
 .laydate_body .laydate_table td:hover,
 .laydate_body .laydate_time .laydate_hmsno span:hover{background-color:#F3F3F3}
 
-
+.layer_date{display: inline-block;border-radius: 20px;width: 100px;height:30px;line-height:30px;padding:0 15px;color: #707070;cursor: pointer;text-align:center;background-color:#f2f2f2;vertical-align: middle;margin:0 5px;}
+.layer_date i{float: right;font-size:10px;line-height:10px;margin-top:10px;}
+.layer_date:hover{color:#333;}
+.laydate_body .laydate_on:hover{color:#ff7400;}

@@ -1,6 +1,6 @@
 var _tips = require('util/tips/index.js');
-var echarts = require('echarts/lib/echarts');
-require('echarts/lib/chart/pie');
+// var echarts = require('echarts/lib/echarts');
+// require('echarts/lib/chart/pie');
 require('util/return_date/date_time.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');
@@ -8,19 +8,25 @@ $(function(){
 	$(".hint").mouseover(function(){
 		_tips.getTipsRight($(this),0);
 	});
-
 	$(".hint").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
-	$(".sigin_clik").on("click",function(){
-		var day = parseInt($(".sign_day").html())+1;
-		var integral = parseInt($(".sign_integral").html())+1;
-		if (day < 10) {
-			day = "0"+day;
-		}
-		$(".sign_day").html(day);
-		$(".sign_integral").html(integral);
-
+	// 签到
+	$("#sigin_clik").on("click",function(){
+		if($(this).is('.sigin_btn_yet')){
+			return false;
+		}else{
+			var day = parseInt($(".sign_day").html())+1;
+			var integral = parseInt($(".sign_integral").html())+1;
+			if (day < 10) {
+				day = "0"+day;
+			}
+			$(".sign_day").html(day);
+			$(".sign_integral").html(integral);
+			$(this).removeClass('sigin_clik');
+			$(this).addClass('sigin_btn_yet');
+			$(this).html("今日已签到，积分+6");
+		};
 	});
 	var trs=document.getElementById("table_list").getElementsByTagName("tr");
 	for(var i=0;i<trs.length;i++){
@@ -44,33 +50,33 @@ $(function(){
 			itemHeight:'25',
 			data:['直接访问','邮件营销','联盟广告','视频广告']
 		},
-		color:['red', 'green','yellow','blue'],
-			series: [
-				{
-					type:'pie',
-					radius: ['50%', '45%'],
-					legendHoverLink:false,
-					avoidLabelOverlap: false,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
+		color:['#ff9691', '#87da87','#56c1f2','#fccd6e'],
+		series: [
+			{
+				type:'pie',
+				radius: ['100%', '90%'],
+				legendHoverLink:false,
+				avoidLabelOverlap: false,
+				hoverAnimation:false,
+				label: {
+					normal: {
+						show: false,
+						position: 'center'
 					},
-					labelLine: {
-						normal: {
-							show: false
-						}
-					},
-					data:[
-						{value:6660},
-						{value:3100},
-						{value:2340},
-						{value:1350}
-					]
-				}
-			]
+				},
+				labelLine: {
+					normal: {
+						show: false
+					}
+				},
+				data:[
+					{value:6660},
+					{value:3100},
+					{value:2340},
+					{value:1350}
+				]
+			}
+		]
 	};
 	myChart.setOption(option);
 });

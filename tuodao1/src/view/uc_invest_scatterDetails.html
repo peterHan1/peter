@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+
+	<div class="max-width">
+		<div class="uc_main">
+			<%= require('html-loader!./layout/uc_menu.html') %>
+			<div class="uc_right">
+				<div class="uc_invest_main">
+					<div class="sift_detailsT">
+						<div class="sift_tit">
+							<a href="###" class="iconfont">&#xe6bb;</a>
+							<p>
+								<span class="return_money">[已回款]</span>
+								<span class="matching_money">[募集中]</span>
+								<span class="underway_money">[回款中]</span>
+								奥迪A6抵押续贷标 No.20170300184  昆明五华店
+							</p>
+						</div>
+						<div class="sift_con">
+							<table>
+								<thead>
+									<tr>
+										<th>投资金额（元）</th>
+										<th>预期收益（元）</th>
+										<th>
+											奖励（元）
+											<div class="hint">
+												<i class="iconfont">&#xe68d;</i>
+												<div class="tips left-tips">
+													平台加息奖励，按每期回款进行发放
+												</div>
+											</div>
+										</th>
+										<th>优惠券</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>5000,000.00</td>
+										<td>1,000,300.00</td>
+										<td>10.00</td>
+										<td class="td_font"><span>1%</span>加息券</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<div class="sift_con_mes">
+								<div class="sift_con_mesL">
+									<ul>
+										<li>
+											预期年化：<span>10%</span>
+										</li>
+										<li>
+											投资时间<span>2017-05-08 14:09:00</span>
+										</li>
+										<li>
+											还款方式：<span>按月付息，到期还本</span>
+										</li>
+										<li>
+											到期时间<span>2018-05-08</span>
+										</li>
+									</ul>
+								</div>
+								<div class="sift_con_mesR">
+									<a href="###">查看借款协议 ></a>
+									<a href="###">查看安存保全 ></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sift_detailsB">
+						<div class="sift_detailsBTit">
+							<p>回款计划</p>
+						</div>
+						<div class="sift_detailsBcom">
+						<!-- 债权明细 -->
+							<div class="sift_detailsTab">
+								<table>
+									<thead>
+										<tr>
+											<th class="padd_left">编号</th>
+											<th>项目名称</th>
+											<th>加入时间</th>
+											<th>加入金额(元)</th>
+											<th>状态</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbody_list">
+										<tr>
+											<td class="padd_left">NO.20160301001</td>
+											<td class="td_name">
+												<a href="###">丰田凯美瑞抵押续贷标</a>
+											</td>
+											<td>2017-09-08 14:09:00</td>
+											<td>99,999,999.99</td>
+											<td>待回款</td>
+											<td class="tb_oper"><a href="###">查看借款协议</a></td>
+										</tr>
+										<tr>
+											<td class="padd_left">NO.20160301001</td>
+											<td class="td_name">
+												<a href="###">丰田凯美瑞抵押续贷标</a>
+											</td>
+											<td>2017-09-08 14:09:00</td>
+											<td>99,999,999.99</td>
+											<td>匹配中</td>
+											<td class="tb_oper">满标复审后生成借款协议</td>
+										</tr>
+										<tr>
+											<td class="padd_left">NO.20160301001</td>
+											<td class="td_name">
+												<a href="###">丰田凯美瑞抵押续贷标</a>
+											</td>
+											<td>2017-09-08 14:09:00</td>
+											<td>99,999,999.99</td>
+											<td>匹配中</td>
+											<td class="tb_oper">满标复审后生成借款协议</td>
+										</tr>
+										<tr>
+											<td class="padd_left">NO.20160301001</td>
+											<td class="td_name">
+												<a href="###">丰田凯美瑞抵押续贷标</a>
+											</td>
+											<td>2017-09-08 14:09:00</td>
+											<td>99,999,999.99</td>
+											<td>待回款</td>
+											<td class="tb_oper"><a href="###">查看转让协议</a></td>
+										</tr>
+										<tr>
+											<td class="padd_left">NO.20160301001</td>
+											<td class="td_name">
+												<a href="###">丰田凯美瑞抵押续贷标</a>
+											</td>
+											<td>2017-09-08 14:09:00</td>
+											<td>99,999,999.99</td>
+											<td>转让成功</td>
+											<td class="tb_oper"><a href="###">查看转让协议</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="zxf_pagediv"></div>
+								<!-- 无数据 -->
+								<!-- <div class="null_data">
+									<div class="null_data_bg"></div>
+									<p>资产匹配成功后显示债权明细</p>
+								</div> -->
+							</div>
+							<div class="sift_detailsTab dis_none">
+								<div class="p_tit">
+									<p>注：精选计划的回款计划根据其所匹配资产动态变化，计划退出前所有回款本金复投，收益回到账户余额。</p>
+								</div>
+								<table>
+									<thead>
+										<tr>
+											<th>回款时间</th>
+											<th>应还本息 (元)</th>
+											<th>回款状态</th>
+										</tr>
+									</thead>
+									<tbody id="tbodys_list">
+										<tr>
+											<td>2017-05-08</td>
+											<td>99,999,999.99</td>
+											<td class="td_wid return_money">已回款</td>
+										</tr>
+										<tr>
+											<td>2017-05-08</td>
+											<td>99,999,999.99</td>
+											<td class="td_wid underway_money">待回款</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- 无数据 -->
+								<!-- <div class="null_data">
+									<div class="null_data_bg"></div>
+									<p>当前没有回款计划</p>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

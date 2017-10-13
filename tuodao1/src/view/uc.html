@@ -73,60 +73,74 @@
 							<span class="sign_day">00</span>天
 						</div>
 						<div class="signs_integral">您的总积分<span class="sign_integral">0</span>分</div>
-						<div class="sigin_btn sigin_clik">立即签到</div>
+						<div class="sigin_btn sigin_clik" id="sigin_clik">立即签到</div>
 					</div>
 				</div>
 				<div class="total_eachart">
 					<div class="com_left eachart">
 						<div id="eachart_main"></div>
-						<div class="sum_money">66666</div>
+						<div class="sum_money">
+							<div class="sum_moneyT">
+								<p>总资产（元）</p>
+								<div class="hint">
+									<i class="iconfont">&#xe68d;</i>
+									<div class="tips left-tips">
+										待收金额、账户余额与冻结资金的总和。
+									</div>
+								</div>
+							</div>
+							<!-- 上万后字体30px -->
+							<div class="sum_moneyB">9,999.00</div>
+						</div>
 						<div class="eachart_R">
 							<ul>
 								<li>
 									<div class="eachart_Rtit">
-										<b></b>
-										<p>待收本金<span>99,999,999.99</span></p>
+										<b class="principal_b"></b>
+										<p>待收本金<span>99,999,999.99</span>元</p>
 									</div>
 									<div class="hint">
 										<i class="iconfont">&#xe68d;</i>
 										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的和。
+											待回款的本金之和
 										</div>
 									</div>
 								</li>
 								<li>
 									<div class="eachart_Rtit">
-										<b></b>
-										<p>待收利息<span>199.99</span></p>
+										<b class="interest_b"></b>
+										<p>待收利息<span>199.99</span>元</p>
 									</div>
 									<div class="hint">
 										<i class="iconfont">&#xe68d;</i>
 										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的和。
+											待回款的利息之和
 										</div>
 									</div>
 								</li>
 								<li>
 									<div class="eachart_Rtit">
-										<b></b>
-										<p>可用余额<span>9999,999.99</span></p>
+										<b class="balance_b"></b>
+										<p>可用余额<span>9999,999.99</span>元</p>
 									</div>
 									<div class="hint">
 										<i class="iconfont">&#xe68d;</i>
 										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的和。
+											充值资金，已回款资金和站岗资金的总和。
 										</div>
 									</div>
 								</li>
-								<li>
+								<li class="li_tips">
 									<div class="eachart_Rtit">
-										<b></b>
-										<p>冻结金额<span>999,999.99</span></p>
+										<b class="frozen_b"></b>
+										<p>冻结金额<span>999,999.99</span>元</p>
 									</div>
 									<div class="hint">
 										<i class="iconfont">&#xe68d;</i>
 										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的和。
+											<p>投资精选计划冻结金额：<b>0.00</b>元</p>
+											<p>投资散标冻结金额：<b>0.00</b>元</p>
+											<p>提现冻结金额：<b>0.00</b>元</p>
 										</div>
 									</div>
 								</li>
@@ -136,41 +150,49 @@
 					<div class="com_right welfare">
 						<ul>
 							<li>
-								<div class="welfare_txt">
-									<span>抵用券</span>
-									<!-- 数量为0的class名 -->
-									<p class="txt_null">0</p>
-								</div>
-								<div class="welfare_img">
-									<div class="dyq"></div>
-								</div>
+								<a href="###">
+									<div class="welfare_txt">
+										<span>抵用券</span>
+										<!-- 数量为0的class名 -->
+										<p class="txt_null">0</p>
+									</div>
+									<div class="welfare_img">
+										<div class="dyq"></div>
+									</div>
+								</a>
 							</li>
 							<li>
-								<div class="welfare_txt">
-									<span>加息券</span>
-									<p>1</p>
-								</div>
-								<div class="welfare_img">
-									<div class="jxq"></div>
-								</div>
+								<a href="###">
+									<div class="welfare_txt">
+										<span>加息券</span>
+										<p>1</p>
+									</div>
+									<div class="welfare_img">
+										<div class="jxq"></div>
+									</div>
+								</a>
 							</li>
 							<li>
-								<div class="welfare_txt">
-									<span>我的积分</span>
-									<p>288</p>
-								</div>
-								<div class="welfare_img">
-									<div class="integral"></div>
-								</div>
+								<a href="###">
+									<div class="welfare_txt">
+										<span>我的积分</span>
+										<p>288</p>
+									</div>
+									<div class="welfare_img">
+										<div class="integral"></div>
+									</div>
+								</a>
 							</li>
 							<li class="li_borno">
-								<div class="welfare_txt">
-									<span>我的金币</span>
-									<p>100</p>
-								</div>
-								<div class="welfare_img">
-									<div class="gold"></div>
-								</div>
+								<a href="###">
+									<div class="welfare_txt">
+										<span>我的金币</span>
+										<p>100</p>
+									</div>
+									<div class="welfare_img">
+										<div class="gold"></div>
+									</div>
+								</a>
 							</li>
 						</ul>
 					</div>

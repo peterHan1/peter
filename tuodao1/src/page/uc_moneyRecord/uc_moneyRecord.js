@@ -12,7 +12,7 @@ $(function(){
 		var str="<div class='bz_tips'>备注信息备注信息备注信息</div>";
 		$(this).append(str);
 	});
-	$(".record_box tbody tr td.last").on("mouseleave",function(){
+	$(".record_box tbody tr .last").on("mouseleave",function(){
 		$(".bz_tips").remove();
 	});
 });

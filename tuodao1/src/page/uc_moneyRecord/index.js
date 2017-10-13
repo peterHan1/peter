@@ -8,6 +8,8 @@ require('util/layer/layer.js');
 require('util/layer/layer.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
+require('util/laydate/laydate.js');
+require('util/laydate/laydate.scss');
 $(function(){
 	// 分页
 	$(".zxf_pagediv").createPage({
@@ -20,6 +22,18 @@ $(function(){
 		backfun: function(e) {
 			console.log(e.current);
 			// $("#data-container").html(thisDate(e.current));
+		}
+	});
+	// 日历
+	$(".layer_date").on("click",function(event){
+		if(event.target==this){
+			laydate({
+				format: 'YYYY-MM-DD',
+				// 选择时间后回调
+			 	choose: function(dates){
+			 		console.log(dates);
+			  	}
+			});
 		}
 	});
 });
