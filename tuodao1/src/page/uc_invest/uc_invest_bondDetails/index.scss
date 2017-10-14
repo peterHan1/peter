@@ -11,6 +11,31 @@
 	width:940px;
 	min-height: 915px;
 }
+.bond_tab{
+	@include height-line(50px);
+	background-color: #fff;
+	margin-bottom: 10px;
+	li{
+		float:left;
+		text-align: center;
+		margin:0 30px;
+		a{
+			display: inline-block;
+			width:45px;
+			font-size:$fontSize14;
+			color:$fontColor333;
+			height: 48px;
+			&:hover{
+				color:$fontColor74;
+			}
+		}
+		a.on{
+			color:$fontColor74;
+			border-bottom:2px solid #ff7400;
+
+		}
+	}
+}
 .sift_detailsT{
 	background-color:#fff;
 	height:341px;
@@ -112,7 +137,7 @@
 	}
 }
 .sift_detailsB{
-	height:566px;
+	height:507px;
 	background-color:#fff;
 	margin-top:10px;
 	.sift_detailsBTit{

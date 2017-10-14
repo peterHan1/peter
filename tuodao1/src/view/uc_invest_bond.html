@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+
+	<div class="max-width">
+		<div class="uc_main">
+			<%= require('html-loader!./layout/uc_menu.html') %>
+			<div class="uc_right">
+				<div class="uc_bondTab">
+					<ul>
+						<li class="on">可转让</li>
+						<li>转让中</li>
+						<li>已转让</li>
+						<li>已受让</li>
+					</ul>
+				</div>
+				<!-- 可转让 -->
+				<div class="uc_invest_com ">
+					<div class="uc_invest_tab">
+						<div class="uc_invest_tabR">
+							<p class="layer_date">选择开始时间<i class="iconfont">&#xe6a4;</i></p> 至
+							<p class="layer_date">选择结束时间<i class="iconfont">&#xe6a4;</i></p>
+						</div>
+					</div>
+					<div class="table_list">
+						<table>
+							<thead>
+								<tr>
+									<th class="padd_left">编号</th>
+									<th>项目名称</th>
+									<th>预期年化</th>
+									<th>项目期限</th>
+									<th>剩余期限</th>
+									<th>可转让金额（元）</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="tbody_list">
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td>12%</td>
+									<td>12期</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td class="transfer_clk"><a href="###">申请转让</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zxf_pagediv"></div>
+					<!-- 无数据 -->
+					<!-- <div class="null_data">
+						<div class="null_data_bg"></div>
+						<p>当前没有投资记录</p>
+					</div> -->
+				</div>
+				<!-- 转让中 -->
+				<div class="uc_invest_com alone_table dis_none">
+					<div class="uc_invest_tab">
+						<div class="uc_invest_tabR">
+							<p class="layer_date">选择开始时间<i class="iconfont">&#xe6a4;</i></p> 至
+							<p class="layer_date">选择结束时间<i class="iconfont">&#xe6a4;</i></p>
+						</div>
+					</div>
+					<div class="table_list">
+						<table>
+							<thead>
+								<tr>
+									<th class="padd_left">编号</th>
+									<th>项目名称</th>
+									<th>转让时间</th>
+									<th>转让金额（元）</th>
+									<th>剩余期限</th>
+									<th>预期年化</th>
+									<th>对应债权价值（元）</th>
+									<th>折价/溢价</th>
+									<th>手续费（元）</th>
+								</tr>
+							</thead>
+							<tbody id="transfers_list">
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zxf_pagediv"></div>
+					<!-- 无数据 -->
+					<!-- <div class="null_data">
+						<div class="null_data_bg"></div>
+						<p>当前没有投资记录</p>
+					</div> -->
+				</div>
+				<!-- 已转让 -->
+				<div class="uc_invest_com alone_table dis_none">
+					<div class="uc_invest_tab">
+						<div class="uc_invest_tabR">
+							<p class="layer_date">选择开始时间<i class="iconfont">&#xe6a4;</i></p> 至
+							<p class="layer_date">选择结束时间<i class="iconfont">&#xe6a4;</i></p>
+						</div>
+					</div>
+					<div class="table_list">
+						<table>
+							<thead>
+								<tr>
+									<th class="padd_left">编号</th>
+									<th>项目名称</th>
+									<th>转让时间</th>
+									<th>转让金额（元）</th>
+									<th>剩余期限</th>
+									<th>预期年化</th>
+									<th>对应债权价值（元）</th>
+									<th>折价/溢价</th>
+									<th>手续费（元）</th>
+								</tr>
+							</thead>
+							<tbody id="transfers_list">
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>99,999,999.99</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>99,999,999.99</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-09-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>12%</td>
+									<td>100,000.00</td>
+									<td>0</td>
+									<td>58.58</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zxf_pagediv"></div>
+					<!-- 无数据 -->
+					<!-- <div class="null_data">
+						<div class="null_data_bg"></div>
+						<p>当前没有投资记录</p>
+					</div> -->
+				</div>
+				<!-- 已受让 -->
+				<div class="uc_invest_com alone_table dis_none">
+					<div class="uc_invest_tab">
+						<div class="uc_invest_tabL">
+							<ul>
+								<li class="on">全部</li>
+								<li>募集中</li>
+								<li>回款中</li>
+								<li>已回款</li>
+							</ul>
+						</div>
+						<div class="uc_invest_tabR">
+							<p class="layer_date">选择开始时间<i class="iconfont">&#xe6a4;</i></p> 至
+							<p class="layer_date">选择结束时间<i class="iconfont">&#xe6a4;</i></p>
+						</div>
+					</div>
+					<div class="table_list yet_table">
+						<table>
+							<thead>
+								<tr>
+									<th class="padd_left">编号</th>
+									<th>项目名称</th>
+									<th>投资时间</th>
+									<th>投资金额（元）</th>
+									<th>剩余期限</th>
+									<th>到期收益（元）</th>
+									<th>奖励（元）</th>
+									<th class="status_th">状态</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="transfer_list">
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+								<tr>
+									<td class="padd_left">NO.20160301001</td>
+									<td class="td_name"><a href="###">丰田汉兰达抵押标</a>
+									<div class="tips left-tips">
+										丰田汉兰达抵押标
+									</div>
+									</td>
+									<td class="td_time">2017-10-08 14:09:00</td>
+									<td>100,000.00</td>
+									<td>3期</td>
+									<td>100,000.00</td>
+									<td>1.11</td>
+									<td>募集中</td>
+									<td class='td_details'><a href="">查看详情</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zxf_pagediv"></div>
+					<!-- 无数据 -->
+					<!-- <div class="null_data">
+						<div class="null_data_bg"></div>
+						<p>当前没有投资记录</p>
+					</div> -->
+				</div>
+				<!-- 转让弹窗 -->
+				<div class="bond_show dis_none" id="bond_show">
+					<div class="bond_show_box">
+						<div class="bond_show_tit">
+							申请转让 - <span>大众途安抵押标  No.20160400000013</span>
+							<p class="close_btn">&times;</p>
+						</div>
+						<div class="bond_show_form">
+							<div class="bond_formL">
+								<ul>
+									<li>
+										预期年化：<span>12%</span>
+									</li>
+									<li>
+										剩余期限：<span>9个月</span>
+									</li>
+									<li>
+										可转让金额：<span>10000.00 元</span>
+									</li>
+									<li>
+										对应债权价值：<span>10100.00 元</span>
+										<div class="hint">
+											<i class="iconfont">&#xe68d;</i>
+											<div class="tips left-tips">
+												债权价值指投资人转让的本金和剩<br>余收益的总值。
+											</div>
+										</div>
+									</li>
+									<li>
+										转让手续费：<span>400.00 元</span>
+									</li>
+								</ul>
+							</div>
+							<div class="bond_formR">
+								<div class="bond_formM">
+									<p>转让盈亏</p>
+									<p class="money"><span>2,900.00 </span> 元</p>
+								</div>
+								<div class="input_pwd">
+									<input type="password" placeholder="请输入支付密码" class="sub_psw">
+									<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
+								</div>
+								<div class="sub_btn">确认转让</div>
+							</div>
+						</div>
+						<div class="bond_show_explain">
+							<p>债权转让说明:</p>
+							<ul>
+								<li>只有等额本息的标才能申请债权转让，债权转让金额必须>=100元。</li>
+								<li>转让人需支付手续费，持有 < 90天，收取 0.5% 转让金额手续费，最低收费 1 元；持有 ≥90 天，收取 0.2% 转让金额手续费，最低收费 1 元。
+</li>
+								<li>申请转让时间必须转让人持有 30 天，且大于距离下一个还款日 >=7天。</li>
+								<li>债权转让交易未完成时，借款人提前还款，则自动退标。</li>
+								<li>必须一次性转让所有债权。不能部分转让。</li>
+								<li>转让过的债权可以继续转让。</li>
+								<li>申请债权转让会有 48 小时转让时间，超过时间未完成转让的则退标处理。隔天可再次申请债权转让。</li>
+								<li>转让申请提交后将进入排队队列，按照申请时间先后顺序在债权转让区进行展示。</li>
+							</ul>
+						</div>
+					</div>
+					<div class="bond_show_ok dis_none">
+						<div class="bond_show_tit">
+							转让成功
+							<p class="bond_ok_close">&times;</p>
+						</div>
+						<div class="bond_show_okBg">
+							<div class="ok_bg"></div>
+							<p>转让成功！</p>
+							<p>恭喜您成功转让大众途安抵押标  No.20160400000013</p>
+						</div>
+						<div class="a_href">
+							<a href="">立即查看 <span>已转让债权</span></a>
+						</div>
+						<div class="bond_show_now">我知道了</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

@@ -21,7 +21,7 @@ $(function(){
 		$(this).addClass('on').siblings('li').removeClass('on');
 		$(".sift_detailsTab").eq(ind).show().siblings().hide();
 	});
-	trColor('tbody_list');
+	// trColor('transfer_list');
 	// 各行变色
 	function trColor(id){
 		var trs=document.getElementById(id).getElementsByTagName("tr");

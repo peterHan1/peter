@@ -10,27 +10,14 @@ require('util/paging/page.js');
 
 $(function(){
 
-	$(".hint").mouseover(function(){
-		_tips.getTipsRight($(this),0);
+	$(".td_tips").mouseover(function(){
+		_tips.getTipsRight($(this),13);
 	});
-	$(".hint").mouseout(function(){
+	$(".td_tips").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
-	$(".sift_detailsBTit li").on('click',function(){
-		var ind = $(this).index();
-		$(this).addClass('on').siblings('li').removeClass('on');
-		$(".sift_detailsTab").eq(ind).show().siblings().hide();
-	});
-	trColor('tbody_list');
-	// 各行变色
-	function trColor(id){
-		var trs=document.getElementById(id).getElementsByTagName("tr");
-		for(var i=0;i<trs.length;i++){
-			if(i%2==0){
-				trs[i].className +=" trColor";
-			}
-		};
-	}
+
+
 	// 得到总页数
 	$(".zxf_pagediv").createPage({
 		// 页数
@@ -44,4 +31,14 @@ $(function(){
 			// $("#data-container").html(thisDate(e.current));
 		}
 	});
+	// trColor('tbody_list');
+	// 各行变色
+	function trColor(id){
+		var trs=document.getElementById(id).getElementsByTagName("tr");
+		for(var i=0;i<trs.length;i++){
+			if(i%2==0){
+				trs[i].className +=" trColor";
+			}
+		};
+	}
 });
