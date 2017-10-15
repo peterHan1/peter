@@ -1,0 +1,267 @@
+@import "../../common/mixin";
+b,i,em{
+	font-weight: normal;
+	font-style: normal;
+	font-family: 微软雅黑;
+}
+.dis_none{
+	display:none;
+}
+.max-width{
+	@extend %clearfix;
+}
+.uc_main{
+	@extend %clearfix;
+	margin:30px 0 50px;
+}
+.uc_right{
+	float:left;
+	margin-left:20px;
+	.return_money{
+		.fl{float:left;}
+		.fr{float:right;}
+		.date_tit{
+			@include height-line(100px);
+			border-bottom:1px solid #f2f2f2;
+			font-size:$fontSize14;
+			color:$fontColor70;
+			padding-left: 30px;
+			background-color:#fff;
+			p{
+				display: inline-block;
+				font-size:34px;
+				color:$fontColor74;
+				margin-left: 5px;
+			}
+		}
+		.calendar{
+			height:310px;
+			background-color:#fff;
+			.account_box{
+				float: left;
+				width:346px;
+				border-right:1px solid $bgColor;
+			}
+			.clearfix{@extend %clearfix;}
+			.account_title{
+				font-size: 16px;
+				overflow: hidden;
+				.data_top{
+					overflow: hidden;
+					letter-spacing:1px;
+					.data_top_btn{
+						margin:13px 35px 0 0;
+						i{
+							font-size:24px;
+							margin-left:18px;
+							color:$fontColor9e;
+							cursor: pointer;
+							&:hover{
+								color:$fontColor74;
+							}
+						}
+						
+					}
+					.data_top_datas{
+						background: #fff;
+						font-size: 16px;
+						color:$fontColor9e;
+						font-weight: bold;
+						margin:20px 0 0 32px;
+					}
+				}
+			}
+			.data_table{
+				@extend %clearfix;
+				margin-top:12px;
+				padding:0 20px 0 26px;
+				.data_table_th{
+					float: left;
+					width: 14.25%;
+					text-align: center;
+					font-size:$fontSize14;
+					color:$fontColor9e;
+					font-weight: bold;
+					margin-bottom: 10px;
+				}
+				.yet_money{
+					background:url(../../../image/uc/yet_money.png) no-repeat;
+					background-position:20px 24px;
+				}
+				.await_money{
+					background:url(../../../image/uc/await_money.png) no-repeat;
+					background-position:19px 24px;
+				}
+				.data_table_td{
+					margin-top:2px;
+					float: left;
+					width: 14.2%;
+					height:28px;
+					text-align: center;
+					position: relative;
+					font-size:14px;
+					color:$fontColor333;
+					span{
+						display: inline-block;
+						cursor: pointer;
+						width:22px;
+						height:26px;
+					}
+				}
+				.today_datas{
+					color: $fontColor74;
+					span{
+						width:21px;
+						@include height-line(21px);
+						background-color:#fff;
+						@include border-style($b-color:$fontColor74,$b-radius:20px);
+					}
+				}
+				.datas_on{
+					color: #fff;
+					span{
+						width:21px;
+						@include height-line(21px);
+						background-color:$mainColor;
+						border-radius: 20px;
+					}
+				}
+			}
+			.datas_title{
+				font-size:$fontSize14;
+				color:$fontColor9e;
+				margin-top:10px;
+				overflow: hidden;
+				div{
+					float:left;
+					overflow: hidden;
+					line-height: 20px;
+					span{
+						float:left;
+					}
+					b{
+						display: inline-block;
+						float:left;
+						width:4px;
+						height:4px;
+						margin:8px 12px 0 0;
+					}
+					.await_b{
+						margin-left:53px;
+						background:url(../../../image/uc/await_money.png) no-repeat;
+					}
+					.yet_b{
+						margin-left:43px;
+						background:url(../../../image/uc/yet_money.png) no-repeat;
+					}
+				}				
+			}
+			.calendarR{
+				float: left;
+				width:593px;
+				.re_money_tlt{
+					@include height-line(50px);
+					border-bottom: 1px solid #f2f2f2;
+					p{
+						padding-left:20px;
+						font-size:$fontSize14;
+						color:$fontColor9e;
+						i{
+							margin-right:5px;
+						}
+					}
+				}
+				.money{
+					padding-left: 80px;
+					dl{
+						display: inline-block;
+						width:250px;
+						text-align: left;
+					}
+					dt{
+						margin-top:90px;
+						font-size:$fontSize14;
+						color:$fontColor9e;
+					}
+					dd{
+						font-size:34px;
+						color:$fontColor74;
+					}
+				}
+			}
+		}
+		.table_data{
+			height:510px;
+			background-color:#fff;
+			margin-top:10px;
+			padding-top: 10px;
+			table{
+				width:100%;
+				border-collapse:collapse;
+				tr{
+					@include height-line(50px);
+					width:100%;
+					font-size:$fontSize14;
+					color:$fontColor70;
+					text-align: left;
+
+				}
+				.padd_left{
+					padding-left:30px;
+					width:160px;
+				}
+
+				.trColor{
+					background-color:#fbfbfb;
+				}
+				.return_td_name{
+					position:relative;
+					width:95px;
+					padding-right:75px;
+					a{
+						display: inline-block;
+						float: left;
+						width:95px;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+						color:$fontColor74;
+					}
+				}
+				.return_td_periods{
+					width:140px;
+				}
+				.return_td_type{
+					width:135px;
+				}
+				.underway_money{
+					color:$fontColor19;
+				}
+				.return_money{
+					color:$fontColorbd;
+				}
+			}
+		}
+		.re_money_null{
+			width:100%;
+			.return_noData{
+				text-align: center;
+				@extend %clearfix;
+				.return_noData_bg{
+					margin:165px auto 15px;
+					width:85px;
+					height:60px;
+					background:url(../../../image/uc/return_noData.png) no-repeat;
+				}
+				p{
+					font-size:$fontSize12;
+					color:#ddd;
+				}
+			}
+		}
+		
+	}
+	div.zxf_pagediv{
+		margin-bottom: 0;
+	}
+}

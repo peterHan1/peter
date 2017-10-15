@@ -50,7 +50,8 @@ var config = {
 		'uc_invest_bond'			: ['./src/page/uc_invest/uc_invest_bond/index.js'],
 		'uc_invest_bondDetails'		: ['./src/page/uc_invest/uc_invest_bondDetails/index.js'],
 		'uc_invest_auto'			: ['./src/page/uc_invest/uc_invest_auto/index.js'],
-		'uc_invest_autoDetails'		: ['./src/page/uc_invest/uc_invest_autoDetails/index.js']
+		'uc_invest_autoDetails'		: ['./src/page/uc_invest/uc_invest_autoDetails/index.js'],
+		'uc_invest_return'			: ['./src/page/uc_invest/uc_invest_return/index.js']
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -133,6 +134,7 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_bondDetails','债权转让详情')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_auto','自动投标')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_autoDetails','自动投标')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_return','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','消息中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户中心'))
 	]
