@@ -31,7 +31,7 @@ $(function(){
 			// $("#data-container").html(thisDate(e.current));
 		}
 	});
-	// trColor('tbody_list');
+	trColor('tbody_list');
 	// 各行变色
 	function trColor(id){
 		var trs=document.getElementById(id).getElementsByTagName("tr");

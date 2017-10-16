@@ -1,6 +1,6 @@
 var _tips = require('util/tips/index.js');
-// var echarts = require('echarts/lib/echarts');
-// require('echarts/lib/chart/pie');
+var echarts = require('echarts/lib/echarts');
+require('echarts/lib/chart/pie');
 require('util/return_date/date_time.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');

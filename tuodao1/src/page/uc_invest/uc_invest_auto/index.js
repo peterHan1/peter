@@ -79,7 +79,9 @@ $(function(){
 		}
 	});
 	$(".auto_switchTab li").on("click",function(){
+		var ind = $(this).index();
 		$(this).addClass('on').siblings('li').removeClass('on');
+		$(".auto_com").eq(ind).show().siblings(".auto_com").hide();
 	});
 	$(".uc_bondTab li").on("click",function(){
 		var ind = $(this).index();

@@ -28,7 +28,6 @@ var config = {
 		'common'					: ['./src/page/common/index.js'],
 		'index' 					: ['./src/page/index/index.js'],
 		'login' 					: ['./src/page/login/index.js'],
-		'return_money' 				: ['./src/page/return_money/index.js'],
 		'register' 					: ['./src/page/register/index.js'],
 		'userlogin' 				: ['./src/page/userlogin/index.js'],
 		'setpassword' 				: ['./src/page/setpassword/index.js'],
@@ -51,7 +50,8 @@ var config = {
 		'uc_invest_bondDetails'		: ['./src/page/uc_invest/uc_invest_bondDetails/index.js'],
 		'uc_invest_auto'			: ['./src/page/uc_invest/uc_invest_auto/index.js'],
 		'uc_invest_autoDetails'		: ['./src/page/uc_invest/uc_invest_autoDetails/index.js'],
-		'uc_invest_return'			: ['./src/page/uc_invest/uc_invest_return/index.js']
+		'uc_invest_return'			: ['./src/page/uc_invest/uc_invest_return/index.js'],
+		'calc'						: ['./src/page/calc/index.js'],
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -118,7 +118,6 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('setpay','忘记支付密码')),
 		new HtmlWebpackPlugin(getHtmlConfig('active_newuser','激活存管新用户')),
 		new HtmlWebpackPlugin(getHtmlConfig('active_user','激活存管存量用户')),
-		new HtmlWebpackPlugin(getHtmlConfig('return_money','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest_detail','理财专区-详情页')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_recharge','账户充值')),
@@ -136,7 +135,8 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_autoDetails','自动投标')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_return','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','消息中心')),
-		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户中心'))
+		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户中心')),
+		new HtmlWebpackPlugin(getHtmlConfig('calc','计算器'))
 	]
 };
 

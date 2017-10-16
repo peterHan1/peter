@@ -166,7 +166,7 @@
 		c.shde(b.time, !c.options.istime), c.shde(h.oclear, !("isclear" in c.options ? c.options.isclear : 1)), c.shde(h.otoday, !("istoday" in c.options ? c.options.istoday : 1)), c.shde(h.ok, !("issure" in c.options ? c.options.issure : 1));
 	}, c.orien = function(a, b) {
 		var d, e = c.elem.getBoundingClientRect();
-		a.style.left = e.left + (b ? 0 : c.scroll(1))-50 + "px",d = e.bottom + a.offsetHeight / 1.5 <= c.winarea() ? e.bottom - 1 : e.top > a.offsetHeight / 1.5 ? e.top - a.offsetHeight + 1 : c.winarea() - a.offsetHeight, a.style.top = d + (b ? 0 : c.scroll()) + 10 + "px";
+		a.style.left = e.left + (b ? 0 : c.scroll(1))-70 + "px",d = e.bottom + a.offsetHeight / 1.5 <= c.winarea() ? e.bottom - 1 : e.top > a.offsetHeight / 1.5 ? e.top - a.offsetHeight + 1 : c.winarea() - a.offsetHeight, a.style.top = d + (b ? 0 : c.scroll()) + 10 + "px";
 	}, c.follow = function(a) {
 		c.options.fixed ? (a.style.position = "fixed", c.orien(a, 1)) : (a.style.position = "absolute", c.orien(a));
 	}, c.viewtb = function() {

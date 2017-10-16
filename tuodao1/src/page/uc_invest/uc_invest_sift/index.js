@@ -11,16 +11,25 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 $(function(){
-	$(".layer_date").on("click",function(event){
-		if(event.target==this){
-			laydate({
-				format: 'YYYY-MM-DD',
-				// 选择时间后回调
-			 	choose: function(dates){
-			 		console.log(dates);
-			  	}
-			});
-		}
+	$(".start_date").on("click",function(){
+		laydate({
+			elem: '#start_date',
+			format: 'YYYY-MM-DD',
+			// 选择时间后回调
+		 	choose: function(dates){
+		 		console.log(dates);
+		  	}
+		});
+	});
+	$(".end_date").on("click",function(){
+		laydate({
+			elem: '#end_date',
+			format: 'YYYY-MM-DD',
+			// 选择时间后回调
+		 	choose: function(dates){
+		 		console.log(dates);
+		  	}
+		});
 	});
 	$(".uc_invest_tabL li").on("click",function(){
 		$(this).addClass('on').siblings('li').removeClass('on');

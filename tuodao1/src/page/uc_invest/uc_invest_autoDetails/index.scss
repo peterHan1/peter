@@ -101,11 +101,20 @@
 			font-size:$fontSize14;
 			@include height-line(50px);
 		}
+		.month_th{
+			width:115px;
+		}
+		.time_th{
+			width:165px;
+		}
 		.padd_left{
 			padding-left:35px;
 		}
 		.trColor{
 			background-color:$bgColorfb;
+		}
+		.status_th{
+			width:65px;
 		}
 		.td_name{
 			position:relative;
