@@ -1,6 +1,12 @@
 $(function(){
 	$(".message_main ul li").on("click",function(){
 		var height=$(this).height();
+		var count=$(".message_top .count i").html();
+		if($(this).find("dt").hasClass('color')){
+			count=count-1;
+			$(".message_top .count i").html(count);
+		}else{
+		}
 		if(height==50){
 			$(this).find("i").html("&#xe69c;");
 			$(this).css({"height":"83px","line-height":"41.5px"});
@@ -21,5 +27,6 @@ $(function(){
 		$(".message_main li dt").removeClass("color");
 		$(this).removeClass("color");
 		$(this).addClass("jy");
+		$(".message_top .count i").html("0");
 	});
 });

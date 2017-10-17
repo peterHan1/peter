@@ -19,6 +19,10 @@ $(function() {
 	$(".change_box .anniu .sure").on("click", function() {
 		layer.closeAll();
 	});
+	// 上传按钮
+	$(".upload_btn").on("click",function(){
+		$(".inp_file").click();
+	});
 	// 添加地址弹窗
 	$(".adress_text a").on("click", function() {
 		layer.open({

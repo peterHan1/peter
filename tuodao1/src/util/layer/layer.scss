@@ -379,16 +379,16 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-title {
-	padding: 0 80px 0 20px;
-	height: 42px;
-	line-height: 42px;
-	border-bottom: 1px solid #eee;
+	padding: 0 80px 0 15px;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #f2f2f2;
 	font-size: 14px;
-	color: #333;
+	color: #707070;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	background-color: #F8F8F8;
+	background-color: #ffffff;
 	border-radius: 2px 2px 0 0
 }
 
@@ -448,7 +448,7 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-setwin .layui-layer-close1:hover {
-	background-position: -80px -40px;
+	background-position: -81px -41px;
 }
 
 .layui-layer-setwin .layui-layer-close2 {

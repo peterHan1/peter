@@ -1,5 +1,5 @@
-@import '../common/mixin';
-@import '../common/layout';
+@import '../../common/mixin';
+@import '../../common/layout';
 .on{
 	color:#ff7400!important;
 	border-bottom:2px solid #ff7400;
@@ -8,7 +8,7 @@
 	display:none;
 }
 .get_fast{
-	background:url(../../image/get_fast.png) no-repeat;
+	background:url(../../../image/get_fast.png) no-repeat;
 }
 .kd{
 	background-color: $mainColor!important;
@@ -19,6 +19,15 @@
 table{
 	border-collapse:collapse;
 	border-spacing:0;
+}
+.sh_fail{
+	color:$fontColore6;
+}
+.sh_pass{
+	color:$fontColorbd;
+}
+.sh_wait{
+	color:$fontColor9e;
 }
 .cash_box{
 	overflow:hidden;
@@ -54,7 +63,7 @@ table{
 					text-align:center;
 					font-size:14px;
 					color:#707070;
-					cursor:default;
+					cursor:pointer;
 				}
 			}
 		}
@@ -97,6 +106,26 @@ table{
 					width:150px;
 					height:37px;
 				}
+				.card_num{
+					span{
+						margin-right:6px;
+						i{
+							display:inline-block;
+							width:6px;
+							height:6px;
+							border-radius:6px;
+							background-color: #333333;
+							margin-right:5px;
+						}
+					}
+					em{
+						font-family:'bold';
+						color:#333333;
+						font-size:14px;
+						vertical-align: middle;
+						margin-top:2px;
+					}
+				}
 				.wen{
 					position:absolute;
 					right:-25px;
@@ -109,7 +138,7 @@ table{
 					display:block;
 					width:202px;
 					height:45px;
-					background: url(../../image/Tips.png) no-repeat;
+					background: url(../../../image/Tips.png) no-repeat;
 					position:absolute;
 					right:-233px;
 					top:8px;
@@ -129,7 +158,7 @@ table{
 					display:block;
 					width:202px;
 					height:45px;
-					background: url(../../image/Tips2.png) no-repeat;
+					background: url(../../../image/Tips2.png) no-repeat;
 					position:absolute;
 					left:100px;
 					top:-2px;
@@ -340,6 +369,7 @@ table{
 			background-color: #ff7400;
 			text-align:center;
 			font-size:14px;
+			cursor:pointer;
 		}
 		.know:hover{
 			background-color: #f25d14;

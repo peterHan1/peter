@@ -21,11 +21,21 @@ $(function(){
 			if (day < 10) {
 				day = "0"+day;
 			}
-			$(".sign_day").html(day);
+			// $(".sign_day").html(day);
 			$(".sign_integral").html(integral);
 			$(this).removeClass('sigin_clik');
 			$(this).addClass('sigin_btn_yet');
-			$(this).html("今日已签到，积分+6");
+			$(this).find('span').html("今日已签到，积分+6");
+			$(".animat").animate({top:'-200px'},function(){
+				$(".animat").remove();
+			});
+			$(".sign_day").fadeOut();
+			$(".day").animate({marginTop:'-90px',},function(){
+				var htm = '<span class="sign_day">' + day +'</span>';
+				$(".sign_day").fadeIn();
+				$(".day").html(htm).css("marginTop","0");
+				console.log(666);
+			});
 		};
 	});
 	var trs=document.getElementById("table_list").getElementsByTagName("tr");

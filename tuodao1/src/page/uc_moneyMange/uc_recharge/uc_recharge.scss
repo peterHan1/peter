@@ -1,5 +1,8 @@
-@import '../common/mixin';
-@import '../common/layout';
+@import '../../common/mixin';
+@import '../../common/layout';
+em{
+	font-style:normal;
+}
 .on{
 	color:#ff7400!important;
 	border-bottom:2px solid #ff7400;
@@ -20,10 +23,10 @@
 	background-color: #f25d14!important;
 }
 .get{
-	background:url(../../image/get.png) no-repeat;
+	background:url(../../../image/get.png) no-repeat;
 }
 .get_fast{
-	background:url(../../image/get_fast.png) no-repeat;
+	background:url(../../../image/get_fast.png) no-repeat;
 	opacity:1!important;
 }
 .recharge_box{
@@ -61,7 +64,7 @@
 				text-align:center;
 				font-size:14px;
 				color:#707070;
-				cursor:default;
+				cursor:pointer;
 			}
 		}
 	}
@@ -181,18 +184,38 @@
 				width:150px;
 				height:37px;
 			}
+			.card_num{
+				span{
+					margin-right:6px;
+					i{
+						display:inline-block;
+						width:6px;
+						height:6px;
+						border-radius:6px;
+						background-color: #333333;
+						margin-right:5px;
+					}
+				}
+				em{
+					font-family:'bold';
+					color:#333333;
+					font-size:14px;
+					vertical-align: middle;
+				}
+			}
 			.wen{
 				position:absolute;
 				right:-25px;
 				top:8px;
 				color:#b1b1b1;
 				cursor:pointer;
+				font-weight:100;
 			}
 			b{
 				display:block;
 				width:202px;
 				height:45px;
-				background: url(../../image/Tips.png) no-repeat;
+				background: url(../../../image/Tips.png) no-repeat;
 				position:absolute;
 				right:-233px;
 				top:8px;
@@ -305,6 +328,7 @@
 		margin:0 auto;
 		text-align:center;
 		font-size:14px;
+		cursor:pointer;
 	}
 	.know:hover{
 		background-color: #f25d14;
@@ -359,6 +383,7 @@
 		margin:0 auto;
 		text-align:center;
 		font-size:14px;
+		cursor:pointer;
 	}
 	.know:hover{
 		background-color: #f25d14;
@@ -389,6 +414,7 @@
 		margin:0 auto;
 		text-align:center;
 		font-size:14px;
+		cursor:pointer;
 	}
 	.know:hover{
 		background-color: #f25d14;

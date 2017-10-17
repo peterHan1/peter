@@ -129,11 +129,27 @@ b,i,em{
 				font-size:$fontSize16;
 			}
 			.sign_date{
+				height:80px;
+				line-height: 80px;
 				margin-top:20px;
-				font-size:18px;
-				span{
-					color:#fdffff;
-					font-size:50px;
+				
+			}
+			.sign_days{
+				display:inline-block;
+				.day{
+					display:inline-block;
+					float: left;
+					margin-top:-10px;
+					span{
+						display: inline-block;
+						color:#fdffff;
+						font-size:50px;
+					}
+				}
+				b{
+					display: inline-block;
+					float: left;					
+					font-size:18px;
 				}
 			}
 			.signs_integral{
@@ -165,10 +181,22 @@ b,i,em{
 			}
 			.sigin_btn_yet{
 				background-color: rgba(255,255,255,0.2);
-				filter:alpha(opacity=20);  
-				color:#fff;
 				@include border-style($b-color:#ffe3db,$b-radius:20px);
+				span{
+					color:#fff;
+				}
 			}
+		}
+		.animat{
+			width:260px;
+			height:300px;
+			position:absolute;
+			left:0;
+			top:300px;
+			background:-webkit-linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			background:-o-linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			background:linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			
 		}
 	}
 	.total_eachart{

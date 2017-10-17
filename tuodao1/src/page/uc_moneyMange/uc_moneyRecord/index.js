@@ -14,7 +14,7 @@ $(function(){
 	// 分页
 	$(".zxf_pagediv").createPage({
 		// 页数
-		pageNum: 5,
+		pageNum: 100,
 		// 当前页
 		current: 1,
 		// 显示条数
@@ -26,14 +26,12 @@ $(function(){
 	});
 	// 日历
 	$(".layer_date").on("click",function(event){
-		if(event.target==this){
-			laydate({
-				format: 'YYYY-MM-DD',
-				// 选择时间后回调
-			 	choose: function(dates){
-			 		console.log(dates);
-			  	}
-			});
-		}
+		laydate({
+			format: 'YYYY-MM-DD',
+			// 选择时间后回调
+		 	choose: function(dates){
+		 		console.log(dates);
+		  	}
+		});
 	});
 });

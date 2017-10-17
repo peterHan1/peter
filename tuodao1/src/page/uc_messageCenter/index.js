@@ -10,7 +10,7 @@ $(function(){
 	// 分页
 	$(".zxf_pagediv").createPage({
 		// 页数
-		pageNum: 100,
+		pageNum: 10,
 		// 当前页
 		current: 1,
 		// 显示条数
