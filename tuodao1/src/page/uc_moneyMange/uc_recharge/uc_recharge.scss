@@ -62,9 +62,14 @@ em{
 				margin-left:30px;
 				line-height:50px;
 				text-align:center;
-				font-size:14px;
-				color:#707070;
 				cursor:pointer;
+				a{
+					display:block;
+					width:100%;
+					height:100%;
+					font-size:14px;
+					color:#707070;
+				}
 			}
 		}
 	}
@@ -257,7 +262,7 @@ em{
 				font-size:14px;
 				color:#707070;
 			}
-			i{
+			.czts{
 				position:absolute;
 				right:-176px;
 				top:11px;

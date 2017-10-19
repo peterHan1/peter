@@ -13,8 +13,8 @@
 		<div class="qs_time dis_none"><i class="iconfont">&#xe694;</i>&nbsp;&nbsp;当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</div>
 		<div class="cash_top">
 			<ul>
-				<li class="on">账户提现</li>
-				<li>提现记录</li>
+				<li class="on" ><a href="uc_cash.html?zh">账户提现</a></li>
+				<li><a href="uc_cash.html?jl">提现记录</a></li>
 			</ul>
 		</div>
 		<div class="cash_window item0 dis_none">
@@ -31,8 +31,8 @@
 			<p class="zhye">可提现余额&nbsp;&nbsp;<i class="iconfont wen">&#xe68d;</i><b></b></p>
 			<p class="number_show"><span class="money_number">2,900.00</span>&nbsp;<span>元</span></p>
 			<p class="wrongs dis_none">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>密码错误，请重新输入！</span></p>
-			<div class="money"><input type="number" placeholder="请输入提现金额，不得少于100元" class="money_input1"><span class="font">元</span></div>
-			<div class="password"><input type="number" placeholder="请输入支付密码" class="pass_input"><span class="font"><a href="">忘记密码</a></span></div>
+			<div class="money"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入提现金额，不得少于100元" class="money_input1"><span class="font">元</span></div>
+			<div class="password"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入支付密码" class="pass_input"><span class="font"><a href="">忘记密码</a></span></div>
 			<p class="sj_money"><span class="sjdz">实际到账：<b>0.00</b> 元</span><span class="sxf">手续费：<b>0.00</b> 元</span></p>
 			<input type="button" class="btn" value="申请提现，预计次日 9 点到账">
 			<p class="tx_times">您本月还有<span> 6 </span>次免费提现次数</p>

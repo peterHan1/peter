@@ -17,6 +17,7 @@ b,i,em{
 .uc_right{
 	float:left;
 	margin-left:20px;
+	background-color:#fff;
 	.return_money{
 		.fl{float:left;}
 		.fr{float:right;}
@@ -26,7 +27,6 @@ b,i,em{
 			font-size:$fontSize14;
 			color:$fontColor70;
 			padding-left: 30px;
-			background-color:#fff;
 			p{
 				display: inline-block;
 				font-size:34px;

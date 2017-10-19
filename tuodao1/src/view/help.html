@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="main">
+		<div class="menu_left">
+			<ul>
+				<li>常见问题</li>
+				<li>新手必读</li>
+				<li>注册登录</li>
+				<li>银行存管</li>
+				<li>收费标准</li>
+				<li>充值提现</li>
+				<li>投资回款</li>
+				<li>精选计划</li>
+				<li>债权转让</li>
+				<li>自动投标</li>
+				<li>积分和优惠券</li>
+				<li>推荐奖励</li>
+				<li>会员体系</li>
+				<li>理财百科</li>
+			</ul>
+		</div>
+		<div class="content">
+			<ul>
+				<li>新手必读</li>
+				<li><a><i class="iconfont">&#xe69a;</i>我可以注册吗？</a></li>
+				<li>
+					<a><i class="iconfont">&#xe69a;</i>我改如何投资？</a>
+					<dl>
+						<dt><i></i>在拓道网站上进行注册；点击查看&nbsp;<span>如何注册 > </span></dt>
+						<dt><i></i>开通北京银行存管账户，点击查看&nbsp;<span>银行存管 > </span></dt>
+						<dt><i></i>用一张开通网银功能的银行卡北京银行账户进行充值；</dt>
+						<dt><i></i>浏览项目类型选择自己感兴趣的回款方式进行投资；</dt>
+						<dt><i></i>确认金额，点击立即投资，去北京银行的页面输入交易密码，出借成功。</dt>
+					</dl>
+				</li>
+				<li><a><i class="iconfont">&#xe69a;</i>哪种还款方式更适合我？</a></li>
+				<li><a><i class="iconfont">&#xe69a;</i>投资后是否可以提前退出？</a></li>
+				<li><a><i class="iconfont">&#xe69a;</i>投资是否有额外的费用？</a></li>
+				<li><a><i class="iconfont">&#xe69a;</i>如何获得加息券？</a></li>
+				<li><a><i class="iconfont">&#xe69a;</i>如何获得投资券？</a></li>
+			</ul>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

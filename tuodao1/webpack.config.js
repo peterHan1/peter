@@ -2,8 +2,8 @@ var webpack       		= require('webpack');
 var path          		= require('path');
 var ExtractTextPlugin 	= require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin 	= require('html-webpack-plugin');
-
-var publicPath = 'http://72.127.2.42:3000/';
+var localPath = require('./testlocal.js');
+var publicPath = localPath.localPath;
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 // 环境变量配置，dev / online
 var WEBPACK_ENV         = process.env.NODE_ENV || 'dev';
@@ -36,8 +36,8 @@ var config = {
 		'invest_detail' 			: ['./src/page/invest_detail/index.js'],
 		'active_newuser' 			: ['./src/page/active_newuser/index.js'],
 		'active_user'				: ['./src/page/active_user/index.js'],
-		'uc_recharge'				: ['./src/page/uc_moneyMange/uc_recharge/index.js'],
 		'uc'						: ['./src/page/uc/index.js'],
+		'uc_recharge'				: ['./src/page/uc_moneyMange/uc_recharge/index.js'],
 		'uc_cash'					: ['./src/page/uc_moneyMange/uc_cash/index.js'],
 		'uc_moneyRecord'			: ['./src/page/uc_moneyMange/uc_moneyRecord/index.js'],
 		'uc_messageCenter'			: ['./src/page/uc_messageCenter/index.js'],
@@ -52,6 +52,10 @@ var config = {
 		'uc_invest_autoDetails'		: ['./src/page/uc_invest/uc_invest_autoDetails/index.js'],
 		'uc_invest_return'			: ['./src/page/uc_invest/uc_invest_return/index.js'],
 		'calc'						: ['./src/page/calc/index.js'],
+		'help'						: ['./src/page/help/index.js'],
+		'uc_points_gold'			: ['./src/page/uc_welfare/uc_points_gold/index.js'],
+		'uc_invite'					: ['./src/page/uc_welfare/uc_invite/index.js'],
+		'uc_coupon'					: ['./src/page/uc_welfare/uc_coupon/index.js']
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -93,7 +97,8 @@ var config = {
 	resolve:{
 		alias : {
 			util : __dirname + '/src/util',
-			page : __dirname + '/src/page'
+			page : __dirname + '/src/page',
+			api : __dirname + '/src/api'
 
 		}
 	},
@@ -136,7 +141,11 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_return','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','消息中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户中心')),
-		new HtmlWebpackPlugin(getHtmlConfig('calc','计算器'))
+		new HtmlWebpackPlugin(getHtmlConfig('calc','计算器')),
+		new HtmlWebpackPlugin(getHtmlConfig('help','帮助中心')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_points_gold','积分和金币')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_invite','我的邀请')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_coupon','我的优惠券'))
 	]
 };
 

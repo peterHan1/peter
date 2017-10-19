@@ -1,8 +1,18 @@
 require('util/paging/page.scss');
 require('util/paging/page.js');
-var _inp = require('util/inp.js');
+var _inp = require('util/regular.js');
 
 $(function(){
+	var hre = location.href.split('?');
+	$('.invest_tab a').each(function () {
+		var dates = $(this).attr("data");
+		for(var i in hre){
+			if(hre[i] == dates){
+				$(this).addClass('on');
+			}
+		}
+
+	});
 	$(".detail_tab li a").on("click",function(){
 		$(".detail_con>div").hide();
 		var txt = $(this).html();
@@ -62,29 +72,21 @@ $(function(){
 			});
 		}
 	});
-	// 余额全投
-	$(".all_money").on("click",function(){
-		var inp = $(".sub_money"),apen = $(".sub_money").parent(),money = $(".sub_money").val(),in_money = 88888,bal_money = 666666;
-		_inp.import_money(inp,apen,money,in_money,bal_money);
-		// _inp.input_mess();
-		// $(".sub_money").keyup();
-		// 账户余额
-		var money = 666;
-		// money = parseFloat(money.replace(/,/g,''));
+	_inp.inpMoneyOnClick({
+		elm: "all_money",
+		input: "sub_money",
+		// 可以余额
+		balance:5000,
 		// 可投金额
-		var a_money = 600;
-		if(money >= a_money){
-			$(".sub_money").val(a_money);
-		}else{
-			$(".sub_money").val(money);
+		invest:60000,
+		callback: function(inp) {
+			setinput(inp);
 		}
-		// var inputs = $(".sub_money");
-		// setinput(inputs);
-		// import_money(money,a_money);
 	});
 	// 输入金额input输入状态
-	_inp.checkPhoneOnkey({
+	_inp.inpMoneyOnkey({
 		elm: "sub_money",
+		btn_x:"btn_empty",
 		// 可以余额
 		balance:888888,
 		// 可投金额
@@ -93,77 +95,9 @@ $(function(){
 			setinput(inp);
 		}
 	});
-	/* $(".sub_money").keyup(function(){
-		var money = $(".moneys").html();
-		money = parseFloat(money.replace(/,/g,''));
-		// 可投金额
-		var a_money = 666666;
-		var inputs = $(this);
-		setinput(inputs);
-		import_money(money,a_money);
-		$(".inp_ticket").val("");
-		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
-		if(inputs.val() != ""){
-			$(".btn_empty").show();
-		}else{
-			$(".btn_empty").hide();
-		}
-	}); */
-	// 判断输入金额
-	/* function import_money(bal_money,in_money){
-		var inpt = $(".sub_money");
-		var money = $(".sub_money").val();
-		var a = $(".invest_money");
-		if(money != "" && money != 0 && money < 100   && in_money < 500){
-			input_mess("不得低于起投金额100元！",inpt,true);
-			return false;
-		}else if(money != "" && money != 0  && money < 500 && in_money >= 500){
-			input_mess("不得低于起投金额500元！",inpt,true);
-			return false;
-		}else if(money != "" && money != 0  && money > bal_money){
-			input_mess("余额不足",inpt,true);
-			return false;
-		}else if(money != "" && money != 0  && money > 500000){
-			input_mess("单笔限额为500,000元！",inpt,true);
-			return false;
-		}else if(money != "" && money != 0  && money > in_money){
-			input_mess("您输入的金额大于当前剩余可投金额！",inpt,true);
-			return false;
-		}else{
-			a.removeClass("bor_col");
-			$(".in_span").remove();
-			inpt.css("color","#333");
-		}
-	}; */
-	// input状态错误提示
-	/* function input_mess(str,inp,flag){
-		inp = inp || null;
-		if ($(".in_span").length>0) {
-			$(".in_span").remove();
-		}
-		if(flag == true){
-			// $(".btn_empty").show();
-		}
-		if(inp != null){
-			inp.css("color","red");
-		}
-		var txts = "<span class='in_span'><i class='iconfont'>&#xe671;</i>"+ str +"</span>";
-		$(".invest_money").addClass("bor_col");
-		$(".invest_money").append(txts);
-	} */
-	// 输入金额input得到光标状态
-	$(".sub_money").focus(function(){
-		var v = $(this).val();
-		if(v == '0.00'){
-			$(this).val('');
-		}else{
-			$(this).val($(this).val().replace(/\.00/, '').replace(/(\.\d)0/,'$1'));
-		};
-		if(v != ""){
-			$(".btn_empty").show();
-		}else{
-			$(".btn_empty").hide();
-		}
+	_inp.inpMoneyOnFocus({
+		inp:"sub_money",
+		btn_x:"btn_empty",
 	});
 	// 清空按钮
 	$(".btn_empty").on("click",function(){

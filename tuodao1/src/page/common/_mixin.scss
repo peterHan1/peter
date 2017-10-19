@@ -80,7 +80,7 @@ $fontSize20:    20px;
   -moz-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
-} 
+}
 
 
 
@@ -143,7 +143,11 @@ $fontSize20:    20px;
     &.bottom-tips span{bottom:0;left:50%;margin-left:-6px}
     &.bottom-tips span.b{border-top-color: #ddd;bottom:-10px;}
     &.bottom-tips span.t{border-top-color: #fff;bottom:-9px;}
-  
+
+    &.bottomR-tips span{bottom:0;left:91%;margin-left:-6px}
+    &.bottomR-tips span.b{border-top-color: #ddd;bottom:-10px;}
+    &.bottomR-tips span.t{border-top-color: #fff;bottom:-9px;}
+
     &.left-tips span{left:0;top:50%;margin-top:-5px}
     &.left-tips span.b{border-right-color: #ddd;left:-12px}
     &.left-tips span.t{border-right-color: #fff;left:-11px}

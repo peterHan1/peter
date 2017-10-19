@@ -12,8 +12,7 @@
 .dis_none{display: none}
 .uc_bondTab{
 	@include height-line(50px);
-	font-size:$fontSize14;
-	color:$fontColor333;
+	
 	background-color: #fff;
 	margin-bottom: 10px;
 	li{
@@ -21,17 +20,22 @@
 		width:45px;
 		text-align: center;
 		margin:0 30px;
-		cursor: pointer;
-		&:hover{
+		a{
+			font-size:$fontSize14;
+			color:$fontColor333;
+			display: inline-block;
+			height:48px;
+			&:hover{
+				color:$fontColor74;
+			}
+		}
+		a.on{
 			color:$fontColor74;
+			border-bottom:2px solid #ff7400;
+
 		}
 	}
-	li.on{
-		color:$fontColor74;
-		height:48px;
-		border-bottom:2px solid #ff7400;
-
-	}
+	
 }
 .uc_invest_com{
 	width:940px;
@@ -108,7 +112,7 @@
 				}
 				.td_name{
 					position:relative;
-					width:115px;
+					width:110px;
 					padding-right:50px;
 
 					a{
@@ -151,7 +155,7 @@
 				}
 				.td_name{
 					padding-right:10px;
-					width:65px;
+					width:60px;
 					a{
 						width:70px;
 					}

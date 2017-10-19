@@ -5,12 +5,12 @@
 	.uc_right{
 		float:left;
 		margin-left: 20px;
+		background-color:#fff;
 	}
 }
 .uc_invest_main{
 	width:940px;
 	min-height: 915px;
-	background-color:#fff;
 }
 .uc_invest_tab{
 	@extend %clearfix;

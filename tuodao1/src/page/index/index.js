@@ -3,53 +3,50 @@ require('page/common/nav/index.js');
 require('./index.scss');
 require('util/flexslider/index.js');
 
+var _td 				= require('util/td.js');
+var _apiBanner			= require('api/banner-api.js');
 var templateBanner  	= require('./banner.string');
 var templateProduct  	= require('./product.string');
 var templateActivity  	= require('./activity.string');
-var _td 				= require('util/td.js');
-$(function(){
-	var bannerHtml 		= _td.renderHtml(templateBanner);
-	var productHtml 	= _td.renderHtml(templateProduct);
-	var activityHtml 	= _td.renderHtml(templateActivity);
-	$('.flexslider').html(bannerHtml);
-	$('.index-product').html(productHtml);
-	$('.activity').html(activityHtml);
-	$('.flexslider').flexslider({
-		directionNav 	: true,
-		pauseOnAction 	: false,
-		pauseOnHover 	: true,
-		slideshowSpeed 	: 3000
-	});
-	$('.swap').html($('.news-li').html());
-	x = $('.news-li');
-	y = $('.swap');
-	h = $('.news-li li').length * 20;
-	var hh=$('.news-li li').length;
-	if(hh>1)
-		b();
 
-	function b(){
-		t = parseInt(x.css('top'));
-		y.css('top','20px');
-		x.animate({top: t - 20 + 'px'},'slow');
-		if(Math.abs(t) == h-20){
-			y.animate({top:'0px'},'slow');
-			z=x;
-			x=y;
-			y=z;
-		}
-		setTimeout(b,3000);
+
+var page = {
+	// data : {
+	// 	listParam : {
+	// 		keyword 	: _td.getUrlParam('keyword') 	|| '',
+	// 		cate 		: _td.getUrlParam('cate') 		|| '',
+	// 		orderBy 	: _td.getUrlParam('orderBy') 	|| 'default',
+	// 		pageNum 	: _td.getUrlParam('pageNum') 	|| 1,
+	// 		pageSize 	: _td.getUrlParam('pageSize') 	|| 20
+	// 	}
+	// },
+	init : function(){
+		this.onLoad();
+	},
+	onLoad : function(){
+		this.loadList();
+	},
+	loadList : function(){
+		var _this = this;
+		var bannerHtml = '';
+		var listParam = this.data.listParam;
+		_apiBanner.getProductList(function(res){
+			console.log(res);
+			bannerHtml = _td.renderHtml(templateBanner,{
+				list:res.content.list,
+				msg:res.msg
+			});
+			$('.flexslider').html(bannerHtml);
+			$('.flexslider').flexslider({
+				directionNav 	: true,
+				pauseOnAction 	: false,
+				pauseOnHover 	: true,
+				slideshowSpeed 	: 3000
+			});
+		},function(){});
 	}
-	$('.index-product li').hover(function(){
-		var html = '<div class="now-invest">立即投资</div>';
-		$(this).find('.pro-list').append(html);
-		// console.log();
-		// $(this).find('.now-invest').show();
-	},function(){
-		$(this).find('.now-invest').remove();
-	});
-	// $('.banner img').load(function(){	
-	// });
+};
+$(function(){
+	page.init();
 });
-console.log('this is index~~~~~');
 

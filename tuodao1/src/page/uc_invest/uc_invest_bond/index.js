@@ -36,20 +36,41 @@ $(function(){
 	$(".uc_invest_tabL li").on("click",function(){
 		$(this).addClass('on').siblings('li').removeClass('on');
 	});
-	$(".uc_bondTab li").on("click",function(){
-		var ind = $(this).index();
-		$(this).addClass('on').siblings('li').removeClass('on');
-		$(".uc_invest_com").eq(ind).show().siblings(".uc_invest_com").hide();
-		if($(this).html() == "已受让"){
-			$(".uc_invest_tabL").show();
-		}else{
-			$(".uc_invest_tabL").hide();
+	$('.uc_bondTab a').each(function () {
+		if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+			$(this).addClass('on');
+			var index = $(this).parent().index();
+			$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
+			if($(this).html() == "已受让"){
+				$(".uc_invest_tabL").show();
+			}else{
+				$(".uc_invest_tabL").hide();
+			}
+		} else {
+			$(this).removeClass('on');
+		};
+
+	});
+	$('.menu_fund a').each(function () {
+		var locat = location.href;
+		// console.log(locat);
+		var arr=locat.split('?');
+		arr.pop();
+		locat=arr.join('-');
+		console.log(locat);
+		if (locat.indexOf($(this).attr('href')) > -1 && $(this).attr('href')!="" || locat.indexOf($(this).attr('details')) > -1 ) {
+			$(this).addClass('menu_on');
+			$(this).parent(".menu_fund").show();
+			$(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe6a4;");
+		} else {
+			$(this).removeClass('menu_on');
 		}
 	});
-	$(".hint").mouseover(function(){
-		_tips.getTipsRight($(this),-10);
+
+	$(".td_name").mouseover(function(){
+		_tips.getTipsRight($(this),16);
 	});
-	$(".hint").mouseout(function(){
+	$(".td_name").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
 	$(".sub_psw").keyup(function(){

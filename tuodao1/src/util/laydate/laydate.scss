@@ -1,5 +1,6 @@
 ﻿.laydate-icon{height:22px; line-height:22px; padding-right:20px; border:1px solid #C6C6C6; background-repeat:no-repeat; background-position:right center;  background-color:#fff; outline:0;}
-.laydate_body .laydate_on{color:#ff711c;}
+.laydate_body .laydate_on {color:#ff711c;}
+.laydate_body .laydate_on + i{color:#ff711c;}
 .laydate_body .laydate_box{width:240px;z-index:99999999;}
 .laydate_body .laydate_box li{list-style:none;}
 .laydate_body .laydate_box .laydate_void{cursor:text!important;}
@@ -96,7 +97,6 @@
 .laydate_body .laydate_y .laydate_yms ul li:hover,
 .laydate_body .laydate_table td:hover,
 .laydate_body .laydate_time .laydate_hmsno span:hover{background-color:#F3F3F3}
-.calendar{}
 .calendar{display: inline-block;border-radius: 20px;width: 100px;height:30px;line-height:30px;padding:0 15px;color: #707070;cursor: pointer;text-align:center;background-color:#f2f2f2;vertical-align: middle;margin:0 5px;}
 .calendar p{float: left;}
 .calendar i{float: right;font-size:10px;line-height:10px;margin-top:10px;}

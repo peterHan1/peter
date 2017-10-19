@@ -15,18 +15,25 @@ body{
 			float: left;
 			font-size:$fontSize16;
 			height:58px;
-			color:$fontColor333;
 			padding:0 10px;
 			margin-right:80px;
 			cursor: pointer;
+			a{
+				display: inline-block;
+				height:58px;
+				color:$fontColor333;
+			}
+			a.on{
+				color:$fontColor74;
+				border-bottom: 2px solid #ff8e2a;
+			}
 			&:hover{
-				color:$fontColor74;	
+				a{
+					color:$fontColor74;	
+				}
 			}
 		}
-		.on{
-			color:$fontColor74;
-			border-bottom: 2px solid #ff8e2a;
-		}
+		
 	}
 	.invest_list{
 		.invest_list_top{

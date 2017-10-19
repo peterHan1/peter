@@ -113,12 +113,13 @@ b,i,em{
 			}
 		}
 		.sign{
-			background:url(../../image/uc_sign.png) no-repeat;
+			background:url(../../image/uc/uc_sign.png) no-repeat;
+
 			text-align: center;
 			color:#fff;
 			letter-spacing:2px;
 			position:relative;
-			.hint{
+			.hint_sign{
 				cursor: pointer;
 				position:absolute;
 				right:10px;
@@ -139,18 +140,24 @@ b,i,em{
 				.day{
 					display:inline-block;
 					float: left;
-					margin-top:-10px;
+					margin-top:0px;
+					line-height:80px;
 					span{
-						display: inline-block;
+						display: block;
 						color:#fdffff;
 						font-size:50px;
+					}
+					.day2{
+						display: none;
 					}
 				}
 				b{
 					display: inline-block;
 					float: left;					
 					font-size:18px;
+					line-height:100px;
 				}
+
 			}
 			.signs_integral{
 				margin-top:30px;
@@ -345,7 +352,7 @@ b,i,em{
 	}
 	.return_money{
 		background-color:#fff;
-		height:360px;
+		height:370px;
 		margin-bottom:10px;
 		.fl{float:left;}
 		.fr{float:right;}
@@ -475,7 +482,8 @@ b,i,em{
 			.datas_title{
 				font-size:$fontSize14;
 				color:$fontColor9e;
-				margin-top:20px;
+				margin-top:15px;
+				overflow: hidden;
 				div{
 					float:left;
 					overflow: hidden;
@@ -534,7 +542,9 @@ b,i,em{
 						padding-left:10px;
 					}
 					.return_td_name{
-						color:$fontColor74;
+						a{
+							color:$fontColor74;
+						}
 					}
 					.return_td_money{
 						text-align: right;

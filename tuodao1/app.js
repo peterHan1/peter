@@ -35,7 +35,7 @@ if (isDev){
 	// var birds = require('./src/routes');
 	// app.use('/', birds);
 	// require('./src/routes')(app);
-
+	app.use(express.static(path.join(__dirname, 'src/data-mock')));
 	var reload = require('reload');
 	var http = require('http');
 

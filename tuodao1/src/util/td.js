@@ -6,25 +6,26 @@ var _td = {
 	request : function(param){
 		var _this = this;
 		$.ajax({
-			type 		: param.method || 'get',
-			url 		: param.url || '',
-			dataType 	: param.type || 'json',
-			data 		: param.data || '',
+			type 		: param.method 	|| 'get',
+			url 		: param.url 	|| '',
+			dataType 	: param.type 	|| 'json',
+			data 		: param.data 	|| '',
 			success 	: function(res){
-				console.log('sucess');
-				if(0 === res.status){
-					typeof param.success === 'function' && param.success(res.dataRows,res.msg);
-				}else if(10 === res.status){
-					 _this.doLogin();
+				if(100000 === res.code){
+				 	typeof param.success === 'function' && param.success(res);
+
 				}
+				// else if(10 === res.status){
+				// 	 _this.doLogin();
+				// }
 				// 请求数据错误
-				else if(1 === res.status){
-					typeof param.error === 'function' && param.error(res.msg);
-				}
+				// else if(1 === res.status){
+				// 	typeof param.error === 'function' && param.error(res.msg);
+				// }
 
 			},
 			error 		: function(err){
-				typeof param.error === 'function' && param.error(err.statusText);
+				// typeof param.error === 'function' && param.error(err.statusText);
 			}
 		});
 	},

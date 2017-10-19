@@ -84,23 +84,44 @@ table{
 					td.last{
 						padding-right:30px;
 						text-align:center;
-						position:relative;
 						cursor:pointer;
+						position:relative;
 						.bz_tips{
-							width:122px;
-							height: 49px;
-							background: url(../../../image/bz_tip.png) no-repeat;
-							position:absolute;
-							text-align:center;
-							color:#9e9e9e;
-							font-size:12px;
-							top:33px;
-							left:15px;
-							padding:7px 11px 0 11px;
-							background-color: #fff;
-							z-index: 99;
-							overflow:hidden;
-						}
+								max-width:160px;
+								border: 1px solid #dddddd;
+								position:absolute;
+								color:#9e9e9e;
+								font-size:12px;
+								background-color: #fff;
+								z-index: 99;
+								border-radius:5px;
+								top:39px;
+								padding:6px 11px 6px 11px;
+							    span{
+								      width: 0;
+								      height: 0;
+								      font-size: 0;
+								      overflow: hidden;
+								      position: absolute;
+								      border-width: 5px 6px;
+								      border-style: solid;
+							      &.b{
+								        border-top-color: transparent;
+								        border-right-color: transparent;
+								        border-bottom-color:transparent;
+								        border-left-color: transparent;
+							      	}
+							      &.t{
+								          border-top-color: transparent;
+								          border-right-color: transparent;
+								          border-bottom-color:transparent;
+								          border-left-color:transparent;
+							     	 }
+							    }
+						    		&.top-tips span{top:31px;left:50%;margin-left:-6px}
+								    &.top-tips span.b{border-bottom-color: #ddd;top:-10px;}
+								    &.top-tips span.t{border-bottom-color: #fff;top:-9px;}
+							}
 					}
 					td.last:hover{
 						color:#ff7400;

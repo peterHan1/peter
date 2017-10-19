@@ -9,7 +9,16 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 $(function(){
+	$('.bond_tab a').each(function () {
+		if (location.href.indexOf('uc_invest_bondDetails.html') > -1) {
+			if($(this).html() == "已受让"){
+				$(this).addClass('on');
+			}
+		} else {
+			$('.bond_tab a').removeClass('on');
+		};
 
+	});
 	$(".hint").mouseover(function(){
 		_tips.getTipsRight($(this),0);
 	});

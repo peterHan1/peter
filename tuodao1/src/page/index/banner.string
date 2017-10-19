@@ -1,23 +1,12 @@
 <ul class="slides">
+{{msg}}
+{{#list}}
     <li>
         <a href="" target="_blank">
-            <img src="">
+            <img src="{{imgUrl}}">
         </a>
         <p></p>
     </li>
-    <li>
-        <a href="" target="_blank">
-            <img src="../../image/banner/banner2.png">
-
-        </a>
-        <p></p>
-    </li>
-    <li>
-        <a href="" target="_blank">
-            <img src="../../image/banner/banner3.png">
-
-        </a>
-        <p></p>
-    </li>
+{{/list}}
 </ul>
  

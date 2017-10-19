@@ -11,17 +11,28 @@ $(function(){
 	$(".hint").mouseout(function(){
 		$(this).find('.tips').hide();
 	});
+	$(".hint_sign").mouseover(function(){
+		var _tips = $(this).find('.tips');
+		var jtHtml = '<span class="b"></span><span class="t"></span>';
+		_tips.append(jtHtml);
+		_tips.show();
+		_tips.css({'margin-top':-23+'px','margin-left':-200+'px'});
+
+	});
+	$(".hint_sign").mouseout(function(){
+		$(this).find('.tips').hide();
+		// $(".tips").find("span").remove();
+	});
 	// 签到
 	$("#sigin_clik").on("click",function(){
 		if($(this).is('.sigin_btn_yet')){
 			return false;
 		}else{
-			var day = parseInt($(".sign_day").html())+1;
+			var day = parseInt($(".day2").html())+1;
 			var integral = parseInt($(".sign_integral").html())+1;
 			if (day < 10) {
 				day = "0"+day;
 			}
-			// $(".sign_day").html(day);
 			$(".sign_integral").html(integral);
 			$(this).removeClass('sigin_clik');
 			$(this).addClass('sigin_btn_yet');
@@ -29,12 +40,11 @@ $(function(){
 			$(".animat").animate({top:'-200px'},function(){
 				$(".animat").remove();
 			});
-			$(".sign_day").fadeOut();
-			$(".day").animate({marginTop:'-90px',},function(){
-				var htm = '<span class="sign_day">' + day +'</span>';
-				$(".sign_day").fadeIn();
-				$(".day").html(htm).css("marginTop","0");
-				console.log(666);
+			$(".day1").fadeOut();
+			$(".day2").fadeIn();
+			$(".day2").html(day);
+			$(".day").animate({marginTop:'-80px'},function(){
+				$(".day").css("marginTop","0");
 			});
 		};
 	});
@@ -105,7 +115,7 @@ window.time_list = function(yyyy,mm){
 		var msec = times.getTime();
 		if( times.getFullYear() == yyyy){
 			if( (times.getMonth()+1 ) == mm){
-				var tr ='<tr><td class="return_td_date">'+ getMoth(parseInt(item.time)) +'</td><td class="return_td_name">'+item.name+'</td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
+				var tr ='<tr><td class="return_td_date">'+ getMoth(parseInt(item.time)) +'</td><td class="return_td_name"><a href="">'+item.name+'</a></td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
 				$(".re_money_tbody").append(tr);
 				if(msec >= todays){
 					var today = times.getDate();
@@ -149,7 +159,7 @@ window.time_day = function(ht_html,zero,mid,thisy,thism,thisd){
 	// 	success:function(data){
 	$.each(dataTxt,function(i,item){
 		if(item.time >=  zero && item.time <= mid){
-			var tr ='<tr><td class="return_td_date">'+ getMoth(parseInt(item.time)) +'</td><td class="return_td_name">'+item.name+'</td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
+			var tr ='<tr><td class="return_td_date">'+ getMoth(parseInt(item.time)) +'</td><td class="return_td_name"><a href="">'+item.name+'</a></td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
 			$(".re_money_tbody").append(tr);
 			$(".re_money").html(this.await);
 		};
