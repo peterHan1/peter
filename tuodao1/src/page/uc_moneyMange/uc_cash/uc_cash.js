@@ -6,19 +6,11 @@ $(function() {
 	_inp.mouseover("input");
 	_inp.mouseleave("input");
 	// tab栏切换
-	// $(".cash_top ul li").on("click", function() {
-	// 	var _index = $(this).index();
-	// 	_index = _index + 1;
-	// 	$(".cash_top ul li").removeClass("on");
-	// 	$(this).addClass('on');
-	// 	$(".cash_window").eq(_index).show();
-	// 	$(".cash_window").eq(_index).siblings(".cash_window").hide();
-	// });
-	$('.cash_top ul li a').each(function () {
-		if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+	$('.cash_top ul li a').each(function() {
+		if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
 			$(this).parent().addClass('on');
 			$(this).parent().siblings('li').removeClass('on');
-			var _index = $(this).parent().index()+1;
+			var _index = $(this).parent().index() + 1;
 			$(".cash_window").eq(_index).show().siblings(".cash_window").hide();
 		}
 	});
@@ -60,9 +52,11 @@ $(function() {
 		}
 		check();
 	});
+	var times = $(".qs_time").is(":hidden");
+	console.log("time：" + times);
 
 	function check() {
-		if (result1 == true && result2 == true) {
+		if (result1 == true && result2 == true && times==true) {
 			$(".item1 .btn").addClass("kd");
 		} else {
 			$(".item1 .btn").removeClass("kd");

@@ -1,10 +1,10 @@
+require('page/common/uc-menu/index.js');
+require('page/common/uc-menu/index.scss');
 var _tips = require('util/tips/index.js');
 require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
-require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require('util/layer/layer.js');
 require('util/layer/layer.scss');
 require('util/paging/page.scss');
@@ -78,15 +78,15 @@ $(function(){
 			$('.option').hide();
 		}
 	});
-	$(".auto_switchTab li").on("click",function(){
-		var ind = $(this).index();
-		$(this).addClass('on').siblings('li').removeClass('on');
-		$(".auto_com").eq(ind).show().siblings(".auto_com").hide();
-	});
-	$(".uc_bondTab li").on("click",function(){
-		var ind = $(this).index();
-		$(this).addClass('on').siblings('li').removeClass('on');
-		$(".uc_invest_com").eq(ind).show().siblings(".uc_invest_com").hide();
+	$('.auto_switchTab a').each(function () {
+		if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+			$(this).addClass('on');
+			var index = $(this).parent().index();
+			$(".auto_com").eq(index).show().siblings(".auto_com").hide();
+		} else {
+			$(this).removeClass('on');
+		};
+
 	});
 	$(".hint").mouseover(function(){
 		_tips.getTipsRight($(this),0);

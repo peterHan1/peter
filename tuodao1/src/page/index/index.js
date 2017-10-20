@@ -11,15 +11,15 @@ var templateActivity  	= require('./activity.string');
 
 
 var page = {
-	// data : {
-	// 	listParam : {
-	// 		keyword 	: _td.getUrlParam('keyword') 	|| '',
-	// 		cate 		: _td.getUrlParam('cate') 		|| '',
-	// 		orderBy 	: _td.getUrlParam('orderBy') 	|| 'default',
-	// 		pageNum 	: _td.getUrlParam('pageNum') 	|| 1,
-	// 		pageSize 	: _td.getUrlParam('pageSize') 	|| 20
-	// 	}
-	// },
+	data : {
+		listParam : {
+			keyword 	: _td.getUrlParam('keyword') 	|| '',
+			cate 		: _td.getUrlParam('cate') 		|| '',
+			orderBy 	: _td.getUrlParam('orderBy') 	|| 'default',
+			pageNum 	: _td.getUrlParam('pageNum') 	|| 1,
+			pageSize 	: _td.getUrlParam('pageSize') 	|| 20
+		}
+	},
 	init : function(){
 		this.onLoad();
 	},

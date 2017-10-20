@@ -1,10 +1,10 @@
+require('page/common/uc-menu/index.js');
+require('page/common/uc-menu/index.scss');
 var _tips = require('util/tips/index.js');
 require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
-require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require('util/laydate/laydate.js');
 require('util/laydate/laydate.scss');
 require('util/layer/layer.js');
@@ -50,21 +50,6 @@ $(function(){
 			$(this).removeClass('on');
 		};
 
-	});
-	$('.menu_fund a').each(function () {
-		var locat = location.href;
-		// console.log(locat);
-		var arr=locat.split('?');
-		arr.pop();
-		locat=arr.join('-');
-		console.log(locat);
-		if (locat.indexOf($(this).attr('href')) > -1 && $(this).attr('href')!="" || locat.indexOf($(this).attr('details')) > -1 ) {
-			$(this).addClass('menu_on');
-			$(this).parent(".menu_fund").show();
-			$(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe6a4;");
-		} else {
-			$(this).removeClass('menu_on');
-		}
 	});
 
 	$(".td_name").mouseover(function(){

@@ -23,10 +23,13 @@ $(function() {
 			result2 = result;
 		}
 	});
+	// 判断是否为清算时间
+	var times = $(".qs_time").is(":hidden");
+	console.log("time：" + times);
 	var flag;
 	$(".bank_select ul li").on("click", function() {
 		flag = true;
-		if (result1 == true && flag == true) {
+		if (result1 == true && flag == true && times==true) {
 			$(".item1 .btn").addClass("kd");
 		} else {
 			$(".item1 .btn").removeClass("kd");
@@ -41,11 +44,11 @@ $(function() {
 	// 	$(".recharge_window").eq(_index).show();
 	// 	$(".recharge_window").eq(_index).siblings(".recharge_window").hide();
 	// });
-	$('.recharge_top ul li a').each(function () {
-		if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+	$('.recharge_top ul li a').each(function() {
+		if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
 			$(this).parent().addClass('on');
 			$(this).parent().siblings('li').removeClass('on');
-			var _index = $(this).parent().index()+1;
+			var _index = $(this).parent().index() + 1;
 			$(".recharge_window").eq(_index).show().siblings(".recharge_window").hide();
 		}
 	});
@@ -63,14 +66,14 @@ $(function() {
 	});
 	// 按钮可点击
 	$(".money_input1").on("blur", function() {
-		if (result1 == true && flag == true) {
+		if (result1 == true && flag == true && times==true) {
 			$(".item1 .btn").addClass("kd");
 		} else {
 			$(".item1 .btn").removeClass("kd");
 		}
 	});
 	$(".money_input2").on("blur", function() {
-		if (result2 == true) {
+		if (result2 == true && times==true) {
 			$(".item2 .btn").addClass("kd");
 		} else {
 			$(".item2 .btn").removeClass("kd");
@@ -110,12 +113,12 @@ $(function() {
 			});
 			_yzm.check("demo", "border");
 			var data = "123456";
-			var status=1;
+			var status = 1;
 			$(".lastnum").on("keyup", function() {
 				var str = '';
 				str = $("#demo input").eq(0).val() + $("#demo input").eq(1).val() + $("#demo input").eq(2).val() + $("#demo input").eq(3).val() + $("#demo input").eq(4).val() + $("#demo input").eq(5).val();
 				console.log(str);
-				if (str == data && status==1) {
+				if (str == data && status == 1) {
 					layer.closeAll();
 					layer.open({
 						type: 1,
@@ -127,7 +130,7 @@ $(function() {
 							history.go(0);
 						}
 					});
-				}else if(str == data && status==2){
+				} else if (str == data && status == 2) {
 					layer.closeAll();
 					layer.open({
 						type: 1,
@@ -139,7 +142,7 @@ $(function() {
 							history.go(0);
 						}
 					});
-				}else if(str!=data){
+				} else if (str != data) {
 					$("#demo input").val("");
 					$(".wrong_ts").show();
 					_yzm.check("demo", "border");
