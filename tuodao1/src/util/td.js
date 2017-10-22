@@ -48,6 +48,10 @@ var _td = {
 	// 统一登录
 	doLogin : function(){
 		window.location.href = './login.html?redirect' + encodeURIComponent(window.location.href);
+	},
+	// 局部刷新
+	openPage : function(pageUrl){
+		location.href = pageUrl;
 	}
 };
 

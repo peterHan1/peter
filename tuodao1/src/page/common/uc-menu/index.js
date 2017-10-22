@@ -1,28 +1,13 @@
 require('./index.scss');
 var _tips = require('util/tips/index.js');
-$('.menu_fund a').each(function () {
-	var locat = location.href;
-	var thisa = $(this).attr('href');
-	var symbol = locat.indexOf("?");
-	var symbols = thisa.indexOf("?");
-	var href1 = locat.substring(0,symbol);
-	var href2 = thisa.substring(0,symbols);
-	if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href')!="" || location.href.indexOf($(this).attr('details')) > -1 || href1.indexOf(href2)>0) {
-		$(this).addClass('menu_on');
-		$(this).parent(".menu_fund").show();
-		$(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe6a4;");
-	} else {
-		$(this).removeClass('menu_on');
-	}
-});
 $(function(){
 	$(".menu_list").on("click",function(){
 		if($(this).siblings('div').css('display')=='block'){
-			$(this).siblings('div').slideUp();
+			$(this).siblings('div').slideUp("fast");
 			$(this).find('span').html('&#xe83d;');
 		}else{
-			$(this).siblings('div').slideDown();
-			$(this).parent().siblings('li').find(".menu_fund").slideUp();
+			$(this).siblings('div').slideDown("fast");
+			$(this).parent().siblings('li').find(".menu_fund").slideUp("fast");
 			$(this).parent().siblings('li').find(".menu_list").find('span').html('&#xe83d;');
 			$(this).find('span').html('&#xe6a4;');
 			var url=$(this).siblings("div").find("a").eq(0).attr("href");
@@ -43,6 +28,26 @@ $(function(){
 			if(flag != true){
 				window.location.href=url;
 			}
+		}
+	});
+	$('.menu_fund a').each(function () {
+		var locat = location.href;
+		var thisa = $(this).attr('href');
+		var symbol = locat.indexOf("?");
+		var symbols = thisa.indexOf("?");
+		var href1 = locat.substring(0,symbol);
+		var href2 = thisa.substring(0,symbols);
+		if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href')!="" || location.href.indexOf($(this).attr('details')) > -1 || href1.indexOf(href2)>0) {
+			$(this).addClass('menu_on');
+			$(this).parent(".menu_fund").show();
+			var ck = $(this).parent(".menu_fund").siblings(".menu_list");
+			$(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe6a4;");
+			
+			// ck.trigger("click");
+		} else {
+			$(this).removeClass('menu_on');
+			// $(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe83d;");
+			
 		}
 	});
 	$('.icon li').mouseover(function(){

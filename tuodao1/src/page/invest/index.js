@@ -10,26 +10,52 @@ var _apiBanner			= require('api/invest_list-api.js');
 var templateBanner  	= require('./invest_list.string');
 
 $(function(){
-	_apiBanner.getProductList(function(res){
-		console.log(res);
-		bannerHtml = _td.renderHtml(templateBanner,{
-			list:res.content.list,
-		});
-		$('.invest_list_bot').html(bannerHtml);
-		// 得到总页数
-		$(".zxf_pagediv").createPage({
-			// 页数 pages
-			pageNum: res.content.pages,
-			// 当前页 pageNum
-			current: res.content.pageNum,
-			// 显示条数 pageSize
-			shownum: res.content.pageSize,
-			backfun: function(e) {
-				console.log(e.current);
-				// $("#data-container").html(thisDate(e.current));
+	_td.request({
+			url     : _td.getServerUrl('/invest-list.json'),
+			data 	:{
+				pageNum:1,
+				pageSize:2
+			},
+			success :function(res){
+				bannerHtml = _td.renderHtml(templateBanner,{
+					list:res.content.list,
+				});
+				$('.invest_list_bot').html(bannerHtml);
+				$(".zxf_pagediv").createPage({
+					// 页数 pages
+					pageNum: res.content.pages,
+					// 当前页 pageNum
+					current: res.content.pageNum,
+					// 显示条数 pageSize
+					shownum: res.content.pageSize,
+					backfun: function(e) {
+						console.log(e.current);
+						_td.request({
+							url     : _td.getServerUrl('/invest-list.json'),
+							data 	:{
+								pageNum:e.current,
+								pageSize:10
+							},
+							success :function(res){
+								console.log(res)
+								bannerHtml = _td.renderHtml(templateBanner,{
+									list:res.content.list,
+								});
+								$('.invest_list_bot').html(bannerHtml);
+								
+								},
+							error : function(){
+
+							}
+						});
+					}
+				})	
+				},
+			error : function(){
+
 			}
 		});
-	});
+	
 
 
 	$('.invest_tab a').each(function () {
