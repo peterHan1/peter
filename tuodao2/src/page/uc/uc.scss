@@ -1,0 +1,692 @@
+@import "../common/mixin";
+b,i,em{
+	font-weight: normal;
+	font-style: normal;
+	font-family: 微软雅黑;
+}
+.dis_none{
+	display:none;
+}
+.max-width{
+	@extend %clearfix;
+}
+.uc_main{
+	@extend %clearfix;
+	margin:30px 0 50px;
+}
+.uc_right{
+	float:left;
+	margin-left:20px;
+	.com_left{
+		float:left;
+		width:670px;
+		height:300px;
+		background-color:#fff;
+	}
+	.com_right{
+		float:left;
+		margin-left:10px;
+		height:300px;
+		width:260px;
+		background-color:#fff;
+
+	}
+	.total_sign{
+		@extend %clearfix;
+		margin-bottom:10px;
+		.total{
+			letter-spacing:1px;
+			.total_top{
+				padding:38px 0;
+				width:100%;
+				overflow: hidden;
+				border-bottom:1px solid $bgColor;
+				.assets{
+					float:left;
+				}
+				.recharge_cash{
+					float:right;
+					margin-right:60px;
+					padding:14px 0;
+					a{
+						font-size:16px;
+						display:inline-block;
+						width:110px;
+						@include height-line(40px);
+						text-align:center;
+						border-radius: 20px;
+					}
+					.recharge{
+						color:#fff;
+						background-color:$fontColor74;
+						margin-right:16px;
+						&:hover{
+							background-color:#f25d14;
+						}
+					}
+					.cash{
+						color:$fontColor74;
+						@include border-style($b-color:$fontColor74,$b-radius:20px);
+						&:hover{
+							color:#f25d14;
+							@include border-style($b-color:#f25d14,$b-radius:20px)
+						}
+					}
+				}
+			}
+			.total_bot{
+				padding:40px 0;
+				width:100%;
+				dl{
+					float:left;
+					width:225px;
+					dd{
+						color:$fontColor70;
+					}
+				}
+			}
+			dl{
+				text-align:left;
+				margin-left:70px;
+
+				// 问号tips
+				.hint{
+					float: left;
+					margin-left: 5px;
+					cursor: pointer;
+					position:relative;
+					i{
+						font-size:$fontSize16;
+					}
+				}
+			}
+			dt{
+				color:$fontColor9e;
+				font-size:$fontSize14;
+				@extend %clearfix;
+				span{
+					float:left;
+				}
+			}
+			dd{
+				color:$fontColor74;
+				font-size:30px;
+			}
+		}
+		.sign{
+			background:url(../../image/uc/uc_sign.png) no-repeat;
+
+			text-align: center;
+			color:#fff;
+			letter-spacing:2px;
+			position:relative;
+			.hint_sign{
+				cursor: pointer;
+				position:absolute;
+				right:10px;
+				top:6px;
+			}
+			.sign_sum{
+				margin-top:25px;
+				font-size:$fontSize16;
+			}
+			.sign_date{
+				height:80px;
+				line-height: 80px;
+				margin-top:20px;
+				
+			}
+			.sign_days{
+				display:inline-block;
+				.day{
+					display:inline-block;
+					float: left;
+					margin-top:0px;
+					line-height:80px;
+					span{
+						display: block;
+						color:#fdffff;
+						font-size:50px;
+					}
+					.day2{
+						display: none;
+					}
+				}
+				b{
+					display: inline-block;
+					float: left;					
+					font-size:18px;
+					line-height:100px;
+				}
+
+			}
+			.signs_integral{
+				margin-top:30px;
+				font-size:$fontSize14;
+				span{
+					font-size:18px;
+				}
+			}
+			.sigin_btn{
+				margin:10px auto 0;
+				border-radius: 20px;
+				font-size:$fontSize14;
+				width:180px;
+				@include height-line(40px);
+				background-color:#fff6ae;
+				color:#ff8783;
+				cursor:pointer;
+				
+			}
+			.sigin_clik{
+				&:hover{
+					background:#fff18d;
+					background: -webkit-linear-gradient(#fff4ae, #ffef7d);
+					background: -o-linear-gradient(#fff4ae, #ffef7d);
+					background: -moz-linear-gradient(#fff4ae, #ffef7d);
+					background: linear-gradient(#fff4ae, #ffef7d);
+				}
+			}
+			.sigin_btn_yet{
+				background-color: rgba(255,255,255,0.2);
+				@include border-style($b-color:#ffe3db,$b-radius:20px);
+				span{
+					color:#fff;
+				}
+			}
+		}
+		.animat{
+			width:260px;
+			height:300px;
+			position:absolute;
+			left:0;
+			top:300px;
+			background:-webkit-linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			background:-o-linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			background:linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0));
+			
+		}
+	}
+	.total_eachart{
+		@extend %clearfix;
+		margin-bottom:10px;
+		position: relative;
+		.sum_money{
+			width:170px;
+			text-align: center;
+			position: absolute;
+			left:77px;
+			top:115px;
+			.sum_moneyT{
+				color:$fontColor9e;
+				font-size:$fontSize14;
+				p{
+					float: left;
+					margin-left:34px;
+				}
+				.hint{
+					position: relative;;
+					margin-left:5px;
+					float: left;
+					cursor: pointer;
+				}
+			}
+			.sum_moneyB{
+				color:$fontColor70;
+				font-size:28px;
+				line-height:34px;
+			}
+		}
+		#eachart_main{
+			float: left;
+			width:192px;
+			height:192px;
+			margin:54px 64px;
+		}
+		.eachart_R{
+			float:left;
+			margin:60px 0 0 31px;
+			li{
+				margin-top:17px;
+				@extend %clearfix;
+				.eachart_Rtit{
+					color:$fontColor9e;
+					font-size:$fontSize14;
+					float:left;
+					line-height: 24px;
+					b{
+						display: inline-block;
+						width:6px;
+						height:6px;
+						float: left;
+						border-radius: 50%;
+						margin:12px 14px 0 0;
+					}
+					p{
+						float: left;
+					}
+					span{
+						font-size:$fontSize16;
+						color:$fontColor70;
+						font-weight: bold;
+						margin:0 5px;
+					}
+					.principal_b{background-color:#ff9691;}
+					.interest_b{background-color:#87da87;}
+					.balance_b{background-color:#56c1f2;}
+					.frozen_b{background-color:#fccd6e;}
+				}
+				.hint{
+					position: relative;
+					margin-left:10px;
+					float:left;
+					color:$fontColor9e;
+					font-size:$fontSize14;
+					cursor: pointer;
+				}
+			}
+			.li_tips{
+				.hint{
+					.tips{
+						&.left-tips span{top:20%;}
+					}	
+				}
+				
+			}
+		}
+		.welfare{
+			li{
+				@extend %clearfix;
+				border-bottom:1px solid $bgColor;
+				a{
+					display:inline-block;
+					width:100%;
+					height:100%;
+					float: left;
+					&:hover{
+						box-shadow:0 3px 50px #ededf1;
+					}
+				}
+				
+			}
+			.li_borno{border-bottom:none;}
+			.welfare_txt{
+				margin:10px 0 14px;
+				float:left;
+				margin-left:25px;
+				.txt_null{
+					color:#ddd;
+				}
+				span{
+					font-size:$fontSize14;
+					color:$fontColor9e;
+				}
+				p{
+					font-weight: bold;
+					font-size:$fontSize16;
+					line-height: 29px;
+					color:$fontColor70;
+				}
+			}
+			.welfare_img{
+				margin:13px 0 14px;
+				float: right;
+				margin-right:22px;
+				div{
+					width:47px;
+					height:47px;
+				}
+			}
+			.dyq{
+				background:url(../../image/uc/dyq-bg.png) no-repeat;
+			}
+			.jxq{
+				background:url(../../image/uc/jxq-bg.png) no-repeat;
+			}
+			.integral{
+				background:url(../../image/uc/integral-bg.png) no-repeat;
+			}
+			.gold{
+				background:url(../../image/uc/gold-bg.png) no-repeat;
+			}
+		}
+	}
+	.return_money{
+		background-color:#fff;
+		height:370px;
+		margin-bottom:10px;
+		.fl{float:left;}
+		.fr{float:right;}
+		.date_tit{
+			@include height-line(50px);
+			border-bottom:1px solid #f2f2f2;
+			.date_titL{
+				float:left;
+				font-size:16px;
+				color:$fontColor333;
+				padding-left:30px;
+				.hint{
+					position: relative;
+					display: inline-block;
+					cursor: pointer;
+					line-height:24px;
+					color:#b1b1b1;
+					margin-left:5px;
+				}
+			}
+			.date_titR{
+				float: right;
+				margin-right:30px;
+				a{
+					display: block;
+					font-size:$fontSize12;
+					color:$fontColor9e;
+					i{
+						font-size:15px;
+						padding-top:50px;
+						color:#ddd;
+					}
+				}
+			}
+		}
+		.calendar{
+			.account_box{
+				float: left;
+				width:346px;
+				border-right:1px solid $bgColor;
+			}
+			.clearfix{@extend %clearfix;}
+			.account_title{
+				font-size: 16px;
+				overflow: hidden;
+				.data_top{
+					overflow: hidden;
+					letter-spacing:1px;
+					.data_top_btn{
+						margin:13px 35px 0 0;
+						i{
+							font-size:24px;
+							margin-left:18px;
+							color:$fontColor9e;
+							cursor: pointer;
+							&:hover{
+								color:$fontColor74;
+							}
+						}
+						
+					}
+					.data_top_datas{
+						background: #fff;
+						font-size: 16px;
+						color:$fontColor9e;
+						font-weight: bold;
+						margin:20px 0 0 32px;
+					}
+				}
+			}
+			.data_table{
+				@extend %clearfix;
+				margin-top:12px;
+				padding:0 20px 0 26px;
+				.data_table_th{
+					float: left;
+					width: 14.25%;
+					text-align: center;
+					font-size:$fontSize14;
+					color:$fontColor9e;
+					font-weight: bold;
+					margin-bottom: 10px;
+				}
+				.yet_money{
+					background:url(../../image/uc/yet_money.png) no-repeat;
+					background-position:20px 24px;
+				}
+				.await_money{
+					background:url(../../image/uc/await_money.png) no-repeat;
+					background-position:19px 24px;
+				}
+				.data_table_td{
+					margin-top:2px;
+					float: left;
+					width: 14.2%;
+					height:28px;
+					text-align: center;
+					position: relative;
+					font-size:14px;
+					color:$fontColor333;
+					span{
+						display: inline-block;
+						cursor: pointer;
+						width:22px;
+						height:26px;
+					}
+				}
+				.today_datas{
+					color: $fontColor74;
+					span{
+						width:21px;
+						@include height-line(21px);
+						background-color:#fff;
+						@include border-style($b-color:$fontColor74,$b-radius:20px);
+					}
+				}
+				.datas_on{
+					color: #fff;
+					span{
+						width:21px;
+						@include height-line(21px);
+						background-color:$mainColor;
+						border-radius: 20px;
+					}
+				}
+			}
+			.datas_title{
+				font-size:$fontSize14;
+				color:$fontColor9e;
+				margin-top:15px;
+				overflow: hidden;
+				div{
+					float:left;
+					overflow: hidden;
+					line-height: 20px;
+					span{
+						float:left;
+					}
+					b{
+						display: inline-block;
+						float:left;
+						width:4px;
+						height:4px;
+						margin:8px 12px 0 0;
+					}
+					.await_b{
+						margin-left:53px;
+						background:url(../../image/uc/await_money.png) no-repeat;
+					}
+					.yet_b{
+						margin-left:43px;
+						background:url(../../image/uc/yet_money.png) no-repeat;
+					}
+				}				
+			}
+			.calendarR{
+				float: left;
+				width:593px;
+				.re_money_tlt{
+					@include height-line(52px);
+					p{
+						padding-left:33px;
+						font-size:$fontSize14;
+						color:$fontColor9e;
+					}
+					.re_money{
+						font-weight: bold;
+						color:$fontColor70;
+					}
+				}
+				table{
+					width:100%;
+					border-collapse:collapse;
+					tr{
+						@include height-line(50px);
+						width:100%;
+					}
+					td{
+						text-align: center;
+						font-size:$fontSize14;
+						color:$fontColor9e;
+					}
+					.trColor{
+						background-color:#fbfbfb;
+					}
+					.return_td_date{
+						padding-left:10px;
+					}
+					.return_td_name{
+						a{
+							color:$fontColor74;
+						}
+					}
+					.return_td_money{
+						text-align: right;
+						padding-right:30px;
+					}
+				}
+				.return_noData{
+					text-align: center;
+					@extend %clearfix;
+					.return_noData_bg{
+						margin:65px auto 15px;
+						width:85px;
+						height:60px;
+						background:url(../../image/uc/return_noData.png) no-repeat;
+					}
+					p{
+						font-size:$fontSize12;
+						color:#ddd;
+					}
+				}
+			}
+		}
+	}
+	.recommends{
+		background-color:#fff;
+		height:360px;
+		.recommends_txt{
+			padding-left:30px;
+			@include height-line(50px);
+			font-size:$fontSize16;
+			color:$fontColor333;
+			border-bottom:1px solid #f2f2f2;
+		}
+		.recommends_list{
+			ul{
+				@extend %clearfix;
+				.li_borno{
+					a{
+						border:none;
+					}
+				}
+			 	li{
+					width:313px;
+					height:310px;
+					float:left;
+					position:relative;
+					a{
+						display:inline-block;
+						height:100%;
+						width:100%;
+						border-right: 1px solid #f2f2f2;
+						&:hover{
+							border:none;
+							box-shadow:0 5px 30px #e7e7e7;
+						}
+					}
+					.pro-list{
+						margin:0 auto;
+						.t{
+							font-size:16px;
+							color:$fontColor70;
+							padding-top:23px;
+							padding-left:30px;
+							img{
+								vertical-align: middle;
+								margin-left:5px;
+								margin-top:-2px;
+								margin-top:-3px\9;
+								*margin-top:2px;
+							}
+						}
+						.year{
+							@extend %clearfix;
+							margin-top:20px;
+							padding:0 30px;
+							dl{
+								color:$fontColor9e;
+								dt{
+									height:66px;
+									font-size:44px;
+									b{font-size:18px;}
+								}
+								&.profit{
+									float:left;
+									dt{color:$mainColor;}
+								}
+								&.deadline{
+									float:right;
+									dt{
+										color:$fontColor333;		
+									}
+								}
+							}
+						}
+						.money{
+							@extend %clearfix;
+							font-size:$fontSize12;
+							color:$fontColor9e;
+							margin-top:26px;
+							padding:0 30px;
+							p{
+								line-height:22px;
+							}
+						}
+						.btn{
+							font-size:$fontSize16;
+							text-align:center;
+							color:$fontColor9e;
+							margin-top:28px;
+						}
+						.now-invest{
+							// display:none;
+							// opacity: 0;
+							font-size:$fontSize16;
+							background:$mainColor;
+							width:200px;
+							@include height-line(40px);
+							position:absolute;
+							bottom:16px;
+							left:50%;
+							margin-left:-100px;
+							text-align:center;
+							color:#fff;
+							border-radius:30px;
+							-webkit-transition: all 1s;
+
+						}		
+					}
+					&.hand-img a{
+						background:none;
+						@include loading;
+						&:hover{
+							box-shadow:none!important;
+						}			
+					}
+				}	
+			}
+		}
+		
+	}
+	div.zxf_pagediv{
+		margin-bottom: 0;
+	}
+}

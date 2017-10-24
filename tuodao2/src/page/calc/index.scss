@@ -1,0 +1,243 @@
+@import "../common/mixin";
+b,i,em{
+	font-weight: normal;
+	font-style: normal;
+	font-family: 微软雅黑;
+}
+.dis_none{
+	display:none;
+}
+.calc_main>div{
+	background-color:#fff;
+	margin-top:20px;
+}
+.top_tit{
+	font-size:$fontSize16;
+	color:$fontColor333;
+	@include height-line(50px);
+	border-bottom: 1px solid $borderColorf2;
+	padding:0 32px 0 20px;
+	p{
+		float: right;
+		font-size:$fontSize14;
+		color:$fontColor9e;
+	}
+}
+.calc_inp{
+	font-size:$fontSize14;
+	.inp{
+		padding:45px 0 65px 0;
+		.inp_ul{
+			@extend %clearfix;
+			ul{
+				float: left;
+				margin-left:130px;
+			}
+			li{
+				@include height-line(40px);
+				margin-top:20px;
+				.bord_div{
+					margin-left:5px;
+					width:280px;
+					display: inline-block;
+					@include border-style($b-color:$borderColor,$b-radius:3px);
+					padding:0 10px;
+					input{
+						outline: none;
+						border:none;
+						@include height-line(38px);
+						width:260px;
+						color:$fontColor333;
+					}
+					b{
+						color:$fontColor9e;
+					}
+				}
+				span{
+					color:$fontColor70;
+				}
+				.hint{
+					line-height: 20px;
+					display: inline-block;
+					margin-left: 5px;
+					cursor: pointer;
+					position: relative;
+					i{
+						font-size:$fontSize20;
+						color:$fontColor9e;
+						&:hover{
+							color:$fontColor74;
+						}
+					}
+				}
+				.select_com{
+					width:280px;
+					@include height-line(40px);
+					@include border-style($b-color:$borderColor,$b-radius:3px);
+					display: inline-block;
+					padding:0 10px;
+					position: relative;
+					cursor: pointer;
+					margin-left:5px;
+					p{
+						span{
+							color:$fontColor333;
+						}
+					}
+					i{
+						float: right;
+						line-height: 26px;
+						color:$fontColor9e;
+					}
+					.option {
+						width: 300px;
+						height:114px;
+						background-color:#fff;
+						@include border-style($b-color:$borderColor,$b-radius:3px);
+						position: absolute;
+						top: 40px;
+						left: -1px;
+						z-index: 2;
+						overflow: hidden;
+						display: block;
+						display: none;
+						margin: 0;
+						li{
+							@include height-line(38px);
+							border-bottom: 1px solid #ddd;
+							padding-left:20px;
+							cursor: pointer;
+							color:$fontColor9e;
+							margin: 0;
+							&:hover{
+								background-color:#f2f2f2;
+								color:$fontColor333;
+							}
+						}
+						li.bord_li{
+							border-bottom: none;
+						}
+						li.on{
+							background-color:#f2f2f2;
+							color:$fontColor333;
+
+						}
+					}
+				}
+			}
+		}		
+		.calc_btn{
+			font-size: $fontSize14;
+			text-align: center;
+			margin-top:40px;
+			input{
+				cursor: pointer;
+				outline: none;
+				border:none;
+				width:300px;
+				@include height-line(40px);
+				color:#fff;
+				background-color:$mainColor;
+				border-radius: 20px;
+				&:hover{
+					background-color:#f25d14;
+				}
+			}
+			span{
+				display: inline-block;
+				margin-left:10px;
+				color:$fontColor9e;
+				cursor: pointer;
+			}
+		}
+	}
+}
+.calc_result{
+	.result_money{
+		padding:50px 0;
+		width:100%;
+		dl{
+			width:33%;
+			display: inline-block;
+			text-align: center;
+			dt{
+				font-size: $fontSize20;
+				color:$fontColor333;
+			}
+			dd{
+				font-size: $fontSize14;
+				color:$fontColor70;
+			}
+		}
+	}
+}
+.calc_table{
+	table{
+		width:100%;
+		padding:20px 50px;
+		tr{
+			font-size: $fontSize14;
+			color:$fontColor70;
+			text-align: center;
+			@include height-line(50px);
+
+		}
+		.trColor{
+			background-color:$bgColorfb;
+		}
+	}
+
+}
+.consult{
+	margin-bottom: 50px;
+	.consult_com{
+		padding-left:200px;
+		.margin_dl{
+			margin-right:175px;
+		}
+		dl{
+			display: inline-block;
+			width:300px;
+			margin:80px 0;
+		}
+		dt{
+			float: left;
+			div{
+				width:100px;
+				height:100px;
+			}
+			.calc_phone{
+				background:url(../../image/calc_phone.png) no-repeat;
+			}
+			.calc_pc{
+				background:url(../../image/calc_pc.png) no-repeat;
+			}
+		}
+		dd{
+			float: left;
+			margin-left:16px;
+			p{
+				font-size: $fontSize16;
+				color:$fontColor70;
+				line-height: 30px;
+			}
+			.phone{
+				font-size: 18px;
+				margin-top:5px;
+			}
+			.qq{
+				line-height: 24px;
+				@include border-style($b-color:#707070,$b-radius:20px);
+				display: inline-block;
+				padding: 0 20px;
+				font-size: $fontSize14;
+				color:$fontColor70;
+				margin-top:8px;
+				i{
+					margin-right:5px;
+					color:#888;
+				}
+			}
+		}
+	}
+}

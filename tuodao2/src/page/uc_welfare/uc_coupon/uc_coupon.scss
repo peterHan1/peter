@@ -1,0 +1,118 @@
+@import '../index';
+.coupon_menu{
+	padding-left: 30px;
+	@include height-line(50px);
+	border-bottom: 10px solid $bgColor;
+	a{
+		color: $fontColor333;
+		padding-bottom: 14px;
+		&.welfare_border{
+			color: $mainColor;
+			border-bottom: 2px solid $mainColor;
+		}
+	}
+}
+.coupon_content{
+	padding: 30px 0 103px 30px;
+	.menu_content{
+		@extend %clearfix;
+		.state_menu{
+			float: left;
+			width: 250px;
+			border-radius: 20px;
+			background: $bgColor;
+			a{
+				display: inline-block;
+				width: 80px;
+				text-align: center;
+				color: $fontColor9e;
+				border-radius: 20px;
+				padding: 3px 0;
+				&.menu_on{
+					background: #ff7400;
+					color: #ffffff;
+				}
+			}
+		}
+		.coupon_link{
+			float: left;
+			color: #ff7400;
+			margin-left: 490px;
+			cursor: pointer;
+			padding-top: 5px;
+		}
+	}
+
+	.dyq_ticket{
+		padding-top: 40px;
+		padding-bottom: 10px;
+		@include ticket;
+	}
+	.dyq_ticket_yes,.jxq_ticket_yes{
+		li img{
+			display: none;
+		}
+	}
+	.dyq_ticket_no,.jxq_ticket_no{
+		li img{
+			display: inline-block;
+		}
+	}
+	.dyq_ticket_yes{
+		li{
+			background: url('../../../image/dyq.png')center no-repeat;
+			&:hover{
+				background: url('../../../image/dyq_hover.png')center no-repeat;
+			}
+		}
+	}
+	.dyq_ticket_no{
+		li{
+			background: url('../../../image/yhq_no.png')center no-repeat;
+		}
+	}
+	.dyq_ticket_guoqi{
+		li{
+			background: url('../../../image/guoqi.png')center no-repeat;
+			.ticket_bottom{
+				padding-bottom: 3px;
+			}
+			.ticket_bottom span{
+				margin-top: 2px;
+			}
+		}
+	}
+	.jxq_ticket{
+		padding-top: 40px;
+		padding-bottom: 10px;
+		@include ticket;
+		.ticket_top{
+			padding: 15px 0;
+			font-size: 28px;
+		}
+	}
+	.jxq_ticket_yes{
+		li{
+			background: url('../../../image/jxq.png')center no-repeat;
+			&:hover{
+				background: url('../../../image/jxq_hover.png')center no-repeat;
+			}
+		}
+	}
+	.jxq_ticket_no{
+		li{
+			background: url('../../../image/yhq_no.png')center no-repeat;
+		}
+	}
+	.jxq_ticket_guoqi{
+		li{
+			background: url('../../../image/guoqi.png')center no-repeat;
+			.ticket_middle{
+				padding-bottom: 3px;
+			}
+			.ticket_bottom span{
+				margin-top: 2px;
+			}
+		}
+	}
+}

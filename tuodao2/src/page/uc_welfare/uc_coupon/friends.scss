@@ -1,0 +1,134 @@
+@import '../index';
+
+.friends_top{
+	height: 300px;
+	background: url('../../../image/welfare/invite_friend_bg.jpg')center no-repeat;
+}
+.friends_content{
+	@include width-max;
+	.height_padding{
+	color: $fontColor333;
+	font-size: $fontSize16;
+	padding-top: 30px;
+	height: 40px;
+	}
+	.first{
+		background: #ffffff;
+		font-size: $fontSize16;
+		padding: 34px 0 35px 0;
+		text-align: center;
+		color: $fontColor333;
+		span{
+			display: inline-block;
+			&:first-child{
+				padding-bottom: 10px;
+				color: $fontColor9e;
+			}
+			i{
+				color: $mainColor;
+			}
+		}
+	}
+	.second{
+		background: #ffffff;
+		padding: 54px 0 51px 0;
+		height: 350px;
+		position: relative;
+		ul{
+			padding:  0 15px 70px 15px;
+			@extend %clearfix;
+			li{
+				float: left;
+				width: 382px;
+				height: 265px;
+				text-align: center;
+				.second_one{
+					color: $mainColor;
+					padding-bottom: 40px;
+					i{
+						font-size: 22px;
+						font-style:oblique;
+					}
+				}
+				.second_two{
+					font-size: 22px;
+					color: #707070;
+					padding: 30px 0 20px 0;
+				}
+				.second_three{
+					color: #707070;
+					width: 220px;
+					padding-left: 15px;
+					line-height: 25px;
+					text-align: left;
+					margin: 0 auto;
+				}
+			}
+		}
+		.second_btn{
+			width: 280px;
+			margin: 0 auto;
+			@include height-line(40px);
+			background: #FF7400;;
+			color: #ffffff;
+			border-radius: 25px;
+			text-align: center;
+			cursor: pointer;
+			&:hover{
+				background: #F25D14;
+			}
+		}
+		.box_border{
+			width: 382px;
+			height: 265px;
+			border-right: 1px solid $bgColor;
+			border-left: 1px solid $bgColor;
+			position: absolute;
+			left: 397px;
+			top: 80px;
+		}
+	}
+	.order_detail{
+		background: #ffffff;
+		padding:40px 0 55px 40px;
+		border-bottom: 50px solid $bgColor;
+	dl{
+		padding-left: 3px;
+		@include circle;
+	}
+	table{
+		margin-top: 17px;
+		border-collapse: collapse;
+		tr{
+			&.first_child td{
+				height: 40px;
+				line-height: 25px;
+			}
+			&.second_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			&.third_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			&.fourth_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			td{
+				background: $bgColor;
+				color: #707070;
+				text-align: center;
+				border: 1px solid #ffffff;
+				word-wrap: wrap-word;
+			}
+		}
+	}
+	.explain{
+		color: $fontColor333;
+		font-size: $fontSize16;
+		padding: 38px 0 25px 0;
+	}
+}
+}

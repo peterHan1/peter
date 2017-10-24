@@ -1,0 +1,129 @@
+@import '../../common/mixin.scss';
+@import '../../common/layout';
+.comer_top{
+	width: 100%;
+	height: 300px;
+	background: url('../../../image/newcomer_bg.png')center no-repeat;
+}
+.main{
+	@include width-max;
+	.presents span{
+		display: inline-block;
+		padding: 37px 0px 20px 0;
+		font-size: 18px;
+		color: #333333;
+	}
+	.presents_con{
+		@extend %clearfix;
+		.left{
+			width: 565px;
+			height: 313px;
+			background: url('../../../image/newcomer.png')center no-repeat;
+			float: left;
+		}
+		.right{
+			background: #ffffff;
+			float: right;
+			width: 565px;
+			height: 313px;
+			text-align: center;
+			.first{
+				padding-top: 50px;
+				font-size: 16px;
+				color: #333333;
+			}
+			.second{
+				font-size: 70px;
+				color: #ff7400;
+				span{
+					font-size: 20px;
+				}
+			}
+			.third{
+				font-size: 14px;
+				color: #9e9e9e;
+				padding-bottom:48px;
+			}
+			.last button{
+				width: 200px;
+				@include height-line(40px);
+				color: #ffffff;
+				font-size: 16px;
+				cursor: pointer;
+				outline: none;
+				border-radius: 20px;
+				background: #ff7400;
+				border: none;
+			}
+		}
+	}
+	.task_top{
+		span{
+			padding: 38px 0 18px 0;
+		    display: inline-block;
+		    font-size: 18px;
+		    color: #333;
+		    margin-right: 36px;
+		}
+		i{
+			font-size: 14px;
+			color: #888888;
+			padding-top: 42px;
+		}
+	}
+	.task{
+		@extend %clearfix;
+		li{
+			text-align: center;
+			width: 220px;
+			background: #ffffff;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			float: left;
+			.p1{
+				font-size: 16px;
+				color: #9e9e9e;
+				padding: 20px 0 40px 0;
+				span{
+					font-size: 14px;
+				}
+			}
+			.p2{
+				font-size: 48px;
+				color: #ff7400;
+			}
+			.p3{
+				font-size: 18px;
+				padding-bottom: 20px;
+				color: #ff7400;
+			}
+			.btn{
+				@include height-line(43px);
+				color: #9e9e9e;
+				font-size: 16px;
+				cursor: pointer;
+			}
+		}
+	}
+	.strategy{
+		@include height-line(50px);
+		font-size: 18px;
+		color: #333333;
+		padding: 12px 0 18px 0;
+	}
+	.strategy_con{
+		background: #ffffff;
+		padding-left: 30px;
+		border-bottom: 48px solid $bgColor;
+		li{
+			@include height-line(50px);
+			border-bottom: 1px solid $bgColor;
+			color: #9e9e9e;
+			font-size: 16px;
+			cursor: pointer;
+			&:hover{
+				color: #ff7400;
+			}
+		}
+	}
+}

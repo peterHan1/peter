@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<%= require('html-loader!./layout/header.html') %>
+    <title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<div id="src-nav"><%= require('html-loader!./layout/nav.html') %></div>
+
+	<div class="welfare">
+		<%= require('html-loader!./layout/uc_menu.html') %>
+		<div class="welfare_content">
+			<div class="depository_no" style="display: none;">
+				<div class="depository_top">马上激活存管，邀请好友抢福利</div>
+				<div class="depository">
+					<img src="<%= require('../image/popup.png') %>" height="48" width="363" alt=""><br />
+					<span class="distance">为了保障您的资金安全,请在充值、投资、提现前开通存管</span><br />
+					<span class="invite_active">立即激活存管用户</span>
+				</div>
+			</div>
+			<div class="depository_yes" >
+				<div class="invite_nav">
+				<img src="<%= require('../image/welfare/invite_lv.png') %>" height="87" width="77" alt="">
+				<p class="lev_name">初级理财师</p>
+				<p class="distance">距中级理财师还差2个V1好友，200万总待收</p>
+				</div>
+				<div class="mypoints">
+					<div class="mypoints1">
+						<div class="pointsmenu">已获得返现奖励（元）</div>
+						<div class="pointsNum">200.00</div>
+					</div>
+					<div class="mypoints2">
+						<div class="pointsmenu">已获得抵用券奖励（元）</div>
+						<div class="pointsNum">100.00</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="invite_menu">
+				<a class="welfare_on welfare_border">邀请好友</a><a>邀请记录</a>
+			</div>
+			<div class="invite_content">
+				<div class="invite_friend">
+					<div class="invite_detail">
+						<hr style="left: 180px;" />
+						<hr style="left: 510px;"/>
+						<ul>
+							<li>
+								<img src="<%= require('../image/welfare/friend_01.png') %>" height="90" width="81" alt=""><span>分享或复制链接<br />和邀请码给好友</span>
+							</li>
+							<li style="margin: 0 180px;">
+								<img src="<%= require('../image/welfare/register_02.png') %>" height="90" width="81" alt=""><span>好友点击邀请链接或<br />填写邀请码成功注册</span>
+							</li>
+							<li>
+								<img src="<%= require('../image/welfare/invest_03.png') %>" height="90" width="81" alt=""><span>好友投资<br />立即获得奖励</span>
+							</li>
+						</ul>
+						<ol class="depository_yes_menu" style="display:none;">
+							<li>
+								<div style="width:180px;">
+									<p class="sp1">方法一</p>
+									<p class="sp2">复制你的专属链接给好友</p>
+									<p class="sp3">好友通过该链接可直接注册</p>
+								</div>
+								<div class="copy copy_link">复制链接</div>
+							</li>
+							<li class="second_child">
+								<div style="width:180px;">
+									<p class="sp1">方法二</p>
+									<p class="sp2">复制你的专属链接给好友</p>
+									<p class="sp3">好友通过该链接可直接注册</p>
+								</div>
+								<div style="text-align:center;">
+									<a class="qq_share share" style="margin-right:20px;">
+									<a class="wx_share share"></a>
+								</div>
+							</li>
+							<li>
+								<div style="width:240px;">
+									<p class="sp1">方法三</p>
+									<p class="sp2">复制你的邀请码给好友</p>
+									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
+								</div>
+								<div class="copy copy_code">复制邀请码</div>
+							</li>
+						</ol class="depository_no_menu" style="display:none;">
+						<ol>
+							<li>
+								<div style="width:180px;">
+									<p class="sp1">方法一</p>
+									<p class="sp2">复制你的专属链接给好友</p>
+									<p class="sp3">好友通过该链接可直接注册</p>
+								</div>
+								<div class="copy copy_link">激活存管，立即分享</div>
+							</li>
+							<li class="second_child">
+								<div style="width:180px;">
+									<p class="sp1">方法二</p>
+									<p class="sp2">直接分享到社交平台</p>
+									<p class="sp3">好友点击可直接注册</p>
+								</div>
+								<div style="text-align:center;">
+									<div class="copy copy_link">激活存管，立即分享</div>
+								</div>
+							</li>
+							<li>
+								<div style="width:240px;">
+									<p class="sp1">方法三</p>
+									<p class="sp2">复制你的邀请码给好友</p>
+									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
+								</div>
+								<div class="copy copy_code">激活存管，立即分享</div>
+							</li>
+						</ol>
+					</div>
+					<div class="cash_order">奖励规则</div>
+					<div class="order_detail">
+						<dl>
+							<dt>
+								<i></i>符合理财师标准的用户，根据其名下的邀请关系（含新邀请规则前已邀请的人），按照最新的邀请规则进行相应的返现奖励！
+							</dt>
+							<dt>
+								<i></i>好友首投奖励：直接被邀请人首次投资成功并已满标复审，邀请人即可获得10元抵扣红包（使用条件：起投1000元，1个月及以上，有效期唯30天）和首次投资
+							</dt>
+							<dd>金额0.25%的返现奖励；</dd>
+							<dt><i></i>好友第二次投资起，邀请人即可根据目前的理财师等级，享受返现奖励；</dt>
+							<dt><i></i>理财师返现奖励到账时间：若投资散标项目则被邀请人每笔投资金额到期，按期返现；投资精选计划项目则奖励在精选计划到期</dt>
+							<dd>时一次性发放；</dd>
+							<dt><i></i>理财师等级及福利表：</dt>
+						</dl>
+						<table class="order_detail_table">
+							<tr class="first_child">
+								<td style="width:120px;">邀请人等级</td>
+								<td style="width:160px;">被邀请人大道v1人数</td>
+								<td style="width:208px;">邀请人总待收（只算B级用户）</td>
+								<td style="width:200px;">邀请人奖励</td>
+								<td style="width:150px;">返现奖励有效时间</td>
+							</tr>
+							<tr class="second_child">
+								<td>初级理财师</td>
+								<td>无</td>
+								<td>无</td>
+								<td>直接邀请人投资收益2%返现</td>
+								<td>6个月</td>
+							</tr>
+							<tr class="third_child">
+								<td>中级理财师</td>
+								<td>6人</td>
+								<td>200万</td>
+								<td>直接邀请人投资收益3%返现<br />间接邀请人投资收益1%返现</td>
+								<td>永久</td>
+							</tr>
+							<tr class="fourth_child">
+								<td>王牌理财师</td>
+								<td>15人</td>
+								<td>400万</td>
+								<td>直接邀请人投资收益5%返现<br />间接邀请人投资收益2%返现</td>
+								<td>永久</td>
+							</tr>
+						</table>
+						<div class="explain">特别说明</div>
+						<dl>
+							<dt><i></i>理财师的收益返现按规则上线日开始计算，之前被邀请人投资的返现不补发；</dt>
+							<dt><i></i>当新规则上线前，用户已首投过，投资则直接算返现；</dt>
+							<dt><i></i>当新规则上线前，用户未首投过，则按照新规则首投+第二次投资均给与返现；</dt>
+							<dt><i></i>符合理财师标准的用户，根据其名下的邀请关系，按照最新的邀请规则进行返现奖励。</dt>
+						</dl>
+					</div>
+				</div>
+				<div class="invite_record">
+					<div style="display:none;">
+						<table>
+							<tr>
+								<th style="width:165px;">好友手机号</th>
+								<th style="width:225px;">注册时间</th>
+								<th style="width:165px;">抵用券（元）</th>
+								<th style="width:205px;">直接返现奖励（元）</th>
+								<th style="width:155px;">间接返现奖励（元）</th>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-09-25&nbsp;14:09:00</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-09-08&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-08-10&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-08-10&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-08-02&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-07-29&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-07-20&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-07-10&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-06-08&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+							<tr>
+								<td>187****3339</td>
+								<td>2107-05-08&nbsp;14:09:00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+								<td>10.00</td>
+							</tr>
+						</table>
+					<div class="zxf_pagediv page_show" onselectstart="return false" style="-moz-user-select:none;"></div>
+					</div>
+					<div class="invite_none" style="display:block;">
+						<img src="<%= require('../image/no_data.png') %>" height="61" width="85" alt=""><br /><br />
+						<span>当前没有邀请记录</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

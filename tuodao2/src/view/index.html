@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= require('html-loader!./layout/header.html') %>
+    <title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<div class="scroll-nav"><%= require('html-loader!./layout/nav.html') %></div>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="banner">
+	    <div class="flexslider order-list-con"></div>
+	    <div class="fixed-left">
+	    	<dl>
+	    		<dt><a href="">新手专区</a></dt>
+	    		<dd>新手福利都在这里</dd>
+	    	</dl>
+	    	<dl>
+	    		<dt><a href="">数据见证</a></dt>
+	    		<dd>稳健运营实力见证</dd>
+	    	</dl>
+	    	<dl>
+	    		<dt><a href="">邀请好友</a></dt>
+	    		<dd>呼朋唤友共赚收益</dd>
+	    	</dl>
+			<dl class="last">
+	    		<dt><a href="">移动理财</a></dt>
+	    		<dd>随时随地投资理财</dd>
+	    	</dl>
+	    </div>
+	    <div class="fixed-right">
+	    	<dl>
+	    		<dt>预期年化</dt>
+	    		<dd>9~16<em>%</em></dd>
+	    	</dl>
+	    	<a href="" class="now-reg">注册立领398元</a>
+	    	<p>已有账号？&nbsp;&nbsp;<a href="">立即登录</a></p>
+	    </div>
+	    <div class="fixed-bottom"><a href="#"><img src="<%= require('../image/banner-app.png') %>"></a></div>
+	</div>
+	<div class="banner-notic">
+		<div class="left">
+			<i class="iconfont">&#xe68f;</i>这是一段公告的标题文案
+			<a href="">查看更多&nbsp;&gt;</a>
+		</div>
+		<div class="right">
+			<div class="t-news">
+		        <ul class="news-li" id="news-li">
+		        	<li>4秒前嘉兴用户189***3234投资23435.43元</li>
+		        	<li>34秒前嘉兴用户189***3234投资23435.43元</li>
+		        	<li>34秒前嘉兴用户189***3234投资23435.43元</li>
+		        	<li>34秒前嘉兴用户189***3234投资23435.43元</li>
+		        	<li>34秒前嘉兴用户189***3234投资23435.43元</li>
+		        </ul>
+          		<ul class="swap"></ul>
+        	</div>
+		</div>
+	</div>
+	<div class="index-data">
+		<div>
+			<dl class="jye">
+				<dt>累计交易额</dt>
+				<dd>32<i>亿</i>9033<i>万</i>3657<i>元</i></dd>
+			</dl>
+		</div>
+		<div>
+			<dl class="zq">
+				<dt>为用户赚取</dt>
+				<dd>1<i>亿</i>083<i>万</i>7320<i>元</i></dd>
+			</dl>
+		</div>
+		<div>
+			<dl class="day">
+				<dt>已安全运营</dt>
+				<dd>1298<i>天</i></dd>
+			</dl>
+		</div>
+		<div>
+			<dl class="jr">
+				<dt>已加入用户</dt>
+				<dd>10<i>万</i>189<i>人</i></dd>
+			</dl>
+		</div>
+		
+	</div>
+	<div class="special">
+		<ol>
+			<li>
+				<div class="yi">
+					<p class="iconfont">&#xe687;</p>
+					<dl>
+						<dt>银行存管</dt>
+						<dd>北京银行存管保障资金安全</dd>
+					</dl>
+				</div>
+			</li>
+			<li>
+				<div class="er">
+					<p class="iconfont">&#xe68e;</p>
+					<dl>
+						<dt>专业风控</dt>
+						<dd>海量数据建立全面风控体系</dd>
+					</dl>
+				</div>
+			</li>
+			<li>
+				<div class="san">
+					<p class="iconfont">&#xe67e;</p>
+					<dl>
+						<dt>资本实力</dt>
+						<dd>获得8000万元A轮融资</dd>
+					</dl>
+				</div>
+			</li>
+			<li>
+				<div class="si">
+					<p class="iconfont">&#xe691;</p>
+					<dl>
+						<dt>优质资产</dt>
+						<dd>全国百家门店拓展车贷资产</dd>
+					</dl>
+				</div>
+			</li>
+		</ol>
+	</div>
+
+	<div class="index-product"></div>
+
+	<div class="activity-area">
+		<div class="title">活动专区</div>
+		<div class="activity"></div>
+	</div>
+	<div class="index-news">
+		<div class="media">
+			<div class="title">
+				<div class="t">媒体报道</div>
+				<div class="more"><a href="">更多公告<i class="iconfont">&#xe69a;</i></a></div>
+			</div>
+			<div class="img">
+				<img src="<%= require('../image/index-notic.png') %>">
+				<div>范曦云：机遇与折腾</div>
+			</div>
+			<ol>
+				<li><a href="#">2017全球FinTech150强发布 拓道金服上有名榜上...</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+				<li><a href="#">互金协会上线信披系统 拓道金服首批试点接</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+			</ol>
+		</div>
+		<div class="notic">
+			<div class="title">
+				<div class="t">网站公告</div>
+				<div class="more"><a href="">更多公告<i class="iconfont">&#xe69a;</i></a></div>
+			</div>
+			<ol>
+				<li><a href="#">2017全球FinTech150强发布 拓道金服上有名榜上...</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+				<li><a href="#">互金协会上线信披系统 拓道金服首批试点接</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+				<li><a href="#">富有支付通道维护通知05.18</a></li>
+			</ol>
+		</div>
+	</div>
+	<div class="partner">
+		<div class="max-width">
+			<div class="title">合作机构</div>
+			<ul>
+				<li><a href=""><img src="<%= require('../image/partner/1.jpg') %>" alt="网贷之家"></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/2.jpg') %>" alt="阿里云"></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/3.jpg') %>" alt="网贷天眼"></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/4.jpg') %>" alt="京东支付"></a></li>
+				<li class="last-1"><a href=""><img src="<%= require('../image/partner/5.jpg') %>" alt="北京银行"></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/6.jpg') %>" alt=""></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/7.jpg') %>" alt=""></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/8.jpg') %>" alt=""></a></li>
+				<li><a href=""><img src="<%= require('../image/partner/9.jpg') %>" alt=""></a></li>
+				<li class="last-1"><a href=""><img src="<%= require('../image/partner/10.jpg') %>" alt=""></a></li>
+			</ul>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env === "dev" && testie !== "ie") { %>
+		<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

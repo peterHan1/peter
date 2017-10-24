@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="accountCenter_box max-width">
+		<%= require('html-loader!./layout/uc_menu.html') %>
+		<div class="main">
+			<div class="accountCenter_top">我的头像</div>
+			<div class="head_box">
+				<div class="head_pic"><img src="<%= require('../image/head.png') %>"></div>
+				<div class="change_btn"><i class="iconfont">&#xe6a8;</i>&nbsp;&nbsp;更换头像</div>
+			</div>
+			<div class="bank_cg">
+				<div class="cg_top">银行存管</div>
+				<div class="cg_zh">
+					<span>存管账户</span>
+					<i class="no_dl">为了保障您的资金安全，请在充值、投资、提现前激活存管用户</i><a class="no_dl">激活存管</a>
+					<i class="dl dis_none"><b class="iconfont">&#xe66d;</b>&nbsp;北京银行存管账户正在保障您的资金安全</i><em class="dl dis_none"><b class="iconfont">&#xe675;</b>&nbsp;已激活</em>
+				</div>
+				<div class="bank_card">
+					<span>银行卡</span>
+					<i class="no_dl">绑定银行卡需要激活存管，激活后该卡将作为充值提现的唯一银行卡</i><a class="no_dl">激活存管</a>
+					<i class="dl dis_none">中国工商银行（***3769）&nbsp;&nbsp;<b class="iconfont">&#xe68d;</b></i><i class="ts"><img src="<%= require('../image/Tips.png') %>"></i><em class="dl dis_none"><b class="iconfont">&#xe675;</b>&nbsp;已绑定</em>
+				</div>
+			</div>
+			<div class="zh_pass">
+				<div class="pass_top">账户密码</div>
+				<div class="login_pass"><span>登录密码</span><i>当前登录密码安全等级：<b class="low">低</b></i><a>修改密码</a></div>
+				<div class="pay_pass"><span>支付密码</span><i class="no_dl">绑定银行卡需要激活存管，激活后该卡将作为充值提现的唯一银行卡</i><i class="dl dis_none">已设置6位数字支付密码，用于平台投资和提现。</i><a class="no_dl">激活存管</a><a href="" class="dl">修改密码</a></div>
+			</div>
+			<div class="adress">
+				<div class="adress_top">收货地址<a href="javascript:;" class="change_adr">修改地址</a></div>
+				<div class="adress_text">
+					<p class="adr_ts">您还没填写收货地址</p>
+					<p class="adr_name dis_none">姓名：&nbsp;&nbsp;<span>王炸</span></p>
+					<p class="adr_phone dis_none">电话：&nbsp;&nbsp;<span>15649387762</span></p>
+					<p class="adr_adr dis_none">地址：&nbsp;&nbsp;<span>中华人民共和国内蒙古省胶州市玉环三路1536号最炫名族风小区119幢1单元1230物美超市旁边的旁边的旁边</span></p>
+					<a href="javascript:;">添加地址</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<div class="change_box dis_none" id="change_box">
+		<div class="change_main clear">
+			<div class="logo"><img src="<%= require('../image/head150.png') %>"></div>
+			<div class="btn">
+				<input type="file" class="inp_file dis_none">
+				<div class="upload_btn"><i class="iconfont">&#xe6aa;</i>&nbsp;&nbsp;上传本地照片</div>
+				<p>仅支持JPG、PNG、GIF格式，且小于2M的照片</p>
+			</div>
+		</div>
+		<div class="anniu">
+			<div class="sure">保存</div>
+			<div class="cancel">取消</div>
+		</div>
+	</div>
+	<div class="add_adress dis_none" id="add_adress">
+		<div class="adress_main">
+			<p><i>*</i>请您务必如实填写详细的收货地址，方便积分抽奖所得的奖品稳稳地送到您手里哦！</p>
+			<div class="person_name">
+				<span class="iconfont">&#xe67a;</span><input type="text" class="username" placeholder="请输入您的姓名">
+				<i class="iconfont del">&#xe68b;</i>
+			</div>
+			<div class="person_phone">
+				<span class="iconfont">&#xe66f;</span><input type="text" class="phonenum" placeholder="请输入收货人电话">
+				<i class="iconfont del">&#xe68b;</i>
+			</div>
+			<div class="person_adress">
+				<span class="iconfont">&#xe6ab;</span><textarea class="useradress" placeholder="请输入收货地址"></textarea>
+			</div>
+			<div class="anniu">
+				<div class="sure">保存</div>
+				<div class="cancel">取消</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

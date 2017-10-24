@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<div class="datas_inp">
+		<p class="layer_date ">请选择开始时间</p> 至
+		<p class="layer_date ">请选择开始时间</p>
+	</div>
+	<div>
+		<p>回款日历：</p>
+	</div>
+	<div class="calendar_box">
+	    <div class="calendar">
+	    	<!--left日历-->
+	    	<div class="account_box fl">
+	    		
+		        
+		    </div>
+		    <!--right回款金额-->
+		    <div class="re_money_box fl">
+		    	<div class="re_money_tlt">
+		            <p><span class="re_money_y"></span>年<span class="re_money_m"></span>月<span class="re_money_d"></span></p>
+		    	</div>
+		    	<div class="re_money_cont">
+		    		<div class="fl">
+		    			<p class="re_money_num re_money_await">1,999.00</p>
+		    			<p class="re_money_txt">待收本息(元)</p>
+		    		</div>
+		    		<div class="fl">
+		    			<p class="re_money_num re_money_yet">5,000.00</p>
+		    			<p class="re_money_txt">已收本息(元)</p>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
+	    <div class="re_money_table">
+	    	<table >
+	    		<thead>
+	    			<tr>
+	    				<th>回款时间</th>
+	    				<th>项目名称</th>
+	    				<th>期数</th>
+	    				<th>回款类型</th>
+	    				<th>回款金额(元)</th>
+	    				<th>回款状态</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody class="re_money_tbody">
+	    			
+	    		</tbody>
+	    	</table>
+	    </div>		
+	</div>
+
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

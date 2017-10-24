@@ -1,0 +1,65 @@
+@import "../mixin";
+.top{
+      @extend %clearfix;
+      width: 100%;
+      background: $bgColor;
+      height:42px;
+      font-size:$fontSize12;
+      color:$fontColor9e;
+      line-height:42px;
+      position:relative;
+      z-index:29;
+      // overflow:hidden;
+      .left{
+            float:left;
+
+            .tel{
+                  float:left;
+                  line-height:38px;
+                  margin-top:3px;
+            }
+            dl{
+                float:left;
+                dd{
+                    float:left;
+                    margin-left:8px;
+
+                    position:relative;
+                    a{
+                      color:$fontColor9e;
+                      &:hover{color:$mainColor;}
+                    }
+                    &.iconfont{
+                          height:42px;
+                          font-size:20px;
+                          line-height:44px;
+                          // overflow:hidden;
+                          // background:red;
+                          // vertical-align: middle;
+                    }
+                    
+                }
+            }
+      }
+      .right{
+              float:right;
+              line-height:42px;
+              ul li{    
+                    float:left;
+                    margin-left:30px;
+                    
+                    vertical-align: middle;
+                    a{
+                      color:$fontColor9e;
+                      &:hover{
+                              color:$mainColor;
+                      }
+                      .iconfont{
+                                font-size:20px;
+                                vertical-align: middle;
+                                margin-right: 5px;
+                      }
+                    }
+              }
+    }
+}

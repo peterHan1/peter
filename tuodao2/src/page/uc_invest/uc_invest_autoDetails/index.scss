@@ -1,0 +1,165 @@
+@import "../../common/mixin";
+.max-width{@extend %clearfix;}
+.uc_main{
+	margin: 30px 0 50px;
+	@extend %clearfix;
+	.uc_right{
+		width:940px;
+		float:left;
+		margin-left: 20px;
+		min-height: 915px;
+	}
+}
+.dis_none{display: none}
+.auto_switchTab{
+	background-color: #fff;
+	@include height-line(50px);
+	font-size:$fontSize14;
+	color:$fontColor333;
+	border-bottom: 1px solid #f2f2f2;
+	padding:0 30px;
+	li{
+		float: left;
+		margin-right:55px;
+		padding:0 3px;
+		cursor: pointer;
+		&:hover{
+			color:$fontColor74;
+		}
+	}
+	li.on{
+		height:48px;
+		color:$fontColor74;
+		border-bottom: 2px solid #ff7400;
+	}
+}	
+.record_list{
+	background-color:#fff;
+	margin-top:10px;
+	.record_tit{
+		@include height-line(50px);
+		border-bottom:1px solid #f2f2f2;
+		color:$fontColor70;
+		font-size:$fontSize16;
+		a{
+			float:left;
+			font-size:$fontSize20;
+			color:$fontColor70;
+			margin-left:30px;
+			&:hover{
+				color:$fontColor74;
+			}
+		}
+		p{
+			float:left;
+			margin-left:10px;
+		}
+	}
+	.record_con{
+		@extend %clearfix;
+		padding:0 30px;
+		table{
+			width:70%;
+			border-collapse: collapse;
+			margin-top:40px;
+			tbody{
+				margin-top:10px;
+			}
+			th{
+				font-weight: normal;
+				font-size:$fontSize14;
+				color:$fontColor9e;
+				text-align: left;
+				.hint{
+					display: inline-block;
+					position: relative;
+					cursor: pointer;
+				}
+			}
+			td{
+				@include height-line(50px);
+				font-size:24px;
+				color:$fontColor74;
+			}
+			.td_font{
+				font-size:$fontSize14;
+				span{
+					font-size:24px;
+				}
+			}
+		}
+	}
+	.record_table{
+		margin-top:30px;
+		height:658px;
+		table{
+		width:100%;
+		background-color: #fff;
+		border-collapse: collapse;
+		tr{
+			color:$fontColor70;
+			font-size:$fontSize14;
+			@include height-line(50px);
+		}
+		.month_th{
+			width:115px;
+		}
+		.time_th{
+			width:165px;
+		}
+		.padd_left{
+			padding-left:35px;
+		}
+		.trColor{
+			background-color:$bgColorfb;
+		}
+		.status_th{
+			width:65px;
+		}
+		.td_name{
+			position:relative;
+			width:100px;
+			padding-right:30px;
+			a{
+				display: inline-block;
+				float: left;
+				width:95px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				color:$fontColor74;
+			}
+		}
+		.td_a{
+			width:110px;
+			.iconfont{
+				color:#dbc699;
+				display: inline-block;
+				position: relative;
+				font-size:20px;
+				margin-right:5px;
+			}
+			.tips{
+				color:#668ccd;
+			}
+		}
+		.th_wid{
+			width:150px;
+		}
+		th{
+			text-align: left;
+		}
+		td{
+			text-align: left;
+			a{
+				color:#668bc8;
+			}
+		}
+	}
+	}
+}
+
+
+
+
+.zxf_pagediv{margin-top:30px;}

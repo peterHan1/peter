@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="message_box max-width">
+		<%= require('html-loader!./layout/uc_menu.html') %>
+		<div class="main">
+			<div class="message_top">
+				<span class="count">您有 <i>3</i> 条未读消息</span><span class="btn color">全部标为已读</span>
+			</div>
+			<div class="message_main">
+				<ul>
+					<li>
+						<dl>
+							<dt class="color"><i class="iconfont">&#xe69a;</i>项目回款通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt class="color"><i class="iconfont">&#xe69a;</i>项目回款通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt class="color"><i class="iconfont">&#xe69a;</i>项目回款通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt><i class="iconfont">&#xe69a;</i>充值成功通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li><dl>
+							<dt><i class="iconfont">&#xe69a;</i>充值成功通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt><i class="iconfont">&#xe69a;</i>充值成功通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt><i class="iconfont">&#xe69a;</i>充值成功通知</dt>
+							<dd class="dis_none">尊敬的用户，您于2017-05-03成功充值10,000.00元！</dd>
+						</dl>
+					</li>
+				</ul>
+				<div class="zxf_pagediv"></div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

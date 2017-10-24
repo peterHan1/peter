@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max-width">
+			<ul class="invest_tab">
+				<li>
+					<a href="invest.html?sift" data="sift">精选计划</a>
+				</li>
+				<li data="b">
+					<a href="invest.html?scatter" data="scatter">散标项目</a>
+				</li>
+				<li data="c">
+					<a href="invest.html?bond" data="bond">债权转让</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="max-width">
+		<div class="clearing" style="display:none">
+			<p><i class="iconfont">&#xe694;</i>当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</p>
+			<p><i class="iconfont">&#xe68f;</i>这是新手专享标的，只有未投资过的新用户才可享受加息3%的新手奖励。 您已经投资过了，快去看看其它标的吧!</p>
+		</div>
+		<div class="detail_top">
+			<div class="left">
+				<div class="title">
+					<!-- 散标显示 -->
+					<p>奔驰s600抵押续贷标</p>
+					<img src="../image/cooperate.png">
+				</div>
+				<div class="major">
+					<dl class="expect">
+						<dt>
+							<span>14.5</span>%+3%
+						</dt>
+						<dd>
+							预期年化
+						</dd>
+					</dl>
+					<dl class="date">
+						<dt>
+							<span>1</span>个月
+						</dt>
+						<dd>
+							投资期限
+						</dd>
+					</dl>
+					<dl class="summoney">
+						<dt>
+							<span>9,999,999.99</span>元
+						</dt>
+						<dd>
+							剩余可投
+						</dd>
+					</dl>
+					<dl class="bars">
+						<dt>
+							<div class="progress">
+								<div class="progress_wrapper">
+									<div class="bar" style="width:80%;"></div>
+								</div>
+							</div>
+						</dt>
+						<dd>
+							<!-- 投资进度 -->
+							加入进度
+							<span>80%</span>
+						</dd>
+					</dl>
+				</div>
+				<div class="intro">
+					<!-- 散标项目显示 -->
+					<ul class="assure_ul">
+						<li>
+							预计项目总额：<span>99,999,999.99元</span>
+						</li>
+						<li>
+							项目类型：<span>散标项目</span>
+						</li>
+						<li>
+							计息方式：<span>满标复审计息</span>
+						</li>
+						<li>
+							还款方式：<span>按月付息，到期还本</span>
+							<div class="hint sca">
+								<i class="iconfont">&#xe68d;</i>
+								<div class="tips">收益会在付息当天到达您的资金账<br/>户，本金是在到期当天。<span class="bot"></span><span class="bot2"></span></div>
+							</div>
+						</li>
+						<li>
+							来源门店：<span>宜宾翠屏店</span>
+						</li>
+						<li>
+							发布时间：<span>2016-11-01</span>
+						</li>
+					</ul>
+					<div class="ancun"></div> 
+				</div>
+			</div>
+			<div class="right">
+				<div class="investting" >
+					<!-- 未登录状态 -->
+					<div class="login_btn" style="display: none;">
+						<a href="">登录</a>查看账户可用余额，或<a href="">立即注册</a>
+					</div>
+
+					<div class="current_money" >
+						<div>
+							<p class="txt ">
+									可用余额
+							</p>
+							<div class="money">
+								<b><span class="moneys">50000.55</span><i>元</i></b>
+								<a href="###">充值</a>
+							</div>
+						</div>
+					</div>
+					<div class="com_styl invest_money" >
+					<!-- 标的可投余额小于起投金额500元时 -->
+						<!-- <input type="text" placeholder="本项目剩余可投499元"> -->
+						
+						<input type="text" placeholder="500元起投，单笔限额50万元" class="sub_money">
+						<i class="iconfont btn_empty">&#xe68b;</i>
+						<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
+					</div>
+					<div class="com_styl add_ticket" >
+						<p class="p_ticket">请选择优惠券</p>
+						<input type="hidden" class="inp_ticket" value="">
+						<div class="fontcol ticket">优惠券&nbsp;</div>
+
+						<!-- 没有可用优惠券 -->
+						<!-- <div class="no_ticket">当前没有可用优惠券</div> -->
+
+					</div>
+					<div class="com_styl input_pwd" >
+						<input type="password" placeholder="请输入支付密码" class="sub_psw">
+						<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
+					</div>
+					<!-- <div class="com_styl input_pwd" >
+						<input type="password" placeholder="请输入约标密码" class="yue_psw">
+					</div> -->
+					<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
+					<div class="input_sub">
+						<!-- 倒计时 -->
+						<!-- <div class="countdown times"><span><b>00</b> : <i>00</i> : <em>00</em>后开抢</span></div> -->
+
+						<!-- 正常投标按钮 -->
+						<input type="submit" id="sub_btn" value="实付0.00元，立即投资" class="sub_btn">
+
+						<!-- 新手专享按钮 -->
+						<!-- <input type="submit" value="新手专享，非新手不能加入" class="no_btn"> -->
+
+						<!-- 清算时间按钮 -->
+						<!-- <input type="submit" value="存管清算时间，不能加入" class="no_btn"> -->
+
+						<!-- 未登录按钮 -->
+						<!-- <div class="login_a"><a href="">立即登录</a></div> -->
+						
+					</div>
+					<!-- app专享标 -->
+					<div class="app_invest" style="display: none;">
+						<div class="ewm"></div>
+						<p>本标的仅限在APP端投资</p>
+						<b>扫描二维码下载手机客户端</b>
+					</div>
+					<div class="agreement" id="protocol">
+						<div>
+							<input type="checkbox" id="checkinp" checked><label for="checkinp">已阅读并同意<a href="###">《借款协议》</a></label>
+						</div>
+						<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
+					</div>
+				</div>
+				<!-- 已抢完 -->
+				<div class="finish" style="display: none;">
+					<div class="finish_sum">
+						<p>将为9位投资者带来收益</p>
+						<b>2,255.00</b> 元
+						<a href="">去看看其他标 > </a>
+					</div>
+					<div class="ranking">
+						<p><em class="iconfont">&#xe697;</em>1234****1234千元首投，获得两倍积分</p>
+						<p><em class="iconfont">&#xe698;</em>1234****1234脱颖而出，获得积分 +5</p>
+					</div>
+					<div class="finish_auto">
+						<p>抢不到标？ 没关系，立即开启 <a href="">自动投标 ></a></p>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="detail_bot">
+			<div class="detail_tab">
+				<!-- 散标项目 -->
+				<ul>
+					<li>
+						<a href="JavaScript:;" class="on">项目详情</a>
+					</li>
+					<li>
+						<a href="JavaScript:;">审核资料</a>
+					</li>
+					<li>
+						<a href="JavaScript:;">安全保障</a>
+					</li>
+					<li>
+						<a href="JavaScript:;">投资记录</a>
+					</li>
+				</ul>
+			</div>
+			<div class="detail_con">
+				<!-- 项目详情 -->
+				<div class="detai details">
+					<!-- 散标 -->
+					<div class="oDiv details_b">
+						<div class="b_t">
+							<h3>项目简介</h3>
+							<p><span>&bull;</span>项目评级： A</p>
+							<p><span>&bull;</span>借款人基本情况：借款人李**，性别：男，现年：43岁，已婚，主要从事个体行业。借款人借款期间无重大支出，信誉状况良好，无不良记录。</p>
+							<p><span>&bull;</span>借款人生产经营情况：借款人从事个体行业，现业务运转正常。</p>
+							<p><span>&bull;</span>借款用途及还款来源：借款人因经营需要，申请借款32900元，用于经营流动。还款来源为经营收入。</p>
+						</div>
+						<div class="b_c">
+							<h3>借款人信息</h3>
+							<ul>
+								<li>
+									<p>姓名：李**</p>
+									<p>性别：男</p>
+								</li>
+								<li>
+									<p>学历：大专</p>
+									<p>职业：个体</p>
+								</li>
+								<li>
+									<p>年龄：43</p>
+									<p>户籍：辽宁</p>
+								</li>
+							</ul>
+						</div>
+						<div class="b_l">
+							<h3>汽车信息</h3>
+							<ul>
+								<li>
+									<p>车辆品牌：马自达</p>
+									<p>车辆估价：47000元</p>
+								</li>
+								<li>
+									<p>购买时间：2017-01-01</p>
+									<p>购买价格：170000元</p>
+								</li>
+								<li>
+									<p>行驶公里数：23434公里</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- 审核资料 -->
+				<div class="detai audit" style="display:none">
+					<!-- 散标显示 -->
+					<ul>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>" alt="身份证">
+							</a>
+							<p>身份证正面</p>
+							<b class='magnify'></b>
+						</li>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>" alt="行驶证">
+							</a>
+							<p>行驶证</p>
+							<b class='magnify'></b>
+						</li>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>" alt="仪表盘">
+							</a>
+							<p>仪表盘</p>
+							<b class='magnify'></b>
+						</li>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>" alt="车辆正面">
+							</a>
+							<p>车辆正面</p>
+							<b class='magnify'></b>
+						</li>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>"  alt="车辆背面">
+							</a>
+							<p>车辆背面</p>
+							<b class='magnify'></b>
+						</li>
+						<li>
+							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
+								<img class="lazy" src="<%= require('../image/car.png') %>" alt="车钥匙">
+							</a>
+							<p>车钥匙</p>
+							<b class='magnify'></b>
+						</li>
+					</ul>
+				</div>
+				<!-- 安全保障 -->
+				<div class="detai oDiv safety" style="display: none">
+					<!-- 散标显示 -->
+					<ul>
+						<li>
+							<h3>借款安全</h3>
+							<p><span>&bull;</span>借款人按比例缴纳保证金</p>
+							<p><span>&bull;</span>车辆完成合法抵押手续</p>
+							<p><span>&bull;</span>车辆已安装Gps追踪器</p>
+							<p><span>&bull;</span>多家专业车辆评估机构对比评估，保证评估价格合理</p>
+							<p><span>&bull;</span>电话核实商业保单正常</p>
+						</li>
+						<li>
+							<h3>资产安全</h3>
+							<p><span>&bull;</span>第一还款来源：拓道借款人的到期还款金额。</p>
+							<p><span>&bull;</span>第二还款来源：风险备付金制度，根据以往同类借款项目的历史统计数据，平台设定了足以覆盖不良率的风险备付金，在借款人出现逾期时，第一时间启动风险备付金保障投资人回款不受影响，后续再另行追偿，以确保平台投资人的利益。</p>
+						</li>
+					</ul>
+				</div>
+				<!-- 加入记录 -->
+				<div class="detai con_record" style="display: none">
+					<table>
+						<thead>
+							<th>投资用户</th>
+							<th>投资金额（元）</th>
+							<th>交易时间</th>
+						</thead>
+						<tbody class="chage_tr">
+							<tr>
+								<td class="phone">
+									<!-- 首投显示 -->
+									<i class="iconfont l">&#xe695;</i> 
+
+									<span>187****3339</span> 
+
+									<!-- 手机端投资显示 -->
+									<i class="iconfont r">&#xe699;</i>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+									<i class="iconfont r">&#xe699;</i>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+									<i class="iconfont r">&#xe699;</i>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+							<tr>
+								<td class="phone">
+									<span>187****3339</span>
+								</td>
+								<td class="money">100.00</td>
+								<td class="date">2017-05-08 11:10:56</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="zxf_pagediv"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 加入成功 -->
+	<div class="hint_show dis_none" id="succeed_show">
+		<div class="txt">
+			<div class="ltxt">加入成功</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com succeed">
+			<div class="icon"></div>
+			<!-- 散标和转让显示 -->
+			<p>恭喜您成功投资10,000.00元！</p>
+			<b>您可以 <a href="">继续投资</a> 或 <a href="">查看已投项目</a></b>
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 加入失败 -->
+	<div class="hint_show dis_none" id="failed_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com failed">
+			<div class="icon"></div>
+			<p>投资失败，项目已满额！</p>
+			<b>这个项目太抢手啦，试试 <a href="">其他散标项目</a>吧！</b>
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 激活存管 -->
+	<div class="hint_show dis_none" id="bank_show">
+		<div class="txt">
+			<div class="ltxt">
+				激活存管账户
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips">银行存管是指用户在P2P平台上的交易资金交由银行管理，平台无法接触交易资金的一种资金管理模式。借款人、投资人和平台通过银行方开设存管账户，来实现交易和资金的结算。<span class="bot"></span><span class="bot2"></span></div>
+				</div>
+			</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com bank">
+			<div class="icon"></div>
+			<p>拓道金服正式启用北京银行资金存管系统</p>
+			<b>为保障您的资金安全,请在充值、投资、提现前激活存管</b>
+			<span class="iskonw">
+				<a href="">立即激活存管账户</a>
+			</span>
+		</div>
+	</div>
+	<!-- 优惠券弹窗 -->
+	<div class="hint_show discount_show dis_none" id="discount_show">
+		<div class="txt">
+			<div class="ltxt">选择优惠券</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="discount_con">
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用优惠券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+			<!-- <div class="discount_txt">单笔加入精选计划只能使用1张优惠券。</div> -->
+			<!-- 散标显示 -->
+			<div class="discount_txt">单笔投资散标项目只能使用1张优惠券。</div>
+			<ul class="ul_select">
+				<li class="jxq" data="1%加息券">
+					<p class="p_txt"><span>1</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="jxq" data="3%加息券">
+					<p class="p_txt"><span>3</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="15元抵用券">
+					<p class="p_txt">￥<span>15</span>抵用券</p>
+					<p>投资满10,000元，1个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="30元抵用券">
+					<p class="p_txt">￥<span>30</span>抵用券</p>
+					<p>投资满30,000元，3个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="70元抵用券">
+					<p class="p_txt">￥<span>70</span>抵用券</p>
+					<p>投资满10,000元，6个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="100元抵用券">
+					<p class="p_txt">￥<span>100</span>抵用券</p>
+					<p>投资满10,000元，12个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+			</ul>
+			<div class="discount_bot">
+				<span class="yes">确定</span>
+				<span class="no">取消</span>
+				<!-- <span class="iskonw">我知道了</span> -->
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

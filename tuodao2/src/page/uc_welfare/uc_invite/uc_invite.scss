@@ -1,0 +1,221 @@
+@import '../index';
+// 我的邀请
+.depository_no{
+	.depository_top{
+		@include padding-border;
+		@include height-line(50px);
+	}
+	.depository{
+		height: 220px;
+		text-align: center;
+		padding-top: 70px;
+		border-bottom: 10px solid $bgColor;
+		.distance{
+			display: inline-block;
+			padding: 15px 0 30px 0;
+		}
+		.invite_active{
+			display: inline-block;
+			width: 340px;
+			@include height-line(40px);
+			cursor: pointer;
+			border-radius: 20px;
+			background: #FF7400;
+			color: #ffffff;
+			text-align: center;
+			&:hover{
+				background: #F25D14;
+			}
+		}
+	}
+}
+.invite_nav{
+	height: 180px;
+	padding-top: 30px;
+	background: url(../../../image/welfare/invite_bg.png)center no-repeat;
+	text-align: center;
+	.lev_name{
+		font-size: 24px;
+		color: #f3f2f2;
+		margin: 10px 0 5px 0;
+	}
+	.distance{
+		color: $bgColor;
+	}
+}
+@include line;
+.mypoints{
+	border-bottom: 10px solid $bgColor;
+	padding-bottom: 14px;
+}
+.invite_menu{
+	@include height-line(50px);
+	@include padding-border;
+	a{
+		color: $fontColor333;
+		padding-bottom: 14px;
+		&.welfare_border{
+			color: $mainColor;
+			border-bottom: 2px solid $mainColor;
+		}
+	}
+}
+.invite_detail{
+	position: relative;
+	hr{
+		position: absolute;
+		top: 106px;
+		height: 2px;
+		width: 251px;
+		border: none;
+		background: $bgColor;
+	}
+	ul{
+		padding: 58px 65px 50px 65px;
+		@extend %clearfix;
+		border-bottom: 10px solid $bgColor;
+		color: #6f6f6f;
+		li{
+			float: left;
+			width: 150px;
+			text-align: center;
+			img{
+				margin-bottom: 25px;
+			}
+			span{
+				display: inline-block;
+				text-align: center;
+			}
+		}
+	}
+	ol{
+		padding: 40px 0;
+		border-bottom: 10px solid $bgColor;
+		@extend %clearfix;
+		li{
+			width: 312px;
+			height: 160px;
+			float: left;
+			padding: 10px 0;
+			&.second_child{
+				border-left: 1px solid $bgColor;
+				border-right: 1px solid $bgColor;
+			}
+			div{
+				margin: 0 auto;
+				&.copy{
+					width: 155px;
+					@include height-line(40px);
+					border: 1px solid $mainColor;
+					border-radius: 25px;
+					color: $mainColor;
+					text-align: center;
+				}
+				&.copy:hover{
+					background: $mainColor;
+					color: #ffffff;
+					cursor: pointer;
+				}
+				.sp1{
+					font-size: 18px;
+					color: #707070;
+					padding-bottom: 13px;
+				}
+				.sp2{
+					font-size: 16px;
+					color: #707070;
+					padding-bottom: 10px;
+				}
+				.sp3{
+					color: $fontColor9e;
+					padding-bottom: 30px;
+				}
+				.share{
+					display: inline-block;
+					width: 40px;
+					height: 40px;
+					border: 1px solid $bgColor;
+					border-radius: 20px;
+					cursor: pointer;
+				}
+				.qq_share{
+					background: url('../../../image/welfare/qq.png')no-repeat;
+					&:hover{
+						background: url('../../../image/welfare/qq_hover.png')no-repeat;
+					}
+				}
+				.wx_share{
+					background: url('../../../image/welfare/wx.png')no-repeat;
+					&:hover{
+						background: url('../../../image/welfare/wx_hover.png')no-repeat;
+					}
+				}
+			}
+		}
+	}
+}
+.cash_order{
+		@include height-line(45px);
+		@include padding_border;
+		color: $fontColor333;
+		font-size: $fontSize16;
+}
+.order_detail{
+	padding:40px 0 55px 40px;
+	dl{
+		padding-left: 3px;
+		@include circle;
+	}
+	table{
+		margin-top: 17px;
+		border-collapse: collapse;
+		tr{
+			&.first_child td{
+				height: 40px;
+				line-height: 25px;
+			}
+			&.second_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			&.third_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			&.fourth_child td{
+				height: 70px;
+				line-height: 25px;
+			}
+			td{
+				background: $bgColor;
+				color: #707070;
+				text-align: center;
+				border: 1px solid #ffffff;
+				word-wrap: wrap-word;
+			}
+		}
+	}
+	.explain{
+		color: $fontColor333;
+		font-size: $fontSize16;
+		padding: 38px 0 25px 0;
+	}
+}
+.invite_record{
+	display: none;
+	padding-top: 50px;
+	@include tables;
+	.page_show{
+		margin-top: 20px;
+	}
+	.invite_none{
+		height: 440px;
+		padding-top: 180px;
+		text-align: center;
+		display: none;
+		span{
+			font-size: 14px;
+			color: #cccccc;
+		}
+	}
+}

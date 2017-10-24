@@ -1,0 +1,180 @@
+@import '../mixin';
+.nav{
+      @extend %clearfix;
+      background:#fff;
+      height:72px;
+      // overflow:hidden;
+      .logo{
+            float:left;
+            a{display:block;height:71px;width:104px;}
+            a .img{width:100%;height:100%}
+      }
+      .navigate{
+                float:right;
+                ul{
+                    float:left;
+                    // background:green;
+                    // overflow:hidden;
+                    li{
+                        width: 110px;
+                        text-align: center;
+                        float:left;
+                        font-size:$fontSize16;
+                        color:#333;
+                        background:#fff;
+                        line-height:69px;
+                        @include border-style($b-color:#fff);
+                        border-bottom:0;
+                        position: relative;
+                        z-index:9;
+                        &.on{
+                          @include border-style;
+                          a{
+                            color:$mainColor;
+                            .iconfont{
+                                  -webkit-transform: rotate(-180deg);
+                            }
+                          }
+                          & dd a{color:$fontColor70}
+                        }
+                        a{
+                      
+                          @include height-line(30px);
+                          display:inline-block;
+                          color:#333;
+                          .iconfont{
+                                      font-size:12px;
+                                      -webkit-transition: transform 0.1s linear;
+                                      display:inline-block;
+                                      width:18px;
+                                      vertical-align:middle;
+                                      text-align:center;
+                                      margin:-2px 0 0 3px;
+                                      // background:pink;
+                                      @include height-line(18px);
+                          }
+                          &:hover{
+                            color:$mainColor;
+                            // .iconfont{
+                            //   -webkit-transform: rotate(-180deg);
+                            // }
+                          }
+                          &.cur{
+                              color:$mainColor;
+                          }
+                        }
+                        
+                        dl{
+                            @include border-style;
+                            border-top:0;
+                            background:#fff;
+                            width:110px;
+                            position:absolute;
+                            top:68px;
+                            
+                            left:-1px;
+                            display:none;
+                             padding:3px 0 5px 0; 
+                            dd{
+                                @include height-line(34px);
+                                margin-bottom:5px;
+                                // background:blue;
+                                display:block;
+                                font-size:$fontSize14;
+                                &:hover a{
+                                          // @extend .rotate;
+                                          color:$fontColor70;
+                                          font-weight:bold; 
+                                }
+                            }
+                        }
+                    }
+                }
+      }
+      .uc{
+            float:left;
+            @include border-style($b-radius:3px);
+            width:124px;
+            @include height-line(34px);
+            text-align:center;
+            margin:18px 0 0 30px;
+            position:relative;
+            z-index:9;
+            &.on div a{
+              color:$mainColor;
+              .iconfont.icf-uc{
+                color:$mainColor;
+              }
+              b{
+                -webkit-transform: rotate(-180deg);
+              }
+
+            }
+            div{
+               a{
+                  color:$fontColor333;
+                  .iconfont{
+                      font-size:12px;
+                      -webkit-transition: transform 0.1s linear;
+                      display:inline-block;
+                      width:18px;
+                      vertical-align:middle;
+                      text-align:center;
+                      margin:-2px 0 0 3px;
+
+                      @include height-line(18px);
+                      &.icf-uc{
+                        font-size:18px;
+                        margin-right:8px;
+                        color:$fontColor9e;
+                      }
+                  }
+
+              }
+            }
+
+            dl{
+              display:none;
+              @include border-style;
+              border-top:0;
+              background:#fff;
+              width:124px;
+              position:absolute;
+              top:34px;
+              padding:22px 0 5px 0;
+              left:-1px;
+
+              dd{
+                line-height:34px;
+                height:34px;
+                // background:red;
+                margin-bottom:5px;
+                a{
+                  display:block;
+                  color:$fontColor70;
+                  &:hover{
+                    background:$bgColor;
+                    color:$fontColor70;
+                  }
+                }
+              }
+            }
+
+      }
+}
+.scroll-nav{
+  // display:none;
+  width:100%;
+  position:fixed;
+  box-shadow:0 3px 10px #999;
+  z-index:888;
+  top:-80px;
+  left:0;
+
+  &.active{
+    top:0;
+     // -webkit-transition: top 0.5s linear;
+  }
+}
+
+

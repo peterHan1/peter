@@ -1,0 +1,146 @@
+@import '../index';
+// 积分抽奖
+.draw{
+	font-size: $fontSize14;
+	margin-bottom: 50px;
+	.draw_nav{
+		height: 220px;
+		background: url('../../../image/welfare/draw_bg.jpg')center no-repeat;
+	}
+	.draw_record{
+		@include height-line(52px);
+		@include width-max;
+		text-align: right;
+		a{
+			color: $mainColor;
+		}
+	}
+	.draw_menu{
+		font-size: $fontSize16;
+		height: 60px;
+		line-height: 67px;
+		@include padding_border;
+		a{
+			color: $fontColor333;
+			padding-bottom: 14px;
+			&.on{
+				color: $mainColor;
+				border-bottom: 2px solid $mainColor;
+			}
+		}
+	}
+	.content{
+		@include width-max;
+		background: #ffffff;
+		padding-bottom: 50px;
+		.draw_title{
+			margin: 40px 0 30px 0;
+			font-size: 20px;
+			font-weight: bold;
+			color:#ffffff;
+			text-align: center;
+			span{
+				background: #FF9F6F;
+				display: inline-block;
+				vertical-align: middle;
+				&.title{
+					width: 350px;
+					@include height-line(50px);
+					border-radius: 50px;
+				}
+			}
+			.circle1{
+				width: 10px;
+				height: 10px;
+				border-radius: 10px;
+			}
+			.circle2{
+				width: 20px;
+				height: 20px;
+				border-radius: 15px;
+				margin: 0 30px;
+			}
+		}
+		.draw_presents{
+			width: 747px;
+			height: 727px;
+			border-radius: 10px;
+			background: #f9e6bb;
+			margin: 0 auto;
+			margin-bottom: 30px;
+			padding: 30px 0px 30px 30px;
+			@extend %clearfix;
+			li{
+				float: left;
+				margin-right: 22px;
+				margin-bottom: 17px;
+				text-align: center;
+				width: 225px;
+				height: 220px;
+				border-radius: 18px;
+				box-shadow: 0 0 10px rgba(255,119,0,0.3);/* #FDEEE7  #F3CCB9*/
+				// background: url('../../../image/welfare/presents_bg.png') no-repeat;
+				&.back_normal{
+					background: url('../../../image/welfare/presents_bg.png') no-repeat;
+				}
+				&.back_go{
+					background: url('../../../image/welfare/draw_go.png') no-repeat;
+				}
+				&.back_yes{
+					background: url('../../../image/welfare/presents_yes.png') no-repeat;
+				}
+				&.back_go_yes{
+					background: url('../../../image/welfare/draw_go_yes.png') no-repeat;
+				}
+				.present_content{
+					height: 160px;
+					line-height: 270px;
+				}
+				.points_content{
+					height: 160px;
+					line-height: 300px;
+				}
+				p{
+					font-size: 30px;
+					color: #FE917B;
+				}
+				&.fifth_child{
+					height: 225px;
+					margin-bottom: 12px;
+					// background: url('../../../image/welfare/draw_go.png') no-repeat;
+					cursor: pointer;
+					.go_word{
+						font-size:24px;
+						color:#fff;
+						padding-top: 135px;
+					}
+					.none_points a{
+						font-size: 20px;
+						font-weight: bold;
+						margin-top: 50px;
+						color: #FF3049;
+						display: none;
+					}
+				}
+			}
+			
+		}
+		.draw_points li p{
+			color: #B08C54;
+		}
+		.draw_order{
+			padding-left: 50px;
+			.order_word{
+				font-size: $fontSize16;
+				color: $fontColor333;
+				padding-bottom: 25px;
+			}
+			dl {
+				@include circle;
+				dt{
+					padding-bottom: 5px;
+				}
+			}
+		}
+	}
+}

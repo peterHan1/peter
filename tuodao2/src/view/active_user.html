@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+<%= require('html-loader!./layout/nav2.html') %>
+<div class="main max-width">
+	<div class="main_top">
+		<span class="fl title">拓道金服安全中心-北京银行存管账户激活</span>
+		<span class="fr help">对银行存管有疑问？点击查看 <a href="">帮助中心&nbsp;></a></span>
+	</div>
+	<div class="ts">
+		<p><span class="iconfont ld">&#xe684;</span> 为保障您的资金安全，请在充值、投资、提现前激活存管</p>
+	</div>
+	<div class="person_info">
+		<p class="bt">身份认证</p>
+		<div class="username">
+			<span class="iconfont">&#xe67a;</span><input type="text" class="dis" disabled>
+		</div>
+		<div class="idcard">
+			<span class="iconfont">&#xe674;</span><input type="number" class="dis" maxlength="18" disabled>
+		</div>
+		<p class="bt">绑定银行卡</p>
+		<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
+		<div class="bank_all">
+			<span class="iconfont">&#xe679;</span>
+			<div class="sel_bank">
+	            <div id="Bank_sel_hid" class="div_bank_select dis">
+	                <div id="xx"><i class="Bank ICBC"></i>中国工商银行</div>
+	            </div>
+	            <div id="Bank" class="dis_none"></div>
+        	</div>
+       		<span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
+		</div>
+		<div class="bank_num">
+			<span class="iconfont">&#xe689;</span><input type="number" class="dis" disabled>
+		</div>
+		<div class="phone_Num">
+			<span class="iconfont">&#xe66f;</span><input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+		</div>
+		<p class="bt">设置支付密码</p>
+		<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
+		<div class="paynum">
+			<span class="iconfont">&#xe672;</span><input type="password" class="pay" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')"><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
+		</div>
+		<input type="submit" class="btn" value="立即激活">
+	</div>
+</div>
+<div class="success_box max-width dis_none">
+	<div class="top">
+		<span class="fl">拓道金服安全中心&nbsp;-&nbsp;北京银行存管账户激活</span>
+		<span class="fr">对银行存管有疑问？点击查看&nbsp;<a href="">帮助中心></a></span>
+	</div>
+	<div class="mid">
+		<div class="box"></div>
+		<p>恭喜您，北京银行存管账户激活成功！</p>
+		<span>(<i>10</i>s)后将自动跳转到XXXXX页面，点击 &nbsp;<a href="">立即跳转&nbsp;></a></span>
+		<a href="" class="tz">立即投资</a>
+	</div>
+</div>
+
+<div class="wait_box max-width dis_none">
+	<div class="top">
+		<span class="fl">拓道金服安全中心&nbsp;-&nbsp;北京银行存管账户激活</span>
+		<span class="fr">对银行存管有疑问？点击查看&nbsp;<a href="">帮助中心></a></span>
+	</div>
+	<div class="mid">
+		<div class="box"></div>
+		<p>当前是存管系统清算时间（每天23:55-00:05）,不可激活存管账户</p>
+		<p>请您稍后重试</p>
+		<p class="last">由此给您造成不便，敬请谅解！！</p>
+	</div>
+</div>
+<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>
