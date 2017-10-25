@@ -1,6 +1,8 @@
 @import "../common/mixin";
 @import "../common/layout";
-
+input::-ms-clear,input::-ms-reveal{
+	display:none;
+}
 .fl{
 	float:left;
 }
@@ -105,7 +107,7 @@ i.del:hover{
 					}
 				}
 				.btn{
-					width: 340px;
+					width: 260px;
 					height: 40px;
 					margin-top: 50px;
 					background-color: $fontColor9e;
@@ -159,6 +161,7 @@ i.del:hover{
 		}
 		.back{
 			margin-top:150px;
+			cursor:pointer;
 		}
 	}
 	.set_password{

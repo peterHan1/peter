@@ -49,13 +49,28 @@ $('.coupon_link').on('click',function(){
 	$('.friends').show();
 	$('.welfare').hide();
 })
-
-$('.dyq_ticket_yes li').on("click",function(){
-	$(this).find('img').show();
-})
-$('.dyq_ticket_no li').on("click",function(){
-	$(this).find('img').show();
-})
-$('.jxq_ticket_yes li').on("click",function(){
-	$(this).find('img').show();
+$(function(){
+	var x=true;
+	$('.dyq_ticket_yes li').on("click",function(){
+		if(x==true){
+			$(this).find('img').show();
+			x=false;
+		}else{
+			$(this).find('img').hide();
+			x=true;
+		}
+	})
+	$('.dyq_ticket_no li').on("click",function(){
+		$(this).find('img').show();
+	})
+	var y=true;
+	$('.jxq_ticket_yes li').on("click",function(){
+		if(y==true){
+			$(this).find('img').show();
+			y=false;
+		}else{
+			$(this).find('img').hide();
+			y=true;
+		}
+	})
 })

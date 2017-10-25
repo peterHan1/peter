@@ -41,9 +41,8 @@
 				</div>
 			</dt>
 			<dd>
-				<!-- 投资进度 -->
 				加入进度
-				<span>80%</span>
+				<span class="barNum">80%</span>
 			</dd>
 		</dl>
 	</div>
@@ -55,7 +54,7 @@
 				预计项目总额： <span class="totalMoney">{{borrowAmount}}</span>元
 			</li>
 			<li>
-				项目类型：<span>{{productType;}}</span>
+				项目类型：<span>{{productType}}</span>
 			</li>
 			<li class="alli">
 				提前退出：<span>该项目不支持提前退出</span>

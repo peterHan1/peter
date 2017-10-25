@@ -15,12 +15,12 @@
 			<div class="main_mid">
 				<div class="box">
 					<div class="phoneNum">
-						<input type="text" class="phone_Num" placeholder="请输入手机号" class="phone_Num" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+						<input type="text" class="phone_Num" name="mobile" placeholder="请输入手机号" class="phone_Num" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 					</div>
 					<div id="slider2" class="slider"></div><span id="result" class="dis_none"></span>
 					<p class="til"><em class="iconfont more">&#xe69a;</em>如有邀请人，可输入邀请人手机号/推荐码（选填）</p>
 					<div class="personNum dis_none">
-						<input type="text" class="person_Num" placeholder="请输入推荐人手机号/推荐码（选填）" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+						<input type="text" class="person_Num" name="inviterMobile" placeholder="请输入推荐人手机号/推荐码（选填）" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 					</div>
 					<button class="btn">同意协议并继续</button>
 						<a href="" class="xy"><<拓道金服注册协议>></a>
@@ -48,7 +48,7 @@
 		<div class="set_password dis_none">
 			<p class="til">最后一步，设置拓道金服登录密码</p>
 			<div class="pas_box">
-				<input type="password" placeholder="请输入登录密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
+				<input type="password" placeholder="请输入登录密码" name="loginPassword" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="line"><span class="line1"></span><span class="line2"></span><span class="line3"></span></p>
 			<p class="psd_til">

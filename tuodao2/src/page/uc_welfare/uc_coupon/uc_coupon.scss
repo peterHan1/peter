@@ -19,6 +19,8 @@
 		.state_menu{
 			float: left;
 			width: 250px;
+			-webkit-border-radius: 20px;
+			-moz-border-radius: 20px;
 			border-radius: 20px;
 			background: $bgColor;
 			a{
@@ -26,6 +28,8 @@
 				width: 80px;
 				text-align: center;
 				color: $fontColor9e;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px;
 				border-radius: 20px;
 				padding: 3px 0;
 				&.menu_on{

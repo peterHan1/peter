@@ -77,10 +77,10 @@ option={
 myChart.setOption(option);
 $(function(){
 	for(var i=0;i<3;i++){
-		$('.lev span').eq(i).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
+		$('.lev_span span').eq(i).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
 	}
 	for(var i=0;i<2;i++){
-		$('.lev hr').eq(i).css('background','#fff');
+		$('.lev_hr hr').eq(i).css('background','#fff');
 	}
 	$('.lev span').eq(1).css({'background':'#fff','color':'#ff7400','border-color':'#ffffff'});
 	$('.person_no').on('click',function(){
@@ -88,14 +88,14 @@ $(function(){
 		$('.login_yes').show();
 	})
 
-	$('.lev span').on({
+	$('.lev_span span').on({
 		mouseover:function(){
 			var index=$(this).index();
-			var left_num=245+index*132;
+            var left_num=-62+index*133;
 			if(index==5){
-				$('.mouseover').css('left','852px');
+				$('.mouseover').css('left','546px');
 			}else if(index==6){
-				$('.mouseover').css('left','985px');
+				$('.mouseover').css('left','680px');
 			}else{
 				$('.mouseover').css('left',left_num+'px');
 			}

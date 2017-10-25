@@ -57,7 +57,7 @@
 								<img src="<%= require('../image/welfare/invest_03.png') %>" height="90" width="81" alt=""><span>好友投资<br />立即获得奖励</span>
 							</li>
 						</ul>
-						<ol class="depository_yes_menu" style="display:none;">
+						<ol class="depository_yes_menu" style="display:block;">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
@@ -85,8 +85,8 @@
 								</div>
 								<div class="copy copy_code">复制邀请码</div>
 							</li>
-						</ol class="depository_no_menu" style="display:none;">
-						<ol>
+						</ol class="depository_no_menu">
+						<ol style="display:none;">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
@@ -170,8 +170,8 @@
 					</div>
 				</div>
 				<div class="invite_record">
-					<div style="display:none;">
-						<table>
+					<div style="display:block;">
+						<table class="invite_table">
 							<tr>
 								<th style="width:165px;">好友手机号</th>
 								<th style="width:225px;">注册时间</th>
@@ -252,7 +252,7 @@
 						</table>
 					<div class="zxf_pagediv page_show" onselectstart="return false" style="-moz-user-select:none;"></div>
 					</div>
-					<div class="invite_none" style="display:block;">
+					<div class="invite_none" style="display:none;">
 						<img src="<%= require('../image/no_data.png') %>" height="61" width="85" alt=""><br /><br />
 						<span>当前没有邀请记录</span>
 					</div>

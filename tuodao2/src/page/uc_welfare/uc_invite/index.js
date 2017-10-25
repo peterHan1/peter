@@ -26,3 +26,13 @@ $('.invite_menu a').on("click",function(event){
 	var index=$(this).index();
 	$('.invite_content').children().eq(index).show().siblings().hide();
 })
+// table隔行变色
+function _changeColor(obj){
+	for(var i=0;i<$(obj+' tr').length;i++){
+		if(i%2!=0){
+			$(obj+' tr').eq(i).css('background','#FBFBFB');
+		}
+	}
+}
+_changeColor('.invite_table');
+

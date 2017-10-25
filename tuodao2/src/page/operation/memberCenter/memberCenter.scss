@@ -4,7 +4,7 @@
 	width: 100%;
 	height: 570px;
 	background: url(../../../image/memberCenter_bg.png)center no-repeat;
-	position: absolute;
+	position: relative;
 	z-index: 1;
 	div{
 		margin: 0 auto;
@@ -19,6 +19,8 @@
 			color: #ffffff;
 			background: #f49055;
 			margin-bottom: 26px;
+			-webkit-border-radius: 50px;
+			-moz-border-radius: 50px;
 			border-radius: 50px;
 			border:1px solid #ffffff;
 			font-size: 18px;
@@ -39,15 +41,17 @@
 		position: relative;
 		width: 1000px;
 		height: 40px;
-		span{
+		.lev_span span{
 			color: #f49055;
 			font-size: 30px;
 			margin-right: 100px;
 			border: 1px solid #f49055;
+			-webkit-border-radius: 30px;
+			-moz-border-radius: 30px;
 			border-radius: 30px;
 			cursor: pointer;
 		}
-		hr{
+		.lev_hr hr{
 			display: inline-block;
 			width: 100px;
 			height: 2px;
@@ -68,15 +72,23 @@
 	font-size: 16px;
 	border-bottom: 2px solid $bgColor;
 }
+.hover{
+	position: relative;
+	z-index: 1000;
+	overflow: visible;
+	width: 1000px;
+	margin: 0 auto;
+}
 .mouseover{
 	position: absolute;
-	top: 532px;
-    left: 245px;
-	z-index: 100;
+	top: -150px;
+    left: -62px;
 	font-size: 14px;
 	text-align: center;
 	color: #9e9e9e;
 	background: #ffffff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 	border-radius: 10px;
 	padding: 10px 0px;
 	box-shadow: 0 5px 5px #f2f2f2;
@@ -116,10 +128,12 @@
 }
 .member_content{
 	position: relative;
-	top: 460px;
+	top: -111px;
 	z-index: 10;
 	@include width-max;
 	background: #ffffff;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
 	border-radius: 20px;
 	border-bottom: 40px solid $bgColor;
 	.title_content{
@@ -218,6 +232,8 @@
 					display: inline-block;
 					width: 5px;
 					height: 5px;
+					-webkit-border-radius: 3px;
+					-moz-border-radius: 3px;
 					border-radius: 3px;
 					background: #9e9e9e;
 					margin-bottom: 2px;

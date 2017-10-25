@@ -19,6 +19,8 @@
 			width: 340px;
 			@include height-line(40px);
 			cursor: pointer;
+			-webkit-border-radius: 20px;
+			-moz-border-radius: 20px;
 			border-radius: 20px;
 			background: #FF7400;
 			color: #ffffff;
@@ -107,6 +109,8 @@
 					width: 155px;
 					@include height-line(40px);
 					border: 1px solid $mainColor;
+					-webkit-border-radius: 25px;
+					-moz-border-radius: 25px;
 					border-radius: 25px;
 					color: $mainColor;
 					text-align: center;
@@ -135,6 +139,8 @@
 					width: 40px;
 					height: 40px;
 					border: 1px solid $bgColor;
+					-webkit-border-radius: 20px;
+					-moz-border-radius: 20px;
 					border-radius: 20px;
 					cursor: pointer;
 				}

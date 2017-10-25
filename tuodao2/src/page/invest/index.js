@@ -24,15 +24,12 @@ $(function() {
 			if(productType == "sift"){
 				var type = 1;
 				getListSift(type);
-				return false;
 			}else if(productType == "scatter"){
 				var type = 0;
 				getListScatter(type);
-				return false;
 			}else if (productType == "bond") {
 				$(".invest_list_txt").show();
 				getListBond(0);
-				return false;
 			} else {
 				$(".invest_list_txt").hide();
 			}
@@ -163,6 +160,7 @@ $(function() {
 		var resList = res.content.list;
 		// 还款方式
 		$.each(resList,function(i){
+			var type = resList[i].refundWay;
 			if(resList[i].refundWay == "0"){
 				resList[i].refundWay = "等额本息";
 			}else if(resList[i].refundWay == "1"){
@@ -171,17 +169,7 @@ $(function() {
 				resList[i].refundWay = "按天付息";
 			}
 		});
-		function getRepayTypeName($type) {
-			switch ($type) {
-			case 0:
-				return "等额本息";
-			case 1:
-				return "按月付息";
-			case 2:
-				return "按天付息";
-			default: return "";
-			}
-	    }
+
 		// 投资期限单位
 		$.each(resList,function(i){
 			if(resList[i].periodUnit == "0"){

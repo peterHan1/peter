@@ -1,9 +1,35 @@
 @import '../index';
 .praise{
 	height: 90px;
+	line-height: 90px;
 	border-bottom:10px solid $bgColor;
 	cursor: pointer;
-	background: url('../../../image/welfare/praise_bg.png')center no-repeat;
+	color: #ffffff;
+	// background: url('../../../image/welfare/praise_bg.png')center no-repeat;
+	background: url('../../../image/welfare/banner.png')center no-repeat;
+	span{
+		font-size: 40px;
+		margin-left: 30px;
+	}
+	i{
+		font-size: 26px;
+	}
+	span.praise_btn{
+		display: inline-block;
+		@include height-line(30px);
+		text-align: center;
+		width: 150px;
+		font-size: 16px;
+		color: #F77648;
+		background: #FFE27E;
+		margin-left: 250px;
+		outline: none;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		border:none;
+		cursor: pointer;
+	}
 }
 .points{
 	height: 180px;
@@ -22,6 +48,9 @@
 	 	color: $fontColor9e;
 		margin: 0 auto;
 	}
+}
+.color_main{
+	color:#ff7400;
 }
 .exchange{
 	.menu{
@@ -120,6 +149,8 @@
 				margin: 0 auto;
 				color: $mainColor;
 				border:1px solid $mainColor;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px;
 				border-radius: 20px;
 				&:hover{
 					cursor: pointer;
@@ -147,6 +178,8 @@
 		padding: 8px 65px;
 		background: $mainColor;
 		color: #ffffff;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
 		border-radius: 20px;
 		display: block;
 		margin: 0 auto;
@@ -186,6 +219,8 @@
 	.order_err{
 		width: 540px;
 		height: 30px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
 		border-radius: 3px;
 		margin: 5px auto;
 		color: red;
@@ -210,6 +245,8 @@
 			width: 224px;
 			@include height-line(40px);
 			border:1px solid #dddddd;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
 			border-radius: 5px;
 			font-size: $fontSize12;
 			color: $fontColor9e;
@@ -226,6 +263,8 @@
 			@include height-line(30px);
 			outline: none;
 			border:1px solid;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
 			border-radius: 15px;
 			cursor:pointer;
 			&.submits{
@@ -257,6 +296,8 @@
 		    margin: 5px auto;
 		    text-align: center;
 		    background: #F2F2F2;
+		    -webkit-border-radius: 5px;
+		    -moz-border-radius: 5px;
 		    border-radius: 5px;
 	}
 	.content{
@@ -343,6 +384,8 @@
 			@include height-line(40px);
 			color: #ffffff;
 			background: $mainColor;
+			-webkit-border-radius: 25px;
+			-moz-border-radius: 25px;
 			border-radius: 25px;
 			outline: none;
 			border: none;
@@ -376,6 +419,8 @@
 				@include height-line(40px);
 				color: #ffffff;
 				background: $mainColor;
+				-webkit-border-radius: 25px;
+				-moz-border-radius: 25px;
 				border-radius: 25px;
 				outline: none;
 				border: none;
@@ -410,6 +455,8 @@
 				@include height-line(40px);
 				color: #ffffff;
 				background: $mainColor;
+				-webkit-border-radius: 25px;
+				-moz-border-radius: 25px;
 				border-radius: 25px;
 				outline: none;
 				border: none;

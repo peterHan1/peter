@@ -1,4 +1,39 @@
 var _inp = require('util/regular.js');
+var JPlaceHolder = {
+	// 检测    
+	_check : function(){
+		return 'placeholder' in document.createElement('input');
+	},
+	// 初始化    
+	init : function(){
+		if(!this._check()){
+			this.fix();
+		}
+	},
+	// 修复 
+	fix : function(){
+		jQuery(':input[placeholder]').each(function(index, element) {
+			var self = $(this), txt = self.attr('placeholder');
+			self.wrap($('<div></div>').css({position:'relative',width:'200px', float:'left',zoom:'1', border:'none', background:'none', padding:'none', margin:'none'}));
+			var pos = self.position(), h = self.outerHeight(true), paddingleft = self.css('padding-left');
+			var holder = $('<span class="span-ie7"></span>').text(txt).css({position:'absolute', left:pos.left, top:pos.top,height:h, lienHeight:h, paddingLeft:paddingleft, color:'#aaa'}).appendTo(self.parent());
+			self.focusin(function(e) {
+				holder.hide();
+			}).focusout(function(e) {
+				if(!self.val()){
+					holder.show();
+				}
+			});
+			holder.click(function(e) {
+				 holder.hide();
+				 self.focus();
+			});
+		});
+	}};
+// 执行
+jQuery(function(){
+	JPlaceHolder.init();
+});
 $(function(){
 	var hre = location.href.split('?');
 	$('.invest_tab a').each(function () {
@@ -262,19 +297,6 @@ $(function(){
 		}
 		$(".current_money").append(txt);
 	};
-
-	$(".zxf_pagediv").createPage({
-		// 页数
-		pageNum: 10,
-		// 当前页
-		current: 1,
-		// 显示条数
-		shownum: 10,
-		backfun: function(e) {
-			console.log(e.current);
-			// $("#data-container").html(thisDate(e.current));
-		}
-	});
 	// countdown(".times","2017/08/28,09:18:00");
 	function countdown(obj,time){
 		var html = '<input type="submit" value="实付0.00元，立即投资" class="sub_btn">';

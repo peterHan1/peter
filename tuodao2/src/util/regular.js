@@ -11,11 +11,7 @@ var _regular = {
 			var val = $("." + data.elm).val();
 			if (val.length >= 11) {
 				if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
-					if ($("." + data.elm).parent().find("." + data.cls).length > 0) {
-						return false;
-					} else {
-						$("." + data.elm).parent().append(ts);
-					}
+					$("." + data.elm).parent().append(ts);
 					$("." + data.elm).addClass("red");
 					status = false;
 				} else {
@@ -39,11 +35,8 @@ var _regular = {
 		$("." + data.elm).on("blur", function() {
 			var val = $("." + data.elm).val();
 			if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
-				if ($("." + data.elm).parent().find("." + data.cls).length > 0) {
-					return false;
-				} else {
-					$("." + data.elm).parent().append(ts);
-				}
+				$("." + data.elm).parent().append(ts);
+
 				$("." + data.elm).addClass("red");
 				status = false;
 			} else {
@@ -53,6 +46,41 @@ var _regular = {
 			}
 			data.callback(status);
 		});
+	},
+	// 验证手机号码唯一性
+	checkPhoneOnly: function(elm, cls) {
+		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号尚未注册拓道金服，请先注册！</span></p>";
+		var flag;
+		var value = $("." + elm).val();
+		$.ajax({
+			type: "POST",
+			url: "http://72.127.2.37/api/router/user/validateMobileRegistered",
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("accessId", "accessId");
+				xhr.setRequestHeader("accessKey", "accessKey");
+				xhr.setRequestHeader("sign", "NO");
+			},
+			data: {
+				mobile: value
+			},
+			async: false,
+			success: function(data) {
+				if (value != "" && data.content == true) {
+					flag = true;
+					$("." + elm).removeClass("red");
+					$("." + elm).siblings('.' + cls).remove();
+				} else {
+					flag = false;
+					$("." + elm).parent().append(ts);
+					$("." + elm).addClass("red");
+				}
+			}
+		});
+		if (flag) {
+			return true;
+		} else {
+			return false;
+		}
 	},
 	// keyup的时候验证手机号码格式
 	checkPhoneKey: function(data) {
@@ -107,48 +135,6 @@ var _regular = {
 			}
 			data.callback(status);
 		});
-	},
-	// 验证密码正确性
-	checkPassword: function(elm, cls) {
-		var data = "123";
-		var flag;
-		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>密码错误，请重新输入</span></p>";
-		var values = $("." + elm).val();
-		if (values != "" && values === data) {
-			flag = true;
-			$("." + elm).siblings('.' + cls).remove();
-			$("." + elm).removeClass("red");
-		} else {
-			flag = false;
-			if ($("." + elm).parent().find("." + cls).length > 0) {
-				return false;
-			} else {
-				$("." + elm).parent().append(ts);
-			}
-			$("." + elm).addClass("red");
-		}
-		return flag;
-	},
-	// 验证手机号码唯一性
-	checkPhoneOnly: function(elm, cls) {
-		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号码尚未注册拓道金服</span></p>";
-		var flag;
-		var number = "1";
-		var value = $("." + elm).val();
-		if (value != "" && number == "1") {
-			flag = true;
-			$("." + elm).removeClass("red");
-			$("." + elm).siblings('.' + cls).remove();
-		} else {
-			flag = false;
-			if ($("." + elm).parent().find("." + cls).length > 0) {
-				return false;
-			} else {
-				$("." + elm).parent().append(ts);
-			}
-			$("." + elm).addClass("red");
-		}
-		return flag;
 	},
 	// 验证银行卡号
 	checkBankNum: function(data) {
@@ -273,7 +259,7 @@ var _regular = {
 			} else {
 				$("." + data.elm).siblings('.' + data.cls).remove();
 				$("." + data.elm).removeClass('red');
-				flag=_this.moneyOnly(data.elm,data.cls);
+				flag = _this.moneyOnly(data.elm, data.cls);
 			}
 			data.callback(flag);
 		});
@@ -283,7 +269,7 @@ var _regular = {
 		var flag;
 		var number = 500;
 		var value = $("." + elm).val();
-		if (value != "" && value<=number) {
+		if (value != "" && value <= number) {
 			flag = true;
 			$("." + elm).removeClass("red");
 			$("." + elm).siblings('.' + cls).remove();
@@ -313,18 +299,18 @@ var _regular = {
 			var val = $(this).val();
 			var apen = $(this).parent();
 			var x = data.btn_x;
-			_this.btn_x(val,inp,x);
-			_this.import_money(inp,apen,val,in_money,bal_money);
+			_this.btn_x(val, inp, x);
+			_this.import_money(inp, apen, val, in_money, bal_money);
 			data.callback(inp);
 		});
 	},
-	inpMoneyOnFocus: function(data){
+	inpMoneyOnFocus: function(data) {
 		var _this = this;
 		$("." + data.inp).on("focus", function() {
 			var inp = $("." + data.inp);
 			var val = inp.val();
 			var x = data.btn_x;
-			_this.btn_x(val,inp,x);
+			_this.btn_x(val, inp, x);
 		});
 	},
 	inpMoneyOnClick: function(data) {
@@ -337,66 +323,66 @@ var _regular = {
 			var in_money = data.balance;
 			// 可投金额
 			var bal_money = data.invest;
-			if(in_money >= bal_money){
+			if (in_money >= bal_money) {
 				$("." + data.input).val(bal_money);
-			}else{
+			} else {
 				$("." + data.input).val(in_money);
 			}
 			var inp = $("." + data.input);
 			var val = $("." + data.input).val();
 			var apen = $("." + data.input).parent();
-			_this.import_money(inp,apen,val,in_money,bal_money);
+			_this.import_money(inp, apen, val, in_money, bal_money);
 			data.callback(inp);
 		});
 	},
 	// 判断输入金额
-	import_money : function(inp,apen,money,in_money,bal_money){
-		if(money != "" && money != 0 && money < 100   && bal_money < 500){
-			this.input_mess(inp,true,apen,"不得低于起投金额100元！");
+	import_money: function(inp, apen, money, in_money, bal_money) {
+		if (money != "" && money != 0 && money < 100 && bal_money < 500) {
+			this.input_mess(inp, true, apen, "不得低于起投金额100元！");
 			return false;
-		}else if(money != "" && money != 0  && money < 500 && bal_money >= 500){
-			this.input_mess(inp,true,apen,"不得低于起投金额500元！");
+		} else if (money != "" && money != 0 && money < 500 && bal_money >= 500) {
+			this.input_mess(inp, true, apen, "不得低于起投金额500元！");
 			return false;
-		}else if(money != "" && money != 0  && money > bal_money){
-			this.input_mess(inp,true,apen,"您输入的金额大于当前剩余可投金额！");
+		} else if (money != "" && money != 0 && money > bal_money) {
+			this.input_mess(inp, true, apen, "您输入的金额大于当前剩余可投金额！");
 			return false;
-		}else if(money != "" && money != 0  && money > in_money){
-			this.input_mess(inp,true,apen,"余额不足");
+		} else if (money != "" && money != 0 && money > in_money) {
+			this.input_mess(inp, true, apen, "余额不足");
 			return false;
-		}else if(money != "" && money != 0  && money > 500000){
-			this.input_mess(inp,true,apen,"单笔限额为500,000元！");
+		} else if (money != "" && money != 0 && money > 500000) {
+			this.input_mess(inp, true, apen, "单笔限额为500,000元！");
 			return false;
-		}else{
-			this.input_mess(inp,false,apen,"");
+		} else {
+			this.input_mess(inp, false, apen, "");
 		}
 	},
 	// input状态错误提示
-	input_mess : function(inp,boole,apen,str){
-		var txts = '<span class="in_span"><i class="iconfont">&#xe671;</i>'+ str +'</span>';
-		if(boole == true){
-			if($(".in_span").length<=0){
+	input_mess: function(inp, boole, apen, str) {
+		var txts = '<span class="in_span"><i class="iconfont">&#xe671;</i>' + str + '</span>';
+		if (boole == true) {
+			if ($(".in_span").length <= 0) {
 				apen.addClass('bor_col');
 				apen.append(txts);
-				inp.css("color","red");
-			}else{
+				inp.css("color", "red");
+			} else {
 				$(".in_span").remove();
 				apen.append(txts);
 			}
-		}else if(boole == false){
+		} else if (boole == false) {
 			apen.removeClass("bor_col");
 			$(".in_span").remove();
-			inp.css("color","#333");
+			inp.css("color", "#333");
 		}
 	},
-	btn_x : function(val,thi,x){
-		if(val == '0.00'){
+	btn_x: function(val, thi, x) {
+		if (val == '0.00') {
 			thi.val('');
-		}else{
-			thi.val(thi.val().replace(/\.00/, '').replace(/(\.\d)0/,'$1'));
+		} else {
+			thi.val(thi.val().replace(/\.00/, '').replace(/(\.\d)0/, '$1'));
 		};
-		if(val != ""){
+		if (val != "") {
 			$("." + x).show();
-		}else{
+		} else {
 			$("." + x).hide();
 		}
 	}

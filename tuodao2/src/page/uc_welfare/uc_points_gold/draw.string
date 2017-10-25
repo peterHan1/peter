@@ -6,119 +6,123 @@
 		<a>抽688积分</a>
 	</div>
 	<div class="draw_title"><span class="circle1"></span><span class="circle2"></span><span class="title">可用积分：<p id="draw" style="display:inline-block;">210</p></span><span class="circle2"></span><span class="circle1"></span></div>
-	<div class="draw_step">
-		<ul class="draw_presents" id="draw_present">
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/iphone8.png" alt="">
-				</div>
-				<p>iPhone8</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/xmTV.png" alt="">
-				</div>
-				<p>小米电视</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/flp.png" height="127" width="85" alt="">
-				</div>
-				<p>飞利浦电动牙刷</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/3%jxq.png" alt="">
-				</div>
-				<p>3%加息券</p>
-			</li>
-			<li class="fifth_child back_go">
+	<div class="draw_content">
+		<div class="go_menu">
+			<div class="go_child back_go" id="go_draw_100">
 				<div class="go_word">100积分抽一次</div>
 				<div class="none_points">
 					<a>获取积分&nbsp;> </a>
 				</div>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/268hb.png" height="102" width="110" alt="">
-				</div>
-				<p>268元红包</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/68hb.png" height="102" width="110" alt="">
-				</div>
-				<p>68元红包</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/388hb.png" alt="">
-				</div>
-				<p>388元红包</p>
-			</li>
-			<li class="back_normal">
-				<div class="present_content">
-					<img src="../../../image/welfare/10hb.png" alt="">
-				</div>
-				<p>10元红包</p>
-			</li>
-		</ul>
-		<ul class="draw_presents draw_points" id="draw_point" style="display:none;">
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/688jf.png" alt="">
-				</div>
-				<p>668积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/366jf.png" alt="">
-				</div>
-				<p>366积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/166jf.png" alt="">
-				</div>
-				<p>166积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/1jf.png" alt="">
-				</div>
-				<p>1积分</p>
-			</li>
-			<li class="fifth_child back_go">
+			</div>
+			<div class="go_child back_go" style="display:none;" id="go_draw_10">
 				<div class="go_word">10积分抽一次</div>
 				<div class="none_points">
 					<a>获取积分&nbsp;> </a>
 				</div>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/66jf.png" alt="">
-				</div>
-				<p>66积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/6jf.png" alt="">
-				</div>
-				<p>6积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/16jf.png" alt="">
-				</div>
-				<p>16积分</p>
-			</li>
-			<li class="back_normal">
-				<div class="points_content">
-					<img src="../../../image/welfare/36jf.png" alt="">
-				</div>
-				<p>36积分</p>
-			</li>
-		</ul>
+			</div>
+		</div>
+		<div class="draw_step">
+			<ul class="draw_presents" id="draw_present">
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/iphone8.png" alt="">
+					</div>
+					<p>iPhone8</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/xmTV.png" alt="">
+					</div>
+					<p>小米电视</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/flp.png" height="127" width="85" alt="">
+					</div>
+					<p>飞利浦电动牙刷</p>
+				</li>
+				<li class="back_normal" style="margin-right:270px;">
+					<div class="present_content">
+						<img src="../../../image/welfare/3jxq.png" alt="">
+					</div>
+					<p>3%加息券</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/268hb.png" height="102" width="110" alt="">
+					</div>
+					<p>268元红包</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/68hb.png" height="102" width="110" alt="">
+					</div>
+					<p>68元红包</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/388hb.png" alt="">
+					</div>
+					<p>388元红包</p>
+				</li>
+				<li class="back_normal">
+					<div class="present_content">
+						<img src="../../../image/welfare/10hb.png" alt="">
+					</div>
+					<p>10元红包</p>
+				</li>
+			</ul>
+			<ul class="draw_presents draw_points" id="draw_point" style="display:none;">
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/688jf.png" alt="">
+					</div>
+					<p>668积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/366jf.png" alt="">
+					</div>
+					<p>366积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/166jf.png" alt="">
+					</div>
+					<p>166积分</p>
+				</li>
+				<li class="back_normal" style="margin-right:270px;">
+					<div class="points_content">
+						<img src="../../../image/welfare/1jf.png" alt="">
+					</div>
+					<p>1积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/66jf.png" alt="">
+					</div>
+					<p>66积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/6jf.png" alt="">
+					</div>
+					<p>6积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/16jf.png" alt="">
+					</div>
+					<p>16积分</p>
+				</li>
+				<li class="back_normal">
+					<div class="points_content">
+						<img src="../../../image/welfare/36jf.png" alt="">
+					</div>
+					<p>36积分</p>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="draw_order">
 		<div class="order_word">抽奖规则</div>

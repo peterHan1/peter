@@ -72,6 +72,8 @@
 			background: #FF7400;;
 			color: #ffffff;
 			border-radius: 25px;
+			-webkit-border-radius: 25px;
+			-moz-border-radius: 25px;
 			text-align: center;
 			cursor: pointer;
 			&:hover{

@@ -1,0 +1,76 @@
+{{#content}}
+<div class="investCom">	
+	<div class="title">
+		<p>{{name}}</p>
+		<a href="###">查看原始标的 > </a>
+		<span>转让剩余：22小时34分00秒</span>
+	</div>
+	<div class="major">
+		<dl class="expect">
+			<dt>
+				<span>{{apr}}</span>%
+			</dt>
+			<dd>
+				预期年化
+			</dd>
+		</dl>
+		<dl class="date">
+			<dt>
+				<span>{{period}}</span>个月
+			</dt>
+			<dd>
+				投资期限
+			</dd>
+		</dl>
+		<dl class="summoney">
+			<dt>
+				<span>{{lastAccount}}</span>元
+			</dt>
+			<dd>
+				剩余可投
+			</dd>
+		</dl>
+		<dl class="bars">
+			<dt>
+				<div class="progress">
+					<div class="progress_wrapper">
+						<div class="bar" style="width:80%;"></div>
+					</div>
+				</div>
+			</dt>
+			<dd>
+				投资进度
+				<span>80%</span>
+			</dd>
+		</dl>
+	</div>
+	<div class="intro">
+
+		<!-- 债权转让显示 -->
+		<ul>
+			<li>
+				债权价值：<span>{{claimsValue}}</span>元
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips">投资人转让的本金和收益的总值<span class="bot"></span><span class="bot2"></span></div>
+				</div>
+			</li>
+			<li>
+				转让金额：<span>{{account}}元</span>
+			</li>
+			<li class="alli">
+				奖励金额：<span>{{reward}}元</span>
+			</li>
+			<li>
+				计息方式：<span>满标复审计息</span>
+			</li>
+			<li>
+				还款方式：<span>{{repaymentType}}</span>
+			</li>
+			<li class="alli">
+				来自用户：<span>{{userPhone}}</span>
+			</li>
+		</ul>
+	</div>
+</div>
+{{/content}}	
