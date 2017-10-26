@@ -3,58 +3,62 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('page/common/footer-nav/index.scss');
 
 var _td = require('util/td.js');
 var _apiInvest = require('api/invest_list-api.js');
 var investListSift = require('./invest_list_sift.string');
 var investListScatter = require('./invest_list_scatter.string');
 var investListBond = require('./invest_list_bond.string');
-
-$(function() {
-	//  0：散标 1:精选计划
-	$('.invest_tab a').each(function() {
-		if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
-			$(this).addClass('on');
-			var productType = $(this).attr("productType");
-			console.log("type: " + productType);
-			var index = $(this).parent().index();
-			$(".invest_list_bot ul").eq(index).show().siblings().hide();
-			$(".invest_list_top ul").eq(index).show().siblings("ul").hide();
-			if(productType == "sift"){
-				var type = 1;
-				getListSift(type);
-			}else if(productType == "scatter"){
-				var type = 0;
-				getListScatter(type);
-			}else if (productType == "bond") {
-				$(".invest_list_txt").show();
-				getListBond(0);
+var invest = {
+	init : function(){
+		this.eachA();
+		this.eventFn();
+	},
+	eachA : function(){
+		//  0：散标 1:精选计划
+		$('.invest_tab a').each(function() {
+			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
+				$(this).addClass('on');
+				var productType = $(this).attr("productType");
+				console.log("type: " + productType);
+				var index = $(this).parent().index();
+				$(".invest_list_bot ul").eq(index).show().siblings().hide();
+				$(".invest_list_top ul").eq(index).show().siblings("ul").hide();
+				if(productType == "sift"){
+					var type = 1;
+					invest.getListSift(type);
+				}else if(productType == "scatter"){
+					var type = 0;
+					invest.getListScatter(type);
+				}else if (productType == "bond") {
+					$(".invest_list_txt").show();
+					invest.getListBond(0);
+				} else {
+					$(".invest_list_txt").hide();
+				}
 			} else {
-				$(".invest_list_txt").hide();
-			}
-		} else {
-			$(this).removeClass('on');
-		};
+				$(this).removeClass('on');
+			};
 
-	});
-	// 精选计划
-	function getListSift(type){
+		});
+	},
+	getListSift : function(type){
+		// 精选计划
 		_apiInvest.getInvestList(type,1,10,function(res){
-			setData(res);
+			invest.setData(res);
 			bannerHtml = _td.renderHtml(investListSift,{
 				list:res.content.list,
 			});
 			$('.invest_list_bot').html(bannerHtml);
-			setShow("list_sift");
+			invest.setShow("list_sift");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(type,e.current,10,function(res){
-					setData(res);
+					invest.setData(res);
 					bannerHtml = _td.renderHtml(investListSift,{
 						list:res.content.list,
 					});
 					$('.invest_list_bot').html(bannerHtml);
-					setShow("list_sift");
+					invest.setShow("list_sift");
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -62,25 +66,24 @@ $(function() {
 		},function(){
 			console.log("请求失败");
 		});
-
-	};
+	},
 	// 散标项目
-	function getListScatter(type){
+	getListScatter : function(type){
 		_apiInvest.getInvestList(type,1,10,function(res){
-			setData(res);
+			invest.setData(res);
 			bannerHtml = _td.renderHtml(investListScatter,{
 				list:res.content.list,
 			});
 			$('.invest_list_bot').html(bannerHtml);
-			setShow("list_scatter");
+			invest.setShow("list_scatter");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(type,e.current,10,function(res){
-					setData(res);
+					invest.setData(res);
 					bannerHtml = _td.renderHtml(investListScatter,{
 						list:res.content.list,
 					});
 					$('.invest_list_bot').html(bannerHtml);
-					setShow("list_scatter");
+					invest.setShow("list_scatter");
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -88,25 +91,24 @@ $(function() {
 		},function(){
 			console.log("请求失败");
 		});
-
-	};
+	},
 	// 债权转让
-	function getListBond(type){
+	getListBond : function(type){
 		_apiInvest.getInvestListBond(type,1,10,function(res){
-			setUnit(res);
+			invest.setUnit(res);
 			bannerHtml = _td.renderHtml(investListBond,{
 				list:res.content.list,
 			});
 			$('.invest_list_bot').html(bannerHtml);
-			setShow("list_bond");
+			invest.setShow("list_bond");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestListBond(type,e.current,10,function(res){
-					setUnit(res);
+					invest.setUnit(res);
 					bannerHtml = _td.renderHtml(investListBond,{
 						list:res.content.list,
 					});
 					$('.invest_list_bot').html(bannerHtml);
-					setShow("list_bond");
+					invest.setShow("list_bond");
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -114,9 +116,9 @@ $(function() {
 		},function(){
 			console.log("请求失败");
 		});
-	};
+	},
 	// 债权转让
-	function setUnit(res){
+	setUnit : function(res){
 		var resList = res.content.list;
 		// 剩余期限单位
 		$.each(resList,function(i){
@@ -128,8 +130,8 @@ $(function() {
 				resList[i].periodType = "年";
 			}
 		});
-	};
-	function setShow(ul){
+	},
+	setShow : function(ul){
 		$("."+ul).find("li").each(function(){
 			// 加入进度
 			var totalM = $(this).find('.totalMoney').html();
@@ -154,9 +156,9 @@ $(function() {
 				$(this).find('.award').remove();
 			}
 		});
-	};
+	},
 	// 精选计划、散标
-	function setData(res){
+	setData : function(res){
 		var resList = res.content.list;
 		// 还款方式
 		$.each(resList,function(i){
@@ -180,9 +182,14 @@ $(function() {
 				resList[i].periodUnit = "年";
 			}
 		});
-	};
-	$(document).on("click", ".invest_list_top li", function() {
-		$(this).addClass("on");
-		$(this).siblings().removeClass("on");
-	});
+	},
+	eventFn : function(){
+		$(document).on("click", ".invest_list_top li", function() {
+			$(this).addClass("on");
+			$(this).siblings().removeClass("on");
+		});
+	}
+};
+$(function() {
+	invest.init();
 });

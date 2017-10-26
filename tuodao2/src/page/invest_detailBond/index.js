@@ -2,7 +2,6 @@ require('page/invest_detail/invest_detail.scss');
 require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('page/common/footer-nav/index.scss');
 require('util/layer/layer.js');
 require('util/layer/layer.scss');
 require('util/paging/page.scss');
@@ -13,28 +12,32 @@ var _apiInvest = require('api/invest_listDetails-api.js');
 var investListBond = require('./invest_listDetails-bond.string');
 var investListPhone = require('./invest_listDetails-phone.string');
 
-$(function(){
-	_apiInvest.getInvestListDetails(1,function(res){
-		setData(res);
-		bannerHtml = _td.renderHtml(investListBond,{
-			content:res.content,
+var investDetails = {
+	init : function(){
+		this.addHtml();
+	},
+	addHtml : function(){
+		_apiInvest.getInvestListDetails(1,function(res){
+			investDetails.setData(res);
+			bannerHtml = _td.renderHtml(investListBond,{
+				content:res.content,
+			});
+			$('.detail_top_left').html(bannerHtml);
+			investDetails.setShow("detail_top_left");
+		},function(){
+			console.log("请求失败");
 		});
-		$('.detail_top_left').html(bannerHtml);
-		setShow("detail_top_left");
-	},function(){
-		console.log("请求失败");
-	});
 
-	_apiInvest.getInvestListDetails(1,function(res){
-		bannerHtml = _td.renderHtml(investListPhone,{
-			content:res.content,
+		_apiInvest.getInvestListDetails(1,function(res){
+			bannerHtml = _td.renderHtml(investListPhone,{
+				content:res.content,
+			});
+			$('.chage_tr').html(bannerHtml);
+		},function(){
+			console.log("请求失败");
 		});
-		$('.chage_tr').html(bannerHtml);
-	},function(){
-		console.log("请求失败");
-	});
-	
-	function setData(res){
+	},
+	setData : function(res){
 		// 还款方式
 		var refunway = res.content.refundWay;
 		if(refunway == "0"){
@@ -57,8 +60,8 @@ $(function(){
 		var str = res.content.publishTime;
 		var oDate = new Date(str),oYear = oDate.getFullYear(),oMonth = oDate.getMonth()+1,oDay = oDate.getDate(),oTime = oYear + '-' +oMonth +'-'+ oDay;
 		res.content.publishTime = oTime;
-	};
-	function setShow(cla){
+	},
+	setShow : function(cla){
 		var _this = $("." + cla);
 		// 加入进度
 		var totalM = _this.find('.totalMoney').html();
@@ -76,5 +79,8 @@ $(function(){
 		if(awardStatus == 0){
 			_this.find('.award').remove();
 		}
-	};
+	}
+};
+$(function(){
+	investDetails.init();
 });

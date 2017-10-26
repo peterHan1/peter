@@ -1,12 +1,10 @@
-require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
-var _tips = require('util/tips/index.js');
 require('./index.scss');
+require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('page/common/footer-nav/index.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
+var _tips = require('util/tips/index.js');
 
 var ucInvest = {
 	init : function(){

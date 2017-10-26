@@ -1,14 +1,13 @@
-require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require('./uc.scss');
+require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('page/common/footer-nav/index.scss');
-var _tips = require('util/tips/index.js');
-var _returnmon = require('util/return_date/date_time.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');
-var echarts = require('util/echarts/echarts.common.min.js');
+
+var _tips 		= require('util/tips/index.js');
+var _returnmon 	= require('util/return_date/date_time.js');
+var echarts 	= require('util/echarts/echarts.common.min.js');
 
 var uc = {
 	init : function(){
@@ -18,6 +17,7 @@ var uc = {
 		this.recommend();
 		this.echar();
 		this.returnMon();
+		this.addHtml();
 	},
 	tipsHover : function(){
 		$(".hint").mouseover(function(){
@@ -205,6 +205,34 @@ var uc = {
 			var oDate = new Date(str),oYear = oDate.getFullYear(),oMonth = oDate.getMonth()+1,oDay = oDate.getDate(),oTime = oYear + '-' +oMonth +'-'+ oDay;
 			return oTime;
 		};
+	},
+	addHtml : function(){
+		var userId=document.cookie.split(";")[0].split("=")[1];
+		console.log(userId);
+		$.ajax({
+			type: "POST",
+			url: "http://72.127.2.140:8080/api/router/user/getUserAccountInfo",
+			data: {
+				userId: "18539123451-lwvm5mx68dr2wxzqgnuc",
+				loginPassword:"e10adc3949ba59abbe56e057f20f883e",
+				loginSource:1
+			},
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("accessId", "c132d4dd9810c9aad6cf0f2e99a2b662");
+				xhr.setRequestHeader("accessKey", "/v8amga5adgangbmadganabladaazga2adiaoaaxadmazgbladmayqa5adgamqaxagqamwawaduayqbkagyaywa5");
+				xhr.setRequestHeader("sign", "NO");
+			},
+			success: function(data) {
+				if(data.code == 100000){
+					console.log(data);
+				}else if(data.code == 100105){
+					console.log(data.msg);
+				}
+			},
+			error : function(data){
+				console.log(data);
+			}
+		});
 	}
 };
 $(function(){

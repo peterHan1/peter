@@ -1,8 +1,6 @@
 var _retuenMon = {
 	returnMoney: function(time_list,time_day){
 		var yyyy,mm,ht_html,zero,mid,thisy,thism,thisd;
-		time_list(yyyy,mm);
-		time_day(ht_html,zero,mid,thisy,thism,thisd);
 		// 日历算法
 		var date = '<div><div class="account_title"><div class="data_top"><div class="fl data_top_datas"><span class="f_year"></span>年<span class="f_month"></span>月</div><div class="data_top_btn fr"><i class="data_top_btn_l iconfont">&#xe6bb;</i><i class="data_top_btn_r iconfont">&#xe6ba;</i></div></div></div><div class="data_table"><div class="clearfix"><div class="data_table_th">日</div><div class="data_table_th">一</div><div class="data_table_th">二</div><div class="data_table_th">三</div><div class="data_table_th">四</div><div class="data_table_th">五</div><div class="data_table_th">六</div><div class="clear"></div></div><div class="data_tbody clearfix"></div></div><div class="datas_title"><div><b class="await_b"></b><span>有待回款项目</span></div><div><b class="yet_b"></b><span>有已回款项目</span></div></div></div>';
 		$(".account_box").append(date);

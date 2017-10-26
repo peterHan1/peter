@@ -5,7 +5,7 @@
 	<div class="invest_list_title">
 		<p class="fl">{{productTitle}}</p>
 		<div class="fl type">
-			<img src="<%= require('../image/cooperate.png') %>" class="fl">
+			<img src="<%= require('../image/invest/cooperate.png') %>" class="fl">
 			<div class="tips">仅限新注册用户首次投资<span class="bot"></span><span class="bot2"></span></div>
 		</div>
 	</div>
