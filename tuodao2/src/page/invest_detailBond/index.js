@@ -8,9 +8,9 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/invest_listDetails-api.js');
-var investListBond = require('./invest_listDetails-bond.string');
-var investListPhone = require('./invest_listDetails-phone.string');
+var _apiInvest = require('api/investListDe-api.js');
+var investListBond = require('./details-bond.string');
+var investListPhone = require('./details-phone.string');
 
 var investDetails = {
 	init : function(){
@@ -19,20 +19,20 @@ var investDetails = {
 	addHtml : function(){
 		_apiInvest.getInvestListDetails(1,function(res){
 			investDetails.setData(res);
-			bannerHtml = _td.renderHtml(investListBond,{
+			listDetailsHtml = _td.renderHtml(investListBond,{
 				content:res.content,
 			});
-			$('.detail_top_left').html(bannerHtml);
+			$('.detail_top_left').html(listDetailsHtml);
 			investDetails.setShow("detail_top_left");
 		},function(){
 			console.log("请求失败");
 		});
 
 		_apiInvest.getInvestListDetails(1,function(res){
-			bannerHtml = _td.renderHtml(investListPhone,{
+			listDetailsHtml = _td.renderHtml(investListPhone,{
 				content:res.content,
 			});
-			$('.chage_tr').html(bannerHtml);
+			$('.chage_tr').html(listDetailsHtml);
 		},function(){
 			console.log("请求失败");
 		});

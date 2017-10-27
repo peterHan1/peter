@@ -1,5 +1,4 @@
 require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require("./uc_messageCenter.scss");
 require('util/paging/page.scss');
 require('util/paging/page.js');

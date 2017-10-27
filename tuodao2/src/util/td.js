@@ -10,10 +10,15 @@ var _td = {
 			url 		: param.url 	|| '',
 			dataType 	: param.type 	|| 'json',
 			data 		: param.data 	|| '',
+			beforeSend: function(xhr) {
+				typeof param.beforeSend === 'function' && param.beforeSend(xhr);
+			},
 			success 	: function(res){
 				if(100000 === res.code){
 				 	typeof param.success === 'function' && param.success(res);
 
+				}else{
+					typeof param.success === 'function' && param.success(res);
 				}
 				// else if(10 === res.status){
 				// 	 _this.doLogin();

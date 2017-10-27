@@ -1,5 +1,4 @@
 require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require("./uc_cash.scss");
 require('page/common/top/index.js');
 require('page/common/nav/index.js');

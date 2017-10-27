@@ -1,0 +1,48 @@
+{{#content}}
+<div class="total_top">
+	<div class="assets">
+		<dl>
+			<dt>
+				<span>累计收益(元)</span>
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips left-tips">
+						存管上线后收到的收益总和
+					</div>
+				</div>
+			</dt>
+			<dd>{{totalEarnings}}</dd>
+		</dl>
+	</div>
+	<div class="recharge_cash">
+		<a href="###" class="recharge">充值</a>
+		<a href="###" class="cash">提现</a>
+	</div>
+</div>
+<div class="total_bot">
+	<dl>
+		<dt>
+			<span>待收总额(元)</span>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					待回款的本金与利息总和
+				</div>
+			</div>
+		</dt>
+		<dd>{{dueInFund}}</dd>
+	</dl>
+	<dl>
+		<dt>
+			<span>可用余额(元)</span>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					充值资金，已回款资金和站岗资金的和。
+				</div>
+			</div>
+		</dt>
+		<dd>{{usableFund}}</dd>
+	</dl>
+</div>
+{{/content}}

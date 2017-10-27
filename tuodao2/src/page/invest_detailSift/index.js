@@ -8,8 +8,8 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/invest_listDetails-api.js');
-var investListSift = require('./invest_listDetails-sift.string');
+var _apiInvest = require('api/investListDe-api.js');
+var investListSift = require('./details-sift.string');
 
 var investDetails = {
 	init : function(){
@@ -18,10 +18,10 @@ var investDetails = {
 	addHtml : function(){
 		_apiInvest.getInvestListDetails(1,function(res){
 			investDetails.setData(res);
-			bannerHtml = _td.renderHtml(investListSift,{
+			listDetailsHtml = _td.renderHtml(investListSift,{
 				content:res.content,
 			});
-			$('.detail_top_left').html(bannerHtml);
+			$('.detail_top_left').html(listDetailsHtml);
 			investDetails.setShow("detail_top_left");
 		},function(){
 			console.log("请求失败");

@@ -1,4 +1,64 @@
+var _td = require('util/td.js');
+var _checkPhone = require('api/checkPhone_only-api.js');
+
 var _regular = {
+	// 输入中验证手机号码（注册）
+	checkPhonekeyOnRegister: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var _this = this;
+		var status;
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>手机号必须由11位纯数字组成</span></p>";
+		$("." + data.elm).on("keyup", function() {
+			var val = $("." + data.elm).val();
+			if (val.length >= 11) {
+				if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
+					$("." + data.elm).parent().append(ts);
+					$("." + data.elm).addClass("red");
+				} else {
+					$("." + data.elm).siblings('.' + data.cls).remove();
+					$("." + data.elm).removeClass("red");
+					_this.checkPhoneOnlyOnRegister({
+						elm: data.elm,
+						cls: data.cls,
+						callback: function(result) {
+							status = result;
+							data.callback(status);
+						}
+					});
+				}
+			}
+		});
+	},
+	// 失去焦点时验证手机号码（注册）
+	checkPhoneblurOnRegister: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var _this = this;
+		var status;
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>手机号必须由11位纯数字组成</span></p>";
+		$("." + data.elm).on("blur", function() {
+			var val = $("." + data.elm).val();
+			if (val == "" || !(/^1[34578]\d{9}$/.test(val))) {
+				$("." + data.elm).parent().append(ts);
+				$("." + data.elm).addClass("red");
+				status = false;
+			} else {
+				$("." + data.elm).siblings('.' + data.cls).remove();
+				$("." + data.elm).removeClass("red");
+				_this.checkPhoneOnlyOnRegister({
+					elm: data.elm,
+					cls: data.cls,
+					callback: function(result) {
+						status = result;
+						data.callback(status);
+					}
+				});
+			}
+		});
+	},
 	// keyup的时候 验证手机号码格式以及唯一性
 	checkPhoneOnkey: function(data) {
 		this.callback = {
@@ -17,8 +77,14 @@ var _regular = {
 				} else {
 					$("." + data.elm).siblings('.' + data.cls).remove();
 					$("." + data.elm).removeClass("red");
-					status = _this.checkPhoneOnly(data.elm, data.cls);
-					// console.log(status);
+					_this.checkPhoneOnlyOnRegister({
+						elm: data.elm,
+						cls: data.cls,
+						callback: function(result) {
+							status = result;
+							data.callback(status);
+						}
+					});
 				}
 			}
 			data.callback(status);
@@ -41,46 +107,60 @@ var _regular = {
 				status = false;
 			} else {
 				$("." + data.elm).siblings('.' + data.cls).remove();
-				status = _this.checkPhoneOnly(data.elm, data.cls);
-				// console.log(status);
+				_this.checkPhoneOnlyOnRegister({
+					elm: data.elm,
+					cls: data.cls,
+					callback: function(result) {
+						status = result;
+						data.callback(status);
+					}
+				});
 			}
 			data.callback(status);
 		});
 	},
-	// 验证手机号码唯一性
-	checkPhoneOnly: function(elm, cls) {
-		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号尚未注册拓道金服，请先注册！</span></p>";
+	// 验证手机号码唯一性（注册）
+	checkPhoneOnlyOnRegister: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号已注册拓道金服，请直接登录！</span></p>";
 		var flag;
-		var value = $("." + elm).val();
-		$.ajax({
-			type: "POST",
-			url: "http://72.127.2.37/api/router/user/validateMobileRegistered",
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader("accessId", "accessId");
-				xhr.setRequestHeader("accessKey", "accessKey");
-				xhr.setRequestHeader("sign", "NO");
-			},
-			data: {
-				mobile: value
-			},
-			async: false,
-			success: function(data) {
-				if (value != "" && data.content == true) {
-					flag = true;
-					$("." + elm).removeClass("red");
-					$("." + elm).siblings('.' + cls).remove();
-				} else {
-					flag = false;
-					$("." + elm).parent().append(ts);
-					$("." + elm).addClass("red");
-				}
+		var value = $("." + data.elm).val();
+		var _this = this;
+		_checkPhone.checkPhone(value, function(res) {
+			if (value != "" && res.content == false) {
+				flag = true;
+				$("." + data.elm).removeClass("red");
+				$("." + data.elm).siblings('.' + data.cls).remove();
+			} else {
+				flag = false;
+				$("." + data.elm).parent().append(ts);
+				$("." + data.elm).addClass("red");
 			}
+			data.callback(flag);
 		});
-		if (flag) {
-			return true;
-		} else {
-			return false;
-		}
+	},
+	// 验证手机号码唯一性
+	checkPhoneOnly: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号尚未注册拓道金服，请先注册！</span></p>";
+		var flag;
+		var value = $("." + data.elm).val();
+		_checkPhone.checkPhone(value, function(res) {
+			if (value != "" && res.content == true) {
+				flag = true;
+				$("." + data.elm).removeClass("red");
+				$("." + data.elm).siblings('.' + data.cls).remove();
+			} else {
+				flag = false;
+				$("." + data.elm).parent().append(ts);
+				$("." + data.elm).addClass("red");
+			}
+			data.callback(flag);
+		});
 	},
 	// keyup的时候验证手机号码格式
 	checkPhoneKey: function(data) {

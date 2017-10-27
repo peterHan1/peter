@@ -5,10 +5,10 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/invest_list-api.js');
-var investListSift = require('./invest_list_sift.string');
-var investListScatter = require('./invest_list_scatter.string');
-var investListBond = require('./invest_list_bond.string');
+var _apiInvest = require('api/investList-api.js');
+var investListSift = require('./list_sift.string');
+var investListScatter = require('./list_scatter.string');
+var investListBond = require('./list_bond.string');
 var invest = {
 	init : function(){
 		this.eachA();
@@ -46,18 +46,18 @@ var invest = {
 		// 精选计划
 		_apiInvest.getInvestList(type,1,10,function(res){
 			invest.setData(res);
-			bannerHtml = _td.renderHtml(investListSift,{
+			listHtml = _td.renderHtml(investListSift,{
 				list:res.content.list,
 			});
-			$('.invest_list_bot').html(bannerHtml);
+			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_sift");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(type,e.current,10,function(res){
 					invest.setData(res);
-					bannerHtml = _td.renderHtml(investListSift,{
+					listHtml = _td.renderHtml(investListSift,{
 						list:res.content.list,
 					});
-					$('.invest_list_bot').html(bannerHtml);
+					$('.invest_list_bot').html(listHtml);
 					invest.setShow("list_sift");
 				},function(){
 					console.log("分页点击请求失败");
@@ -71,18 +71,18 @@ var invest = {
 	getListScatter : function(type){
 		_apiInvest.getInvestList(type,1,10,function(res){
 			invest.setData(res);
-			bannerHtml = _td.renderHtml(investListScatter,{
+			listHtml = _td.renderHtml(investListScatter,{
 				list:res.content.list,
 			});
-			$('.invest_list_bot').html(bannerHtml);
+			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_scatter");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(type,e.current,10,function(res){
 					invest.setData(res);
-					bannerHtml = _td.renderHtml(investListScatter,{
+					listHtml = _td.renderHtml(investListScatter,{
 						list:res.content.list,
 					});
-					$('.invest_list_bot').html(bannerHtml);
+					$('.invest_list_bot').html(listHtml);
 					invest.setShow("list_scatter");
 				},function(){
 					console.log("分页点击请求失败");
@@ -96,18 +96,18 @@ var invest = {
 	getListBond : function(type){
 		_apiInvest.getInvestListBond(type,1,10,function(res){
 			invest.setUnit(res);
-			bannerHtml = _td.renderHtml(investListBond,{
+			listHtml = _td.renderHtml(investListBond,{
 				list:res.content.list,
 			});
-			$('.invest_list_bot').html(bannerHtml);
+			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_bond");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestListBond(type,e.current,10,function(res){
 					invest.setUnit(res);
-					bannerHtml = _td.renderHtml(investListBond,{
+					listHtml = _td.renderHtml(investListBond,{
 						list:res.content.list,
 					});
-					$('.invest_list_bot').html(bannerHtml);
+					$('.invest_list_bot').html(listHtml);
 					invest.setShow("list_bond");
 				},function(){
 					console.log("分页点击请求失败");

@@ -1,0 +1,70 @@
+{{#content}}
+<div id="eachart_main"></div>
+<div class="sum_money">
+	<div class="sum_moneyT">
+		<p>总资产（元）</p>
+		<div class="hint">
+			<i class="iconfont">&#xe68d;</i>
+			<div class="tips left-tips">
+				待收金额、账户余额与冻结资金的总和。
+			</div>
+		</div>
+	</div>
+	<!-- 上万后字体30px -->
+	<div class="sum_moneyB">{{totalFund}}</div>
+</div>
+<div class="eachart_R">
+	<ul>
+		<li>
+			<div class="eachart_Rtit">
+				<b class="principal_b"></b>
+				<p>待收本金<span>{{dueInPrincipal}}</span>元</p>
+			</div>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					待回款的本金之和
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="eachart_Rtit">
+				<b class="interest_b"></b>
+				<p>待收利息<span>{{dueInInterest}}</span>元</p>
+			</div>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					待回款的利息之和
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="eachart_Rtit">
+				<b class="balance_b"></b>
+				<p>可用余额<span>{{usableFund}}</span>元</p>
+			</div>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					充值资金，已回款资金和站岗资金的总和。
+				</div>
+			</div>
+		</li>
+		<li class="li_tips">
+			<div class="eachart_Rtit">
+				<b class="frozen_b"></b>
+				<p>冻结金额<span>{{freezeFund}}</span>元</p>
+			</div>
+			<div class="hint">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					<p>投资精选计划冻结金额：<b>0.00</b>元</p>
+					<p>投资散标冻结金额：<b>0.00</b>元</p>
+					<p>提现冻结金额：<b>0.00</b>元</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+{{/content}}

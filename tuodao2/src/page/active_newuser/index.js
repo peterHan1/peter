@@ -5,8 +5,14 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
 require('page/common/nav2/index.scss');
+
+
+
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
+var _del= require('util/delButton.js');
+
+
 $(function() {
 	_inp.focus("input");
 	_inp.blur("input");
@@ -144,39 +150,10 @@ $(function() {
 			$(".success_box .mid span i").text(0);
 		}
 	}, 1000);
-	del(".user",".btn");
-	del(".card",".btn");
-	del(".card_num",".btn");
-	del(".phoneNum",".btn");
-	del(".pay",".btn");
-	// 清空按钮显示
-	function del(name,el) {
-		$(name).on("focus", function() {
-			if ($(name).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-			}
-		});
-		$(name).on("blur", function() {
-			setTimeout(function() {
-				$(name).siblings(".del").hide();
-			}, 300);
-		});
-		$(name).on("keyup", function() {
-			if ($(this).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-			}
-		});
-		$(".del").on("click", function() {
-			$(this).siblings(name).val("");
-			check_form();
-			$(el).removeClass("kd");
-			$(el).on("mouseover", function() {
-				$(this).removeClass('color');
-			});
-		});
-	}
+
+	_del.inptxtDel(".user",".btn");
+	_del.inptxtDel(".card",".btn");
+	_del.inptxtDel(".card_num",".btn");
+	_del.inptxtDel(".phoneNum",".btn");
+	_del.inptxtDel(".pay",".btn");
 });

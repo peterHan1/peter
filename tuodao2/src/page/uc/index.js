@@ -5,17 +5,20 @@ require('page/common/nav/index.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');
 
+var _td			= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
+var _apigetuc 	= require('api/user-api.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var echarts 	= require('util/echarts/echarts.common.min.js');
+var getUserMon	= require('./getUserMon.string');
+var getUserEch	= require('./getUserEch.string');
+
 
 var uc = {
 	init : function(){
-		this.tipsHover();
 		this.signIn();
 		this.trColor();
 		this.recommend();
-		this.echar();
 		this.returnMon();
 		this.addHtml();
 	},
@@ -85,47 +88,6 @@ var uc = {
 		},function(){
 			$(this).find('.now-invest').remove();
 		});
-	},
-	echar : function(){
-		var myChart = echarts.init(document.getElementById('eachart_main'));
-		var option = {
-		    legend: {
-				orient: 'vertical',
-				top:'100',
-				x: 'right',
-				align:'left',
-				itemHeight:'25',
-				data:['直接访问','邮件营销','联盟广告','视频广告']
-			},
-			color:['#ff9691', '#87da87','#56c1f2','#fccd6e'],
-			series: [
-				{
-					type:'pie',
-					radius: ['100%', '90%'],
-					legendHoverLink:false,
-					avoidLabelOverlap: false,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
-					},
-					labelLine: {
-						normal: {
-							show: false
-						}
-					},
-					data:[
-						{value:6660},
-						{value:3100},
-						{value:2340},
-						{value:1350}
-					]
-				}
-			]
-		};
-		myChart.setOption(option);
 	},
 	// 回款日历加载函数
 	returnMon : function(){
@@ -208,31 +170,68 @@ var uc = {
 	},
 	addHtml : function(){
 		var userId=document.cookie.split(";")[0].split("=")[1];
-		console.log(userId);
-		$.ajax({
-			type: "POST",
-			url: "http://72.127.2.140:8080/api/router/user/getUserAccountInfo",
-			data: {
-				userId: "18539123451-lwvm5mx68dr2wxzqgnuc",
-				loginPassword:"e10adc3949ba59abbe56e057f20f883e",
-				loginSource:1
-			},
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader("accessId", "c132d4dd9810c9aad6cf0f2e99a2b662");
-				xhr.setRequestHeader("accessKey", "/v8amga5adgangbmadganabladaazga2adiaoaaxadmazgbladmayqa5adgamqaxagqamwawaduayqbkagyaywa5");
-				xhr.setRequestHeader("sign", "NO");
-			},
-			success: function(data) {
-				if(data.code == 100000){
-					console.log(data);
-				}else if(data.code == 100105){
-					console.log(data.msg);
-				}
-			},
-			error : function(data){
-				console.log(data);
-			}
+		var userData = {
+			userId : "18539123451-lwvm5mx68dr2wxzqgnuc",
+			loginPassword:"e10adc3949ba59abbe56e057f20f883e",
+			loginSource:1
+
+		};
+		_apigetuc.getUser(userData,function(res){
+			var dueInPrincipal = res.content.dueInPrincipal;
+			var dueInInterest = res.content.dueInInterest;
+			var usableFund = res.content.usableFund;
+			var freezeFund = res.content.freezeFund;
+			userMoneyHtml = _td.renderHtml(getUserMon,{
+				content:res.content,
+			});
+			userEchartHtml = _td.renderHtml(getUserEch,{
+				content:res.content,
+			});
+			$('.getUserMo').html(userMoneyHtml);
+			$('.eachart').html(userEchartHtml);
+			uc.tipsHover();
+			uc.addEchar(dueInPrincipal,dueInInterest,usableFund,freezeFund);
+		},function(){
+			console.log("请求失败");
 		});
+	},
+	addEchar : function(dueInPrincipal,dueInInterest,usableFund,freezeFund){
+		var myChart = echarts.init(document.getElementById('eachart_main'));
+		var nameM = ['待收本金','待收利息','可用余额','冻结金额'];
+		var dataM = [dueInPrincipal,dueInInterest,usableFund,freezeFund];
+		var option = {
+		    legend: {
+				orient: 'vertical',
+				top:'100',
+				x: 'right',
+				align:'left',
+				itemHeight:'25',
+				data:nameM
+			},
+			color:['#ff9691', '#87da87','#56c1f2','#fccd6e'],
+			series: [
+				{
+					type:'pie',
+					radius: ['100%', '90%'],
+					legendHoverLink:false,
+					avoidLabelOverlap: false,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data:dataM
+				}
+			]
+		};
+		myChart.setOption(option);
 	}
 };
 $(function(){

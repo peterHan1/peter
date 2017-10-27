@@ -85,6 +85,11 @@ b,i,em{
 					}
 				}
 			}
+			.total_bot:after{
+				clear: both;
+				content: '';
+				display: block;
+			}
 			dl{
 				text-align:left;
 				margin-left:70px;
@@ -230,6 +235,11 @@ b,i,em{
 					float: left;
 					cursor: pointer;
 				}
+			}
+			.sum_moneyT:after{
+				clear: both;
+				content: '';
+				display: block;
 			}
 			.sum_moneyB{
 				color:$fontColor70;

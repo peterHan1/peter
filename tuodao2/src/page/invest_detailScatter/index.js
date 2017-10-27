@@ -11,8 +11,8 @@ require('./fancybox/source/jquery.fancybox.js');
 require('./fancybox/source/jquery.fancybox.scss');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/invest_listDetails-api.js');
-var investListScatter = require('./invest_listDetails-scatter.string');
+var _apiInvest = require('api/investListDe-api.js');
+var investListScatter = require('./details-scatter.string');
 
 var investDetails = {
 	init : function(){
@@ -21,10 +21,10 @@ var investDetails = {
 	addHtml : function(){
 		_apiInvest.getInvestListDetails(1,function(res){
 			investDetails.setData(res);
-			bannerHtml = _td.renderHtml(investListScatter,{
+			listDetailsHtml = _td.renderHtml(investListScatter,{
 				content:res.content,
 			});
-			$('.detail_top_left').html(bannerHtml);
+			$('.detail_top_left').html(listDetailsHtml);
 			investDetails.setShow("detail_top_left");
 		},function(){
 			console.log("请求失败");

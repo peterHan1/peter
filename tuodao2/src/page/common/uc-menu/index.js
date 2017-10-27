@@ -1,11 +1,16 @@
 require('./index.scss');
-var _tips = require('util/tips/index.js');
+var _tips 		= require('util/tips/index.js');
+var _td			= require('util/td.js');
+var _apigetuc 	= require('api/user-api.js');
+var accountPho	= require('./uc_menu.string');
+
 var menuList = {
 	init : function(){
 		this.eachA();
 		this.eventFn();
 		this.liHover();
 		this.elHeight();
+		this.addHmtl();
 	},
 	eventFn : function(){
 		$(".menu_list").on("click",function(){
@@ -39,7 +44,7 @@ var menuList = {
 		});
 	},
 	eachA : function(){
-		$('.menu_fund a').each(function(){
+		$('.menu_bot li a').each(function(){
 			var locat = location.href;
 			var thisa = $(this).attr('href');
 			var symbol = locat.indexOf("?");
@@ -74,6 +79,31 @@ var menuList = {
 			$('.uc_menu').siblings('div').height(hL);
 			$(".uc_menu").height(hL);
 		}
+	},
+	addHmtl : function(){
+
+		var userData = {
+			userId : "18539123451-lwvm5mx68dr2wxzqgnuc",
+			loginPassword:"e10adc3949ba59abbe56e057f20f883e",
+			loginSource:1
+		};
+		_apigetuc.getUser(userData,function(res){
+			if(res.content.isOpenDeposit == 0){
+				res.content.isOpenDeposit = 'none';
+			}else if(res.content.isOpenDeposit == 1){
+				res.content.isOpenDeposit = 'high';
+			}
+			var cunguan = res.content.vipLevel;
+			accountHtml = _td.renderHtml(accountPho,{
+				content:res.content,
+			});
+			$('.menu_top').html(accountHtml);
+			$("#none").html("点击立即开通存管");
+			$("#high").html("存管已开通");
+			menuList.liHover();
+		},function(){
+			console.log("请求失败");
+		});
 	}
 };
 $(function(){

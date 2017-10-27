@@ -4,10 +4,15 @@ require('util/slider/jquery.slider.min.js');
 require('page/common/nav2/index.scss');
 require('util/security/security.js');
 require('util/security/security.scss');
+
+
+
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
 var _yzm = require('util/security/security.js');
 var md5 = require('util/md5.js');
+var _del= require('util/delButton.js');
+
 $(function() {
 	_inp.focus("input");
 	_inp.blur("input");
@@ -264,43 +269,7 @@ $(function() {
 		}
 	});
 
-	// 支付密码验证
-	function ValidateNumber(e, pnumber) {
-		if (!/^\d+$/.test(pnumber)) {
-			e.value = /^\d+/.exec(e.value);
-		}
-		return false;
-	}
-	// 清空按钮显示
-	del(".phoneNum", ".set_btn");
-	del(".pas", ".register_btn");
-
-	function del(name, el) {
-		$(name).on("focus", function() {
-			if ($(name).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-			}
-		});
-		$(name).on("blur", function() {
-			setTimeout(function() {
-				$(name).siblings(".del").hide();
-			}, 300);
-		});
-		$(name).on("keyup", function() {
-			if ($(this).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-			}
-		});
-		$(".del").on("click", function() {
-			$(this).siblings(name).val("");
-			$(el).removeClass("kd");
-			$(el).on("mouseover", function() {
-				$(this).removeClass('color');
-			});
-		});
-	}
+	// input框删除按钮
+	_del.inptxtDel(".phoneNum", ".set_btn");
+	_del.inptxtDel(".pas", ".register_btn");
 });

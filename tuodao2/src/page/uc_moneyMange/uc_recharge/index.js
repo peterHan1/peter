@@ -1,5 +1,4 @@
 require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
 require("./uc_recharge.scss");
 require("util/bankSelect/bankSelect.js");
 require("util/bankSelect/bankSelect.scss");
