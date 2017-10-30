@@ -7,8 +7,8 @@ var _uc = {
 			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/user/getUserAccountInfo'),
 			data 	: userData,
 			beforeSend: function(xhr){
-				xhr.setRequestHeader("accessId", "b034ffe885cc86fd9c55a965fec73ba8");
-				xhr.setRequestHeader("accessKey", "/v8aoaa3agiaywawagmanabkaguazaaxaguaoqbkadgaygblagyazga4adqaoabiadiaywbmadqamabhadeanqa1");
+				xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
+				xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
 				xhr.setRequestHeader("sign", "NO");
 			},
 			success : resolve,

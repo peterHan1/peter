@@ -4,27 +4,20 @@ var _product = {
 	// 精选计划
 	getSift : function(id,sta,startime,endtime,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListSift.json'),
+			method	: 'POST',
+			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/joinPlanController/getTenderByUserId'),
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
+				xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
+				xhr.setRequestHeader("sign", "NO");
+			},
 			data    : {
 				userId 		: id,
-				status 		: sta 		|| "0",
-				startTime 	: startime 	|| "",
-				endTime 	: endtime 	|| "",
-				pageSize  	: pagesize 	|| "10",
-				currentPage	: current 	|| "1"
-			},
-			success : resolve,
-			error   : reject
-		});
-	},
-	// 获取investList 债权转让
-	getInvestListBond : function(type,pagenum,pagesize,resolve, reject){
-		_td.request({
-			url     : _td.getServerUrl('/invest-listbond.json'),
-			data    : {
-				type			: type,
-				currentPage 	: 1 	|| pagenum,
-				pageSize 		: 10 	|| pagesize
+				status 		: sta 		|| " ",
+				startTime 	: startime 	|| " ",
+				endTime 	: endtime 	|| " ",
+				pageSize  	: pagesize 	|| 10,
+				currentPage	: current 	|| 1
 			},
 			success : resolve,
 			error   : reject

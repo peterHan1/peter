@@ -1,0 +1,75 @@
+{{#content}}
+<div class="sift_tit">
+	<a href="###" class="iconfont">&#xe6bb;</a>
+	<p>
+		<span class="return_money">[已回款]</span>
+		<span class="matching_money">[匹配中]</span>
+		<span class="repeal_money">[已撤标]</span>
+		<span class="underway_money">[回款中]</span>
+		{{productName}}
+	</p>
+</div>
+<div class="sift_con">
+	<table>
+		<thead>
+			<tr>
+				<th>加入金额（元）</th>
+				<th>预期收益（元）</th>
+				<th>
+					冻结金额（元）
+					<div class="hint">
+						<i class="iconfont">&#xe68d;</i>
+						<div class="tips left-tips">
+							投资精选计划期间待匹配金额不影<br/> 响最终收益。
+						</div>
+					</div>
+				</th>
+				<th>已到账收益</th>
+				<th>奖励（元）
+					<div class="hint">
+						<i class="iconfont">&#xe68d;</i>
+						<div class="tips left-tips">
+							平台加息奖励，按每期回款进行发放。
+						</div>
+					</div>
+				</th>
+				<th>优惠券</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{preAccount}}</td>
+				<td>300.00</td>
+				<td>{{frostAccount}}</td>
+				<td>{{arrivalAccount}}</td>
+				<td>10.00</td>
+				<td class="td_font"><span>1%</span>加息券</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="sift_con_mes">
+		<div class="sift_con_mesL">
+			<ul>
+				<li>
+					预期年化：<span>10%</span>
+				</li>
+				<li>
+					加入时间：<span>{{addTime}}</span>
+				</li>
+				<li>
+					还款方式：<span>{{repayType}}</span>
+				</li>
+				<li>
+					预计退出时间：<span>{{outTime}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="sift_con_mesR">
+			<a href="###">《精选计划授权委托书》</a>
+			<!-- <p>投资金额和优惠券已返回到账户</p> -->
+			<!-- <p>满标复审后生成授权委托书</p> -->
+		</div>
+	</div>
+</div>
+{{/content}}

@@ -14,60 +14,71 @@ var investSift = require('./Invest_sift.string');
 var ucInvest = {
 	init : function(){
 		var userId = "18539123451-lwvm5mx68dr2wxzqgnuc";
-		this.eventFn();
-		this.page();
+		this.eventFn(userId);
 		this.addHtml(userId,"","","","","");
 	},
 	addHtml : function(userId,sta,startime,endtime,pagesize,current){
 		_apiInvest.getSift(userId,sta,startime,endtime,pagesize,current,function(res){
-			console.log("userId: " + userId);
-			console.log("userId: " + sta);
-			console.log("startime: " + startime);
-			console.log("endtime: " + endtime);
-			console.log("pagesize: " + pagesize);
-			console.log("current: " + current);
-			listSiftHtml = _td.renderHtml(investSift,{
-				list:res.content.list,
-			});
-			$("#tbody_list").html(listSiftHtml);
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getSift(dataList,function(res){
-					listSiftHtml = _td.renderHtml(investSift,{
-						list:res.content.list,
-					});
-					$("#tbody_list").html(listSiftHtml);
-					ucInvest.trColor();
+			// if(res.content != null){
+				listSiftHtml = _td.renderHtml(investSift,{
+					list:res.content.list,
 				});
-			});
-			ucInvest.tipsHover();
-			ucInvest.trColor();
+				$("#tbody_list").html(listSiftHtml);
+				_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+					_apiInvest.getSift(userId,sta,startime,endtime,pagesize,e.current,function(res){
+						listSiftHtml = _td.renderHtml(investSift,{
+							list:res.content.list,
+						});
+						$("#tbody_list").html(listSiftHtml);
+						ucInvest.tipsHover();
+						ucInvest.trColor();
+					});
+				});
+				ucInvest.tipsHover();
+				ucInvest.trColor();
+			// }else{
+				// var dataNones='<tr><td colspan="8"><div class="null_data" colspan="8"><div class="null_data_bg"></div><p>当前没有加入记录</p></div></td></tr>';
+				// $("#tbody_list").html(dataNones);
+			// }
 		},function(){
 			console.log("请求失败");
 		});
 	},
-	eventFn : function(){
+	eventFn : function(userId){
 		$(".start_date").on("click",function(){
+			var _this = $(this);
+			var sta = $(this).parent(".uc_invest_tabR").attr("status");
+			var endTime = $("#end_date").attr('endDate');
 			laydate({
 				elem: '#start_date',
 				format: 'YYYY-MM-DD',
 				// 选择时间后回调
 			 	choose: function(dates){
-			 		console.log(dates);
+			 		$("#start_date").attr("startDate",dates);
+					ucInvest.addHtml(userId,sta,dates,endTime,"","");
+
 			  	}
 			});
 		});
 		$(".end_date").on("click",function(){
+			var _this = $(this);
+			var sta = $(this).parent(".uc_invest_tabR").attr("status");
+			var startTime = $("#start_date").attr('startDate');
 			laydate({
 				elem: '#end_date',
 				format: 'YYYY-MM-DD',
 				// 选择时间后回调
 			 	choose: function(dates){
-			 		console.log(dates);
+			 		$("#end_date").attr("endDate",dates);
+					ucInvest.addHtml(userId,sta,startTime,dates,"","");
 			  	}
 			});
 		});
 		$(".uc_invest_tabL li").on("click",function(){
+			var sta = $(this).attr("status");
+			$(".uc_invest_tabR").attr("status",sta);
 			$(this).addClass('on').siblings('li').removeClass('on');
+			ucInvest.addHtml(userId,sta,"","","","");
 		});
 	},
 	tipsHover : function(){

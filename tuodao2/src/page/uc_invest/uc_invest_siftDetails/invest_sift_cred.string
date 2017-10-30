@@ -1,0 +1,12 @@
+{{#list}}
+<tr>
+	<td class="padd_left">NO.{{borrowNid}}</td>
+	<td class="td_name">
+		<a href="###">{{productName}}</a>
+	</td>
+	<td>{{addTime}}</td>
+	<td>{{account}}</td>
+	<td>{{status}}</td>
+	<td class="tb_oper" opera={{status}}></td>
+</tr>
+{{/list}}

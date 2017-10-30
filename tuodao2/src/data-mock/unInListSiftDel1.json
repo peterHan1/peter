@@ -1,0 +1,23 @@
+  
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "borrowId": 1,
+             "productName": "质押天标",
+             "borrowNid": "20131200001",
+             "borrowType": null,
+             "repayType": "0",
+             "outTime": "2017-09-26",
+             "preAccount": "20000.00",
+             "preAccountInterest": "121.22",
+             "platformInterest": "0.00",
+             "voucherCouponId": 6,
+             "voucherId": 5,
+             "addTime": "2017-09-19 16:07",
+             "arrivalAccount": "0.0",
+             "frostAccount": "20000.0"
+      },
+      "success": true
+}

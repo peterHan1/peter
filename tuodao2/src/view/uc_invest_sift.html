@@ -16,16 +16,16 @@
 					<div class="uc_invest_tab">
 						<div class="uc_invest_tabL">
 							<ul>
-								<li class="on">全部</li>
-								<li>匹配中</li>
-								<li>回款中</li>
-								<li>已回款</li>
+								<li class="on" status=" ">全部</li>
+								<li status="0">匹配中</li>
+								<li status="1">回款中</li>
+								<li status="4">已回款</li>
 							</ul>
 						</div>
-						<div class="uc_invest_tabR">
-							<div class="calendar start_date"><p class="layer_date" id="start_date">选择开始时间</p><i class="iconfont">&#xe6a4;</i></div>
+						<div class="uc_invest_tabR" status>
+							<div class="calendar start_date"><p class="layer_date" id="start_date" startDate>选择开始时间</p><i class="iconfont">&#xe6a4;</i></div>
 							至
-							<div class="calendar end_date"><p class="layer_date" id="end_date">选择结束时间</p><i class="iconfont">&#xe6a4;</i></div>
+							<div class="calendar end_date"><p class="layer_date" id="end_date" endDate>选择结束时间</p><i class="iconfont">&#xe6a4;</i></div>
 						</div>
 					</div>
 					<div class="table_list">
@@ -187,11 +187,6 @@
 						</table>
 					</div>
 					<div class="zxf_pagediv"></div>
-					<!-- 无数据 -->
-					<!-- <div class="null_data">
-						<div class="null_data_bg"></div>
-						<p>当前没有加入记录</p>
-					</div> -->
 				</div>
 			</div>
 		</div>
