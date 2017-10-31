@@ -67,42 +67,6 @@
 				margin: 0 30px;
 			}
 		}
-		.draw_content{
-			position: relative;
-		}
-		.go_child{
-			text-align: center;
-			width: 225px;
-			height: 225px;
-			-webkit-border-radius: 18px;
-			-moz-border-radius: 18px;
-			border-radius: 18px;
-			-webkit-box-shadow: 0 0 10px rgba(255,119,0,0.3);
-			-moz-box-shadow: 0 0 10px rgba(255,119,0,0.3);
-			box-shadow: 0 0 10px rgba(255,119,0,0.3);
-			cursor: pointer;
-			position: absolute;
-			left: 477px;
-			top: 261px;
-			.go_word{
-				font-size:24px;
-				color:#fff;
-				padding-top: 135px;
-			}
-			.none_points a{
-				font-size: 20px;
-				font-weight: bold;
-				margin-top: 50px;
-				color: #FF3049;
-				display: none;
-			}
-		}
-		.back_go{
-			background: url('../../../image/welfare/draw_go.png') no-repeat;
-		}
-		.back_go_yes{
-			background: url('../../../image/welfare/draw_go_yes.png') no-repeat;
-		}
 		.draw_presents{
 			width: 747px;
 			height: 727px;
@@ -121,20 +85,19 @@
 				text-align: center;
 				width: 225px;
 				height: 220px;
-				-webkit-border-radius: 18px;
-				-moz-border-radius: 18px;
-				border-radius: 18px;
+				-webkit-border-radius: 16px;
+				-moz-border-radius: 16px;
+				border-radius: 16px;
 				-webkit-box-shadow: 0 0 10px rgba(255,119,0,0.3);
 				-moz-box-shadow: 0 0 10px rgba(255,119,0,0.3);
 				box-shadow: 0 0 10px rgba(255,119,0,0.3);
-				// background: url('../../../image/welfare/presents_bg.png') no-repeat;
-				&.back_normal{
-					background: url('../../../image/welfare/presents_bg.png') no-repeat;
+				background: url('../../../image/welfare/presents_bg.png') no-repeat;
+				&.active{
+				    -webkit-box-shadow: 0 0 40px rgba(255,119,0,1);
+				    -moz-box-shadow: 0 0 40px rgba(255,119,0,1);
+				    box-shadow: 0 0 40px rgba(255,119,0,1);
 				}
-				&.back_yes{
-					background: url('../../../image/welfare/presents_yes.png') no-repeat;
-				}
-				.present_content{
+				.presents_content{
 					height: 160px;
 					line-height: 270px;
 				}
@@ -149,7 +112,7 @@
 				&.fifth_child{
 					height: 225px;
 					margin-bottom: 12px;
-					// background: url('../../../image/welfare/draw_go.png') no-repeat;
+					background: url('../../../image/welfare/draw_go.png') no-repeat;
 					cursor: pointer;
 					.go_word{
 						font-size:24px;
@@ -164,8 +127,19 @@
 						display: none;
 					}
 				}
+				/* &.back_normal{
+					background: url('../../../image/welfare/presents_bg.png') no-repeat;
+				} */
+				&.back_yes{
+					background: url('../../../image/welfare/presents_yes.png') no-repeat;
+				}
+				&.back_go{
+					background: url('../../../image/welfare/draw_go.png') no-repeat;
+				}
+				&.back_go_yes{
+					background: url('../../../image/welfare/draw_go_yes.png') no-repeat;
+				}
 			}
-			
 		}
 		.draw_points li p{
 			color: #B08C54;

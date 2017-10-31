@@ -1,0 +1,16 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "minAccount": 1,
+             "maxAccount": 100000,
+             "minPeriod": 1,
+             "maxPeriod": 36,
+             "useCoupon": 0,
+             "status": 1,
+             "totalAutoTender": 1,
+             "ranking": 1
+      },
+      "success": true
+}

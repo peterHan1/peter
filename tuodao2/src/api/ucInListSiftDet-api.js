@@ -36,8 +36,8 @@ var _product = {
 			error   : reject
 		});
 	},
-	paging : function(pages,pageNum,pageSize,backFuntion){
-		$(".zxf_pagediv").createPage({
+	paging : function(el,pages,pageNum,pageSize,backFuntion){
+		$("." + el).createPage({
 			// 页数 pages
 			pageNum: pages,
 			// 当前页 pageNum

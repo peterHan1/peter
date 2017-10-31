@@ -3,32 +3,14 @@ var _uc = {
 	// 获取商品列表
 	getUser : function(userData,resolve, reject){
 		_td.request({
-			method 	: "POST",
-			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/user/getUserAccountInfo'),
+			// method 	: "POST",
+			url     : _td.getServerUrl('/user.json'),
 			data 	: userData,
-			beforeSend: function(xhr){
-				xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
-				xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
-				xhr.setRequestHeader("sign", "NO");
-			},
-			success : resolve,
-			error   : reject
-		});
-	},
-	// 提交订单
-	createOrder : function(orderInfo, resolve, reject){
-		_td.request({
-			url     : _td.getServerUrl('/order/create.do'),
-			data    : orderInfo,
-			success : resolve,
-			error   : reject
-		});
-	},
-	// 获取订单列表
-	getOrderList : function(listParam, resolve, reject){
-		_td.request({
-			url     : _td.getServerUrl('/order/list.do'),
-			data    : listParam,
+			// beforeSend: function(xhr){
+			// 	xhr.setRequestHeader("accessId", "c5dc28317edb57b2ad7c7ad5813c3fb1");
+			// 	xhr.setRequestHeader("accessKey", "/v8aygbmadgamaa3aguazgayadmazaa5agmamwa0adaazaa4adiaoqa3agyaoabhadaazqaxagmazqa0admaoaa2");
+			// 	xhr.setRequestHeader("sign", "NO");
+			// },
 			success : resolve,
 			error   : reject
 		});

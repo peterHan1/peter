@@ -1,0 +1,98 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": 1,
+             "pageSize": 10,
+             "size": 6,
+             "orderBy": null,
+             "startRow": 1,
+             "endRow": 6,
+             "total": 6,
+             "pages": 1,
+             "list":
+             [
+                    {
+                           "discountTitle": "满5000元标的期限1个月及以上使用",
+                           "discountAvailable": "30",
+                           "effectDate": 1506614400000,
+                           "effectDay": 15,
+                           "invalidDate": 1507910400000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 5000,
+                           "dateLimit": 1,
+                           "dateExplain": "2017-09-29-2017-10-14"
+                    },
+                    {
+                           "discountTitle": "满1000元标的期限1个月及以上使用",
+                           "discountAvailable": "10",
+                           "effectDate": 1506614400000,
+                           "effectDay": 7,
+                           "invalidDate": 1507219200000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 1000,
+                           "dateLimit": 1,
+                           "dateExplain": "2017-09-29-2017-10-06"
+                    },
+                    {
+                           "discountTitle": "满10000元标的期限1个月及以上使用",
+                           "discountAvailable": "60",
+                           "effectDate": 1506614400000,
+                           "effectDay": 30,
+                           "invalidDate": 1509206400000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 10000,
+                           "dateLimit": 1,
+                           "dateExplain": "2017-09-29-2017-10-29"
+                    },
+                    {
+                           "discountTitle": "满25000元标的期限1个月及以上使用",
+                           "discountAvailable": "100",
+                           "effectDate": 1506614400000,
+                           "effectDay": 30,
+                           "invalidDate": 1509206400000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 25000,
+                           "dateLimit": 1,
+                           "dateExplain": "2017-09-29-2017-10-29"
+                    },
+                    {
+                           "discountTitle": "满10000元标的期限3个月及以上使用",
+                           "discountAvailable": "80",
+                           "effectDate": 1506614400000,
+                           "effectDay": 65,
+                           "invalidDate": 1512230400000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 25000,
+                           "dateLimit": 3,
+                           "dateExplain": "2017-09-29-2017-12-03"
+                    },
+                    {
+                           "discountTitle": "满25000元标的期限3个月及以上使用",
+                           "discountAvailable": "108",
+                           "effectDate": 1506614400000,
+                           "effectDay": 65,
+                           "invalidDate": 1512230400000,
+                           "source": "来自新手福利",
+                           "moneyLimit": 25000,
+                           "dateLimit": 3,
+                           "dateExplain": "2017-09-29-2017-12-03"
+                    }
+             ],
+             "firstPage": 1,
+             "prePage": 0,
+             "nextPage": 0,
+             "lastPage": 1,
+             "isFirstPage": true,
+             "isLastPage": true,
+             "hasPreviousPage": false,
+             "hasNextPage": false,
+             "navigatePages": 8,
+             "navigatepageNums":
+             [
+                    1
+             ]
+      },
+      "success": true
+}

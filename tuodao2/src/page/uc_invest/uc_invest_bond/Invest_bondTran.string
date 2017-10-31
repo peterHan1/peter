@@ -1,0 +1,17 @@
+{{#list}}
+	<tr>
+		<td class="padd_left">NO.{{productCode}}</td>
+		<td class="td_name"><a href="###">{{productTitle}}</a>
+		<div class="tips left-tips">
+			{{productTitle}}
+		</div>
+		</td>
+		<td class="td_time">{{addTime}}</td>
+		<td>{{recoverCapital}}</td>
+		<td>{{remaining}}期</td>
+		<td>{{borrowApr}}%</td>
+		<td>{{claimsValue}}</td>
+		<td>{{discount}}</td>
+		<td>{{fee}}</td>
+	</tr>
+{{/list}}

@@ -14,10 +14,10 @@ var siftRet = require('./invest_sift_return.string');
 var ucInvest = {
 	init : function(){
 		this.eventFn();
-		this.tipsHover();
 		this.trColor();
 		this.siftTopHtml();
 		this.siftCreHtml();
+		this.siftRetHtml();
 	},
 	siftTopHtml : function(){
 		_apiInvest.getSiftDel(1,function(res){
@@ -25,6 +25,7 @@ var ucInvest = {
 				content:res.content,
 			});
 			$(".sift_detailsT").html(siftDelHtml);
+			ucInvest.tipsHover();
 		},function(){
 			console.log("请求失败");
 		});
@@ -39,7 +40,7 @@ var ucInvest = {
 			});
 			$("#tbody_list").html(siftCreHtml);
 			ucInvest.siftCreOper(borwA,tranA);
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_apiInvest.paging("crePage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getSiftCred(1,5,e.current,function(res){
 					ucInvest.siftCreStatus(res);
 					siftCreHtml = _td.renderHtml(siftCre,{
@@ -49,6 +50,26 @@ var ucInvest = {
 				},function(){
 					console.log("分页请求失败");
 				});
+			});
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	siftRetHtml : function(){
+		_apiInvest.getSiftReturn(1,function(res){
+			console.log(res);
+			siftReHtml = _td.renderHtml(siftRet,{
+				list:res.content.list,
+			});
+			$("#tbodys_list").html(siftReHtml);
+			ucInvest.siftRetStatus();
+			ucInvest.trColor();
+			_apiInvest.paging("retPage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				siftReHtml = _td.renderHtml(siftRet,{
+					list:res.content.list,
+				});
+				ucInvest.siftRetStatus();
+				ucInvest.trColor();
 			});
 		},function(){
 			console.log("请求失败");
@@ -80,6 +101,17 @@ var ucInvest = {
 				resList[i].status = "匹配中";
 			}else if(resList[i].status == "2"){
 				resList[i].status = "转让成功";
+			}
+		});
+	},
+	siftRetStatus : function(){
+		// 剩余期限单位
+		$.each($(".td_wid"),function(i){
+			var sta = $(this).attr("status");
+			if(sta == "已回款"){
+				$(this).addClass("return_money");
+			}else if(sta == "待回款"){
+				$(this).addClass("underway_money");
 			}
 		});
 	},

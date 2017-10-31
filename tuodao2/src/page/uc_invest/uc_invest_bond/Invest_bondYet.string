@@ -1,0 +1,17 @@
+{{#list}}
+<tr>
+	<td class="padd_left">NO.{{productCode}}</td>
+	<td class="td_name"><a href="###">{{productTitle}}</a>
+	<div class="tips left-tips">
+		{{productTitle}}
+	</div>
+	</td>
+	<td class="td_time">{{addTime}}</td>
+	<td>{{claimsValue}}</td>
+	<td>{{remaining}}期</td>
+	<td>100,000.00</td>
+	<td>{{reward}}</td>
+	<td>{{status}}</td>
+	<td class='td_details'><a href="uc_invest_bondDetails.html">查看详情</a></td>
+</tr>
+{{/list}}

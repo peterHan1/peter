@@ -39,10 +39,10 @@
 		<tbody>
 			<tr>
 				<td>{{preAccount}}</td>
-				<td>300.00</td>
+				<td>{{preAccountInterest}}</td>
 				<td>{{frostAccount}}</td>
 				<td>{{arrivalAccount}}</td>
-				<td>10.00</td>
+				<td>{{platformInterest}}</td>
 				<td class="td_font"><span>1%</span>加息券</td>
 			</tr>
 		</tbody>

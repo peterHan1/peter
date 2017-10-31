@@ -1,0 +1,16 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "productTitle": "产品标题",
+             "interest": "利息",
+             "reward": "奖励",
+             "borrowApr": "年利率",
+             "amount": "投资金额",
+             "repayLastTime": "到期时间",
+             "styleType": "0 等额本息 1按月付息",
+             "day": "距离到期日"
+      },
+      "success": true
+}

@@ -79,7 +79,7 @@
                            "preAccountInterest": "6666.00",
                            "voucherId": 5,
                            "voucherCouponId": 6,
-                           "status": "匹配中",
+                           "status": "已撤标",
                            "tenderId": "31",
                            "useVoucherRemark": "抵扣80元"
                     }

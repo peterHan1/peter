@@ -1,0 +1,3 @@
+{{#content}}
+<b >已有<span class="now">{{totalAutoTender}}</span>位用户开启自动投标</b>
+{{/content}}

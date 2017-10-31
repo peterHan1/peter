@@ -77,7 +77,7 @@ var _regular = {
 				} else {
 					$("." + data.elm).siblings('.' + data.cls).remove();
 					$("." + data.elm).removeClass("red");
-					_this.checkPhoneOnlyOnRegister({
+					_this.checkPhoneOnly({
 						elm: data.elm,
 						cls: data.cls,
 						callback: function(result) {
@@ -87,7 +87,6 @@ var _regular = {
 					});
 				}
 			}
-			data.callback(status);
 		});
 	},
 	// blur的时候 验证手机号码格式以及唯一性
@@ -107,7 +106,7 @@ var _regular = {
 				status = false;
 			} else {
 				$("." + data.elm).siblings('.' + data.cls).remove();
-				_this.checkPhoneOnlyOnRegister({
+				_this.checkPhoneOnly({
 					elm: data.elm,
 					cls: data.cls,
 					callback: function(result) {
@@ -116,7 +115,6 @@ var _regular = {
 					}
 				});
 			}
-			data.callback(status);
 		});
 	},
 	// 验证手机号码唯一性（注册）
@@ -150,6 +148,7 @@ var _regular = {
 		var flag;
 		var value = $("." + data.elm).val();
 		_checkPhone.checkPhone(value, function(res) {
+			console.log(res);
 			if (value != "" && res.content == true) {
 				flag = true;
 				$("." + data.elm).removeClass("red");

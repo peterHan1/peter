@@ -1,0 +1,11 @@
+<ul class="change">
+{{#list}}
+	<li type="{{type}}" data-id="{{id}}">
+		<div class="change_img">
+			<i>{{numValue}}</i>%&nbsp;年利率加息
+		</div>
+		<div class="btn_div">每张兑换需要{{needScore}}积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
+		<div class="change_btn">立即兑换</div>
+	</li>
+{{/list}}
+</ul>

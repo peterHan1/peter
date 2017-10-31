@@ -1,0 +1,10 @@
+<ul class="draw_presents draw_points" id="draw_point" >
+{{#list}}
+	<li class="back_normal" data-priseName={{priseName}}>
+		<div class="points_content">
+			<img src="../../../image/welfare/688jf.png" alt="">
+		</div>
+		<p>{{prizeName}}</p>
+	</li>
+{{/list}}
+</ul>

@@ -1,0 +1,15 @@
+{{#list}}
+<tr>
+	<td class="padd_left">NO.{{productCode}}</td>
+	<td class="td_name"><a href="uc_invest_bondDetails.html">{{productTitle}}</a>
+	<div class="tips left-tips">
+		{{productTitle}}
+	</div>
+	</td>
+	<td>{{borrowApr}}%</td>
+	<td>{{productPeriod}}期</td>
+	<td>{{remaining}}期</td>
+	<td>{{recoverCapital}}</td>
+	<td class="transfer_clk"><a href="###">申请转让</a></td>
+</tr>
+{{/list}}

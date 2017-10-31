@@ -1,0 +1,24 @@
+{{#content}}
+<div class="record_tit">
+	<a href="###" class="iconfont">&#xe6bb;</a>
+	<p>分散投资记录 ( {{addTime}} )</p>
+</div>
+<div class="record_con">
+	<table>
+		<thead>
+			<tr>
+				<th>投资金额（元）</th>
+				<th>投资期限（月）</th>
+				<th>优惠券</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{tenderMoney}}</td>
+				<td>{{minPeriod}}-{{maxPeriod}}</td>
+				<td class="td_font"><span>1%</span>加息券</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+{{/content}}

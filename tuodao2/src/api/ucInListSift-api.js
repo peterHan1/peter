@@ -4,13 +4,13 @@ var _product = {
 	// 精选计划
 	getSift : function(id,sta,startime,endtime,pagesize,current,resolve, reject){
 		_td.request({
-			method	: 'POST',
-			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/joinPlanController/getTenderByUserId'),
-			beforeSend: function(xhr){
+			// method	: 'POST',
+			url     : _td.getServerUrl('/unInListSift.json'),
+			/*beforeSend: function(xhr){
 				xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
 				xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
 				xhr.setRequestHeader("sign", "NO");
-			},
+			},*/
 			data    : {
 				userId 		: id,
 				status 		: sta 		|| " ",

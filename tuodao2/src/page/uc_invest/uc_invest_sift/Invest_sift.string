@@ -10,7 +10,7 @@
 	<td>{{preAccount}}</td>
 	<td>{{preAccountInterest}}</td>
 	<td>{{useVoucherRemark}}</td>
-	<td>{{status}}</td>
-	<td class="td_details"><a href="uc_invest_siftDetails.html">查看详情</a></td>
+	<td class="td_sta">{{status}}</td>
+	<td class="td_details"><a href="uc_invest_siftDetails.html?justId={{tenderId}}&status={{status}}">查看详情</a></td>
 </tr>
 {{/list}}

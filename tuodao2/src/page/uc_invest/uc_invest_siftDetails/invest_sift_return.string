@@ -1,0 +1,8 @@
+{{#list}}
+<tr>
+	<td class="padd_left">{{preCollectionTime}}</td>
+	<td>{{preInterest}}</td>
+	<td class="td_wid" status="{{status}}">{{status}}</td>
+</tr>
+
+{{/list}}

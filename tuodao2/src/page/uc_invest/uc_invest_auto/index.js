@@ -6,16 +6,114 @@ require('util/layer/layer.js');
 require('util/layer/layer.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
+var _td 		= 	require('util/td.js');
+var _tips	 	= 	require('util/tips/index.js');
+var _apiInvest 	= 	require('api/ucInListAuto-api.js');
+var setInp 		= 	require('./setInp.string');
+var autoSum 	= 	require('./autoSum.string');
+var autoRank 	= 	require('./autoRank.string');
+var autoList 	= 	require('./autoList.string');
 
 var ucInvest = {
 	init : function(){
-		this.customInput();
 		this.eventFn();
-		this.tipsHover();
 		this.urlEach();
 		this.trColor();
 		this.page();
+		this.getAutoSum();
+	},
+	urlEach : function(){
+		$('.auto_switchTab a').each(function () {
+			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+				var types = $(this).attr('type');
+				var index = $(this).parent().index();
+				$(this).addClass('on');
+				$(".auto_com").eq(index).show().siblings(".auto_com").hide();
+				if(types == "1"){
+					ucInvest.getAutoList();
+				}
+			} else {
+				$(this).removeClass('on');
+			};
+
+		});
+	},
+	eventFn : function(){
+		// 自动投标点击
+		$("#switch").on("click",function(){
+			if($(this).is('.switch_off')){
+				ucInvest.getBank($(this));
+			}else{
+				ucInvest.closAuto($(this));
+			}
+		});
+	},
+	// 开启自动投标总人数
+	getAutoSum : function(){
+		_apiInvest.closeAuto(function(res){
+			autoSum = _td.renderHtml(autoSum,{
+				content:res.content,
+			});
+			$('.auto_tips').html(autoSum);
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	// 是否开通存管
+	getBank : function(el){
+		_apiInvest.getAutoBank(function(res){
+			if(res.code == 100000){
+				el.attr("class","switch_on");
+				$(".auto_ranking").show();
+				$(".auto_setForm").show();
+				var flag = res.content;
+				if(flag == true){
+					var banlHtml = '<div class="auto_deposit"><div class="auto_deposit_bg"></div><p>为了保障您的资金安全,请在充值、投资、提现前开通存管</p><a href="">立即激活存管用户</a></div>';
+					$(".auto_setBox").html(banlHtml);
+				}else{
+					ucInvest.setInpForm();
+				}
+			}
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	setInpForm : function(){
+		_apiInvest.getInpForm(function(res){
+			inpSet = _td.renderHtml(setInp,{
+				content:res.content,
+			});
+			$('.auto_setBox').html(inpSet);
+			ranking = _td.renderHtml(autoRank,{
+				content:res.content,
+			});
+			$(".auto_tips").html(ranking);
+			ucInvest.customInput();
+			ucInvest.setForm();
+			ucInvest.tipsHover();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	getAutoList : function(){
+		_apiInvest.getautoList(function(res){
+			list = _td.renderHtml(autoList,{
+				list:res.content.list,
+			});
+			$('#tbody_list').html(list);
+			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiInvest.getautoList(function(res){
+					list = _td.renderHtml(autoList,{
+						list:res.content.list,
+					});
+					$('#tbody_list').html(list);
+				},function(){
+					console.log("分页请求失败");
+				});
+			});
+		},function(){
+			console.log("请求失败");
+		});
 	},
 	customInput : function(){
 		// 自定义radio
@@ -33,32 +131,21 @@ var ucInvest = {
 			$(this).parent().siblings("p").find(".month").text(value);
 		});
 	},
-	eventFn : function(){
-		$(".layer_date").on("click",function(event){
-			if(event.target==this){
-				laydate({
-					format: 'YYYY-MM-DD',
-					// 选择时间后回调
-				 	choose: function(dates){
-				 		console.log(dates);
-				  	}
-				});
-			}
-		});
-		// 自动投标点击
-		$("#switch").on("click",function(){
-			if($(this).is('.switch_off')){
-				$(this).attr("class","switch_on");
-				$(".auto_tips").hide();
-				$(".auto_ranking").show();
-				$(".auto_setForm").show();
-			}else{
-				$(this).attr("class","switch_off");
-				$(".auto_tips").show();
+	closAuto : function(el){
+		_apiInvest.getAutoBank(function(res){
+			if(res.code == 100000){
+				el.attr("class","switch_off");
 				$(".auto_ranking").hide();
 				$(".auto_setForm").hide();
+				ucInvest.getAutoSum();
+			}else{
+				alert("关闭失败");
 			}
+		},function(){
+			console.log("请求失败");
 		});
+	},
+	setForm : function(){
 		// 点击修改
 		$(".set_btn").on("click",function(){
 			$(".select_com").addClass("select");
@@ -99,18 +186,7 @@ var ucInvest = {
 			$(this).find('.tips').hide();
 		});
 	},
-	urlEach : function(){
-		$('.auto_switchTab a').each(function () {
-			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
-				$(this).addClass('on');
-				var index = $(this).parent().index();
-				$(".auto_com").eq(index).show().siblings(".auto_com").hide();
-			} else {
-				$(this).removeClass('on');
-			};
 
-		});
-	},
 	trColor : function(){
 		trColor('tbody_list');
 		// 各行变色

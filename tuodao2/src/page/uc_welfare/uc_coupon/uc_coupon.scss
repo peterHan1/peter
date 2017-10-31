@@ -57,11 +57,6 @@
 			display: none;
 		}
 	}
-	.dyq_ticket_no,.jxq_ticket_no{
-		li img{
-			display: inline-block;
-		}
-	}
 	.dyq_ticket_yes{
 		li{
 			background: url('../../../image/dyq.png')center no-repeat;
@@ -73,16 +68,16 @@
 	.dyq_ticket_no{
 		li{
 			background: url('../../../image/yhq_no.png')center no-repeat;
+			img{
+				display: none;
+			}
 		}
 	}
 	.dyq_ticket_guoqi{
 		li{
 			background: url('../../../image/guoqi.png')center no-repeat;
-			.ticket_bottom{
-				padding-bottom: 3px;
-			}
-			.ticket_bottom span{
-				margin-top: 2px;
+			img{
+				display: none;
 			}
 		}
 	}
@@ -106,16 +101,16 @@
 	.jxq_ticket_no{
 		li{
 			background: url('../../../image/yhq_no.png')center no-repeat;
+			img{
+				display: none;
+			}
 		}
 	}
 	.jxq_ticket_guoqi{
 		li{
 			background: url('../../../image/guoqi.png')center no-repeat;
-			.ticket_middle{
-				padding-bottom: 3px;
-			}
-			.ticket_bottom span{
-				margin-top: 2px;
+			img{
+				display: none;
 			}
 		}
 	}

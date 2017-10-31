@@ -74,7 +74,7 @@ var menuList = {
 		var hR = $('.uc_menu').siblings('div').height();
 		if(hR>hL){
 			$(".uc_menu").height(hR);
-			// $('.uc_menu').siblings('div').height(hR);
+			$('.uc_menu').siblings('div').height(hR);
 		}else{
 			$('.uc_menu').siblings('div').height(hL);
 			$(".uc_menu").height(hL);

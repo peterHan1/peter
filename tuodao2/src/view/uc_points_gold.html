@@ -22,11 +22,11 @@
 				<div class="mypoints">
 					<div class="mypoints1">
 						<div class="pointsmenu">可用积分</div>
-						<div class="pointsNum">200.00</div>
+						<div class="pointsNum points_current">200.00</div>
 					</div>
 					<div class="mypoints2">
 						<div class="pointsmenu">累计获得积分</div>
-						<div class="pointsNum">100.00</div>
+						<div class="pointsNum points_total">100.00</div>
 					</div>
 				</div>
 				<div class="mygold" style="display:none;">
@@ -43,37 +43,39 @@
 					<a id="get_points">获取积分</a>
 				</div>
 				<div class="exchange_detail points_detail">
-					<ul class="change">
-						<li>
-							<div class="change_img">
-								<i>1</i>%&nbsp;年利率加息
-							</div>
-							<div class="btn_div">每张兑换需要100积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
-							<div class="change_btn">立即兑换</div>
-						</li>
-						<li>
-							<div class="change_img">
-								<i>2</i>%&nbsp;年利率加息
-							</div>
-							<div class="btn_div">每张兑换需要500积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
-							<div class="change_btn">立即兑换</div>
-						</li>
-						<li style="margin-right:0px;">
-							<div class="change_img">
-								<i>3</i>%&nbsp;年利率加息
-							</div>
-							<div class="btn_div">每张兑换需要1,000积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
-							<div class="change_btn">立即兑换</div>
-						</li>
-						<li class="last_child">
-							<div class="change_img">
-								<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现一次
-							</div>
-							<div class="btn_div">每张兑换需要100积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
-							<div class="change_btn">立即兑换</div>
-						</li>
-					</ul>
-					<div style="display:none;">
+					<div class="duihuan">
+						<ul class="change">
+							<li>
+								<div class="change_img">
+									<i>1</i>%&nbsp;年利率加息
+								</div>
+								<div class="btn_div">每张兑换需要100积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
+								<div class="change_btn">立即兑换</div>
+							</li>
+							<li>
+								<div class="change_img">
+									<i>2</i>%&nbsp;年利率加息
+								</div>
+								<div class="btn_div">每张兑换需要500积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
+								<div class="change_btn">立即兑换</div>
+							</li>
+							<li style="margin-right:0px;">
+								<div class="change_img">
+									<i>3</i>%&nbsp;年利率加息
+								</div>
+								<div class="btn_div">每张兑换需要1,000积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
+								<div class="change_btn">立即兑换</div>
+							</li>
+							<li class="last_child">
+								<div class="change_img">
+									<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现一次
+								</div>
+								<div class="btn_div">每张兑换需要100积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
+								<div class="change_btn">立即兑换</div>
+							</li>
+						</ul>
+					</div>
+					<div style="display:none;" class="_points_detail_table">
 						<table style="margin-bottom:38px;" class="points_detail_table">
 							<tr>
 								<th style="width:270px;">投资时间</th>
@@ -144,7 +146,7 @@
 						</table>
 						<div class="zxf_pagediv" onselectstart="return false" style="-moz-user-select:none;"></div>
 					</div>
-					<div style="display:none;height:930px;">
+					<div style="display:none;height:930px;" class='_points_get_table'>
 						<table class='points_get_table'>
 							<tr>
 								<th style="width:320px;">获取途径</th>
@@ -244,6 +246,7 @@
 						</table>
 					</div>
 				</div>
+				<div class="zxf_pagediv points_page" onselectstart="return false" style="-moz-user-select:none;"></div>
 			</div>
 			<div style="display:none;">
 				<div class="gold_menu menu">
@@ -267,7 +270,7 @@
 								<th style="width:270px;">时间</th>
 								<th style="width:270px;">金币来源</th>
 								<th style="width:190px;">类型</th>
-								<th style="width:90px">金币</th>
+								<th style="width: 90px;padding-left: 0;padding-right: 30px;text-align: center;">金币</th>
 							</tr>
 							<tr>
 								<td>2017-09-18 14:09:00</td>

@@ -10,68 +10,33 @@
              "startRow": 1,
              "endRow": 12,
              "total": 12,
-             "pages": 1,
+             "pages": 3,
              "list":
              [
                     {
                            "preInterest": "2.00",
                            "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
+                           "status": "已回款"
                     },
                     {
                            "preInterest": "4.00",
                            "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
+                           "status": "待回款"
                     },
                     {
                            "preInterest": "4.00",
                            "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
+                           "status": "已回款"
                     },
                     {
                            "preInterest": "4.00",
                            "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
+                           "status": "已回款"
                     },
                     {
                            "preInterest": "4.00",
                            "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "4.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "2.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "2.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "2.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "2.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "2.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
-                    },
-                    {
-                           "preInterest": "4.00",
-                           "preCollectionTime": "2017-09-07",
-                           "status": "已还款"
+                           "status": "待回款"
                     }
              ],
              "firstPage": 1,

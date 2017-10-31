@@ -1,0 +1,27 @@
+{{#list}}
+<tr>
+	<td class="td_name td_tips"><a href="###" class="padd_left">{{productTitle}}</a>
+		<div class="tips left-tips">
+			{{productTitle}}
+		</div>
+	</td>
+	<td>{{tenderTime}}</td>
+	<td>{{period}}</td>
+	<td>{{preAccount}}</td>
+	<td>{{interest}}</td>
+	<td>{{voucherMoney}}</td>
+	<td>{{status}}</td>
+	<td class="td_a">
+		<a href="###" class="iconfont td_tips" typeId="{{productId}}">&#xe6ae;
+			<div class="tips left-tips">
+				查看安存保全
+			</div>
+		</a>
+		<a href="###" class="iconfont td_tips" typeId="{{productId}}">&#xe6b0;
+			<div class="tips left-tips">
+				查看借款协议
+			</div>
+		</a>
+	</td>
+</tr>
+{{/list}}

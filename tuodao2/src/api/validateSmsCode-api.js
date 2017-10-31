@@ -4,7 +4,7 @@ var _validateSmsCode={
 	validateSmsCode :  function(value,code,type,resolve){
 		_td.request({
 			method	: 'post',
-			url     : _td.getServerUrl('http://72.127.2.37/api/router/common/validateSmsCode'),
+			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/common/validateSmsCode'),
 			data    : {
 				mobile: value,
 				smsCode: code,

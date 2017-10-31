@@ -192,27 +192,32 @@ var register = {
 	verifyCode: function() {
 		_yzm.check("demo", "border");
 		// 判断是否最后一位密码输入完毕
-		$(".lastnum").on("keyup", function() {
+		$(".lastnum").on("keyup", function(event) {
+			var event = event || window.event;
 			var smsCode = '';
 			smsCode = $("#demo input").eq(0).val() + $("#demo input").eq(1).val() + $("#demo input").eq(2).val() + $("#demo input").eq(3).val() + $("#demo input").eq(4).val() + $("#demo input").eq(5).val();
 			var phoneNum = $('.phone_Num').val();
-			_validateSmsCode.validateSmsCode(phoneNum, smsCode, 'register', function(res) {
-				if (res.code == 100000 ) {
-					$(".yanzhengma").hide();
-					$(".set_password").show();
-					$(".wrong_ts").hide();
-					$(".ts").show();
-				}else{
-					console.log(res);
-					$(".wrong_ts").show();
-					$(".ts").hide();
-					$("#demo input").val("");
-					_yzm.check("demo", "border");
-					$("#demo input").eq(5).removeClass("border");
-					$("#demo input").eq(0).focus();
-					$("#demo input").eq(0).addClass("border");
-				}
-			});
+			if (event.keyCode == 8) {
+				return;
+			} else {
+				_validateSmsCode.validateSmsCode(phoneNum, smsCode, 'register', function(res) {
+					if (res.code == 100000) {
+						$(".yanzhengma").hide();
+						$(".set_password").show();
+						$(".wrong_ts").hide();
+						$(".ts").show();
+					} else {
+						console.log(res);
+						$(".wrong_ts").show();
+						$(".ts").hide();
+						$("#demo input").val("");
+						_yzm.check("demo", "border");
+						$("#demo input").eq(5).removeClass("border");
+						$("#demo input").eq(0).focus();
+						$("#demo input").eq(0).addClass("border");
+					}
+				});
+			}
 		});
 	},
 	// 返回上一步

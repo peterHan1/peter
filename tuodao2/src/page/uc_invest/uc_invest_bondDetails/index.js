@@ -5,14 +5,18 @@ require('page/common/nav/index.js');
 require('util/paging/page.scss');
 require('util/paging/page.js');
 var _tips = require('util/tips/index.js');
+var _td = require('util/td.js');
+var _apiInvest = require('api/ucInListBondDet-api.js');
+var bondDel = require('./bondDel.string');
+var bondDelRet = require('./bondDelRet.string');
 
 var ucInvest = {
 	init : function(){
 		this.eventFn();
-		this.tipsHover();
 		this.urlEach();
-		this.trColor();
 		this.page();
+		this.detailTopHtml();
+		this.detailRetHtml();
 	},
 	urlEach : function(){
 		$('.bond_tab a').each(function () {
@@ -24,6 +28,35 @@ var ucInvest = {
 				$('.bond_tab a').removeClass('on');
 			};
 
+		});
+	},
+	detailTopHtml : function(){
+		_apiInvest.getBondTop(1,function(res){
+			listBondTopHtml = _td.renderHtml(bondDel,{
+				content:res.content,
+			});
+			$(".sift_detailsT").html(listBondTopHtml);
+			ucInvest.tipsHover();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	detailRetHtml : function(){
+		_apiInvest.getBondRet(1,1,5,function(res){
+			listBondRetHtml = _td.renderHtml(bondDelRet,{
+				list:res.content.list,
+			});
+			$("#tbody_list").html(listBondRetHtml);
+			ucInvest.trColor();
+			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				listBondRetHtml = _td.renderHtml(bondDelRet,{
+					list:res.content.list,
+				});
+				$("#tbody_list").html(listBondRetHtml);
+				ucInvest.trColor();
+			});
+		},function(){
+			console.log("请求失败");
 		});
 	},
 	eventFn : function(){

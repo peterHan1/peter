@@ -20,10 +20,13 @@ var ucInvest = {
 	addHtml : function(userId,sta,startime,endtime,pagesize,current){
 		_apiInvest.getSift(userId,sta,startime,endtime,pagesize,current,function(res){
 			// if(res.content != null){
+				console.log(res);
+				ucInvest.setSta(res);
 				listSiftHtml = _td.renderHtml(investSift,{
 					list:res.content.list,
 				});
 				$("#tbody_list").html(listSiftHtml);
+				ucInvest.setShow("td_sta");
 				_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 					_apiInvest.getSift(userId,sta,startime,endtime,pagesize,e.current,function(res){
 						listSiftHtml = _td.renderHtml(investSift,{
@@ -42,6 +45,36 @@ var ucInvest = {
 			// }
 		},function(){
 			console.log("请求失败");
+		});
+	},
+	setShow : function(el){
+		var tdList = $("."+el);
+		$.each(tdList,function(i){
+			var ht = $(this).html();
+			if(ht == 0){
+				$(this).html("待回款");
+			}else if(ht == 1){
+				$(this).html("匹配中");
+			}else if(ht == 2){
+				$(this).html("已回款");
+			}else if(ht == 3){
+				$(this).html("已撤标");
+			}
+		});
+	},
+	setSta : function(res){
+		var resList = res.content.list;
+		// 状态
+		$.each(resList,function(i){
+			if(resList[i].status == "待回款"){
+				resList[i].status = "0";
+			}else if(resList[i].status == "匹配中"){
+				resList[i].status = "1";
+			}else  if(resList[i].status == "已回款"){
+				resList[i].status = "2";
+			}else if(resList[i].status == "已撤标"){
+				resList[i].status = "3";
+			}
 		});
 	},
 	eventFn : function(userId){

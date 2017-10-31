@@ -9,15 +9,120 @@ require('util/layer/layer.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
 var _tips = require('util/tips/index.js');
+var _td = require('util/td.js');
+var _apiInvest = require('api/ucInListBond-api.js');
+var bondAble = require('./Invest_bondAble.string');
+var bondTran = require('./Invest_bondTran.string');
+var bondYet= require('./Invest_bondYet.string');
 
 var ucInvest = {
 	init : function(){
-		this.eventFn();
-		this.tipsHover();
 		this.urlEach();
-		this.trColor();
-		this.page();
 		this.inputUp();
+		this.statusHtml();
+		this.addAbleHtml('0','','','10','1');
+	},
+	urlEach : function(){
+		$('.uc_bondTab a').each(function () {
+			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+				var sta = $(this).attr("status");
+				var index = $(this).parent().index();
+				$(this).addClass('on');
+				$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
+				if(sta == "0"){
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.addAbleHtml('0','','','10','1');
+				}else if(sta == "1"){
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.addTranHtml('transfer_list','1','','','10','1');
+				}else if(sta == "2"){
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.addTranHtml('transfers_list','2','','','10','1');
+				}else if(sta == "3"){
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.addYetHtml('3','','','10','1');
+					$(".uc_invest_tabL").show();
+				}else{
+					$(".uc_invest_tabL").hide();
+				};
+			} else {
+				$(this).removeClass('on');
+			};
+
+		});
+	},
+	addAbleHtml : function(sta,startime,endtime,pagesize,current){
+		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+			listBondHtml = _td.renderHtml(bondAble,{
+				list:res.content.list,
+			});
+			$("#tbody_list").html(listBondHtml);
+			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				listBondHtml = _td.renderHtml(bondAble,{
+					list:res.content.list,
+				});
+				$("#tbody_list").html(listBondHtml);
+				ucInvest.trColor();
+				ucInvest.tipsHover();
+				ucInvest.eventFn();
+			});
+			ucInvest.trColor();
+			ucInvest.tipsHover();
+			ucInvest.eventFn();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	addTranHtml : function(el,sta,startime,endtime,pagesize,current){
+		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+			listBondHtml = _td.renderHtml(bondTran,{
+				list:res.content.list,
+			});
+			$("#"+el).html(listBondHtml);
+			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				listBondHtml = _td.renderHtml(bondTran,{
+					list:res.content.list,
+				});
+				$("#"+el).html(listBondHtml);
+				ucInvest.trColor();
+				ucInvest.tipsHover();
+				ucInvest.eventFn();
+			});
+			ucInvest.trColor();
+			ucInvest.tipsHover();
+			ucInvest.eventFn();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	addYetHtml : function(sta,startime,endtime,pagesize,current){
+		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+			listBondHtml = _td.renderHtml(bondYet,{
+				list:res.content.list,
+			});
+			$("#yet_list").html(listBondHtml);
+			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				listBondHtml = _td.renderHtml(bondYet,{
+					list:res.content.list,
+				});
+				$("#yet_list").html(listBondHtml);
+				ucInvest.trColor();
+				ucInvest.tipsHover();
+				ucInvest.eventFn();
+			});
+			ucInvest.trColor();
+			ucInvest.tipsHover();
+			ucInvest.eventFn();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	statusHtml : function(){
+		$(".uc_invest_tabL li").on("click",function(){
+			var sta = $(this).attr("status");
+			$(this).addClass('on').siblings('li').removeClass('on');
+			
+		});
 	},
 	eventFn : function(){
 		$(".start_date").on("click",function(){
@@ -39,9 +144,6 @@ var ucInvest = {
 			 		console.log(dates);
 			  	}
 			});
-		});
-		$(".uc_invest_tabL li").on("click",function(){
-			$(this).addClass('on').siblings('li').removeClass('on');
 		});
 		// 申请转让
 		$(".transfer_clk a").on("click",function(){
@@ -89,23 +191,7 @@ var ucInvest = {
 			$(".bond_formM").append(txt);
 		};
 	},
-	urlEach : function(){
-		$('.uc_bondTab a').each(function () {
-			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
-				$(this).addClass('on');
-				var index = $(this).parent().index();
-				$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
-				if($(this).html() == "已受让"){
-					$(".uc_invest_tabL").show();
-				}else{
-					$(".uc_invest_tabL").hide();
-				}
-			} else {
-				$(this).removeClass('on');
-			};
 
-		});
-	},
 	tipsHover : function(){
 		$(".td_name").mouseover(function(){
 			_tips.getTipsRight($(this),16);
@@ -120,21 +206,6 @@ var ucInvest = {
 				$(".sub_btn").addClass("affirm_btn");
 			}else{
 				$(".sub_btn").removeClass("affirm_btn");
-			}
-		});
-	},
-	page : function(){
-		// 得到总页数
-		$(".zxf_pagediv").createPage({
-			// 页数
-			pageNum: 10,
-			// 当前页
-			current: 1,
-			// 显示条数
-			shownum: 10,
-			backfun: function(e) {
-				console.log(e.current);
-				// $("#data-container").html(thisDate(e.current));
 			}
 		});
 	},
