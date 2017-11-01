@@ -125,7 +125,7 @@
 				}
 				.option {
 					width: 130px;
-					height:195px;
+					max-height:195px;
 					background-color:#fff;
 					border: solid 1px #ddd;
 					position: absolute;
@@ -144,6 +144,7 @@
 						padding-left:20px;
 						cursor: pointer;
 						color:$fontColor333;
+						margin:0;
 					}
 					li.on{
 						background-color:#f2f2f2;
@@ -206,19 +207,17 @@
         		}
         	}
 		}
-		.set_btn{
-			a{
-				display: inline-block;
-				margin:25px 0 0 105px;
-				width:200px;
-				@include height-line(40px);
-				text-align: center;
-				color:$fontColor74;
-				@include border-style($b-color:$mainColor,$b-radius:20px);
-				&:hover{
-					color:#fff;
-					background-color:$mainColor;
-				}
+		.set_form{
+			display: inline-block;
+			margin:25px 0 0 105px;
+			width:200px;
+			@include height-line(40px);
+			text-align: center;
+			color:$fontColor74;
+			@include border-style($b-color:$mainColor,$b-radius:20px);
+			&:hover{
+				color:#fff;
+				background-color:$mainColor;
 			}
 		}
 		.sub_btn{
@@ -236,7 +235,7 @@
 					background-color:$mainColor;
 				}
 			}
-			a.on{
+			a.save_btn{
 				color:#fff;
 				background-color:$mainColor;
 				&:hover{

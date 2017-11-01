@@ -27,11 +27,25 @@ var _product = {
 			error   : reject
 		});
 	},
+	// 打开自动投标
+	openAuto : function(resolve, reject){
+		_td.request({
+			// method	: 'POST',
+			url     : _td.getServerUrl('/unInAutoAdd.json'),
+			// beforeSend: function(xhr){
+			// 	xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
+			// 	xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
+			// 	xhr.setRequestHeader("sign", "NO");
+			// },
+			success : resolve,
+			error   : reject
+		});
+	},
 	// 关闭自动投标
 	closeAuto : function(resolve, reject){
 		_td.request({
 			// method	: 'POST',
-			url     : _td.getServerUrl('/close_auto_tender.json'),
+			url     : _td.getServerUrl('/unInAutoClose.json'),
 			// beforeSend: function(xhr){
 			// 	xhr.setRequestHeader("accessId", "4e6f51c9b902eee2aa9c6be0b9498903");
 			// 	xhr.setRequestHeader("accessKey", "/v8anga5adaamaa4adeamgayadmazqbiadaazabhaduanwazadyaoqbkadaamqbiadeamqbiadyaywbkadaaywbh");
@@ -42,7 +56,7 @@ var _product = {
 		});
 	},
 	// 开启自动投标总人数
-	closeAuto : function(resolve, reject){
+	getAutoSum : function(resolve, reject){
 		_td.request({
 			// method	: 'POST',
 			url     : _td.getServerUrl('/unInAutoInp.json'),

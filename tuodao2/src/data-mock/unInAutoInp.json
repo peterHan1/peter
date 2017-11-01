@@ -3,13 +3,13 @@
       "msg": "成功",
       "content":
       {
-             "minAccount": 1,
+             "minAccount": 600,
              "maxAccount": 100000,
-             "minPeriod": 1,
+             "minPeriod": 6,
              "maxPeriod": 36,
              "useCoupon": 0,
-             "status": 1,
-             "totalAutoTender": 1,
+             "status": 0,
+             "totalAutoTender": 666,
              "ranking": 1
       },
       "success": true

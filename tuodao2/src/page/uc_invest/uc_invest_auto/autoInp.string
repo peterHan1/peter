@@ -1,11 +1,10 @@
-{{#content}}
 <div class="auto_setInp">
 	<ul>
 		<li>
 			<span>投资期限：</span>
 			<div class="select_com">
 				<p>
-					<span class="month minPeriod">{{minPeriod}}</span>
+					<span class="month minPeriod">1</span>
 					<i class="iconfont">&#xe60e;</i>
 				</p>
 				<ul class="option minOption">
@@ -50,7 +49,7 @@
 			<span class="line">—</span>
 			<div class="select_com">
 				<p>
-					<span class="month maxPeriod">{{maxPeriod}}</span>
+					<span class="month maxPeriod">36</span>
 					<i class="iconfont">&#xe60e;</i>
 				</p>
 				<ul class="option maxOption">
@@ -96,9 +95,9 @@
 		</li>
 		<li>
 			<span>投资金额：</span>
-			<input type="text" value="{{minAccount}}" class="minAccount" disabled="disabled">
+			<input type="text" value="100" class="minAccount" />
 			<span class="line">—</span>
-			<input type="text" value="{{maxAccount}}" class="maxAccount" disabled="disabled">
+			<input type="text" value="100000" class="maxAccount" />
 			元
 			<div class="hint hints">
 				<i class="iconfont">&#xe68d;</i>
@@ -117,25 +116,25 @@
 					</div>
 				</div> ： 
 			</div>
-			<p class="reminder" name="{{useCoupon}}" >不使用</p>
-			<div class="redios_inp dis_none">
-				<div class="redios checked" name="0" checked="{{useCoupon}}">
+			<p class="reminder dis_none"></p>
+			<div class="redios_inp" name="0">
+				<div class="redios checked" name="0" >
 					<i class="iconfont">&#xe61e;</i>
 					<span>不使用</span>
 				</div>
-				<div class="redios" name="1" checked="{{useCoupon}}">
+				<div class="redios" name="1" >
 					<i class="iconfont">&#xe622;</i>
 					<span>使用</span>
 				</div>
 			</div>
 		</li>
 	</ul>
-	<div class="set_btn">
+	<div class="set_btn dis_none">
 		<a href="javascript:;" class="set_form">修改设置</a>
 	</div>
-	<div class="sub_btn dis_none">
+	<div class="sub_btn">
 		<a href="javascript:;" class="save_btn">保存</a>
 		<a href="javascript:;" class="callOff">取消</a>
 	</div>
 </div>
-{{/content}}
+
