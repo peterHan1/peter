@@ -9,13 +9,13 @@
 <div class="sign_date">
 	<div class="sign_days">
 		<p class="day">
-			<span class="day1">11</span>
-			<span class="day2">11</span>
+			<span class="day1">{{cumulativeSignTmes}}</span>
+			<span class="day2">{{cumulativeSignTmes}}</span>
 		</p>
 		<b>天</b>
 	</div>
 </div>
-<div class="signs_integral">您的总积分<span class="sign_integral">0</span>分</div>
+<div class="signs_integral">您的总积分<span class="sign_integral">{{usableScores}}</span>分</div>
 <div class="sigin_btn sigin_clik" id="sigin_clik"><span>立即签到</span></div>
 <div class="animat"></div>
 {{/content}}

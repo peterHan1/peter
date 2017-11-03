@@ -1,0 +1,28 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      [
+             {
+                    "day": 2,
+                    "status": 1
+             },
+              {
+                    "day": 10,
+                    "status": 1
+             },
+              {
+                    "day": 20,
+                    "status": 1
+             },
+             {
+                    "day": 20,
+                    "status": 0
+             },
+             {
+                    "day": 26,
+                    "status": 0
+             }
+      ],
+      "success": true
+}

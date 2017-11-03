@@ -1,0 +1,23 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "productCode": "20131200126",
+             "productTitle": "二哥专用标",
+             "tenderTime": "2017-10-26 11:24:14",
+             "preAccount": "300.00",
+             "interest": "10.59",
+             "voucherType": 1,
+             "voucherMoney": 10,
+             "status": 5,
+             "sourceStore": "西湖总店",
+             "productStatus": 4,
+             "refundWay": 1,
+             "award": 0.88,
+             "endTime": "2017-10-26 11:24:14",
+             "baseApr": 10,
+             "platformApr": 0
+      },
+      "success": true
+}

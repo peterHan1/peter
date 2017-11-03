@@ -20,35 +20,42 @@ var ucInvest = {
 		this.urlEach();
 		this.inputUp();
 		this.statusHtml();
+		this.tabLiClick();
 		this.addAbleHtml('0','','','10','1');
 	},
 	urlEach : function(){
 		$('.uc_bondTab a').each(function () {
-			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
-				var sta = $(this).attr("status");
-				var index = $(this).parent().index();
-				$(this).addClass('on');
-				$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
-				if(sta == "0"){
-					$(".uc_invest_tabR").attr("status",sta);
-					ucInvest.addAbleHtml('0','','','10','1');
-				}else if(sta == "1"){
-					$(".uc_invest_tabR").attr("status",sta);
-					ucInvest.addTranHtml('transfer_list','1','','','10','1');
-				}else if(sta == "2"){
-					$(".uc_invest_tabR").attr("status",sta);
-					ucInvest.addTranHtml('transfers_list','2','','','10','1');
-				}else if(sta == "3"){
-					$(".uc_invest_tabR").attr("status",sta);
-					ucInvest.addYetHtml('3','','','10','1');
-					$(".uc_invest_tabL").show();
-				}else{
-					$(".uc_invest_tabL").hide();
-				};
-			} else {
-				$(this).removeClass('on');
-			};
-
+			var str = location.href;
+			var strs = str.split("#")[1];
+			var astr = ($(this).attr("href")).split("#")[1];
+			if(strs == astr){
+				console.log($(this).parent("li"));
+			}
+		});
+	},
+	tabLiClick : function(){
+		$(".uc_bondTab li").on("click",function(){
+			var index = $(this).index();
+			var sta = $(this).attr("status");
+			$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
+			$(this).addClass('on').siblings('li').removeClass('on');
+			if(sta == "0"){
+				$(".uc_invest_tabR").attr("status",sta);
+				ucInvest.addAbleHtml('0','','','10','1');
+				$(".uc_invest_tabL").hide();
+			}else if(sta == "1"){
+				$(".uc_invest_tabR").attr("status",sta);
+				ucInvest.addTranHtml('bond_box','1','','','10','1');
+				$(".uc_invest_tabL").hide();
+			}else if(sta == "2"){
+				$(".uc_invest_tabR").attr("status",sta);
+				ucInvest.addTranHtml('bond_box','2','','','10','1');
+				$(".uc_invest_tabL").hide();
+			}else if(sta == "3"){
+				$(".uc_invest_tabR").attr("status",sta);
+				ucInvest.addYetHtml('3','','','10','1');
+				$(".uc_invest_tabL").show();
+			}
 		});
 	},
 	addAbleHtml : function(sta,startime,endtime,pagesize,current){
@@ -56,12 +63,12 @@ var ucInvest = {
 			listBondHtml = _td.renderHtml(bondAble,{
 				list:res.content.list,
 			});
-			$("#tbody_list").html(listBondHtml);
+			$(".bond_box").html(listBondHtml);
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				listBondHtml = _td.renderHtml(bondAble,{
 					list:res.content.list,
 				});
-				$("#tbody_list").html(listBondHtml);
+				$(".bond_box").html(listBondHtml);
 				ucInvest.trColor();
 				ucInvest.tipsHover();
 				ucInvest.eventFn();
@@ -78,12 +85,12 @@ var ucInvest = {
 			listBondHtml = _td.renderHtml(bondTran,{
 				list:res.content.list,
 			});
-			$("#"+el).html(listBondHtml);
+			$("."+el).html(listBondHtml);
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				listBondHtml = _td.renderHtml(bondTran,{
 					list:res.content.list,
 				});
-				$("#"+el).html(listBondHtml);
+				$("."+el).html(listBondHtml);
 				ucInvest.trColor();
 				ucInvest.tipsHover();
 				ucInvest.eventFn();
@@ -100,12 +107,12 @@ var ucInvest = {
 			listBondHtml = _td.renderHtml(bondYet,{
 				list:res.content.list,
 			});
-			$("#yet_list").html(listBondHtml);
+			$(".bond_box").html(listBondHtml);
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				listBondHtml = _td.renderHtml(bondYet,{
 					list:res.content.list,
 				});
-				$("#yet_list").html(listBondHtml);
+				$(".bond_box").html(listBondHtml);
 				ucInvest.trColor();
 				ucInvest.tipsHover();
 				ucInvest.eventFn();
@@ -211,9 +218,6 @@ var ucInvest = {
 	},
 	trColor : function(){
 		trColor('tbody_list');
-		trColor('transfer_list');
-		trColor('transfers_list');
-		trColor('transfer_list');
 		// 各行变色
 		function trColor(id){
 			var trs=document.getElementById(id).getElementsByTagName("tr");

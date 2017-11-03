@@ -87,7 +87,7 @@ var menuList = {
 			loginPassword:"e10adc3949ba59abbe56e057f20f883e",
 			loginSource:1
 		};
-		_apigetuc.getUser(userData,function(res){
+		_apigetuc.getUserCon(userData,function(res){
 			if(res.content.isOpenDeposit == 0){
 				res.content.isOpenDeposit = 'none';
 			}else if(res.content.isOpenDeposit == 1){

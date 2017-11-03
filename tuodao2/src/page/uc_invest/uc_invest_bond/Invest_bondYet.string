@@ -1,17 +1,54 @@
-{{#list}}
-<tr>
-	<td class="padd_left">NO.{{productCode}}</td>
-	<td class="td_name"><a href="###">{{productTitle}}</a>
-	<div class="tips left-tips">
-		{{productTitle}}
+<div class="uc_invest_com alone_table yet_table">
+	<div class="uc_invest_tab">
+		<div class="uc_invest_tabL">
+			<ul>
+				<li class="on" status="0">全部</li>
+				<li status="1">募集中</li>
+				<li status="2">回款中</li>
+				<li status="3">已回款</li>
+			</ul>
+		</div>
+		<div class="uc_invest_tabR" status>
+			<div class="calendar start_date"><p class="layer_date" id="start_date">选择开始时间</p><i class="iconfont">&#xe6a4;</i></div>
+			至
+			<div class="calendar end_date"><p class="layer_date" id="end_date">选择结束时间</p><i class="iconfont">&#xe6a4;</i></div>
+		</div>
 	</div>
-	</td>
-	<td class="td_time">{{addTime}}</td>
-	<td>{{claimsValue}}</td>
-	<td>{{remaining}}期</td>
-	<td>100,000.00</td>
-	<td>{{reward}}</td>
-	<td>{{status}}</td>
-	<td class='td_details'><a href="uc_invest_bondDetails.html">查看详情</a></td>
-</tr>
-{{/list}}
+	<div class="table_list">
+		<table>
+			<thead>
+				<tr>
+					<th class="padd_left">编号</th>
+					<th>项目名称</th>
+					<th>投资时间</th>
+					<th>投资金额（元）</th>
+					<th>剩余期限</th>
+					<th>到期收益（元）</th>
+					<th>奖励（元）</th>
+					<th class="status_th">状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tbody_list">
+				{{#list}}
+				<tr>
+					<td class="padd_left">NO.{{productCode}}</td>
+					<td class="td_name"><a href="###">{{productTitle}}</a>
+					<div class="tips left-tips">
+						{{productTitle}}
+					</div>
+					</td>
+					<td class="td_time">{{addTime}}</td>
+					<td>{{claimsValue}}</td>
+					<td>{{remaining}}期</td>
+					<td>100,000.00</td>
+					<td>{{reward}}</td>
+					<td>{{status}}</td>
+					<td class='td_details'><a href="uc_invest_bondDetails.html">查看详情</a></td>
+				</tr>
+				{{/list}}
+			</tbody>
+		</table>
+	</div>	
+</div>
+<div class="zxf_pagediv"></div>			

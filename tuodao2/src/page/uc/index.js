@@ -10,8 +10,12 @@ var _tips 		= require('util/tips/index.js');
 var _apigetuc 	= require('api/user-api.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var echarts 	= require('util/echarts/echarts.common.min.js');
+var _apiReturn 	= 	require('api/ucInReturn-api.js');
+var returnList 	= 	require('./returnList.string');
 var getUserMon	= require('./getUserMon.string');
 var getUserEch	= require('./getUserEch.string');
+var getUsersign	= require('./getUserSign.string');
+var getUserInt	= require('./getUserInt.string');
 
 
 var uc = {
@@ -19,156 +23,77 @@ var uc = {
 		this.signIn();
 		this.trColor();
 		this.recommend();
-		this.returnMon();
-		this.addHtml();
-	},
-	tipsHover : function(){
-		$(".hint").mouseover(function(){
-			_tips.getTipsRight($(this),0);
-		});
-		$(".hint").mouseout(function(){
-			$(this).find('.tips').hide();
-		});
-		$(".hint_sign").mouseover(function(){
-			var _tips = $(this).find('.tips');
-			var jtHtml = '<span class="b"></span><span class="t"></span>';
-			_tips.append(jtHtml);
-			_tips.show();
-			_tips.css({'margin-top':-23+'px','margin-left':-200+'px'});
-
-		});
-		$(".hint_sign").mouseout(function(){
-			$(this).find('.tips').hide();
-			// $(".tips").find("span").remove();
-		});
+		this.addMoneyHtml();
+		this.monthStatus();
 	},
 	signIn : function(){
+		_apigetuc.getUser(function(res){
+			var day = res.content[0].cumulativeSignTmes;
+			if(day < 10){
+				res.content[0].cumulativeSignTmes = "0"+day;
+			};
+			userSigntHtml = _td.renderHtml(getUsersign,{
+				content:res.content,
+			});
+			userIntHtml = _td.renderHtml(getUserInt,{
+				content:res.content,
+			});
+			$('.sign').html(userSigntHtml);
+			$('.welfare').html(userIntHtml);
+			uc.numStatus();
+			uc.signInClick();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	numStatus : function(){
+		$.each($(".p_num"),function(i){
+			if($(this).attr("num") == 0){
+				$(this).addClass("num_null");
+			}
+		});
+	},
+	signInClick : function(){
 		// 签到
 		$("#sigin_clik").on("click",function(){
+			var _this = $(this);
 			if($(this).is('.sigin_btn_yet')){
 				return false;
 			}else{
-				var day = parseInt($(".day2").html())+1;
-				var integral = parseInt($(".sign_integral").html())+1;
-				if (day < 10) {
-					day = "0"+day;
-				}
-				$(".sign_integral").html(integral);
-				$(this).removeClass('sigin_clik');
-				$(this).addClass('sigin_btn_yet');
-				$(this).find('span').html("今日已签到，积分+6");
-				$(".animat").animate({top:'-200px'},function(){
-					$(".animat").remove();
-				});
-				$(".day1").fadeOut();
-				$(".day2").fadeIn();
-				$(".day2").html(day);
-				$(".day").animate({marginTop:'-80px'},function(){
-					$(".day").css("marginTop","0");
+				_apigetuc.userSign(function(res){
+					console.log(res);
+					uc.signAnimate(_this,res.content);
+				},function(){
+					console.log("签到失败");
 				});
 			};
 		});
 	},
-	trColor : function(){
-		trColor('table_list');
-		// 各行变色
-		function trColor(id){
-			var trs=document.getElementById(id).getElementsByTagName("tr");
-			for(var i=0;i<trs.length;i++){
-				if(i%2==0){
-					trs[i].className +=" trColor";
-				}
-			};
+	signAnimate : function(el,num){
+		var day = parseInt($(".day2").html())+1;
+		var integral = parseInt($(".sign_integral").html()) + (num*1);
+		if (day < 10) {
+			day = "0" + day;
 		}
-	},
-	recommend : function(){
-		$('.recommends_list li').hover(function(){
-			var html = '<div class="now-invest">立即加入</div>';
-			$(this).find('.pro-list').append(html);
-		},function(){
-			$(this).find('.now-invest').remove();
+		$(".sign_integral").html(integral);
+		el.removeClass('sigin_clik');
+		el.addClass('sigin_btn_yet');
+		el.find('span').html("今日已签到");
+		$(".animat").animate({
+			top: '-200px'
+		}, function() {
+			$(".animat").remove();
+		});
+		$(".day1").fadeOut();
+		$(".day2").fadeIn();
+		$(".day2").html(day);
+		$(".day").animate({
+			marginTop: '-80px'
+		}, function() {
+			$(".day").css("marginTop", "0");
 		});
 	},
-	// 回款日历加载函数
-	returnMon : function(){
-		_returnmon.returnMoney(function(yyyy,mm){
-			// $.ajax({
-			// 	url: './time.json',
-			// 	dataType: "json",
-			// 	type: 'get',
-			// 	success:function(data){
-			$(".re_money_tbody").empty();
-			$.each(dataTxt,function(i,item){
-				var todays = new Date().setHours(0,0,0,0);
-				var tim = (item.reutrnDate)*1;
-				var times =  new Date(tim);
-				var msec = times.getTime();
-				if( times.getFullYear() == yyyy){
-					if( (times.getMonth()+1 ) == mm){
-						var tr ='<tr><td class="return_td_date">'+ getMoth((item.reutrnDate)*1) +'</td><td class="return_td_name"><a href="">'+item.name+'</a></td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
-						$(".re_money_tbody").append(tr);
-						if(msec >= todays){
-							var today = times.getDate();
-							var lastNum = $(".data_lastMonth").length;
-							$(".data_table .data_table_td").eq(today+lastNum-1).addClass("await_money");
-						}else{
-							var today = times.getDate();
-							var lastNum = $(".data_lastMonth").length;
-							$(".data_table .data_table_td").eq(today+lastNum-1).addClass("yet_money");
-						}
-					}
-				};
-			});
-			if(!$('.re_money_tbody tr').html()){
-				var dates = yyyy+'年'+mm+'月';
-				var htm = '<div class="return_noData"><div class="return_noData_bg"></div><p>'+dates+'没有回款信息</p></div>';
-				$(".re_money_tbody").html(htm);
-				$(".re_money").html("0.00");
-			}
-			// 得到总页数
-			$(".zxf_pagediv").createPage({
-				// 页数
-				pageNum: 2,
-				// 当前页
-				current: 1,
-				// 显示条数
-				shownum: 10,
-				backfun: function(e) {
-					console.log(e.current);
-					// $("#data-container").html(thisDate(e.current));
-				}
-			});
-			// }
-			// });
-		},function(ht_html,zero,mid,thisy,thism,thisd){
-			// $.ajax({
-			// 	url: 'time.json',
-			// 	dataType: "json",
-			// 	type: 'get',
-			// 	success:function(data){
-			$.each(dataTxt,function(i,item){
-				if(item.reutrnDate >=  zero && item.reutrnDate <= mid){
-					var tr ='<tr><td class="return_td_date">'+ getMoth((item.reutrnDate)*1) +'</td><td class="return_td_name"><a href="">'+item.name+'</a></td><td class="return_td_type">'+item.type+'</td><td class="return_td_money">'+item.money+'元</td></tr>';
-					$(".re_money_tbody").append(tr);
-					$(".re_money").html(this.await);
-				};
-			});
-			if(!$('.re_money_tbody tr').html()){
-				var dates = thisy+'年'+thism+'月'+thisd+'日';
-				var htm = '<div class="return_noData"><div class="return_noData_bg"></div><p>'+dates+'没有回款信息</p></div>';
-				// var tr = "<tr><td colspan='4'>当前没有回款信息666</td></tr>";
-				$(".re_money_tbody").html(htm);
-				$(".re_money").html("0.00");
-			}
-			// }
-			// });
-		});
-		function getMoth(str){
-			var oDate = new Date(str),oYear = oDate.getFullYear(),oMonth = oDate.getMonth()+1,oDay = oDate.getDate(),oTime = oYear + '-' +oMonth +'-'+ oDay;
-			return oTime;
-		};
-	},
-	addHtml : function(){
+	addMoneyHtml : function(){
 		var userId=document.cookie.split(";")[0].split("=")[1];
 		var userData = {
 			userId : "18539123451-lwvm5mx68dr2wxzqgnuc",
@@ -176,7 +101,7 @@ var uc = {
 			loginSource:1
 
 		};
-		_apigetuc.getUser(userData,function(res){
+		_apigetuc.getUserCon(userData,function(res){
 			var dueInPrincipal = res.content.dueInPrincipal;
 			var dueInInterest = res.content.dueInInterest;
 			var usableFund = res.content.usableFund;
@@ -232,6 +157,146 @@ var uc = {
 			]
 		};
 		myChart.setOption(option);
+	},
+	// 月份日期状态
+	monthStatus : function(){
+		_returnmon.returnMoney();
+		var year = $(".f_year").html();
+		var month = $(".f_month").html();
+		var dataMonth = year+"-"+month;
+		console.log("初始化 年-月：" + dataMonth);
+		uc.dayStatus();
+		uc.getMoney(1,1);
+		uc.getReturnList(dataMonth,1,5,1);
+		_returnmon.clickMontn({
+			left: "data_top_btn_l",
+			right: "data_top_btn_r",
+			callback: function(yy,mm) {
+				dataMonth = yy+"-"+mm;
+				console.log("点击后 年-月：" + dataMonth);
+				uc.dayStatus();
+				uc.getMoney(1,1);
+				uc.getReturnList(dataMonth,1,5,1);
+				uc.dayContent();
+			}
+		});
+		uc.dayContent();
+	},
+	// 点击某天的信息展示
+	dayContent : function(){
+		_returnmon.clickDay({
+			elm: "data_number",
+			callback: function(day) {
+				var getday = day;
+				uc.getMoney(getday,0);
+				uc.getReturnList(getday,1,5,1);
+			}
+		});
+	},
+	// 获取本息
+	getMoney : function(day,type){
+		_apiReturn.getMoney(day,type,function(res){
+			$(".re_money").html(res.content.preCollection);
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	// 给当月某天有回款的添加样式
+	dayStatus : function(){
+		_apiReturn.getMonth(function(res){
+			$.each(res.content,function(i,key){
+				var day = key.day;
+				var status = key.status;
+				var clas = "";
+				if(status == 0){
+					clas = "await_money";
+				}else{
+					clas = "yet_money";
+				}
+				$(".data_table .data_number").eq(day-1).addClass(clas);
+
+			});
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	getReturnList : function(day,type,pagesize,current){
+		_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+			uc.setType(res);
+			retList = _td.renderHtml(returnList,{
+				list:res.content.list,
+			});
+			$('.re_money_tbody').html(retList);
+			_apiReturn.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+					uc.setType(res);
+					retList = _td.renderHtml(returnList,{
+						list:res.content.list,
+					});
+					$('.re_money_tbody').html(retList);
+					uc.tipsHover();
+					uc.trColor();
+				},function(){
+					console.log("请求失败");
+				});
+			});
+			uc.tipsHover();
+			uc.trColor();
+		},function(){
+			console.log("请求失败");
+		});
+	},
+	// 回款类型
+	setType: function(res){
+		var resList = res.content.list;
+		// 剩余期限单位
+		$.each(resList,function(i){
+			if(resList[i].type == "0"){
+				resList[i].type = "本息";
+			}else if(resList[i].type == "1"){
+				resList[i].type = "收益";
+			}
+		});
+	},
+	trColor : function(){
+		trColor('table_list');
+		// 各行变色
+		function trColor(id){
+			var trs=document.getElementById(id).getElementsByTagName("tr");
+			for(var i=0;i<trs.length;i++){
+				if(i%2==0){
+					trs[i].className +=" trColor";
+				}
+			};
+		}
+	},
+	recommend : function(){
+		$('.recommends_list li').hover(function(){
+			var html = '<div class="now-invest">立即加入</div>';
+			$(this).find('.pro-list').append(html);
+		},function(){
+			$(this).find('.now-invest').remove();
+		});
+	},
+	tipsHover : function(){
+		$(".hint").mouseover(function(){
+			_tips.getTipsRight($(this),0);
+		});
+		$(".hint").mouseout(function(){
+			$(this).find('.tips').hide();
+		});
+		$(".hint_sign").mouseover(function(){
+			var _tips = $(this).find('.tips');
+			var jtHtml = '<span class="b"></span><span class="t"></span>';
+			_tips.append(jtHtml);
+			_tips.show();
+			_tips.css({'margin-top':-23+'px','margin-left':-200+'px'});
+
+		});
+		$(".hint_sign").mouseout(function(){
+			$(this).find('.tips').hide();
+			// $(".tips").find("span").remove();
+		});
 	}
 };
 $(function(){

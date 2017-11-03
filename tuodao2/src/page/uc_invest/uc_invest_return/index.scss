@@ -51,7 +51,7 @@ b,i,em{
 					letter-spacing:1px;
 					.data_top_btn{
 						margin:13px 35px 0 0;
-						i{
+						a{
 							font-size:24px;
 							margin-left:18px;
 							color:$fontColor9e;
@@ -199,6 +199,7 @@ b,i,em{
 			table{
 				width:100%;
 				border-collapse:collapse;
+				margin-bottom:30px;
 				tr{
 					@include height-line(50px);
 					width:100%;

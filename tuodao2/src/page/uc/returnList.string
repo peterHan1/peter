@@ -1,0 +1,8 @@
+{{#list}}
+<tr>
+	<td class="return_td_date">{{collectionTime}}</td>
+	<td class="return_td_name"><a href="">{{productTitile}}</a></td>
+	<td class="return_td_type">{{type}}</td>
+	<td class="return_td_money">{{collectionMoney}}元</td>
+</tr>
+{{/list}}

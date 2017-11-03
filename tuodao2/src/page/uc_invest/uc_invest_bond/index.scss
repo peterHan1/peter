@@ -25,14 +25,17 @@
 			color:$fontColor333;
 			display: inline-block;
 			height:48px;
+			cursor: pointer;
 			&:hover{
 				color:$fontColor74;
 			}
 		}
-		a.on{
+		
+	}
+	li.on{
+		a{
 			color:$fontColor74;
 			border-bottom:2px solid #ff7400;
-
 		}
 	}
 	
@@ -44,7 +47,7 @@
 }
 .uc_invest_tab{
 	@extend %clearfix;
-	padding:30px 0 20px;
+	padding:20px 0 20px;
 	background-color: #fff;
 	.uc_invest_tabL{
 		float: left;
@@ -143,9 +146,6 @@
 	}
 }
 .alone_table{
-	.uc_invest_tab{
-		padding:20px 0;
-	}
 	.table_list{
 		table{
 			tr{
@@ -168,31 +168,30 @@
 			}
 		}
 	}
-	.yet_table{
-		table{
-			tr{
-				.status_th{
-					width:85px;
-				}
-				.padd_left{
-					width:140px;
-				}
-				.td_name{
-					padding-right:25px;
+}
+.yet_table{
+	table{
+		tr{
+			.status_th{
+				width:85px;
+			}
+			.padd_left{
+				width:140px;
+			}
+			.td_name{
+				padding-right:25px;
+				width:60px;
+				a{
 					width:60px;
-					a{
-						width:60px;
-					}
 				}
-				.td_time{
-					padding-right:16px;
-				}
-				.td_details{
-				}
+			}
+			.td_time{
+				padding-right:16px;
+			}
+			.td_details{
 			}
 		}
 	}
-	
 }
 .zxf_pagediv{
 	margin-top:30px;
