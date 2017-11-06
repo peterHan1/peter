@@ -117,8 +117,7 @@ var forgetPayPw = {
 			if ($(".set_btn").hasClass("kd")) {
 				var phoneNum = $(".phoneNum").val();
 				$(".yanzhengma .til_all .phone_Num").html(phoneNum);
-				_sendSms.sendSms(phoneNum, 'findLoginPw', function(res) {
-					console.log(res);
+				_sendSms.sendSms(phoneNum, 'findPayPw', function(res) {
 					if (res.code == 100000) {
 						$(".main_mid").hide();
 						$("#dy").attr("autofocus", "autofocus");
@@ -140,7 +139,7 @@ var forgetPayPw = {
 			if (flag == false) {
 				return false;
 			} else {
-				_sendSms.sendSms(phoneNum, 'findLoginPw', function(res) {});
+				_sendSms.sendSms(phoneNum, 'findPayPw', function(res) {});
 				$(".count_num").text(59);
 				num = $(".count_num").text();
 				flag = false;
@@ -182,7 +181,7 @@ var forgetPayPw = {
 			if (event.keyCode == 8) {
 				return;
 			} else {
-				_validateSmsCode.validateSmsCode(phoneNum, smsCode, 'findLoginPw', function(res) {
+				_validateSmsCode.validateSmsCode(phoneNum, smsCode, 'findPayPw', function(res) {
 					if (res.code == 100000) {
 						$(".wrong_ts").hide();
 						$(".ts").show();

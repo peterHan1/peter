@@ -1,47 +1,37 @@
-<div class="uc_invest_com alone_table">
-	<div class="uc_invest_tab">
-		<div class="uc_invest_tabR" status>
-			<div class="calendar start_date"><p class="layer_date" id="start_date">选择开始时间</p><i class="iconfont">&#xe6a4;</i></div>
-			至
-			<div class="calendar end_date"><p class="layer_date" id="end_date">选择结束时间</p><i class="iconfont">&#xe6a4;</i></div>
-		</div>
-	</div>
-	<div class="table_list">
-		<table>
-			<thead>
+<div class="table_list" id="alone_table">
+	<table>
+		<thead>
+			<tr>
+				<th class="padd_left">编号</th>
+				<th>项目名称</th>
+				<th>转让时间</th>
+				<th>转让金额（元）</th>
+				<th>剩余期限</th>
+				<th>预期年化</th>
+				<th>对应债权价值（元）</th>
+				<th>折价/溢价</th>
+				<th>手续费（元）</th>
+			</tr>
+		</thead>
+		<tbody id="tbody_list">
+			{{#list}}
 				<tr>
-					<th class="padd_left">编号</th>
-					<th>项目名称</th>
-					<th>转让时间</th>
-					<th>转让金额（元）</th>
-					<th>剩余期限</th>
-					<th>预期年化</th>
-					<th>对应债权价值（元）</th>
-					<th>折价/溢价</th>
-					<th>手续费（元）</th>
+					<td class="padd_left">NO.{{productCode}}</td>
+					<td class="td_name"><a href="###">{{productTitle}}</a>
+					<div class="tips left-tips">
+						{{productTitle}}
+					</div>
+					</td>
+					<td class="td_time">{{addTime}}</td>
+					<td>{{recoverCapital}}</td>
+					<td>{{remaining}}期</td>
+					<td>{{borrowApr}}%</td>
+					<td>{{claimsValue}}</td>
+					<td>{{discount}}</td>
+					<td>{{fee}}</td>
 				</tr>
-			</thead>
-			<tbody id="tbody_list">
-				{{#list}}
-					<tr>
-						<td class="padd_left">NO.{{productCode}}</td>
-						<td class="td_name"><a href="###">{{productTitle}}</a>
-						<div class="tips left-tips">
-							{{productTitle}}
-						</div>
-						</td>
-						<td class="td_time">{{addTime}}</td>
-						<td>{{recoverCapital}}</td>
-						<td>{{remaining}}期</td>
-						<td>{{borrowApr}}%</td>
-						<td>{{claimsValue}}</td>
-						<td>{{discount}}</td>
-						<td>{{fee}}</td>
-					</tr>
-				{{/list}}
-			</tbody>
-		</table>
-	</div>
-	
+			{{/list}}
+		</tbody>
+	</table>
 </div>
 <div class="zxf_pagediv"></div>			

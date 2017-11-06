@@ -38,9 +38,9 @@
 					</div>
 				</div>
 			</dt>
-			<dd>投资进度 <span class="barNum"></span></dd>
+			<dd>投资进度 <span class="barNum"></span>%</dd>
 		</dl>
-		<div class="fl butt btn">立即投资</div>
+		<div class="fl butt btn" status="{{finished}}">立即投资</div>
 	</div>
 </li>
 {{/list}}

@@ -1,7 +1,7 @@
 var _td = require('util/td.js');
 
 var _rechargeInfo={
-	rechargeInfo :  function(data,resolve,reject){
+	rechargeInfo :  function(resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/recharge/rechargeInfo'),

@@ -3,14 +3,18 @@
       "msg": "成功",
       "content":
       {
-             "productTitle": "产品标题",
-             "interest": "利息",
-             "reward": "奖励",
-             "borrowApr": "年利率",
-             "amount": "投资金额",
-             "repayLastTime": "到期时间",
-             "styleType": "0 等额本息 1按月付息",
-             "day": "距离到期日"
+             "productTitle": "劳斯莱斯幻影抵押标 ",
+             "productCode": "20160301001",
+             "interest": "66.66 ",
+             "reward": "10.00 ",
+             "borrowApr": "10 ",
+             "amount": "6666.66 ",
+             "repayLastTime": "1509947850",
+             "styleType": "1",
+             "day": "距离到期日 ",
+             "status": "3",
+             "voucher": "1%加息券",
+             "tenderTime": "1509947850"
       },
       "success": true
 }

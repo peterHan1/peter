@@ -12,7 +12,7 @@ var investListBond = require('./list_bond.string');
 var invest = {
 	init : function(){
 		this.eachA();
-		this.eventFn();
+		this.eventFn();		
 	},
 	eachA : function(){
 		//  0：散标 1:精选计划
@@ -20,16 +20,23 @@ var invest = {
 			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
 				$(this).addClass('on');
 				var productType = $(this).attr("productType");
-				console.log("type: " + productType);
 				var index = $(this).parent().index();
 				$(".invest_list_bot ul").eq(index).show().siblings().hide();
 				$(".invest_list_top ul").eq(index).show().siblings("ul").hide();
 				if(productType == "sift"){
-					var type = 1;
-					invest.getListSift(type);
+					var dataListt = {
+						productType: 1,
+						currentPage: 1,
+						pageSize: 10
+					};
+					invest.getListSift(dataListt);
 				}else if(productType == "scatter"){
-					var type = 0;
-					invest.getListScatter(type);
+					var dataListt = {
+						productType: 0,
+						currentPage: 1,
+						pageSize: 10
+					};
+					invest.getListScatter(dataListt);
 				}else if (productType == "bond") {
 					$(".invest_list_txt").show();
 					invest.getListBond(0);
@@ -42,9 +49,10 @@ var invest = {
 
 		});
 	},
-	getListSift : function(type){
+	getListSift : function(dataList){
 		// 精选计划
-		_apiInvest.getInvestList(type,1,10,function(res){
+		_apiInvest.getInvestList(dataList,function(res){
+			console.log(dataList);
 			invest.setData(res);
 			listHtml = _td.renderHtml(investListSift,{
 				list:res.content.list,
@@ -52,7 +60,7 @@ var invest = {
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_sift");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getInvestList(type,e.current,10,function(res){
+				_apiInvest.getInvestList(dataList,function(res){
 					invest.setData(res);
 					listHtml = _td.renderHtml(investListSift,{
 						list:res.content.list,
@@ -68,8 +76,8 @@ var invest = {
 		});
 	},
 	// 散标项目
-	getListScatter : function(type){
-		_apiInvest.getInvestList(type,1,10,function(res){
+	getListScatter : function(dataList){
+		_apiInvest.getInvestList(dataList,function(res){
 			invest.setData(res);
 			listHtml = _td.renderHtml(investListScatter,{
 				list:res.content.list,
@@ -77,7 +85,7 @@ var invest = {
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_scatter");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getInvestList(type,e.current,10,function(res){
+				_apiInvest.getInvestList(dataList,function(res){
 					invest.setData(res);
 					listHtml = _td.renderHtml(investListScatter,{
 						list:res.content.list,
@@ -117,6 +125,53 @@ var invest = {
 			console.log("请求失败");
 		});
 	},
+	siftTab : function(){
+		$(".sift_tab li").on("click",function(){
+			var start = $(this).attr("start");
+			var end = $(this).attr("end");
+			var dataListt = {
+				productType			: 1,
+				productPeriodStart	: start,
+				productPeriodEnd	: end,
+				currentPage 		: 1,
+				pageSize 			: 10
+			};
+			invest.getListSift(dataListt);
+		});
+	},
+	scatterTab : function(){
+		$(".invest_nav_data li").on("click",function(){
+			var start = $(this).attr("start");
+			var end = $(this).attr("end");
+			$(".invest_nav_mou li").attr("start",start);
+			$(".invest_nav_mou li").attr("end",end);
+		});
+		$(".invest_nav_mou li").on("click",function(){
+			var status = $(this).attr("status");
+			$(".invest_nav_data li").attr("status",status);
+		});
+		$(".scatter_tab li").on("click",function(){
+			var start = $(this).attr("start");
+			var end = $(this).attr("end");
+			var status = $(this).attr("status");
+			var dataListt = {
+				productType: 1,
+				productPeriodStart: start,
+				productPeriodEnd: end,
+				refundWay:status,
+				currentPage: 1,
+				pageSize: 10
+			};
+			invest.getListScatter(dataListt);
+		});
+	},
+	bondTab : function(){
+		$(".bond_tab li").on("click",function(){
+			var type = $(this).attr("type");
+			console.log(type);
+			invest.getListBond(type);
+		});
+	},
 	// 债权转让
 	setUnit : function(res){
 		var resList = res.content.list;
@@ -146,7 +201,7 @@ var invest = {
 			$(this).find($(".barNum")).html(plan);
 			// 满标 年化率颜色和按钮状态
 			var btnStatus = $(this).find('.butt').attr("status");
-			if(btnStatus == 0){
+			if(btnStatus == 0 || btnStatus == "false"){
 				$(this).find('.butt').removeClass('btn').addClass("finish").html("已抢完");
 				$(this).find('.expect').addClass("finish");
 			}
@@ -188,6 +243,9 @@ var invest = {
 			$(this).addClass("on");
 			$(this).siblings().removeClass("on");
 		});
+		invest.siftTab();
+		invest.scatterTab();
+		invest.bondTab();
 	}
 };
 $(function() {

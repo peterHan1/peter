@@ -3,9 +3,9 @@
       "msg": "成功",
       "content":
       {
-             "scoreTotal": "累计总积分",
+             "scoreTotal": 300,
              "scoreUsed": "已使用积分",
-             "scoreCurrent": "当前可用积分",
+             "scoreCurrent": 210,
              "scopeExpireYear": "今年将要过期积分"
       },
       "success": true

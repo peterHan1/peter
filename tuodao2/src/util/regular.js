@@ -1,5 +1,6 @@
 var _td = require('util/td.js');
 var _checkPhone = require('api/checkPhone_only-api.js');
+var _cash = require('api/cash-api.js');
 
 var _regular = {
 	// 输入中验证手机号码（注册）
@@ -148,7 +149,6 @@ var _regular = {
 		var flag;
 		var value = $("." + data.elm).val();
 		_checkPhone.checkPhone(value, function(res) {
-			console.log(res);
 			if (value != "" && res.content == true) {
 				flag = true;
 				$("." + data.elm).removeClass("red");
@@ -338,30 +338,37 @@ var _regular = {
 			} else {
 				$("." + data.elm).siblings('.' + data.cls).remove();
 				$("." + data.elm).removeClass('red');
-				flag = _this.moneyOnly(data.elm, data.cls);
+				_this.moneyOnly({
+					elm: data.elm,
+					cls: data.cls,
+					callback: function(result) {
+						flag = result;
+						data.callback(flag);
+					}
+				});
+			}
+		});
+	},
+	moneyOnly: function(data) {
+		this.callback = {
+			callback: function() {}
+		};
+		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>您输入的金额大于可提现金额</span></p>";
+		var flag;
+		var value = $("." + data.elm).val();
+		_cash.cash(function(res) {
+			var number = res.content.balanceValue;
+			if (value != "" && value <= number) {
+				flag = true;
+				$("." + data.elm).removeClass("red");
+				$("." + data.elm).siblings('.' + data.cls).remove();
+			} else {
+				flag = false;
+				$("." + data.elm).parent().append(ts);
+				$("." + data.elm).addClass("red");
 			}
 			data.callback(flag);
 		});
-	},
-	moneyOnly: function(elm, cls) {
-		var ts = "<p class=" + cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>您输入的金额大于可提现金额</span></p>";
-		var flag;
-		var number = 500;
-		var value = $("." + elm).val();
-		if (value != "" && value <= number) {
-			flag = true;
-			$("." + elm).removeClass("red");
-			$("." + elm).siblings('.' + cls).remove();
-		} else {
-			flag = false;
-			if ($("." + elm).parent().find("." + cls).length > 0) {
-				return false;
-			} else {
-				$("." + elm).parent().append(ts);
-			}
-			$("." + elm).addClass("red");
-		}
-		return flag;
 	},
 	// 投资详情页输入金额
 	inpMoneyOnkey: function(data) {

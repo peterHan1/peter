@@ -1,0 +1,10 @@
+<ol class="task">
+{{#list}}
+	<li>
+		<p class="p1">{{taskName}}</p>
+		<p class="p2">{{score}}</p>
+		<p class="p3">积分</p>
+		<a href={{url}} class="btn">{{todo}}</a>
+	</li>
+{{/list}}
+</ol>

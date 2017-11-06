@@ -12,17 +12,17 @@
 	<div class="welfare">
 		<%= require('html-loader!./layout/uc_menu.html') %>
 		<div class="welfare_content">
-			<div class="depository_no" style="display: none;">
+			<div class="depository_no">
 				<div class="depository_top">马上激活存管，邀请好友抢福利</div>
 				<div class="depository">
 					<img src="<%= require('../image/popup.png') %>" height="48" width="363" alt=""><br />
 					<span class="distance">为了保障您的资金安全,请在充值、投资、提现前开通存管</span><br />
-					<span class="invite_active">立即激活存管用户</span>
+					<a href="active_newuser.html" class="invite_active">立即激活存管用户</a>
 				</div>
 			</div>
-			<div class="depository_yes" >
+			<div class="depository_yes">
 				<div class="invite_nav">
-				<img src="<%= require('../image/welfare/invite_lv.png') %>" height="87" width="77" alt="">
+				<div class="lev_bg"></div>
 				<p class="lev_name">初级理财师</p>
 				<p class="distance">距中级理财师还差2个V1好友，200万总待收</p>
 				</div>
@@ -37,7 +37,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="invite_menu">
 				<a class="welfare_on welfare_border">邀请好友</a><a>邀请记录</a>
 			</div>
@@ -65,6 +64,7 @@
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
 								<div class="copy copy_link">复制链接</div>
+								<input type="text" class="dis_none">
 							</li>
 							<li class="second_child">
 								<div style="width:180px;">
@@ -75,6 +75,7 @@
 								<div style="text-align:center;">
 									<a class="qq_share share" style="margin-right:20px;">
 									<a class="wx_share share"></a>
+									<input type="text" class="dis_none">
 								</div>
 							</li>
 							<li>
@@ -84,16 +85,18 @@
 									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
 								</div>
 								<div class="copy copy_code">复制邀请码</div>
+								<input type="text" class="dis_none">
 							</li>
-						</ol class="depository_no_menu">
-						<ol style="display:none;">
+						</ol>
+						<ol class="depository_no_menu dis_none">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
 									<p class="sp2">复制你的专属链接给好友</p>
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
-								<div class="copy copy_link">激活存管，立即分享</div>
+								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
+								<input type="text" class="dis_none" value="123456" id="iptsss">
 							</li>
 							<li class="second_child">
 								<div style="width:180px;">
@@ -102,7 +105,8 @@
 									<p class="sp3">好友点击可直接注册</p>
 								</div>
 								<div style="text-align:center;">
-									<div class="copy copy_link">激活存管，立即分享</div>
+									<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
+									<input type="text" class="dis_none">
 								</div>
 							</li>
 							<li>
@@ -111,7 +115,8 @@
 									<p class="sp2">复制你的邀请码给好友</p>
 									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
 								</div>
-								<div class="copy copy_code">激活存管，立即分享</div>
+								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
+								<input type="text" class="dis_none">
 							</li>
 						</ol>
 					</div>
@@ -122,9 +127,9 @@
 								<i></i>符合理财师标准的用户，根据其名下的邀请关系（含新邀请规则前已邀请的人），按照最新的邀请规则进行相应的返现奖励！
 							</dt>
 							<dt>
-								<i></i>好友首投奖励：直接被邀请人首次投资成功并已满标复审，邀请人即可获得10元抵扣红包（使用条件：起投1000元，1个月及以上，有效期唯30天）和首次投资
+								<i></i>好友首投奖励：直接被邀请人首次投资成功并已满标复审，邀请人即可获得10元抵扣红包（使用条件：起投1000元，1个
 							</dt>
-							<dd>金额0.25%的返现奖励；</dd>
+							<dd>月及以上，有效期唯30天）和首次投资金额0.25%的返现奖励；</dd>
 							<dt><i></i>好友第二次投资起，邀请人即可根据目前的理财师等级，享受返现奖励；</dt>
 							<dt><i></i>理财师返现奖励到账时间：若投资散标项目则被邀请人每笔投资金额到期，按期返现；投资精选计划项目则奖励在精选计划到期</dt>
 							<dd>时一次性发放；</dd>
@@ -133,7 +138,7 @@
 						<table class="order_detail_table">
 							<tr class="first_child">
 								<td style="width:120px;">邀请人等级</td>
-								<td style="width:160px;">被邀请人大道v1人数</td>
+								<td style="width:160px;">被邀请人达到v1人数</td>
 								<td style="width:208px;">邀请人总待收（只算B级用户）</td>
 								<td style="width:200px;">邀请人奖励</td>
 								<td style="width:150px;">返现奖励有效时间</td>
@@ -251,7 +256,7 @@
 							</tr>
 						</table>
 					</div>
-					<div class="invite_none" style="display:none;">
+					<div class="invite_none">
 						<img src="<%= require('../image/no_data.png') %>" height="61" width="85" alt=""><br /><br />
 						<span>当前没有邀请记录</span>
 					</div>

@@ -57,16 +57,13 @@
 			float:left;
 			margin-left:10px;
 		}
-		.return_money{
+		.sta3{
 			color:$fontColorbd;
 		}
-		.matching_money{
+		.sta1{
 			color:$fontColor9E;
 		}
-		.repeal_money{
-			color:$fontColore6;
-		}
-		.underway_money{
+		.sta2{
 			color:$fontColor19;
 		}
 	}
@@ -97,10 +94,7 @@
 				color:$fontColor74;
 			}
 			.td_font{
-				font-size:$fontSize14;
-				span{
-					font-size:24px;
-				}
+				font-size:$fontSize16;
 			}
 		}
 		.sift_con_mes{

@@ -10,6 +10,8 @@ require('page/common/nav2/index.scss');
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
 var _del = require('util/delButton.js');
+var _openDeposit = require('api/openDeposit-api.js');
+var md5 = require('util/md5.js');
 
 var bankNum;
 var phoneNum;
@@ -109,10 +111,10 @@ var DepositInfoNew = {
 			_this.checkForm();
 		});
 		// 选择银行状态监听
-		$(".bank_all").on("click",function(){
-			setTimeout(function(){
+		$(".bank_all").on("click", function() {
+			setTimeout(function() {
 				_this.checkForm();
-			},300);
+			}, 300);
 		});
 	},
 	checkForm: function() {
@@ -127,7 +129,7 @@ var DepositInfoNew = {
 			$(".btn").on("mouseleave", function() {
 				$(this).removeClass('color');
 			});
-		} else if (username == "" || idcard == "" || xx == "" || bankNum == "" || phoneNum == false || payNum == false) {
+		} else{
 			$(".btn").removeClass("kd");
 			$(".btn").on("mouseover", function() {
 				$(this).removeClass('color');
@@ -158,19 +160,41 @@ var DepositInfoNew = {
 		});
 	},
 	// 激活存管用户验证
-	activateUser: function(){
-		var _this=this;
+	activateUser: function() {
+		var _this = this;
 		$(".btn").on("click", function() {
-			var type = 1;
 			if ($(this).hasClass("kd")) {
-				if (type == 1) {
-					$(".success_box").show();
-					$(".main").hide();
-					_this.countTime();
-				} else {
-					$(".wait_box").show();
-					$(".main").hide();
-				}
+				var realName = $(".user").val();
+				var idCard = $(".card").val();
+				var bankCode = $("#Bank_sel_hid .xx i").attr("bank");
+				var bankNum = $(".card_num").val();
+				bankNum = bankNum.replace(/\s+/g, "");
+				var reservationMobile = $(".phoneNum").val();
+				var payPassword = $(".pay").val();
+				payPassword = md5(payPassword);
+				var data = {
+					realName: realName,
+					idCard: idCard,
+					bankCode: bankCode,
+					bankNum: bankNum,
+					reservationMobile: reservationMobile,
+					payPassword: payPassword
+				};
+				console.log(data);
+				_openDeposit.openDeposit(data, function(res) {
+					console.log(res);
+					if (res.code == 100000) {
+						$(".success_box").show();
+						$(".main").hide();
+						_this.countTime();
+					} else if(res.code == 170020){
+						$(".wait_box").show();
+						$(".main").hide();
+					}else{
+						$(".js_box").show();
+						return false;
+					}
+				});
 			} else {
 				$(".js_box").show();
 				return false;
@@ -178,13 +202,14 @@ var DepositInfoNew = {
 		});
 	},
 	// 倒计时
-	countTime: function(){
+	countTime: function() {
 		var num = $(".success_box .mid span i").text();
 		var timer = setInterval(function() {
 			num--;
 			$(".success_box .mid span i").text(num);
 			if (num <= 0) {
 				$(".success_box .mid span i").text(0);
+				history.go(-1);
 			}
 		}, 1000);
 	}

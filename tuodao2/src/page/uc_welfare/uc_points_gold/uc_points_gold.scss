@@ -53,10 +53,11 @@
 	color:#ff7400;
 }
 .exchange{
+	@extend %clearfix;
 	.menu{
 		@include height-line(50px);
 		margin-left: 30px;
-		border-bottom: 2px solid $bgColor;
+		border-bottom: 1px solid $bgColor;
 		width: 880px;
 		margin-bottom: 28px;
 		a{
@@ -82,22 +83,26 @@
 		}
 	}
 	.zxf_pagediv{
-		margin-bottom: 21px;
+		height: 78px;
+		margin-bottom: 0px;
 	}
 	.exchange_detail{
 		font-size: $fontSize14;
 		margin-bottom: 4px;
 		@include tables;
+		@extend %clearfix;
+	}
+	.duihuan{
+		@extend %clearfix;
 	}
 	.change{
-		@extend %clearfix;
 		color: #828282;
 		font-size: 12px;
 		padding-left: 30px;
 		.change_img{
 			width: 280px;
 			@include height-line(140px);
-			padding-bottom: 20px;
+			padding-bottom: 25px;
 			font-size: 22px;
 			color:#ffffff;
 			text-align: center;
@@ -113,6 +118,8 @@
 			margin-bottom: 30px;
 			.btn_div{
 				@extend %clearfix;
+				height: 35px;
+				padding: 0 3px;
 			}
 			.btn_div{
 				span{
@@ -159,6 +166,9 @@
 				}
 			}
 		}
+	}
+	.points_get_table tr td span.iconfont{
+		color: #57B766;
 	}
 }
 
@@ -306,162 +316,5 @@
 	}
 	ul li{
 		line-height: 30px;
-	}
-}
-// 抽奖记录弹窗
-
-.draw_record_alert{
-	font-size: 14px;
-	.out{
-		padding: 0 26px;
-		div.zxf_pagediv{
-			padding-top: 20px;
-			margin-bottom: 0px;
-		}
-	}
-	.record_top{
-		padding: 15px 0;
-		color: $mainColor;
-		text-align: center;
-	}
-	table{
-		border-collapse: collapse;
-		text-align: left;
-		width: 100%;
-		tr{
-			th{
-				font-weight: bold;
-				color: #707070;
-				padding-left: 5%;
-				@include height-line(50px);
-			}
-			td{
-				color: #9e9e9e;
-				padding-left: 5%;
-				@include height-line(50px);
-			}
-		}
-	}
-	.record_none{
-		padding: 130px 0;
-		text-align: center;
-		color: #ccc;
-	}
-}
-// 中奖iphone，tv，牙刷弹窗
-.draw_presents_alert{
-	.presents_content{
-		@extend %clearfix;
-		padding:0 50px;
-		.present_img,.draw_explian{
-			float: left;
-			padding-top: 20px;
-		}
-		.present_img {
-			width: 180px;
-			text-align: center;
-			span{
-				font-size: 14px;
-				color: #9e9e9e;
-				padding-top: 10px;
-			}
-		}
-		.draw_explian{
-			width: 200px;
-			padding: 45px 0 0 60px;
-			li{
-				margin-bottom: 18px;
-				color: #333333;
-				font-size: 14px;
-			}
-		}
-	}
-	.draw_btn{
-		text-align: center;
-		padding-top: 30px;
-		button{
-			width: 250px;
-			@include height-line(40px);
-			color: #ffffff;
-			background: $mainColor;
-			-webkit-border-radius: 25px;
-			-moz-border-radius: 25px;
-			border-radius: 25px;
-			outline: none;
-			border: none;
-			cursor: pointer;
-		}
-	}
-}
-// 中奖红包，加息券弹窗
-.draw_hongbao_alert{
-	.hongbao_content{
-		padding-top: 30px;
-		li{
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.color333{
-			color: #333333;
-			font-size: 16px;
-		}
-		.color9e{
-			font-size: 14px;
-			color: #9e9e9e;
-			i{
-				color: $mainColor;
-			}
-		}
-		.draw_btn{
-			text-align: center;
-			button{
-				width: 250px;
-				@include height-line(40px);
-				color: #ffffff;
-				background: $mainColor;
-				-webkit-border-radius: 25px;
-				-moz-border-radius: 25px;
-				border-radius: 25px;
-				outline: none;
-				border: none;
-				cursor: pointer;
-			}
-		}
-	}
-}
-// 中奖积分弹窗
-.draw_points_alert{
-	.points_content{
-		padding-top: 30px;
-		li{
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.color333{
-			color: #333333;
-			font-size: 16px;
-		}
-		.color9e{
-			font-size: 14px;
-			color: #9e9e9e;
-			i{
-				color: $mainColor;
-			}
-		}
-		.draw_btn{
-			text-align: center;
-			button{
-				width: 250px;
-				@include height-line(40px);
-				color: #ffffff;
-				background: $mainColor;
-				-webkit-border-radius: 25px;
-				-moz-border-radius: 25px;
-				border-radius: 25px;
-				outline: none;
-				border: none;
-				cursor: pointer;
-			}
-		}
 	}
 }

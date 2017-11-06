@@ -30,15 +30,12 @@
 				color:$fontColor74;
 			}
 		}
-		
-	}
-	li.on{
-		a{
+		a.on{
 			color:$fontColor74;
 			border-bottom:2px solid #ff7400;
 		}
-	}
-	
+		
+	}	
 }
 .uc_invest_com{
 	width:940px;
@@ -145,31 +142,29 @@
 		}
 	}
 }
-.alone_table{
-	.table_list{
-		table{
-			tr{
-				.padd_left{
-					width:130px;
-					padding-left:20px;
+#alone_table{
+	table{
+		tr{
+			.padd_left{
+				width:130px;
+				padding-left:20px;
+			}
+			.td_name{
+				padding-right:10px;
+				width:60px;
+				a{
+					width:70px;
 				}
-				.td_name{
-					padding-right:10px;
-					width:60px;
-					a{
-						width:70px;
-					}
-				}
-				.td_time{
-					width:90px;
-					line-height:15px;
-					padding-right:5px;
-				}
+			}
+			.td_time{
+				width:90px;
+				line-height:15px;
+				padding-right:5px;
 			}
 		}
 	}
 }
-.yet_table{
+#yet_table{
 	table{
 		tr{
 			.status_th{
@@ -189,6 +184,7 @@
 				padding-right:16px;
 			}
 			.td_details{
+				padding-right:20px;
 			}
 		}
 	}

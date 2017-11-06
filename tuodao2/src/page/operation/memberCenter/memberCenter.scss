@@ -53,11 +53,11 @@
 		}
 		.lev_hr hr{
 			display: inline-block;
-			width: 100px;
+			width: 105px;
 			height: 2px;
 			background: #f49055;
 			position: absolute;
-			top: 22px;
+			top: 23px;
 			border: none;
 		}
 	}
@@ -70,7 +70,7 @@
 	@include height-line(50px);
 	color: #333333;
 	font-size: 16px;
-	border-bottom: 2px solid $bgColor;
+	border-bottom: 1px solid $bgColor;
 }
 .hover{
 	position: relative;
@@ -82,7 +82,7 @@
 .mouseover{
 	position: absolute;
 	top: -150px;
-    left: -62px;
+    left: -76px;
 	font-size: 14px;
 	text-align: center;
 	color: #9e9e9e;
@@ -92,13 +92,21 @@
 	border-radius: 10px;
 	padding: 10px 0px;
 	box-shadow: 0 5px 5px #f2f2f2;
+	display: none;
 	.jiantou{
-		width: 100%;
+ 		width: 100%;
 		height: 14px;
-		background: url(../../../image/bz_tip.png)center 4px no-repeat;
-		background-size: 100%;
 		position: absolute;
-		top: -13px;
+		top: -15px;
+		text-align: center;
+		span{
+			display: inline-block;
+			width: 0;
+		    height: 0;
+		    border-left: 10px solid transparent;
+		   	border-right: 10px solid transparent;
+		   	border-bottom: 10px solid #ffffff;
+		}
 	}
 	.mouse_top{
 		padding: 5px 0;
@@ -132,10 +140,9 @@
 	z-index: 10;
 	@include width-max;
 	background: #ffffff;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	border-bottom: 40px solid $bgColor;
+	-webkit-border-radius: 20px 20px 0 0;
+	-moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
 	.title_content{
 		padding: 80px 106px 60px 107px;
 		border-bottom: 40px solid $bgColor;

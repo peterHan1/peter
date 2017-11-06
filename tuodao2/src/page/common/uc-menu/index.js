@@ -72,7 +72,7 @@ var menuList = {
 		// 左右内容的高度
 		var hL = $('.uc_menu').height();
 		var hR = $('.uc_menu').siblings('div').height();
-		if(hR>hL){
+		if(hR>=hL){
 			$(".uc_menu").height(hR);
 			$('.uc_menu').siblings('div').height(hR);
 		}else{

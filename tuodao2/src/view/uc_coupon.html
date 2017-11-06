@@ -23,7 +23,7 @@
 							<a>已使用</a>
 							<a>已过期</a>
 						</div>
-						<div class="jxq_state_menu state_menu" style="display:none;">
+						<div class="jxq_state_menu state_menu dis_none">
 							<a class="menu_on">可使用</a>
 							<a>已使用</a>
 							<a>已过期</a>
@@ -79,7 +79,7 @@
 									<div class="ticket_bottom"><span>来自存管福利</span> <img src="<%= require('../image/yhq_select.png') %>"></div>
 								</li>
 							</ul>
-							<ul class="dyq_ticket dyq_ticket_no" style="display:none;">
+							<ul class="dyq_ticket dyq_ticket_no dis_none">
 								<li>
 									<p class="ticket_top">￥<span>10&nbsp;</span>抵用券</p>
 									<p class="ticket_middle">投资满10,000元，3个月及以上标的使用2017/04/26-2017/05/26</p>
@@ -126,7 +126,7 @@
 									<div class="ticket_bottom"><span>来自存管福利</span> <img src="<%= require('../image/yhq_select_no.png') %>"></div>
 								</li>
 							</ul>
-							<ul class="dyq_ticket dyq_ticket_guoqi" style="display:none;">
+							<ul class="dyq_ticket dyq_ticket_guoqi dis_none">
 								<li>
 									<p class="ticket_top">￥<span>10&nbsp;</span>抵用券</p>
 									<p class="ticket_bottom">投资满10,000元，3个月及以上标的使用2017/04/26-2017/05/26</p>
@@ -144,7 +144,7 @@
 								</li>
 							</ul>
 						</div>
-						<div class="jxq_tickets" style="display:none;">
+						<div class="jxq_tickets dis_none">
 							<ul class="jxq_ticket jxq_ticket_yes">
 								<li>
 									<p class="ticket_top"><span>1</span>%&nbsp;年利率加息</p>
@@ -192,7 +192,7 @@
 									<div class="ticket_bottom"><span>来自存管福利</span> <img src="<%= require('../image/yhq_select.png') %>"></div>
 								</li>
 							</ul>
-							<ul class="jxq_ticket jxq_ticket_no" style="display:none;">
+							<ul class="jxq_ticket jxq_ticket_no dis_none">
 								<li>
 									<p class="ticket_top"><span>1</span>%&nbsp;年利率加息</p>
 									<p class="ticket_bottom">2017/04/26-2017/05/26</p>
@@ -239,7 +239,7 @@
 									<div class="ticket_bottom"><span>来自存管福利</span> <img src="<%= require('../image/yhq_select_no.png') %>"></div>
 								</li>
 							</ul>
-							<ul class="jxq_ticket jxq_ticket_guoqi" style="display:none;">
+							<ul class="jxq_ticket jxq_ticket_guoqi dis_none">
 								<li>
 									<p class="ticket_top"><span>1</span>%&nbsp;年利率加息</p>
 									<p class="ticket_middle">2017/04/26-2017/05/26</p>
@@ -259,7 +259,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="zxf_pagediv page_show" onselectstart="return false" style="-moz-user-select:none;"></div>
+					<div class="zxf_pagediv dyq_page" onselectstart="return false" style="-moz-user-select:none;"></div>
+					<div class="zxf_pagediv jxq_page dis_none" onselectstart="return false" style="-moz-user-select:none;"></div>
 			</div>
 		</div>
 	</div>

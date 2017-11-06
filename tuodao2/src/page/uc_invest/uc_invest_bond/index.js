@@ -14,48 +14,33 @@ var _apiInvest = require('api/ucInListBond-api.js');
 var bondAble = require('./Invest_bondAble.string');
 var bondTran = require('./Invest_bondTran.string');
 var bondYet= require('./Invest_bondYet.string');
+var bondApply= require('./Invest_bondApply.string');
 
 var ucInvest = {
 	init : function(){
 		this.urlEach();
-		this.inputUp();
-		this.statusHtml();
-		this.tabLiClick();
-		this.addAbleHtml('0','','','10','1');
 	},
 	urlEach : function(){
 		$('.uc_bondTab a').each(function () {
-			var str = location.href;
-			var strs = str.split("#")[1];
-			var astr = ($(this).attr("href")).split("#")[1];
-			if(strs == astr){
-				console.log($(this).parent("li"));
-			}
-		});
-	},
-	tabLiClick : function(){
-		$(".uc_bondTab li").on("click",function(){
-			var index = $(this).index();
-			var sta = $(this).attr("status");
-			$(".uc_invest_com").eq(index).show().siblings(".uc_invest_com").hide();
-			$(this).addClass('on').siblings('li').removeClass('on');
-			if(sta == "0"){
-				$(".uc_invest_tabR").attr("status",sta);
-				ucInvest.addAbleHtml('0','','','10','1');
-				$(".uc_invest_tabL").hide();
-			}else if(sta == "1"){
-				$(".uc_invest_tabR").attr("status",sta);
-				ucInvest.addTranHtml('bond_box','1','','','10','1');
-				$(".uc_invest_tabL").hide();
-			}else if(sta == "2"){
-				$(".uc_invest_tabR").attr("status",sta);
-				ucInvest.addTranHtml('bond_box','2','','','10','1');
-				$(".uc_invest_tabL").hide();
-			}else if(sta == "3"){
-				$(".uc_invest_tabR").attr("status",sta);
-				ucInvest.addYetHtml('3','','','10','1');
-				$(".uc_invest_tabL").show();
-			}
+			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+				var sta = $(this).attr("status");
+				$(this).addClass('on');
+				ucInvest.initDate();
+				var oUl = '<ul class="tabUl"><li class="on" status="0">全部</li><li status="1">募集中</li><li status="2">回款中</li><li status="3">已回款</li></ul>';
+				if(sta == "0"){
+					ucInvest.addAbleHtml('0','','','10','1');
+				}else if(sta == "1"){
+					ucInvest.addTranHtml('1','','','10','1');
+				}else if(sta == "2"){
+					ucInvest.addTranHtml('2','','','10','1');
+				}else if(sta == "3"){
+					ucInvest.addYetHtml('0','','','10','1');
+					$(".uc_invest_tabL").html(oUl);
+					ucInvest.yetStatusclick();
+				}
+			} else {
+				$(this).removeClass('on');
+			};
 		});
 	},
 	addAbleHtml : function(sta,startime,endtime,pagesize,current){
@@ -64,96 +49,168 @@ var ucInvest = {
 				list:res.content.list,
 			});
 			$(".bond_box").html(listBondHtml);
+			$(".uc_invest_tabR").attr("status",sta);
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				listBondHtml = _td.renderHtml(bondAble,{
-					list:res.content.list,
+				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+					listBondHtml = _td.renderHtml(bondAble,{
+						list:res.content.list,
+					});
+					$(".bond_box").html(listBondHtml);
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.trColor();
+					ucInvest.tipsHover();
+					ucInvest.applyClick();
+					ucInvest.dateClick();
+				},function(){
+					console.log("分页请求失败");
 				});
-				$(".bond_box").html(listBondHtml);
-				ucInvest.trColor();
-				ucInvest.tipsHover();
-				ucInvest.eventFn();
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.eventFn();
+			ucInvest.applyClick();
+			ucInvest.dateClick();
 		},function(){
 			console.log("请求失败");
 		});
 	},
-	addTranHtml : function(el,sta,startime,endtime,pagesize,current){
+	addTranHtml : function(sta,startime,endtime,pagesize,current){
 		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
 			listBondHtml = _td.renderHtml(bondTran,{
 				list:res.content.list,
 			});
-			$("."+el).html(listBondHtml);
+			$(".bond_box").html(listBondHtml);
+			$(".uc_invest_tabR").attr("status",sta);
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				listBondHtml = _td.renderHtml(bondTran,{
-					list:res.content.list,
+				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+					listBondHtml = _td.renderHtml(bondTran,{
+						list:res.content.list,
+					});
+					$(".bond_box").html(listBondHtml);
+					$(".uc_invest_tabR").attr("status",sta);
+					ucInvest.trColor();
+					ucInvest.tipsHover();
+					ucInvest.dateClick();
+				},function(){
+					console.log("分页请求失败");
 				});
-				$("."+el).html(listBondHtml);
-				ucInvest.trColor();
-				ucInvest.tipsHover();
-				ucInvest.eventFn();
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.eventFn();
+			ucInvest.dateClick();
 		},function(){
 			console.log("请求失败");
 		});
 	},
 	addYetHtml : function(sta,startime,endtime,pagesize,current){
-		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+		_apiInvest.getBondyet(sta,startime,endtime,pagesize,current,function(res){
 			listBondHtml = _td.renderHtml(bondYet,{
 				list:res.content.list,
 			});
 			$(".bond_box").html(listBondHtml);
+			$(".uc_invest_tabR").attr("status","3");
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				listBondHtml = _td.renderHtml(bondYet,{
-					list:res.content.list,
+				_apiInvest.getBondyet(sta,startime,endtime,pagesize,current,function(res){
+					listBondHtml = _td.renderHtml(bondYet,{
+						list:res.content.list,
+					});
+					$(".bond_box").html(listBondHtml);
+					$(".uc_invest_tabR").attr("status","3");
+					ucInvest.trColor();
+					ucInvest.tipsHover();
+					ucInvest.dateClick();
+				},function(){
+					console.log("分页请求失败");
 				});
-				$(".bond_box").html(listBondHtml);
-				ucInvest.trColor();
-				ucInvest.tipsHover();
-				ucInvest.eventFn();
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.eventFn();
+			ucInvest.dateClick();
 		},function(){
 			console.log("请求失败");
 		});
 	},
-	statusHtml : function(){
+	yetStatusclick : function(){
 		$(".uc_invest_tabL li").on("click",function(){
 			var sta = $(this).attr("status");
 			$(this).addClass('on').siblings('li').removeClass('on');
-			
+			$(".uc_invest_tabR").attr("yet",sta);
+			ucInvest.addYetHtml(sta,'','','10','1');
 		});
 	},
-	eventFn : function(){
-		$(".start_date").on("click",function(){
+	dateClick : function(){
+		$(".start_date").off("click").on("click",function(){
+			var _this = $(this);
+			var sta = $(this).parent(".uc_invest_tabR").attr("status");
+			var yetSta = $(this).parent(".uc_invest_tabR").attr("yet");
+			var endTime = $("#end_date").attr('endDate');
 			laydate({
 				elem: '#start_date',
 				format: 'YYYY-MM-DD',
 				// 选择时间后回调
 			 	choose: function(dates){
-			 		console.log(dates);
+			 		$("#start_date").attr("startDate",dates);
+			 		if(sta == 0){
+			 			ucInvest.addAbleHtml('0',dates,endTime,'10','1');
+			 			console.log("可转让");
+			 		}else if(sta == 1){
+						ucInvest.addTranHtml('1',dates,endTime,'10','1');
+			 			console.log("转让中");
+			 		}else if(sta == 2){
+						ucInvest.addTranHtml('2',dates,endTime,'10','1');
+			 			console.log("已转让");
+			 		}else if(sta == 3){
+						ucInvest.addYetHtml(yetSta,dates,endTime,'10','1');
+			 			console.log("已受让");
+			 		}
 			  	}
 			});
 		});
-		$(".end_date").on("click",function(){
+		$(".end_date").off("click").on("click",function(){
+			var _this = $(this);
+			var sta = $(this).parent(".uc_invest_tabR").attr("status");
+			var startTime = $("#start_date").attr('startDate');
+			var yetSta = $(this).parent(".uc_invest_tabR").attr("yet");
 			laydate({
 				elem: '#end_date',
 				format: 'YYYY-MM-DD',
 				// 选择时间后回调
 			 	choose: function(dates){
-			 		console.log(dates);
+			 		$("#end_date").attr("endDate",dates);
+			 		if(sta == 0){
+			 			ucInvest.addAbleHtml('0',startTime,dates,'10','1');
+			 			console.log("可转让");
+			 		}else if(sta == 1){
+						ucInvest.addTranHtml('1',startTime,dates,'10','1');
+			 			console.log("转让中");
+			 		}else if(sta == 2){
+						ucInvest.addTranHtml('2',startTime,dates,'10','1');
+			 			console.log("已转让");
+			 		}else if(sta == 3){
+						ucInvest.addYetHtml(yetSta,startTime,dates,'10','1');
+			 			console.log("已受让");
+			 		}
 			  	}
 			});
 		});
+	},
+	applyClick : function(){
 		// 申请转让
 		$(".transfer_clk a").on("click",function(){
+			var id = $(this).attr("tenderId");
+			_apiInvest.getApply(id,function(res){
+				listApply = _td.renderHtml(bondApply,{
+					content:res.content,
+				});
+				$(".bond_show_box").html(listApply);
+				$(".sub_btn").attr("tenderId",id);
+				ucInvest.inputUp();
+				$(".close_btn").on("click",function(){
+					$(".bond_show_box").html("");
+					layer.closeAll();
+				});
+			},function(){
+
+			});
 			layer.open({
 				type: 1,
 				title: '',
@@ -162,23 +219,24 @@ var ucInvest = {
 				content: $('#bond_show')
 			});
 		});
-		$(".close_btn").on("click",function(){
-			layer.closeAll();
-		});
 		// 确认转让点击
 		$(document).on("click",".affirm_btn",function(){
-			var psw = $(".sub_psw").val();
-			if(psw != "123"){
+			var id = $(this).attr("tenderId");
+			var pasw = $(".sub_psw").val();
+			var tlt = $(".applyTlt").html();
+			_apiInvest.subApply(id,pasw,function(res){
+				$(".applyOkTlt").html(tlt);
+				layer.closeAll();
+				layer.open({
+					type: 1,
+					title: '',
+					closeBtn: 0,
+					area: ['740px', '594px'],
+					content: $('#bond_showOk')
+				});
+			},function(){
 				show_mess("密码错误，请重新输入");
-			}else{
-				if($(".mess").length > 0){
-					$(".mess").remove();
-				}
-				$(".bond_formM").removeClass("cur_money");
-				$(".input_pwd").removeClass("psw_mes");
-				$(".bond_show_box").hide();
-				$(".bond_show_ok").show();
-			}
+			});
 		});
 		$(".bond_ok_close").on("click",function(){
 			layer.closeAll();
@@ -198,7 +256,10 @@ var ucInvest = {
 			$(".bond_formM").append(txt);
 		};
 	},
-
+	initDate : function(){
+		$("#start_date").attr("startDate","").html("选择开始时间");
+		$("#end_date").attr("endDate","").html("选择结束时间");
+	},
 	tipsHover : function(){
 		$(".td_name").mouseover(function(){
 			_tips.getTipsRight($(this),16);

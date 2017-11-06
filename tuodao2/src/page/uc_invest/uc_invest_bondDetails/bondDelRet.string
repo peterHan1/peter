@@ -4,6 +4,6 @@
 		<td>{{period}} / {{periods}}</td>
 		<td>{{preCapital}}</td>
 		<td>{{preInterest}}</td>
-		<td class="return_money">{{status}}</td>
+		<td class="return_status">{{status}}</td>
 	</tr>
 {{/list}}

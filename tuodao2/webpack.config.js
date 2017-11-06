@@ -59,6 +59,7 @@ var config = {
 		'uc_invite'					: ['./src/page/uc_welfare/uc_invite/index.js'],
 		'uc_coupon'					: ['./src/page/uc_welfare/uc_coupon/index.js'],
 		'friends'					: ['./src/page/uc_welfare/friends/index.js'],
+		'draw_present'					: ['./src/page/uc_welfare/draw_present/index.js'],
 		'memberCenter'				: ['./src/page/operation/memberCenter/index.js'],
 		'newcomer'					: ['./src/page/operation/newcomer/index.js']
 	},
@@ -154,6 +155,7 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invite','我的邀请')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_coupon','我的优惠券')),
 		new HtmlWebpackPlugin(getHtmlConfig('friends','邀请好友')),
+		new HtmlWebpackPlugin(getHtmlConfig('draw_present','积分大抽奖')),
 		new HtmlWebpackPlugin(getHtmlConfig('memberCenter','会员中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('newcomer','新手专区'))
 	]

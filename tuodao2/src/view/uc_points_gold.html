@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="exchange">
-			<div>
+			<div class="pointsContent">
 				<div class="points_menu menu">
 					<a class="welfare_on welfare_border">兑换专区</a>
 					<a class="welfare_on">积分明细</a>
@@ -144,9 +144,8 @@
 								<td>+1</td>
 							</tr>
 						</table>
-						<div class="zxf_pagediv" onselectstart="return false" style="-moz-user-select:none;"></div>
 					</div>
-					<div style="display:none;height:930px;" class='_points_get_table'>
+					<div style="display:none;" class='_points_get_table'>
 						<table class='points_get_table'>
 							<tr>
 								<th style="width:320px;">获取途径</th>
@@ -246,7 +245,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="zxf_pagediv points_page" onselectstart="return false" style="-moz-user-select:none;"></div>
+				<div class="zxf_pagediv point_page" onselectstart="return false" style="-moz-user-select:none;"></div>
 			</div>
 			<div style="display:none;">
 				<div class="gold_menu menu">
@@ -355,12 +354,11 @@
 						</table>
 					</div>
 				</div>
+				<div class="zxf_pagediv gold_page" onselectstart="return false" style="-moz-user-select:none;"></div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div class="draw" style="display:none;"></div>
 <%= require('html-loader!./layout/footer_nav.html') %>
 <%= require('html-loader!./layout/footer.html') %>
 
@@ -409,70 +407,6 @@
 	</div>
 	<button class="i_know">我知道了</button>
 </div>
-<div id="draw_record" class="draw_record_alert dis_none">
-	<div class="out">
-		<div class="record_top">
-			<span>当前可用积分为200分，已累计抽奖50次</span>
-			<span class="dis_none">当前可用积分为0，已累计抽奖0次</span>
-		</div>
-		<div class="record_yes">
-			<table>
-				<tr>
-					<th style="width:40%">奖品信息</th>
-					<th style="width:22%">获奖时间</th>
-				</tr>
-				<tr>
-					<td>iPhone8</td>
-					<td>2017-05-08 14:09:00</td>
-				</tr>
-				<tr>
-					<td>10元红包</td>
-					<td>2017-05-08 14:09:00</td>
-				</tr>
-				<tr>
-					<td>388元红包</td>
-					<td>2017-05-08 14:09:00</td>
-				</tr>
-				<tr>
-					<td>688红包</td>
-					<td>2017-05-08 14:09:00</td>
-				</tr>
-				<tr>
-					<td>1积分</td>
-					<td>2017-05-08 14:09:00</td>
-				</tr>
-			</table>
-			<div class="zxf_pagediv record_page" onselectstart="return false" style="-moz-user-select:none;"></div>
-		</div>
-		<div class="record_none dis_none"><img src="<%= require('../image/no_data.png') %>" alt=""><br /><br />当前没有中奖记录</div>
-	</div>
-</div>
-<div id="draw_presents" class="draw_presents_alert dis_none draw_alert">
-	<div class="presents_content">
-		<div class="present_img"><img src="<%= require('../image/welfare/iphone8_alert.png') %>" alt=""><br /><span>iPhone8</span></div>
-		<ul class="draw_explian">
-			<li style="font-size: 24px;color: #ff7400;margin-bottom: 38px;">恭喜您中奖啦！</li>
-			<li><span class="iconfont">&#xe66f;</span>&nbsp;40085-666-85</li>
-			<li>请您在5个工作日拨打客服电话否则将视为放弃奖励</li>
-		</ul>
-	</div>
-	<div class="draw_btn"><button>我知道了</button></div>
-</div>
-<div id="draw_hongbao" class="draw_hongbao_alert dis_none draw_alert">
-	<ul class="hongbao_content">
-		<li class="hb_img"><img src="<%= require('../image/welfare/hongbao_alert.png') %>" alt=""></li>
-		<li class="color333">恭喜您抽中<span>388元红包</span>！</li>
-		<li class="color9e">您可以去<i class="">我的优惠券</i>中查看获得的<span>红包</span></li>
-		<li class="draw_btn"><button>我知道了</button></li>
-	</ul>
-</div>
-<div id="draw_points" class="draw_points_alert dis_none draw_alert">
-	<ul class="points_content">
-		<li class="point_img"><img src="<%= require('../image/welfare/jf_alert.png') %>" alt=""></li>
-		<li class="color333">恭喜您抽中<span>388</span>积分！</li>
-		<li class="color9e"><span>不要泄气，小奖怡情</span></li>
-		<li class="draw_btn"><button>我知道了</button></li>
-	</ul>
-</div>
+
 </body>
 </html>

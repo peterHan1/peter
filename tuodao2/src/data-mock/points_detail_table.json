@@ -4,13 +4,13 @@
       "content":
       {
              "pageNum": 1,
-             "pageSize": 1,
-             "size": 1,
+             "pageSize": 3,
+             "size": 6,
              "orderBy": null,
              "startRow": 0,
              "endRow": 0,
              "total": 1,
-             "pages": 1,
+             "pages": 6,
              "list":
              [
                     {

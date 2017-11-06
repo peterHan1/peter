@@ -1,10 +1,8 @@
 {{#content}}
 <div class="sift_tit">
-	<a href="###" class="iconfont">&#xe6bb;</a>
+	<a href="uc_invest_bond.html" class="iconfont">&#xe6bb;</a>
 	<p>
-		<span class="return_money">[已回款]</span>
-		<span class="matching_money">[募集中]</span>
-		<span class="underway_money">[回款中]</span>
+		<span class="return_satus sta{{status}}" status="{{status}}"></span>
 		{{productTitle}}
 	</p>
 </div>
@@ -31,7 +29,7 @@
 				<td>{{amount}}</td>
 				<td>{{interest}}</td>
 				<td>{{reward}}</td>
-				<td class="td_font"><span>1%</span>加息券</td>
+				<td class="td_font">{{voucher}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -43,7 +41,7 @@
 					预期年化：<span>{{borrowApr}}%</span>
 				</li>
 				<li>
-					投资时间：<span>2017-05-08 14:09:00</span>
+					投资时间：<span class="tenderTime">{{tenderTime}}</span>
 				</li>
 				<li>
 					还款方式：<span>{{styleType}}</span>

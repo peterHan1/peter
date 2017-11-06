@@ -12,12 +12,12 @@
 		<div class="main">
 			<div class="record_top">
 				<ul>
-					<li class="ones">全部</li>
-					<li>投资</li>
-					<li>回款</li>
-					<li>充值</li>
-					<li>提现</li>
-					<li>其它</li>
+					<li><a class="ones" href="uc_moneyRecord.html?all">全部</a></li>
+					<li><a href="uc_moneyRecord.html?tz">投资</a></li>
+					<li><a href="uc_moneyRecord.html?hk">回款</a></li>
+					<li><a href="uc_moneyRecord.html?cz">充值</a></li>
+					<li><a href="uc_moneyRecord.html?tx">提现</a></li>
+					<li><a href="uc_moneyRecord.html?qt">其它</a></li>
 				</ul>
 				<div class="lay_date">
 					<div class="calendar start_date"><p class="layer_date" id="start_date">2017-04-25</p><i class="iconfont">&#xe6a4;</i></div>至
@@ -35,7 +35,7 @@
 							<th class="last">备注信息</th>
 						</tr>
 					</thead>
-					<tbody>
+					<!-- <tbody class="money_records">
 						<tr>
 							<td>2017-05-08  14:09:00</td>
 							<td>投资</td>
@@ -64,7 +64,7 @@
 							<td>100.00</td>
 							<td class="last"><i class="iconfont">&#xe670;</i></td>
 						</tr>
-					</tbody>
+					</tbody> -->
 				</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">
@@ -73,47 +73,17 @@
 				</div>
 			</div>
 			<div class="record_box dis_none">
-				<table>
-					<thead>
-						<tr>
-							<th>交易时间</th>
-							<th>交易类型</th>
-							<th>交易金额（元）</th>
-							<th>账户余额（元）</th>
-							<th class="last">备注信息</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-					</tbody>
-				</table>
+			<table>
+				<thead>
+					<tr>
+						<th>交易时间</th>
+						<th>交易类型</th>
+						<th>交易金额（元）</th>
+						<th>账户余额（元）</th>
+						<th class="last">备注信息</th>
+					</tr>
+				</thead>
+			</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">
 					<img src="<%= require('../image/no_data.png') %>">
@@ -131,36 +101,6 @@
 							<th class="last">备注信息</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-					</tbody>
 				</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">
@@ -179,36 +119,6 @@
 							<th class="last">备注信息</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-					</tbody>
 				</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">
@@ -227,36 +137,6 @@
 							<th class="last">备注信息</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-					</tbody>
 				</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">
@@ -275,36 +155,6 @@
 							<th class="last">备注信息</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-						<tr>
-							<td>2017-05-08  14:09:00</td>
-							<td>投资</td>
-							<td>100.00</td>
-							<td>100.00</td>
-							<td class="iconfont last">&#xe670;</td>
-						</tr>
-					</tbody>
 				</table>
 				<div class="zxf_pagediv"></div>
 				<div class="no_data dis_none">

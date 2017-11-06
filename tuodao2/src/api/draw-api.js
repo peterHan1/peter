@@ -1,6 +1,14 @@
 var _td = require('util/td.js');
 
 var _product = {
+	// 积分数值（可用，累计）
+	getPoints : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/points.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
 	// 抽礼品
 	getDraw_present : function(resolve, reject){
 		_td.request({
@@ -17,9 +25,18 @@ var _product = {
 			error   : reject
 		});
 	},
-	getDraw_result : function(resolve, reject){
+	// 抽獎結果
+	getDraw_result : function(type,needScore,resolve, reject){
 		_td.request({
+			// method	: "POST",
+			// url     : _td.getServerUrl('http://72.127.2.140:8080/api/router/op/getInverstResult'),
 			url     : _td.getServerUrl('/draw_result.json'),
+			data    : {
+				/*accessId		: userId,
+				accessKey		: userKey,*/
+				inverstType		: type,
+				score			: needScore
+			},
 			success : resolve,
 			error   : reject
 		});

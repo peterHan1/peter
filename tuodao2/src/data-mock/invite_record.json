@@ -3,14 +3,14 @@
       "msg": "成功",
       "content":
       {
-             "pageNum": "页码",
-             "pageSize": "每页记录数",
+             "pageNum": "1",
+             "pageSize": "6",
              "size": "每页行数",
              "orderBy": "排序字段",
              "startRow": "开始行",
              "endRow": "结束行",
              "total": "总记录数",
-             "pages": "总页数",
+             "pages": "10",
              "list":
              [
                     {

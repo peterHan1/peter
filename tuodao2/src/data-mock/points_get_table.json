@@ -10,7 +10,7 @@
              "startRow": 0,
              "endRow": 5,
              "total": 6,
-             "pages": 1,
+             "pages": 10,
              "list":
              [
                     {
@@ -20,7 +20,7 @@
                            "type": "任务类型(1:日常任务,2:新手任务)",
                            "description": "奖励描述",
                            "todo": "去干嘛",
-                           "url": "跳转链接地址",
+                           "url": "draw_present.html",
                            "isComplete": "是否完成任务（yes:完成 no:未完成）"
                     },
                     {
@@ -30,18 +30,18 @@
                            "type": 2,
                            "description": "奖励：80积分",
                            "todo": "去关注",
-                           "url": null,
-                           "isComplete": "no"
+                           "code": 1,
+                           "isComplete": "yes"
                     },
                     {
                            "taskId": 3,
-                           "taskName": "首次成功充值",
+                           "taskName": "签到",
                            "score": 30,
                            "type": 2,
                            "description": "奖励：30积分",
-                           "todo": "去充值",
-                           "url": null,
-                           "isComplete": "no"
+                           "todo": "去签到",
+                           "url": "newcomer.html",
+                           "isComplete": "yes"
                     },
                     {
                            "taskId": 4,
@@ -90,6 +90,86 @@
                            "type": 2,
                            "description": "奖励：40积分",
                            "todo": "去登入",
+                           "code": 2,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": null,
+                           "isComplete": "no"
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
                            "url": null,
                            "isComplete": "no"
                     },

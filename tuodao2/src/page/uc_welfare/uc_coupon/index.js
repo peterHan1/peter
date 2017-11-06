@@ -6,74 +6,39 @@ require('page/common/uc-menu/index.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
 
-$('.coupon_menu a').on("click",function(){
-	$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
-	var index=$(this).index();
-	states=index;
-	$('.ticket_all').children().eq(index).show().siblings().hide();
-	$('.state_menues').children().eq(index).show().siblings().hide();
-})
-
-$('.dyq_state_menu a').on("click",function(){
-	$(this).addClass('menu_on').siblings().removeClass('menu_on');
-	var index=$(this).index();
-	$('.dyq_tickets').children().eq(index).show().siblings().hide();
-})
-
-$('.jxq_state_menu a').on("click",function(){
-	$(this).addClass('menu_on').siblings().removeClass('menu_on');
-	var index=$(this).index();
-	$('.jxq_tickets').children().eq(index).show().siblings().hide();
-})
-
-$(function(){
-	$(document).on("click",'.dyq_ticket_yes li',function(){
-		if($(this)[0].dataset.select==1){
-			$(this).find('img').show();
-			$(this)[0].dataset.select=2;
-		}else{
-			$(this).find('img').hide();
-			$(this)[0].dataset.select=1;
-		}
-	})
-	$(document).on("click",'.jxq_ticket_yes li',function(){
-		if($(this)[0].dataset.select==1){
-			$(this).find('img').show();
-			$(this)[0].dataset.select=2;
-		}else{
-			$(this).find('img').hide();
-			$(this)[0].dataset.select=1;
-		}
-	})
-})
-
 var _td = require('util/td.js');
 var _apiCoupon = require('api/coupon-api.js');
 var couponDyq = require('./coupon_dyq.string');
 var couponJxq = require('./coupon_jxq.string');
 var coupon = {
 	init:function(){
-		// this.couponStatus(1,1);
-		this.getDyqYes();
-		this.getJxqYes();
-		this.dqyClick();
-		this.jxyClick();
+		var userId='';
+		var userKey='';
+		this.getDyqYes(1,1,1);
+		this.getJxqYes(2,1,1);
+		this.tabCut();
+		this.lockStatus();
 	},
-	getDyqYes : function(){
+	getDyqYes : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponDyq,{
 				list:res.content.list,
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_yes');
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			coupon.HeightAuto();
+			coupon.elHeight();
+			console.log(res.content.pages+' '+res.content.pageNum+' '+res.content.pageSize+' '+$('.welfare_content').height());
+			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponDyq,{
 						list:res.content.list,
 					});
 					$('.dyq_tickets').html(bannerHtml);
 					$('.dyq_tickets ul').addClass('dyq_ticket_yes');
+					coupon.HeightAuto();
+					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -82,23 +47,27 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	getDyqNo : function(){
+	getDyqNo : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponDyq,{
 				list:res.content.list,
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_no');
 			$('.dyq_ticket_no li img').attr('src','');
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			coupon.HeightAuto();
+			coupon.elHeight();
+			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponDyq,{
 						list:res.content.list,
 					});
 					$('.dyq_tickets').html(bannerHtml);
 					$('.dyq_tickets ul').addClass('dyq_ticket_no');
 					$('.dyq_ticket_no li img').attr('src','');
+					coupon.HeightAuto();
+					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -107,17 +76,17 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	getDyqOverdue : function(){
+	getDyqOverdue : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponDyq,{
 				list:res.content.list,
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_guoqi');
 
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponDyq,{
 					list:res.content.list,
 					});
@@ -131,22 +100,34 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	getJxqYes : function(){
+	// 去掉加息券的%
+	getJxq:function(){
+		$('.jxq_ticket .ticket_top span').each(function(){
+			var numbers=$(this).html();
+			$(this).html(numbers.split('%').join(''));
+		})
+	},
+	getJxqYes : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponJxq,{
 				list:res.content.list,
 			});
 			$('.jxq_tickets').html(bannerHtml);
 			$('.jxq_tickets ul').addClass('jxq_ticket_yes');
-
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			coupon.getJxq();
+			coupon.HeightAuto();
+			coupon.elHeight();
+			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
 						list:res.content.list,
 					});
 					$('.jxq_tickets').html(bannerHtml);
 					$('.jxq_tickets ul').addClass('jxq_ticket_yes');
+					coupon.getJxq();
+					coupon.HeightAuto();
+					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -155,23 +136,28 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	getJxqNo : function(){
+	getJxqNo : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponJxq,{
 				list:res.content.list,
 			});
 			$('.jxq_tickets').html(bannerHtml);
+			coupon.getJxq();
 			$('.jxq_tickets ul').addClass('jxq_ticket_no');
 			$('.jxq_ticket_no li img').attr('src','');
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			coupon.HeightAuto();
+					coupon.elHeight();
+			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
 						list:res.content.list,
 					});
 					$('.jxq_tickets').html(bannerHtml);
 					$('.jxq_tickets ul').addClass('jxq_ticket_no');
 					$('.jxq_ticket_no li img').attr('src','');
+					coupon.HeightAuto();
+					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -180,22 +166,27 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	getJxqOverdue : function(){
+	getJxqOverdue : function(type,status,lock){
 		// 优惠券查询
-		_apiCoupon.getCoupon(1,10,function(res){
+		_apiCoupon.getCoupon(type,status,lock,1,10,function(res){
 			var bannerHtml = _td.renderHtml(couponJxq,{
 				list:res.content.list,
 			});
 			$('.jxq_tickets').html(bannerHtml);
 			$('.jxq_tickets ul').addClass('jxq_ticket_guoqi');
-
-			_apiCoupon.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(type,e.current,10,function(res){
+			coupon.getJxq();
+			coupon.HeightAuto();
+			coupon.elHeight();
+			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
 						list:res.content.list,
 					});
 					$('.jxq_tickets').html(bannerHtml);
 					$('.jxq_tickets ul').addClass('jxq_ticket_guoqi');
+					coupon.getJxq();
+					coupon.HeightAuto();
+					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -204,68 +195,89 @@ var coupon = {
 			console.log("请求失败");
 		});
 	},
-	// 判断抵用券状态
-	dqyClick:function(){
-		$('.dyq_state_menu a').on('click',function(){
+	// 控制welfare_content的高与左侧菜单栏高度相同
+	HeightAuto:function(){
+		$('.uc_menu').height('auto');
+		$('.uc_menu').siblings('div').height('auto');
+	},
+	elHeight:function (){
+		var hL = $('.uc_menu')[0].clientHeight;
+		var hR = $('.uc_menu').siblings('div')[0].clientHeight;
+		if(hR>=905){
+			$(".uc_menu").height(hR);
+			$('.uc_menu').siblings('div').height(hR);
+		}else{
+			$('.uc_menu').siblings('div').height(hL);
+			$(".uc_menu").height(hL);
+		}
+	},
+	// tab切换
+	tabCut:function(){
+		// 优惠券类型切换
+		$('.coupon_menu a').on("click",function(){
+			var index=$(this).index();
+			$('.ticket_all').children().eq(index).show().siblings().hide();
+			$('.state_menues').children().eq(index).show().siblings().hide();
+			coupon.HeightAuto();
+			coupon.elHeight();
+			console.log($('.uc_menu').siblings('div')[0].clientHeight);
+			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
+			if(index==0){
+				console.log($('.uc_menu').siblings('div')[0].clientHeight);
+				$('.dyq_page').show();
+				$('.jxq_page').hide();
+			}else{
+				$('.jxq_page').show();
+				$('.dyq_page').hide();
+			}
+		})
+		// 抵用券状态切换
+		$('.dyq_state_menu a').on("click",function(){
 			$(this).addClass('menu_on').siblings().removeClass('menu_on');
 			var index=$(this).index();
-			console.log(index);
+			$('.dyq_tickets').children().eq(index).show().siblings().hide();
 			if(index==0){
-				coupon.couponStatus(1,1);
-				coupon.getDyqYes();
+				coupon.getDyqYes(1,1,1);
 			}else if(index==1){
-				coupon.couponStatus(1,2);
-				coupon.getDyqNo();
+				coupon.getDyqNo(1,2,1);
 			}else{
-				coupon.couponStatus(1,3);
-				coupon.getDyqOverdue();
+				coupon.getDyqOverdue(1,3,1);
+			}
+		})
+		// 加息券状态切换
+		$('.jxq_state_menu a').on("click",function(){
+			$(this).addClass('menu_on').siblings().removeClass('menu_on');
+			var index=$(this).index();
+			$('.jxq_tickets').children().eq(index).show().siblings().hide();
+			if(index==0){
+				coupon.getJxqYes(2,1,1);
+			}else if(index==1){
+				coupon.getJxqNo(2,2,1);
+			}else{
+				coupon.getJxqOverdue(2,3,1);
 			}
 		})
 	},
-	// 判断加息券状态
-	jxyClick:function(){
-		$('.jxq_state_menu a').on('click',function(){
-			$(this).addClass('menu_on').siblings().removeClass('menu_on');
-			var index=$(this).index();
-			if(index==0){
-				coupon.couponStatus(2,1);
-				coupon.getJxqYes();
-			}else if(index==1){
-				coupon.couponStatus(2,2);
-				coupon.getJxqNo();
+	// 优惠券锁定状态
+	lockStatus:function(){
+		$(document).on("click",'.dyq_ticket_yes li',function(){
+			if($(this)[0].dataset.select==1){
+				$(this).find('img').show();
+				$(this)[0].dataset.select=2;
 			}else{
-				coupon.couponStatus(2,3);
-				coupon.getJxqOverdue();
+				$(this).find('img').hide();
+				$(this)[0].dataset.select=1;
 			}
 		})
-	},
-	// 优惠券类型状态，ajax传输
-	couponStatus:function(type,status,discountLock){
-		/*$.ajax({
-			type: "POST",
-			url: "http://72.127.2.37/api/router/op/scoreExchange.json",
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader("accessId", "accessId");
-				xhr.setRequestHeader("accessKey", "accessKey");
-				xhr.setRequestHeader("sign", "NO");
-			},
-			data: {
-				// pageSize		:9,// 每页显示几条数据
-				// currentPage		:currentPage,// 当前第几页
-				discountType 	: type,// 类型(1:抵用券,2:加息券)
-				discountStatus 	: status,// 优惠券状态（1：可使用，2：已使用，3：已过期）
-				discountLock 	: discountLock// 是否锁定(1:正常，2：锁定)
-			},
-			success: function(data) {
-				console.log(data.msg);
-				if (data.code == 100000) {
-					coupon.getDyq();
-				}
-			},
-			error: function(res) {
-				console.log(res.msg);
+		$(document).on("click",'.jxq_ticket_yes li',function(){
+			if($(this)[0].dataset.select==1){
+				$(this).find('img').show();
+				$(this)[0].dataset.select=2;
+			}else{
+				$(this).find('img').hide();
+				$(this)[0].dataset.select=1;
 			}
-		});*/
+		})
 	}
 }
 $(function(){

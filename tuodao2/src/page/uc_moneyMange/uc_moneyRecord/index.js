@@ -10,6 +10,10 @@ require('util/laydate/laydate.js');
 require('util/laydate/laydate.scss');
 
 
+var _td = require('util/td.js');
+var _moneyRecord = require('api/moneyMange-api.js');
+var moneyRecords = require('./uc_moneyRecord.string');
+
 var moneyRecord = {
 	init: function() {
 		this.page();
@@ -18,16 +22,26 @@ var moneyRecord = {
 		this.remark();
 	},
 	page: function() {
-		$(".zxf_pagediv").createPage({
-			// 页数
-			pageNum: 100,
-			// 当前页
-			current: 1,
-			// 显示条数
-			shownum: 10,
-			backfun: function(e) {
-				// $("#data-container").html(thisDate(e.current));
+		var _this = this;
+		_moneyRecord.moneyRecord(1, 10, function(res) {
+			// console.log(res);
+			if(res.content.list.length==0){
+				$(".no_data").show();
 			}
+			moneyHtml = _td.renderHtml(moneyRecords, {
+				list: res.content.list,
+			});
+			$('.money_records').html(moneyHtml);
+			// _this.remark(res.content.list.remark);
+			_moneyRecord.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
+				_moneyRecord.moneyRecord(1, 10, function(res) {
+					moneyHtml = _td.renderHtml(moneyRecords, {
+						list: res.content.list,
+					});
+					$('.money_records').html(moneyHtml);
+					// _this.remark(res.content.list.remark);
+				});
+			});
 		});
 	},
 	// 日历
@@ -37,25 +51,44 @@ var moneyRecord = {
 				format: 'YYYY-MM-DD',
 				// 选择时间后回调
 				choose: function(dates) {
+					var _this = this;
+					_moneyRecord.moneyRecord(1, 10,function(res) {
+						// console.log(res);
+						moneyHtml = _td.renderHtml(moneyRecords, {
+							list: res.content.list,
+						});
+						$('.money_records').html(moneyHtml);
+						// _this.remark(res.content.list.remark);
+						_moneyRecord.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
+							_moneyRecord.moneyRecord(1, 10, function(res) {
+								moneyHtml = _td.renderHtml(moneyRecords, {
+									list: res.content.list,
+								});
+								$('.money_records').html(moneyHtml);
+								// _this.remark(res.content.list.remark);
+							});
+						});
+					});
 				}
 			});
 		});
 	},
 	// tab栏切换
 	tabCut: function() {
-		$(".record_top ul li").on("click", function() {
-			var _index = $(this).index();
-			$(".record_top ul li").removeClass("ones");
-			$(this).addClass('ones');
-			$(".record_box").eq(_index).show();
-			$(".record_box").eq(_index).siblings(".record_box").hide();
+		$('.record_top ul li a').each(function() {
+			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
+				$(this).addClass('ones');
+				$(this).parent().siblings('li').find("a").removeClass('ones');
+				var _index = $(this).parent().index();
+				$(".record_box").eq(_index).show().siblings(".record_box").hide();
+			}
 		});
 	},
 	// 备注动态创建
 	remark: function() {
 		$(".record_box tbody tr .last i").on("mouseover", function() {
 			$(".bz_tips").remove();
-			var str = "<div class='bz_tips top-tips'>备注备备注备<span class=b></span><span class=t></span></div>";
+			var str = "<div class='bz_tips top-tips'>备注备注<span class=b></span><span class=t></span></div>";
 			$(this).parent().append(str);
 			var width = $(".bz_tips").outerWidth() / 2;
 			$(".bz_tips").css({

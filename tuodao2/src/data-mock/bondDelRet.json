@@ -14,12 +14,44 @@
              "list":
              [
                     {
-                           "preCollectionTime": "回款时间",
-                           "period": "当期数",
-                           "periods": "总期数",
-                           "preInterest": "利息",
-                           "preCapital": "回款本金",
-                           "status": "状态"
+                       "preCollectionTime": "1509947850",
+                       "period": "1",
+                       "periods": "6",
+                       "preInterest": "10.00",
+                       "preCapital": "6666.66",
+                       "status": "已回款"
+                    },
+                    {
+                       "preCollectionTime": "1509947850",
+                       "period": "1",
+                       "periods": "6",
+                       "preInterest": "10.00",
+                       "preCapital": "6666.66",
+                       "status": "已回款"
+                    },
+                    {
+                       "preCollectionTime": "1509947850",
+                       "period": "1",
+                       "periods": "6",
+                       "preInterest": "10.00",
+                       "preCapital": "6666.66",
+                       "status": "回款中"
+                    },
+                    {
+                       "preCollectionTime": "1509947850",
+                       "period": "1",
+                       "periods": "6",
+                       "preInterest": "10.00",
+                       "preCapital": "6666.66",
+                       "status": "回款中"
+                    },
+                    {
+                       "preCollectionTime": "1509947850",
+                       "period": "1",
+                       "periods": "6",
+                       "preInterest": "10.00",
+                       "preCapital": "6666.66",
+                       "status": "回款中"
                     }
              ],
              "firstPage": 0,

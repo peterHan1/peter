@@ -14,6 +14,7 @@ var _regular = require('util/regular.js');
 var md5 = require('util/md5.js');
 var _cashApply = require('api/cash_apply-api.js');
 var _cashlist = require('api/cashlist-api.js');
+var _cashFee = require('api/cash_fee-api.js');
 var _cash = require('api/cash-api.js');
 var _checkBank = require('api/checkBank-api.js');
 var cashLists = require('./uc_cash.string');
@@ -43,12 +44,15 @@ var cash = {
 	},
 	page: function() {
 		_cashlist.cashlist(1, 10, function(res) {
-			console.log(res);
+			// console.log(res);
+			if (res.content.list.length == 0) {
+				$(".no_data").show();
+			}
 			cashHtml = _td.renderHtml(cashLists, {
 				list: res.content.list,
 			});
 			$('.cashlist').html(cashHtml);
-			_cashlist.paging(2, 1, 10, function(e) {
+			_cashlist.paging(res.content.pages, res.content.pageNum, res.content.pageSize, function(e) {
 				_cashlist.cashlist(e.current, 10, function(res) {
 					cashHtml = _td.renderHtml(cashLists, {
 						list: res.content.list,
@@ -58,19 +62,54 @@ var cash = {
 			});
 		});
 	},
+	// 绑卡信息
 	bankInfo: function() {
-		// _cash.cash(function(res) {
-		// 	console.log(res);
-		// });
-		// _checkBank.checkBank(function(res){
-		// 	console.log(res);
-		// 	if(res.content==true){
-		// 		return;
-		// 	}else{
-		// 		$(".content0").show();
-		// 		$(".content").hide();
-		// 	}
-		// });
+		_cash.cash(function(res) {
+			// console.log(res);
+			// 账户余额
+			var balanceValue = res.content.balanceValue;
+			$(".number_show .money_number").html(balanceValue);
+			// 银行卡号
+			var bankNum = res.content.bankNum;
+			bankNum = bankNum.substr(bankNum.length - 4);
+			$(".card_num").find("em").html(bankNum);
+			// 提现次数
+			var cashNum = res.content.cashNum;
+			$(".tx_times").find("span").html(cashNum);
+			// 银行logo
+			var bankCode = res.content.bankCode;
+			$(".content .bank_logo").addClass(bankCode);
+			// 存管清算时间
+			var clearTime = res.content.clearTime;
+			if (clearTime == true) {
+				$(".qs_time").show();
+				times = false;
+				$(".btn").val("存管清算时间，不可提现");
+			} else {
+				$(".qs_time").hide();
+				times = true;
+				// 提现到账时间
+				var myDate = new Date();
+				myDate = myDate.getHours();
+				if (0 <= myDate <= 9) {
+					$(".btn").val("当日9点到账");
+					$(".cash_success .dz_time i").html("当日9点到账");
+				} else if (9 < myDate < 21) {
+					$(".btn").val("实时到账");
+					$(".cash_success .dz_time i").html("实时到账");
+				} else {
+					$(".btn").val("次日9点到账");
+					$(".cash_success .dz_time i").html("次日9点到账");
+				}
+			}
+			// 存管开通状态
+			if (res.content.status == 0) {
+				$(".content0").show();
+				$(".content").hide();
+			} else {
+				return;
+			}
+		});
 	},
 	// tab栏切换
 	tabCut: function() {
@@ -94,27 +133,31 @@ var cash = {
 			}
 		});
 		$(".money_input1").on("blur", function() {
+			var cashMoney = $(this).val();
+			_cashFee.cashfee(cashMoney, function(res) {
+				console.log(res);
+				var fee=res.content.fee;
+				$(".sj_money .sxf b").html(fee);
+				$(".cash_success .cash_count .cashfee").html(fee);
+				var realAccount=res.content.realAccount;
+				$(".sj_money .sjdz b").html(realAccount);
+			});
 			_this.check();
+
 		});
-		times = $(".qs_time").is(":hidden");
 	},
 	// 密码验证
 	passVerify: function() {
 		var _this = this;
 		$(".pass_input").on("keyup", function() {
-			// if ($(this).val() != "") {
-			// 	result2 = true;
-			// } else {
-			// 	result2 = false;
-			// }
 			_this.check();
 		});
 	},
 	check: function() {
-		var val=$(".pass_input").val();
-		if(val!=""){
+		var val = $(".pass_input").val();
+		if (val != "") {
 			result2 = true;
-		}else{
+		} else {
 			result2 = false;
 		}
 		if (result1 == true && times == true && result2 == true) {
@@ -128,6 +171,7 @@ var cash = {
 		$(".item1 .btn").on("click", function() {
 			if ($(this).hasClass('kd')) {
 				var cashMoney = $(".money_input1").val();
+				$(".cash_success .cash_count .cashnum").html(cashMoney);
 				var payPassword = $(".pass_input").val();
 				payPassword = md5(payPassword);
 				var data = {
@@ -136,6 +180,7 @@ var cash = {
 					payPassword: payPassword
 				};
 				_cashApply.cash(data, function(res) {
+					console.log(res);
 					if (res.code == 100000) {
 						$(".wrongs").hide();
 						layer.open({

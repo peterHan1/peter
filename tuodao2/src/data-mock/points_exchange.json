@@ -4,13 +4,13 @@
       "content":
       {
              "pageNum": 1,
-             "pageSize": 6,
+             "pageSize": 3,
              "size": 6,
              "orderBy": null,
              "startRow": 0,
              "endRow": 5,
              "total": 6,
-             "pages": 1,
+             "pages": 3,
              "list":
              [
                     {
@@ -47,6 +47,33 @@
                            "needScore": 100,
                            "numValue": 1,
                            "numValueView": "1",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
                            "effectDay": null
                     },
                     {

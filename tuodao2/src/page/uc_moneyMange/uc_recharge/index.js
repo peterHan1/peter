@@ -16,11 +16,14 @@ var _yzm = require('util/security/security.js');
 var _rechargeInfo = require("api/rechargeInfo-api.js");
 var _checkBank = require('api/checkBank-api.js');
 var _rechargeOnLine = require('api/recharge_online-api.js');
+var _sendSmsCode = require('api/sendSmsCode-api.js');
+var _fastpay = require('api/fastpay-api.js');
 
 var result1;
 var result2;
 var flags;
 var times;
+var orderNo;
 var recharge = {
 	init: function() {
 		this.load();
@@ -34,19 +37,44 @@ var recharge = {
 		this.shortCut();
 		this.buttonHover();
 		this.closeLayer();
+		this.sendSmsCodeAgain();
+		this.checkSmsCode();
 	},
 	load: function() {
-		// _checkBank.checkBank(function(res){
-		// console.log(res);
-		// if(res.content==false){
-		// 	$(".item0").show();
-		// 	$(".item1").hide();
-		// 	$(".item2").hide();
-		// }else{
-		// 	$(".item0").hide();
-		// 	$(".item1").show();
-		// }
-		// });
+		_rechargeInfo.rechargeInfo(function(res) {
+			console.log(res);
+			// 用户开通存管信息
+			if (res.code == 141012) {
+				$(".item0").show();
+				$(".item1").hide();
+				$(".item2").hide();
+			} else {
+				$(".item0").hide();
+				// 银行卡logo
+				var bankId = res.content.bankId;
+				$(".item2 .bank_logo").addClass(bankId);
+				// 银行卡号
+				var bankNum = res.content.account;
+				bankNum = bankNum.substr(bankNum.length - 4);
+				$(".card_num").find("em").html(bankNum);
+				// 用户余额
+				var balance = res.content.balance;
+				$(".number_show .money_number").html(balance);
+				// 存管清算时间
+				var cleanTime = res.content.cleanTime;
+				if (cleanTime == true) {
+					$(".qs_time").show();
+					times = false;
+					$(".item1 .btn").val("存管清算时间，不可充值");
+					$(".item2 .btn").val("存管清算时间，不可充值");
+				} else {
+					$(".qs_time").hide();
+					times = true;
+					$(".item1 .btn").val("立即充值");
+					$(".item2 .btn").val("立即充值");
+				}
+			}
+		});
 	},
 	// input框交互样式
 	inputMutual: function() {
@@ -74,7 +102,6 @@ var recharge = {
 	},
 	// 银行选择
 	bankSelect: function() {
-		times = $(".qs_time").is(":hidden");
 		$(document).on("click", ".bank_select ul li", function() {
 			$(".bank_select ul li").removeClass("get");
 			$(this).addClass("get");
@@ -117,8 +144,6 @@ var recharge = {
 			}
 		});
 		$(".money_input2").on("blur", function() {
-			console.log(result2);
-			console.log(times);
 			if (result2 == true && times == true) {
 				$(".item2 .btn").addClass("kd");
 			} else {
@@ -137,7 +162,7 @@ var recharge = {
 					bankId: bankId
 				};
 				_rechargeOnLine.recharge(data, function(res) {
-					console.log(res);
+					// console.log(res);
 					if (res.code == 100000) {
 						layer.open({
 							type: 1,
@@ -149,7 +174,7 @@ var recharge = {
 								history.go(0);
 							}
 						});
-					}else{
+					} else {
 						layer.open({
 							type: 1,
 							title: '充值失败',
@@ -165,109 +190,145 @@ var recharge = {
 			}
 		});
 	},
-	// 快捷支付按钮
+	// 快捷充值按钮
 	shortCut: function() {
+		var _this = this;
 		$(".item2 .btn").on("click", function() {
 			if ($(this).hasClass('kd')) {
-				CutTime();
-				$("#dy").attr("autofocus", "autofocus");
-				layer.open({
-					type: 1,
-					title: '填写验证码',
-					skin: 'secity_box',
-					area: ['560px', '340px'],
-					content: $('#secity_box'),
-					cancel: function() {
-						history.go(0);
-					}
-				});
-				_yzm.check("demo", "border");
-				var data = "123456";
-				var status = 1;
-				$(".lastnum").on("keyup", function() {
-					var str = '';
-					str = $("#demo input").eq(0).val() + $("#demo input").eq(1).val() + $("#demo input").eq(2).val() + $("#demo input").eq(3).val() + $("#demo input").eq(4).val() + $("#demo input").eq(5).val();
-					console.log(str);
-					if (str == data && status == 1) {
-						layer.closeAll();
+				var money = $(".money_input2").val();
+				_sendSmsCode.sendSmsCode(money, function(res) {
+					console.log(res);
+					var phone = res.content.phone;
+					orderNo=res.content.orderNo;
+					$(".secity_box .phoneNum").html(phone);
+					if (res.code == 100000) {
+						_this.cutTime();
+						$("#dy").attr("autofocus", "autofocus");
 						layer.open({
 							type: 1,
-							title: '充值成功',
-							skin: 'cz_success',
+							title: '填写验证码',
+							skin: 'secity_box',
 							area: ['560px', '340px'],
-							content: $('#cz_success'),
+							content: $('#secity_box'),
 							cancel: function() {
 								history.go(0);
 							}
 						});
-					} else if (str == data && status == 2) {
-						layer.closeAll();
-						layer.open({
-							type: 1,
-							title: '充值失败',
-							skin: 'cz_fail',
-							area: ['560px', '340px'],
-							content: $('#cz_fail'),
-							cancel: function() {
-								history.go(0);
-							}
-						});
-					} else if (str != data) {
-						$("#demo input").val("");
-						$(".wrong_ts").show();
-						_yzm.check("demo", "border");
-						$("#demo input").eq(5).removeClass("border");
-						$("#demo input").eq(0).focus();
-						$("#demo input").eq(0).addClass("border");
 					}
 				});
-
-				// 验证码倒计时
-				var num = 59;
-				var flag;
-				var timer;
-				$(".count_time").on("click", function() {
-					$(".count_time").hide();
-					$(".djs").show();
-					if (flag == false) {
-						return false;
-					} else {
-						$(".count_num").text(59);
-						num = $(".count_num").text();
-						flag = false;
-						timer = setInterval(function() {
-							num--;
-							$(".count_num").text(num);
-							if (num <= 0) {
-								clearInterval(timer);
-								$(".count_time").show();
-								$(".djs").hide();
-								flag = true;
-							}
-						}, 1000);
-					}
-				});
-
-				function CutTime() {
-					timer = setInterval(function() {
-						num--;
-						$(".count_num").text(num);
-						if (num <= 0) {
-							clearInterval(timer);
-							$(".count_time").show();
-							$(".djs").hide();
-						}
-					}, 1000);
-				}
-			} else {
-				return false;
 			}
+		});
+	},
+	sendSmsCodeAgain: function() {
+		// 验证码倒计时
+		var num = 59;
+		var flag;
+		var timer;
+		$(".count_time").on("click", function() {
+			$(".count_time").hide();
+			$(".djs").show();
+			if (flag == false) {
+				return false;
+			} else {
+				$(".count_num").text(59);
+				num = $(".count_num").text();
+				flag = false;
+				timer = setInterval(function() {
+					num--;
+					$(".count_num").text(num);
+					if (num <= 0) {
+						clearInterval(timer);
+						$(".count_time").show();
+						$(".djs").hide();
+						flag = true;
+					}
+				}, 1000);
+			}
+		});
+	},
+	cutTime: function() {
+		var num = 59;
+		timer = setInterval(function() {
+			num--;
+			$(".count_num").text(num);
+			if (num <= 0) {
+				clearInterval(timer);
+				$(".count_time").show();
+				$(".djs").hide();
+			}
+		}, 1000);
+	},
+	checkSmsCode: function() {
+		_yzm.check("demo", "border");
+		$(".lastnum").on("keyup", function() {
+			var str = '';
+			str = $("#demo input").eq(0).val() + $("#demo input").eq(1).val() + $("#demo input").eq(2).val() + $("#demo input").eq(3).val() + $("#demo input").eq(4).val() + $("#demo input").eq(5).val();
+			// if (str == data && status == 1) {
+			// 	layer.closeAll();
+			// 	layer.open({
+			// 		type: 1,
+			// 		title: '充值成功',
+			// 		skin: 'cz_success',
+			// 		area: ['560px', '340px'],
+			// 		content: $('#cz_success'),
+			// 		cancel: function() {
+			// 			history.go(0);
+			// 		}
+			// 	});
+			// } else if (str == data && status == 2) {
+			// 	layer.closeAll();
+			// 	layer.open({
+			// 		type: 1,
+			// 		title: '充值失败',
+			// 		skin: 'cz_fail',
+			// 		area: ['560px', '340px'],
+			// 		content: $('#cz_fail'),
+			// 		cancel: function() {
+			// 			history.go(0);
+			// 		}
+			// 	});
+			// } else if (str != data) {
+			// 	$("#demo input").val("");
+			// 	$(".wrong_ts").show();
+			// 	_yzm.check("demo", "border");
+			// 	$("#demo input").eq(5).removeClass("border");
+			// 	$("#demo input").eq(0).focus();
+			// 	$("#demo input").eq(0).addClass("border");
+			// }
+			var data = {
+				orderNo: orderNo,
+				smsCode: str
+			};
+			_fastpay.fastpay(data, function(res) {
+				console.log(res);
+				if (res.code == 100000) {
+					layer.closeAll();
+					layer.open({
+						type: 1,
+						title: '充值成功',
+						skin: 'cz_success',
+						area: ['560px', '340px'],
+						content: $('#cz_success'),
+						cancel: function() {
+							history.go(0);
+						}
+					});
+				} else {
+					$("#demo input").val("");
+					$(".wrong_ts").show();
+					$(".secity_box .ts").hide();
+					_yzm.check("demo", "border");
+					$("#demo input").eq(5).removeClass("border");
+					$("#demo input").eq(0).focus();
+					$("#demo input").eq(0).addClass("border");
+				}
+			});
 		});
 	},
 	// 充值按钮Hover效果
 	buttonHover: function() {
 		$(".item1 .btn").on("mouseover", function() {
-			if ($(this).hasClass('kd')) {
+			if ($(this).hasClass("kd")) {
 				$(this).addClass("color");
 			} else {
 				$(this).removeClass("color");

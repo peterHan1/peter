@@ -14,7 +14,6 @@ var ucInvest = {
 	init : function(){
 		this.eventFn();
 		this.urlEach();
-		this.page();
 		this.detailTopHtml();
 		this.detailRetHtml();
 	},
@@ -32,10 +31,21 @@ var ucInvest = {
 	},
 	detailTopHtml : function(){
 		_apiInvest.getBondTop(1,function(res){
+			ucInvest.setType(res);
+			res.content.repayLastTime = ucInvest.setData(res.content.repayLastTime);
+			res.content.tenderTime = ucInvest.setData(res.content.tenderTime);
 			listBondTopHtml = _td.renderHtml(bondDel,{
 				content:res.content,
 			});
 			$(".sift_detailsT").html(listBondTopHtml);
+			var sta = $(".return_satus").attr("status");
+			if(sta == 1){
+				$(".return_satus").html("[募集中]");
+			}else if(sta == 2){
+				$(".return_satus").html("[回款中]");
+			}else if(sta == 3){
+				$(".return_satus").html("[回款中]");
+			}
 			ucInvest.tipsHover();
 		},function(){
 			console.log("请求失败");
@@ -43,21 +53,63 @@ var ucInvest = {
 	},
 	detailRetHtml : function(){
 		_apiInvest.getBondRet(1,1,5,function(res){
+			res.content.preCollectionTime = ucInvest.setData(res.content.preCollectionTime);
 			listBondRetHtml = _td.renderHtml(bondDelRet,{
 				list:res.content.list,
 			});
 			$("#tbody_list").html(listBondRetHtml);
 			ucInvest.trColor();
+			ucInvest.setStatus();
 			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				listBondRetHtml = _td.renderHtml(bondDelRet,{
 					list:res.content.list,
 				});
 				$("#tbody_list").html(listBondRetHtml);
 				ucInvest.trColor();
+				ucInvest.setStatus();
 			});
 		},function(){
 			console.log("请求失败");
 		});
+	},
+	setType : function(res){
+		var type = res.content.styleType;
+		if(type == 0){
+			res.content.styleType = "等额本息";
+		}else if(type == 1){
+			res.content.styleType = "按月付息，到期还本";
+		}
+	},
+	setStatus : function(){
+		$(".return_status").each(function(){
+			var con = $(this).html();
+			if(con == "回款中"){
+				$(this).addClass("underway_money");
+			}else if(con == "已回款"){
+				$(this).addClass("return_money");
+			}
+		});
+	},
+	setData : function(time) {
+		var now = new Date(time*1000);
+		var yy = now.getFullYear();
+		var mm = now.getMonth() + 1;
+		var dd = now.getDate();
+		var hh = now.getHours();
+		var ii = now.getMinutes();
+		var ss = now.getSeconds();
+		var clock = yy + "-";
+		if (mm < 10) clock += "0";
+		clock += mm + "-";
+		if (dd < 10) clock += "0";
+		clock += dd + " ";
+		if (hh < 10) clock += "0";
+		clock += hh + ":";
+		if (ii < 10) clock += "0";
+		clock += ii + ":";
+		if (ss < 10) clock += "0";
+		clock += ss + " ";
+		return clock;
 	},
 	eventFn : function(){
 		$(".sift_detailsBTit li").on('click',function(){
@@ -85,21 +137,6 @@ var ucInvest = {
 				}
 			};
 		}
-	},
-	page : function(){
-		// 得到总页数
-		$(".zxf_pagediv").createPage({
-			// 页数
-			pageNum: 10,
-			// 当前页
-			current: 1,
-			// 显示条数
-			shownum: 10,
-			backfun: function(e) {
-				console.log(e.current);
-				// $("#data-container").html(thisDate(e.current));
-			}
-		});
 	}
 };
 $(function(){
