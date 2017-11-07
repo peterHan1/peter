@@ -1,10 +1,10 @@
 {{#list}}
 <tr>
 	<td class="phone">
-		<!-- 首投显示 -->
 		<span>{{mobile}}</span>
-		<!-- 手机端投资显示 -->
+		{{#isApp}}
 		<i class="iconfont r">&#xe699;</i>
+		{{/isApp}}
 	</td>
 	<td class="money">{{account}}</td>
 	<td class="date">{{addTime}}</td>

@@ -54,7 +54,6 @@ b,i,em{
 	input{
 		outline: 0;
 		font-family: "微软雅黑";
-		border: 0;
 		font-size: $fontSize14;
 	}
 	margin:30px 0;
@@ -336,7 +335,6 @@ b,i,em{
 		.com_styl{
 			width:298px;
 			@include height-line(38px);
-			@include border-style($b-radius:3px);
 			margin-top:10px;
 			cursor: pointer;
 			position:relative;
@@ -347,19 +345,24 @@ b,i,em{
 			input{
 				float: left;
 				padding-left:10px;
-				width:205px;
+				width:223px;
 				@include height-line(38px);
 				background-color:#fff;
 				color:$fontColor333;
+				padding-right:65px;
+				@include border-style($b-radius:3px);
 			}
 			div{
-				float: right;
+				position: absolute;
+				right:0;
+				top:1px;
 				width: 65px;
-				height:38px;
+				height:36px;
 				font-size:$fontSize14;
 				text-align: right;
 				color: $fontColor70;
 				background-color:#fff;
+				z-index:99;			
 				a{
 					color: $fontColor70;
 				}
@@ -372,7 +375,11 @@ b,i,em{
 				float: left;
 			}
 			.btn_empty{
-				float: left;
+				position:absolute;
+				right:66px;
+				top:10px;
+				line-height: 18px;
+				z-index: 99;
 				display: none;
 				&:hover{
 					color:$fontColor74;
@@ -397,10 +404,10 @@ b,i,em{
 			}
 			&:hover{
 				border-color: #838383;
-				input{
-					cursor:default;
-				}
 			}
+		}
+		.add_ticket{
+			@include border-style($b-radius:3px);
 		}
 		.com_sty{
 			border-color:#ff8722;
@@ -434,8 +441,9 @@ b,i,em{
 				cursor: pointer;
 				width: 100%;
 				height: 40px;
-				color: #fff;
+				color: #fff!important;
 				border-radius: 20px;
+				border:0;
 			}
 			.sub_btn{
 				background: $fontColor74;
@@ -897,6 +905,9 @@ b,i,em{
 					i{
 						position:absolute;
 					}
+				}
+				.trColor{
+					background-color:$bgColorfb;
 				}
 				.phone{
 					position:relative;

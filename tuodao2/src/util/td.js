@@ -10,22 +10,28 @@ var _td = {
 			url 		: param.url 	|| '',
 			dataType 	: param.type 	|| 'json',
 			data 		: param.data 	|| '',
+			beforeSend 	: function(xhr){
+				// console.log(xhr);
+				xhr.setRequestHeader("accessId", "accessId");
+				xhr.setRequestHeader("accessKey", "accessKey");
+				xhr.setRequestHeader("sign", "NO");
+			},
 			success 	: function(res){
+				// 请求成功
 				if(100000 === res.code){
-				 	typeof param.success === 'function' && param.success(res);
+					typeof param.success === 'function' && param.success(res);
 
+				}
+				// 请求数据错误
+				else{
+					typeof param.error === 'function' && param.error(res.msg);
 				}
 				// else if(10 === res.status){
 				// 	 _this.doLogin();
 				// }
-				// 请求数据错误
-				// else if(1 === res.status){
-				// 	typeof param.error === 'function' && param.error(res.msg);
-				// }
-
 			},
 			error 		: function(err){
-				// typeof param.error === 'function' && param.error(err.statusText);
+				typeof param.error === 'function' && param.error(err.statusText);
 			}
 		});
 	},
@@ -47,7 +53,42 @@ var _td = {
 	},
 	// 统一登录
 	doLogin : function(){
-		window.location.href = './login.html?redirect' + encodeURIComponent(window.location.href);
+		window.location.href = './userlogin.html?redirect' + encodeURIComponent(window.location.href);
+	},
+	// 设置accessId&accessKey
+	setAccess : function(cookieData){
+		var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+		if (keys) {
+			for (var i = keys.length; i--;)
+				document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
+		}
+		for(var key in cookieData){
+			document.cookie = key +'='+ cookieData[key];
+		}
+	},
+	// 读取accessId&accessKey
+	getAccess : function(name){
+		var arrstr = document.cookie.split("; ");
+		for(var i = 0;i < arrstr.length;i ++){
+			var temp = arrstr[i].split("=");
+			if(temp[0] == name) return unescape(temp[1]);
+		}
+	},
+	// 可能用到的验证
+	validate : function(value, type){
+	    var value = $.trim(value);
+		// 非空验证
+		if('require' === type){
+        	return !!value;
+		}
+		// 手机号验证
+		if('mobile' === type){
+			return  /^1[34578]\d{9}$/.test(value);
+		}
+		// min长度
+		if('minLength' === type){
+			return value.length >= 6;
+		}
 	}
 };
 

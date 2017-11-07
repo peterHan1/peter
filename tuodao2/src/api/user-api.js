@@ -1,5 +1,24 @@
 var _td = require('util/td.js');
-var _uc = {
+var _user = {
+	login : function(param,resolve,reject){
+		_td.request({
+			url 	: _td.getServerUrl('/router/user/login'),
+			method 	: 'POST',
+			data 	: param,
+			success : resolve,
+			error 	: reject
+		});
+	},
+	// 检查登录状态
+	checkLogin : function(accessInfo,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/api/router/user/getUserAccountInfo'),
+			method  : 'POST',
+			data 	: accessInfo,
+			success : resolve,
+			error   : reject
+		});
+	},
 	// 账户投资信息
 	getUserCon : function(userData,resolve, reject){
 		_td.request({
@@ -43,4 +62,4 @@ var _uc = {
 		});
 	}
 };
-module.exports = _uc;
+module.exports = _user;

@@ -12,6 +12,36 @@ var _product = {
 			error   : reject
 		});
 	},
+	// 债权转让详情
+	getInvestBondDetails : function(id,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/invest-bondDetails.json'),
+			data    : {
+				transferId	: id
+			},
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 债权转让详情
+	getInvestPhone : function(id,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/invest-bondPhone.json'),
+			data    : {
+				transferId	: id
+			},
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 债权转让详情 账户中心
+	getInvestUc : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/get_account.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
 	paging : function(pages,pageNum,pageSize,backFuntion){
 		$(".zxf_pagediv").createPage({
 			// 页数 pages

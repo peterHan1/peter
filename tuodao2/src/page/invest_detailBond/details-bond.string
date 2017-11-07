@@ -3,7 +3,7 @@
 	<div class="title">
 		<p>{{name}}</p>
 		<a href="###">查看原始标的 > </a>
-		<span>转让剩余：22小时34分00秒</span>
+		<span>转让剩余：<span class="coundTime"></span></span>
 	</div>
 	<div class="major">
 		<dl class="expect">
@@ -16,7 +16,7 @@
 		</dl>
 		<dl class="date">
 			<dt>
-				<span>{{period}}</span>个月
+				<span>{{period}}</span><span>{{periodType}}</span>
 			</dt>
 			<dd>
 				投资期限
@@ -24,7 +24,7 @@
 		</dl>
 		<dl class="summoney">
 			<dt>
-				<span>{{lastAccount}}</span>元
+				<span class="lastMoney">{{lastAccount}}</span>元
 			</dt>
 			<dd>
 				剩余可投
@@ -40,7 +40,7 @@
 			</dt>
 			<dd>
 				投资进度
-				<span>80%</span>
+				<span class="barNum">80</span>%
 			</dd>
 		</dl>
 	</div>
@@ -56,13 +56,13 @@
 				</div>
 			</li>
 			<li>
-				转让金额：<span>{{account}}元</span>
+				转让金额：<span class="tranMoney">{{account}}</span>元
 			</li>
 			<li class="alli">
 				奖励金额：<span>{{reward}}元</span>
 			</li>
 			<li>
-				计息方式：<span>满标复审计息</span>
+				计息方式：<span>{{interestType}}</span>
 			</li>
 			<li>
 				还款方式：<span>{{repaymentType}}</span>

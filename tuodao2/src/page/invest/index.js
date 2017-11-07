@@ -12,7 +12,7 @@ var investListBond = require('./list_bond.string');
 var invest = {
 	init : function(){
 		this.eachA();
-		this.eventFn();		
+		this.eventFn();
 	},
 	eachA : function(){
 		//  0：散标 1:精选计划
@@ -52,7 +52,6 @@ var invest = {
 	getListSift : function(dataList){
 		// 精选计划
 		_apiInvest.getInvestList(dataList,function(res){
-			console.log(dataList);
 			invest.setData(res);
 			listHtml = _td.renderHtml(investListSift,{
 				list:res.content.list,

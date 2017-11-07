@@ -168,10 +168,3 @@ var ucInvest = {
 $(function(){
 	ucInvest.init();
 });
-
-var dataTxt = [
-	{"name":"梅德赛斯奔驰s601","await":"1,000.00","yet":"1,111.00","time":"1507601410000","type":"收益","status":"return_money","periods":"1/6","money":"500.00"},
-	{"name":"梅德赛斯奔驰s602","await":"1,000.00","yet":"1,111.00","time":"1510366210000","type":"本息","status":"underway_money","periods":"1/1","money":"100.00"},
-	{"name":"梅德赛斯奔驰s603","await":"1,000.00","yet":"1,111.00","time":"1506823810000","type":"本息","status":"return_money","periods":"1/5","money":"200.00"},
-	{"name":"梅德赛斯奔驰s604","await":"5555.00","yet":"2,222.00","time":"1513051930000","type":"收益","status":"underway_money","periods":"-","money":"300.00"},
-];
