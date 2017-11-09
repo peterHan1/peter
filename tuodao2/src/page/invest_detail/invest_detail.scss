@@ -342,6 +342,7 @@ b,i,em{
 			input::-ms-input-placeholder{color:#9e9e9e}
 			input::-webkit-input-placeholder{color:#9e9e9e}
 			input::-moz-placeholder{color:#9e9e9e}
+			input::-ms-clear{display:none;}
 			input{
 				float: left;
 				padding-left:10px;
@@ -362,7 +363,7 @@ b,i,em{
 				text-align: right;
 				color: $fontColor70;
 				background-color:#fff;
-				z-index:99;			
+				z-index:9;			
 				a{
 					color: $fontColor70;
 				}

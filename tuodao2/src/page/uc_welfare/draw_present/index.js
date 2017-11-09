@@ -18,7 +18,7 @@ $(".record_page").createPage({
 	}
 });
 
-var _apiDraw = require('api/draw-api.js');
+var _apiDraw = require('api/operationCenter-api.js');
 // 抽奖动画效果
 var lottery={
     place:0,    //请求后指定停留在某个位置
@@ -406,6 +406,35 @@ var lottery={
 			console.log('请求失败');
 		})
 	},
+	// 抽奖记录
+	getDrawRecord:function(){
+		_apiDraw.getDrawRecord(1,10,function(res){
+			if(res.content.list.length==0){
+				$('.record_none').show()
+				$('.record_yes').hide();
+				return false;
+			}else{
+				var bannerHtml = _td.renderHtml(record,{
+					list:res.content.list,
+				});
+				$('._Draw_record_table').html(bannerHtml);
+				Draws.changeColor('.Draw_table');
+				_apiDraw.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+					_apiInvite.getRecord(e.current,10,function(res){
+						var bannerHtml = _td.renderHtml(record,{
+							list:res.content.list,
+						});
+						$('._invite_record_table').html(bannerHtml);
+						invites.changeColor('.invite_table');
+					},function(){
+						console.log("分页点击请求失败");
+					});
+				});
+			}
+		},function(){
+			console.log('请求失败');
+		})
+	},
     // 可用积分不够抽奖是的样式
     checkPoints:function(obj){
 		$(obj).css({
@@ -419,7 +448,7 @@ var lottery={
 		$(obj).find('.go_word').css({color:'#707070',paddingTop:'60px',fontSize:'40px'});
 		$(obj).find('.none_points a').show();
     },
-    draw_Btn1:function(){
+    draw_Btn10:function(){
     	$('#go_draw_10').on('click',function(){
     		var points=parseInt($('#draw').html());
     		if(points<10){
@@ -438,14 +467,13 @@ var lottery={
 	        }
     	})
     },
-    draw_Btn2:function(){
+    draw_Btn100:function(){
     	$('#go_draw_100').on('click',function(){
     		var points=parseInt($('#draw').html());
     		if(points<100){
     			lottery.checkPoints('#go_draw_100');
     			return false;
     		}
-    		// return false;
     		$(this).addClass('back_go_yes');
 			lottery.init('draw_present');
 	        if (lottery.click) {//click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
@@ -510,8 +538,8 @@ $(function(){
 	lottery.getPoints();
 	lottery.getDrawPoints();
 	lottery.getDrawPresent();
-	lottery.draw_Btn1();
-	lottery.draw_Btn2();
+	lottery.draw_Btn10();
+	lottery.draw_Btn100();
 	lottery.clickEvnet();
 	lottery.changeColor('.record_yes .record_table');
 })

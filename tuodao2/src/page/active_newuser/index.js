@@ -10,7 +10,7 @@ require('page/common/nav2/index.scss');
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
 var _del = require('util/delButton.js');
-var _openDeposit = require('api/openDeposit-api.js');
+var _user = require('api/user-api.js');
 var md5 = require('util/md5.js');
 
 var bankNum;
@@ -181,7 +181,7 @@ var DepositInfoNew = {
 					payPassword: payPassword
 				};
 				console.log(data);
-				_openDeposit.openDeposit(data, function(res) {
+				_user.openDeposit(data, function(res) {
 					console.log(res);
 					if (res.code == 100000) {
 						$(".success_box").show();

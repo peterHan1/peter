@@ -8,7 +8,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 var _td 		= 	require('util/td.js');
 var _tips	 	= 	require('util/tips/index.js');
-var _apiInvest 	= 	require('api/ucInListAuto-api.js');
+var _apiInvest 	= 	require('api/trade-api.js');
 var autoInp 	= 	require('./autoInp.string');
 var setInp 		= 	require('./setInp.string');
 var autoSum 	= 	require('./autoSum.string');

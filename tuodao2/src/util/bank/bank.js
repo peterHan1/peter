@@ -1,9 +1,9 @@
-var _bankList = require('api/bankList-api.js');
+var _trade = require('api/trade-api.js');
 $(function() {
 	var dataBank = [];
 	var dataBankFont = [];
 	var dataBankXe = [];
-	_bankList.bankList(function(res) {
+	_trade.bankList(function(res) {
 		console.log(res);
 		for (var j = 0; j < res.content.length; j++) {
 			dataBank.push(res.content[j].paymentCode);

@@ -1,6 +1,6 @@
-var _bankList = require('api/bankList-api.js');
+var _trade = require('api/trade-api.js');
 var dataBank=[];
-_bankList.bankList(function(res) {
+_trade.bankList(function(res) {
 	for(var j=0;j<res.content.length;j++){
 		dataBank.push(res.content[j].paymentCode);
 	}

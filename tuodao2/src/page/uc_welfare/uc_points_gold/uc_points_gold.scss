@@ -282,6 +282,10 @@
 				color: #ffffff;
 				margin-right: 20px;
 			}
+			&.cancel{
+				border-color:#9e9e9e;
+				background: #ffffff;
+			}
 		}
 	}
 }
@@ -289,7 +293,7 @@
 .points_login{
 	.content{
 		padding-top: 40px;
-		width: 380px;
+		width: 400px;
 	}
 	.center{
 		padding-top: 40px;

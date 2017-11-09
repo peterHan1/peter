@@ -8,10 +8,11 @@ require('util/paging/page.js');
 var _td			= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
 var _apigetuc 	= require('api/user-api.js');
+var _apiReturn 	= require('api/trade-api.js');
+var _apigetOper = require('api/operationCenter-api.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var echarts 	= require('util/echarts/echarts.common.min.js');
-var _apiReturn 	= 	require('api/ucInReturn-api.js');
-var returnList 	= 	require('./returnList.string');
+var returnList 	= require('./returnList.string');
 var getUserMon	= require('./getUserMon.string');
 var getUserEch	= require('./getUserEch.string');
 var getUsersign	= require('./getUserSign.string');
@@ -27,7 +28,7 @@ var uc = {
 		this.monthStatus();
 	},
 	signIn : function(){
-		_apigetuc.getUser(function(res){
+		_apigetOper.getUserOper(function(res){
 			var day = res.content[0].cumulativeSignTmes;
 			if(day < 10){
 				res.content[0].cumulativeSignTmes = "0"+day;
@@ -42,6 +43,7 @@ var uc = {
 			$('.welfare').html(userIntHtml);
 			uc.numStatus();
 			uc.signInClick();
+			uc.singStatus();
 		},function(){
 			console.log("请求失败");
 		});
@@ -53,6 +55,22 @@ var uc = {
 			}
 		});
 	},
+	singStatus : function(){
+		_apigetOper.userSign(function(res){
+			var num = res.content.signScore;
+			var bool = res.content.ifSign;
+			if(bool == true){
+				$("#sigin_clik").addClass('sigin_btn_yet');
+				$("#sigin_clik").find('span').html("今日已签到，积分+"+num);
+				
+			}else{
+				$("#sigin_clik").addClass('sigin_clik');
+			}
+		},
+		function() {
+			console.log("请求失败");
+		});
+	},
 	signInClick : function(){
 		// 签到
 		$("#sigin_clik").on("click",function(){
@@ -60,9 +78,9 @@ var uc = {
 			if($(this).is('.sigin_btn_yet')){
 				return false;
 			}else{
-				_apigetuc.userSign(function(res){
-					console.log(res);
-					uc.signAnimate(_this,res.content);
+				_apigetOper.userSign(function(res){
+					var num = res.content.signScore;
+					uc.signAnimate(_this,num);
 				},function(){
 					console.log("签到失败");
 				});
@@ -78,7 +96,7 @@ var uc = {
 		$(".sign_integral").html(integral);
 		el.removeClass('sigin_clik');
 		el.addClass('sigin_btn_yet');
-		el.find('span').html("今日已签到");
+		el.find('span').html("今日已签到，积分+"+num);
 		$(".animat").animate({
 			top: '-200px'
 		}, function() {
@@ -101,11 +119,11 @@ var uc = {
 			loginSource:1
 
 		};
-		_apigetuc.getUserCon(userData,function(res){
-			var dueInPrincipal = res.content.dueInPrincipal;
-			var dueInInterest = res.content.dueInInterest;
-			var usableFund = res.content.usableFund;
-			var freezeFund = res.content.freezeFund;
+		_apiReturn.getInvestUc(function(res){
+			var dueInPrincipal = res.content.totalAwaitCapitalValue;
+			var dueInInterest = res.content.totalAwaitInterestValue;
+			var usableFund = res.content.totalBalanceValue;
+			var freezeFund = res.content.totalFrostValue;
 			userMoneyHtml = _td.renderHtml(getUserMon,{
 				content:res.content,
 			});

@@ -13,11 +13,8 @@ require('util/security/security.scss');
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
 var _yzm = require('util/security/security.js');
-var _rechargeInfo = require("api/rechargeInfo-api.js");
-var _checkBank = require('api/checkBank-api.js');
-var _rechargeOnLine = require('api/recharge_online-api.js');
-var _sendSmsCode = require('api/sendSmsCode-api.js');
-var _fastpay = require('api/fastpay-api.js');
+var _trade = require('api/trade-api.js');
+
 
 var result1;
 var result2;
@@ -41,8 +38,8 @@ var recharge = {
 		this.checkSmsCode();
 	},
 	load: function() {
-		_rechargeInfo.rechargeInfo(function(res) {
-			console.log(res);
+		_trade.rechargeInfo(function(res) {
+			// console.log(res);
 			// 用户开通存管信息
 			if (res.code == 141012) {
 				$(".item0").show();
@@ -58,8 +55,11 @@ var recharge = {
 				bankNum = bankNum.substr(bankNum.length - 4);
 				$(".card_num").find("em").html(bankNum);
 				// 用户余额
-				var balance = res.content.balance;
+				var balance = res.content.money;
 				$(".number_show .money_number").html(balance);
+				// 日充值最大金额
+				var limitOneTime = res.content.limitOneTime;
+				$(".item2 .money .czts b").html(limitOneTime);
 				// 存管清算时间
 				var cleanTime = res.content.cleanTime;
 				if (cleanTime == true) {
@@ -161,8 +161,8 @@ var recharge = {
 					money: money,
 					bankId: bankId
 				};
-				_rechargeOnLine.recharge(data, function(res) {
-					// console.log(res);
+				_trade.rechargeOnline(data, function(res) {
+					console.log(res);
 					if (res.code == 100000) {
 						layer.open({
 							type: 1,
@@ -196,10 +196,10 @@ var recharge = {
 		$(".item2 .btn").on("click", function() {
 			if ($(this).hasClass('kd')) {
 				var money = $(".money_input2").val();
-				_sendSmsCode.sendSmsCode(money, function(res) {
+				_trade.sendSmsCode(money, function(res) {
 					console.log(res);
 					var phone = res.content.phone;
-					orderNo=res.content.orderNo;
+					orderNo = res.content.orderNo;
 					$(".secity_box .phoneNum").html(phone);
 					if (res.code == 100000) {
 						_this.cutTime();
@@ -299,7 +299,7 @@ var recharge = {
 				orderNo: orderNo,
 				smsCode: str
 			};
-			_fastpay.fastpay(data, function(res) {
+			_trade.fastPay(data, function(res) {
 				console.log(res);
 				if (res.code == 100000) {
 					layer.closeAll();
@@ -314,13 +314,17 @@ var recharge = {
 						}
 					});
 				} else {
-					$("#demo input").val("");
-					$(".wrong_ts").show();
-					$(".secity_box .ts").hide();
-					_yzm.check("demo", "border");
-					$("#demo input").eq(5).removeClass("border");
-					$("#demo input").eq(0).focus();
-					$("#demo input").eq(0).addClass("border");
+					layer.closeAll();
+					layer.open({
+						type: 1,
+						title: '充值失败',
+						skin: 'cz_fail',
+						area: ['560px', '340px'],
+						content: $('#cz_fail'),
+						cancel: function() {
+							history.go(0);
+						}
+					});
 				}
 			});
 		});

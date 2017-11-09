@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		</dt>
-		<dd>{{dueInFund}}</dd>
+		<dd>{{totalAwait}}</dd>
 	</dl>
 	<dl>
 		<dt>
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</dt>
-		<dd>{{usableFund}}</dd>
+		<dd>{{totalBalance}}</dd>
 	</dl>
 </div>
 {{/content}}

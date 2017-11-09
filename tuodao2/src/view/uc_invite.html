@@ -64,7 +64,6 @@
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
 								<div class="copy copy_link">复制链接</div>
-								<input type="text" class="dis_none">
 							</li>
 							<li class="second_child">
 								<div style="width:180px;">
@@ -75,7 +74,6 @@
 								<div style="text-align:center;">
 									<a class="qq_share share" style="margin-right:20px;">
 									<a class="wx_share share"></a>
-									<input type="text" class="dis_none">
 								</div>
 							</li>
 							<li>
@@ -85,7 +83,6 @@
 									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
 								</div>
 								<div class="copy copy_code">复制邀请码</div>
-								<input type="text" class="dis_none">
 							</li>
 						</ol>
 						<ol class="depository_no_menu dis_none">
@@ -96,7 +93,6 @@
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
 								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
-								<input type="text" class="dis_none" value="123456" id="iptsss">
 							</li>
 							<li class="second_child">
 								<div style="width:180px;">
@@ -106,7 +102,6 @@
 								</div>
 								<div style="text-align:center;">
 									<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
-									<input type="text" class="dis_none">
 								</div>
 							</li>
 							<li>
@@ -116,7 +111,6 @@
 									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
 								</div>
 								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
-								<input type="text" class="dis_none">
 							</li>
 						</ol>
 					</div>
@@ -267,5 +261,22 @@
 	</div>
 	<%= require('html-loader!./layout/footer_nav.html') %>
 	<%= require('html-loader!./layout/footer.html') %>
+	<div id="invite_link" class="dis_none">
+	<div class="order_err">由于</div>
+	<div class="content">
+		<ul>
+			<li style="padding-top:5px;">1.微信扫一扫关注公众号“拓道金服”</li>
+			<li>2.在微信输入文字“口令”并发送</li>
+			<li style="margin-bottom:15px;">3.获取微信返回的口令并提交</li>
+			<li><span class="iconfont"></span><input type="text" placeholder="请输入公众号回复的口令"></li>
+		</ul>
+		<div class="submit_btn"><input class="submits" type="submit" value="提交"><input type="button" value="取消" style="border-color:#9e9e9e;background: #ffffff;"></div>
+	</div>
+	<div class="center">
+		<br>
+		<span>口令验证成功，获得80积分！</span><br>
+		<button class="i_know">我知道了</button>
+	</div>
+</div>
 </body>
 </html>

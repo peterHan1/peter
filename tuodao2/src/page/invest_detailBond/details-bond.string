@@ -24,7 +24,7 @@
 		</dl>
 		<dl class="summoney">
 			<dt>
-				<span class="lastMoney">{{lastAccount}}</span>元
+				<span class="lastMoney" money="{{lastAccount}}">{{lastAccount}}</span>元
 			</dt>
 			<dd>
 				剩余可投

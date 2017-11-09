@@ -5,7 +5,8 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/investList-api.js');
+var _apiInvest = require('api/product-api.js');
+var _apiInvests = require('api/trade-api.js');
 var investListSift = require('./list_sift.string');
 var investListScatter = require('./list_scatter.string');
 var investListBond = require('./list_bond.string');
@@ -52,6 +53,7 @@ var invest = {
 	getListSift : function(dataList){
 		// 精选计划
 		_apiInvest.getInvestList(dataList,function(res){
+			console.log(res);
 			invest.setData(res);
 			listHtml = _td.renderHtml(investListSift,{
 				list:res.content.list,
@@ -101,15 +103,15 @@ var invest = {
 	},
 	// 债权转让
 	getListBond : function(type){
-		_apiInvest.getInvestListBond(type,1,10,function(res){
+		_apiInvests.getInvestListBond(type,1,10,function(res){
 			invest.setUnit(res);
 			listHtml = _td.renderHtml(investListBond,{
 				list:res.content.list,
 			});
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_bond");
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getInvestListBond(type,e.current,10,function(res){
+			_apiInvests.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_apiInvests.getInvestListBond(type,e.current,10,function(res){
 					invest.setUnit(res);
 					listHtml = _td.renderHtml(investListBond,{
 						list:res.content.list,

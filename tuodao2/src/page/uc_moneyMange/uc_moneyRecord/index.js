@@ -11,7 +11,7 @@ require('util/laydate/laydate.scss');
 
 
 var _td = require('util/td.js');
-var _moneyRecord = require('api/moneyMange-api.js');
+var _trade = require('api/trade-api.js');
 var moneyRecords = require('./uc_moneyRecord.string');
 
 var moneyRecord = {
@@ -23,7 +23,7 @@ var moneyRecord = {
 	},
 	page: function() {
 		var _this = this;
-		_moneyRecord.moneyRecord(1, 10, function(res) {
+		_trade.moneyRecord(1, 10, function(res) {
 			// console.log(res);
 			if(res.content.list.length==0){
 				$(".no_data").show();
@@ -33,8 +33,8 @@ var moneyRecord = {
 			});
 			$('.money_records').html(moneyHtml);
 			// _this.remark(res.content.list.remark);
-			_moneyRecord.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
-				_moneyRecord.moneyRecord(1, 10, function(res) {
+			_trade.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
+				_trade.moneyRecord(1, 10, function(res) {
 					moneyHtml = _td.renderHtml(moneyRecords, {
 						list: res.content.list,
 					});
@@ -52,15 +52,15 @@ var moneyRecord = {
 				// 选择时间后回调
 				choose: function(dates) {
 					var _this = this;
-					_moneyRecord.moneyRecord(1, 10,function(res) {
+					_trade.moneyRecord(1, 10,function(res) {
 						// console.log(res);
 						moneyHtml = _td.renderHtml(moneyRecords, {
 							list: res.content.list,
 						});
 						$('.money_records').html(moneyHtml);
 						// _this.remark(res.content.list.remark);
-						_moneyRecord.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
-							_moneyRecord.moneyRecord(1, 10, function(res) {
+						_trade.paging(res.content.pages, res.content.pageNum, res.content.pageSize,function(e) {
+							_trade.moneyRecord(1, 10, function(res) {
 								moneyHtml = _td.renderHtml(moneyRecords, {
 									list: res.content.list,
 								});

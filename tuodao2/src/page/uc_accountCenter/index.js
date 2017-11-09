@@ -8,9 +8,11 @@ require('util/layer/layer.scss');
 
 var _inp = require('util/yz.js');
 var _del = require('util/delButton.js');
+var _user = require('api/user-api.js');
 
 var accountSet = {
 	init: function() {
+		this.load();
 		this.inputMutual();
 		this.inputDel();
 		this.uploadPhoto();
@@ -19,6 +21,66 @@ var accountSet = {
 		this.buttonVerify();
 		this.checkEmpty();
 		this.tsShow();
+	},
+	load: function() {
+		// 获取账户设置信息接口
+		_user.getAccountSetting(function(res) {
+			console.log(res);
+			// 是否开通存管账户
+			var isOpenDeposit = res.content.isOpenDeposit;
+			if (isOpenDeposit == 1) {
+				$(".cg_zh .no_dl").hide();
+				$(".cg_zh .dl").show();
+				$(".zh_pass .pay_pass .no_dl").hide();
+				$(".zh_pass .pay_pass .dl").show();
+			} else {
+				$(".cg_zh .no_dl").show();
+				$(".cg_zh .dl").hide();
+				$(".zh_pass .pay_pass .no_dl").show();
+				$(".zh_pass .pay_pass .dl").hide();
+			}
+			// 是否绑定银行卡
+			var isBindBank = res.content.isBindBank;
+			var bankNum = res.content.bankNum;
+			var bankName = res.content.bankName;
+			if (isBindBank == 1) {
+				$(".bank_card .no_dl").hide();
+				$(".bank_card .dl").show();
+				$(".bank_card .bank .banknum").html(bankNum);
+				$(".bank_card .bank .bankname").html(bankName);
+			} else {
+				$(".bank_card .no_dl").show();
+				$(".bank_card .dl").hide();
+			}
+			// 登录密码强弱
+			var pwSecurityLevel = res.content.pwSecurityLevel;
+			if (pwSecurityLevel == 0) {
+				$(".login_pass i b").html("弱");
+				$(".login_pass i b").attr("class", "low");
+			} else if (pwSecurityLevel == 1) {
+				$(".login_pass i b").html("强");
+				$(".login_pass i b").attr("class", "mid");
+			} else {
+				$(".login_pass i b").html("最高");
+				$(".login_pass i b").attr("class", "strong");
+			}
+			// 是否有收件人信息
+			var hasConsigneeInfo = res.content.hasConsigneeInfo;
+			if (hasConsigneeInfo == 0) {
+				return;
+			} else {
+				$(".adress .change_adr").show();
+				$(".adress .adress_text .add_adr").hide();
+				$(".adress .adress_text .adr_ts").hide();
+				$(".adress .adress_text .adr_box").show();
+				var consignee = res.content.consignee;
+				var consigneeMobile = res.content.consigneeMobile;
+				var consigneeAddress = res.content.consigneeAddress;
+				$(".adr_box .adr_name span").html(consignee);
+				$(".adr_box .adr_phone span").html(consigneeMobile);
+				$(".adr_box .adr_adr span").html(consigneeAddress);
+			}
+		});
 	},
 	// input框交互样式
 	inputMutual: function() {
@@ -76,13 +138,19 @@ var accountSet = {
 				$(".adress .adress_text .adr_name").find('span').html(name);
 				$(".adress .adress_text .adr_phone").find('span').html(phone);
 				$(".adress .adress_text .adr_adr").find('span').html(adr);
-				$(".adress .adress_text .adr_name").show();
-				$(".adress .adress_text .adr_phone").show();
-				$(".adress .adress_text .adr_adr").show();
+				$(".adress .adress_text .adr_box").show();
 				$(".adress .adress_text .adr_ts").hide();
 				$(".adress .adress_text a").hide();
 				$(".adress .adress_top a").show();
 				layer.closeAll();
+				var data = {
+					consignee: name,
+					consigneeMobile: phone,
+					consigneeAddress: adr
+				};
+				_user.updateConsigneeInfo(data, function(res) {
+					console.log(res);
+				});
 			} else {
 				return false;
 			}

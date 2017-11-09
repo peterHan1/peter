@@ -20,7 +20,7 @@ $('.task li').eq(2).find('.btn').on('click',function(){
 })
 */
 var _td = require('util/td.js');
-var _apiNewTask = require('api/newcomer-api.js');
+var _apiNewTask = require('api/operationCenter-api.js');
 var newTaskHtml = require('./newcomerTask.string');
 var newTask = {
 	init : function(){
@@ -56,22 +56,60 @@ var newTask = {
 			console.log('请求失败');
 		})
 	},
+	getMemberInfo:function(){
+		_apiNewTask.getMemberInfo(function(res){
+			// 是否登录
+			if(true){
+				// 是否为新手
+				if(res.content.isNewbie==1){
+					// 是否投资
+					if(res.content.investFlag==1){
+						$('.presents_con .left').on('click',function(){
+							window.open('uc_coupon.html','_self');
+						})
+						$('.presents_con .right').on('click',function(){
+							window.open('invest.html','_self');// 列表
+						})
+					}else{
+						$('.presents_con .left').on('click',function(){
+							window.open('uc_coupon.html','_self');
+						})
+						$('.presents_con .right').on('click',function(){
+							window.open('invest.html','_self');
+						})
+					}
+				}else{
+					if(res.content.investFlag==1){
+						$('.presents_con .left').on('click',function(){
+							window.open('uc_coupon.html','_self');
+						})
+						$('.presents_con .right').on('click',function(){
+							window.open('invest.html','_self');// 列表
+						})
+					}else{
+						$('.presents_con .left').on('click',function(){
+							window.open('uc_coupon.html','_self');
+						})
+						$('.presents_con .right').on('click',function(){
+							window.open('invest.html','_self');
+						})
+					}
+				}
+			}else{
+				window.open('register.html','_self');
+			}
+		},function(){
+			console.log('请求失败');
+		})
+	},
 	mouseOver:function(){
 		$('.task li').on({
 			mouseover:function(){
-				/*if($(this).find('.btn').attr('data-state')=='no' || $(this).find('.btn').attr('data-state')=='guoqi'){
-					$(this).off();
-				}else{
-					$(this).find('.btn').css({
-						background:'#ff7400',
-						color:'#ffffff'
-					})
-				}*/
 				$(this).css('box-shadow','0 5px 30px #e7e7e7');
 				$(this).find('.btn').css({
-						background:'#ff7400',
-						color:'#ffffff'
-					})
+					background:'#ff7400',
+					color:'#ffffff'
+				})
 			},
 			mouseout:function(){
 				$(this).css('box-shadow','none');
@@ -79,13 +117,6 @@ var newTask = {
 					background:'#ffffff',
 					color:'#9e9e9e'
 				})
-				/*if($(this).find('.btn').attr('data-state')=='no'){
-					$(this).css('color','#6CBB50');
-					console.log($(this).find('.btn').attr('data-state'));
-					$(this).off();
-				}else if($(this).find('.btn').attr('data-state')=='guoqi'){
-					$(this).off();
-				}*/
 			}
 		})
 	}

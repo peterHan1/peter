@@ -5,6 +5,8 @@ require('page/common/uc-menu/index.js');
 require('page/common/uc-menu/index.scss');
 require('util/paging/page.scss');
 require('util/paging/page.js');
+require('util/layer/layer.js');
+require('util/layer/layer.scss');
 // 得到总页数
 $(".zxf_pagediv").createPage({
 	// 页数
@@ -18,11 +20,11 @@ $(".zxf_pagediv").createPage({
 	}
 });
 var _td = require('util/td.js');
-var _apiInvite = require('api/invite-api.js');
+var _apiInvite = require('api/operationCenter-api.js');
 var record = require('./invite_record.string');
 var invites = {
 	init:function(){
-		this.getRecord();
+		this.getInviteRecord();
 		this.tabCut();
 		this.hoverEvent();
 		this.getLink('.copy_link');
@@ -102,80 +104,119 @@ var invites = {
 			}
 		});
 	},
+	copyEvent:function(copyValue){
+		// 动态创建 input 元素
+	  	var aux = document.createElement("input");
+	  	// 获得需要复制的内容
+	 	aux.setAttribute("value",copyValue);
+	  	// 添加到 DOM 元素中
+	  	document.body.appendChild(aux);
+	  	// 执行选中
+	  	// 注意: 只有 input 和 textarea 可以执行 select() 方法.
+	  	aux.select();
+	  	// 获得选中的内容
+	    var content = window.getSelection().toString();
+	  	// 执行复制命令
+	  	document.execCommand("copy");
+	  	// 将 input 元素移除
+	  	document.body.removeChild(aux);
+	},
 	// 复制邀请链接地址
 	getLink:function(obj){
+		var time='';
+		var linkValue='';
+		_apiInvite.getLink(function(res){
+			console.log(res.content);
+			linkValue=res.content;
+		},function(){
+			console.log('请求失败');
+		})
 		$(obj).on('click',function(){
 			if(obj=='.copy_link'){
 				$(this).css({background:'#ffffff',color:'#ff7400'});
 				$(this).off('mouseover mouseout');
-				_apiInvite.getLink(function(res){
-					console.log('复制成功'+res.content);
-					$(obj).siblings('input').val(res.content).select();
-					console.log($(obj).siblings('input').val());
-					if(document.execCommand('Copy')){
-						$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-					}else{
-						alert('由于浏览器不兼容，请手动复制链接 \n 邀请链接：'+res.content);
-					}
-				},function(){
-					console.log('请求失败');
-				})
+				invites.copyEvent(linkValue);
+				if(document.execCommand("copy")){
+			  		$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			  	}else{
+					/*layer.open({
+						type: 1,
+						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
+						skin: 'invite_link',
+						area: ['560px', '330px'],
+						content: $('#invite_link')
+					});*/
+  				}
+				time=setTimeout(function(){
+					$(obj).html('复制链接');
+					invites.hoverEvent();
+					clearTimeout(time);
+				},2000);
 			}else if(obj=='.qq_share'){
-				_apiInvite.getLink(function(res){
-					console.log('复制成功'+res.content);
-					$(obj).siblings('input').val(res.content).select();
-					console.log($(obj).siblings('input').val());
-					if(document.execCommand('Copy')){
-						$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-					}else{
-						alert('由于浏览器不兼容，请手动复制链接 \n 邀请链接：'+res.content);
-					}
-
-				},function(){
-					console.log('请求失败');
-				})
+				invites.copyEvent(linkValue);
+				if(document.execCommand("copy")){
+				  	$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			  	}else{
+					/*layer.open({
+						type: 1,
+						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
+						skin: 'invite_link',
+						area: ['560px', '330px'],
+						content: $('#invite_link')
+					});*/
+  				}
 			}else{
-				_apiInvite.getLink(function(res){
-					console.log('复制成功'+res.content);
-					$(obj).siblings('input').val(res.content).select();
-					console.log($(obj).siblings('input').val());
-					if(document.execCommand('Copy')){
-						$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-					}else{
-						alert('由于浏览器不兼容，请手动复制链接 \n 邀请链接：'+res.content);
-					}
-					
-				},function(){
-					console.log('请求失败');
-				})
+				invites.copyEvent(linkValue);
+				if(document.execCommand("copy")){
+			  		$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			  	}else{
+					/*layer.open({
+						type: 1,
+						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
+						skin: 'invite_link',
+						area: ['560px', '330px'],
+						content: $('#invite_link')
+					});*/
+  				}
 			}
 		});
 	},
 	// 复制邀请码
 	getCode:function(){
+		var time='';
+		var linkValue='';
+		_apiInvite.getCode(function(res){
+			linkValue=res.content.invitCode;
+		},function(){
+			console.log('请求失败');
+		})
 		$('.depository_yes_menu .copy_code').on('click',function(){
 			$(this).css({background:'#ffffff',color:'#ff7400'});
 			$(this).off('mouseover mouseout');
-			_apiInvite.getCode(function(res){
-				console.log('复制成功'+res.content.invitCode);
-				$('.copy_code').siblings('input').val(res.content.invitCode).select();
-					console.log($('.copy_code').siblings('input').val());
-					if(document.execCommand('Copy')){
-						$('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-					}else{
-						alert('由于浏览器不兼容，请手动复制邀请码 \n 邀请码：'+res.content);
-					}
-			},function(){
-				console.log('请求失败');
-			})
+			invites.copyEvent(linkValue);
+			if(document.execCommand("copy")){
+		  		$('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+		  	}else{
+				/*layer.open({
+					type: 1,
+					title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
+					skin: 'invite_link',
+					area: ['560px', '330px'],
+					content: $('#invite_link')
+				});*/
+			}
+			time=setTimeout(function(){
+				$('.copy_code').html('复制链接');
+				invites.hoverEvent();
+				clearTimeout(time);
+			},2000);
 		});
 	},
 	// 邀请记录
-	getRecord:function(){
-		_apiInvite.getRecord(1,20,function(res){
+	getInviteRecord:function(){
+		_apiInvite.getInviteRecord(1,20,function(res){
 			if(res.content.list.length==0){
 				$('.invite_record').children().eq(1).show().siblings().hide();
-
 				return false;
 			}else{
 				var bannerHtml = _td.renderHtml(record,{
@@ -184,7 +225,7 @@ var invites = {
 				$('._invite_record_table').html(bannerHtml);
 				invites.changeColor('.invite_table');
 				_apiInvite.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-					_apiInvite.getRecord(e.current,20,function(res){
+					_apiInvite.getInviteRecord(e.current,20,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,
 						});

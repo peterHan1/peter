@@ -6,7 +6,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 var _tips = require('util/tips/index.js');
 var _td = require('util/td.js');
-var _apiInvest = require('api/ucInListBondDet-api.js');
+var _apiInvest = require('api/trade-api.js');
 var bondDel = require('./bondDel.string');
 var bondDelRet = require('./bondDelRet.string');
 

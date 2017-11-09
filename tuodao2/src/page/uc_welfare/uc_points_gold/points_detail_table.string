@@ -9,8 +9,8 @@
 	<tr>
 		<td>2017-09-18 14:09:00</td>
 		<td>{{source}}</td>
-		<td>{{type}}</td>
-		<td>{{score}}</td>
+		<td></td>
+		<td></td>
 	</tr>
 {{/list}}
 </table>

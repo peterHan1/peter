@@ -1,6 +1,6 @@
 var _td = require('util/td.js');
-var _checkPhone = require('api/checkPhone_only-api.js');
-var _cash = require('api/cash-api.js');
+var _user = require('api/user-api.js');
+var _trade = require('api/trade-api.js');
 
 var _regular = {
 	// 输入中验证手机号码（注册）
@@ -127,7 +127,7 @@ var _regular = {
 		var flag;
 		var value = $("." + data.elm).val();
 		var _this = this;
-		_checkPhone.checkPhone(value, function(res) {
+		_user.checkPhone(value, function(res) {
 			if (value != "" && res.content == false) {
 				flag = true;
 				$("." + data.elm).removeClass("red");
@@ -148,7 +148,7 @@ var _regular = {
 		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>该手机号尚未注册拓道金服，请先注册！</span></p>";
 		var flag;
 		var value = $("." + data.elm).val();
-		_checkPhone.checkPhone(value, function(res) {
+		_user.checkPhone(value, function(res) {
 			if (value != "" && res.content == true) {
 				flag = true;
 				$("." + data.elm).removeClass("red");
@@ -356,7 +356,7 @@ var _regular = {
 		var ts = "<p class=" + data.cls + ">&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<span class=wz>您输入的金额大于可提现金额</span></p>";
 		var flag;
 		var value = $("." + data.elm).val();
-		_cash.cash(function(res) {
+		_trade.cash(function(res) {
 			var number = res.content.balanceValue;
 			if (value != "" && value <= number) {
 				flag = true;

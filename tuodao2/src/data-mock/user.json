@@ -7,7 +7,7 @@
              "userName": "用户名称",
              "mobile": "18539123456",
              "pwSecurityLevel": "密码安全级别",
-             "avatarUrl": "image/uc_portrait.png",
+             "avatarUrl": "http://72.127.2.42:3000/image/uc_portrait.png",
              "directInviterNo": "直接邀请人",
              "indirectInviterNo": "间接邀请人",
              "userStatus": "用户状态（0：冻结 1：正常 2：注销）",

@@ -4,25 +4,49 @@
       "content":
       {
              "pageNum": 1,
-             "pageSize": 3,
-             "size": 6,
+             "pageSize": 1,
+             "size": 1,
              "orderBy": null,
              "startRow": 0,
              "endRow": 0,
              "total": 1,
-             "pages": 6,
+             "pages": 1,
              "list":
              [
                     {
                            "hanppenTime": 1506476899000,
                            "source": "首次邀请好友注册成功",
-                           "type": "支出",
+                           "type": 1,
                            "score": 50
                     },
                     {
                            "hanppenTime": 1506476899000,
                            "source": "首次邀请好友注册成功",
-                           "type": "收入",
+                           "type": 2,
+                           "score": 50
+                    },
+                    {
+                           "hanppenTime": 1506476899000,
+                           "source": "首次邀请好友注册成功",
+                           "type": 1,
+                           "score": 50
+                    },
+                    {
+                           "hanppenTime": 1506476899000,
+                           "source": "首次邀请好友注册成功",
+                           "type": 2,
+                           "score": 50
+                    },
+                    {
+                           "hanppenTime": 1506476899000,
+                           "source": "首次邀请好友注册成功",
+                           "type": 1,
+                           "score": 50
+                    },
+                    {
+                           "hanppenTime": 1506476899000,
+                           "source": "首次邀请好友注册成功",
+                           "type": 1,
                            "score": 50
                     }
              ],

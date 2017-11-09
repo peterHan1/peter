@@ -2,12 +2,14 @@ require('./index.scss');
 var _td 		= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
 var _apiUser 	= require('api/user-api.js');
-
+// console.log(_td.getAccess('accessId'));
+// console.log(_td.getAccess('accessKey'));
 // console.log(document.cookie);
 // 导航
 var navPage = {
 	init : function(){
 		this.bindEvent();
+		this.loadUserInfo();
 		return this;
 	},
 	bindEvent : function(){
@@ -20,9 +22,17 @@ var navPage = {
 	},
 	// 加载用户信息
 	loadUserInfo : function(){
-		_apiUser.checkLogin(function(res){
-			$('.js-login').text(res.userName);
+		var a = _td.getAccess('accessId');
+		var b = _td.getAccess('accessKey');
+		var headerData = {
+			'accessId' : a,
+			'accessKey' :b
+		};
+		// console.log(a+'top');
+		_apiUser.checkLogin(headerData,function(res){
+			console.log(res);
 		}, function(errMsg){
+			console.log(errMsg);
 		// do nothing
 		});
 	},

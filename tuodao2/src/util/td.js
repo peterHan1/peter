@@ -2,6 +2,7 @@ var Hogan = require('hogan.js');
 var conf = {
 	serverHost : ''
 };
+
 var _td = {
 	request : function(param){
 		var _this = this;
@@ -11,9 +12,8 @@ var _td = {
 			dataType 	: param.type 	|| 'json',
 			data 		: param.data 	|| '',
 			beforeSend 	: function(xhr){
-				// console.log(xhr);
-				xhr.setRequestHeader("accessId", "accessId");
-				xhr.setRequestHeader("accessKey", "accessKey");
+				xhr.setRequestHeader("accessId", param.accessId || 'accessId');
+				xhr.setRequestHeader("accessKey", param.accessKey || 'accessKey');
 				xhr.setRequestHeader("sign", "NO");
 			},
 			success 	: function(res){
@@ -56,16 +56,16 @@ var _td = {
 		window.location.href = './userlogin.html?redirect' + encodeURIComponent(window.location.href);
 	},
 	// 设置accessId&accessKey
-	setAccess : function(cookieData){
-		var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
-		if (keys) {
-			for (var i = keys.length; i--;)
-				document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
-		}
-		for(var key in cookieData){
-			document.cookie = key +'='+ cookieData[key];
-		}
-	},
+	// setAccess : function(cookieData){
+	// 	var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+	// 	if (keys) {
+	// 		for (var i = keys.length; i--;)
+	// 			document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
+	// 	}
+	// 	for(var key in cookieData){
+	// 		document.cookie = key +'='+ cookieData[key];
+	// 	}
+	// },
 	// 读取accessId&accessKey
 	getAccess : function(name){
 		var arrstr = document.cookie.split("; ");

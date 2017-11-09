@@ -7,7 +7,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 var _td = require('util/td.js');
-var _apiCoupon = require('api/coupon-api.js');
+var _apiCoupon = require('api/operationCenter-api.js');
 var couponDyq = require('./coupon_dyq.string');
 var couponJxq = require('./coupon_jxq.string');
 var coupon = {
@@ -28,7 +28,6 @@ var coupon = {
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_yes');
 			coupon.HeightAuto();
-			coupon.elHeight();
 			console.log(res.content.pages+' '+res.content.pageNum+' '+res.content.pageSize+' '+$('.welfare_content').height());
 			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
@@ -38,7 +37,6 @@ var coupon = {
 					$('.dyq_tickets').html(bannerHtml);
 					$('.dyq_tickets ul').addClass('dyq_ticket_yes');
 					coupon.HeightAuto();
-					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -55,9 +53,7 @@ var coupon = {
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_no');
-			$('.dyq_ticket_no li img').attr('src','');
 			coupon.HeightAuto();
-			coupon.elHeight();
 			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponDyq,{
@@ -65,9 +61,7 @@ var coupon = {
 					});
 					$('.dyq_tickets').html(bannerHtml);
 					$('.dyq_tickets ul').addClass('dyq_ticket_no');
-					$('.dyq_ticket_no li img').attr('src','');
 					coupon.HeightAuto();
-					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -84,7 +78,7 @@ var coupon = {
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			$('.dyq_tickets ul').addClass('dyq_ticket_guoqi');
-
+			coupon.HeightAuto();
 			_apiCoupon.pagingDyq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponDyq,{
@@ -92,6 +86,7 @@ var coupon = {
 					});
 					$('.dyq_tickets').html(bannerHtml);
 					$('.dyq_tickets ul').addClass('dyq_ticket_guoqi');
+					coupon.HeightAuto();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -117,7 +112,6 @@ var coupon = {
 			$('.jxq_tickets ul').addClass('jxq_ticket_yes');
 			coupon.getJxq();
 			coupon.HeightAuto();
-			coupon.elHeight();
 			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
@@ -127,7 +121,6 @@ var coupon = {
 					$('.jxq_tickets ul').addClass('jxq_ticket_yes');
 					coupon.getJxq();
 					coupon.HeightAuto();
-					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -145,9 +138,7 @@ var coupon = {
 			$('.jxq_tickets').html(bannerHtml);
 			coupon.getJxq();
 			$('.jxq_tickets ul').addClass('jxq_ticket_no');
-			$('.jxq_ticket_no li img').attr('src','');
 			coupon.HeightAuto();
-					coupon.elHeight();
 			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
@@ -155,9 +146,7 @@ var coupon = {
 					});
 					$('.jxq_tickets').html(bannerHtml);
 					$('.jxq_tickets ul').addClass('jxq_ticket_no');
-					$('.jxq_ticket_no li img').attr('src','');
 					coupon.HeightAuto();
-					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -176,7 +165,6 @@ var coupon = {
 			$('.jxq_tickets ul').addClass('jxq_ticket_guoqi');
 			coupon.getJxq();
 			coupon.HeightAuto();
-			coupon.elHeight();
 			_apiCoupon.pagingJxq(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
@@ -186,7 +174,6 @@ var coupon = {
 					$('.jxq_tickets ul').addClass('jxq_ticket_guoqi');
 					coupon.getJxq();
 					coupon.HeightAuto();
-					coupon.elHeight();
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -199,8 +186,6 @@ var coupon = {
 	HeightAuto:function(){
 		$('.uc_menu').height('auto');
 		$('.uc_menu').siblings('div').height('auto');
-	},
-	elHeight:function (){
 		var hL = $('.uc_menu')[0].clientHeight;
 		var hR = $('.uc_menu').siblings('div')[0].clientHeight;
 		if(hR>=905){
@@ -218,8 +203,8 @@ var coupon = {
 			var index=$(this).index();
 			$('.ticket_all').children().eq(index).show().siblings().hide();
 			$('.state_menues').children().eq(index).show().siblings().hide();
+			$('.coupon_link a').eq(index).show().siblings().hide();
 			coupon.HeightAuto();
-			coupon.elHeight();
 			console.log($('.uc_menu').siblings('div')[0].clientHeight);
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
 			if(index==0){

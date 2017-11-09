@@ -2,19 +2,90 @@ var _td = require('util/td.js');
 var _user = {
 	login : function(param,resolve,reject){
 		_td.request({
-			url 	: _td.getServerUrl('/router/user/login'),
-			method 	: 'POST',
+			url 	: _td.getServerUrl('api/router/user/login'),
 			data 	: param,
 			success : resolve,
-			error 	: reject
+			error 	: reject,
 		});
 	},
 	// 检查登录状态
-	checkLogin : function(accessInfo,resolve, reject){
+	checkLogin : function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/api/router/user/getUserAccountInfo'),
-			method  : 'POST',
-			data 	: accessInfo,
+			url     : _td.getServerUrl('api/router/user/getUserAccountInfo'),
+			accessId :headerData.accessId,
+			accessKey : headerData.accessKey,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 用户注册
+	register :  function(data,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/user/register'),
+			data    : data,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 忘记登录密码
+	forgetLoginPw :  function(data,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/user/forgetLoginPw'),
+			data    : data,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 忘记支付密码
+	forgetPayPw :  function(data,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/user/forgetPayPw'),
+			data    : data,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 新增/修改收件地址
+	updateConsigneeInfo: function(data, resolve, reject) {
+		_td.request({
+			method: 'post',
+			url: _td.getServerUrl('api/router/ua/updateConsigneeInfo'),
+			data: data,
+			success: resolve,
+			error: reject
+		});
+	},
+	// 获取用户账户设置信息
+	getAccountSetting :  function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/account/getAccountSetting'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 手机号码是否注册
+	checkPhone :  function(value,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/user/validateMobileRegistered'),
+			data    : {
+				mobile: value
+			},
+			async	: false,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 用户开通存管
+	openDeposit :  function(data,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/ua/openDeposit'),
+			data    : data,
 			success : resolve,
 			error   : reject
 		});
@@ -22,44 +93,14 @@ var _user = {
 	// 账户投资信息
 	getUserCon : function(userData,resolve, reject){
 		_td.request({
-			// method 	: "POST",
+			method	: "get",
 			url     : _td.getServerUrl('/user.json'),
 			data 	: userData,
-			// beforeSend: function(xhr){
-			// 	xhr.setRequestHeader("accessId", "c5dc28317edb57b2ad7c7ad5813c3fb1");
-			// 	xhr.setRequestHeader("accessKey", "/v8aygbmadgamaa3aguazgayadmazaa5agmamwa0adaazaa4adiaoqa3agyaoabhadaazqaxagmazqa0admaoaa2");
-			// 	xhr.setRequestHeader("sign", "NO");
-			// },
 			success : resolve,
 			error   : reject
 		});
 	},
-	// 获取账户信息
-	getUser : function(resolve, reject){
-		_td.request({
-			// method 	: "POST",
-			url     : _td.getServerUrl('/userOperation.json'),
-			// beforeSend: function(xhr){
-			// 	xhr.setRequestHeader("accessId", "c5dc28317edb57b2ad7c7ad5813c3fb1");
-			// 	xhr.setRequestHeader("accessKey", "/v8aygbmadgamaa3aguazgayadmazaa5agmamwa0adaazaa4adiaoqa3agyaoabhadaazqaxagmazqa0admaoaa2");
-			// 	xhr.setRequestHeader("sign", "NO");
-			// },
-			success : resolve,
-			error   : reject
-		});
-	},
-	userSign : function(resolve, reject){
-		_td.request({
-			// method 	: "POST",
-			url     : _td.getServerUrl('/userSign.json'),
-			// beforeSend: function(xhr){
-			// 	xhr.setRequestHeader("accessId", "c5dc28317edb57b2ad7c7ad5813c3fb1");
-			// 	xhr.setRequestHeader("accessKey", "/v8aygbmadgamaa3aguazgayadmazaa5agmamwa0adaazaa4adiaoqa3agyaoabhadaazqaxagmazqa0admaoaa2");
-			// 	xhr.setRequestHeader("sign", "NO");
-			// },
-			success : resolve,
-			error   : reject
-		});
-	}
+
 };
 module.exports = _user;
+

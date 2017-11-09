@@ -33,7 +33,7 @@ $(document).ready(function(){
 })*/
 
 var _td = require('util/td.js');
-var _apiPointsGold = require('api/points_gold_list-api.js');
+var _apiPointsGold = require('api/operationCenter-api.js');
 var points_exchange = require('./points_exchange.string');
 var points_detail = require('./points_detail_table.string');
 var points_get = require('./points_get_table.string');
@@ -68,6 +68,30 @@ var pointsGold = {
 			$('.exchange .change li .btn_div input').height(22);
 		}
 	},
+	// 积分兑换查询的优惠券类型与立即兑换按钮
+	exchange_btn:function(listData,res){
+		$.each(listData,function(i){
+			if(listData[i].type == 2){
+				$('.change li').eq(i).addClass('last_child');
+				$('.change li').eq(i).find('.change_img').html('<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现'+res.content.list[i].numValue+'次');
+			}
+			// 立即兑换按钮
+			$('.change li').eq(i).find('.change_btn').on('click',function(){
+				var goodsNum=parseInt($(this).parent().find('input').val());
+				var goodsId=listData[i].id;
+				var goodsType=listData[i].type;
+				var needScore=(listData[i].needScore)*goodsNum;
+				if(needScore>parseInt($('.points_current').html())){
+					alert('积分不足');
+					return false;
+				}else{
+					console.log(listData[i].id+' '+listData[i].needScore*goodsNum+' '+listData[i].type);
+					pointsGold.getGoods_exchange(goodsId,goodsType,goodsNum,needScore);
+				 	// window.location.reload();
+				}
+			})
+		})
+	},
 	// 积分兑换查询
 	getPoints_exchange:function(){
 		_apiPointsGold.getPoints_exchange(1,6,function(res){
@@ -79,27 +103,7 @@ var pointsGold = {
 			pointsGold.ieBrowser();
 			pointsGold.HeightAuto();
 			pointsGold.elHeight();
-			$.each(listData,function(i){
-				if(listData[i].type == 2){
-					$('.change li').eq(i).addClass('last_child');
-					$('.change li').eq(i).find('.change_img').html('<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现'+res.content.list[i].numValue+'次');
-				}
-				// 立即兑换按钮
-				$('.change li').eq(i).on('click','.change_btn',function(){
-					var goodsNum=parseInt($(this).parent().find('input').val());
-					var goodsId=listData[i].id;
-					var goodsType=listData[i].type;
-					var needScore=(listData[i].needScore)*goodsNum;
-					if(needScore>parseInt($('.points_current').html())){
-						alert('积分不足');
-						return false;
-					}else{
-						console.log(listData[i].id+' '+listData[i].needScore*goodsNum+' '+listData[i].type);
-						pointsGold.getGoods_exchange(goodsId,goodsType,goodsNum,needScore);
-					 	// window.location.reload();
-					}
-				})
-			});
+			pointsGold.exchange_btn(listData,res);
 			_apiPointsGold.pagingPoint(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiPointsGold.getPoints_exchange(e.current,e.shownum,function(res){
 					listData = res.content.list;
@@ -110,27 +114,7 @@ var pointsGold = {
 					pointsGold.ieBrowser();
 					pointsGold.HeightAuto();
 					pointsGold.elHeight();
-					$.each(listData,function(i){
-						if(listData[i].type == 2){
-							$('.change li').eq(i).addClass('last_child');
-							$('.change li').eq(i).find('.change_img').html('<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现'+res.content.list[i].numValue+'次');
-						}
-						// 立即兑换按钮
-						$('.change li').eq(i).on('click','.change_btn',function(){
-							var goodsNum=parseInt($(this).parent().find('input').val());
-							var goodsId=listData[i].id;
-							var goodsType=listData[i].type;
-							var needScore=(listData[i].needScore)*goodsNum;
-							if(needScore>parseInt($('.points_current').html())){
-								alert('积分不足');
-								return false;
-							}else{
-								console.log(listData[i].id+' '+listData[i].needScore*num);
-								// pointsGold.getGoods_exchange(goodsId,goodsType,goodsNum,needScore);
-							 	// window.location.reload();
-							}
-						})
-					});
+					pointsGold.exchange_btn(listData,res);
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -148,9 +132,23 @@ var pointsGold = {
 			console.log('请求失败');
 		})
 	},
+	// 积分明细table中部分td样式，内容
+	pointsDetail_table:function(listData,res){
+		$.each(listData,function(i){
+			$('.points_detail_table tr').eq(i+1).find('td').first().html(pointsGold.format(res.content.list[i].hanppenTime));
+			if(listData[i].type == 1){
+				$('.points_detail_table tr').eq(i+1).find('td').eq(2).html('收入');
+				$('.points_detail_table tr').eq(i+1).find('td').last().css('color','#ff7400');
+				$('.points_detail_table tr').eq(i+1).find('td').last().html('+'+listData[i].score);
+			}else{
+				$('.points_detail_table tr').eq(i+1).find('td').eq(2).html('支出');
+				$('.points_detail_table tr').eq(i+1).find('td').last().html('-'+listData[i].score);
+			}
+		});
+	},
 	// 积分明细
 	getPoints_detail:function(){
-		_apiPointsGold.getPoints_detail(1,20,function(res){
+		_apiPointsGold.getPoints_detail(1,10,function(res){
 			var listData = res.content.list;
 			var bannerHtml = _td.renderHtml(points_detail,{
 				list:res.content.list,
@@ -159,14 +157,9 @@ var pointsGold = {
 			pointsGold.HeightAuto();
 			pointsGold.elHeight();
 			pointsGold.changeColor('.points_detail_table');
-			$.each(listData,function(i){
-				$('.points_detail_table tr').eq(i+1).find('td').first().html(pointsGold.format(res.content.list[i].hanppenTime));
-				if(listData[i].type == "收入"){
-					$('.points_detail_table tr').eq(i+1).find('td').last().css('color','#ff7400');
-				}
-			});
+			pointsGold.pointsDetail_table(listData,res);
 			_apiPointsGold.pagingPoint(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiPointsGold.getPoints_detail(userId,userKey,e.current,e.shownum,function(res){
+				_apiPointsGold.getPoints_detail(e.current,e.shownum,function(res){
 					var listData = res.content.list;
 					var bannerHtml = _td.renderHtml(points_detail,{
 						list:res.content.list,
@@ -175,9 +168,7 @@ var pointsGold = {
 					pointsGold.HeightAuto();
 					pointsGold.elHeight();
 					pointsGold.changeColor('.points_detail_table');
-					$.each(listData,function(i){
-						$('.points_detail_table tr').eq(i+1).find('td').first().html(pointsGold.format(res.content.list[i].hanppenTime));
-					})
+					pointsGold.pointsDetail_table(listData,res);
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -185,6 +176,26 @@ var pointsGold = {
 		},function(){
 			console.log('请求失败');
 		})
+	},
+	// 获取积分任务遍历区分跳转与弹窗
+	pointsGet_table:function(listData,res){
+		$.each(listData,function(i){
+			if(listData[i].isComplete=='yes'){
+				$('._points_get_table tr').eq(i+1).children().eq(2).html('<span class="iconfont">&#xe675;</span>&nbsp;已完成')
+			}else{
+				$('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
+					if(listData[i].code==1){
+						pointsGold.layerPublic(e,'points_gzh');
+					}else if(listData[i].code==2){
+						pointsGold.layerPublic(e,'points_login');
+					}else if(listData[i].code==3){
+						pointsGold.layerPublic(e,'points_invest');
+					}else if(listData[i].code==4){
+						pointsGold.getUserSign();
+					}
+				})
+			}
+		});
 	},
 	// 获取积分任务
 	getPoints_get:function(){
@@ -197,23 +208,7 @@ var pointsGold = {
 			pointsGold.HeightAuto();
 			pointsGold.elHeight();
 			pointsGold.changeColor('.points_get_table');
-			$.each(listData,function(i){
-				if(listData[i].isComplete=='yes'){
-					$('._points_get_table tr').eq(i+1).children().eq(2).html('<span class="iconfont">&#xe675;</span>&nbsp;已完成')
-				}else{
-					$('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
-						if(listData[i].code==1){
-							pointsGold.layerGzh(e);
-						}else if(listData[i].code==2){
-							pointsGold.layerLogin(e);
-						}else if(listData[i].code==3){
-							pointsGold.layerInvest(e);
-						}else if(listData[i].code==4){
-							pointsGold.getUserSign();
-						}
-					})
-				}
-			});
+			pointsGold.pointsGet_table(listData,res);
 			_apiPointsGold.pagingPoint(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiPointsGold.getPoints_get(e.current,e.shownum,function(res){
 					var bannerHtml = _td.renderHtml(points_get,{
@@ -223,23 +218,7 @@ var pointsGold = {
 					pointsGold.HeightAuto();
 					pointsGold.elHeight();
 					pointsGold.changeColor('.points_get_table');
-					$.each(listData,function(i){
-						if(listData[i].isComplete=='yes'){
-							$('._points_get_table tr').eq(i+1).children().eq(2).html('<span class="iconfont">&#xe675;</span>&nbsp;已完成')
-						}else{
-							$('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
-								if(listData[i].code==1){
-									pointsGold.layerGzh(e);
-								}else if(listData[i].code==2){
-									pointsGold.layerLogin(e);
-								}else if(listData[i].code==3){
-									pointsGold.layerInvest(e);
-								}else if(listData[i].code==4){
-									pointsGold.getUserSign();
-								}
-							})
-						}
-					});
+					pointsGold.pointsGet_table(listData,res);
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -334,18 +313,15 @@ var pointsGold = {
 			if(index==0){
 				$('.praise').show();
 				pointsGold.getPoints_exchange();
-
 			}else if(index==1){
 				for(var i=0;i<$('.points_detail_table tr').length;i++){
 					$('.points_detail_table tr').eq(i).find('td').eq(3).css({textAlign:'center',paddingLeft:'0px',paddingRight:'30px'});
 				}
 				$('.praise').hide();
 				pointsGold.getPoints_detail();
-
 			}else{
 				$('.praise').hide();
 				pointsGold.getPoints_get();
-
 			}
 		});
 		// 我的金币下菜单tab
@@ -379,7 +355,7 @@ var pointsGold = {
 	// 抽奖页面跳转
 	drawHtml:function(){
 		$('.praise').on("click",function(event){
-			window.open('draw_present.html','_blant');
+			window.open('draw_present.html','_blank');
 		})
 	},
 	// 弹窗内部js
@@ -405,6 +381,9 @@ var pointsGold = {
 		$('.points_alert .i_know').on('click',function(){
 			layer.closeAll();
 		})
+		$('#points_gzh .cancel').on('click',function(){
+			layer.closeAll();
+		})
 		$('#points_gzh .submit_btn .submits').on({
 			mouseover:function(){
 				$(this).css('background','#ff7400');
@@ -414,53 +393,35 @@ var pointsGold = {
 			}
 		})
 		$('#points_gzh .submit_btn .submits').on("click",function(){
-			layer.title('口令成功');
-			$('#points_gzh .content').hide();
-			$('#points_gzh .order_success').show();
-		})
-		$('#points_gzh .submit_btn .submits').on("click",function(){
-			layer.title('口令成功');
+			layer.title('口令验证成功');
 			$('#points_gzh .content').hide();
 			$('#points_gzh .center').show();
 			$('#points_gzh .order_err p').hide();
 		})
+		// 登录成功弹窗
+		$('#points_gzh .submit_btn .submits').on("click",function(){
+			$('#points_login .content').hide();
+			$('#points_gzh .center').show();
+		})
 	},
-	// 获取积分任务部分弹窗
-	layerGzh:function(e){
-		// $('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
-			pointsGold.ReturnFalse(e);
-			layer.open({
-				type: 1,
-				title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-				skin: 'points_gzh',
-				area: ['560px', '330px'],
-				content: $('#points_gzh')
-			});
-		// });
-	},
-	layerLogin:function(e){
-		// $('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
-			pointsGold.ReturnFalse(e);
-			layer.open({
-				type: 1,
-				title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-				skin: 'points_login',
-				area: ['560px', '330px'],
-				content: $('#points_login'),
-			});
-		// })
-	},
-	layerInvest:function(e){
-		// $('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
-			pointsGold.ReturnFalse(e);
-			layer.open({
-				type: 1,
-				title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-				skin: 'points_invest',
-				area: ['560px', '330px'],
-				content: $('#points_invest'),
-			});
-		// });
+	// 获取积分任务部分弹窗公共样式
+	layerPublic:function(e,obj){
+		var titles='';
+		pointsGold.ReturnFalse(e);
+		if(obj=='points_gzh'){
+			titles='获取积分：首次关注拓道金服微信公众号';
+		}else if(obj=='points_login'){
+			titles='获取积分：首次登录APP';
+		}else{
+			titles='获取积分：APP端手动投资';
+		}
+		layer.open({
+			type: 1,
+			title: [titles,'color: #707070;'],
+			skin: obj,
+			area: ['560px', '330px'],
+			content: $('#'+obj)
+		});
 	}
 }
 $(function(){

@@ -8,51 +8,46 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/investListDe-api.js');
+var _apiInvest = require('api/trade-api.js');
 var investListBond = require('./details-bond.string');
 var investListPhone = require('./details-phone.string');
 
-var formError = {
-	show : function(id,errMsg){
-		$(id).addClass('err-input');
-		var el = '<p class="form-error-info">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span>'+errMsg+'</span></p>';
-		$("invest_money p").remove();
-		return $(id).parent().append(el);
-	},
-	hide : function(){
-		$('input').removeClass('err-input');
-		$('.invest_money p').remove();
-	},
-	allShow : function(cla,errMsg){
-		var txt = "<span class='mess'><i class='iconfont'>&#xe671;</i>"+ errMsg +"</span>";
-		$(".current_money").addClass("cur_money");
-		if($(".mess").length > 0){
-			$(".mess").remove();
-		}
-		$(".current_money").append(txt);
-		$(cla).addClass('err-input');
-	},
-	allHide : function(){
-		$(".current_money").removeClass("cur_money");
-		$('input').removeClass('err-input');
-		$(".mess").remove();
-	}
-};
 var investDetails = {
 	init : function(){
+		this.eachA();
 		this.addHtml();
 		this.setMoney();
 		this.inputEvent();
 	},
+	eachA : function(){
+		var hre = location.href.split('?');
+		$('.invest_tab a').each(function () {
+			var dates = $(this).attr("data");
+			for(var i in hre){
+				if(hre[i] == dates){
+					$(this).addClass('on');
+				}
+			}
+		});
+		$(".detail_tab li a").on("click",function(){
+			var ind = $(this).parent("li").index();
+			$(".detai").eq(ind).show().siblings('.detai').hide();
+			$(this).addClass("on");
+			$(this).parent().siblings().find('a').removeClass('on');
+		});
+	},
 	setMoney : function(){
+		var balanceMoney = '';
 		_apiInvest.getInvestUc(function(res){
-			$(".moneys").html(res.content.totalBalance);
+			balanceMoney = res.content.totalBalanceValue;
+			$(".balance").html(res.content.totalBalance).attr("money",balanceMoney);
 		},function(){
-
+			console.log('请求失败');
 		});
 	},
 	addHtml : function(){
 		_apiInvest.getInvestBondDetails(1,function(res){
+			var lastMoney = res.content.lastAccount;
 			investDetails.setData(res);
 			investDetails.clearing(res.content.cleanTime);
 			var time = res.content.endTime;
@@ -63,6 +58,10 @@ var investDetails = {
 			investDetails.coundTime(time);
 			investDetails.setShow("detail_top_left");
 			investDetails.serBar();
+			if((lastMoney*1) < 100){
+				var str = "本项目剩余可投"+lastMoney+"元";
+				$(".sub_money").attr("placeholder",str);
+			}
 		},function(){
 			console.log("请求失败");
 		});
@@ -91,23 +90,28 @@ var investDetails = {
 		// 输入金额input
 		$('.investting .sub_money').focus(function(){
 			_this.inpMoneyOnFocus($(this));
-
 		});
 		$('.investting .sub_money').blur(function(){
-			_this.overFormat($(this));
+			var thiss = $(this);
+			setTimeout(function(){
+				_this.overFormat(thiss);
+			},300);
 		});
 		// 输入金额input
 		$('.investting .sub_money').keyup(function(){
+			var lastMoney = $(".lastMoney").attr("money");
 			_this.setinput($(this));
-			_this.keyUp();
-			// if($('#mobile').val().length > 11){
-			// 	_this.blur();
-			// }else{
-			// 	if($('#mobile').val().length>0){
-			// 		_this.blur();
-			// 	}
-			// 	formError.hide();
-			// }
+			_this.MoneyKeyUp($(this),lastMoney);
+			_this.QuanInit();
+		});
+		// 余额全投
+		$(".all_money").on("click",function(){
+			var lastMoney = $(".lastMoney").attr("money")*1;
+			var balance = $(".balance").attr("money")*1;
+			_this.all_money(lastMoney,balance,$(".sub_money"));
+		});
+		$(".sub_psw").keyup(function(){
+			formError.hide($(this));
 		});
 		$('.investting input').mouseover(function(){
 			_this.mouseover(this);
@@ -117,15 +121,49 @@ var investDetails = {
 		});
 		// 清空按钮
 		$(".btn_empty").on("click",function(){
+			formError.hide($(".sub_money"));
 			$(".sub_money").val("").blur();
 			_this.setinput($(".sub_money"));
-			// $(".inp_ticket").val("");
-			// $(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
-			return false;
+			_this.QuanInit();
 		});
 		// 支付按钮点击的状态
 		$(document).on("click",".sub_btn",function(){
 			 _this.subBtnClick();
+		});
+		$(".add_ticket").on("click",function(){
+			_this.yhQuan();
+		});
+		$(".iskonw,.rclose").on("click",function(){
+			layer.closeAll();
+		});
+		// 优惠券弹窗选择
+		$(".ul_select li").on("click",function(){
+			var clas = $(this).attr("class");
+			var sel = '<b class="select_b"></b>';
+			if(clas != "yhq_no"){
+				var datas = $(this).attr('data');
+				$(".ul_select li .select_b").remove();
+				$(this).append(sel);
+				$(".yes").addClass("add_quan");
+				$(".yes").attr("data",datas);
+			}
+		});
+		$(document).on("click",".discount_bot .add_quan",function(){
+			var dat = $(this).attr("data");
+			var a = $(".sub_money");
+			var d = $(".inp_ticket").val();
+			$(".p_ticket").html(dat).css('color','#333');
+			$(".inp_ticket").val(dat);
+			$(this).removeClass("add_quan");
+			layer.closeAll();
+			var b = Math.floor((a.val()*0.09/12)*100)/100;
+			var e = Math.floor((a.val()*0.09/12)*100)/100;
+			$(".predict_money").html(b +"+"+e);
+		});
+		$(".discount_bot .no").on("click",function(){
+			$(".ul_select li .select_b").remove();
+			$(".yes").removeClass("add_quan");
+			layer.closeAll();
 		});
 	},
 	focus : function(obj){
@@ -138,44 +176,71 @@ var investDetails = {
 	blur : function(){
 		$('input').removeClass('focus-input');
 	},
-	keyUp : function(){
+	MoneyKeyUp : function(el,str){
 		var formData = {
-				money: $.trim($('#sub_money').val()),
-			},
+			money: $.trim($('#sub_money').val()),
+		};
 			// 表单验证结果
-			validateResult = this.moneyValidate(formData);
-		if (validateResult.status) {
-			console.log(111);
-			formError.hide();
-		} else {
-			var id = '#'+validateResult.id;
-			formError.show(id,validateResult.msg);
-			console.log(validateResult.msg);
+		if (formData.money != "") {
+			validateResult = this.moneyValidate(formData,str);
+			if (validateResult.status) {
+				formError.hide(el);
+			} else {
+				var id = '#' + validateResult.id;
+				formError.show(id, validateResult.msg);
+			}
+		}else{
+			formError.hide(el);
 		}
 	},
-
+	// 输入金额验证
+	moneydate : function(value, type){
+		var lm = ($(".lastMoney").attr("money"))*1;
+		var ym = ($(".balance").attr("money"))*1;
+	    var value = $.trim(value);
+		// 小于100
+		if(lm < 100){
+			// 小于500
+			if('minMoneys' === type){
+				return  value < lm;
+			}
+		}else if('minMoney' === type){
+        	return value<100;
+		}
+		// 大于可投
+		if('amount' === type){
+			return value > lm;
+		}
+		// 余额不足
+		if('balance' === type){
+			return value > ym;
+		}
+		// 限额
+		if('quota' === type){
+			return value>500000;
+		}
+	},
 	// 输入金额表单验证
-	moneyValidate:function(formData){
+	moneyValidate:function(formData,str){
 		var result = {
 			status  : false,
 			id : false,
 			msg     : ''
 		};
-		console.log(!investDetails.moneydate(formData.money, 'minMoney'))
 		if(investDetails.moneydate(formData.money, 'minMoney')){
 			result.msg = '不得低于起投金额100元！';
 			result.id = 'sub_money';
 			return result;
 		}else if(investDetails.moneydate(formData.money, 'minMoneys')){
-			result.msg = '不得低于起投金额500元！';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'amount')){
-			result.msg = '您输入的金额大于当前剩余可投金额！';
+			result.msg = '不得低于可投金额'+str+'元';
 			result.id = 'sub_money';
 			return result;
 		}else if(investDetails.moneydate(formData.money, 'balance')){
 			result.msg = '余额不足';
+			result.id = 'sub_money';
+			return result;
+		}else if(investDetails.moneydate(formData.money, 'amount')){
+			result.msg = '您输入的金额大于当前剩余可投金额！';
 			result.id = 'sub_money';
 			return result;
 		}else if(investDetails.moneydate(formData.money, 'quota')){
@@ -189,44 +254,29 @@ var investDetails = {
 		result.msg      = '验证通过';
 		return result;
 	},
-	// 输入金额验证
-	moneydate : function(value, type){
-	    var value = $.trim(value);
-		// 小于100
-		if('minMoney' === type){
-        	return value<100;
-		}
-		// 小于500
-		if('minMoneys' === type){
-			return  value<500;
-		}
-		// 大于可投
-		if('amount' === type){
-			return value>20000;
-		}
-		// 余额不足
-		if('balance' === type){
-			return value>20000;
-		}
-		// 限额
-		if('quota' === type){
-			return value>500000;
-		}
-
+	all_money : function(lastMoney,balance,el){
+		if(lastMoney > balance){
+			el.val(balance).keyup().focus();
+		}else{
+			el.val(lastMoney).keyup().focus();
+		};
 	},
 	subBtnClick : function(){
-		var formData = {
-				money: $.trim($('#sub_money').val()),
-				password: $.trim($('#sub_psw').val())
-			},
-			// 表单验证结果
-			validateResult = this.formValidate(formData);
-		if (validateResult.status) {
-			formError.allHide();
-		} else {
-			var clas = '.'+validateResult.class;
-			console.log(clas);
-			formError.allShow(clas,validateResult.msg);
+		if($(".form-error-info").length>0){
+			formError.allHide($(".sub_psw"),$(".sub_psw"));
+		}else{
+			var formData = {
+					money: $.trim($('#sub_money').val()),
+					password: $.trim($('#sub_psw').val())
+				},
+				// 表单验证结果
+				validateResult = this.formValidate(formData);
+			if (validateResult.status) {
+				formError.allHide($(".sub_money"),$(".sub_psw"));
+			} else {
+				var clas = '.' + validateResult.class;
+				formError.allShow(clas, validateResult.msg);
+			}
 		}
 	},
 	// 通用表单验证
@@ -254,6 +304,37 @@ var investDetails = {
 		result.class   	= true;
 		result.msg      = '验证通过';
 		return result;
+	},
+	QuanInit : function(){
+		$(".inp_ticket").val("");
+		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
+	},
+	yhQuan : function(){
+		// 优惠券点击
+		var val = $(".inp_ticket").val();
+		var sel = '<b class="select_b"></b>';
+		if($(".sub_money").val() == ""){
+			formError.show($("#sub_money"), "选择优惠券前需要填写加入金额！");
+			$(".sub_money").focus();
+			// _inp.input_mess("选择优惠券前需要填写加入金额！",null,false);
+			// _inp.input_mess($(".sub_money"),true,$(".sub_money").parent(),"选择优惠券前需要填写加入金额！");
+			return false;
+		}else if($(".invest_money p").length <= 0){
+			$(".ul_select li").each(function(){
+				var vals = $(this).attr("data");
+				if(val == vals){
+					$(this).append(sel);
+				}
+			});
+			layer.open({
+				type: 1,
+				title:'',
+				skin: '',
+				closeBtn:0,
+				area:['635px','485px'],
+				content: $('#discount_show')
+			});
+		}
 	},
 	mouseover : function(obj){
 		$('input').removeClass('hover-input');
@@ -399,7 +480,6 @@ var investDetails = {
 			$(".btn_empty").show();
 		}else{
 			$(".btn_empty").hide();
-
 		};
 		if(flag == true && quan == true){
 			$(".predict_money").html(b +"+"+ c +"+"+ d);
@@ -445,6 +525,33 @@ var investDetails = {
 			$(".btn_empty").hide();
 		}
 	},
+};
+var formError = {
+	show : function(id,errMsg){
+		$(id).addClass('err-input');
+		var el = '<p class="form-error-info">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span>'+errMsg+'</span></p>';
+		$(".invest_money p").remove();
+		return $(id).parent().append(el);
+	},
+	hide : function(el){
+		el.removeClass('err-input');
+		el.parent("div").find('p').remove();
+	},
+	allShow : function(cla,errMsg){
+		var txt = "<span class='mess'><i class='iconfont'>&#xe671;</i>"+ errMsg +"</span>";
+		$(".current_money").addClass("cur_money");
+		if($(".mess").length > 0){
+			$(".mess").remove();
+		}
+		$(".current_money").append(txt);
+		$(cla).addClass('err-input');
+	},
+	allHide : function(el,els){
+		$(".current_money").removeClass("cur_money");
+		el.removeClass('err-input');
+		els.removeClass('err-input');
+		$(".mess").remove();
+	}
 };
 $(function(){
 	investDetails.init();

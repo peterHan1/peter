@@ -20,6 +20,7 @@
 			height: 313px;
 			background: url('../../../image/newcomer.png')center no-repeat;
 			float: left;
+			cursor: pointer;
 		}
 		.right{
 			background: #ffffff;
@@ -27,6 +28,7 @@
 			width: 565px;
 			height: 313px;
 			text-align: center;
+			cursor: pointer;
 			.first{
 				padding-top: 50px;
 				font-size: 16px;
@@ -49,8 +51,8 @@
 				@include height-line(40px);
 				color: #ffffff;
 				font-size: 16px;
-				cursor: pointer;
 				outline: none;
+				cursor: pointer;
 				-webkit-border-radius: 20px;
 				-moz-border-radius: 20px;
 				border-radius: 20px;

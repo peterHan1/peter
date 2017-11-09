@@ -11,7 +11,7 @@ require('./fancybox/source/jquery.fancybox.js');
 require('./fancybox/source/jquery.fancybox.scss');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/investListDe-api.js');
+var _apiInvest = require('api/product-api.js');
 var investListScatter = require('./details-scatter.string');
 
 var investDetails = {

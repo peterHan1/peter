@@ -6,7 +6,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 var _tips = require('util/tips/index.js');
 var _td = require('util/td.js');
-var _apiInvest = require('api/ucInListSiftDet-api.js');
+var _apiInvest = require('api/trade-api.js');
 var siftDel = require('./invest_sift_detalis.string');
 var siftCre = require('./invest_sift_cred.string');
 var siftRet = require('./invest_sift_return.string');

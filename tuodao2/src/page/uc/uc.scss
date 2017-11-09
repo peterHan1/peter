@@ -178,12 +178,12 @@ b,i,em{
 				font-size:$fontSize14;
 				width:180px;
 				@include height-line(40px);
-				background-color:#fff6ae;
 				color:#ff8783;
 				cursor:pointer;
 				
 			}
 			.sigin_clik{
+				background-color:#fff6ae;
 				&:hover{
 					background:#fff18d;
 					background: -webkit-linear-gradient(#fff4ae, #ffef7d);

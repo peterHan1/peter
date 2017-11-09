@@ -31,7 +31,7 @@
                            "description": "奖励：80积分",
                            "todo": "去关注",
                            "code": 1,
-                           "isComplete": "yes"
+                           "isComplete": "no"
                     },
                     {
                            "taskId": 3,

@@ -8,7 +8,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 
 var _td = require('util/td.js');
-var _apiInvest = require('api/investListDe-api.js');
+var _apiInvest = require('api/product-api.js');
 var investListSift = require('./details-sift.string');
 
 var investDetails = {

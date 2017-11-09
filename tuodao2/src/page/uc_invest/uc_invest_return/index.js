@@ -8,7 +8,7 @@ require('util/paging/page.js');
 var _tips 		= require('util/tips/index.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var _td 		= 	require('util/td.js');
-var _apiReturn 	= 	require('api/ucInReturn-api.js');
+var _apiReturn 	= 	require('api/trade-api.js');
 var returnList 	= 	require('./returnList.string');
 
 var ucInvest = {

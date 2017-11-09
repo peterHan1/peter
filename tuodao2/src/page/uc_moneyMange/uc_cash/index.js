@@ -12,11 +12,7 @@ var _td = require('util/td.js');
 var _inp = require('util/yz.js');
 var _regular = require('util/regular.js');
 var md5 = require('util/md5.js');
-var _cashApply = require('api/cash_apply-api.js');
-var _cashlist = require('api/cashlist-api.js');
-var _cashFee = require('api/cash_fee-api.js');
-var _cash = require('api/cash-api.js');
-var _checkBank = require('api/checkBank-api.js');
+var _trade = require('api/trade-api.js');
 var cashLists = require('./uc_cash.string');
 
 
@@ -43,7 +39,7 @@ var cash = {
 		_inp.mouseleave("input");
 	},
 	page: function() {
-		_cashlist.cashlist(1, 10, function(res) {
+		_trade.cashList(1, 10, function(res) {
 			// console.log(res);
 			if (res.content.list.length == 0) {
 				$(".no_data").show();
@@ -52,8 +48,8 @@ var cash = {
 				list: res.content.list,
 			});
 			$('.cashlist').html(cashHtml);
-			_cashlist.paging(res.content.pages, res.content.pageNum, res.content.pageSize, function(e) {
-				_cashlist.cashlist(e.current, 10, function(res) {
+			_trade.paging(res.content.pages, res.content.pageNum, res.content.pageSize, function(e) {
+				_trade.cashList(e.current, 10, function(res) {
 					cashHtml = _td.renderHtml(cashLists, {
 						list: res.content.list,
 					});
@@ -64,8 +60,7 @@ var cash = {
 	},
 	// 绑卡信息
 	bankInfo: function() {
-		_cash.cash(function(res) {
-			// console.log(res);
+		_trade.cash(function(res) {
 			// 账户余额
 			var balanceValue = res.content.balanceValue;
 			$(".number_show .money_number").html(balanceValue);
@@ -94,7 +89,7 @@ var cash = {
 				if (0 <= myDate <= 9) {
 					$(".btn").val("当日9点到账");
 					$(".cash_success .dz_time i").html("当日9点到账");
-				} else if (9 < myDate < 21) {
+				} else if (9 < myDate <=21) {
 					$(".btn").val("实时到账");
 					$(".cash_success .dz_time i").html("实时到账");
 				} else {
@@ -134,15 +129,18 @@ var cash = {
 		});
 		$(".money_input1").on("blur", function() {
 			var cashMoney = $(this).val();
-			_cashFee.cashfee(cashMoney, function(res) {
-				console.log(res);
-				var fee=res.content.fee;
-				$(".sj_money .sxf b").html(fee);
-				$(".cash_success .cash_count .cashfee").html(fee);
-				var realAccount=res.content.realAccount;
-				$(".sj_money .sjdz b").html(realAccount);
-			});
-			_this.check();
+			if (cashMoney != "") {
+				_trade.cashFee(cashMoney, function(res) {
+					var fee = res.content.fee;
+					$(".sj_money .sxf b").html(fee);
+					$(".cash_success .cash_count .cashfee").html(fee);
+					var realAccount = res.content.realAccount;
+					$(".sj_money .sjdz b").html(realAccount);
+				});
+				_this.check();
+			}else{
+				return;
+			}
 
 		});
 	},
@@ -179,8 +177,7 @@ var cash = {
 					cashMoney: cashMoney,
 					payPassword: payPassword
 				};
-				_cashApply.cash(data, function(res) {
-					console.log(res);
+				_trade.cashApply(data, function(res) {
 					if (res.code == 100000) {
 						$(".wrongs").hide();
 						layer.open({

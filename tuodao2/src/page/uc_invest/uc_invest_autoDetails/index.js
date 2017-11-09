@@ -6,7 +6,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 var _td 		= 	require('util/td.js');
 var _tips	 	= 	require('util/tips/index.js');
-var _apiInvest 	= 	require('api/ucInListAutoDet-api.js');
+var _apiInvest 	= 	require('api/trade-api.js');
 var autoTit 	= 	require('./autoDel.string');
 var autoList	= 	require('./autoDelList.string');
 var ucInvest = {

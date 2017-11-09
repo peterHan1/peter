@@ -74,10 +74,11 @@ option={
 };
 myChart.setOption(option);
 
-var _apiMember = require('api/memberCenter-api.js');
+$('#top ul li').eq(1).find('a').css('color','#ff7400');
+var _apiMember = require('api/operationCenter-api.js');
 var member = {
     init : function(){
-        // this.memberInfo();
+        // this.getMemberInfo();
         this.spanMouserover();
         this.levImage(1);
     },
@@ -95,12 +96,12 @@ var member = {
         })
     },
     // 会员登录信息
-    memberInfo:function(){
-        _apiMember.memberInfo(function(res){
+    getMemberInfo:function(){
+        _apiMember.getMemberInfo(function(res){
             //头像上传后文件可直接访问： 项目路径+avaterUrl http://localhost:10007/20171012180828-15988888926-vknvtvwhaghu7fepihzn//
             $('.login_yes .person').css('background','url('+res.content.avatarUrl+')center no-repeat')
             $('.login_yes .name').html('欢迎，'+res.content.mobile);
-            memberInfo.levImage(res.content.vipLevel);
+            member.levImage(res.content.vipLevel);
         })
     },
     // 根据会员等级显示会员图标明亮,会员福利列表样式

@@ -6,7 +6,7 @@ require('util/paging/page.scss');
 require('util/paging/page.js');
 var _tips = require('util/tips/index.js');
 var _td = require('util/td.js');
-var _apiInvest = require('api/ucInListScaDet-api.js');
+var _apiInvest = require('api/trade-api.js');
 var scatterTlt = require('./scatter_tlt.string');
 var scatterList = require('./scatter_list.string');
 
@@ -16,7 +16,7 @@ var ucInvest = {
 		this.addList(1,1,5);
 	},
 	addTlt : function(id){
-		_apiInvest.getScstter(id,function(res){
+		_apiInvest.getScstterDet(id,function(res){
 			tltHtml = _td.renderHtml(scatterTlt,{
 				content:res.content,
 			});

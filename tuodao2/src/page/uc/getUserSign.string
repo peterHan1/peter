@@ -16,6 +16,6 @@
 	</div>
 </div>
 <div class="signs_integral">您的总积分<span class="sign_integral">{{usableScores}}</span>分</div>
-<div class="sigin_btn sigin_clik" id="sigin_clik"><span>立即签到</span></div>
+<div class="sigin_btn" id="sigin_clik"><span>立即签到</span></div>
 <div class="animat"></div>
 {{/content}}

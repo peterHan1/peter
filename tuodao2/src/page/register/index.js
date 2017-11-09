@@ -11,9 +11,8 @@ var _yzm = require('util/security/security.js');
 var _regular = require('util/regular.js');
 var md5 = require('util/md5.js');
 var _del = require('util/delButton.js');
-var _sendSms = require('api/sendSms-api.js');
-var _validateSmsCode = require('api/validateSmsCode-api.js');
-var _register = require('api/register-api.js');
+var _base = require('api/base-api.js');
+var _user = require('api/user-api.js');
 
 
 
@@ -136,7 +135,7 @@ var register = {
 			if ($(".btn").hasClass("kd")) {
 				var phoneNum = $(".phone_Num").val();
 				$(".yanzhengma .til_all .phone_Num").html(phoneNum);
-				_sendSms.sendSms(phoneNum, 'register', function(res) {
+				_base.sendSms(phoneNum, 'register', function(res) {
 					if (res.code == 100000) {
 						$(".register").hide();
 						$("#dy").attr("autofocus", "autofocus");
@@ -158,7 +157,7 @@ var register = {
 			if (flag == false) {
 				return false;
 			} else {
-				_sendSms.sendSms(phoneNum, 'register', function(res) {});
+				_base.sendSms(phoneNum, 'register', function(res) {});
 				$(".count_num").text(59);
 				num = $(".count_num").text();
 				flag = false;
@@ -200,7 +199,7 @@ var register = {
 			if (event.keyCode == 8) {
 				return;
 			} else {
-				_validateSmsCode.validateSmsCode(phoneNum, smsCode, 'register', function(res) {
+				_base.validateSmsCode(phoneNum, smsCode, 'register', function(res) {
 					if (res.code == 100000) {
 						$(".yanzhengma").hide();
 						$(".set_password").show();
@@ -313,7 +312,7 @@ var register = {
 					registerSource: 1,
 					smsCode: smsCode
 				};
-				_register.register(data, function(res) {
+				_user.register(data, function(res) {
 					if (res.code == 100000) {
 						$(".set_password").hide();
 						$(".success_page").show();

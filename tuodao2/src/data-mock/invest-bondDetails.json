@@ -15,7 +15,7 @@
              "userPhone": "18539123456",
              "transferId": "债转id Integer",
              "name": "凯迪拉克坦克",
-             "endTime": "1510142400",
+             "endTime": "1512784654",
              "productCode": "标的编号 String",
              "finished": "是否抢完 boolean",
              "interestType": "满标复审计息",
