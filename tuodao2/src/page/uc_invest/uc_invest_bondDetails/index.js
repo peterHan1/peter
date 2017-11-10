@@ -2,13 +2,12 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var bondDel = require('./bondDel.string');
-var bondDelRet = require('./bondDelRet.string');
+var _tips 		= require('util/tips/index.js');
+var _td 		= require('util/td.js');
+var _apiInvest 	= require('api/trade-api.js');
+var _paging 	= require('util/paging/index.js');
+var bondDel 	= require('./bondDel.string');
+var bondDelRet 	= require('./bondDelRet.string');
 
 var ucInvest = {
 	init : function(){
@@ -60,7 +59,7 @@ var ucInvest = {
 			$("#tbody_list").html(listBondRetHtml);
 			ucInvest.trColor();
 			ucInvest.setStatus();
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				listBondRetHtml = _td.renderHtml(bondDelRet,{
 					list:res.content.list,
 				});

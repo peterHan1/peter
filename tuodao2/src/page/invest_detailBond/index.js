@@ -2,21 +2,22 @@ require('page/invest_detail/invest_detail.scss');
 // require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
+require('util/layer/index.js');
 
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var investListBond = require('./details-bond.string');
+var _td 			= require('util/td.js');
+var _paging 		= require('util/paging/index.js');
+var _apiInvest 		= require('api/trade-api.js');
+var _apiUser 		= require('api/user-api.js');
+var investListBond 	= require('./details-bond.string');
 var investListPhone = require('./details-phone.string');
+var subBond 		= require('./subBond.string');
+var addFaileds 		= require('./addFailed.string');
 
 var investDetails = {
 	init : function(){
 		this.eachA();
 		this.addHtml();
-		this.setMoney();
+		this.getUser();
 		this.inputEvent();
 	},
 	eachA : function(){
@@ -36,11 +37,11 @@ var investDetails = {
 			$(this).parent().siblings().find('a').removeClass('on');
 		});
 	},
-	setMoney : function(){
+	getUser : function(){
 		var balanceMoney = '';
-		_apiInvest.getInvestUc(function(res){
-			balanceMoney = res.content.totalBalanceValue;
-			$(".balance").html(res.content.totalBalance).attr("money",balanceMoney);
+		_apiUser.getUserCon(function(res){
+			balanceMoney = res.content.usableFund;
+			$(".balance").html(balanceMoney).attr("money",balanceMoney);
 		},function(){
 			console.log('请求失败');
 		});
@@ -76,6 +77,9 @@ var investDetails = {
 		},function(){
 			console.log("请求失败");
 		});
+	},
+	getDiscount : function(){
+
 	},
 	inputEvent : function(){
 		var _this = this;
@@ -164,6 +168,48 @@ var investDetails = {
 			$(".ul_select li .select_b").remove();
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
+		});
+	},
+	subBond : function(){
+		_apiInvest.subInvestBond(function(res){
+			formError.allHide($(".sub_money"),$(".sub_psw"));
+			subBondOk = _td.renderHtml(subBond,{
+				content:res.content,
+			});
+			$("#succeed_show").html(subBondOk);
+			layer.open({
+				type: 1,
+				title: '',
+				closeBtn: 0,
+				skin: 'succeed_show',
+				area: ['560px', '360px'],
+				content: $('#succeed_show')
+			});
+		},function(err){
+			if(err.code == 142024){
+				formError.allShow($(".sub_psw"), "密码错误，请重新登录！");
+			}else if(err.code == 142019){
+				// 激活存管弹窗
+				layer.open({
+					type: 1,
+					title:'',
+					closeBtn:0,
+					skin: 'succeed_show',
+					area:['560px','360px'],
+					content: $('#bank_show')
+				});
+			}else{
+				$(".msg").html(err.msg);
+				// 加入失败
+				layer.open({
+					type: 1,
+					title:'',
+					closeBtn:0,
+					skin: 'succeed_show',
+					area:['560px','360px'],
+					content: $('#failed_show')
+				});
+			}
 		});
 	},
 	focus : function(obj){
@@ -272,7 +318,7 @@ var investDetails = {
 				// 表单验证结果
 				validateResult = this.formValidate(formData);
 			if (validateResult.status) {
-				formError.allHide($(".sub_money"),$(".sub_psw"));
+				investDetails.subBond();
 			} else {
 				var clas = '.' + validateResult.class;
 				formError.allShow(clas, validateResult.msg);

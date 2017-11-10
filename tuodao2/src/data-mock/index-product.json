@@ -1,0 +1,48 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      [
+             {
+                    "id": 1,
+                    "drawType": 1,
+                    "prizeName": "688积分"
+             },
+             {
+                    "id": 2,
+                    "drawType": 1,
+                    "prizeName": "366积分"
+             },
+             {
+                    "id": 3,
+                    "drawType": 1,
+                    "prizeName": "166积分"
+             },
+             {
+                    "id": 4,
+                    "drawType": 1,
+                    "prizeName": "66积分"
+             },
+             {
+                    "id": 5,
+                    "drawType": 1,
+                    "prizeName": "36积分"
+             },
+             {
+                    "id": 6,
+                    "drawType": 1,
+                    "prizeName": "16积分"
+             },
+             {
+                    "id": 7,
+                    "drawType": 1,
+                    "prizeName": "6积分"
+             },
+             {
+                    "id": 8,
+                    "drawType": 1,
+                    "prizeName": "1积分"
+             }
+      ],
+      "success": true
+}

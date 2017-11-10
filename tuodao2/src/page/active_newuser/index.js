@@ -1,5 +1,4 @@
-require("util/bank/bank_open.scss");
-require("util/bank/bank.js");
+require("util/bank/index.js");
 require("./active_newuser.scss");
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
@@ -7,32 +6,217 @@ require('page/common/footer-nav/index.scss');
 require('page/common/nav2/index.scss');
 
 
-var _inp = require('util/yz.js');
-var _regular = require('util/regular.js');
+var _td = require('util/td.js');
 var _del = require('util/delButton.js');
 var _user = require('api/user-api.js');
 var md5 = require('util/md5.js');
+var _hover = require('util/btnHover.js');
+var _tips = require('util/tips/index.js');
 
-var bankNum;
-var phoneNum;
-var payNum;
+// 表单里的错误提示
+var formError = {
+	show: function(id, errMsg) {
+		$(id).addClass('err-input');
+		var el = '<p class="form-error-info">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<b>' + errMsg + '</b></p>';
+		if ($(id).parent().find('p.form-error-info').length <= 0) {
+			return $(id).parent().append(el);
+		}
+	},
+	hide: function() {
+		$('input').removeClass('focus-input');
+		$('input').removeClass('err-input');
+		$('p.form-error-info').remove();
+	},
+	allShow: function() {
+		$('.js_box').html('<i class="iconfont">&#xe671;</i> 您输入的信息有误，请重新输入！');
+	},
+	allHide: function() {
+		$('.js_box').html('');
+	}
+
+};
+
 var DepositInfoNew = {
 	init: function() {
-		this.inputMutual();
+		this.bindEvent();
+		this.load();
 		this.inputDel();
-		this.inputCheck();
-		this.buttonVerify();
-		this.checkForm();
 		this.passwordCut();
 		this.tsShow();
-		this.activateUser();
+		this.bankShow();
 	},
-	// input框交互样式
-	inputMutual: function() {
-		_inp.focus("input");
-		_inp.blur("input");
-		_inp.mouseover("input");
-		_inp.mouseleave("input");
+	bindEvent: function() {
+		var _this = this;
+		// 获得焦点
+		$('form div input').focus(function() {
+			_this.focus(this);
+		});
+		// 失去焦点
+		$('form div input').blur(function() {
+			_this.blur();
+		});
+		$('form div input').keyup(function() {
+			if ($('#mobile').val().length >= 11) {
+				_this.blur();
+			} else {
+				if ($('#mobile').val().length > 0) {
+					_this.blur();
+				}
+				formError.hide();
+			}
+		});
+		$('form div input').mouseover(function() {
+			_this.mouseover(this);
+		});
+		$('form div input').mouseout(function() {
+			_this.mouseover();
+		});
+		// 点击激活
+		$('form').submit(function() {
+			_this.submit();
+			return false;
+		});
+
+	},
+	focus: function(obj) {
+		$('.js_box').html('');
+		$('input').removeClass('focus-input');
+		$('input').removeClass('err-input');
+		$(obj).addClass('focus-input');
+	},
+	blur: function() {
+		var formData = {
+				realName: $.trim($('.user').val()),
+				idCard: $.trim($('.card').val()),
+				bankCode: $('#Bank_sel_hid .xx i').attr('bank'),
+				bankNum: $('.card_num').val().replace(/\s+/g, ""),
+				reservationMobile: $.trim($('#mobile').val()),
+				payPassword: $.trim($('#pwd').val()),
+			},
+			// 表单验证结果
+			validateResult = this.formValidate(formData);
+		// console.log(validateResult);
+		if (validateResult.status) {
+			// console.log(validateResult.msg + 'ooo');
+			formError.hide();
+			$(".btn").addClass("kd");
+			// $(".btn").removeAttr('disabled');
+		} else {
+			$(".btn").removeClass("kd");
+			// $(".btn").attr('disabled', 'disabled');
+			formError.hide();
+			var id = '#' + validateResult.id;
+			formError.show(id, validateResult.msg);
+		}
+	},
+	mouseover: function(obj) {
+		$('input').removeClass('hover-input');
+		$(obj).addClass('hover-input');
+	},
+	mouseout: function() {
+		$('input').removeClass('hover-input');
+	},
+	// 提交表单
+	submit: function() {
+		var _this = this;
+		var formData = {
+				realName: $.trim($('.user').val()),
+				idCard: $.trim($('.card').val()),
+				bankCode: $('#Bank_sel_hid .xx i').attr('bank'),
+				bankNum: $('.card_num').val().replace(/\s+/g, ""),
+				reservationMobile: $.trim($('#mobile').val()),
+				payPassword: $.trim($('#pwd').val()),
+			},
+			headerData = {
+				accessId: _td.getAccess('accessId'),
+				accessKey: _td.getAccess('accessKey')
+			};
+		// 表单验证结果
+		validateResult = this.formValidate(formData);
+		// 验证成功
+		if (validateResult.status) {
+			formData.payPassword = md5(formData.payPassword);
+			_user.openDeposit(headerData, formData, function(res) {
+				$(".success_box").show();
+				$(".main").hide();
+				_this.countTime();
+			}, function(errMsg) {
+				$(".wait_box").show();
+				$(".main").hide();
+			});
+		}
+		// 验证失败
+		else {
+			// 错误提示
+			formError.allShow();
+		}
+
+	},
+	// 表单验证
+	formValidate: function(formData) {
+		var result = {
+			status: false,
+			id: false,
+			msg: ''
+		};
+		if (!_td.validate(formData.realName, 'require')) {
+			return result;
+		}
+		if (!_td.validate(formData.idCard, 'require')) {
+			return result;
+		}
+
+		if (!_td.validate(formData.bankCode, 'require')) {
+			return result;
+		}
+		if (!_td.validate(formData.bankNum, 'bankCard')) {
+			result.msg = '请输入正确的银行卡号！';
+			result.id = 'bankCard';
+			return result;
+		}
+		if (!_td.validate(formData.reservationMobile, 'mobile')) {
+			result.msg = '手机号必须由11位纯数字组成';
+			result.id = 'mobile';
+			return result;
+		}
+		if (!_td.validate(formData.payPassword, 'minLength')) {
+			result.msg = '支付密码必须是6位数字！';
+			result.id = 'pwd';
+			return result;
+		}
+
+		// 通过验证，返回正确提示
+		result.status = true;
+		result.id = true;
+		result.msg = '验证通过';
+		return result;
+	},
+	load: function() {
+		var headerData = {
+			accessId: _td.getAccess('accessId'),
+			accessKey: _td.getAccess('accessKey')
+		};
+		_user.getUserDepositInfo(headerData, function(res) {
+			// 存管存量用户状态
+			if (res.isOpenDeposit == 1 || res.isOpenDeposit == 2) {
+				$("#user").val(res.content.realName);
+				$("#user").attr('disabled', 'disabled');
+				$("#card").val(res.content.idCard);
+				$("#card").attr('disabled', 'disabled');
+				$("#Bank_sel").hide();
+				$("#Bank_sel_hid .xx i").addClass(res.content.bankCode);
+				$("#Bank_sel_hid .xx i").attr("bank", res.content.bankCode);
+				$("#Bank_sel_hid .xx em").html(res.content.bankName);
+				$("#Bank_sel_hid").removeClass('dis_none');
+				$("#bankCard").val(res.content.bankNum);
+				$("#bankCard").attr('disabled', 'disabled');
+				$("#Bank_sel_hid").addClass("dis");
+			} else {
+				return;
+			}
+		}, function(errMsg) {
+			console.log(errMsg);
+		});
 	},
 	// input框输入时删除文本按钮
 	inputDel: function() {
@@ -42,111 +226,17 @@ var DepositInfoNew = {
 		_del.inptxtDel(".card", ".btn");
 		_del.inptxtDel(".card_num", ".btn");
 	},
-	// 银行卡，手机号码，支付密码，验证
-	inputCheck: function() {
-		// 银行卡号验证
-		_regular.checkBankNum({
-			elm: "card_num",
-			cls: "wrong_mess",
-			callback: function(result) {
-				bankNum = result;
-			}
-		});
-		// 手机号码正则验证
-		_regular.checkPhoneKey({
-			elm: "phoneNum",
-			cls: "wrong_mess",
-			callback: function(result) {
-				phoneNum = result;
-			}
-		});
-		_regular.checkPhoneBlur({
-			elm: "phoneNum",
-			cls: "wrong_mess",
-			callback: function(result) {
-				phoneNum = result;
-			}
-		});
-		// 支付密码验证
-		_regular.checkPaynum({
-			elm: "pay",
-			cls: "wrong_mess",
-			callback: function(result) {
-				payNum = result;
-			}
-		});
-	},
-	// input触发验证函数
-	buttonVerify: function() {
-		var _this = this;
-		// 手机号码输入和失去焦点验证
-		$(".phone_Num input").on("keyup", function() {
-			_this.checkForm();
-		});
-		$(".phone_Num input").on("blur", function() {
-			_this.checkForm();
-		});
-		// 银行卡号失去焦点验证
-		$(".bank_num input").on("blur", function() {
-			$(".big_font").hide();
-			_this.checkForm();
-		});
-		$(".bank_num input").on("keyup", function() {
-			$(".bank_num .wrong_mess").remove();
-			$(this).removeClass('red');
-			var data = $(this).val();
-			$(".big_font").show();
-			$(".big_font").text(data);
-		});
-		// 支付密码失去焦点验证
-		$(".paynum input").on("blur", function() {
-			_this.checkForm();
-		});
-		// 输入姓名input框状态监听
-		$(".username input").on("input  propertychange", function() {
-			_this.checkForm();
-		});
-		// 身份证号验证
-		$(".idcard input").on("input  propertychange", function() {
-			_this.checkForm();
-		});
-		// 选择银行状态监听
-		$(".bank_all").on("click", function() {
-			setTimeout(function() {
-				_this.checkForm();
-			}, 300);
-		});
-	},
-	checkForm: function() {
-		var username = $(".username input").val();
-		var idcard = $(".idcard input").val();
-		var xx = $(".div_bank_select .xx").text();
-		if (username != "" && idcard != "" && xx != "" && bankNum == true && phoneNum == true && payNum == true) {
-			$(".btn").addClass("kd");
-			$(".btn").on("mouseover", function() {
-				$(this).addClass('color');
-			});
-			$(".btn").on("mouseleave", function() {
-				$(this).removeClass('color');
-			});
-		} else{
-			$(".btn").removeClass("kd");
-			$(".btn").on("mouseover", function() {
-				$(this).removeClass('color');
-			});
-		}
-	},
 	// 点击切换密码明码密码
 	passwordCut: function() {
 		$(".paynum .yan_kai").on("click", function() {
 			$(this).hide();
 			$(".yan").show();
-			$(".paynum input").attr("type", "text");
+			$(".paynum input").attr("type", "password");
 		});
 		$(".paynum .yan").on("click", function() {
 			$(this).hide();
 			$(".yan_kai").show();
-			$(".paynum input").attr("type", "password");
+			$(".paynum input").attr("type", "text");
 		});
 	},
 	// 提示文本显示隐藏
@@ -157,48 +247,6 @@ var DepositInfoNew = {
 
 		$(".bank_all #wen").on("mouseleave", function() {
 			$(".bank_all .tips").hide();
-		});
-	},
-	// 激活存管用户验证
-	activateUser: function() {
-		var _this = this;
-		$(".btn").on("click", function() {
-			if ($(this).hasClass("kd")) {
-				var realName = $(".user").val();
-				var idCard = $(".card").val();
-				var bankCode = $("#Bank_sel_hid .xx i").attr("bank");
-				var bankNum = $(".card_num").val();
-				bankNum = bankNum.replace(/\s+/g, "");
-				var reservationMobile = $(".phoneNum").val();
-				var payPassword = $(".pay").val();
-				payPassword = md5(payPassword);
-				var data = {
-					realName: realName,
-					idCard: idCard,
-					bankCode: bankCode,
-					bankNum: bankNum,
-					reservationMobile: reservationMobile,
-					payPassword: payPassword
-				};
-				console.log(data);
-				_user.openDeposit(data, function(res) {
-					console.log(res);
-					if (res.code == 100000) {
-						$(".success_box").show();
-						$(".main").hide();
-						_this.countTime();
-					} else if(res.code == 170020){
-						$(".wait_box").show();
-						$(".main").hide();
-					}else{
-						$(".js_box").show();
-						return false;
-					}
-				});
-			} else {
-				$(".js_box").show();
-				return false;
-			}
 		});
 	},
 	// 倒计时
@@ -212,6 +260,17 @@ var DepositInfoNew = {
 				history.go(-1);
 			}
 		}, 1000);
+	},
+	bankShow: function() {
+		// 银行卡号失去焦点验证
+		$(".bank_num input").on("blur", function() {
+			$(".big_font").hide();
+		});
+		$(".bank_num input").on("keyup", function() {
+			var data = $(this).val();
+			$(".big_font").show();
+			$(".big_font").text(data);
+		});
 	}
 };
 $(function() {

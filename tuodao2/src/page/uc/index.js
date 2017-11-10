@@ -2,8 +2,6 @@ require('./uc.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
 
 var _td			= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
@@ -17,6 +15,7 @@ var getUserMon	= require('./getUserMon.string');
 var getUserEch	= require('./getUserEch.string');
 var getUsersign	= require('./getUserSign.string');
 var getUserInt	= require('./getUserInt.string');
+var _paging 	= require('util/paging/index.js');
 
 
 var uc = {
@@ -120,6 +119,7 @@ var uc = {
 
 		};
 		_apiReturn.getInvestUc(function(res){
+			console.log(res);
 			var dueInPrincipal = res.content.totalAwaitCapitalValue;
 			var dueInInterest = res.content.totalAwaitInterestValue;
 			var usableFund = res.content.totalBalanceValue;
@@ -245,7 +245,7 @@ var uc = {
 				list:res.content.list,
 			});
 			$('.re_money_tbody').html(retList);
-			_apiReturn.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiReturn.getRturnList(day,type,pagesize,current,function(res){
 					uc.setType(res);
 					retList = _td.renderHtml(returnList,{

@@ -2,14 +2,13 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/laydate/laydate.js');
-require('util/laydate/laydate.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var investSift = require('./Invest_sift.string');
+require('util/laydate/index.js');
+
+var _tips 		= require('util/tips/index.js');
+var _td 		= require('util/td.js');
+var _paging 	= require('util/paging/index.js');
+var _apiInvest 	= require('api/trade-api.js');
+var investSift 	= require('./Invest_sift.string');
 
 var ucInvest = {
 	init : function(){
@@ -27,7 +26,7 @@ var ucInvest = {
 				});
 				$("#tbody_list").html(listSiftHtml);
 				ucInvest.setShow("td_sta");
-				_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 					_apiInvest.getSift(userId,sta,startime,endtime,pagesize,e.current,function(res){
 						listSiftHtml = _td.renderHtml(investSift,{
 							list:res.content.list,

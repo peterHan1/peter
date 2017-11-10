@@ -2,13 +2,12 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
+require('util/layer/index.js');
+
 var _td 		= 	require('util/td.js');
 var _tips	 	= 	require('util/tips/index.js');
 var _apiInvest 	= 	require('api/trade-api.js');
+var _paging 	= 	require('util/paging/index.js');
 var autoInp 	= 	require('./autoInp.string');
 var setInp 		= 	require('./setInp.string');
 var autoSum 	= 	require('./autoSum.string');
@@ -122,7 +121,7 @@ var ucInvest = {
 			});
 			$('#tbody_list').html(list);
 			ucInvest.trColor();
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getautoList(function(res){
 					list = _td.renderHtml(autoList,{
 						list:res.content.list,

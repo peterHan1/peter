@@ -2,14 +2,13 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var siftDel = require('./invest_sift_detalis.string');
-var siftCre = require('./invest_sift_cred.string');
-var siftRet = require('./invest_sift_return.string');
+var _tips		= require('util/tips/index.js');
+var _td 		= require('util/td.js');
+var _paging 	= require('util/paging/index.js');
+var _apiInvest 	= require('api/trade-api.js');
+var siftDel 	= require('./invest_sift_detalis.string');
+var siftCre 	= require('./invest_sift_cred.string');
+var siftRet 	= require('./invest_sift_return.string');
 
 var ucInvest = {
 	init : function(){
@@ -40,7 +39,7 @@ var ucInvest = {
 			});
 			$("#tbody_list").html(siftCreHtml);
 			ucInvest.siftCreOper(borwA,tranA);
-			_apiInvest.paging("crePage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("crePage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getSiftCred(1,5,e.current,function(res){
 					ucInvest.siftCreStatus(res);
 					siftCreHtml = _td.renderHtml(siftCre,{
@@ -64,7 +63,7 @@ var ucInvest = {
 			$("#tbodys_list").html(siftReHtml);
 			ucInvest.siftRetStatus();
 			ucInvest.trColor();
-			_apiInvest.paging("retPage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("retPage",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				siftReHtml = _td.renderHtml(siftRet,{
 					list:res.content.list,
 				});

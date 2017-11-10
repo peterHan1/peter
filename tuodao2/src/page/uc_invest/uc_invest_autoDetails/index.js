@@ -2,11 +2,10 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
 var _td 		= 	require('util/td.js');
 var _tips	 	= 	require('util/tips/index.js');
 var _apiInvest 	= 	require('api/trade-api.js');
+var _paging 	= 	require('util/paging/index.js');
 var autoTit 	= 	require('./autoDel.string');
 var autoList	= 	require('./autoDelList.string');
 var ucInvest = {
@@ -31,7 +30,7 @@ var ucInvest = {
 				list:res.content.list,
 			});
 			$("#tbody_list").html(autoDelList);
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getAutoList(1,e.current,10,function(res){
 					autoDelList = _td.renderHtml(autoList,{
 						list:res.content.list,

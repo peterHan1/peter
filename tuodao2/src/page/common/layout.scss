@@ -27,9 +27,11 @@ body{
 // .red{
 // 	color:$fontColore6!important;
 // }
-// .border{
-// 	border: 1px solid $mainColor!important;
-// }
+
+// 手机验证码边框样式
+.border{
+	border: 1px solid $mainColor!important;
+}
 
 .blur-input{
 	color:#777!important;

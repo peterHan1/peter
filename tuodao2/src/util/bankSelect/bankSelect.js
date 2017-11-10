@@ -1,7 +1,12 @@
 var _trade = require('api/trade-api.js');
-var dataBank=[];
-_trade.bankList(function(res) {
-	for(var j=0;j<res.content.length;j++){
+var _td = require('util/td.js');
+var dataBank = [];
+var headerData = {
+	accessId: _td.getAccess('accessId'),
+	accessKey: _td.getAccess('accessKey')
+};
+_trade.bankList(headerData, function(res) {
+	for (var j = 0; j < res.content.length; j++) {
 		dataBank.push(res.content[j].paymentCode);
 	}
 	var ulEle = document.createElement('ul');

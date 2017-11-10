@@ -1,13 +1,12 @@
 require('page/common/nav2/index.js');
-require("./userlogin.scss");
-require('util/slider/jquery.slider.scss');
-require('util/slider/jquery.slider.min.js');
-require('page/common/nav2/index.scss');
+require('./userlogin.scss');
+require('util/slider/index.js');
 
 var _td = require('util/td.js');
 var md5 = require('util/md5.js');
 var _apiUser = require('api/user-api.js');
 var _del = require('util/delButton.js');
+var _hover = require('util/btnHover.js');
 
 // 表单里的错误提示
 var formError = {
@@ -39,7 +38,7 @@ var loginPage = {
 	init: function() {
 		this.bindEvent();
 		this.slider();
-		// this.inputDel();
+		this.inputDel();
 		this.btnHover();
 	},
 	bindEvent: function() {
@@ -53,7 +52,7 @@ var loginPage = {
 			_this.blur();
 		});
 		$('form div input').keyup(function() {
-			if ($('#mobile').val().length > 11) {
+			if ($('#mobile').val().length >= 11) {
 				_this.blur();
 			} else {
 				if ($('#mobile').val().length > 0) {
@@ -90,6 +89,7 @@ var loginPage = {
 			},
 			// 表单验证结果
 			validateResult = this.formValidate(formData);
+		// console.log(validateResult);
 		if (validateResult.status && slider == true) {
 			// console.log(validateResult.msg + 'ooo');
 			formError.hide();
@@ -144,16 +144,7 @@ var loginPage = {
 
 	},
 	btnHover: function() {
-		$(".login-btn").on("mouseover", function() {
-			if ($(this).hasClass("kd")) {
-				$(this).addClass("color");
-			}
-		});
-		$(".login-btn").on("mouseleave", function() {
-			if ($(this).hasClass("kd")) {
-				$(this).removeClass("color");
-			}
-		});
+		_hover.btnHover(".login-btn");
 	},
 	// 滑动模块初始化
 	slider: function() {
@@ -192,29 +183,49 @@ var loginPage = {
 			result.id = 'mobile';
 			return result;
 		} else {
-			_apiUser.checkPhone(formData.mobile,false, function(res) {
-				if (res.content == true) {
-					result.msg = '手机号尚未注册拓道金服！';
+			_apiUser.checkPhone(formData.mobile, function(res) {
+				if (res.content == false) {
+					result.msg = '该手机号尚未注册拓道金服！';
 					result.id = 'mobile';
-					result.status = 'false';
+					result.status = false;
+					return result;
+				} else {
+					if (!_td.validate(formData.loginPassword, 'require')) {
+						return result;
+					}
+					// 通过验证，返回正确提示
+					result.status = true;
+					result.id = true;
+					result.msg = '验证通过';
 					return result;
 				}
 			});
-			console.log(result);
-			// return result;
 		}
-
-		if (!_td.validate(formData.loginPassword, 'require')) {
-			return result;
-		}
-		// 通过验证，返回正确提示
-		result.status = true;
-		result.id = true;
-		result.msg = '验证通过';
 		return result;
+		// if (!_td.validate(formData.mobile, 'mobile')) {
+		// 	result.msg = '手机号必须由11位纯数字组成';
+		// 	result.id = 'mobile';
+		// 	return result;
+		// }
+		// _apiUser.checkPhone(formData.mobile, function(res) {
+		// 	if (res.content == false) {
+		// 		result.msg = '该手机号尚未注册拓道金服！';
+		// 		result.id = 'mobile';
+		// 		result.status = false;
+		// 		return result;
+		// 	}
+		// });
+		// if (!_td.validate(formData.loginPassword, 'require')) {
+		// 			return result;
+		// 		}
+		// // 通过验证，返回正确提示
+		// result.status = true;
+		// result.id = true;
+		// result.msg = '验证通过';
+		// return result;
 	}
-
 };
+
 
 $(function() {
 	loginPage.init();

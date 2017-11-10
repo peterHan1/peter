@@ -2,17 +2,13 @@ require('page/invest_detail/invest_detail.scss');
 require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-require('./fancybox/jquery.lazyload.min.js');
-require('./fancybox/source/jquery.fancybox.js');
-require('./fancybox/source/jquery.fancybox.scss');
+require('util/layer/index.js');
+require('util/fancybox/source/index.js');
 
-var _td = require('util/td.js');
-var _apiInvest = require('api/product-api.js');
-var investListScatter = require('./details-scatter.string');
+var _td 				= require('util/td.js');
+var _paging 			= require('util/paging/index.js');
+var _apiInvest 			= require('api/product-api.js');
+var investListScatter 	= require('./details-scatter.string');
 
 var investDetails = {
 	init : function(){

@@ -14,38 +14,41 @@
 	<div class="ts">
 		<p><span class="iconfont ld">&#xe684;</span> 为保障您的资金安全，请在充值、投资、提现前激活存管</p>
 	</div>
+	<p class="js_box"></p>
 	<div class="person_info">
-		<p class="bt">身份认证</p>
-		<div class="username">
-			<span class="iconfont">&#xe67a;</span><input type="text" class="dis" disabled>
-		</div>
-		<div class="idcard">
-			<span class="iconfont">&#xe674;</span><input type="number" class="dis" maxlength="18" disabled>
-		</div>
-		<p class="bt">绑定银行卡</p>
-		<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
-		<div class="bank_all">
-			<span class="iconfont">&#xe679;</span>
-			<div class="sel_bank">
-	            <div id="Bank_sel_hid" class="div_bank_select dis">
-	                <div id="xx"><i class="Bank ICBC"></i>中国工商银行</div>
-	            </div>
-	            <div id="Bank" class="dis_none"></div>
-        	</div>
-       		<span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
-		</div>
-		<div class="bank_num">
-			<span class="iconfont">&#xe689;</span><input type="number" class="dis" disabled>
-		</div>
-		<div class="phone_Num">
-			<span class="iconfont">&#xe66f;</span><input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
-		</div>
-		<p class="bt">设置支付密码</p>
-		<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
-		<div class="paynum">
-			<span class="iconfont">&#xe672;</span><input type="password" class="pay" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')"><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
-		</div>
-		<input type="submit" class="btn" value="立即激活">
+		<form method="post">
+			<p class="bt">身份认证</p>
+			<div class="username">
+				<span class="iconfont">&#xe67a;</span><input type="text" class="dis" disabled>
+			</div>
+			<div class="idcard">
+				<span class="iconfont">&#xe674;</span><input type="number" class="dis" maxlength="18" disabled>
+			</div>
+			<p class="bt">绑定银行卡</p>
+			<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
+			<div class="bank_all">
+				<span class="iconfont">&#xe679;</span>
+				<div class="sel_bank">
+		            <div id="Bank_sel_hid" class="div_bank_select dis">
+		                <div id="xx"><i class="Bank ICBC"></i>中国工商银行</div>
+		            </div>
+		            <div id="Bank" class="dis_none"></div>
+	        	</div>
+	       		<span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
+			</div>
+			<div class="bank_num">
+				<span class="iconfont">&#xe689;</span><input type="number" class="dis" disabled>
+			</div>
+			<div class="phone_Num">
+				<span class="iconfont">&#xe66f;</span><input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" id="mobile" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+			</div>
+			<p class="bt">设置支付密码</p>
+			<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
+			<div class="paynum">
+				<span class="iconfont">&#xe672;</span><input type="password" class="pay" id="pwd" maxlength="6" placeholder="请输入6位数字支付密码" onkeyup="this.value=this.value.replace(/\D/g,'')"><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
+			</div>
+			<input type="submit" class="btn" value="立即激活">
+		</form>
 	</div>
 </div>
 <div class="success_box max-width dis_none">

@@ -1,7 +1,4 @@
 @import "../common/mixin";
-input::-ms-clear,input::-ms-reveal{
-	display:none;
-}
 .fl{
 	float:left;
 }
@@ -190,7 +187,6 @@ i.del:hover{
 				right: 6px;
 				top: 8px;
 				cursor:pointer;
-				display:none;
 			}
 			.yan:hover{
 				color:#ff7e12;
@@ -200,6 +196,7 @@ i.del:hover{
 				right: 6px;
 				top: 8px;
 				cursor:pointer;
+				display:none;
 			}
 			.yan_kai:hover{
 				color:#ff7e12;

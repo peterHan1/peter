@@ -1,4 +1,5 @@
 var _td = require('util/td.js');
+// 用户中心
 var _user = {
 	login : function(param,resolve,reject){
 		_td.request({
@@ -75,27 +76,40 @@ var _user = {
 			data    : {
 				mobile: value
 			},
-			async	: false,
+			asyncType	: false,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 用户开通存管
-	openDeposit :  function(data,resolve,reject){
+	openDeposit :  function(headerData,data,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/ua/openDeposit'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data    : data,
 			success : resolve,
 			error   : reject
 		});
 	},
+	// 获取用户存管信息
+	getUserDepositInfo :  function(headerData,resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/ua/getUserDepositInfo'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
+			success : resolve,
+			error   : reject
+		});
+	},
 	// 账户投资信息
-	getUserCon : function(userData,resolve, reject){
+	getUserCon : function(resolve, reject){
 		_td.request({
 			method	: "get",
 			url     : _td.getServerUrl('/user.json'),
-			data 	: userData,
+			// data 	: userData,
 			success : resolve,
 			error   : reject
 		});

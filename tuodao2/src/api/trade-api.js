@@ -3,38 +3,46 @@ var _td = require('util/td.js');
 // 交易中心
 var _trade = {
 	// 获取网银列表
-	bankList: function(resolve, reject) {
+	bankList: function(headerData,headerData,resolve, reject) {
 		_td.request({
 			method: 'post',
 			url: _td.getServerUrl('api/router/recharge/bankList'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success: resolve,
 			error: reject
 		});
 	},
 	// 提现数据展示
-	cash :  function(resolve,reject){
+	cash :  function(headerData,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/tc/account/to_cash'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 申请提现
-	cashApply: function(data, resolve, reject) {
+	cashApply: function(headerData,data, resolve, reject) {
 		_td.request({
 			method: 'post',
 			url: _td.getServerUrl('api/router/tc/account/cash_apply'),
 			data: data,
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success: resolve,
 			error: reject
 		});
 	},
 	// 获取用户提现列表
-	cashList: function(pagenum, pagesize, resolve, reject) {
+	cashList: function(headerData,pagenum, pagesize, resolve, reject) {
 		_td.request({
 			method: 'post',
 			url: _td.getServerUrl('api/router/tc/account/cash_list'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data: {
 				currentPage: 1 || pagenum,
 				pageSize: 10 || pagesize
@@ -44,42 +52,49 @@ var _trade = {
 		});
 	},
 	// 计算提现手续费
-	cashFee :  function(cashMoney,resolve,reject){
+	cashFee :  function(headerData,cashMoney,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/tc/account/cash_fee'),
 			data    : {
 				cashMoney:cashMoney
 			},
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 获取用户绑卡信息
-	rechargeInfo :  function(resolve,reject){
+	rechargeInfo :  function(headerData,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/recharge/rechargeInfo'),
-			data    : "",
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 网银充值
-	rechargeOnline :  function(data,resolve,reject){
+	rechargeOnline :  function(headerData,data,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/recharge/online'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data    : data,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 快捷充值发送短信
-	sendSmsCode :  function(money,resolve,reject){
+	sendSmsCode :  function(headerData,money,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/recharge/sendSmsCode'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data    : {
 				money: money
 			},
@@ -88,20 +103,24 @@ var _trade = {
 		});
 	},
 	// 快捷充值确认
-	fastPay :  function(data,resolve,reject){
+	fastPay :  function(headerData,data,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/recharge/fast/pay'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data    : data,
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 分页查询资金记录列表
-	moneyRecord :  function(pagenum, pagesize,resolve,reject){
+	moneyRecord :  function(headerData,pagenum, pagesize,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/tc/account/account_log_list'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			data: {
 				currentPage: 1 || pagenum,
 				pageSize: 10 || pagesize
@@ -149,6 +168,13 @@ var _trade = {
 	getInvestUc : function(resolve, reject){
 		_td.request({
 			url     : _td.getServerUrl('/get_account.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	subInvestBond : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/subBond.json'),
 			success : resolve,
 			error   : reject
 		});
@@ -433,18 +459,6 @@ var _trade = {
 			},
 			success : resolve,
 			error   : reject
-		});
-	},
-	// 分页
-	paging: function(pages, pageNum, pageSize, backFuntion) {
-		$(".zxf_pagediv").createPage({
-			// 页数 pages
-			pageNum: pages,
-			// 当前页 pageNum
-			current: pageNum,
-			// 显示条数 pageSize
-			shownum: pageSize,
-			backfun: backFuntion
 		});
 	}
 };

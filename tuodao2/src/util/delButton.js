@@ -1,12 +1,8 @@
 var _del = {
-	inptxtDel: function(name,el) {
+	inptxtDel: function(name, el) {
+		var _this=this;
 		$(name).on("focus", function() {
-			if ($(name).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-				console.log(1111);
-			}
+			_this.check(name);
 		});
 		$(name).on("blur", function() {
 			setTimeout(function() {
@@ -14,11 +10,7 @@ var _del = {
 			}, 200);
 		});
 		$(name).on("keyup", function() {
-			if ($(this).val() == "") {
-				$(this).siblings(".del").hide();
-			} else {
-				$(this).siblings(".del").show();
-			}
+			_this.check(name);
 		});
 		$(".del").on("click", function() {
 			$(this).siblings(name).val("");
@@ -27,6 +19,13 @@ var _del = {
 				$(this).removeClass('color');
 			});
 		});
+	},
+	check: function(name) {
+		if ($(name).val() == "") {
+			$(name).siblings(".del").hide();
+		} else {
+			$(name).siblings(".del").show();
+		}
 	}
 };
 module.exports = _del;

@@ -13,16 +13,13 @@ var _base = {
 			error: reject
 		});
 	},
-	validateSmsCode :  function(value,code,type,resolve){
+	validateSmsCode :  function(yzmData,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/common/validateSmsCode'),
-			data    : {
-				mobile: value,
-				smsCode: code,
-				smsType: type
-			},
-			success : resolve
+			data    :yzmData,
+			success : resolve,
+			error: reject
 		});
 	}
 };

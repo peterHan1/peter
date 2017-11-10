@@ -2,19 +2,16 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/laydate/laydate.js');
-require('util/laydate/laydate.scss');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var bondAble = require('./Invest_bondAble.string');
-var bondTran = require('./Invest_bondTran.string');
-var bondYet= require('./Invest_bondYet.string');
-var bondApply= require('./Invest_bondApply.string');
+require('util/laydate/index.js');
+require('util/layer/index.js');
+var _tips 		= 	require('util/tips/index.js');
+var _td 		= 	require('util/td.js');
+var _apiInvest 	= 	require('api/trade-api.js');
+var _paging 	= 	require('util/paging/index.js');
+var bondAble 	= 	require('./Invest_bondAble.string');
+var bondTran 	= 	require('./Invest_bondTran.string');
+var bondYet 	= 	require('./Invest_bondYet.string');
+var bondApply 	= 	require('./Invest_bondApply.string');
 
 var ucInvest = {
 	init : function(){
@@ -50,7 +47,7 @@ var ucInvest = {
 			});
 			$(".bond_box").html(listBondHtml);
 			$(".uc_invest_tabR").attr("status",sta);
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
 					listBondHtml = _td.renderHtml(bondAble,{
 						list:res.content.list,
@@ -80,7 +77,7 @@ var ucInvest = {
 			});
 			$(".bond_box").html(listBondHtml);
 			$(".uc_invest_tabR").attr("status",sta);
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
 					listBondHtml = _td.renderHtml(bondTran,{
 						list:res.content.list,
@@ -108,7 +105,7 @@ var ucInvest = {
 			});
 			$(".bond_box").html(listBondHtml);
 			$(".uc_invest_tabR").attr("status","3");
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getBondyet(sta,startime,endtime,pagesize,current,function(res){
 					listBondHtml = _td.renderHtml(bondYet,{
 						list:res.content.list,

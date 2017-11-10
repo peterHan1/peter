@@ -1,17 +1,12 @@
 require('page/common/uc-menu/index.js');
 require("./uc_recharge.scss");
-require("util/bankSelect/bankSelect.js");
-require("util/bankSelect/bankSelect.scss");
+require("util/bankSelect/index.js");
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/security/security.js');
+require('util/layer/index.js');
 require('util/security/security.scss');
 
 
-var _inp = require('util/yz.js');
-var _regular = require('util/regular.js');
 var _yzm = require('util/security/security.js');
 var _trade = require('api/trade-api.js');
 

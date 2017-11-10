@@ -100,33 +100,6 @@ var investDateils = {
 				if($(".in_span").length <= 0){
 					mon.removeClass('bor_col');
 					pswd.removeClass('bor_col');
-					// 激活存管弹窗
-					/* layer.open({
-						type: 1,
-						title:'',
-						closeBtn:0,
-						skin: 'succeed_show',
-						area:['560px','360px'],
-						content: $('#bank_show')
-					}); */
-					// 加入成功
-					/* layer.open({
-						type: 1,
-						title:'',
-						closeBtn:0,
-						skin: 'succeed_show',
-						area:['560px','360px'],
-						content: $('#succeed_show')
-					}); */
-					// 加入失败
-					layer.open({
-						type: 1,
-						title:'',
-						closeBtn:0,
-						skin: 'succeed_show',
-						area:['560px','360px'],
-						content: $('#failed_show')
-					});
 				}
 			}
 		});

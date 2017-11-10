@@ -32,8 +32,9 @@ var page = {
 		var listParam = this.data.listParam;
 		console.log(listParam);
 		_apiBanner.getProductList(function(res){
+			console.log(res);
 			bannerHtml = _td.renderHtml(templateBanner,{
-				list:res.content.list,
+				list:res.content,
 				msg:res.msg
 			});
 			$('.flexslider').html(bannerHtml);
@@ -43,7 +44,7 @@ var page = {
 				pauseOnHover 	: true,
 				slideshowSpeed 	: 3000
 			});
-		},function(){});
+		},function(errMsg){console.log(errMsg);});
 	}
 };
 $(function(){

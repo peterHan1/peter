@@ -2,14 +2,12 @@ require('page/invest_detail/invest_detail.scss');
 require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
+require('util/layer/index.js');
 
-var _td = require('util/td.js');
-var _apiInvest = require('api/product-api.js');
-var investListSift = require('./details-sift.string');
+var _td 			= require('util/td.js');
+var _paging 		= require('util/paging/index.js');
+var _apiInvest 		= require('api/product-api.js');
+var investListSift 	= require('./details-sift.string');
 
 var investDetails = {
 	init : function(){

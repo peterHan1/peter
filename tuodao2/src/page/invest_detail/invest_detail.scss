@@ -1047,8 +1047,9 @@ b,i,em{
 				color: #9e9e9e;
 				font-size: 12px;
 				z-index: 9;
-				word-wrap: break-word;
 				display: none;
+				overflow: hidden;
+				white-space:normal;
 				span{
 					width: 0;
 					height: 0;

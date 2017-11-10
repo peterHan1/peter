@@ -14,15 +14,15 @@
 	<div class="ts">
 		<p><span class="iconfont ld">&#xe684;</span> 为保障您的资金安全，请在充值、投资、提现前激活存管</p>
 	</div>
-	<p class="js_box"><i class="iconfont">&#xe671;</i>&nbsp;您输入的信息有误，请重新输入。</p>
+	<p class="js_box"></p>
 	<div class="person_info">
-		<form>
+		<form action="" method="post">
 			<p class="bt">身份认证</p>
 			<div class="username">
-				<span class="iconfont">&#xe67a;</span><input type="text" class="user" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" placeholder="请输入您的真实姓名" ><i class="iconfont del">&#xe68b;</i>
+				<span class="iconfont">&#xe67a;</span><input type="text" class="user" id="user" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" placeholder="请输入您的真实姓名" ><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<div class="idcard">
-				<span class="iconfont">&#xe674;</span><input type="text" maxlength="18" class="card" placeholder="请输入您的身份证号码" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="18"><i class="iconfont del">&#xe68b;</i>
+				<span class="iconfont">&#xe674;</span><input type="text" maxlength="18" class="card" id="card" placeholder="请输入您的身份证号码" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="18"><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="bt">绑定银行卡</p>
 			<p class="jg"><span>*</span>&nbsp;激活存管账户绑定的银行卡将作为充值提现的唯一银行卡。</p>
@@ -34,27 +34,33 @@
 		                <div class="iconfont" id="xx">&#xe67d;</div>
 		            </div>
 		            <div id="Bank_sel_hid" class="div_bank_select dis_none">
-		                <div id="xx" class="xx"></div>
+		                <div id="xx" class="xx"><i class="Bank" bank=""></i><em></em></div>
 		                <span class="iconfont" id="xy">&#xe67d;</span>
 		            </div>
 		            <div id="Bank" class="dis_none"></div>
 	        	</div>
-	        <span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
+	        	<span class=" iconfont" id="wen">&#xe68d;</span><p class="tips"></p>
+	        	<!-- <div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips left-tips">
+						请选择当前平台支持的银行进行绑定
+					</div>
+				</div> -->
 			</div>
 			<div class="bank_num">
-				<span class="iconfont">&#xe689;</span><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" onpaste="return false;" maxlength="23" placeholder="请输入您的银行卡号" class="card_num" \><i class="iconfont del">&#xe68b;</i>
+				<span class="iconfont">&#xe689;</span><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" onpaste="return false;" maxlength="23" placeholder="请输入您的银行卡号" id="bankCard" class="card_num" \><i class="iconfont del">&#xe68b;</i>
 				<p class="big_font"></p>
 			</div>
 			<div class="phone_Num">
 				<span class="iconfont">&#xe66f;</span>
-				<input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+				<input type="text" placeholder="请输入您的银行预留手机号" class="phoneNum" id="mobile" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="bt">设置支付密码</p>
 			<p class="jg"><span>*</span>&nbsp;支付密码必须是6位纯数字。</p>
 			<div class="paynum">
-				<span class="iconfont">&#xe672;</span><input type="password" maxlength="6" placeholder="请输入6位数字支付密码" class="pay" onkeyup="this.value=this.value.replace(/\D/g,'')" ><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
+				<span class="iconfont">&#xe672;</span><input type="password" maxlength="6" id="pwd" placeholder="请输入6位数字支付密码" class="pay" onkeyup="this.value=this.value.replace(/\D/g,'')" ><em class="iconfont yan">&#xe66b;</em><em class="iconfont yan_kai">&#xe682;</em><i class="iconfont del">&#xe68b;</i>
 			</div>
-			<input type="button" class="btn" value="立即激活">
+			<input type="submit" class="btn" value="立即激活">
 		</form>
 	</div>
 </div>

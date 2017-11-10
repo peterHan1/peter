@@ -253,15 +253,13 @@ var _product = {
 			error   : reject
 		});
 	},
-	paging : function(pages,pageNum,pageSize,backFuntion){
-		$(".zxf_pagediv").createPage({
-			// 页数 pages
-			pageNum: pages,
-			// 当前页 pageNum
-			current: pageNum,
-			// 显示条数 pageSize
-			shownum: pageSize,
-			backfun: backFuntion
+	// 投资详情页 获取优惠券
+	getDiscount : function(resolve, reject){
+		_td.request({
+			method	: "get",
+			url     : _td.getServerUrl('/discount.json'),
+			success : resolve,
+			error   : reject
 		});
 	}
 };

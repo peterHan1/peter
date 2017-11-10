@@ -2,12 +2,12 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-var _tips = require('util/tips/index.js');
-var _td = require('util/td.js');
-var _apiInvest = require('api/trade-api.js');
-var scatterTlt = require('./scatter_tlt.string');
+
+var _tips 		= require('util/tips/index.js');
+var _td 		= require('util/td.js');
+var _paging 	= require('util/paging/index.js');
+var _apiInvest 	= require('api/trade-api.js');
+var scatterTlt 	= require('./scatter_tlt.string');
 var scatterList = require('./scatter_list.string');
 
 var ucInvest = {
@@ -37,7 +37,7 @@ var ucInvest = {
 			});
 			$("#tbody_list").html(listHtml);
 			ucInvest.setStatus("returnSta");
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getScstterList(id,e.current,5,function(res){
 					listHtml = _td.renderHtml(scatterList,{
 						list:res.content.list,

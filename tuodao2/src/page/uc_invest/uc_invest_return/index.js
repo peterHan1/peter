@@ -2,12 +2,11 @@ require('./index.scss');
 require('page/common/uc-menu/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
 
+var _td 		= 	require('util/td.js');
 var _tips 		= require('util/tips/index.js');
 var _returnmon 	= require('util/return_date/date_time.js');
-var _td 		= 	require('util/td.js');
+var _paging 	= require('util/paging/index.js');
 var _apiReturn 	= 	require('api/trade-api.js');
 var returnList 	= 	require('./returnList.string');
 
@@ -96,7 +95,7 @@ var ucInvest = {
 			});
 			$('#tbody_list').html(retList);
 			ucInvest.setStatus();
-			_apiReturn.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiReturn.getRturnList(day,type,pagesize,current,function(res){
 					ucInvest.setType(res);
 					retList = _td.renderHtml(returnList,{

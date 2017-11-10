@@ -1,10 +1,14 @@
 var _trade = require('api/trade-api.js');
+var _td = require('util/td.js');
 $(function() {
 	var dataBank = [];
 	var dataBankFont = [];
 	var dataBankXe = [];
-	_trade.bankList(function(res) {
-		console.log(res);
+	var headerData = {
+		accessId: _td.getAccess('accessId'),
+		accessKey: _td.getAccess('accessKey')
+	};
+	_trade.bankList(headerData,function(res) {
 		for (var j = 0; j < res.content.length; j++) {
 			dataBank.push(res.content[j].paymentCode);
 			dataBankFont.push(res.content[j].name);
@@ -13,7 +17,7 @@ $(function() {
 		var ulEle = document.createElement('ul');
 		$('#Bank').append(ulEle);
 		for (var i = 0; i < dataBank.length; i++) {
-			$('#Bank ul').append('<li><b><i class="Bank ' + dataBank[i] + '" bank="' + dataBank[i] + '"></i>' + dataBankFont[i] + '</b><b>（'+dataBankXe[i]+'）</b></li>');
+			$('#Bank ul').append('<li><b><i class="Bank ' + dataBank[i] + '" bank="' + dataBank[i] + '"></i><em>' + dataBankFont[i] + '</em></b><b>（' + dataBankXe[i] + '）</b></li>');
 		}
 		$('#Bank li').eq(dataBank.length - 1).css('border-bottom', '0');
 		$('#Bank_sel').on('click', function() {

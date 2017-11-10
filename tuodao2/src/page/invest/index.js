@@ -1,15 +1,13 @@
 require('./invest.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-
-var _td = require('util/td.js');
-var _apiInvest = require('api/product-api.js');
-var _apiInvests = require('api/trade-api.js');
-var investListSift = require('./list_sift.string');
-var investListScatter = require('./list_scatter.string');
-var investListBond = require('./list_bond.string');
+var _td 				= require('util/td.js');
+var _paging 			= require('util/paging/index.js');
+var _apiInvest 			= require('api/product-api.js');
+var _apiInvests 		= require('api/trade-api.js');
+var investListSift 		= require('./list_sift.string');
+var investListScatter 	= require('./list_scatter.string');
+var investListBond 		= require('./list_bond.string');
 var invest = {
 	init : function(){
 		this.eachA();
@@ -60,7 +58,7 @@ var invest = {
 			});
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_sift");
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(dataList,function(res){
 					invest.setData(res);
 					listHtml = _td.renderHtml(investListSift,{
@@ -85,7 +83,7 @@ var invest = {
 			});
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_scatter");
-			_apiInvest.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvest.getInvestList(dataList,function(res){
 					invest.setData(res);
 					listHtml = _td.renderHtml(investListScatter,{
@@ -110,7 +108,7 @@ var invest = {
 			});
 			$('.invest_list_bot').html(listHtml);
 			invest.setShow("list_bond");
-			_apiInvests.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 				_apiInvests.getInvestListBond(type,e.current,10,function(res){
 					invest.setUnit(res);
 					listHtml = _td.renderHtml(investListBond,{
