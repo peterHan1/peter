@@ -1,40 +1,18 @@
+      
 {
       "code": 100000,
       "msg": "成功",
       "content":
       {
-             "userId": "666",
+             "userId": "用户编码",
              "userName": "用户名称",
-             "mobile": "18539123456",
-             "pwSecurityLevel": "密码安全级别",
-             "avatarUrl": "http://72.127.2.42:3000/image/uc_portrait.png",
-             "directInviterNo": "直接邀请人",
-             "indirectInviterNo": "间接邀请人",
-             "userStatus": "用户状态（0：冻结 1：正常 2：注销）",
-             "userType": "用户类型（0：投资用户：1：融资用户；）",
+             "mobile": "手机号码",
+             "avatarUrl": "头像路径",
              "investFlag": "是否已投资（0：否；1：是）",
-             "investUserType": "投资用户类型(0：普通用户；1：内部用户)",
-             "isNewbie": "是否新手（0：非新手：1：新手）",
-             "isOpenDeposit": "0",
-             "isBindBank": "是否已绑定银行卡（0：未绑；1：已绑定）",
-             "sourceChannel": "来源渠道（好友邀请、VIVO、360等等）",
-             "invitCode": "邀请码",
-             "registerDate": "注册日期",
-             "depositNo": "存管编号",
-             "totalFund": "8888.88",
-             "totalEarnings": "666,666.66",
-             "dueInFund": "88.88",
-             "usableFund": "766.66",
-             "dueInPrincipal": "111.11",
-             "dueInInterest": "222.22",
-             "freezeFund": "333.33",
-             "canWithdrawFund": "可提现金额（分）",
-             "totalRecharge": "累计充值（分）",
-             "totalWithdraw": "累计提现（分）",
-             "investmentTimes": "投资次数",
-             "investmentAmount": "投资总额",
-             "returnAmount": "已获得返现奖励 (分)",
-             "vipLevel": "1"
+             "isNewbie": 1,
+             "isOpenDeposit": "是否已开通存管账户（0：未开通；1：已开通）",
+             "usableFund": "999.99",
+             "vipLevel": "vip等级(Integer)"
       },
       "success": true
 }

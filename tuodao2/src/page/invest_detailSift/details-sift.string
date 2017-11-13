@@ -3,14 +3,14 @@
 	<div class="title">
 		<p>{{productTitle}}</p>
 		<div class="type">
-			<img src="<%= require('../image/exclusive.png') %>" class="fl">
+			<img src="http://72.127.2.42:3000/image/invest/exclusive.png" class="fl">
 			<div class="tips">仅限新注册用户首次投资<span class="bot"></span><span class="bot2"></span></div>
 		</div>
 	</div>
 	<div class="major">
 		<dl class="expect">
 			<dt>
-				<span>{{borrowApr}}</span>%<i class="award" award="{{awardType}}">+{{awardScale}}%</i>
+				<span>{{borrowApr}}</span>%<i class="award" award="{{awardType}}">+{{awardAmount}}<b class="unit"></b></i>
 			</dt>
 			<dd>
 				预期年化
@@ -26,7 +26,7 @@
 		</dl>
 		<dl class="summoney">
 			<dt>
-				<span class="resMoney">{{surplusInvestAmount}}</span>元
+				<span class="lastMoney" money="{{surplusInvestAmount}}">{{surplusInvestAmount}}</span>元
 			</dt>
 			<dd>
 				剩余可投

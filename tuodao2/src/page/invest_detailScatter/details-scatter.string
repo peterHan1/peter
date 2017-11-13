@@ -3,7 +3,7 @@
 	<div class="title">
 		<!-- 散标显示 -->
 		<p>{{productTitle}}</p>
-		<img src="<%= require('../image/exclusive.png') %>">
+		<img src="http://72.127.2.42:3000/image/invest/exclusive.png">
 	</div>
 	<div class="major">
 		<dl class="expect">
@@ -24,7 +24,7 @@
 		</dl>
 		<dl class="summoney">
 			<dt>
-				<span class="resMoney">{{surplusInvestAmount}}</span>元
+				<span class="lastMoney" money="{{surplusInvestAmount}}">{{surplusInvestAmount}}</span>元
 			</dt>
 			<dd>
 				剩余可投

@@ -129,6 +129,31 @@ var _trade = {
 			error   : reject
 		});
 	},
+	// 获取精选计划 加入记录
+	getSiftPhone : function(pagenum,pagesize,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/invest-siftPhone.json'),
+			data    : {
+				currentPage 	: 1 	|| pagenum,
+				pageSize 		: 10 	|| pagesize
+			},
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 获取散标详情 投资记录
+	getScatterPhone : function(pagenum,pagesize,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/invest-scatterPhone.json'),
+			data    : {
+				currentPage 	: 1 	|| pagenum,
+				pageSize 		: 10 	|| pagesize
+			},
+			success : resolve,
+			error   : reject
+		});
+	},
+
 	// 获取investList 债权转让
 	getInvestListBond : function(type,pagenum,pagesize,resolve, reject){
 		_td.request({
@@ -172,6 +197,23 @@ var _trade = {
 			error   : reject
 		});
 	},
+	// 精选计划提交
+	subInvestSift : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/subSift.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 散标详情提交
+	subInvestScatter : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/subScatter.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 债权转让提交
 	subInvestBond : function(resolve, reject){
 		_td.request({
 			url     : _td.getServerUrl('/subBond.json'),

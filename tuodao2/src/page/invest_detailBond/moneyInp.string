@@ -1,0 +1,43 @@
+<div class="investting" >
+	<div class="current_money" >
+		<div>
+			<p class="txt ">
+					可用余额
+			</p>
+			<div class="money">
+				<b><span class="balance"></span><i>元</i></b>
+				<a href="###">充值</a>
+			</div>
+		</div>
+	</div>
+	<div class="com_styl invest_money" >
+	<!-- 标的可投余额小于起投金额500元时 -->
+		<!-- <input type="text" placeholder="本项目剩余可投499元"> -->
+		<input type="text" placeholder="100元起投" class="com_inp sub_money" id="sub_money">
+		<i class="iconfont btn_empty">&#xe68b;</i>
+		<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
+	</div>
+	<div class="com_styl add_ticket" >
+		<p class="p_ticket">请选择优惠券</p>
+		<input type="hidden" class="inp_ticket" value="">
+		<div class="fontcol ticket">优惠券&nbsp;</div>
+		<!-- 没有可用优惠券 -->
+		<!-- <div class="no_ticket">当前没有可用优惠券</div> -->
+	</div>
+	<div class="com_styl input_pwd" >
+		<input type="password" placeholder="请输入支付密码" class="com_inp sub_psw" id="sub_psw">
+		<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
+	</div>
+	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
+	<div class="input_sub">
+		<!-- 正常投标按钮 -->
+		<input type="submit" id="sub_btn" value="实付0.00元，立即投资" class="sub_btn"/>
+	</div>
+	<div class="agreement" id="protocol">
+		<div>
+			<!-- 债权转让显示 -->
+			<input type="checkbox" id="checkinp" checked=""><label for="checkinp">我已阅读并同意<a href="###">《债权转让及受让协议》</a></label>
+		</div>
+		<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
+	</div>
+</div>

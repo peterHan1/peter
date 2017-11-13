@@ -12,13 +12,13 @@ var investListBond 	= require('./details-bond.string');
 var investListPhone = require('./details-phone.string');
 var subBond 		= require('./subBond.string');
 var addFaileds 		= require('./addFailed.string');
+var moneyInp 		= require('./moneyInp.string');
+var transferred 	= require('./transferred.string');
 
 var investDetails = {
 	init : function(){
 		this.eachA();
 		this.addHtml();
-		this.getUser();
-		this.inputEvent();
 	},
 	eachA : function(){
 		var hre = location.href.split('?');
@@ -30,21 +30,7 @@ var investDetails = {
 				}
 			}
 		});
-		$(".detail_tab li a").on("click",function(){
-			var ind = $(this).parent("li").index();
-			$(".detai").eq(ind).show().siblings('.detai').hide();
-			$(this).addClass("on");
-			$(this).parent().siblings().find('a').removeClass('on');
-		});
-	},
-	getUser : function(){
-		var balanceMoney = '';
-		_apiUser.getUserCon(function(res){
-			balanceMoney = res.content.usableFund;
-			$(".balance").html(balanceMoney).attr("money",balanceMoney);
-		},function(){
-			console.log('请求失败');
-		});
+		
 	},
 	addHtml : function(){
 		_apiInvest.getInvestBondDetails(1,function(res){
@@ -62,6 +48,21 @@ var investDetails = {
 			if((lastMoney*1) < 100){
 				var str = "本项目剩余可投"+lastMoney+"元";
 				$(".sub_money").attr("placeholder",str);
+			};
+			// 是否满标
+			if(res.content.finished == true){
+				console.log(res.content.finished);
+				transferred = _td.renderHtml(transferred,{
+					content:res.content,
+				});
+				$('.detail_top_right').html(transferred);
+			}else{
+				inputMoney = _td.renderHtml(moneyInp,{
+					content:res.content,
+				});
+				$('.detail_top_right').html(inputMoney);
+				investDetails.inputEvent();
+				investDetails.getUser();
 			}
 		},function(){
 			console.log("请求失败");
@@ -78,8 +79,18 @@ var investDetails = {
 			console.log("请求失败");
 		});
 	},
+	getUser : function(){
+		// 是否登录
+		var balanceMoney = '';
+		_apiUser.getUserCon(function(res){
+			balanceMoney = res.content.usableFund;
+			$(".balance").html(balanceMoney).attr("money",balanceMoney);
+		},function(){
+			console.log('请求失败');
+		});
+	},
 	getDiscount : function(){
-
+		// 获取优惠券
 	},
 	inputEvent : function(){
 		var _this = this;
@@ -168,6 +179,12 @@ var investDetails = {
 			$(".ul_select li .select_b").remove();
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
+		});
+		$(".detail_tab li a").on("click",function(){
+			var ind = $(this).parent("li").index();
+			$(".detai").eq(ind).show().siblings('.detai').hide();
+			$(this).addClass("on");
+			$(this).parent().siblings().find('a').removeClass('on');
 		});
 	},
 	subBond : function(){

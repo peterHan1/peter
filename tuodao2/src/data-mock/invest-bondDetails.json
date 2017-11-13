@@ -17,9 +17,11 @@
              "name": "凯迪拉克坦克",
              "endTime": "1512784654",
              "productCode": "标的编号 String",
-             "finished": "是否抢完 boolean",
+             "finished": true,
              "interestType": "满标复审计息",
-             "cleanTime": false
+             "cleanTime": true,
+             "status": "状态 0转让中 1",
+             "raymentType": "还款方式 0等额本息 1按月付息 到期还本"
       },
       "success": true
 }

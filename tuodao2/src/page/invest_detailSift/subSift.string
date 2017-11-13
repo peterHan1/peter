@@ -1,0 +1,12 @@
+{{#content}}
+<div class="txt">
+	<div class="ltxt">加入成功</div>
+	<div class="rclose">&times;</div>
+</div>
+<div class="show_com succeed">
+	<div class="icon"></div>
+	<p>恭喜您成功加入{{amount}}元！</p>
+	<b>您可以 <a href="invest.html?sift">继续加入</a> 或 <a href="uc_invest_sift.html">查看已加入项目</a></b>
+	<span class="iskonw">我知道了</span>
+</div>
+{{/content}}

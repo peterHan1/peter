@@ -32,93 +32,7 @@
 				
 			</div>
 			<div class="detail_top_right">
-				<div class="investting" >
-					<!-- 未登录状态 -->
-					<div class="login_btn" style="display: none;">
-						<a href="">登录</a>查看账户可用余额，或<a href="">立即注册</a>
-					</div>
-
-					<div class="current_money" >
-						<div>
-							<p class="txt ">
-									可用余额
-							</p>
-							<div class="money">
-								<b><span class="moneys">50000.55</span><i>元</i></b>
-								<a href="###">充值</a>
-							</div>
-						</div>
-					</div>
-					<div class="com_styl invest_money" >
-					<!-- 标的可投余额小于起投金额500元时 -->
-						<!-- <input type="text" placeholder="本项目剩余可投499元"> -->
-						
-						<input type="text" placeholder="500元起投，单笔限额50万元" class="sub_money">
-						<i class="iconfont btn_empty">&#xe68b;</i>
-						<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
-					</div>
-					<div class="com_styl add_ticket" >
-						<p class="p_ticket">请选择优惠券</p>
-						<input type="hidden" class="inp_ticket" value="">
-						<div class="fontcol ticket">优惠券&nbsp;</div>
-
-						<!-- 没有可用优惠券 -->
-						<!-- <div class="no_ticket">当前没有可用优惠券</div> -->
-
-					</div>
-					<div class="com_styl input_pwd" >
-						<input type="password" placeholder="请输入支付密码" class="sub_psw">
-						<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
-					</div>
-					<!-- <div class="com_styl input_pwd" >
-						<input type="password" placeholder="请输入约标密码" class="yue_psw">
-					</div> -->
-					<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
-					<div class="input_sub">
-						<!-- 倒计时 -->
-						<!-- <div class="countdown times"><span><b>00</b> : <i>00</i> : <em>00</em>后开抢</span></div> -->
-
-						<!-- 正常投标按钮 -->
-						<input type="submit" id="sub_btn" value="实付0.00元，立即投资" class="sub_btn">
-
-						<!-- 新手专享按钮 -->
-						<!-- <input type="submit" value="新手专享，非新手不能加入" class="no_btn"> -->
-
-						<!-- 清算时间按钮 -->
-						<!-- <input type="submit" value="存管清算时间，不能加入" class="no_btn"> -->
-
-						<!-- 未登录按钮 -->
-						<!-- <div class="login_a"><a href="">立即登录</a></div> -->
-						
-					</div>
-					<!-- app专享标 -->
-					<div class="app_invest" style="display: none;">
-						<div class="ewm"></div>
-						<p>本标的仅限在APP端投资</p>
-						<b>扫描二维码下载手机客户端</b>
-					</div>
-					<div class="agreement" id="protocol">
-						<div>
-							<input type="checkbox" id="checkinp" checked><label for="checkinp">已阅读并同意<a href="###">《借款协议》</a></label>
-						</div>
-						<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
-					</div>
-				</div>
-				<!-- 已抢完 -->
-				<div class="finish" style="display: none;">
-					<div class="finish_sum">
-						<p>将为9位投资者带来收益</p>
-						<b>2,255.00</b> 元
-						<a href="">去看看其他标 > </a>
-					</div>
-					<div class="ranking">
-						<p><em class="iconfont">&#xe697;</em>1234****1234千元首投，获得两倍积分</p>
-						<p><em class="iconfont">&#xe698;</em>1234****1234脱颖而出，获得积分 +5</p>
-					</div>
-					<div class="finish_auto">
-						<p>抢不到标？ 没关系，立即开启 <a href="">自动投标 ></a></p>
-					</div>
-				</div>	
+				
 			</div>
 		</div>
 		<div class="detail_bot">
@@ -126,16 +40,16 @@
 				<!-- 散标项目 -->
 				<ul>
 					<li>
-						<a href="JavaScript:;" class="on">项目详情</a>
+						<a href="JavaScript:;" class="on" type>项目详情</a>
 					</li>
 					<li>
-						<a href="JavaScript:;">审核资料</a>
+						<a href="JavaScript:;" type>审核资料</a>
 					</li>
 					<li>
-						<a href="JavaScript:;">安全保障</a>
+						<a href="JavaScript:;" type>安全保障</a>
 					</li>
 					<li>
-						<a href="JavaScript:;">投资记录</a>
+						<a href="JavaScript:;" type="phone">投资记录</a>
 					</li>
 				</ul>
 			</div>
@@ -191,43 +105,43 @@
 					<!-- 散标显示 -->
 					<ul>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>" alt="身份证">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="身份证">
 							</a>
 							<p>身份证正面</p>
 							<b class='magnify'></b>
 						</li>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>" alt="行驶证">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="行驶证">
 							</a>
 							<p>行驶证</p>
 							<b class='magnify'></b>
 						</li>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>" alt="仪表盘">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="仪表盘">
 							</a>
 							<p>仪表盘</p>
 							<b class='magnify'></b>
 						</li>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>" alt="车辆正面">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="车辆正面">
 							</a>
 							<p>车辆正面</p>
 							<b class='magnify'></b>
 						</li>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>"  alt="车辆背面">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png"  alt="车辆背面">
 							</a>
 							<p>车辆背面</p>
 							<b class='magnify'></b>
 						</li>
 						<li>
-							<a class="fancybox" href="<%= require('../image/car.png') %>" data-fancybox-group="gallery">
-								<img class="lazy" src="<%= require('../image/car.png') %>" alt="车钥匙">
+							<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+								<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="车钥匙">
 							</a>
 							<p>车钥匙</p>
 							<b class='magnify'></b>
@@ -254,92 +168,14 @@
 					</ul>
 				</div>
 				<!-- 加入记录 -->
-				<div class="detai con_record" style="display: none">
+				<div class="detai con_record" style="display: none" >
 					<table>
 						<thead>
 							<th>投资用户</th>
 							<th>投资金额（元）</th>
 							<th>交易时间</th>
 						</thead>
-						<tbody class="chage_tr">
-							<tr>
-								<td class="phone">
-									<!-- 首投显示 -->
-									<i class="iconfont l">&#xe695;</i> 
-
-									<span>187****3339</span> 
-
-									<!-- 手机端投资显示 -->
-									<i class="iconfont r">&#xe699;</i>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-									<i class="iconfont r">&#xe699;</i>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-									<i class="iconfont r">&#xe699;</i>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
-							<tr>
-								<td class="phone">
-									<span>187****3339</span>
-								</td>
-								<td class="money">100.00</td>
-								<td class="date">2017-05-08 11:10:56</td>
-							</tr>
+						<tbody class="chage_tr"  id="tbody_list">
 						</tbody>
 					</table>
 					<div class="pageList"></div>
@@ -349,17 +185,7 @@
 	</div>
 	<!-- 加入成功 -->
 	<div class="hint_show dis_none" id="succeed_show">
-		<div class="txt">
-			<div class="ltxt">加入成功</div>
-			<div class="rclose">&times;</div>
-		</div>
-		<div class="show_com succeed">
-			<div class="icon"></div>
-			<!-- 散标和转让显示 -->
-			<p>恭喜您成功投资10,000.00元！</p>
-			<b>您可以 <a href="">继续投资</a> 或 <a href="">查看已投项目</a></b>
-			<span class="iskonw">我知道了</span>
-		</div>
+		
 	</div>
 	<!-- 加入失败 -->
 	<div class="hint_show dis_none" id="failed_show">
