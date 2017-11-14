@@ -368,12 +368,14 @@ b,i,em{
 					color: $fontColor70;
 				}
 			}
-			.p_ticket{
-				padding-left:10px;
-				display:inline-block;
-				width:205px;
-				@include height-line(38px);
-				float: left;
+			.inp_disc{
+				color:$fontColor9e;
+				&:hover{
+					border-color:#707070;
+				}
+			}
+			.no_ticket{
+				background-color:#f2f2f2;
 			}
 			.btn_empty{
 				position:absolute;
@@ -403,12 +405,6 @@ b,i,em{
 					margin-right:3px;
 				}
 			}
-			&:hover{
-				border-color: #838383;
-			}
-		}
-		.add_ticket{
-			@include border-style($b-radius:3px);
 		}
 		.com_sty{
 			border-color:#ff8722;
@@ -420,21 +416,7 @@ b,i,em{
 			color: #666;
 			font-size:$fontSize14;
 			margin-top:10px;
-		}
-		.add_ticket{
-			.no_ticket{
-				width:97%;
-				height:100%;
-				text-align: left;
-				padding-left:3%;
-				background-color:#f2f2f2;
-			}
-			&:hover{
-				.fontcol{
-					color:$fontColor74;
-				}
-			}
-		}
+		}		
 		.input_sub {
 			width: 100%;
 			margin-top:5px;
@@ -482,7 +464,6 @@ b,i,em{
 				margin:0 auto;
 				width:182px;
 				height:182px;
-				background:url(../../image/APP_ewm.png) no-repeat;
 			}
 			p{
 				font-size:$fontSize16;
@@ -546,7 +527,6 @@ b,i,em{
 	.ranking{
 		margin-top:65px;
 		p{
-			text-align: center;
 			color:$fontColor9e;
 			font-size:$fontSize14;
 			line-height: 20px;
@@ -1126,7 +1106,7 @@ b,i,em{
 					@include height-line(20px);
 				}
 				.p_txt{
-						@include height-line(100px);
+						@include height-line(80px);
 						font-size:22px;
 					span{
 						font-size:30px;
@@ -1143,11 +1123,11 @@ b,i,em{
 					background:url(../../image/yhq_select.png) no-repeat;
 				}
 			}
-			.jxq{
-				background:url(../../image/jxq.png) no-repeat;
-			}
-			.dyq{
+			.coupon1{
 				background:url(../../image/dyq.png) no-repeat;
+			}
+			.coupon2{
+				background:url(../../image/jxq.png) no-repeat;
 			}
 			.yhq_no{
 				background:url(../../image/yhq_no.png) no-repeat;

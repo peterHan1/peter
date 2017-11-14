@@ -1,7 +1,7 @@
 <ul class="list_bond">
 {{#list}}
 <li class="debt">
-	<a href="invest_detailBond.html?bond" class="full"></a> 
+	<a href="invest_detailBond.html?productId=666" class="full"></a> 
 	<div class="invest_list_title">
 		<p class="fl">{{name}}</p>
 	</div>

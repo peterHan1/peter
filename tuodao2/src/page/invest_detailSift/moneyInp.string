@@ -1,3 +1,4 @@
+{{#content}}
 <div class="investting" >
 	<div class="current_money" >
 		<div>
@@ -5,7 +6,7 @@
 					可用余额
 			</p>
 			<div class="money">
-				<b><span class="balance">50000.55</span><i>元</i></b>
+				<b><span class="balance" money="{{usableFund}}">{{usableFund}}</span><i>元</i></b>
 				<a href="###">充值</a>
 			</div>
 		</div>
@@ -18,14 +19,10 @@
 		<i class="iconfont btn_empty">&#xe68b;</i>
 		<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
 	</div>
-	<div class="com_styl add_ticket" >
-		<p class="p_ticket">请选择优惠券</p>
+	<div class="com_styl add_ticket" id="ticket">
+		<input type="text" disabled="disabled" class="inp_disc" value="请选择优惠券">
+		<div class="fontcol disHint">优惠券&nbsp;</div>		
 		<input type="hidden" class="inp_ticket" value="">
-		<div class="fontcol ticket">优惠券&nbsp;</div>
-
-		<!-- 没有可用优惠券 -->
-		<!-- <div class="no_ticket">当前没有可用优惠券</div> -->
-
 	</div>
 	<div class="com_styl input_pwd" >
 		<input type="password" placeholder="请输入支付密码" class="com_inp sub_psw" id="sub_psw">
@@ -59,3 +56,4 @@
 		<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
 	</div>
 </div>
+{{/content}}

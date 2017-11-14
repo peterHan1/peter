@@ -1,7 +1,7 @@
 <ul class="list_scatter">
 {{#list}}
 <li>
-	<a href="invest_detailScatter.html?scatter" class="full"></a> 
+	<a href="invest_detailScatter.html?productId=666" class="full"></a> 
 	<div class="invest_list_title">
 		<p class="fl">{{productTitle}}</p>
 		<div class="fl type">

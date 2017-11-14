@@ -1,5 +1,4 @@
 require('page/invest_detail/invest_detail.scss');
-// require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
@@ -9,28 +8,19 @@ var _paging 		= require('util/paging/index.js');
 var _apiInvest 		= require('api/product-api.js');
 var _apiTrade 		= require('api/trade-api.js');
 var _apiUser 		= require('api/user-api.js');
+var _operation 		= require('api/operationCenter-api.js');
 var investListSift 	= require('./details-sift.string');
 var subSiftHtml 	= require('./subSift.string');
 var moneyInp 		= require('./moneyInp.string');
 var logOut 			= require('./logOut.string');
 var finished 		= require('./finished.string');
 var siftPhone 		= require('./details-phone.string');
+var discounts 		= require('./discount.string');
 
 var investDetails = {
 	init : function(){
-		this.eachA();
 		this.addHtml();
-	},
-	eachA : function(){
-		var hre = location.href.split('?');
-		$('.invest_tab a').each(function () {
-			var dates = $(this).attr("data");
-			for(var i in hre){
-				if(hre[i] == dates){
-					$(this).addClass('on');
-				}
-			}
-		});
+		this.inputEvent();
 	},
 	addHtml : function(){
 		_apiInvest.getInvestListDetails(1,function(res){
@@ -41,18 +31,19 @@ var investDetails = {
 			$('.detail_top_left').html(listDetailsHtml);
 			investDetails.setShow("detail_top_left");
 			if(res.content.finished == true){
-				finishedHtml = _td.renderHtml(finished,{
-					content:res.content,
+				// 是否满标 不需要判断登录
+				_apiTrade.getSiftFinis(function(res){
+					finishedHtml = _td.renderHtml(finished,{
+						content:res.content,
+					});
+					$('.detail_top_right').html(finishedHtml);
+				},function(){
+
 				});
-				$('.detail_top_right').html(finishedHtml);
+				return false;
 			}else{
-				inputMoneyHtml = _td.renderHtml(moneyInp,{
-					content:res.content,
-				});
-				$('.detail_top_right').html(inputMoneyHtml);
-				investDetails.inputEvent();
-				investDetails.clearing(res.content.cleanTime);
-				investDetails.getUser();
+				// 未满标 显示ipnut
+				investDetails.getUser(res.content.surplusInvestAmount,res.content.cleanTime,res.content.defineType);
 
 			}
 		},function(){
@@ -109,22 +100,69 @@ var investDetails = {
 			$(".unit").html("%");
 		}
 	},
-	getUser : function(){
-		// 是否登录		
-
+	getUser : function(lastMoney,cleanTime,defineType){
+		// 登录状态
 		_apiUser.getUserCon(function(res){
-			var balanceMoney = res.content.usableFund;
-			$(".balance").html(balanceMoney).attr("money",balanceMoney);
-			if(res.content.isNewbie == 0){
-				$("#sub_btn").attr("class","no_btn").val("新手专享，非新手不能加入");
+			inputMoneyHtml = _td.renderHtml(moneyInp,{
+				content:res.content,
+			});
+			$('.detail_top_right').html(inputMoneyHtml);
+			if((lastMoney*1) < 500){
+					var str = "本项目剩余可投"+lastMoney+"元";
+					$(".sub_money").attr("placeholder",str);
+				};
+			if(cleanTime == true){
+				investDetails.clearing(cleanTime);
+				return false;
+			}else if(defineType == 0 && res.content.isNewbie == 0){
+				var defineTypes = true;
+				investDetails.isNewInvest(defineTypes);
+				return false;
+			}else{
+				$("#sub_btn").attr("class","sub_btn").val("实付0.00元，立即投资");
 			}
-		},function(){
-			console.log('请求失败');
+		},function(err){
+			// 未登录
+			if(err.code == 100105){
+				logOutHtml = _td.renderHtml(logOut,{
+					content:err.content,
+				});
+				$('.detail_top_right').html(logOutHtml);
+			}
 		});
 	},
 
 	getDiscount : function(){
 		// 获取优惠券
+		_operation.getDiscount(function(res){
+			if(res.content != ""){
+				layer.open({
+					type: 1,
+					title:'',
+					skin: '',
+					closeBtn:0,
+					area:['635px','485px'],
+					content: $('#discount_show')
+				});
+				discountHtml = _td.renderHtml(discounts,{
+					content:res.content,
+				});
+				$('.discount_con').html(discountHtml);
+				$(".disValTxt").each(function(i){
+					if($(this).attr("data") == 1){
+						$(this).html("抵用券");
+						$(this).parent("p").find($(".disValUnit")).html("￥");
+					}else{
+						$(this).html("年利率加息");
+					}
+				});
+			}else{
+				$(".inp_disc").val("当前没有可用优惠券").addClass("no_ticket").parent($("#ticket")).removeClass('add_ticket').off("click");
+				$(".disHint").hide();
+			}
+		},function(){
+			console.log("请求失败");
+		});
 	},
 	inputEvent : function(){
 		var _this = this;
@@ -325,7 +363,7 @@ var investDetails = {
 		var ym = ($(".balance").attr("money"))*1;
 	    var value = $.trim(value);
 		// 小于100
-		if(lm < 100){
+		if(lm < 500){
 			// 小于500
 			if('minMoneys' === type){
 				return  value < lm;
@@ -432,8 +470,12 @@ var investDetails = {
 		return result;
 	},
 	QuanInit : function(){
-		$(".inp_ticket").val("");
-		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
+		if($(".add_ticket").length > 0){
+			return true;
+		}else{
+			$(".inp_disc").val("请选择优惠券").removeClass("no_ticket").parent($("#ticket")).addClass('add_ticket');
+			$(".disHint").show();
+		}
 	},
 	yhQuan : function(){
 		// 优惠券点击
@@ -442,23 +484,14 @@ var investDetails = {
 		if($(".sub_money").val() == ""){
 			formError.show($("#sub_money"), "选择优惠券前需要填写加入金额！");
 			$(".sub_money").focus();
-			// _inp.input_mess("选择优惠券前需要填写加入金额！",null,false);
-			// _inp.input_mess($(".sub_money"),true,$(".sub_money").parent(),"选择优惠券前需要填写加入金额！");
 			return false;
 		}else if($(".invest_money p").length <= 0){
+			investDetails.getDiscount();
 			$(".ul_select li").each(function(){
 				var vals = $(this).attr("data");
 				if(val == vals){
 					$(this).append(sel);
 				}
-			});
-			layer.open({
-				type: 1,
-				title:'',
-				skin: '',
-				closeBtn:0,
-				area:['635px','485px'],
-				content: $('#discount_show')
 			});
 		}
 	},
@@ -474,9 +507,13 @@ var investDetails = {
 		if(bool == true){
 			$(".clearing").html(cleHtml);
 			$("#sub_btn").attr("class","no_btn").val("存管清算时间，不能加入");
-		}else{
-			$(".clearing").html("");
-			$("#sub_btn").attr("class","sub_btn").val("实付0.00元，立即投资");
+		}
+	},
+	isNewInvest : function(bool){
+		var isNewHtml = '<p><i class="iconfont">&#xe68f;</i>这是新手专享标的，只有未投资过的新用户才可享受加息3%的新手奖励。 您已经投资过了，快去看看其它标的吧!</p>';
+		if(bool == true){
+			$(".clearing").html(isNewHtml);
+			$("#sub_btn").attr("class","no_btn").val("新手专享，非新手不能加入");
 		}
 	},
 	coundTime : function(time){

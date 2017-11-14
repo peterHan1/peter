@@ -8,61 +8,38 @@ var _td 			= require('util/td.js');
 var _paging 		= require('util/paging/index.js');
 var _apiInvest 		= require('api/trade-api.js');
 var _apiUser 		= require('api/user-api.js');
+var _operation 		= require('api/operationCenter-api.js');
 var investListBond 	= require('./details-bond.string');
 var investListPhone = require('./details-phone.string');
 var subBond 		= require('./subBond.string');
-var addFaileds 		= require('./addFailed.string');
+var discounts 		= require('./discount.string');
 var moneyInp 		= require('./moneyInp.string');
 var transferred 	= require('./transferred.string');
+var logOut 			= require('./logOut.string');
 
 var investDetails = {
 	init : function(){
-		this.eachA();
 		this.addHtml();
-	},
-	eachA : function(){
-		var hre = location.href.split('?');
-		$('.invest_tab a').each(function () {
-			var dates = $(this).attr("data");
-			for(var i in hre){
-				if(hre[i] == dates){
-					$(this).addClass('on');
-				}
-			}
-		});
-		
+		this.inputEvent();
 	},
 	addHtml : function(){
 		_apiInvest.getInvestBondDetails(1,function(res){
-			var lastMoney = res.content.lastAccount;
 			investDetails.setData(res);
-			investDetails.clearing(res.content.cleanTime);
-			var time = res.content.endTime;
 			listDetailsHtml = _td.renderHtml(investListBond,{
 				content:res.content,
 			});
 			$('.detail_top_left').html(listDetailsHtml);
+			var time = res.content.endTime;
 			investDetails.coundTime(time);
 			investDetails.setShow("detail_top_left");
-			investDetails.serBar();
-			if((lastMoney*1) < 100){
-				var str = "本项目剩余可投"+lastMoney+"元";
-				$(".sub_money").attr("placeholder",str);
-			};
 			// 是否满标
 			if(res.content.finished == true){
-				console.log(res.content.finished);
 				transferred = _td.renderHtml(transferred,{
 					content:res.content,
 				});
 				$('.detail_top_right').html(transferred);
 			}else{
-				inputMoney = _td.renderHtml(moneyInp,{
-					content:res.content,
-				});
-				$('.detail_top_right').html(inputMoney);
-				investDetails.inputEvent();
-				investDetails.getUser();
+				investDetails.getUser(res.content.cleanTime,res.content.lastAccount);
 			}
 		},function(){
 			console.log("请求失败");
@@ -79,18 +56,65 @@ var investDetails = {
 			console.log("请求失败");
 		});
 	},
-	getUser : function(){
-		// 是否登录
-		var balanceMoney = '';
+	getUser : function(cleanTime,lastMoney){
+		// 已登录
 		_apiUser.getUserCon(function(res){
-			balanceMoney = res.content.usableFund;
-			$(".balance").html(balanceMoney).attr("money",balanceMoney);
-		},function(){
-			console.log('请求失败');
+			inputMoney = _td.renderHtml(moneyInp,{
+				content:res.content,
+			});
+			$('.detail_top_right').html(inputMoney);
+			if((lastMoney*1) < 100){
+				var str = "本项目剩余可投"+lastMoney+"元";
+				$(".sub_money").attr("placeholder",str);
+			};
+			if(cleanTime == true){
+				investDetails.clearing(cleanTime);
+				return false;
+			}else{
+				$("#sub_btn").attr("class","sub_btn").val("实付0.00元，立即投资");
+			}
+
+		},function(err){
+			// 未登录
+			if(err.code == 100105){
+				logOutHtml = _td.renderHtml(logOut,{
+					content:err.content,
+				});
+				$('.detail_top_right').html(logOutHtml);
+			}
 		});
 	},
 	getDiscount : function(){
 		// 获取优惠券
+		_operation.getDiscount(function(res){
+			if(res.content != ""){
+				layer.open({
+					type: 1,
+					title:'',
+					skin: '',
+					closeBtn:0,
+					area:['635px','485px'],
+					content: $('#discount_show')
+				});
+				discountHtml = _td.renderHtml(discounts,{
+					content:res.content,
+				});
+				$('.discount_con').html(discountHtml);
+				$(".disValTxt").each(function(i){
+					if($(this).attr("data") == 1){
+						$(this).html("抵用券");
+						$(this).parent("p").find($(".disValUnit")).html("￥");
+					}else{
+						$(this).html("年利率加息");
+					}
+				});
+			}else{
+				$(".inp_disc").val("当前没有可用优惠券").addClass("no_ticket").parent($("#ticket")).removeClass('add_ticket').off("click");
+				$(".disHint").hide();
+			}
+		},function(){
+			console.log("请求失败");
+		});
 	},
 	inputEvent : function(){
 		var _this = this;
@@ -145,37 +169,33 @@ var investDetails = {
 		$(document).on("click",".sub_btn",function(){
 			 _this.subBtnClick();
 		});
-		$(".add_ticket").on("click",function(){
+		$(document).on("click",".add_ticket",function(){
 			_this.yhQuan();
 		});
 		$(".iskonw,.rclose").on("click",function(){
 			layer.closeAll();
 		});
 		// 优惠券弹窗选择
-		$(".ul_select li").on("click",function(){
-			var clas = $(this).attr("class");
+		$(document).on("click",".ul_select li",function(){
 			var sel = '<b class="select_b"></b>';
-			if(clas != "yhq_no"){
-				var datas = $(this).attr('data');
-				$(".ul_select li .select_b").remove();
-				$(this).append(sel);
-				$(".yes").addClass("add_quan");
-				$(".yes").attr("data",datas);
-			}
+			var datas = $(this).attr('data');
+			$(".ul_select li .select_b").remove();
+			$(this).append(sel);
+			$(".yes").addClass("add_quan");
+			$(".yes").attr("data",datas);
 		});
 		$(document).on("click",".discount_bot .add_quan",function(){
 			var dat = $(this).attr("data");
 			var a = $(".sub_money");
 			var d = $(".inp_ticket").val();
-			$(".p_ticket").html(dat).css('color','#333');
-			$(".inp_ticket").val(dat);
+			$(".inp_ticket,.inp_disc").val(dat).css("color","#333");
 			$(this).removeClass("add_quan");
 			layer.closeAll();
 			var b = Math.floor((a.val()*0.09/12)*100)/100;
 			var e = Math.floor((a.val()*0.09/12)*100)/100;
 			$(".predict_money").html(b +"+"+e);
 		});
-		$(".discount_bot .no").on("click",function(){
+		$(document).on("click",".discount_bot .no",function(){
 			$(".ul_select li .select_b").remove();
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
@@ -232,7 +252,6 @@ var investDetails = {
 	focus : function(obj){
 		$('.all-errinfo').html('');
 		$('input').removeClass('focus-input');
-		// $('input').removeClass('err-input');
 		$(obj).addClass('focus-input');
 
 	},
@@ -254,7 +273,7 @@ var investDetails = {
 			}
 		}else{
 			formError.hide(el);
-		}
+		};
 	},
 	// 输入金额验证
 	moneydate : function(value, type){
@@ -263,7 +282,6 @@ var investDetails = {
 	    var value = $.trim(value);
 		// 小于100
 		if(lm < 100){
-			// 小于500
 			if('minMoneys' === type){
 				return  value < lm;
 			}
@@ -369,8 +387,12 @@ var investDetails = {
 		return result;
 	},
 	QuanInit : function(){
-		$(".inp_ticket").val("");
-		$(".p_ticket").html("请选择优惠券").css('color','#9e9e9e');
+		if($(".add_ticket").length > 0){
+			return true;
+		}else{
+			$(".inp_disc").val("请选择优惠券").removeClass("no_ticket").parent($("#ticket")).addClass('add_ticket');
+			$(".disHint").show();
+		}
 	},
 	yhQuan : function(){
 		// 优惠券点击
@@ -379,23 +401,14 @@ var investDetails = {
 		if($(".sub_money").val() == ""){
 			formError.show($("#sub_money"), "选择优惠券前需要填写加入金额！");
 			$(".sub_money").focus();
-			// _inp.input_mess("选择优惠券前需要填写加入金额！",null,false);
-			// _inp.input_mess($(".sub_money"),true,$(".sub_money").parent(),"选择优惠券前需要填写加入金额！");
 			return false;
 		}else if($(".invest_money p").length <= 0){
+			investDetails.getDiscount();
 			$(".ul_select li").each(function(){
 				var vals = $(this).attr("data");
 				if(val == vals){
 					$(this).append(sel);
 				}
-			});
-			layer.open({
-				type: 1,
-				title:'',
-				skin: '',
-				closeBtn:0,
-				area:['635px','485px'],
-				content: $('#discount_show')
 			});
 		}
 	},
@@ -411,9 +424,6 @@ var investDetails = {
 		if(bool == true){
 			$(".clearing").html(cleHtml);
 			$("#sub_btn").attr("class","no_btn").val("存管清算时间，不能加入");
-		}else{
-			$(".clearing").html("");
-			$("#sub_btn").attr("class","sub_btn").val("实付0.00元，立即投资");
 		}
 	},
 	setData : function(res){
@@ -485,23 +495,11 @@ var investDetails = {
 			return times = y + m + d + h + f + s;
 		}
 	},
-	serBar : function(){
-		var totalM = $('.tranMoney').html();
-		var resM = $('.lastMoney').html();
-		var plan = Math.floor((totalM-resM)/totalM*100);
-		if(plan == 0){
-			plan=100;
-		}else{
-			plan = plan;
-		};
-		$(".bar").width(plan);
-		$(".barNum").html(plan);
-	},
 	setShow : function(cla){
 		var _this = $("." + cla);
 		// 加入进度
-		var totalM = _this.find('.totalMoney').html();
-		var resM =  _this.find('.resMoney').html();
+		var totalM = _this.find('.tranMoney').html();
+		var resM =  _this.find('.lastMoney').html();
 		var plan = Math.floor((totalM-resM)/totalM*100);
 		if(plan == 0){
 			plan=100;
@@ -509,7 +507,7 @@ var investDetails = {
 			plan = plan;
 		};
 		_this.find($(".bar")).width(plan);
-		_this.find($(".barNum")).html(plan + "%");
+		_this.find($(".barNum")).html(plan);
 		// 有无奖励
 		var awardStatus = _this.find('.award').attr("award");
 		if(awardStatus == 0){
@@ -586,8 +584,8 @@ var investDetails = {
 			$(".btn_empty").show();
 		} else {
 			$(".btn_empty").hide();
-		}
-	},
+		};
+	}
 };
 var formError = {
 	show : function(id,errMsg){

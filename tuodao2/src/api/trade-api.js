@@ -153,7 +153,22 @@ var _trade = {
 			error   : reject
 		});
 	},
-
+	// 获取散标详情 满标投资人数
+	getScatterFinis : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/scatterFin.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 获取精选计划 满标投资人数
+	getSiftFinis : function(resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('/siftFin.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
 	// 获取investList 债权转让
 	getInvestListBond : function(type,pagenum,pagesize,resolve, reject){
 		_td.request({

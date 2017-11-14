@@ -1,0 +1,13 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "investNum": "10",
+             "profit": "123.45",
+             "picker": "135****8486",
+             "maxEr": "135****8486",
+             "last_score": "5"
+      },
+      "success": true
+}

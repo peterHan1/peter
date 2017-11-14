@@ -18,27 +18,27 @@
                            "money": "1,000.00",
                            "addTime": "2017-11-08 10:33:24",
                            "type": 0,
+                           "first": true
+                    },
+                    {
+                           "mobile": "130****5678",
+                           "money": "1,000.00",
+                           "addTime": "2017-11-08 10:33:24",
+                           "type": 1,
                            "first": false
                     },
                     {
                            "mobile": "130****5678",
                            "money": "1,000.00",
                            "addTime": "2017-11-08 10:33:24",
-                           "type": 0,
+                           "type": 2,
                            "first": false
                     },
                     {
                            "mobile": "130****5678",
                            "money": "1,000.00",
                            "addTime": "2017-11-08 10:33:24",
-                           "type": 0,
-                           "first": false
-                    },
-                    {
-                           "mobile": "130****5678",
-                           "money": "1,000.00",
-                           "addTime": "2017-11-08 10:33:24",
-                           "type": 0,
+                           "type": 1,
                            "first": false
                     },
                     {

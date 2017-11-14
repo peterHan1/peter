@@ -1,7 +1,7 @@
 <ul class="list_sift">
 {{#list}}
 <li>
-	<a href="invest_detailSift.html?sift" class="full"></a> 
+	<a href="invest_detailSift.html?productId=666" class="full"></a> 
 	<div class="invest_list_title">
 		<p class="fl">{{productTitle}}</p>
 		<div class="fl type">
