@@ -91,14 +91,14 @@ var investDetails = {
 		_this.find($(".bar")).width(plan);
 		_this.find($(".barNum")).html(plan + "%");
 		// 有无奖励
-		var awardStatus = _this.find('.award').attr("award");
+		/*var awardStatus = _this.find('.award').attr("award");
 		if(awardStatus == 0){
 			_this.find('.award').remove();
 		}else if(awardStatus == 1){
 			$(".unit").html("元");
 		}else if(awardStatus == 2){
 			$(".unit").html("%");
-		}
+		}*/
 	},
 	getUser : function(lastMoney,cleanTime,defineType){
 		// 登录状态
@@ -191,6 +191,12 @@ var investDetails = {
 			_this.MoneyKeyUp($(this),lastMoney);
 			_this.QuanInit();
 		});
+		// 未登录input输入金额
+		$('.investting .outInp_money').keyup(function(){
+			var award = $(".award").attr("type");
+			var inputM = $(this).val()*1;
+			investDetails.earnings(inputM,award);
+		});
 		// 余额全投
 		$(".all_money").on("click",function(){
 			var lastMoney = $(".lastMoney").attr("money")*1;
@@ -229,30 +235,13 @@ var investDetails = {
 			location.reload();
 		});
 		// 优惠券弹窗选择
-		$(".ul_select li").on("click",function(){
-			var clas = $(this).attr("class");
-			var sel = '<b class="select_b"></b>';
-			if(clas != "yhq_no"){
-				var datas = $(this).attr('data');
-				$(".ul_select li .select_b").remove();
-				$(this).append(sel);
-				$(".yes").addClass("add_quan");
-				$(".yes").attr("data",datas);
-			}
+		$(document).on("click",".ul_select li",function(){
+			_this.disSelect($(this));
 		});
 		$(document).on("click",".discount_bot .add_quan",function(){
-			var dat = $(this).attr("data");
-			var a = $(".sub_money");
-			var d = $(".inp_ticket").val();
-			$(".p_ticket").html(dat).css('color','#333');
-			$(".inp_ticket").val(dat);
-			$(this).removeClass("add_quan");
-			layer.closeAll();
-			var b = Math.floor((a.val()*0.09/12)*100)/100;
-			var e = Math.floor((a.val()*0.09/12)*100)/100;
-			$(".predict_money").html(b +"+"+e);
+			_this.disBtn($(this));
 		});
-		$(".discount_bot .no").on("click",function(){
+		$(document).on("click",".discount_bot .no",function(){
 			$(".ul_select li .select_b").remove();
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
@@ -471,14 +460,15 @@ var investDetails = {
 	},
 	QuanInit : function(){
 		if($(".add_ticket").length > 0){
-			return true;
+			$(".inp_disc").val("请选择优惠券").css("color","#9e9e9e");
+			$(".inp_ticket").val("");
 		}else{
 			$(".inp_disc").val("请选择优惠券").removeClass("no_ticket").parent($("#ticket")).addClass('add_ticket');
 			$(".disHint").show();
 		}
 	},
 	yhQuan : function(){
-		// 优惠券点击
+	// 优惠券点击
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
 		if($(".sub_money").val() == ""){
@@ -488,12 +478,82 @@ var investDetails = {
 		}else if($(".invest_money p").length <= 0){
 			investDetails.getDiscount();
 			$(".ul_select li").each(function(){
-				var vals = $(this).attr("data");
+				var vals = $(this).attr("id");
 				if(val == vals){
 					$(this).append(sel);
 				}
 			});
 		}
+	},
+	disSelect : function(el){
+		var sel = '<b class="select_b"></b>';
+		var quanId = el.attr('id');
+		var datas = el.attr('data');
+		var types = el.attr('type');
+		$(".ul_select li .select_b").remove();
+		el.append(sel);
+		$(".yes").addClass("add_quan");
+		$(".yes").attr("id",quanId);
+		$(".yes").attr("apr",datas);
+		$(".yes").attr("type",types);
+	},
+	disBtn : function(el){
+		var disId = el.attr("id");
+		var apr = el.attr("apr");
+		var types = el.attr("type");
+		if(types == 1){
+			types = " 元抵用券";
+			var disSpan = '<span>+'+apr+'</span>';
+			$(".predict_money span").remove();
+			$(".predict_money").append(disSpan);
+		}else{
+			types = "% 加息券";
+			var inputM = $(".sub_money").val()*1;
+			var addAward = '<span>+'+investDetails.MonthlyApr(inputM,apr)+'</span>';
+			$(".predict_money span").remove();
+			$(".predict_money").append(addAward);
+		}
+		$(".inp_disc").val(apr + types).css("color","#333");
+		$(".inp_ticket").val(disId);
+		el.removeClass("add_quan");
+		layer.closeAll();
+	},
+	// 收益算法
+	earnings : function(inputM,type){
+		if(type == 0){
+			// 无奖励
+			var apr = $(".borrowApr").html()*1;
+			var income = investDetails.MonthlyApr(inputM,apr);
+			$(".predict_money").html(income);
+		}else if(type == 1 || type == 2){
+			// 平台奖励
+			var awardType = $(".award").attr("type");
+			if(awardType == 2){
+				// 年化率
+				var apr = $(".borrowApr").html()*1;
+				var income = investDetails.MonthlyApr(inputM,apr);
+				// 奖励利息
+				var awardApr = $(".awardApr").html()*1;
+				var awardIncome = investDetails.MonthlyApr(inputM,awardApr);
+				if(awardIncome > 0){
+					$(".predict_money").html(income+"+"+awardIncome);
+				}else{
+					$(".predict_money").html(income);
+				}
+			}else if(awardType == 1){
+				// 奖励金额
+				var apr = $(".borrowApr").html()*1;
+				var income = investDetails.MonthlyApr(inputM,apr);
+				var awardApr = $(".awardApr").html()*1;
+				$(".predict_money").html(income +"+"+ awardApr);
+			}
+		}
+	},
+	// 按月付息
+	MonthlyApr : function(inputM,apr){
+		var period = $(".borrowPeriod").html()*1;
+		var awardIncome = (inputM*(apr/100)/12*period).toFixed(2);
+		return awardIncome;
 	},
 	mouseover : function(obj){
 		$('input').removeClass('hover-input');
@@ -578,31 +638,21 @@ var investDetails = {
 			return;
 		}
 		$amountInput.val($amountInput.val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
-		var a=ins;
-		// 最后根据算法优化
-		var b = Math.floor((a.val()*0.09/12)*100)/100;
-		// 有奖励
-		var flag = false;
-		var c = 6;
 		if(ins.val() != ""){
 			$(".btn_empty").show();
 		}else{
 			$(".btn_empty").hide();
 		};
-		if(flag == true && quan == true){
-			$(".predict_money").html(b +"+"+ c +"+"+ d);
-		}else if(flag == true ){
-			$(".predict_money").html(b +"+"+c);
-		}else{
-			$(".predict_money").html(b);
-		}
-		var m = a.val().replace(/\d(?=(\d{3})+$)/g,'$&,');
+		var m = ins.val().replace(/\d(?=(\d{3})+$)/g,'$&,');
 		if(m == ""){
 			$(".sub_btn").val("实付0.00元，立即投资");
 			$(".predict_money").html("0.00");
 		}else{
 			$(".sub_btn").val("实付"+m+"元，立即投资");
 		};
+		var award = $(".award").attr("type");
+		var inputM = $(".sub_money").val()*1;
+		investDetails.earnings(inputM,award);
 	},
 	overFormat :function(th){
 		if(th.val() != ""){

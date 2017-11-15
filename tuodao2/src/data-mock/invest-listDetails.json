@@ -7,7 +7,7 @@
              "productTitle": "马自达昂克赛拉抵押标",
              "defineType": 1,
              "defineTypeText": "标的类型描述（‘只限新手投资’）",
-             "imgUrl": "标的类型图片地址",
+             "imgUrl": "http://72.127.2.42:3000/image/invest/exclusive.png",
              "borrowType": "标的类型 0 天标 1 月标",
              "borrowApr": "9",
              "awardType": "2",

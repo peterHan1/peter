@@ -80,8 +80,8 @@
 	@extend %clearfix;
 	color: #ffffff;
 	li{
-		width: 215px;
-		padding: 8px 36px;
+		width: 225px;
+		padding: 8px 31px;
 		height: 160px;
 		float: left;
 		font-size: $fontSize12;
@@ -96,29 +96,13 @@
 		}
 		.ticket_top{
 			font-size: 22px;
-			padding-bottom: 10px;
 			span{
 				font-size: 48px;
 				font-family: 'Britannic';
 			}
 		}
 		.ticket_middle{
-			// padding-bottom: 5px;
-		}
-		.ticket_bottom{
-			position: relative;
-			img{
-				position: absolute;
-				right: -9px;
-				top: -3px;
-				height: 27px;
-				border-radius: 15px;
-				display: none;
-			}
-			span{
-				display: inline-block;
-				margin-top: 5px;
-			}
+			margin: 10px 0 5px 0;
 		}
 	}
 }

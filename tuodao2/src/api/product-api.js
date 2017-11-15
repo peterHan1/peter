@@ -22,6 +22,24 @@ var _product = {
 			success : resolve,
 			error   : reject
 		});
+	},
+	// 获取散标tab项目详情
+	getFrontBorrowExpand : function(resolve, reject){
+		_td.request({
+			method	: "get",
+			url     : _td.getServerUrl('/getFrontBorrowExpand.json'),
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 获取散标tab审核资料
+	getPicListByPcode : function(resolve, reject){
+		_td.request({
+			method	: "get",
+			url     : _td.getServerUrl('/getPicListByPcode.json'),
+			success : resolve,
+			error   : reject
+		});
 	}
 };
 module.exports = _product;

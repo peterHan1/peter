@@ -32,9 +32,9 @@
 					<i class="iconfont wen">&#xe68d;</i><b></b></div>
 					<p class="zhye">可提现余额&nbsp;&nbsp;<i class="iconfont wen">&#xe68d;</i><b></b></p>
 					<p class="number_show"><span class="money_number"></span>&nbsp;<span>元</span></p>
-					<p class="wrongs dis_none"></p>
-					<div class="money"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入提现金额，不得少于100元" class="money_input1"><span class="font">元</span></div>
-					<div class="password"><input type="password" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入支付密码" class="pass_input"><span class="font"><a href="">忘记密码</a></span></div>
+					<p class="wrongs"></p>
+					<div class="money"><input type="text" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]" placeholder="请输入提现金额，不得少于100元" class="money_input1" id="cashMoney"><span class="font">元</span></div>
+					<div class="password"><input type="password" maxlength="6" id="pwd" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入支付密码" class="pass_input"><span class="font"><a href="setpay.html">忘记密码</a></span></div>
 					<p class="sj_money"><span class="sjdz">实际到账：<b>0.00</b> 元</span><span class="sxf">手续费：<b>0.00</b> 元</span></p>
 					<input type="submit" class="btn" value="申请提现，预计次日 9 点到账">
 					<p class="tx_times">您本月还有<span> 6 </span>次免费提现次数</p>
@@ -87,8 +87,7 @@
 						<th class="bq">安存</th>
 					</tr>
 				</thead>
-					<tbody class="cashlist">
-					</tbody>
+					<tbody class="cashlist"></tbody>
 			</table>
 			<div class="pageList"></div>
 			<div class="no_data dis_none">

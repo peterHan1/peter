@@ -13,7 +13,7 @@ var friend = {
 			if(true){
 				window.open('uc_invite.html','_self');
 			}else{
-				window.location.href='userlogin.html';
+				window.open('userlogin.html');
 			}
 		})
 	}

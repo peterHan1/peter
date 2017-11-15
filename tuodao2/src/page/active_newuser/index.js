@@ -36,10 +36,16 @@ var formError = {
 
 };
 
+var headerData = {
+	accessId: _td.getAccess('accessId'),
+	accessKey: _td.getAccess('accessKey')
+};
+
 var DepositInfoNew = {
 	init: function() {
 		this.bindEvent();
 		this.load();
+		this.btnHover();
 		this.inputDel();
 		this.passwordCut();
 		this.tsShow();
@@ -127,10 +133,6 @@ var DepositInfoNew = {
 				reservationMobile: $.trim($('#mobile').val()),
 				payPassword: $.trim($('#pwd').val()),
 			},
-			headerData = {
-				accessId: _td.getAccess('accessId'),
-				accessKey: _td.getAccess('accessKey')
-			};
 		// 表单验证结果
 		validateResult = this.formValidate(formData);
 		// 验证成功
@@ -140,9 +142,11 @@ var DepositInfoNew = {
 				$(".success_box").show();
 				$(".main").hide();
 				_this.countTime();
-			}, function(errMsg) {
-				$(".wait_box").show();
-				$(".main").hide();
+			}, function(err) {
+				if (err.code == 170020) {
+					$(".wait_box").show();
+					$(".main").hide();
+				}
 			});
 		}
 		// 验证失败
@@ -192,10 +196,6 @@ var DepositInfoNew = {
 		return result;
 	},
 	load: function() {
-		var headerData = {
-			accessId: _td.getAccess('accessId'),
-			accessKey: _td.getAccess('accessKey')
-		};
 		_user.getUserDepositInfo(headerData, function(res) {
 			// 存管存量用户状态
 			if (res.isOpenDeposit == 1 || res.isOpenDeposit == 2) {
@@ -214,9 +214,12 @@ var DepositInfoNew = {
 			} else {
 				return;
 			}
-		}, function(errMsg) {
-			console.log(errMsg);
+		}, function(err) {
+			console.log(err);
 		});
+	},
+	btnHover: function() {
+		_hover.btnHover(".btn");
 	},
 	// input框输入时删除文本按钮
 	inputDel: function() {
@@ -262,7 +265,7 @@ var DepositInfoNew = {
 		}, 1000);
 	},
 	bankShow: function() {
-		// 银行卡号失去焦点验证
+		// 银行卡输入中下方显示大数字
 		$(".bank_num input").on("blur", function() {
 			$(".big_font").hide();
 		});

@@ -98,5 +98,54 @@
 </div>
 <%= require('html-loader!./layout/footer_nav.html') %>
 <%= require('html-loader!./layout/footer.html') %>
+
+<div id="points_gzh" class="points_alert points_gzh dis_none">
+	<div class="order_err"><p><i class="iconfont" style="font-size: 20px;vertical-align: top;">&#xe671;</i>&nbsp;您输入的口令有误，请重新输入！</p></div>
+	<div class="content">
+	<img src="<%= require('../image/welfare/wx_img.png') %>" alt="">
+		<ul>
+			<li style="padding-top:5px;">1.微信扫一扫关注公众号“拓道金服”</li>
+			<li>2.在微信输入文字“口令”并发送</li>
+			<li style="margin-bottom:15px;">3.获取微信返回的口令并提交</li>
+			<li><span class="iconfont">&#xe672;</span><input type="text" placeholder="请输入公众号回复的口令"></li>
+		</ul>
+		<div class="submit_btn">
+			<input class="submits" type="submit" value="提交">
+			<input type="button" value="取消" class="cancel">
+		</div>
+	</div>
+	<div class="center">
+		<img src="<%= require('../image/end.png') %>" alt=""><br />
+		<span>口令验证成功，获得80积分！</span><br />
+		<button class="i_know">我知道了</button>
+	</div>
+</div>
+<div class="points_alert first_login dis_none" id="points_login">
+	<div class="content">
+		<img src="<%= require('../image/welfare/app_img.png') %>" alt="">
+		<ul>
+			<li style="padding-top:20px;">1.扫一扫下载拓道金服APP</li>
+			<li>2.登录拓道金服APP</li>
+			<li>3.登录后自动获取40积分</li>
+		</ul>
+		<div style="margin-top:170px;"><button class="i_know">我知道了</button></div>
+	</div>
+	<div class="center">
+		<img src="<%= require('../image/end.png') %>" alt=""><br />
+		<span>您已完成该任务！</span><br />
+		<button class="i_know">我知道了</button>
+	</div>
+</div>
+<div class="points_alert app_invest dis_none" id="points_invest">
+	<div class="title">每次APP端手动投资后都可以获得1积分！</div>
+	<div class="content">
+		<img src="<%= require('../image/welfare/app_img.png') %>" alt="">
+		<ul>
+			<li style="padding-top:30px;">1.扫一扫下载拓道金服APP</li>
+			<li>2.每次APP端手动投资后都可以获得<br />1积分！</li>
+		</ul>
+	</div>
+	<button class="i_know">我知道了</button>
+</div>
 </body>
 </html>

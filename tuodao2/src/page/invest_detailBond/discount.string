@@ -1,8 +1,13 @@
 <div class="discount_txt">单笔投资债权转让只能使用1张加息券（债权转让项目不可使用抵用券）。</div>
 <ul class="ul_select">
 {{#content}}
-	<li class="coupon{{discountType}}" data="1%加息券" id="{{id}}">
-		<p class="p_txt"><b class="disValUnit"></b><span class="disVal">{{discountAvailable}}</span> <b class="disValTxt" data="{{discountType}}"></b></p>
+	<li class="coupon{{discountType}}" data="{{discountAvailable}}" type="{{discountType}}" id="{{id}}">
+		<p class="p_txt">
+			<b class="disValUnit"></b>
+			<span class="disVal">{{discountAvailable}}</span>
+			<b class="disValUnits"></b>
+			<b class="disValTxt" type="{{discountType}}"></b>
+		</p>
 		<p>{{discountTitle}}</p>
 		<p><span>{{effectDate}}</span>-<span>{{invalidDate}}</span></p>
 		<p>{{source}}</p>

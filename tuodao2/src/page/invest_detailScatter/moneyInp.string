@@ -11,10 +11,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="com_styl invest_money" >
-	<!-- 标的可投余额小于起投金额500元时 -->
-		<!-- <input type="text" placeholder="本项目剩余可投499元"> -->
-		
+	<div class="com_styl invest_money" >	
 		<input type="text" placeholder="500元起投，单笔限额50万元" class="com_inp sub_money" id="sub_money">
 		<i class="iconfont btn_empty">&#xe68b;</i>
 		<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
@@ -28,9 +25,6 @@
 		<input type="password" placeholder="请输入支付密码" class="com_inp sub_psw" id="sub_psw">
 		<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
 	</div>
-	<!-- <div class="com_styl input_pwd" >
-		<input type="password" placeholder="请输入约标密码" class="yue_psw">
-	</div> -->
 	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
 	<div class="input_sub">
 		<!-- 倒计时 -->
@@ -38,10 +32,6 @@
 
 		<!-- 正常投标按钮 -->
 		<input type="submit" id="sub_btn" value="实付0.00元，立即加入" class="">
-
-		<!-- 新手专享按钮 -->
-		<!-- <input type="submit" value="新手专享，非新手不能加入" class="no_btn"> -->
-		
 	</div>
 	<div class="agreement" id="protocol">
 		<div>

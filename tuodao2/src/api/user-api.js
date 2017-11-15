@@ -76,7 +76,7 @@ var _user = {
 			data    : {
 				mobile: value
 			},
-			asyncType	: false,
+			asyncType: false,
 			success : resolve,
 			error   : reject
 		});

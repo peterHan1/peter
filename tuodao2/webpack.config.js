@@ -148,7 +148,7 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_autoDetails','自动投标')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invest_return','回款日历')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','消息中心')),
-		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户中心')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_accountCenter','账户设置')),
 		new HtmlWebpackPlugin(getHtmlConfig('calc','计算器')),
 		new HtmlWebpackPlugin(getHtmlConfig('help','帮助中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_points_gold','积分和金币')),

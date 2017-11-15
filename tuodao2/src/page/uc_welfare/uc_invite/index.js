@@ -3,36 +3,27 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/uc-menu/index.js');
 require('page/common/uc-menu/index.scss');
-require('util/paging/page.scss');
-require('util/paging/page.js');
-require('util/layer/layer.js');
-require('util/layer/layer.scss');
-// 得到总页数
-$(".zxf_pagediv").createPage({
-	// 页数
-	pageNum: 100,
-	// 当前页
-	current: 1,
-	// 显示条数
-	shownum: 6,
-	backfun: function(e) {
-		// $("#data-container").html(thisDate(e.current));
-	}
-});
+require('util/layer/index.js');
+
+var _paging = require('util/paging/index.js');
 var _td = require('util/td.js');
 var _apiInvite = require('api/operationCenter-api.js');
 var record = require('./invite_record.string');
 var invites = {
-	init:function(){
+	init : function(){
 		this.getInviteRecord();
 		this.tabCut();
 		this.hoverEvent();
 		this.getLink('.copy_link');
 		this.getCode();
-		// this.getUserDepository();
+		this.getUserDepository();
+	},
+	headerData : {
+		accessId : _td.getAccess('accessId'),
+		accessKey : _td.getAccess('accessKey')
 	},
 	// table隔行变色
-	changeColor:function(obj){
+	changeColor : function(obj){
 		$.each($(obj+' tr'),function(i){
 			if(i%2!=0){
 				$(obj+' tr').eq(i).css('background','#FBFBFB');
@@ -40,7 +31,7 @@ var invites = {
 		})
 	},
 	// 控制welfare_content的高与左侧菜单栏高度相同
-	elHeight:function (){
+	HeightAuto : function (){
 		$('.uc_menu').height('auto');
 		$('.uc_menu').siblings('div').height('auto');
 		var hL = $('.uc_menu')[0].clientHeight;
@@ -54,57 +45,61 @@ var invites = {
 		}
 	},
 	// 邀请好友、记录切换
-	tabCut:function(){
+	tabCut : function(){
 		$('.invite_menu a').on("click",function(event){
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
 			var index=$(this).index();
 			$('.invite_content').children().eq(index).show().siblings().hide();
-			invites.elHeight();
+			invites.HeightAuto();
 		})
 	},
+	numberAdd : function(str){
+		return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+	},
 	// 用户存管是否激活
-	getUserDepository:function(){
-		console.log('chenggong');
-		_apiInvite.getUserDepository(function(res){
+	getUserDepository : function(){
+		_apiInvite.getMemberInfo(invites.headerData,function(res){
 			$('.depository_yes').show();
 			$('.depository_yes_menu').show();
-			invites.getLev();
-			invites.elHeight();
+			invites.getFinancialPlanner();
+			// $('.mypoints1 .pointsNum').html(invites.numberAdd(res.content.returnAmount));
+			// $('.mypoints2 .pointsNum').html(invites.numberAdd(res.content.returnDyqAmount));
+			invites.HeightAuto();
 		},function(){
+			console.log('请求失败');
 			$('.depository_no').show();
 			$('.depository_no_menu').show();
-			invites.elHeight();
-			console.log('请求失败');
+			invites.HeightAuto();
 		});
 	},
 	// 用户理财师等级信息
-	getLev:function(){
-		_apiInvite.getLev(function(res){
-			if(res.content.currentLevel=='初级理财师'){
-				$('.invite_nav .lev_bg').css('background',"url('../../../image/welfare/lev_01.png')no-repeat");
+	getFinancialPlanner : function(){
+		_apiInvite.getFinancialPlanner(invites.headerData,function(res){
+			if(res.content.currentLevelName=='初级理财师'){
+				$('.invite_nav .lev_bg').addClass('lev01');
 			}else if(res.content.currentLevel=='中级理财师'){
-				$('.invite_nav .lev_bg').css('background',"url('../../../image/welfare/lev_02.png')no-repeat");
+				$('.invite_nav .lev_bg').addClass('lev02');
 			}else{
-				$('.invite_nav .lev_bg').css('background',"url('../../../image/welfare/lev_03.png')no-repeat");
+				$('.invite_nav .lev_bg').addClass('lev03');
 			}
-			$('.invite_nav .lev_name').html(res.content.currentLevel);
-			$('.invite_nav .distance').html(res.content.differV1Count+'，'+res.content.differDueInFundTotal);
+			$('.invite_nav .lev_name').html(res.content.currentLevelName);
+			$('.invite_nav .distance').html('距'+res.content.upLevelName+'还差'+res.content.differV1Count+'个V1好友，'+res.content.differDueInFundTotal+'分总待收');
 		},function(){
 			console.log('请求失败');
 		});
 	},
 	// 链接按钮的hover效果
-	hoverEvent:function(){
+	hoverEvent : function(){
 		$('.copy').on({
-			mouseover:function(){
+			mouseover : function(){
 				$(this).css({background:'#ff7400',color:'#ffffff'});
 			},
-			mouseout:function(){
+			mouseout : function(){
 				$(this).css({background:'#ffffff',color:'#ff7400'});
 			}
 		});
 	},
-	copyEvent:function(copyValue){
+	copyEvent : function(copyValue){
 		// 动态创建 input 元素
 	  	var aux = document.createElement("input");
 	  	// 获得需要复制的内容
@@ -122,10 +117,10 @@ var invites = {
 	  	document.body.removeChild(aux);
 	},
 	// 复制邀请链接地址
-	getLink:function(obj){
+	getLink : function(obj){
 		var time='';
 		var linkValue='';
-		_apiInvite.getLink(function(res){
+		_apiInvite.getLink(invites.headerData,function(res){
 			console.log(res.content);
 			linkValue=res.content;
 		},function(){
@@ -182,11 +177,11 @@ var invites = {
 		});
 	},
 	// 复制邀请码
-	getCode:function(){
+	getCode : function(){
 		var time='';
 		var linkValue='';
-		_apiInvite.getCode(function(res){
-			linkValue=res.content.invitCode;
+		_apiInvite.getCode(invites.headerData,function(res){
+			linkValue=res.content.inviteCode;
 		},function(){
 			console.log('请求失败');
 		})
@@ -212,9 +207,20 @@ var invites = {
 			},2000);
 		});
 	},
+	paging : function(pages,pageNum,pageSize,backFuntion){
+		$(".zxf_pagediv").createPage({
+			// 页数 pages
+			pageNum: pages,
+			// 当前页 pageNum
+			current: pageNum,
+			// 显示条数 pageSize
+			shownum: pageSize,
+			backfun: backFuntion
+		});
+	},
 	// 邀请记录
-	getInviteRecord:function(){
-		_apiInvite.getInviteRecord(1,20,function(res){
+	getInviteRecord : function(){
+		_apiInvite.getInviteRecord(invites.headerData,1,20,function(res){
 			if(res.content.list.length==0){
 				$('.invite_record').children().eq(1).show().siblings().hide();
 				return false;
@@ -224,7 +230,7 @@ var invites = {
 				});
 				$('._invite_record_table').html(bannerHtml);
 				invites.changeColor('.invite_table');
-				_apiInvite.paging(res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_paging.paging('pageList',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
 					_apiInvite.getInviteRecord(e.current,20,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,

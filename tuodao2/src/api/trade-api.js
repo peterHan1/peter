@@ -3,7 +3,7 @@ var _td = require('util/td.js');
 // 交易中心
 var _trade = {
 	// 获取网银列表
-	bankList: function(headerData,headerData,resolve, reject) {
+	bankList: function(headerData,resolve, reject) {
 		_td.request({
 			method: 'post',
 			url: _td.getServerUrl('api/router/recharge/bankList'),
@@ -44,8 +44,8 @@ var _trade = {
 			accessId:headerData.accessId,
 			accessKey:headerData.accessKey,
 			data: {
-				currentPage: 1 || pagenum,
-				pageSize: 10 || pagesize
+				currentPage:pagenum,
+				pageSize:pagesize
 			},
 			success: resolve,
 			error: reject
@@ -115,16 +115,13 @@ var _trade = {
 		});
 	},
 	// 分页查询资金记录列表
-	moneyRecord :  function(headerData,pagenum, pagesize,resolve,reject){
+	moneyRecord :  function(headerData,data,resolve,reject){
 		_td.request({
 			method	: 'post',
 			url     : _td.getServerUrl('api/router/tc/account/account_log_list'),
 			accessId:headerData.accessId,
 			accessKey:headerData.accessKey,
-			data: {
-				currentPage: 1 || pagenum,
-				pageSize: 10 || pagesize
-			},
+			data: data,
 			success : resolve,
 			error   : reject
 		});

@@ -1,9 +1,9 @@
 {{#list}}
 <tr>
-	<td>2017-05-08  14:09:00</td>
-	<td>投资</td>
-	<td>100.00</td>
-	<td>100.00</td>
-	<td class="last"><i class="iconfont">&#xe670;</i></td>
+	<td>{{transactionTime}}</td>
+	<td>{{typeName}}</td>
+	<td>{{account}}</td>
+	<td>{{balance}}</td>
+	<td class="last"><div class='bz_tips top-tips'>{{remarks}}<span class=b></span><span class=t></span></div><i class="iconfont">&#xe670;</i></td>
 </tr>
 {{/list}}

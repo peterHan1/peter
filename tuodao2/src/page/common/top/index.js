@@ -9,7 +9,7 @@ var _apiUser 	= require('api/user-api.js');
 var navPage = {
 	init : function(){
 		this.bindEvent();
-		this.loadUserInfo();
+		// this.loadUserInfo();
 		return this;
 	},
 	bindEvent : function(){
@@ -22,19 +22,19 @@ var navPage = {
 	},
 	// 加载用户信息
 	loadUserInfo : function(){
-		var a = _td.getAccess('accessId');
-		var b = _td.getAccess('accessKey');
-		var headerData = {
-			'accessId' : a,
-			'accessKey' :b
-		};
+		// var a = _td.getAccess('accessId');
+		// var b = _td.getAccess('accessKey');
+		// var headerData = {
+		// 	'accessId' : a,
+		// 	'accessKey' :b
+		// };
 		// console.log(a+'top');
-		_apiUser.checkLogin(headerData,function(res){
-			console.log(res);
-		}, function(errMsg){
-			console.log(errMsg);
-		// do nothing
-		});
+		// _apiUser.checkLogin(headerData,function(res){
+		// 	// console.log(res);
+		// }, function(errMsg){
+		// 	console.log(errMsg.code);
+		// // do nothing
+		// });
 	},
 };
 

@@ -1,0 +1,46 @@
+<ul>
+{{#content}}
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="身份证">
+		</a>
+		<p>身份证正面</p>
+		<b class='magnify'></b>
+	</li>
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="行驶证">
+		</a>
+		<p>行驶证</p>
+		<b class='magnify'></b>
+	</li>
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="仪表盘">
+		</a>
+		<p>仪表盘</p>
+		<b class='magnify'></b>
+	</li>
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="车辆正面">
+		</a>
+		<p>车辆正面</p>
+		<b class='magnify'></b>
+	</li>
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png"  alt="车辆背面">
+		</a>
+		<p>车辆背面</p>
+		<b class='magnify'></b>
+	</li>
+	<li>
+		<a class="fancybox" href="http://72.127.2.42:3000/image/car.png" data-fancybox-group="gallery">
+			<img class="lazy" src="http://72.127.2.42:3000/image/car.png" alt="车钥匙">
+		</a>
+		<p>车钥匙</p>
+		<b class='magnify'></b>
+	</li>
+{{/content}}	
+</ul>	

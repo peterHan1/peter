@@ -10,7 +10,7 @@
 	<div class="major">
 		<dl class="expect">
 			<dt>
-				<span>{{borrowApr}}</span>%<i class="award" award="{{awardType}}">+{{awardAmount}}<b class="unit"></b></i>
+				<span class="borrowApr">{{borrowApr}}</span>%<span class="award" type="2" >+<b class="awardApr">2</b><i class="awardUnit">%</i></span>
 			</dt>
 			<dd>
 				预期年化
@@ -18,7 +18,7 @@
 		</dl>
 		<dl class="date">
 			<dt>
-				<span>{{productPeriod}}</span><span>{{periodUnit}}</span>
+				<span class="borrowPeriod">{{productPeriod}}</span><span>{{periodUnit}}</span>
 			</dt>
 			<dd>
 				投资期限

@@ -1,30 +1,13 @@
 require('page/common/uc-menu/index.js');
 require("./uc_messageCenter.scss");
-require('util/paging/page.scss');
-require('util/paging/page.js');
+require('util/paging/index.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
 var messageCenter = {
 	init: function() {
-		this.page();
 		this.toggle();
 		this.readButton();
-	},
-	// 分页
-	page: function() {
-		$(".zxf_pagediv").createPage({
-			// 页数
-			pageNum: 10,
-			// 当前页
-			current: 1,
-			// 显示条数
-			shownum: 10,
-			backfun: function(e) {
-				console.log(e.current);
-				// $("#data-container").html(thisDate(e.current));
-			}
-		});
 	},
 	// 消息列表点击展开关闭
 	toggle: function() {

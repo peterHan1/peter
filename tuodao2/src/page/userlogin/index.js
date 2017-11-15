@@ -32,6 +32,11 @@ var formError = {
 };
 
 var slider;
+var result = {
+	status: false,
+	id: false,
+	msg: ''
+};
 // 登录页逻辑部分
 var loginPage = {
 	// 初始化
@@ -55,9 +60,9 @@ var loginPage = {
 			if ($('#mobile').val().length >= 11) {
 				_this.blur();
 			} else {
-				if ($('#mobile').val().length > 0) {
-					_this.blur();
-				}
+				// if ($('#mobile').val().length > 0) {
+				// 	_this.blur();
+				// }
 				formError.hide();
 			}
 		});
@@ -89,7 +94,7 @@ var loginPage = {
 			},
 			// 表单验证结果
 			validateResult = this.formValidate(formData);
-		// console.log(validateResult);
+			console.log(validateResult);
 		if (validateResult.status && slider == true) {
 			// console.log(validateResult.msg + 'ooo');
 			formError.hide();
@@ -130,9 +135,9 @@ var loginPage = {
 				_td.setAccess(cookie);
 				window.location.href = _td.getUrlParam('redirect') || './index.html';
 				// return false;
-			}, function(errMsg) {
+			}, function(err) {
 				// console.log(errMsg);
-				formError.allShow(errMsg);
+				formError.allShow(err.msg);
 			});
 		}
 		// 验证失败
@@ -173,14 +178,11 @@ var loginPage = {
 	},
 	// 表单验证
 	formValidate: function(formData) {
-		var result = {
-			status: false,
-			id: false,
-			msg: ''
-		};
 		if (!_td.validate(formData.mobile, 'mobile')) {
+			console.log(111111);
 			result.msg = '手机号必须由11位纯数字组成';
 			result.id = 'mobile';
+			result.status = false;
 			return result;
 		} else {
 			_apiUser.checkPhone(formData.mobile, function(res) {
@@ -188,7 +190,6 @@ var loginPage = {
 					result.msg = '该手机号尚未注册拓道金服！';
 					result.id = 'mobile';
 					result.status = false;
-					return result;
 				} else {
 					if (!_td.validate(formData.loginPassword, 'require')) {
 						return result;
@@ -202,27 +203,6 @@ var loginPage = {
 			});
 		}
 		return result;
-		// if (!_td.validate(formData.mobile, 'mobile')) {
-		// 	result.msg = '手机号必须由11位纯数字组成';
-		// 	result.id = 'mobile';
-		// 	return result;
-		// }
-		// _apiUser.checkPhone(formData.mobile, function(res) {
-		// 	if (res.content == false) {
-		// 		result.msg = '该手机号尚未注册拓道金服！';
-		// 		result.id = 'mobile';
-		// 		result.status = false;
-		// 		return result;
-		// 	}
-		// });
-		// if (!_td.validate(formData.loginPassword, 'require')) {
-		// 			return result;
-		// 		}
-		// // 通过验证，返回正确提示
-		// result.status = true;
-		// result.id = true;
-		// result.msg = '验证通过';
-		// return result;
 	}
 };
 

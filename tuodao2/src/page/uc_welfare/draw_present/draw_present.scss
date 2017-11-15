@@ -163,9 +163,10 @@
 // 抽奖记录弹窗
 .draw_record_alert{
 	font-size: 14px;
+	padding-bottom: 30px;
 	.out{
 		padding: 0 26px;
-		div.zxf_pagediv{
+		div.pageList{
 			padding-top: 20px;
 			margin-bottom: 0px;
 		}
@@ -232,7 +233,7 @@
 	}
 	.draw_btn{
 		text-align: center;
-		padding-top: 30px;
+		padding-top: 50px;
 		button{
 			width: 250px;
 			@include height-line(40px);

@@ -12,7 +12,7 @@
 	<div class="welfare">
 		<%= require('html-loader!./layout/uc_menu.html') %>
 		<div class="welfare_content">
-			<div class="depository_no">
+			<div class="depository_no dis_none">
 				<div class="depository_top">马上激活存管，邀请好友抢福利</div>
 				<div class="depository">
 					<img src="<%= require('../image/popup.png') %>" height="48" width="363" alt=""><br />
@@ -20,7 +20,7 @@
 					<a href="active_newuser.html" class="invite_active">立即激活存管用户</a>
 				</div>
 			</div>
-			<div class="depository_yes">
+			<div class="depository_yes dis_none">
 				<div class="invite_nav">
 				<div class="lev_bg"></div>
 				<p class="lev_name">初级理财师</p>
@@ -56,7 +56,7 @@
 								<img src="<%= require('../image/welfare/invest_03.png') %>" height="90" width="81" alt=""><span>好友投资<br />立即获得奖励</span>
 							</li>
 						</ul>
-						<ol class="depository_yes_menu" style="display:block;">
+						<ol class="depository_yes_menu dis_none">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
@@ -254,7 +254,7 @@
 						<img src="<%= require('../image/no_data.png') %>" height="61" width="85" alt=""><br /><br />
 						<span>当前没有邀请记录</span>
 					</div>
-					<div class="zxf_pagediv page_show" onselectstart="return false" style="-moz-user-select:none;"></div>
+					<div class="pageList" onselectstart="return false" style="-moz-user-select:none;"></div>
 				</div>
 			</div>
 		</div>

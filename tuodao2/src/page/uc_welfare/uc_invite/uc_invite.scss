@@ -4,7 +4,6 @@
 	display: none;
 }
 .depository_no{
-	display: none;
 	.depository_top{
 		@include padding-border;
 		@include height-line(50px);
@@ -36,7 +35,6 @@
 	}
 }
 .depository_yes{
-	display: none;
 	.invite_nav{
 		height: 180px;
 		padding-top: 30px;
@@ -46,7 +44,15 @@
 			width: 77px;
 			height: 87px;
 			margin: auto;
+		}
+		.lev01{
 			background: url('../../../image/welfare/lev_01.png')no-repeat;
+		}
+		.lev02{
+			background: url('../../../image/welfare/lev_02.png')no-repeat;
+		}
+		.lev03{
+			background: url('../../../image/welfare/lev_03.png')no-repeat;
 		}
 		.lev_name{
 			font-size: 24px;

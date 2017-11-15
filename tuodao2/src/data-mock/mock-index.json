@@ -1,31 +1,29 @@
 {
     "code":100000, 
     "msg": "成功", 
-    "content": [
-            {
-                "order":1, 
-                "imgUrl": "/image/banner/banner1.png", 
-                "title": "A轮融资正式22", 
-                "linkUrl": "https://www.51tuodao.com/html5/app/nt_detail?id=1853&typeId=gonggao"
-            }, 
-            {
-                "order": 2, 
-                "imgUrl": "/image/banner/banner2.png", 
-                "title": "A轮融资正式", 
-                "linkUrl": "https://www.51tuodao.com/html5/app/nt_detail?id=1853&typeId=gonggao"
-            }, 
-            {
-                "order": 3, 
-                "imgUrl": "/image/banner/banner3.png", 
-                "title": "2016第4季度运营报告新app", 
-                "linkUrl": "http://e.eqxiu.com/s/XWgNVkcU?eqrcode=1&from=singlemessage&winzoom=1"
-            }, 
-            {
-                "order": 4, 
-                "imgUrl": "/image/banner/banner4.png", 
-                "title": "2016第4季度运营报告新app", 
-                "linkUrl": "http://e.eqxiu.com/s/XWgNVkcU?eqrcode=1&from=singlemessage&winzoom=1"
-            }
+    "content": 
+        [
+                {
+                    "imgUrl": "/image/banner/banner1.png", 
+                    "title": "A轮融资正式22", 
+                    "linkUrl": "/image/banner/banner1.png"
+                },
+                { 
+                    "imgUrl": "/image/banner/banner3.png", 
+                    "title": "2016第4季度运营报告新app", 
+                    "linkUrl": "/image/banner/banner2.png"
+                },
+                {
+                    "imgUrl": "/image/banner/banner1.png", 
+                    "title": "A轮融资正式22", 
+                    "linkUrl": "/image/banner/banner3.png"
+                },
+                {
+                    "imgUrl": "/image/banner/banner1.png", 
+                    "title": "A轮融资正式22", 
+                    "linkUrl": "image/banner/banner4.png"
+                }
+
         ]
-    }
+            
 }

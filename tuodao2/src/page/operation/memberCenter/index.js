@@ -75,6 +75,7 @@ option={
 myChart.setOption(option);
 
 $('#top ul li').eq(1).find('a').css('color','#ff7400');
+var _td = require('util/td.js');
 var _apiMember = require('api/operationCenter-api.js');
 var member = {
     init : function(){
@@ -82,12 +83,16 @@ var member = {
         this.spanMouserover();
         this.levImage(1);
     },
+    headerData : {
+        accessId : _td.getAccess('accessId'),
+        accessKey : _td.getAccess('accessKey')
+    },
     // 会员是否登录
     isLogin:function(){
         // 已登录
         $('.login_no').hide();
         $('.login_yes').show();
-        member.memberInfo();
+        member.getMemberInfo();
         // 未登录
         $('.login_yes').hide();
         $('.login_no').show();
@@ -95,30 +100,63 @@ var member = {
             window.open('userlogin.html','_self');
         })
     },
+    // 给数字添加逗号，小数点后两位
+    numberAdd : function(str){
+        return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+    },
     // 会员登录信息
     getMemberInfo:function(){
-        _apiMember.getMemberInfo(function(res){
-            //头像上传后文件可直接访问： 项目路径+avaterUrl http://localhost:10007/20171012180828-15988888926-vknvtvwhaghu7fepihzn//
-            $('.login_yes .person').css('background','url('+res.content.avatarUrl+')center no-repeat')
+        _apiMember.getMemberInfo(member.headerData,function(res){
+            // 头像上传后文件可直接访问： 项目路径+avaterUrl http://localhost:10007/20171012180828-15988888926-vknvtvwhaghu7fepihzn//
+            $('.login_yes .person').css('background','url('+res.content.avatarUrl+')center no-repeat');
             $('.login_yes .name').html('欢迎，'+res.content.mobile);
             member.levImage(res.content.vipLevel);
+            member.getLevInfo();
+        })
+    },
+    // 会员vip等级信息
+    getLevInfo : function(){
+        _apiMember.getLevInfo(member.headerData,function(res){
+            $('.login_yes .title').html('本月日均资产：'+res.content.thisMonthAvg+'元，距离'+res.content.nextLevel+'等级还差'+res.content.distanceNextLevelAmount+'元')
         })
     },
     // 根据会员等级显示会员图标明亮,会员福利列表样式
     levImage:function(lev){
-        var levs=lev;
-        if(levs<=0){
+        switch (lev){
+            case 0 :
+                $('.person_yes span').html('&#xe6c0;');
+                break;
+            case 1 :
+                $('.person_yes span').html('&#xe6c1;');
+                break;
+            case 2 :
+                $('.person_yes span').html('&#xe6c2;');
+                break;
+            case 3 :
+                $('.person_yes span').html('&#xe6c3;');
+                break;
+            case 4 :
+                $('.person_yes span').html('&#xe6c4;');
+                break;
+            case 5 :
+                $('.person_yes span').html('&#xe6c5;');
+                break;
+            case 6 :
+                $('.person_yes span').html('&#xe6c6;');
+                break;
+        }
+        if(lev<=0){
             $('.lev_span span').eq(0).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
         }else{
-            for(var i=0;i<=levs;i++){
+            for(var i=0;i<=lev;i++){
                 $('.lev_span span').eq(i).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
             }
-            for(var i=0;i<levs;i++){
+            for(var i=0;i<lev;i++){
                 $('.lev_hr hr').eq(i).css('background','#fff');
             }
         }
         $.each($('.explain table tr'),function(i){
-            $('.explain table tr').eq(i).children().eq(levs+1).css('color','#ff7400');
+            $('.explain table tr').eq(i).children().eq(lev+1).css('color','#ff7400');
             $('.explain table tr .iconfont').css('color','#57B766');
             $.each($('.explain table tr td'),function(i){
                 if($('.explain table tr td').eq(i).html()=='-'){

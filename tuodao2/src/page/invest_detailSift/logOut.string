@@ -1,14 +1,14 @@
 <div class="investting" >
 	<div class="login_btn">
-		<a href="">登录</a>查看账户可用余额，或<a href="">立即注册</a>
+		<a href="userlogin.html">登录</a>查看账户可用余额，或<a href="">立即注册</a>
 	</div>
 	<div class="com_styl invest_money" >
-		<input type="text" placeholder="100元起投" class="com_inp sub_money" id="sub_money">
+		<input type="text" placeholder="100元起投" class="com_inp outInp_money">
 		<i class="iconfont btn_empty">&#xe68b;</i>
 	</div>
 	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
 	<div class="input_sub">
-		<div class="login_a"><a href="">立即登录</a></div>
+		<div class="login_a"><a href="userlogin.html">立即登录</a></div>
 	</div>
 	<div class="agreement" id="protocol">
 		<a href="userlogin.html" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>

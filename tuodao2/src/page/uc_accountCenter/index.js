@@ -6,7 +6,6 @@ require('util/layer/layer.js');
 require('util/layer/layer.scss');
 
 
-var _inp = require('util/yz.js');
 var _del = require('util/delButton.js');
 var _user = require('api/user-api.js');
 

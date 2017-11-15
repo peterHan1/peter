@@ -2,8 +2,8 @@
 {{#list}}
 	<li data-select='1'>
 		<p class="ticket_top">￥<span>{{discountAvailable}}&nbsp;</span>抵用券</p>
-		<p class="ticket_middle">{{discountTitle}}<br />{{dateExplain}}</p>
-		<div class="ticket_bottom"><span>{{source}}</span> <img src="../../../image/yhq_select.png"></div>
+		<p class="ticket_middle"><span></span><br />{{dateExplain}}</p>
+		<div class="ticket_bottom">{{source}}</div>
 	</li>
 {{/list}}
 </ul>

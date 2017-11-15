@@ -3,12 +3,12 @@
 	<div class="title">
 		<!-- 散标显示 -->
 		<p>{{productTitle}}</p>
-		<img src="http://72.127.2.42:3000/image/invest/exclusive.png">
+		<img src="{{imgUrl}}">
 	</div>
 	<div class="major">
 		<dl class="expect">
 			<dt>
-				<span>{{borrowApr}}</span>%<i class="award" award="{{awardType}}">+{{awardScale}}%</i>
+				<span class="borrowApr">{{borrowApr}}</span>%<span class="award" type="2">+<b class="awardApr">2</b><i class="awardUnit">%</i></span>
 			</dt>
 			<dd>
 				预期年化
@@ -16,7 +16,7 @@
 		</dl>
 		<dl class="date">
 			<dt>
-				<span>{{productPeriod}}</span><span>{{periodUnit}}</span>
+				<span class="borrowPeriod">{{productPeriod}}</span><span>{{periodUnit}}</span>
 			</dt>
 			<dd>
 				投资期限

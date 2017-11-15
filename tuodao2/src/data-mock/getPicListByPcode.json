@@ -1,0 +1,16 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      [
+             {
+                    "id": 44,
+                    "productId": "产品id",
+                    "productCode": "产品编号",
+                    "picUrl": "http://72.127.2.42:3000/image/car.png",
+                    "orderNum": "排序序号",
+                    "reamark": "照片说明（身份证正面、行驶证、仪表盘...）"
+             }
+      ],
+      "success": true
+}
