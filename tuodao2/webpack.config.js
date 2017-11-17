@@ -37,7 +37,6 @@ var config = {
 		'invest_detailScatter' 		: ['./src/page/invest_detailScatter/index.js'],
 		'invest_detailBond' 		: ['./src/page/invest_detailBond/index.js'],
 		'active_newuser' 			: ['./src/page/active_newuser/index.js'],
-		'active_user'				: ['./src/page/active_user/index.js'],
 		'uc'						: ['./src/page/uc/index.js'],
 		'uc_recharge'				: ['./src/page/uc_moneyMange/uc_recharge/index.js'],
 		'uc_cash'					: ['./src/page/uc_moneyMange/uc_cash/index.js'],
@@ -59,9 +58,21 @@ var config = {
 		'uc_invite'					: ['./src/page/uc_welfare/uc_invite/index.js'],
 		'uc_coupon'					: ['./src/page/uc_welfare/uc_coupon/index.js'],
 		'friends'					: ['./src/page/uc_welfare/friends/index.js'],
-		'draw_present'					: ['./src/page/uc_welfare/draw_present/index.js'],
+		'draw_present'				: ['./src/page/uc_welfare/draw_present/index.js'],
 		'memberCenter'				: ['./src/page/operation/memberCenter/index.js'],
-		'newcomer'					: ['./src/page/operation/newcomer/index.js']
+		'newcomer'					: ['./src/page/operation/newcomer/index.js'],
+		'Info_contact'				: ['./src/page/Info_contact/index.js'],
+		'Info_join'					: ['./src/page/Info_join/index.js'],
+		'Info_entity'				: ['./src/page/Info_entity/index.js'],
+		'Info_aboutTd'				: ['./src/page/Info_aboutTd/index.js'],
+		'Info_platData'				: ['./src/page/Info_platData/index.js'],
+		'Info_lawfile'				: ['./src/page/Info_lawfile/index.js'],
+		'Info_dangerMange'			: ['./src/page/Info_dangerMange/index.js'],
+		'Info_financial'			: ['./src/page/Info_financial/index.js'],
+		'report_month_8'			: ['./src/page/reports/index.js'],
+		'report_month_7'			: ['./src/page/reports/index.js'],
+		'report_season_1'			: ['./src/page/reports/index.js'],
+		'report_season_2'			: ['./src/page/reports/index.js']
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -128,7 +139,6 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('setpassword','忘记密码')),
 		new HtmlWebpackPlugin(getHtmlConfig('setpay','忘记支付密码')),
 		new HtmlWebpackPlugin(getHtmlConfig('active_newuser','激活存管新用户')),
-		new HtmlWebpackPlugin(getHtmlConfig('active_user','激活存管存量用户')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest','理财专区')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest_detailSift','理财专区-详情页')),
 		new HtmlWebpackPlugin(getHtmlConfig('invest_detailScatter','理财专区-详情页')),
@@ -157,7 +167,19 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('friends','邀请好友')),
 		new HtmlWebpackPlugin(getHtmlConfig('draw_present','积分大抽奖')),
 		new HtmlWebpackPlugin(getHtmlConfig('memberCenter','会员中心')),
-		new HtmlWebpackPlugin(getHtmlConfig('newcomer','新手专区'))
+		new HtmlWebpackPlugin(getHtmlConfig('newcomer','新手专区')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_contact','联系我们')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_join','加入我们')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_entity','合作门店')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_aboutTd','关于拓道')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_platData','平台数据')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_lawfile','法律文件')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_dangerMange','风险管理')),
+		new HtmlWebpackPlugin(getHtmlConfig('Info_financial','理财百科')),
+		new HtmlWebpackPlugin(getHtmlConfig('report_month_8','八月份运营报告')),
+		new HtmlWebpackPlugin(getHtmlConfig('report_month_7','七月份运营报告')),
+		new HtmlWebpackPlugin(getHtmlConfig('report_season_1','2017年第一季度运营报告')),
+		new HtmlWebpackPlugin(getHtmlConfig('report_season_2','2017年第二季度运营报告'))
 	]
 };
 

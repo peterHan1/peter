@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<%= require('html-loader!./layout/info_nav.html') %>
+	<div class="law clear w1180">
+		<div class="box">
+			<ul>
+				<li class="title">法律法规</li>
+				<li><a href="">互联网信息服务管理办法（2011修订）></a></li>
+				<li><a href="">网络借贷信息中介机构业务活动管理暂行办法 ></a></li>
+				<li><a href="">网络借贷信息中介机构备案登记管理指引></a></li>
+				<li><a href="">网络借贷资金存管业务指引></a></li>
+				<li><a href="">网络借贷信息中介机构业务活动信息披露指引></a></li>
+			</ul>
+		</div>
+		<div class="box">
+				<li class="title">规范性文件</li>
+				<li><a href="">电信和互联网用户个人信息保护规定 ></a></li>
+				<li><a href="">关于促进互联网金融健康发展的指导意见 ></a></li>
+		</div>
+		<div class="box">
+				<li class="title">监管政策</li>
+				<li><a href="">P2P网络借贷风险专项整治工作实施方案 ></a></li>
+				<li><a href="">规范互联网信息服务市场秩序若干规定 ></a></li>
+				<li><a href="">开展互联网金融广告及以投资理财名义从事金融活动风险专项整治工作实施方案 ></a></li>
+		</div>
+		<div class="box">
+				<li class="title">司法解释</li>
+				<li><a href="">关于办理非法集资刑事案件适用法律若干问题的意见 ></a></li>
+				<li><a href="">最高人民法院关于非法集资刑事案件性质认定问题的通知 ></a></li>
+				<li><a href="">最高人民法院关于审理非法集资刑事案件具体应用法律若干问题的解释 ></a></li>
+				<li><a href="">最高人民法院关于审理民间借贷案件适用法律若干问题的规定 ></a></li>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

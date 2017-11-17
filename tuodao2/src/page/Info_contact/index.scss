@@ -1,0 +1,90 @@
+@import "../common/mixin";
+body{
+	background-color:$bgColor;
+	.fl{float: left;}
+	.fr{float: right;}
+	.contact_site{
+		background-color:#fff;
+		margin-top:30px;
+		overflow: hidden;
+		height:260px;
+		padding:20px;
+		.contact_siteL{
+			padding:35px 0 0 20px;
+		}
+		h3{
+			font-size:$fontSize18;
+			color:$fontColor333;
+			font-weight: normal;
+			margin-bottom: 10px;
+		}
+		p{
+			line-height:36px;
+			font-size:$fontSize14;
+			color:$fontColor9e;
+		}
+		img{
+			width:713px;
+			height:260px;
+			margin-left:30px;
+		}
+	}
+	.contact_way{
+		background-color:#fff;
+		margin:20px 0 50px;
+		height:240px;
+		padding-top:55px;
+		li{
+			float:left;
+			width:340px;
+			height:190px;
+			border-left:1px solid #f2f2f2;
+			padding-left:50px;
+			div{
+				overflow: hidden;
+				margin-bottom: 12px;
+				b{
+					float: left;
+					font-weight: normal;
+					font-size:$fontSize18;
+					color:$fontColor333;
+					line-height: 36px;
+
+				}
+				span{
+					float: left;
+					margin:5px 12px 0 0;
+					width:26px;
+					height:26px;
+				}
+			}
+			p{
+				line-height:36px;
+				font-size:$fontSize14;
+				color:$fontColor9e;
+			}
+			.client{
+				span{
+					background:url(../../image/info/client_bg.png) no-repeat;
+				}
+			}
+			.business{
+				span{
+					width:34px;
+					height:22px;
+					background:url(../../image/info/business_bg.png) no-repeat;
+				}
+			}
+			.media{
+				span{
+					background:url(../../image/info/media_bg.png) no-repeat;
+				}
+			}
+		}
+		.bor_no{
+			width:350px;
+			padding-left:40px;
+			border:none;
+		}
+	}
+}	

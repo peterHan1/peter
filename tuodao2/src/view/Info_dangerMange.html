@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<%= require('html-loader!./layout/info_nav.html') %>
+	<div class="danger w1180 clear">
+		<div class="img1"><img src="<%= require('../image/info/danger01.png') %>" alt="" /></div>
+		<div class="img2"><img src="<%= require('../image/info/danger02.png') %>" alt="" /></div>
+		<div class="img3"><img src="<%= require('../image/info/danger03.png') %>" alt="" /></div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

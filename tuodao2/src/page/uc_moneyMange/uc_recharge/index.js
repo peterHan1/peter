@@ -123,27 +123,25 @@ var recharge = {
 		validateResult = this.formValidate(formData);
 		// 验证成功
 		if (validateResult.status) {
+			var win = window.open();
+			win.document.write("跳转中.....");
 			_trade.rechargeOnline(headerData, formData, function(res) {
+				console.log(res);
 				layer.open({
 					type: 1,
 					title: '网银跳转提示',
 					skin: 'success_box',
-					area: ['561px', '340px'],
-					content: $('#success_box'),
-					cancel: function() {
-						history.go(0);
-					}
+					area: ['560px', '350px'],
+					content: $('#success_box')
 				});
+				 win.document.write(res.content);
 			}, function(err) {
 				layer.open({
 					type: 1,
 					title: '充值失败',
 					skin: 'cz_fail',
 					area: ['560px', '340px'],
-					content: $('#cz_fail'),
-					cancel: function() {
-						history.go(0);
-					}
+					content: $('#cz_fail')
 				});
 			});
 		}
@@ -198,7 +196,6 @@ var recharge = {
 			var val = $.trim($('#money1').val());
 			val = val.replace(/,/g, '');
 			if (val != "" && 100 <= val && val <= 50000) {
-				console.log(1111);
 				$("#btn1").addClass("kd");
 				$("#btn1").removeAttr('disabled');
 			} else {
@@ -261,7 +258,7 @@ var recharge = {
 		var _this = this;
 		$(".money_input").on("blur", function() {
 			var val = $(this).val();
-			if (val =="") {
+			if (val == "") {
 				return false;
 			} else {
 				val = _this.formatNum(val);
@@ -309,7 +306,7 @@ var recharge = {
 		$(".item2 .money_input2").on("blur", function() {
 			var ts = "<p class='wrong_mess'>&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<em class=wz>本次充值金额范围：100元-5万元！</em></p>";
 			var val = $.trim($(".money_input2").val());
-			val=val.replace(/,/g, '');
+			val = val.replace(/,/g, '');
 			if (val != "" && val > 100 && val < 50000) {
 				$(".item2 .btn").addClass("kd");
 				$(this).siblings(".wrong_mess").remove();
@@ -327,11 +324,12 @@ var recharge = {
 		$(".item2 .btn").on("click", function() {
 			if ($(this).hasClass('kd')) {
 				var money = $(".money_input2").val();
-				money=money.replace(/,/g, '');
+				money = money.replace(/,/g, '');
 				_trade.sendSmsCode(headerData, money, function(res) {
 					var phone = res.content.phone;
 					orderNo = res.content.orderNo;
 					$(".secity_box .phoneNum").html(phone);
+					$(".cz_success .main_box .look span").html(money);
 					_this.cutTime();
 					$("#dy").attr("autofocus", "autofocus");
 					layer.open({

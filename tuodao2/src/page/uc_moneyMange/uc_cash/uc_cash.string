@@ -5,7 +5,7 @@
 		<td>{{cashAccount}}</td>
 		<td>{{realAccount}}</td>
 		<td>{{fee}}</td>
-		<td class="status">{{status}}</td>
+		<td>{{status}}</td>
 		<td class="bq">已保全</td>
 	</tr>
 {{/list}}

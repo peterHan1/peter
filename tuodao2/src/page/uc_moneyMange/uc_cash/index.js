@@ -52,7 +52,6 @@ var cash = {
 		this.cashButton();
 		this.tsShow();
 		this.cashFee();
-		this.addColor();
 	},
 	bindEvent: function() {
 		var _this = this;
@@ -88,13 +87,13 @@ var cash = {
 	},
 	blur: function() {
 		var formData = {
-				cashMoney: $.trim($('#cashMoney').val()),
-				payPassword: $.trim($('#pwd').val()),
-				source: 0
-			};
-			formData.cashMoney=formData.cashMoney.replace(/,/g,'');
-			// 表单验证结果
-			validateResult = this.formValidate(formData);
+			cashMoney: $.trim($('#cashMoney').val()),
+			payPassword: $.trim($('#pwd').val()),
+			source: 0
+		};
+		formData.cashMoney = formData.cashMoney.replace(/,/g, '');
+		// 表单验证结果
+		validateResult = this.formValidate(formData);
 		// console.log(validateResult);
 		if (validateResult.status) {
 			// console.log(validateResult.msg + 'ooo');
@@ -120,13 +119,13 @@ var cash = {
 	submit: function() {
 		var _this = this;
 		var formData = {
-				cashMoney: $.trim($('#cashMoney').val()),
-				payPassword: $.trim($('#pwd').val()) == '' ? $.trim($('#pwd').val()) : md5($.trim($('#pwd').val())),
-				source: 0
-			};
-			// 表单验证结果
-			formData.cashMoney=formData.cashMoney.replace(/,/g,'');
-			validateResult = this.formValidate(formData);
+			cashMoney: $.trim($('#cashMoney').val()),
+			payPassword: $.trim($('#pwd').val()) == '' ? $.trim($('#pwd').val()) : md5($.trim($('#pwd').val())),
+			source: 0
+		};
+		// 表单验证结果
+		formData.cashMoney = formData.cashMoney.replace(/,/g, '');
+		validateResult = this.formValidate(formData);
 		// 验证成功
 		if (validateResult.status) {
 			_trade.cashApply(headerData, formData, function(res) {
@@ -198,6 +197,7 @@ var cash = {
 				list: res.content.list,
 			});
 			$(".cashlist").html(cashHtml);
+			_this.addColor();
 			_page.paging('pageList', res.content.total, 10, function(e) {
 				_trade.cashList(headerData, e.current, 10, function(res) {
 					for (var i = 0; i <= res.content.list.length - 1; i++) {
@@ -208,6 +208,7 @@ var cash = {
 						list: res.content.list,
 					});
 					$('.cashlist').html(cashHtml);
+					_this.addColor();
 				});
 			});
 		});
@@ -273,11 +274,17 @@ var cash = {
 		});
 	},
 	addColor: function() {
-		$(".cashlist tr td.status").each(function() {
-			console.log($(this).html);
-			if ($(this).html == "提现申请中") {
-				$(this).addClass("sh_fail");
-			}
+		$(".cashlist tr").each(function() {
+			$(this).children("td").each(function() {
+				var font = $(this).text();
+				if (font == "提现申请中") {
+					$(this).attr("class", "sh_wait");
+				} else if (font == "提现成功") {
+					$(this).attr("class", "sh_pass");
+				} else if (font == "提现失败") {
+					$(this).attr("class", "sh_fail");
+				}
+			});
 		});
 	},
 	// tab栏切换

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<%= require('html-loader!./layout/info_nav.html') %>
+<div class="td_info w1180 clear">
+<div class="info_top">
+	<ul>
+		<li class="on">企业简介</li>
+		<li>团队介绍</li>
+		<li>发展历程</li>
+		<li>荣誉资质</li>
+		<li>法律顾问</li>
+	</ul>
+</div>
+	<div class="td_infomation company_show">
+		<p class="title">拓道基本信息</p>
+		<div class="base_info">
+			<div class="font_info fl">
+				<p>拓道金服（杭州拓道互联网金融服务有限公司）是中国领先的汽车金融服务平台，成立于2013年11月，</p>
+				<p>注册/实缴资本5000万元。公司拥有员工132人，在全国拥有80多处的合作机构。</p>
+				<br />
+				<p>2017年，平台完成了8000万A轮融资（由杭州市财政、西湖房产集团、济民资本参股的知名机构帮实资</p>
+				<p>本、虫二文化产业基金领投，蓝山资本、宏桥资本、透视资本等跟投）。在近四年的合规发展道路上，拓道</p>
+				<p>金服获得了社会各界和资本市场的认可，相继被评为“中国汽车金融十强企业”、“互联网金融百强企业”。</p>
+				<p>并于同年3月成功接入北京银行资金存管。</p>
+			</div>
+			<div class="td_logo fr"></div>
+		</div>
+		<p class="title">拓道相关信息</p>
+		<div class="xg_info clear">
+			<ul class="tb">
+				<li class="one"></li>
+				<li class="two"></li>
+				<li class="three"></li>
+				<li class="four"></li>
+				<li class="last"></li>
+			</ul>
+		</div>
+		<p class="title">拓道组织架构</p>
+		<div class="jg_info clear">
+			<div class="jg"></div>
+		</div>
+		<p class="title">拓道人员信息</p>
+		<div class="person_info clear">
+			<div class="left fl">
+				<p>截止2017年8月底，拓道金服人员分布情况如下： </p>
+				<p>总人数：132人</p>
+				<p>年龄分布情况：≥30岁的25人，27岁至30岁的34人，≤27岁的73人；平均年龄 27.33；</p>
+				<p>学历分布情况：硕士8人，本科70人，大专46人，其他8人。</p>
+			</div>
+			<div class="right fl">
+				<div class="nl fl"><img src="<%= require('../image/info/nl.png') %>" alt="" /></div>
+				<div class="xl fl"><img src="<%= require('../image/info/xl.png') %>" alt="" /></div>
+			</div>
+		</div>
+		<p class="title">拓道相关证件信息</p>
+		<div class="zj_info clear">
+			<ul class="ul1">
+				<li><a rel="group" href="<%= require('../image/info/big_01.png') %>"><img src="<%= require('../image/info/zz_01.png') %>" alt="" /></a></li>
+				<li class="de"><a rel="group" href="<%= require('../image/info/big_02.png') %>"><img src="<%= require('../image/info/zz_02.png') %>" alt="" /></a></li>
+				<li class="last"><a rel="group" href="<%= require('../image/info/big_03.png') %>"><img src="<%= require('../image/info/zz_03.png') %>" alt="" /></a></li>
+				<li class="last_1"><a rel="group" href="<%= require('../image/info/big_04.png') %>"><img src="<%= require('../image/info/zz_04.png') %>" alt="" /></a></li>
+			</ul>
+			<ul class="ul2">
+				<li>北京银行存管协议</li>
+				<li class="de">营业执照</li>
+				<li class="last">ICP&nbsp;许可证</li>
+				<li class="last_1">信息系统安全等级证书</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 团队介绍 -->
+	<div class="td_infomation w1180 clear group_show dis_none">
+		<ul class="w1180 clear">
+			<li>
+				<div class="pic"><img src="<%= require('../image/info/zhang.png') %>"></div>
+				<div class="bottom">
+					<div class="til">
+						<span>张罗军</span>&nbsp;&nbsp;<i>创始人 CEO</i>
+					</div>
+					<div class="introduce">
+						先后创立杭州罗晨网络科技有限公司、杭州仁润科技有限公司（已成功上市新三板），凭借丰富的企业创新管理经验及敏锐的商业嗅觉，通过整合互联网资源与金融资产，带领拓道金服在三年内进入全国网贷平台50强。被《浙商》杂志评为“2017浙商新领军者”。
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="pic"><img src="<%= require('../image/info/fan.png') %>"></div>
+				<div class="bottom">
+					<div class="til">
+						<span>范爔云</span>&nbsp;&nbsp;<i>联合创始人 总经理</i>
+					</div>
+					<div class="introduce">
+						在金融行业及企业管理领域拥有近10年经验，练就了出色的商务沟通及统筹协调能力，在规范化管理、市场资源整合等方面有突出表现及独到见解。现任浙江省区域经济合作企业发展促进会副会长，同时是浙江省女企业家协会、浙商财智女人会会员。
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="pic"><img src="<%= require('../image/info/liu.png') %>"></div>
+				<div class="bottom">
+					<div class="til">
+						<span>刘磊</span>&nbsp;&nbsp;<i>副总裁</i>
+					</div>
+					<div class="introduce">
+						在互联网运营及推广领域拥有8年的丰富经验，善于整合互联网金融行业资源。凭借突出的市场策略掌控能力，统筹并主导拓道金服产品运营体系的搭建，帮助拓道成功实现业绩的全面提升。
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="td_infomation course w1180 clear dis_none">
+		<div class="hold">
+			<p class="title">我们的坚持</p>
+			<div class="content">
+				<p>拓道金服是中国领先的汽车金融服务平台，成立于2013年11月，注册资本5000万元。</p>
+				<p>是中国汽车金融十强企业、互联网金融百强企业，并于2017年1月获得A轮8000万元融资、于2017年3月完成北京银行资金存管。</p>
+				<p>公司拥有员工2000多人，在全国拥有80多处分支机构。</p>
+				<p>拓道金服专注于汽车金融细分市场，根据银监会“小额、分散”的要求，以银行的高标准、互联网的高效率，为借款人提供高效、便捷</p>
+				<p>的融资服务，为投资者提供安全、稳健的理财服务。</p>
+			</div>
+		</div>
+		<div class="manner">
+			<p class="title">我们的态度</p>
+			<ul>
+				<li>
+					<div class="pic"><img src="<%= require('../image/info/kh1.png') %>"></div>
+					<p>拓宇开疆  道创辉煌</p>
+				</li>
+				<li>
+					<div class="pic"><img src="<%= require('../image/info/kh2.png') %>"></div>
+					<p>普惠金融  幸福理财</p>
+				</li>
+				<li>
+					<div class="pic"><img src="<%= require('../image/info/kh3.png') %>"></div>
+					<p>安全  自由  快乐</p>
+				</li>
+				<li id="long">
+					<div class="pic"><img src="<%= require('../image/info/kh4.png') %>"></div>
+					<p>创新  成果  合作  诚信</p>
+				</li>
+				<li>
+					<div class="pic"><img src="<%= require('../image/info/kh5.png') %>"></div>
+					<p>专注专业  行业标杆</p>
+				</li>
+			</ul>
+		</div>
+		<div class="grow">
+			<p class="title">我们的成长</p>
+			<div class="show_window" id="show_window">
+				<ul id="view-box"></ul>
+			</div>
+			<div class="item">
+				<span class="iconfont fl" id="left">&#xe6b5;</span>
+				<span class="iconfont fr" id="right">&#xe6b4;</span>
+			</div>
+		</div>
+	</div>
+	<!-- 荣誉资质 -->
+	<div class="td_infomation aptitude w1180 clear dis_none">
+		<p class="title">公司资质</p>
+		<div class="show_area">
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_02.png') %>"><img src="<%= require('../image/info/b1.png') %>" alt="" /></a></div>
+				<div class="font">营业执照</div>
+			</div>
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_05.png') %>"><img src="<%= require('../image/info/b2.png') %>" alt="" /></a></div>
+				<div class="font">ICP备案信息</div>
+			</div>
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_03.png') %>"><img src="<%= require('../image/info/b3.png') %>" alt="" /></a></div>
+				<div class="font">ICP许可证</div>
+			</div>
+			<div class="box last">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_06.png') %>"><img src="<%= require('../image/info/b4.png') %>" alt="" /></a></div>
+				<div class="font">公安备案信息</div>
+			</div>
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_07.png') %>"><img src="<%= require('../image/info/b5.png') %>" alt="" /></a></div>
+				<div class="font">安全联盟行业验证</div>
+			</div>
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_08.png') %>"><img src="<%= require('../image/info/b6.png') %>" alt="" /></a></div>
+				<div class="font">诚信网站认证</div>
+			</div>
+			<div class="box">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_09.png') %>"><img src="<%= require('../image/info/b7.png') %>" alt="" /></a></div>
+				<div class="font">可信网站认证</div>
+			</div>
+			<div class="box last">
+				<div class="pic"><a rel="item" href="<%= require('../image/info/big_10.png') %>"><img src="<%= require('../image/info/b8.png') %>" alt="" /></a></div>
+				<div class="font">审核意见书</div>
+			</div>
+		</div>
+	</div>
+	<!-- 法律顾问 -->
+	<div class="td_infomation counsel w1180 clear dis_none">
+		<div class="law_left fl">
+			<div class="law_logo"><img src="<%= require('../image/info/law_logo.png') %>"></div>
+			<p>天册律师事务所（“天册”）始创于1986年，总部位于杭州，是中国成立最早的合伙制律师事务所之一</p>
+			<p>经多年发展，天册已成为国内著名大型律师事务所，在长三角地区处于领先地位，综合实力在浙江居于首位</p>
+			<br>
+			<p>天册同时获有中国律所的两项最高荣誉：</p>
+			<p>—— 中国司法部授予的“部级文明律师事务所”称号</p>
+			<p>—— 中华全国律师协会授予的“全国优秀律师事务所”称号</p>
+		</div>
+		<div class="law_right fl"></div>
+	</div>
+</div>
+<div class="win_one dis_none" id="win_one">
+	<table>
+		<tr>
+			<td class="l">网站或平台地址</td><td>https://www.51tuodao.com/</td>
+		</tr>
+		<tr>
+			<td class="l">全称及简称</td><td>全称：杭州拓道互联网金融服务有限公司    平台名称：拓道金服</td>
+		</tr>
+		<tr>
+			<td class="l">注册/实缴资本</td><td>5000万/5000万</td>
+		</tr>
+		<tr>
+			<td class="l">注册地址</td><td>杭州市西湖区华星路96号3幢1412室</td>
+		</tr>
+		<tr>
+			<td class="l">成立时间</td><td>2013-11-05</td>
+		</tr>
+		<tr>
+			<td class="l">平台上线运营时间</td><td>2013-12-09</td>
+		</tr>
+		<tr>
+			<td class="l">法定代表人</td><td>张罗军</td>
+		</tr>
+		<tr>
+			<td class="l fw">经营范围</td><td class="l">服务：互联网金融服务（由国家金融监管部门核准的金融业务除
+				外），接受金融机构委托从事金融信息技术外包，接受金融机构
+				委托从事金融业务流程外包，接受金融机构委托从事金融知识流
+				程外包，投资咨询（除证券、期货）、投资管理，企业管理咨询，
+				经济信息咨询、商务信息咨询（除中介），企业营销策划，市场信
+				息咨询与调查，会展服务咨询，计算机软硬件、通讯设备的技术
+				开发、技术服务、成果转让；批发、零售：计算机软硬件，通讯
+				设备（除专控）。</td>
+		</tr>
+		<tr>
+			<td class="l">客服电话</td><td>40085-666-85</td>
+		</tr>
+		<tr>
+			<td class="l">投诉举报电话</td><td>40085-666-85</td>
+		</tr>
+		<tr>
+			<td class="l">邮编</td><td>310012</td>
+		</tr>
+		<tr>
+			<td class="l">实际办公地址</td><td>浙江省杭州市西湖区西溪新座7幢B座11楼</td>
+		</tr>
+		<tr>
+			<td class="l">ICP备案证号</td><td>浙ICP备13034095号</td>
+		</tr>
+		<tr>
+			<td class="l">增值电信业务经营许可证编号</td><td>浙B2-20160394</td>
+		</tr>
+		<tr>
+			<td class="l">微信订阅号</td><td>tuodao666</td>
+		</tr>
+		<tr>
+			<td class="l">微博地址</td><td>http://weibo.com/51tuodao</td>
+		</tr>
+	</table>
+</div>
+<div class="win_two dis_none" id="win_two">
+	<p>一、资金存管依据：</p>
+	<p>《网络借贷信息中介机构业务活动管理暂行办法》第二十八条规定：网络借贷信息中介机构应当实行自身资金与出借人和借款人资金的隔离管理，并选择符合条件的银行业金融机构作为出借人与借款人的资金存管机构。</p>
+	<p>二、资金存管情况</p>
+	<p>依据此项规定的要求拓道金服于2016年7月与北京银行股份有限公司签订《互联网金融客户资金存管服务协议》，并于2017年3月正式上线北京银行资金存管系统。 </p>
+	<p>三、资金存管的方式：</p>
+	<p>北京银行借助资金存管系统对出借人、借款人从事网络借贷活动所形成的专项借贷资金及相关资金开立专用账户并进行存管，履行网络借贷资金存管专用账户的开立与销户、资金保管、资金清算等职责，用户充值、投资、还款、提现、缴费等环节涉及的资金均通过存管系统专用账户流动，平台仅根据用户授权或要求向存管银行发布业务指令，不触碰用户资金，实现了用户资金与平台自身资金的隔离和分账管理。</p>
+</div>
+<div class="win_three dis_none" id="win_three">
+	<table>
+		<tr>
+			<td class="l">执行董事</td><td>张罗军</td>
+		</tr>
+		<tr>
+			<td class="l">监事</td><td>范爔云</td>
+		</tr>
+		<tr>
+			<td class="l">高级管理人员</td><td>刘磊</td>
+		</tr>
+	</table>
+</div>
+<div class="win_four dis_none" id="win_four">
+	<table>
+		<tr>
+			<td class="l">实际控制人</td><td>张罗军</td>
+		</tr>
+		<tr>
+			<td class="l">持股5%以上股东</td><td>张罗军、范爔云</td>
+		</tr>
+	</table>
+	<p>实际控制人与持股5%以上股东（变更中）</p>
+	<table>
+		<tr>
+			<td class="l">实际控制人</td><td>张罗军</td>
+		</tr>
+		<tr>
+			<td class="l">持股5%以上股东</td><td>浙江拓道网络技术有限公司</td>
+		</tr>
+	</table>
+</div>
+<div class="win_fif dis_none" id="win_fif">
+	<table>
+		<tr>
+			<td class="l">平台重大事项信息项</td><td>平台存在情况</td>
+		</tr>
+		<tr>
+			<td class="l">合并、分立、解散或申请破产</td><td>无</td>
+		</tr>
+		<tr>
+			<td class="l">从业机构受到刑事处罚</td><td>无</td>
+		</tr>
+		<tr>
+			<td class="l">从业机构受到重大行政处罚</td><td>无</td>
+		</tr>
+		<tr>
+			<td class="l">重大诉讼或者仲裁事项</td><td>无</td>
+		</tr>
+		<tr>
+			<td class="l">实际控制人与股东、董事、监事、高级管理人员的变更信息</td><td>无</td>
+		</tr>
+		<tr>
+			<td class="l">实际控制人与股东、董事、监事、高级管理人员涉及重大诉讼或者<br />仲裁事项或重大行政处罚</td><td>无</td>
+		</tr>
+	</table>
+</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

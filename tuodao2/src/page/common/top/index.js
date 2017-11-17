@@ -2,14 +2,22 @@ require('./index.scss');
 var _td 		= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
 var _apiUser 	= require('api/user-api.js');
-// console.log(_td.getAccess('accessId'));
-// console.log(_td.getAccess('accessKey'));
+var accessId 	= _td.getAccess('accessId');
+var accessKey 	= _td.getAccess('accessKey');
+console.log(accessId);
+console.log(accessKey);
+
+
 // console.log(document.cookie);
 // 导航
 var navPage = {
 	init : function(){
 		this.bindEvent();
 		// this.loadUserInfo();
+		if(typeof accessId !='undefined' || typeof accessKey !='undefined'){
+			// console.log(1234);
+			this.loadUserInfo();
+		}
 		return this;
 	},
 	bindEvent : function(){
@@ -24,17 +32,17 @@ var navPage = {
 	loadUserInfo : function(){
 		// var a = _td.getAccess('accessId');
 		// var b = _td.getAccess('accessKey');
-		// var headerData = {
-		// 	'accessId' : a,
-		// 	'accessKey' :b
-		// };
+		var headerData = {
+			'accessId' : accessId,
+			'accessKey' :accessKey
+		};
 		// console.log(a+'top');
-		// _apiUser.checkLogin(headerData,function(res){
-		// 	// console.log(res);
-		// }, function(errMsg){
-		// 	console.log(errMsg.code);
-		// // do nothing
-		// });
+		_apiUser.checkLogin(headerData,function(res){
+			console.log(res);
+		}, function(errMsg){
+			console.log(errMsg.code);
+		// do nothing
+		});
 	},
 };
 

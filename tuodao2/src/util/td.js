@@ -4,21 +4,22 @@ var conf = {
 };
 
 var _td = {
-	request: function(param) {
+	request : function(param){
 		var _this = this;
 		$.ajax({
 			type: param.method || 'get',
 			url: param.url || '',
 			dataType: param.type || 'json',
 			data: param.data || '',
-			async: param.asyncType || true,
+			// async: (param.asyncType) ? true : param.asyncType,
+			async: false,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader("accessId", param.accessId || 'accessId');
 				xhr.setRequestHeader("accessKey", param.accessKey || 'accessKey');
 				xhr.setRequestHeader("requestType", "PC");
 				xhr.setRequestHeader("sign", "NO");
 			},
-			success: function(res) {
+			success 	: function(res){
 				// 请求成功
 				if (100000 === res.code) {
 					typeof param.success === 'function' && param.success(res);

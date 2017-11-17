@@ -50,6 +50,11 @@ var page = {
 				$('.flexslider').text('Not Found');
 			}
 		});
+
+		var productHtml = _td.renderHtml(templateProduct,{});
+		$('.index-product').html(productHtml);
+
+
 	}
 };
 $(function(){
