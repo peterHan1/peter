@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="main">
+		<div class="top_menu">
+			<a href="news.html">媒体报道</a><a href="news.html?notice">平台公告</a>
+		</div>
+		<div class="content">
+			<div class="media">
+				<div class="media_top"><i class="iconfont">&#xe6bb;</i>&nbsp;&nbsp;拓道创始人张罗军直播专访<span class="rg">2107-05-08 14:09:00</span></div>
+				<div class="media_content">
+					<ul>
+						<li>各位道友：</li>
+						<li>11月17日，拓道金服的创始人张罗军受网贷天下邀请参加《遇见新金融 最爱投资人》视频直播。</li>
+						<li>本次直播张总详细介绍了关于“汽车金融”的内容。也分享了创业初期与联合创始人范燨云女士一起赚的第一桶金的故事。</li>
+						<li>直播期间，张罗军先生详细的介绍汽车金融的特性，也回答了用户的各种问题。包括“贷前风控”“贷中管理”等核心风控问题。针对监管细则，给广大的拓道投资人讲解了拓道在监管方面的情况。</li>
+					</ul>
+					<div class="link">具体详情，请观看映客直播，点击：<a href="htto://www.inke.cn/live.html?uuid=146476711&id=1479381394875200">htto://www.inke.cn/live.html?uuid=146476711&id=1479381394875200</a></div>
+					<img src="<%= require('../image/media_detail.png') %>">
+				</div>
+			</div>
+			<div class="notice dis_none">
+				<div class="notice_top"><i class="iconfont">&#xe6bb;</i>&nbsp;&nbsp;北京银行系统扩容须知07.20<span class="rg">2107-05-08 14:09:00</span></div>
+				<div class="notice_content">
+					<ul>
+						<li>尊敬的用户：</li>
+						<li>拓道金服接北京银行通知：为了更好的支撑存管业务运营，北京银行将于【2017年7月21日00:00-09:00】进行网络设备扩容；系统扩容期间，不能进行注册、充值、投标、提现等操作；</li>
+						<li>系统扩容完成后以前服务将恢复正常，请各位道友熟悉，给您带来的不便敬请谅解！如您有任何疑问，请联系拓道客服人员。</li>
+						<li>客服值班时间唯 09:00-20:30；</li>
+					</ul>
+					<ul>
+						<li>联系方式：</li>
+						<li>（1）关注“拓道金服”微信（QQ）公众号输入“在线客服”；</li>
+						<li>（2）在官网上点击在线客服；</li>
+						<li>（3）通过客服热线400856685</li>
+					</ul>
+					<div>感谢各位道友的支持与理解！</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

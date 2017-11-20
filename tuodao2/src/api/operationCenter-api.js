@@ -3,7 +3,7 @@ var _td = require('util/td.js');
 var _welfare = {
 // 我的优惠券下api接口
 	// 优惠券分页查询
-	getCoupon : function(Data,headerData,resolve, reject){
+	getCoupon : function(headerData,Data,resolve, reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/op/getUserDiscountPagedList'),
 			// url     : _td.getServerUrl('/coupon.json'),
@@ -69,6 +69,7 @@ var _welfare = {
 		_td.request({
 			url     : _td.getServerUrl('api/router/op/findUserTask'),
 			data    : {
+				currentPage 	: 1,
 				pageSize 		: 1000
 			},
 			accessId	: headerData.accessId,
@@ -176,7 +177,7 @@ var _welfare = {
 			error   	: reject
 		});
 	},
-// 会员账户信息
+// 获取会员账户信息
 	getMemberInfo : function(headerData,resolve, reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/user/getUserAccountInfo'),
@@ -199,19 +200,19 @@ var _welfare = {
 // 新手任务查询
 	getNewtask : function(resolve, reject){
 		_td.request({
-			// url     : _td.getServerUrl('router/op/findUserTask'),
-			url     : _td.getServerUrl('/points_get_table.json'),
-			success : resolve,
-			error   : reject
+			// url     	: _td.getServerUrl('router/op/findUserTask'),
+			url     	: _td.getServerUrl('/points_get_table.json'),
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 获取账户信息
 	getUserOper : function(resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/userOperation.json'),
-			success : resolve,
-			error   : reject
+			method		: "get",
+			url     	: _td.getServerUrl('/userOperation.json'),
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 签到
@@ -234,15 +235,16 @@ var _welfare = {
 	},
 	getNewtask : function(headerData,resolve, reject){
 		_td.request({
-			url     	: _td.getServerUrl('api/router/op/findUserTask'),
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
-			data 		: {
-				type 	: 2,
-				pageSize : 1000
+			url     		: _td.getServerUrl('api/router/op/findUserTask'),
+			accessId		: headerData.accessId,
+			accessKey		: headerData.accessKey,
+			data 			: {
+				type 		: 2,
+				currentPage	: 1,
+				pageSize 	: 1000
 			},
-			success 	: resolve,
-			error   	: reject
+			success 		: resolve,
+			error   		: reject
 		});
 	}
 };

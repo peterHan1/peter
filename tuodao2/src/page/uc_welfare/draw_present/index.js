@@ -13,11 +13,12 @@ var lottery = {
     index : -1,    // 当前转动到哪个位置，起点位置
     count : 0,     // 总共有多少个位置
     timer : 0,     // setTimeout的ID，用clearTimeout清除
+    timers : 0,     // setTimeout的ID，用clearTimeout清除
     speed : 20,    // 初始转动速度
     times : 0,     // 转动次数
     cycle : 50,    // 转动基本次数：即至少需要转动多少次再进入抽奖环节
     prize : -1,    // 中奖位置
-    jgtime: 500,   // 中奖后几秒后开始弹窗
+    jgtime: 800,   // 中奖后几秒后开始弹窗
     headerData : {
 		accessId : _td.getAccess('accessId'),
 		accessKey : _td.getAccess('accessKey')
@@ -26,7 +27,6 @@ var lottery = {
         if ($("#"+id).find(".lottery-unit").length>0) {
             $lottery = $("#"+id);
             $units = $lottery.find(".lottery-unit");
-            console.log($units.length);
             this.obj = $lottery;
             this.count = $units.length;
             $lottery.find(".lottery-unit-"+this.index).addClass("active");
@@ -71,64 +71,72 @@ var lottery = {
             clearTimeout(lottery.timer);
             // 转盘结束时，中奖项效果显示，积分扣除10
             $('#draw').html(parseInt($('#draw').html())-10);
-        	$('#draw_point').find(".lottery-unit-"+lottery.place).addClass('back_yes');
+            $('#draw_point').find(".lottery-unit-"+lottery.place).addClass('back_yes');
 			$('#draw_point').find(".lottery-unit-"+lottery.place).find('.points_content').height(155);
             // 可以在这个位置写上中奖弹框，这个是转盘停止时触发事件
             switch (lottery.place){
 				case 0:
-					$('#draw_points .color333 span').html('&nbsp;688&nbsp;积分');
+					$('#draw_points .color333 span').html('688');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 1:
-					$('#draw_points .color333 span').html('&nbsp;366&nbsp;积分');
+					$('#draw_points .color333 span').html('366');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 2:
-					$('#draw_points .color333 span').html('&nbsp;166&nbsp;积分');
+					$('#draw_points .color333 span').html('166');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 3:
-					$('#draw_points .color333 span').html('&nbsp;66&nbsp;积分');
+					$('#draw_points .color333 span').html('66');
 					$('#draw_points .color9e span').html('不要泄气，小奖怡情');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 4:
-					$('#draw_points .color333 span').html('&nbsp;36&nbsp;积分');
+					$('#draw_points .color333 span').html('36');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 5:
-					$('#draw_points .color333 span').html('&nbsp;16&nbsp;积分');
+					$('#draw_points .color333 span').html('16');
 					$('#draw_points .color9e span').html('不要泄气，小奖怡情');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 6:
-					$('#draw_points .color333 span').html('&nbsp;6&nbsp;积分');
+					$('#draw_points .color333 span').html('6');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 7:
-					$('#draw_points .color333 span').html('&nbsp;1&nbsp;积分');
+					$('#draw_points .color333 span').html('1');
 					$('#draw_points .color9e span').html('不错不错，再接再厉！');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_points');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 			}
@@ -140,9 +148,8 @@ var lottery = {
             if (lottery.times<lottery.cycle) {
                 lottery.speed -= 10;
             }else if(lottery.times==lottery.cycle) {
-                lottery.place = Math.random()*(lottery.count)|0;// 案例中奖物品通过一个随机数生成
-                // lottery.getDrawResult(1,10); // 这个可以通过ajax请求回来的数据赋值给lottery.place
-                lottery.prize = lottery.place;
+                // lottery.place = Math.random()*(lottery.count)|0;// 案例中奖物品通过一个随机数生成
+                lottery.prize = lottery.place;// 这个可以通过ajax请求回来的数据赋值给lottery.place
             }else{
                 if (lottery.times > lottery.cycle+10 && ((lottery.prize==0 && lottery.index==7) || lottery.prize==lottery.index+1)) {
                     lottery.speed += 110;
@@ -169,61 +176,66 @@ var lottery = {
             // 可以在这个位置写上中奖弹框，这个是转盘停止时触发事件
             switch(lottery.place){
 				case 0:
-					// $('.present_img img').attr('src',"require('../image/welfare/iphone8_alert.png')");
-					// $('.present_img img')[0].src="<%= require('../../../image/iphone8_alert.png') %>";
-					setTimeout(function(){
+					$('.present_img p').addClass('prize_bg01');
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_presents');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 1:
-					// $('.present_img img').attr('src',"require('../image/welfare/xmTV_alert.png')");
-					// $('.present_img img')[0].src="../../../image/welfare/xmTV_alert.png";
-					// $('.present_img img')[0].src="<%= require('../../../image/xmTV_alert.png') %>";
+					$('.present_img p').addClass('prize_bg02');
 					$('.present_img span').html('小米电视');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_presents');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 2:
-					// $('.present_img img').attr('src',"../../../image/welfare/flp_alert.png");
+					$('.present_img p').addClass('prize_bg03');
 					$('.present_img span').html('飞利浦电动牙刷');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_presents');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 3:
-					// $('.hb_img img').attr('src',"<%= require('../image/welfare/jxq_alert.png') %>");
+					$('.hongbao_content li').eq(0).addClass('prize_bg01');
 					$('.hongbao_content .color333 span').html('&nbsp;268元&nbsp;红包');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_hongbao');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 4:
-					// $('.hb_img img').attr('src',"<%= require('../image/welfare/hongbao_alert.png') %>");
+					$('.hongbao_content li').eq(0).addClass('prize_bg01');
 					$('.hongbao_content .color333 span').html('&nbsp;10元&nbsp;红包');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_hongbao');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 5:
-					// $('.hb_img img').attr('src',"<%= require('../image/welfare/hongbao_alert.png') %>");
+					$('.hongbao_content li').eq(0).addClass('prize_bg01');
 					$('.hongbao_content .color333 span').html('&nbsp;388元&nbsp;红包');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_hongbao');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 6:
-					// $('.hb_img img').attr('src',"<%= require('../image/welfare/hongbao_alert.png') %>");
+					$('.hongbao_content li').eq(0).addClass('prize_bg01');
 					$('.hongbao_content .color333 span').html('&nbsp;68元&nbsp;红包');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_hongbao');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
 				case 7:
-					// $('.hb_img img').attr('src',"<%= require('../image/welfare/hongbao_alert.png') %>");
+					$('.hongbao_content li').eq(0).addClass('prize_bg02');
 					$('.hongbao_content .color333 span').html('&nbsp;3%&nbsp;加息券');
-					setTimeout(function(){
+					lottery.timers=setTimeout(function(){
 						lottery.layerPublic('draw_hongbao');
+					    clearTimeout(lottery.timers);
 					},lottery.jgtime);
 				break;
             }
@@ -235,8 +247,8 @@ var lottery = {
             if (lottery.times<lottery.cycle) {
                 lottery.speed -= 10;
             }else if(lottery.times==lottery.cycle) {
-                lottery.place = Math.random()*(lottery.count)|0;// 案例中奖物品通过一个随机数生成
-                // lottery.getDrawResult(2,100); // 这个可以通过ajax请求回来的数据赋值给lottery.place
+                // lottery.place = Math.random()*(lottery.count)|0;// 案例中奖物品通过一个随机数生成
+                // 这个可以通过ajax请求回来的数据赋值给lottery.place
                 lottery.prize = lottery.place;
             }else{
                 if (lottery.times > lottery.cycle+10 && ((lottery.prize==0 && lottery.index==7) || lottery.prize==lottery.index+1)) {
@@ -248,19 +260,20 @@ var lottery = {
             if (lottery.speed<40) {
                 lottery.speed=40;
             };
-            lottery.timer = setTimeout(lottery.stop2,lottery.speed);//循环调用
+            lottery.timer = setTimeout(lottery.stop2,lottery.speed);// 循环调用
         }
         return false;
     },
     // 抽奖结果
     getDrawResult : function(type,needScore){
     	_apiDraw.getDraw_result(lottery.headerData,type,needScore,function(res){
+    		console.log(res.content.prizeName+'  '+res.content.drawType);
     		if(res.content.drawType==1){
 				switch (res.content.prizeName) {// 请求返回的抽中奖品字段
                     case '688积分':
                         lottery.place = 0;// 当前奖品所在九宫格位置
                         break;
-                    case '366积分': //10元投资红包
+                    case '366积分':
                         lottery.place = 1;// 当前奖品所在九宫格位置
                         break;
                     case '166积分':
@@ -278,10 +291,13 @@ var lottery = {
                     case '6积分':
                         lottery.place = 6;// 当前奖品所在九宫格位置
                         break;
-                    case '积分1':
+                    case '1积分':
                         lottery.place = 7;// 当前奖品所在九宫格位置
                         break;
                 }
+            lottery.speed=100;
+            lottery.stop1();
+            lottery.click=true;
 			}else{
 				switch (res.content.prizeName) {// 请求返回的抽中奖品字段
                     case 'iPhone8':
@@ -293,28 +309,30 @@ var lottery = {
                     case '飞利浦牙刷':
                         lottery.place = 2;// 当前奖品所在九宫格位置
                         break;
-                    case '268元红包':
+                    case '268红包':
                         lottery.place = 3;// 当前奖品所在九宫格位置
                         break;
-                    case '10元红包':
+                    case '10红包':
                         lottery.place = 4;// 当前奖品所在九宫格位置
                         break;
-                    case '388元红包':
+                    case '388红包':
                         lottery.place = 5;// 当前奖品所在九宫格位置
                         break;
-                    case '68元红包':
+                    case '68红包':
                         lottery.place = 6;// 当前奖品所在九宫格位置
                         break;
                     case '3%加息券':
                         lottery.place = 7;// 当前奖品所在九宫格位置
                         break;
             	}
+        	lottery.speed=100;
+            lottery.stop2();
+            lottery.click=true;
 			}
     	},function(){
     		console.log("请求失败");
     	})
     },
-	// 抽奖
 	// 抽奖记录
 	getDrawRecord : function(){
 		_apiDraw.getDrawRecord(1,5,function(res){
@@ -328,7 +346,7 @@ var lottery = {
 				});
 				$('._Draw_record_table').html(bannerHtml);
 				lottery.changeColor('.Draw_table');
-				_paging.paging('pageList',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
+				_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
 					_apiInvite.getDrawRecord(e.current,5,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,
@@ -357,24 +375,52 @@ var lottery = {
 		$(obj).find('.go_word').css({color:'#707070',paddingTop:'60px',fontSize:'40px'});
 		$(obj).find('.none_points a').show();
     },
-    draw_Btn : function(obj,obj_class){
-    	$(obj).on('click',function(){
+    // 抽奖积分不够时，阻止点击传播到抽奖按钮
+    stopEvent : function(obj){
+    	$(obj).find('.none_points a').on('click',function(e){
+			var event=e||window.event;
+			if(event.stopPropagation){
+				event.stopPropagation();
+			}else{
+				event.cancelBubble=true;
+			}
+		})
+    },
+    // 抽积分按钮
+    draw_Btn1 : function(){
+    	$('#go_draw_10').on('click',function(){
     		var points=parseInt($('#draw').html());
-    		if(points<10){
-    			lottery.checkPoints(obj);
-    			return false;
-    		}
-    		$(this).addClass('back_go_yes');
-			lottery.init(obj_class);
+    			if(points<10){
+	    			lottery.checkPoints('#go_draw_10');
+	    			return false;
+    			}else{
+    				$(this).addClass('back_go_yes');
+    				lottery.init('draw_point');
+    				lottery.getDrawResult(1,10);// 转圈过程不响应click事件，会将click置为false
+    			}
 	        if (lottery.click) {// click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
 	            return false;
 	        }else{
-	            lottery.speed=100;
-	            if(obj=="#go_draw_10"){
-	            	lottery.stop1();// 转圈过程不响应click事件，会将click置为false
-	            }else{
-	            	lottery.stop2();// 转圈过程不响应click事件，会将click置为false
-	            }
+	            lottery.click=true; //一次抽奖完成后，设置click为true，可继续抽奖
+	            return false;
+	        }
+    	})
+    },
+    // 抽礼品按钮
+    draw_Btn2 : function(){
+    	$('#go_draw_100').on('click',function(){
+    		var points=parseInt($('#draw').html());
+    		if(points<100){
+	    			lottery.checkPoints('#go_draw_100');
+	    			return false;
+    			}else{
+    				$(this).addClass('back_go_yes');
+    				lottery.init('draw_present');
+    				lottery.getDrawResult(2,100);// 转圈过程不响应click事件，会将click置为false
+    			}
+	        if (lottery.click) {// click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
+	            return false;
+	        }else{
 	            lottery.click=true; //一次抽奖完成后，设置click为true，可继续抽奖
 	            return false;
 	        }
@@ -382,7 +428,8 @@ var lottery = {
     },
     // 可用积分
     getPoints : function(){
-		_apiDraw.getPoints(function(res){
+    	console.log('chenggong');
+		_apiDraw.getPoints(lottery.headerData,function(res){
 			$('#draw').html(res.content.scoreCurrent);
 			$('.record_top .points_yes').html(res.content.scoreCurrent);
 		},function(){
@@ -431,8 +478,10 @@ var lottery = {
 };
 $(function(){
 	lottery.getPoints();
-	lottery.draw_Btn('#go_draw_10','draw_point');
-	lottery.draw_Btn('#go_draw_100','draw_present');
+	lottery.draw_Btn1();
+	lottery.draw_Btn2();
 	lottery.clickEvnet();
+	lottery.stopEvent('#go_draw_10');
+	lottery.stopEvent('#go_draw_100');
 })
 

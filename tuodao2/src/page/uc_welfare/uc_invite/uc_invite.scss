@@ -159,13 +159,13 @@
 					border-radius: 20px;
 					cursor: pointer;
 				}
-				.qq_share{
+				.Cqq{
 					background: url('../../../image/welfare/qq.png')no-repeat;
 					&:hover{
 						background: url('../../../image/welfare/qq_hover.png')no-repeat;
 					}
 				}
-				.wx_share{
+				.weixin{
 					background: url('../../../image/welfare/wx.png')no-repeat;
 					&:hover{
 						background: url('../../../image/welfare/wx_hover.png')no-repeat;
@@ -250,5 +250,12 @@
 			font-size: 14px;
 			color: #cccccc;
 		}
+	}
+}
+
+.invite_alert{
+	.content{
+		text-align: center;
+		padding: 50px 0;
 	}
 }

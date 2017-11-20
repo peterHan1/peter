@@ -82,10 +82,6 @@
 			background: url('../../../image/welfare/gold.png') no-repeat;
 		}
 	}
-	.pageList{
-		height: 78px;
-		margin-bottom: 0px;
-	}
 	.exchange_detail{
 		font-size: $fontSize14;
 		margin-bottom: 4px;
@@ -251,6 +247,19 @@
 		    left: 15px;
 		    top: 8px;
 		}
+		i{
+			position: absolute;
+		    right: 10px;
+		    top: 10px;
+		    cursor: default;
+		    font-size: 18px;
+		    display: none;
+		    color: #9e9e9e;
+		    z-index: 999;
+		    &:hover{
+				color:#ff7400;
+		    }
+		}
 		input{
 			width: 224px;
 			@include height-line(40px);
@@ -262,6 +271,9 @@
 			color: $fontColor9e;
 			padding-left: 44px;
 			outline: none;
+			&.foucs{
+				border: 1px solid #dddddd;
+			}
 		}
 	}
 	.submit_btn{

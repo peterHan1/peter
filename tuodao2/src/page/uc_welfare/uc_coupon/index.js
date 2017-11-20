@@ -17,8 +17,11 @@ var coupon = {
 		this.tabCut();
 	},
 	headerData : {
-		accessId : _td.getAccess('accessId'),
-		accessKey : _td.getAccess('accessKey')
+		accessId 	: _td.getAccess('accessId'),
+		accessKey 	: _td.getAccess('accessKey')
+	},
+	pages : function(res){
+		return parseInt(res.content.total/9)+1;
 	},
 	numberAdd : function(str){
 		return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('');
@@ -26,19 +29,25 @@ var coupon = {
 	// 抵用券查询
 	getDyqCoupon : function(type,status,lock){
 		var data = {
-			discountType : type,
-			discountStatus : status,
-			discountLock : lock
+			discountType 	: type,
+			discountStatus 	: status,
+			discountLock 	: lock,
+			currentPage		: 1,
+			pageSize		: 9
 		}
-		_apiCoupon.getCoupon(data,coupon.headerData,function(res){
+		var j='';
+		_apiCoupon.getCoupon(coupon.headerData,data,function(res){
+			var listData=res.content.list;
+			$.each(listData,function(i){
+				listData[i].moneyLimit=coupon.numberAdd(listData[i].moneyLimit);
+			})
 			var bannerHtml = _td.renderHtml(couponDyq,{
 				list:res.content.list,
 			});
-			var listData=res.content.list;
 			$('.dyq_tickets').html(bannerHtml);
-			$.each(listData,function(i){
-				$('.dyq_tickets li').eq(i).children().eq(1).find('span').html('投资满'+coupon.numberAdd(listData[i].moneyLimit)+'元，'+listData[i].dateLimit+'个月及以上标的使用');
-			})
+			/*$.each(listData,function(i){
+				$('.dyq_tickets li').eq(j).children().eq(1).find('span').html('投资满'+coupon.numberAdd(listData[i].moneyLimit)+'元，'+listData[i].dateLimit+'个月及以上标的使用');
+			})*/
 			if(status==1){
 				$('.dyq_tickets ul').addClass('dyq_ticket_yes');
 			}else if(status==2){
@@ -47,8 +56,19 @@ var coupon = {
 				$('.dyq_tickets ul').addClass('dyq_ticket_guoqi');
 			}
 			coupon.HeightAuto();
-			_paging.paging('dyq_page',data,coupon.headerData,function(e){
-				_apiCoupon.getCoupon(type,status,lock,e.current,10,function(res){
+			_paging.paging('dyq_page',res.content.total,res.content.pageSize,function(e){
+				data = {
+					discountType 	: type,
+					discountStatus 	: status,
+					discountLock 	: lock,
+					currentPage 	: e.current,
+					pageSize		: 9
+				};
+				_apiCoupon.getCoupon(coupon.headerData,data,function(res){
+					var listData=res.content.list;
+					$.each(listData,function(i){
+						listData[i].moneyLimit=coupon.numberAdd(listData[i].moneyLimit);
+					})
 					var bannerHtml = _td.renderHtml(couponDyq,{
 						list:res.content.list,
 					});
@@ -81,9 +101,11 @@ var coupon = {
 		var data = {
 			discountType : type,
 			discountStatus : status,
-			discountLock : lock
+			discountLock : lock,
+			currentPage		: 1,
+			pageSize		: 9
 		}
-		_apiCoupon.getCoupon(data,coupon.headerData,function(res){
+		_apiCoupon.getCoupon(coupon.headerData,data,function(res){
 			var bannerHtml = _td.renderHtml(couponJxq,{
 				list:res.content.list,
 			});
@@ -97,8 +119,16 @@ var coupon = {
 			}
 			coupon.getJxq();
 			coupon.HeightAuto();
-			_paging.paging('jxq_page',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiCoupon.getCoupon(data,coupon.headerData,function(res){
+
+			_paging.paging('jxq_page',res.content.total,res.content.pageSize,function(e){
+				data = {
+					discountType 	: type,
+					discountStatus 	: status,
+					discountLock 	: lock,
+					currentPage 	: e.current,
+					pageSize		: 9
+				};
+				_apiCoupon.getCoupon(coupon.headerData,data,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
 						list:res.content.list,
 					});

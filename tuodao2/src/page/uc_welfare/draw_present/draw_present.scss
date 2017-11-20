@@ -210,16 +210,28 @@
 		padding:0 50px;
 		.present_img,.draw_explian{
 			float: left;
-			padding-top: 20px;
 		}
 		.present_img {
 			width: 180px;
 			text-align: center;
+			p{
+				width: 100%;
+				height: 215px;
+			}
 			span{
 				font-size: 14px;
 				color: #9e9e9e;
 				padding-top: 10px;
 			}
+		}
+		.prize_bg01{
+			background: url('../../../image/welfare/iphone8_alert.png')center no-repeat;
+		}
+		.prize_bg02{
+			background: url('../../../image/welfare/xmTV_alert.png')center no-repeat;
+		}
+		.prize_bg03{
+			background: url('../../../image/welfare/flp_alert.png')center no-repeat;
 		}
 		.draw_explian{
 			width: 200px;
@@ -233,7 +245,7 @@
 	}
 	.draw_btn{
 		text-align: center;
-		padding-top: 50px;
+		padding-top: 40px;
 		button{
 			width: 250px;
 			@include height-line(40px);
@@ -255,6 +267,15 @@
 		li{
 			text-align: center;
 			margin-bottom: 20px;
+			&.hb_img{
+				height: 152px;
+			}
+			&.prize_bg01{
+				background: url('../../../image/welfare/hongbao_alert.png')center no-repeat;
+			}
+			&.prize_bg02{
+				background: url('../../../image/welfare/jxq_alert.png')center no-repeat;
+			}
 		}
 		.color333{
 			color: #333333;

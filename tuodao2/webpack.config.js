@@ -61,6 +61,8 @@ var config = {
 		'draw_present'				: ['./src/page/uc_welfare/draw_present/index.js'],
 		'memberCenter'				: ['./src/page/operation/memberCenter/index.js'],
 		'newcomer'					: ['./src/page/operation/newcomer/index.js'],
+		'news'						: ['./src/page/news/index.js'],
+		'news_detail'				: ['./src/page/news_detail/index.js'],
 		'Info_contact'				: ['./src/page/Info_contact/index.js'],
 		'Info_join'					: ['./src/page/Info_join/index.js'],
 		'Info_entity'				: ['./src/page/Info_entity/index.js'],
@@ -72,7 +74,22 @@ var config = {
 		'report_month_8'			: ['./src/page/reports/index.js'],
 		'report_month_7'			: ['./src/page/reports/index.js'],
 		'report_season_1'			: ['./src/page/reports/index.js'],
-		'report_season_2'			: ['./src/page/reports/index.js']
+		'report_season_2'			: ['./src/page/reports/index.js'],
+		'legalFile'					: ['./src/page/legalFile/index.js'],
+		'legal_jd'					: ['./src/page/legalFile/index.js'],
+		'legal_ba'					: ['./src/page/legalFile/index.js'],
+		'legal_cg'					: ['./src/page/legalFile/index.js'],
+		'legal_pl'					: ['./src/page/legalFile/index.js'],
+		'legal_dx'					: ['./src/page/legalFile/index.js'],
+		'legal_cj'					: ['./src/page/legalFile/index.js'],
+		'legal_fx'					: ['./src/page/legalFile/index.js'],
+		'legal_gf'					: ['./src/page/legalFile/index.js'],
+		'legal_kz'					: ['./src/page/legalFile/index.js'],
+		'legal_bl'					: ['./src/page/legalFile/index.js'],
+		'legal_ff'					: ['./src/page/legalFile/index.js'],
+		'legal_sl'					: ['./src/page/legalFile/index.js'],
+		'legal_mj'					: ['./src/page/legalFile/index.js']
+
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -168,6 +185,8 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('draw_present','积分大抽奖')),
 		new HtmlWebpackPlugin(getHtmlConfig('memberCenter','会员中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('newcomer','新手专区')),
+		new HtmlWebpackPlugin(getHtmlConfig('news','新闻公告')),
+		new HtmlWebpackPlugin(getHtmlConfig('news_detail','新闻公告详情')),
 		new HtmlWebpackPlugin(getHtmlConfig('Info_contact','联系我们')),
 		new HtmlWebpackPlugin(getHtmlConfig('Info_join','加入我们')),
 		new HtmlWebpackPlugin(getHtmlConfig('Info_entity','合作门店')),
@@ -179,7 +198,22 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('report_month_8','八月份运营报告')),
 		new HtmlWebpackPlugin(getHtmlConfig('report_month_7','七月份运营报告')),
 		new HtmlWebpackPlugin(getHtmlConfig('report_season_1','2017年第一季度运营报告')),
-		new HtmlWebpackPlugin(getHtmlConfig('report_season_2','2017年第二季度运营报告'))
+		new HtmlWebpackPlugin(getHtmlConfig('report_season_2','2017年第二季度运营报告')),
+		new HtmlWebpackPlugin(getHtmlConfig('legalFile','互联网信息服务管理办法（2011修订）')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_jd','网络借贷信息中介机构业务活动管理暂行办法')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_ba','网络借贷信息中介机构备案登记管理指引')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_cg','网络借贷资金存管业务指引')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_pl','网络借贷信息中介机构业务活动信息披露指引')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_dx','电信和互联网用户个人信息保护规定工业和信息化部令第24号')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_cj','关于促进互联网金融健康发展的指导意见')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_fx','关于印发《P2P网络借贷风险专项整治工作实施方案》的通知')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_gf','工业和信息化部令（第20号）')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_kz','工商办字〔2016〕 61号')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_bl','关于办理非法集资刑事案件适用法律若干问题的意见')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_ff','最高人民法院关于非法集资刑事案件性质认定问题的通知')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_sl','最高人民法院关于审理非法集资刑事案件具体应用法律若干问题的解释')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_mj','最高人民法院关于审理民间借贷案件适用法律若干问题的规定'))
+
 	]
 };
 

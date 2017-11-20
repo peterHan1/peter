@@ -1,8 +1,9 @@
-require('page/invest_detail/invest_detail.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/fancybox/source/index.js');
+require('util/invest_detail/index.js');
+
 
 var _td 				= require('util/td.js');
 var _paging 			= require('util/paging/index.js');
@@ -99,6 +100,7 @@ var investDetails = {
 			res.content.periodUnit = "年";
 		};
 	},
+	// 三个通用
 	setShow : function(cla){
 		var _this = $("." + cla);
 		// 加入进度
@@ -166,7 +168,7 @@ var investDetails = {
 			}
 		});
 	},
-
+	// 三个通用
 	getDiscount : function(){
 		// 获取优惠券
 		_operation.getDiscount(function(res){
@@ -189,6 +191,8 @@ var investDetails = {
 						$(this).parent("p").find($(".disValUnit")).html("￥");
 					}else{
 						$(this).html("年利率加息");
+						$(this).parent("p").find($(".disValUnits")).html("%");
+
 					}
 				});
 			}else{
@@ -282,6 +286,7 @@ var investDetails = {
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
 		});
+		// 之上三个通用
 		$(".detail_tab li a").on("click",function(){
 			var type=$(this).attr("type");
 			var ind = $(this).parent("li").index();
@@ -359,14 +364,17 @@ var investDetails = {
 
 		});
 	},
+	// 三个通用
 	focus : function(obj){
 		$('.all-errinfo').html('');
 		$('input').removeClass('focus-input');
 		$(obj).addClass('focus-input');
 	},
+	// 三个通用
 	blur : function(){
 		$('input').removeClass('focus-input');
 	},
+	// 三个通用
 	MoneyKeyUp : function(el,str){
 		var formData = {
 			money: $.trim($('#sub_money').val()),
@@ -444,6 +452,7 @@ var investDetails = {
 		result.msg      = '验证通过';
 		return result;
 	},
+	// 三个通用
 	all_money : function(lastMoney,balance,el){
 		if(lastMoney > balance){
 			el.val(balance).keyup().focus();
@@ -508,6 +517,7 @@ var investDetails = {
 		result.msg      = '验证通过';
 		return result;
 	},
+	// 三个通用
 	QuanInit : function(){
 		if($(".add_ticket").length > 0){
 			$(".inp_disc").val("请选择优惠券").css("color","#9e9e9e");
@@ -517,6 +527,7 @@ var investDetails = {
 			$(".disHint").show();
 		}
 	},
+	// 三个通用
 	yhQuan : function(){
 		// 优惠券点击
 		var val = $(".inp_ticket").val();
@@ -535,6 +546,7 @@ var investDetails = {
 			});
 		}
 	},
+	// 三个通用
 	disSelect : function(el){
 		var sel = '<b class="select_b"></b>';
 		var quanId = el.attr('id');
@@ -547,6 +559,7 @@ var investDetails = {
 		$(".yes").attr("apr",datas);
 		$(".yes").attr("type",types);
 	},
+	// 三个通用
 	disBtn : function(el){
 		var disId = el.attr("id");
 		var apr = el.attr("apr");
@@ -568,6 +581,7 @@ var investDetails = {
 		el.removeClass("add_quan");
 		layer.closeAll();
 	},
+	// 三个通用
 	// 收益算法
 	earnings : function(inputM,type){
 		if(type == 0){
@@ -599,16 +613,19 @@ var investDetails = {
 			}
 		}
 	},
+	// 三个通用
 	// 按月付息
 	MonthlyApr : function(inputM,apr){
 		var period = $(".borrowPeriod").html()*1;
 		var awardIncome = (inputM*(apr/100)/12*period).toFixed(2);
 		return awardIncome;
 	},
+	// 三个通用
 	mouseover : function(obj){
 		$('input').removeClass('hover-input');
 		$(obj).addClass('hover-input');
 	},
+	// 三个通用
 	mouseout : function(){
 		$('input').removeClass('hover-input');
 	},
@@ -619,6 +636,7 @@ var investDetails = {
 			$("#sub_btn").attr("class","no_btn").val("存管清算时间，不能加入");
 		}
 	},
+	// 两个通用
 	isNewInvest : function(bool){
 		var isNewHtml = '<p><i class="iconfont">&#xe68f;</i>这是新手专享标的，只有未投资过的新用户才可享受加息3%的新手奖励。 您已经投资过了，快去看看其它标的吧!</p>';
 		if(bool == true){
@@ -626,6 +644,7 @@ var investDetails = {
 			$("#sub_btn").attr("class","no_btn").val("新手专享，非新手不能加入");
 		}
 	},
+	// 三个通用
 	coundTime : function(time){
 		function times(time){
 			var nowTime = new Date();
@@ -652,6 +671,7 @@ var investDetails = {
 			times(time);
 		}, 1000);
 	},
+	// 三个通用
 	setTimes : function(res){
 		var list = res.content.list;
 		// 状态
@@ -671,6 +691,7 @@ var investDetails = {
 			return times = y + m + d + h + f + s;
 		}
 	},
+	// 三个通用
 	trColor : function(id){
 		// 各行变色
 		var trs=document.getElementById(id).getElementsByTagName("tr");
@@ -680,6 +701,7 @@ var investDetails = {
 			}
 		};
 	},
+	// 三个通用
 	// 输入金额计算
 	setinput : function(ins){
 		var $amountInput = ins;
@@ -720,6 +742,7 @@ var investDetails = {
 		};
 		$(".btn_empty").hide();
 	},
+	// 三个通用
 	inpMoneyOnFocus: function(el) {
 		var val = el.val();
 		if (val == '0.00') {

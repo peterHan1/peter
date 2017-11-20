@@ -206,13 +206,12 @@ function Map() {
     $("#map").html("");
     Raphael.getColor.reset();
     // 大小与矢量图形文件图形对应；
-    var R = Raphael("map", 646, 480);
-
+    var R = Raphael("map", 800, 630);
     var current = null;
 
     var textAttr = {
         "fill": "#333",
-        "font-size": "14px",
+        "font-size": "12px",
         "font-weight": "bold",
         "cursor": "pointer"
     };
@@ -278,13 +277,20 @@ function Map() {
             // 写入地名,并加点击事件,部分区域太小，增加对文字的点击事件
             china[state]['text'] = R.text(xx, yy, china[state]['name']).attr(textAttr).click(function () {
                 clickMap();
-            }).hover(function () {
+            }).hover(function (e) {
                 var $sl = $("#topList").find("[title='" + china[state]['name'] + "']:not([select])");
                 $sl.css("font-size", "20px");
                 $.each(holdCity, function (i, item) {
                     if(china[state]['name']==china[item.AreaName]['name']){
                         china[state]['path'].animate({ transform: "t30,0 s1.03 1.03", fill: china[current] ? china[state]['path'].color : "#ff9920", stroke: "#fff" }, 100);
-                    }
+                        shopNums.text(china[item.AreaName]['shopNum']);
+                        tiplayer.css({
+                            'opacity': '1',
+                            'position': 'absolute',
+                            'top': (e.pageY - 60) + 'px',
+                            'left': (e.pageX - 70) + 'px'
+                        }).fadeIn('normal');
+                   }
                  });
             }, function () {
                 var $sl = $("#topList").find("[title='" + china[state]['name'] + "']:not([select])");
@@ -292,44 +298,54 @@ function Map() {
                 $.each(holdCity, function (i, item) {
                     if(china[state]['name']==china[item.AreaName]['name']){
                         china[state]['path'].animate({ transform: "t30,0 s1.03 1.03", fill: china[current] ? china[state]['path'].color : "#ffbd4a", stroke: "#fff" }, 100);
+                        tiplayer.hide();
                     }
-                 });
+                });
             });
 
             // 图形的点击事件
-            $(st[0]).click(function (e) {
+            $(st[0]).click(function(e) {
                 clickMap();
             });
             // 鼠标样式
             $(st[0]).css('cursor', 'pointer');
             // 移入事件,显示信息
-            $(st[0]).hover(function (e) {
+            $(st[0]).hover(function(e) {
                 var _ST = this;
                 var $sl = $("#topList").find("[title='" + china[state]['name'] + "']:not([select])");
                 if (e.type == 'mouseenter') {
                     $sl.css("font-size", "20px");
-                    $.each(holdCity, function (i, item) {
-                        if(china[state]['name']==china[item.AreaName]['name']){
-                            china[state]['path'].animate({ transform: "t30,0 s1.03 1.03", fill: china[current] ? china[state]['path'].color : "#ff9920", stroke: "#fff" }, 100);
-                            shopNums.text(china[item.AreaName]['shopNum']);
-                            tiplayer.css({ 'opacity': '1', 'position':'absolute','top': (e.pageY -50) + 'px', 'left': (e.pageX -80) + 'px' }).fadeIn('normal');
+                    china[state]['text'].toFront();
+                    $.each(holdCity, function(i, item) {
+                        if (china[state]['name'] == china[item.AreaName]['name']) {
+                            china[state]['path'].animate({
+                                transform: "t30,0 s1.03 1.03",
+                                fill: china[current] ? china[state]['path'].color : "#ff9920",
+                                stroke: "#fff"
+                            }, 100);
                         }
-                     });
+                    });
                 } else {
-                    $.each(holdCity, function (i, item) {
-                        if(china[state]['name']==china[item.AreaName]['name']){
-                            china[state]['path'].animate({ transform: "t30,0 s1.03 1.03", fill: china[current] ? china[state]['path'].color : "#ffbd4a", stroke: "#fff" }, 100);
-                            tiplayer.hide();
+                    china[state]['text'].toFront();
+                    R.safari();
+                    $.each(holdCity, function(i, item) {
+                        if (china[state]['name'] == china[item.AreaName]['name']) {
+                            china[state]['path'].animate({
+                                transform: "t30,0 s1.03 1.03",
+                                fill: china[current] ? china[state]['path'].color : "#ffbd4a",
+                                stroke: "#fff"
+                            }, 100);
                         }
-                     });
+                    });
                 }
             });
+
             function clickMap() {
-                $.each(holdCity, function (i, item) {
-                    if(china[state]['name']==china[item.AreaName]['name']){
-                        location.href = '#'+item.code;
+                $.each(holdCity, function(i, item) {
+                    if (china[state]['name'] == china[item.AreaName]['name']) {
+                        location.href = '#' + item.code;
                     }
-                 });
+                });
                 if (china[current] === undefined) return;
             }
         })
