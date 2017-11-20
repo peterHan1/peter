@@ -37,12 +37,13 @@
 				-webkit-border-radius: 30px;
 				-moz-border-radius: 30px;
 				border-radius: 30px;
+				border: 3px solid #F7762D;
 				width: 32px;
 				@include height-line(32px);
 				color: #f49055;
 				font-size: 34px;
-				top:-12px;
-				left: 76px;
+				top:-10px;
+				left: 82px;
 			}
 		}
 		.title{

@@ -79,9 +79,8 @@ var _td = require('util/td.js');
 var _apiMember = require('api/operationCenter-api.js');
 var member = {
     init : function(){
-        // this.getMemberInfo();
+        this.isLogin();
         this.spanMouserover();
-        this.levImage(1);
     },
     headerData : {
         accessId : _td.getAccess('accessId'),
@@ -89,16 +88,19 @@ var member = {
     },
     // 会员是否登录
     isLogin:function(){
-        // 已登录
-        $('.login_no').hide();
-        $('.login_yes').show();
-        member.getMemberInfo();
-        // 未登录
-        $('.login_yes').hide();
-        $('.login_no').show();
-        $('.person_no').on('click',function(){
-            window.open('userlogin.html','_self');
-        })
+        if(member.headerData){
+            // 已登录
+            $('.login_no').hide();
+            $('.login_yes').show();
+            member.getMemberInfo();
+        }else{
+            // 未登录
+            $('.login_yes').hide();
+            $('.login_no').show();
+            $('.person_no').on('click',function(){
+                window.open('userlogin.html','_self');
+            })
+        }
     },
     // 给数字添加逗号，小数点后两位
     numberAdd : function(str){
@@ -117,7 +119,7 @@ var member = {
     // 会员vip等级信息
     getLevInfo : function(){
         _apiMember.getLevInfo(member.headerData,function(res){
-            $('.login_yes .title').html('本月日均资产：'+res.content.thisMonthAvg+'元，距离'+res.content.nextLevel+'等级还差'+res.content.distanceNextLevelAmount+'元')
+            $('.login_yes .title').html('本月日均资产：'+member.numberAdd(res.content.thisMonthAvg)+'元，距离'+res.content.nextLevel+'等级还差'+member.numberAdd(res.content.distanceNextLevelAmount)+'元')
         })
     },
     // 根据会员等级显示会员图标明亮,会员福利列表样式
@@ -172,7 +174,7 @@ var member = {
                 var index=$(this).index();
                 var left_num=-76+index*137;
                 if(index==5){
-                    $('.mouseover').css('left','553px');
+                    $('.mouseover').css('left','552px');
                 }else if(index==6){
                     $('.mouseover').css('left','689px');
                 }else{

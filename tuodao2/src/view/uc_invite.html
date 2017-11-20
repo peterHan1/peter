@@ -71,9 +71,9 @@
 									<p class="sp2">复制你的专属链接给好友</p>
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
-								<div style="text-align:center;">
-									<a class="qq_share share" style="margin-right:20px;">
-									<a class="wx_share share"></a>
+								<div style="text-align:center;" id="share">
+									<a class="Cqq share" title="分享给QQ好友" style="margin-right:20px;">
+									<a class="weixin share" title="分享给微信好友"></a>
 								</div>
 							</li>
 							<li>
@@ -261,22 +261,19 @@
 	</div>
 	<%= require('html-loader!./layout/footer_nav.html') %>
 	<%= require('html-loader!./layout/footer.html') %>
-	<div id="invite_link" class="dis_none">
-	<div class="order_err">由于</div>
-	<div class="content">
-		<ul>
-			<li style="padding-top:5px;">1.微信扫一扫关注公众号“拓道金服”</li>
-			<li>2.在微信输入文字“口令”并发送</li>
-			<li style="margin-bottom:15px;">3.获取微信返回的口令并提交</li>
-			<li><span class="iconfont"></span><input type="text" placeholder="请输入公众号回复的口令"></li>
+
+	<div id="invite_link" class="invite_alert dis_none">
+		<ul class="content">
+			<li style="color:#333333;">浏览器不兼容，邀请链接复制失败！</li>
+			<li style="margin:30px 0 10px 0;color:#9e9e9e;">您可以手动复制邀请链接：</li>
+			<li style="color:#ff7400;"></li>
 		</ul>
-		<div class="submit_btn"><input class="submits" type="submit" value="提交"><input type="button" value="取消" style="border-color:#9e9e9e;background: #ffffff;"></div>
 	</div>
-	<div class="center">
-		<br>
-		<span>口令验证成功，获得80积分！</span><br>
-		<button class="i_know">我知道了</button>
+	<div id="weixin_link" class="invite_alert dis_none">
+		<div class="content">
+			<div><img src="<%= require('../image/my_twoCode.png') %>"></div>
+			<p>扫一扫上面的专属二维码<br>money,money,go my home!</p>
+		</div>
 	</div>
-</div>
 </body>
 </html>

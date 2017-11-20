@@ -12,11 +12,11 @@ body{
 		}
 		.entity_com{
 			background-color:#fff;
-			padding:80px 0 20px;
-			margin-top:30px;
+			padding:70px 0 20px;
 		}
 	}
 	.entity_scale{
+		margin-top:30px;
 		.entity_scaleBg{
 			width:855px;
 			height:100px;
@@ -70,6 +70,7 @@ body{
 		#ChinaMap{
 			display: inline-block;
 			margin:0 auto;
+			width:100%;
 		}
 	}
 	.entity_site{
@@ -132,5 +133,9 @@ body{
 		background-color:#fff;
 		font-size:$fontSize12;
 		color:$fontColor9e;
+		#shopNum{
+			font-size:$fontSize20;
+			color:$fontColor74;
+		}
 	}
 }	

@@ -1,8 +1,7 @@
-require('page/invest_detail/invest_detail.scss');
-// require('page/invest_detail/invest_detail.js');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
+require('util/invest_detail/index.js');
 
 var _td 			= require('util/td.js');
 var _paging 		= require('util/paging/index.js');
@@ -84,6 +83,7 @@ var investDetails = {
 			}
 		});
 	},
+	// 三个通用
 	getDiscount : function(){
 		// 获取优惠券
 		_operation.getDiscount(function(res){
@@ -179,8 +179,13 @@ var investDetails = {
 		$(document).on("click",".add_ticket",function(){
 			_this.yhQuan();
 		});
-		$(".iskonw,.rclose").on("click",function(){
+		$(document).on("click",".iskonw",function(){
 			layer.closeAll();
+			location.reload();
+		});
+		$(document).on("click",".rclose",function(){
+			layer.closeAll();
+			location.reload();
 		});
 		// 优惠券弹窗选择
 		$(document).on("click",".ul_select li",function(){
@@ -194,6 +199,7 @@ var investDetails = {
 			$(".yes").removeClass("add_quan");
 			layer.closeAll();
 		});
+		// 之上三个通用
 		$(".detail_tab li a").on("click",function(){
 			var ind = $(this).parent("li").index();
 			$(".detai").eq(ind).show().siblings('.detai').hide();
@@ -243,15 +249,18 @@ var investDetails = {
 			}
 		});
 	},
+
+	// 三个通用
 	focus : function(obj){
 		$('.all-errinfo').html('');
 		$('input').removeClass('focus-input');
 		$(obj).addClass('focus-input');
-
 	},
+	// 三个通用
 	blur : function(){
 		$('input').removeClass('focus-input');
 	},
+	// 三个通用
 	MoneyKeyUp : function(el,str){
 		var formData = {
 			money: $.trim($('#sub_money').val()),
@@ -329,6 +338,7 @@ var investDetails = {
 		result.msg      = '验证通过';
 		return result;
 	},
+	// 三个通用
 	all_money : function(lastMoney,balance,el){
 		if(lastMoney > balance){
 			el.val(balance).keyup().focus();
@@ -380,6 +390,7 @@ var investDetails = {
 		result.msg      = '验证通过';
 		return result;
 	},
+	// 三个通用
 	QuanInit : function(){
 		if($(".add_ticket").length > 0){
 			$(".inp_disc").val("请选择优惠券").css("color","#9e9e9e");
@@ -389,6 +400,7 @@ var investDetails = {
 			$(".disHint").show();
 		}
 	},
+	// 三个通用
 	yhQuan : function(){
 		// 优惠券点击
 		var val = $(".inp_ticket").val();
@@ -407,6 +419,7 @@ var investDetails = {
 			});
 		}
 	},
+	// 三个通用
 	disSelect : function(el){
 		var sel = '<b class="select_b"></b>';
 		var quanId = el.attr('id');
@@ -419,6 +432,7 @@ var investDetails = {
 		$(".yes").attr("apr",datas);
 		$(".yes").attr("type",types);
 	},
+	// 三个通用
 	disBtn : function(el){
 		var disId = el.attr("id");
 		var apr = el.attr("apr");
@@ -440,6 +454,7 @@ var investDetails = {
 		el.removeClass("add_quan");
 		layer.closeAll();
 	},
+	// 三个通用
 	// 收益算法
 	earnings : function(inputM,type){
 		if(type == 0){
@@ -471,19 +486,23 @@ var investDetails = {
 			}
 		}
 	},
+	// 三个通用
 	// 按月付息
 	MonthlyApr : function(inputM,apr){
 		var period = $(".borrowPeriod").html()*1;
 		var awardIncome = (inputM*(apr/100)/12*period).toFixed(2);
 		return awardIncome;
 	},
+	// 三个通用
 	mouseover : function(obj){
 		$('input').removeClass('hover-input');
 		$(obj).addClass('hover-input');
 	},
+	// 三个通用
 	mouseout : function(){
 		$('input').removeClass('hover-input');
 	},
+	// 三个通用
 	clearing : function(bool){
 		var cleHtml = '<p><i class="iconfont">&#xe694;</i>当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</p>';
 		if(bool == true){
@@ -515,6 +534,8 @@ var investDetails = {
 		var oDate = new Date(str),oYear = oDate.getFullYear(),oMonth = oDate.getMonth()+1,oDay = oDate.getDate(),oTime = oYear + '-' +oMonth +'-'+ oDay;
 		res.content.publishTime = oTime;
 	},
+
+	// 三个通用
 	coundTime : function(time){
 		function times(time){
 			var nowTime = new Date();
@@ -541,6 +562,7 @@ var investDetails = {
 			times(time);
 		}, 1000);
 	},
+	// 三个通用
 	setTimes : function(res){
 		var list = res.content.list;
 		// 状态
@@ -560,6 +582,7 @@ var investDetails = {
 			return times = y + m + d + h + f + s;
 		}
 	},
+	// 三个通用
 	setShow : function(cla){
 		var _this = $("." + cla);
 		// 加入进度
@@ -574,11 +597,12 @@ var investDetails = {
 		_this.find($(".bar")).width(plan);
 		_this.find($(".barNum")).html(plan);
 		// 有无奖励
-		var awardStatus = _this.find('.award').attr("award");
-		if(awardStatus == 0){
-			_this.find('.award').remove();
-		}
+		// var awardStatus = _this.find('.award').attr("award");
+		// if(awardStatus == 0){
+		// 	_this.find('.award').remove();
+		// }
 	},
+	// 三个通用
 	trColor : function(id){
 		// 各行变色
 		var trs=document.getElementById(id).getElementsByTagName("tr");
@@ -588,6 +612,7 @@ var investDetails = {
 			}
 		};
 	},
+	// 三个通用
 	// 输入金额计算
 	setinput : function(ins){
 		var $amountInput = ins;
@@ -613,6 +638,7 @@ var investDetails = {
 		var inputM = $(".sub_money").val()*1;
 		investDetails.earnings(award);
 	},
+	// 三个通用
 	overFormat :function(th){
 		if(th.val() != ""){
 			th.val(Number(th.val()).toFixed(2));
@@ -629,6 +655,7 @@ var investDetails = {
 		};
 		$(".btn_empty").hide();
 	},
+	// 三个通用
 	inpMoneyOnFocus: function(el) {
 		var val = el.val();
 		if (val == '0.00') {

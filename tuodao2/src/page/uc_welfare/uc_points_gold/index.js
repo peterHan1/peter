@@ -4,8 +4,6 @@ require('page/common/nav/index.js');
 require('page/common/uc-menu/index.js');
 require('page/common/uc-menu/index.scss');
 require('util/layer/index.js');
-require('util/paging/page.scss');
-require('util/paging/page.js');
 
 // 获取积分任务完成，插入到table最下面
 /*$(function(){
@@ -29,17 +27,34 @@ var points_get = require('./points_get_table.string');
 var pointsGold = {
 	init : function(){
 		this.getPoints();
-		this.getPoints_exchange();
 		this.drawHtml();
-		this.changeColor('.gold_detail_table');
-		this.changeColor('.gold_get_table');
 		this.layerJs();
 		this.tabCut();
 		this.exchangeNum();
+		this.exchangeTab();
 	},
+	// praise控制抽奖板块的出现隐藏
+	praise : 0,
 	headerData : {
 		accessId : _td.getAccess('accessId'),
 		accessKey : _td.getAccess('accessKey')
+	},
+	// 查询是否是抽奖页面积分不足跳转
+	exchangeTab : function(){
+		var url=window.location.search;
+        //转换成字符串
+        url=url.toString();
+        var array=new Array();//用来存放分分割后的字符串
+        array=url.split("?");
+		if(array[1]==2){
+			$('.points_menu a').eq(array[1]).addClass('welfare_border').siblings().removeClass('welfare_border');
+			$('.points_detail').children().eq(array[1]).show().siblings().hide();
+			$('.praise').hide();
+			pointsGold.getPoints_get();
+			pointsGold.praise=1;
+		}else{
+			pointsGold.getPoints_exchange();
+		}
 	},
 	// 给数字添加逗号，小数点后两位
 	numberAdd : function(str){
@@ -63,41 +78,43 @@ var pointsGold = {
 	},
 	// 积分兑换查询的优惠券类型与立即兑换按钮
 	exchange_btn : function(listData,res){
-		$.each(listData,function(i){
-			if(listData[i].type == 2){
-				$('.change li').eq(i).addClass('last_child');
-				$('.change li').eq(i).find('.change_img').html('<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现'+res.content.list[i].numValue+'次');
+		$.each($('.points_detail .change li'),function(i){
+			if($('.points_detail .change li').eq(i).find('.change_btn')[0].getAttribute("data-type") == 2){
+				$('.points_detail .change li').eq(i).addClass('last_child');
+				$('.points_detail .change li').eq(i).find('.change_img').html('<i class="iconfont">&#xe6b9;</i>&nbsp;免费提现'+$('.points_detail .change li').eq(i).find('.change_img').html()+'次');
+			}else{
+				$('.points_detail .change li').eq(i).find('.change_img').html('<i>'+$('.points_detail .change li').eq(i).find('.change_img').html()+'</i>%&nbsp;年利率加息');
 			}
-			// 立即兑换按钮
-			$('.change li').eq(i).find('.change_btn').on('click',function(){
-				var goodsNum=parseInt($(this).parent().find('input').val());
-				var goodsId=listData[i].id;
-				var goodsType=listData[i].type;
-				var needScore=(listData[i].needScore)*goodsNum;
-				var result=parseInt($('.points_current').html())-needScore;
-				var exchangeData={
-					id 			: goodsId,
-					type		: goodsType,
-					num 		: goodsNum,
-					sumScore 	: needScore
-				}
-				if(goodsNum<1){
-					layer.msg('兑换数量为0，无法兑换');
+		})
+		// 立即兑换按钮
+		$('.points_detail .change li .change_btn').on('click',function(){
+			var goodsNum=parseInt($(this).parent().find('input').val());
+			var goodsId=$(this)[0].getAttribute("data-id");
+			var goodsType=$(this)[0].getAttribute("data-type");
+			var needScore=parseInt($(this).siblings('.btn_div').find('i').html())*goodsNum;
+			var result=parseInt($('.points_current').html().split(',').join(''))-needScore;
+			var exchangeData={
+				id 			: goodsId,
+				type		: goodsType,
+				num 		: goodsNum,
+				sumScore 	: needScore
+			}
+			if(goodsNum<1){
+				layer.msg('兑换数量为0，无法兑换');
+			}else{
+				if(result<0){
+					layer.msg('积分不足');
+					return false;
 				}else{
-					if(result<0){
-						layer.msg('积分不足');
-						return false;
-					}else{
-						pointsGold.getGoods_exchange(exchangeData,result);
-					 	// window.location.reload();
-					}
+					pointsGold.getGoods_exchange(exchangeData,result);
+				 	// window.location.reload();
 				}
-			})
+			}
 		})
 	},
 	// 积分兑换查询
 	getPoints_exchange : function(){
-		_apiPointsGold.getPoints_exchange(pointsGold.headerData,1,6,function(res){
+		_apiPointsGold.getPoints_exchange(pointsGold.headerData,1,function(res){
 			var listData = res.content.list;
 			var bannerHtml = _td.renderHtml(points_exchange,{
 				list:res.content.list,
@@ -105,10 +122,11 @@ var pointsGold = {
 			$('.duihuan').html(bannerHtml);
 			pointsGold.ieBrowser();
 			pointsGold.HeightAuto();
+			console.log($('.welfare_content').height())
 			pointsGold.elHeight();
 			pointsGold.exchange_btn(listData,res);
-			_paging.paging('point_page',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiPointsGold.getPoints_exchange(pointsGold.headerData,e.current,e.shownum,function(res){
+			_paging.paging('point_page',res.content.total,res.content.pageSize,function(e){
+				_apiPointsGold.getPoints_exchange(pointsGold.headerData,e.current,function(res){
 					listData = res.content.list;
 					bannerHtml = _td.renderHtml(points_exchange,{
 						list:res.content.list,
@@ -127,7 +145,7 @@ var pointsGold = {
 		})
 	},
 	// 积分兑换提交
-	getGoods_exchange : function(exchangeData){
+	getGoods_exchange : function(exchangeData,result){
 		var data = {
 				id 			: exchangeData.id,
 				type		: exchangeData.type,
@@ -142,43 +160,51 @@ var pointsGold = {
 		})
 	},
 	// 积分明细table中部分td样式，内容
-	pointsDetail_table : function(listData,res){
+	pointsDetail_table : function(listData){
 		$.each(listData,function(i){
-			$('.points_detail_table tr').eq(i+1).children().eq(3).css({paddingLeft: '0px',paddingRight: '30px',textAlign: 'center'});
-			$('.points_detail_table tr').eq(i+1).find('td').first().html(pointsGold.format(res.content.list[i].hanppenTime));
+			listData[i].hanppenTime=pointsGold.format(listData[i].hanppenTime);
 			if(listData[i].type == 1){
-				$('.points_detail_table tr').eq(i+1).find('td').eq(2).html('收入');
-				$('.points_detail_table tr').eq(i+1).find('td').last().css('color','#ff7400');
-				$('.points_detail_table tr').eq(i+1).find('td').last().html('+'+listData[i].score);
-			}else{
-				$('.points_detail_table tr').eq(i+1).find('td').eq(2).html('支出');
-				$('.points_detail_table tr').eq(i+1).find('td').last().html('-'+listData[i].score);
-			}
+				listData[i].type='收入';
+				listData[i].score='+'+listData[i].score;
+			}/*else{
+				listData[i].type='支出';
+				listData[i].score='-'+listData[i].score;
+			}*/
 		});
 	},
 	// 积分明细
 	getPoints_detail : function(){
 		_apiPointsGold.getPoints_detail(pointsGold.headerData,1,10,function(res){
-			var listData = res.content.list;
+			pointsGold.pointsDetail_table(res.content.list);
 			var bannerHtml = _td.renderHtml(points_detail,{
 				list:res.content.list,
 			});
 			$('._points_detail_table').html(bannerHtml);
+			$.each($('._points_detail_table tr'),function(i){
+				if($('._points_detail_table tr').eq(i).children().eq(2).html() == '收入'){
+					$('.points_detail_table tr').eq(i).find('td').last().css('color','#ff7400');
+				}
+				$('._points_detail_table tr').eq(i).children().eq(3).css({paddingLeft: '0px',paddingRight: '30px',textAlign: 'center'});
+			})
 			pointsGold.HeightAuto();
 			pointsGold.elHeight();
 			pointsGold.changeColor('.points_detail_table');
-			pointsGold.pointsDetail_table(listData,res);
-			_paging.paging('point_page',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiPointsGold.getPoints_detail(pointsGold.headerData,e.current,e.shownum,function(res){
-					var listData = res.content.list;
+			_paging.paging('point_page',res.content.total,res.content.pageSize,function(e){
+				_apiPointsGold.getPoints_detail(pointsGold.headerData,e.current,10,function(res){
+					pointsGold.pointsDetail_table(res.content.list);
 					var bannerHtml = _td.renderHtml(points_detail,{
 						list:res.content.list,
 					});
 					$('._points_detail_table').html(bannerHtml);
+					$.each($('._points_detail_table tr'),function(i){
+						if($('._points_detail_table tr').eq(i).children().eq(2).html() == '收入'){
+							$('.points_detail_table tr').eq(i).find('td').last().css('color','#ff7400');
+						}
+						$('._points_detail_table tr').eq(i).children().eq(3).css({paddingLeft: '0px',paddingRight: '30px',textAlign: 'center'});
+					})
 					pointsGold.HeightAuto();
 					pointsGold.elHeight();
 					pointsGold.changeColor('.points_detail_table');
-					pointsGold.pointsDetail_table(listData,res);
 				},function(){
 					console.log("分页点击请求失败");
 				});
@@ -218,6 +244,7 @@ var pointsGold = {
 					})
 				}
 			});
+			_paging.paging('point_page',res.content.total,1000);
 		},function(){
 			console.log('请求失败');
 		})
@@ -225,8 +252,10 @@ var pointsGold = {
 	// 签到
 	getUserSign : function(){
 		_apiPointsGold.getUserSign(pointsGold.headerData,function(res){
-			// $(this).parent().html('<span class="iconfont">&#xe675;</span>&nbsp;已完成');
+			$('._points_get_table tr').eq(i+1).children().eq(2).html('<span class="iconfont">&#xe675;</span>&nbsp;已完成');
 			// window.location.reload();
+			var value=parseInt($('.points_current').html().split(',').join(''))+res.content;
+			$('.points_current').html(pointsGold.numberAdd(value));
 			console.log('签到成功');
 		},function(){
 			console.log('请求失败');
@@ -272,7 +301,7 @@ var pointsGold = {
 	elHeight : function (){
 		var hL = $('.uc_menu')[0].clientHeight;
 		var hR = $('.uc_menu').siblings('div')[0].clientHeight;
-		if(hR>=905){
+		if(hR>=hL){
 			$(".uc_menu").height(hR);
 			$('.uc_menu').siblings('div').height(hR);
 		}else{
@@ -282,8 +311,7 @@ var pointsGold = {
 	},
 	// tab切换集合
 	tabCut : function(){
-		// 积分，金币菜单tab，praise控制抽奖板块的出现隐藏
-		var praise=0;
+		// 积分，金币菜单tab
 		$('.points .menu a').on("click",function(event){
 			pointsGold.HeightAuto();
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
@@ -294,7 +322,7 @@ var pointsGold = {
 				$('.praise').hide();
 				pointsGold.elHeight();
 			}else{
-				if(praise==0){
+				if(pointsGold.praise==0){
 					$('.praise').show();
 				}
 				pointsGold.elHeight();
@@ -304,7 +332,7 @@ var pointsGold = {
 		$('.points_menu a').on("click",function(event) {
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
 			var index=$(this).index();
-			praise=index;
+			pointsGold.praise=index;
 			$('.points_detail').children().eq(index).show().siblings().hide();
 			if(index==0){
 				$('.praise').show();
@@ -356,22 +384,33 @@ var pointsGold = {
 	},
 	// 弹窗内部js
 	layerJs : function(){
-		$('#points_gzh ul li input').on('input',function(){
+		$('#points_gzh ul li input').on({
+			mouseover: function() {
+			$(this).addClass('hover-input');
+		},
+			mouseout: function() {
+				$(this).removeClass('hover-input');
+			}
+		})
+		$('#points_gzh ul li input').on('focus',function(){
+			$(this).removeClass('err-input');
+		})
+		$('#points_gzh ul li input').on('blur',function(){
 			if($(this).val()==''){
 				$(this).css({fontSize:'12px',color:'#9e9e9e'});
+				$(this).removeClass('hover-input');
 			}else{
 				$(this).css({fontSize:'14px',color:'#333333'});
 			}
 		})
-		/*$("#points_gzh ul li input").on('focus',function(){
-			$(this).css({color:'#333333',fontSize:'14px'});
-		})*/
-		$('#points_gzh ul li input').on('blur',function(){
-			if($(this).val()==''){
-				$(this).css({fontSize:'12px',color:'#9e9e9e'});
-			}else{
+		$('#points_gzh ul li input').keyup(function() {
+			if ($(this).val().length > 0) {
+				$('#points_gzh ul li .del').show();
 				$(this).css({fontSize:'14px',color:'#333333'});
 			}
+		});
+		$('#points_gzh ul li .del').on('click',function(){
+			$('#points_gzh ul li input').val('');
 		})
 		// 弹出层关闭
 		$('.points_alert .i_know').on('click',function(){
@@ -389,6 +428,12 @@ var pointsGold = {
 			}
 		})
 		$('#points_gzh .submit_btn .submits').on("click",function(){
+			if($('#points_gzh ul li input').val()!='' && $('#points_gzh ul li input').val().length==6){
+				//调用接口
+			}else{
+				$('#points_gzh ul li input').addClass('err-input');
+				$('.order_err p').show();
+			}
 			layer.title('口令验证成功');
 			$('#points_gzh .content').hide();
 			$('#points_gzh .center').show();
@@ -401,9 +446,9 @@ var pointsGold = {
 		})
 	},
 	// 获取积分任务部分弹窗公共样式
-	layerPublic : function(e,obj){
+	layerPublic : function(obj){
 		var titles='';
-		pointsGold.ReturnFalse(e);
+		// pointsGold.ReturnFalse(e);
 		if(obj=='points_gzh'){
 			titles='获取积分：首次关注拓道金服微信公众号';
 		}else if(obj=='points_login'){

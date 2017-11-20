@@ -3,14 +3,14 @@
 		<th style="width:270px;">投资时间</th>
 		<th style="width:270px;">积分来源</th>
 		<th style="width:190px;">类型</th>
-		<th style="width:90px;padding-left:0px;padding-right:30px;text-align:center;">积分</th>
+		<th style="width:90px;">积分</th>
 	</tr>
 {{#list}}
 	<tr>
-		<td>2017-09-18 14:09:00</td>
+		<td>{{hanppenTime}}</td>
 		<td>{{source}}</td>
-		<td></td>
-		<td></td>
+		<td>{{type}}</td>
+		<td>{{score}}</td>
 	</tr>
 {{/list}}
 </table>

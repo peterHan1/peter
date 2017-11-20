@@ -14,7 +14,7 @@ var invites = {
 		this.getInviteRecord();
 		this.tabCut();
 		this.hoverEvent();
-		this.getLink('.copy_link');
+		this.getLink();
 		this.getCode();
 		this.getUserDepository();
 	},
@@ -65,6 +65,7 @@ var invites = {
 			// $('.mypoints1 .pointsNum').html(invites.numberAdd(res.content.returnAmount));
 			// $('.mypoints2 .pointsNum').html(invites.numberAdd(res.content.returnDyqAmount));
 			invites.HeightAuto();
+			require('./share.js');
 		},function(){
 			console.log('请求失败');
 			$('.depository_no').show();
@@ -99,6 +100,7 @@ var invites = {
 			}
 		});
 	},
+	// 复制操作，必须放在event事件里才能生效，放在接口函数内不能生效
 	copyEvent : function(copyValue){
 		// 动态创建 input 元素
 	  	var aux = document.createElement("input");
@@ -117,7 +119,7 @@ var invites = {
 	  	document.body.removeChild(aux);
 	},
 	// 复制邀请链接地址
-	getLink : function(obj){
+	getLink : function(){
 		var time='';
 		var linkValue='';
 		_apiInvite.getLink(invites.headerData,function(res){
@@ -126,61 +128,34 @@ var invites = {
 		},function(){
 			console.log('请求失败');
 		})
-		$(obj).on('click',function(){
-			if(obj=='.copy_link'){
-				$(this).css({background:'#ffffff',color:'#ff7400'});
-				$(this).off('mouseover mouseout');
-				invites.copyEvent(linkValue);
-				if(document.execCommand("copy")){
-			  		$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-			  	}else{
-					/*layer.open({
-						type: 1,
-						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-						skin: 'invite_link',
-						area: ['560px', '330px'],
-						content: $('#invite_link')
-					});*/
-  				}
-				time=setTimeout(function(){
-					$(obj).html('复制链接');
-					invites.hoverEvent();
-					clearTimeout(time);
-				},2000);
-			}else if(obj=='.qq_share'){
-				invites.copyEvent(linkValue);
-				if(document.execCommand("copy")){
-				  	$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-			  	}else{
-					/*layer.open({
-						type: 1,
-						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-						skin: 'invite_link',
-						area: ['560px', '330px'],
-						content: $('#invite_link')
-					});*/
-  				}
-			}else{
-				invites.copyEvent(linkValue);
-				if(document.execCommand("copy")){
-			  		$(obj).html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-			  	}else{
-					/*layer.open({
-						type: 1,
-						title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-						skin: 'invite_link',
-						area: ['560px', '330px'],
-						content: $('#invite_link')
-					});*/
-  				}
+		$('.copy_link').on('click',function(){
+			$(this).css({background:'#ffffff',color:'#ff7400'});
+			$(this).off('mouseover mouseout');
+			invites.copyEvent(linkValue);
+			if(document.execCommand("copy")){
+		  		$('.copy_link').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+		  	}else{
+		  		$('#invite_link li').eq(2).html(linkValue);
+				layer.open({
+					type: 1,
+					title: ['复制邀请链接','color: #707070;'],
+					skin: 'invite_alert',
+					area: ['580px', 'auto'],
+					content: $('#invite_link')
+				});
 			}
+			time=setTimeout(function(){
+				$('.copy_link').html('复制链接');
+				invites.hoverEvent();
+				clearTimeout(time);
+			},2000);
 		});
 	},
 	// 复制邀请码
 	getCode : function(){
 		var time='';
 		var linkValue='';
-		_apiInvite.getCode(invites.headerData,function(res){
+		_apiInvite.getMemberInfo(invites.headerData,function(res){
 			linkValue=res.content.inviteCode;
 		},function(){
 			console.log('请求失败');
@@ -192,13 +167,16 @@ var invites = {
 			if(document.execCommand("copy")){
 		  		$('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
 		  	}else{
-				/*layer.open({
+		  		$('#invite_link li').eq(0).html('浏览器不兼容，邀请码复制失败！');
+		  		$('#invite_link li').eq(1).html('您可以手动复制邀请码：');
+		  		$('#invite_link li').eq(2).html(linkValue);
+				layer.open({
 					type: 1,
-					title: ['获取积分：首次关注拓道金服微信公众号','color: #707070;'],
-					skin: 'invite_link',
-					area: ['560px', '330px'],
+					title: ['复制邀请码','color: #707070;'],
+					skin: 'invite_alert',
+					area: ['580px', 'auto'],
 					content: $('#invite_link')
-				});*/
+				});
 			}
 			time=setTimeout(function(){
 				$('.copy_code').html('复制链接');
@@ -207,20 +185,13 @@ var invites = {
 			},2000);
 		});
 	},
-	paging : function(pages,pageNum,pageSize,backFuntion){
-		$(".zxf_pagediv").createPage({
-			// 页数 pages
-			pageNum: pages,
-			// 当前页 pageNum
-			current: pageNum,
-			// 显示条数 pageSize
-			shownum: pageSize,
-			backfun: backFuntion
-		});
-	},
 	// 邀请记录
 	getInviteRecord : function(){
-		_apiInvite.getInviteRecord(invites.headerData,1,20,function(res){
+		_apiInvite.getInviteRecord(invites.headerData,1,10,function(res){
+			var listData=res.content.list;
+			$.each(listData,function(i){
+				listData[i].friendPhoneNum=listData[i].friendPhoneNum.substring(0,3)+"****"+listData[i].friendPhoneNum.substring(8,11);
+			})
 			if(res.content.list.length==0){
 				$('.invite_record').children().eq(1).show().siblings().hide();
 				return false;
@@ -230,8 +201,8 @@ var invites = {
 				});
 				$('._invite_record_table').html(bannerHtml);
 				invites.changeColor('.invite_table');
-				_paging.paging('pageList',res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-					_apiInvite.getInviteRecord(e.current,20,function(res){
+				_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
+					_apiInvite.getInviteRecord(e.current,10,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,
 						});

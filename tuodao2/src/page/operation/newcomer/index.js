@@ -3,29 +3,13 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 
-/*$('.task li').eq(1).find('.btn').on('click',function(){
-	$(this).html('<span class="iconfont">&#xe675;</span> 已完成');
-	$(this).parent().off();
-	$(this).css({color:'#6CBB50',background:'#ffffff'});
-	$(this).attr('data-state','no');
-	$(this).siblings('.p2').css('color','#9e9e9e');
-	$(this).siblings('.p3').css('color','#9e9e9e');
-})
-$('.task li').eq(2).find('.btn').on('click',function(){
-	$(this).attr('data-state','guoqi');
-	$(this).parent().off();
-	$(this).html('任务已过期');
-	$(this).css('background','#ffffff');
-	$(this).siblings('.p2').css('color','#9e9e9e');
-	$(this).siblings('.p3').css('color','#9e9e9e');
-})
-*/
 var _td = require('util/td.js');
 var _apiNewTask = require('api/operationCenter-api.js');
 var newTaskHtml = require('./newcomerTask.string');
 var newTask = {
 	init : function(){
 		this.newTask();
+		this.getMemberInfo();
 	},
 	headerData : {
 		accessId : _td.getAccess('accessId'),
@@ -69,6 +53,8 @@ var newTask = {
 							newTask.layerPublic(e,'points_login');
 						}else if(listData[i].code==3){
 							newTask.layerPublic(e,'points_invest');
+						}else{
+							window.open(listData[i].url);
 						}
 					})
 				}
@@ -152,9 +138,9 @@ var newTask = {
 		});
 	},
 	getMemberInfo:function(){
-		_apiNewTask.getMemberInfo(newTask.headerData,function(res){
-			// 是否登录
-			if(res){
+		// 是否登录
+		if(newTask.headerData){
+			_apiNewTask.getMemberInfo(newTask.headerData,function(res){
 				// 是否为新手
 				if(res.content.isNewbie==1){
 					// 是否投资
@@ -190,11 +176,11 @@ var newTask = {
 						})
 					}
 				}
-			}
-		},function(){
-			window.open('register.html','_self');
-			console.log('请求失败');
-		})
+			},function(){
+				window.open('register.html','_self');
+				console.log('请求失败');
+			})
+		}
 	},
 	mouseOver:function(){
 		$('.task li').on({
