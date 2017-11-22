@@ -10,7 +10,7 @@
 		 	<router-link tag="div" class="a-item" to="/oper">
 				<img src="../../image/inform/inform3.png">
 		 	</router-link>
-		 	<router-link tag="div" class="a-item" to="/law">
+		 	<router-link tag="div" class="a-item" to="/info_law">
 				<img src="../../image/inform/inform4.png">
 		 	</router-link>
 		 	<router-link tag="div" class="a-item" to="/risk">
