@@ -73,15 +73,15 @@
 				flex: 1
 		.zlj
 			dt
-				background: url(../../image/inform/zlj.png) no-repeat
+				background: url(../../../image/inform/zlj.png) no-repeat
 				background-size: 100% 100%
 		.fxy
 			dt
-				background: url(../../image/inform/fxy.png) no-repeat
+				background: url(../../../image/inform/fxy.png) no-repeat
 				background-size: 100% 100%
 		.ll
 			dt
-				background: url(../../image/inform/ll.png) no-repeat
+				background: url(../../../image/inform/ll.png) no-repeat
 				background-size: 100% 100%
 		
 		

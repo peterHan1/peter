@@ -2,13 +2,13 @@
 	<div class="certificate">
 		<div class="flex">
 			<div class="div_fr div_img flex-1">
-				<img class="lazy" src="../../image/inform/certificate_bg1.png" num="1">
+				<img class="lazy" src="../../../image/inform/certificate_bg1.png" num="1">
 				<div class="txt_p">
 					<p>北京银行存管协议-1</p>
 				</div>
 			</div>
 			<div class="div_img flex-1">
-				<img class="lazy" src="../../image/inform/certificate_bg2.png" num="2">
+				<img class="lazy" src="../../../image/inform/certificate_bg2.png" num="2">
 				<div class="txt_p">
 					<p>北京银行存管协议-2</p>
 				</div>
@@ -16,13 +16,13 @@
 		</div>
 		<div class="flex">
 			<div class="div_fr div_img flex-1">
-				<img class="lazy" src="../../image/inform/certificate_bg3.png" num="3">
+				<img class="lazy" src="../../../image/inform/certificate_bg3.png" num="3">
 				<div class="txt_p">
 					<p>拓道金服营业执照</p>
 				</div>
 			</div>
 			<div class="div_img flex-1">
-				<img class="lazy" src="../../image/inform/certificate_bg4.png" num="4">
+				<img class="lazy" src="../../../image/inform/certificate_bg4.png" num="4">
 				<div class="txt_p">
 					<p>ICP证</p>
 				</div>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="flex">
 			<div class="div_fr div_img flex-1">
-				<img class="lazy img_only" src="../../image/inform/certificate_bg5.png" num="5">
+				<img class="lazy img_only" src="../../../image/inform/certificate_bg5.png" num="5">
 				<div class="txt_p">
 					<p>信息系统安全等级证书</p>
 				</div>

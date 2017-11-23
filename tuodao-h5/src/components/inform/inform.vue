@@ -1,32 +1,49 @@
 <template>
 	<div class="max_width">
 		<div class="inform">
-			<router-link tag="div" class="a-item" to="/info_about">
-				<img src="../../image/inform/inform1.png">
-		 	</router-link>
-			<router-link tag="div" class="a-item" to="/platfrom">
-				<img src="../../image/inform/inform2.png">
-		 	</router-link>
-		 	<router-link tag="div" class="a-item" to="/oper">
-				<img src="../../image/inform/inform3.png">
-		 	</router-link>
-		 	<router-link tag="div" class="a-item" to="/info_law">
-				<img src="../../image/inform/inform4.png">
-		 	</router-link>
-		 	<router-link tag="div" class="a-item" to="/risk">
-				<img src="../../image/inform/inform5.png">
-		 	</router-link>
-			<router-link tag="div" class="a-item" to="/demo1">
-				<img src="../../image/inform/inform6.png">
-		 	</router-link>
-		 	<router-link tag="div" class="a-item" to="/demo1">
-				<img src="../../image/inform/inform7.png">
+			<router-link tag="div" class="a-item" v-for="info in informList" :to="{ path: info.url }">
+				<img :src=info.src>
 		 	</router-link>
 		</div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+  	data () {
+  		return {
+  			informList: [
+  				{
+  					url: 'info_about',
+  					src: require('../../image/inform/inform1.png')
+  				},
+  				{
+  					url: 'platfrom',
+  					src: require('../../image/inform/inform2.png')
+  				},
+  				{
+  					url: 'info_oper',
+  					src: require('../../image/inform/inform3.png')
+  				},
+  				{
+  					url: 'info_law',
+  					src: require('../../image/inform/inform4.png')
+  				},
+  				{
+  					url: 'info_risk',
+  					src: require('../../image/inform/inform5.png')
+  				},
+  				{
+  					url: 'info_safety',
+  					src: require('../../image/inform/inform6.png')
+  				},
+  				{
+  					url: 'info_knowus',
+  					src: require('../../image/inform/inform7.png')
+  				}
+  			]
+  		}
+  	}
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

@@ -26,7 +26,7 @@
 			.table_bg
 				width: 6.9rem
 				height: 17.52rem
-				background:url(../../image/inform/table_bg.png) no-repeat	
+				background:url(../../../image/inform/table_bg.png) no-repeat	
 				background-size: 100% 100%
 				margin:0.4rem auto
 </style>

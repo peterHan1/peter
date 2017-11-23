@@ -5,31 +5,40 @@ import demo2 from 'components/demo2/demo2'
 import demo3 from 'components/demo3/demo3'
 import demo4 from 'components/demo4/demo4'
 import inform from 'components/inform/inform'
-import infoAbout from 'components/info_about/info_about'
-import aboutTd from 'components/info_about/about_td'
-import aboutStaff from 'components/info_about/about_staff'
-import aboutPapers from 'components/info_about/about_papers'
-import aboutFrame from 'components/info_about/about_frame'
-import infoTerrace from 'components/info_terrace/info_terrace'
-import infoBank from 'components/info_bank/info_bank'
-import infoBoard from 'components/info_board/info_board'
-import infoShare from 'components/info_share/info_share'
-import infoGreat from 'components/info_great/info_great'
-import infoLaw from 'components/info_law/info_law'
-import lawXx from 'components/law/law_xx'
-import lawJd from 'components/law/law_jd'
-import lawZjdj from 'components/law/law_zjdj'
-import lawZjcg from 'components/law/law_zjcg'
-import lawZjyw from 'components/law/law_zjyw'
-import lawDx from 'components/law/law_dx'
-import lawCj from 'components/law/law_cj'
-import lawFx from 'components/law/law_fx'
-import lawGf from 'components/law/law_gf'
-import lawKz from 'components/law/law_kz'
-import lawBl from 'components/law/law_bl'
-import lawFf from 'components/law/law_ff'
-import lawSl from 'components/law/law_sl'
-import lawMj from 'components/law/law_mj'
+import infoAbout from 'components/inform/info_about/info_about'
+import aboutTd from 'components/inform/info_about/about_td'
+import aboutStaff from 'components/inform/info_about/about_staff'
+import aboutPapers from 'components/inform/info_about/about_papers'
+import aboutFrame from 'components/inform/info_about/about_frame'
+import infoTerrace from 'components/inform/info_about/info_terrace'
+import infoBank from 'components/inform/info_about/info_bank'
+import infoBoard from 'components/inform/info_about/info_board'
+import infoShare from 'components/inform/info_about/info_share'
+import infoGreat from 'components/inform/info_about/info_great'
+import infoLaw from 'components/inform/info_law/info_law'
+import lawXx from 'components/inform/info_law/law/law_xx'
+import lawJd from 'components/inform/info_law/law/law_jd'
+import lawZjdj from 'components/inform/info_law/law/law_zjdj'
+import lawZjcg from 'components/inform/info_law/law/law_zjcg'
+import lawZjyw from 'components/inform/info_law/law/law_zjyw'
+import lawDx from 'components/inform/info_law/law/law_dx'
+import lawCj from 'components/inform/info_law/law/law_cj'
+import lawFx from 'components/inform/info_law/law/law_fx'
+import lawGf from 'components/inform/info_law/law/law_gf'
+import lawKz from 'components/inform/info_law/law/law_kz'
+import lawBl from 'components/inform/info_law/law/law_bl'
+import lawFf from 'components/inform/info_law/law/law_ff'
+import lawSl from 'components/inform/info_law/law/law_sl'
+import lawMj from 'components/inform/info_law/law/law_mj'
+import infoSafety from 'components/inform/info_safety/info_safety'
+import infoRisk from 'components/inform/info_risk/info_risk'
+import infoKnowus from 'components/inform/info_knowus/info_knowus'
+import knowTd from 'components/inform/info_knowus/know_td'
+import knowPatt from 'components/inform/info_knowus/know_patt'
+import knowAdva from 'components/inform/info_knowus/know_adva'
+import knowTeam from 'components/inform/info_knowus/know_team'
+import knowContact from 'components/inform/info_knowus/know_contact'
+import infoOper from 'components/inform/info_oper/info_oper'
 
 Vue.use(Router)
 
@@ -161,6 +170,45 @@ export default new Router({
 		{
 			path: '/law_mj',
 			component: lawMj
+		},
+		{
+			path: '/info_safety',
+			component: infoSafety
+		},
+		{
+			path: '/info_risk',
+			component: infoRisk
+		},
+		{
+			path: '/info_knowus',
+			component: infoKnowus,
+			redirect: '/know_td',
+			children: [
+				{
+					path: '/know_td',
+					component: knowTd
+				},
+				{
+					path: '/know_patt',
+					component: knowPatt
+				},
+				{
+					path: '/know_adva',
+					component: knowAdva
+				},
+				{
+					path: '/know_team',
+					component: knowTeam
+				},
+				{
+					path: '/know_contact',
+					component: knowContact
+				}
+			]
+		},
+		{
+			path: '/info_oper',
+			component: infoOper
 		}
 	]
 })

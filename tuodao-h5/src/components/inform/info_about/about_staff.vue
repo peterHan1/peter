@@ -18,7 +18,7 @@
 	.personnel_bg
 		width: 6.5rem
 		height: 7.96rem
-		background: url(../../image/inform/personnel_bg.png) no-repeat
+		background: url(../../../image/inform/personnel_bg.png) no-repeat
 		background-size: 100% 100%
 		margin: 0 auto
 </style>
