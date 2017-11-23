@@ -2,8 +2,8 @@
 	<div class="oper">
 		<div class="oper_tab">
 			<div class="oper_date" v-on:click="clickFn">
-				<span class="fl date_year">2017年</span>
-				<i class="fr iconfont">&#xe6a3;</i>
+				<span class="date_year">{{showYear}}</span>
+				<i class="iconfont">&#xe6a3;</i>
 			</div>
 			<div class="oper_year" v-show="isShows">
 				<ul>
@@ -17,7 +17,7 @@
 		<div class="dasahe" v-show="isShows"></div>
 		<div class="oper_list">
 			<ul>
-				<li>
+				<li v-for="oper in operLista">
 					<a href="http://g.eqxiu.com/s/vdR4rZpZ">
 						<img src="../../../image/inform/m_10.png">
 					</a>
@@ -56,6 +56,7 @@
 		data () {
 			return {
 				isShows: false,
+				showYear: '2017年',
 				years: ['2017年', '2016年'],
 				activeName: '2017年',
 				operLista: [
@@ -114,7 +115,7 @@
 			},
 			selectedYear: function(gameName) {
 				this.activeName = gameName
-				console.log(gameName)
+				this.showYear = gameName
 				if (this.isShows === true) {
 					this.isShows = false
 				} else {
