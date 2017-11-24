@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>借款</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/loan.css" />
+		<script src='js/jquery-2.1.0.min.js'></script>
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="loan_index">
+			<div class="index_top">
+				<div class="top_bg"></div>
+				<div class="top_com"></div>
+			</div>
+			<div class="index_flow"></div>
+			<div class="index_cond"></div>
+			<div class="index_phone">
+				<p>如有问题请咨询拓道客服 <span>40085-777-85</span></p>
+			</div>
+			<div class="index_apply">
+				<a href="loan.html" class="apply_btn">立即申请</a>
+			</div>
+		</div>
+	</body>
+	<div class="phone_show dis_none">
+		<p>拓道金服：40085-777-85</p>
+		<div class="phone_btn">
+			<span class="close">取消</span>
+			<span>	
+				<a href="tel:4008577785">拨打</a>
+			</span>
+		</div>
+	</div>
+</html>
+<script src="js/layer/layer.js"></script>
+<script>
+	$(function(){
+		$(".index_phone").on("click",function(){
+			layer.open({
+				type:0,
+				skin:"phone_show",
+				area: "1.1rem",
+				content:$(".phone_show").html(),
+
+			})
+		});
+		$(document).on("click",".close",function(){
+			layer.closeAll();
+		})
+	})
+</script>
+

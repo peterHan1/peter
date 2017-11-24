@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>我要加盟</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="js/joinIn/mui.css"/>
+		<link rel="stylesheet" href="js/joinIn/mui.picker.css"/>
+		<style>
+		*{-webkit-overflow-scrolling: touch;box-sizing:border-box; font-family:"Microsoft YaHei";}
+		input,textarea{-webkit-appearance: normal; -moz-appearance: normal; -o-appearance: normal; appearance: normal;border:none;outline:none}
+		.dis_none{display:none;}
+		.div_bot input::-webkit-input-placeholder{color: #626262;}
+		.div_bot input:-moz-placeholder{color:#626262;}
+		.div_bot input::-moz-placeholder{color:#626262;}
+		.div_bot input:-ms-input-placeholder{color:#626262;}
+		.joinIn{background-color:#f2f3f7;overflow: hidden;}
+		.joinIn .top{width:100%;margin-top:0.2rem;}
+		.joinIn .top li{width:100%;height:1.1rem;padding:0 0.3rem;position:relative;border-bottom:1px solid #e4e4e4;overflow:hidden;background-color:#fff;font-size:0.26rem;}
+		.joinIn .top li:nth-child(3){height:1.6rem;border:none;}
+		
+		.joinIn li .div_top{height:0.4rem;overflow: hidden;}
+		.joinIn li .p_top{line-height:0.5rem;font-size:0.22rem;color:#ff7400;display: none;}
+		
+		.joinIn li .div_bot{height:0.66rem;line-height:0.66rem;}
+		.joinIn li .div_bot input{width:100%;height:100%;font-size:0.28rem;color:#212a36;caret-color:#ff7400;}
+		.joinIn li .div_bot div{position:absolute;right:0;top:0.4rem;width:0.24rem;height:0.24rem;margin:0.2rem;background:url(img/cooperation/x.png) no-repeat;background-size:100% 100%;z-index: 999;}
+		.joinIn li .tex_bot{height:0.96rem;margin-top:0.18rem;}
+		.joinIn li .tex_bot textarea{width:100%;height:100%;resize: none;outline: none;border: none;font-size:0.28rem;color:#212a36;caret-color:#ff7400; font-family:;}
+		
+		.joinIn .txt{line-height:0.6rem;font-size:0.2rem;color:#7e7e7e;padding:0 0.3rem;}
+		
+		.inp_bot input::-webkit-input-placeholder{color: #cacaca;}
+		.inp_bot input:-moz-placeholder{color:#cacaca;}
+		.inp_bot input::-moz-placeholder{color:#cacaca;}
+		.inp_bot input:-ms-input-placeholder{color:#cacaca;}
+		.inp_bot textarea::-webkit-input-placeholder {color: #cacaca;}
+		.bot li{width:100%;height:1.1rem;padding:0 0.3rem;border-bottom:1px solid #e4e4e4;background-color:#fff;font-size:0.26rem;}
+		.bot li .div_top{height:0.4rem;overflow: hidden;}
+		.bot li .p_top{line-height:0.5rem;font-size:0.22rem;color:#b6b5b6;display:none;}
+		.bot li .div_bot{height:0.66rem;line-height:0.66rem;}
+		.bot li .p_city{width:95%;float:left;color:#212a36;font-size:0.28rem;color:#626262;}
+		.bot li span{float:right;font-size:0.35rem;}
+		.bot li.citys{height:1.6rem;}
+		.bot li.com_li{padding:0;height:auto;}
+		.bot li.com_li .div_top{padding:0 0.3rem;}
+		.bot li.com_li .div_bot{padding:0 0.3rem;}
+
+		
+		.bot li .bot_tab{display:none;width:100%;height:1rem;background-color:#f2f3f7;padding:0.18rem 0;}
+		.bot li .bot_tab span{display:inline-block;font-size:0.26rem;margin-left:0.3rem;padding:0.1rem 0.4rem;float: left;border:1px solid #212a36;color:#212a36;border-radius:5px;}
+		.bot li .bot_tab span.on{color:#fff;background-color:#ff7400;border-color:#ff7400;}
+		.bot li.nature_li .bot_tab span{width:1.89rem;padding:0.1rem 0;text-align:center;margin-right:0.3rem;}
+		.bot li.nature_li .bot_tab span:nth-child(3){margin-right:0;}
+		.bot li.reason_li{height:1.6rem;}
+		
+		.sub_btn{width:100%;padding:0 0.3rem;margin-top:0.6rem;text-align: center;}
+		.sub_btn .btn{display: inline-block;width:100%;height:0.8rem;line-height:0.8rem;text-align:center;border-radius:5px;background-color:#d3b580;color:#fff;}
+		.sub_btn p{margin-top:0.16rem;font-size:0.2rem;color:#7e7e7e;text-align:center;}
+		.sub_btn p a{color:#ff7400;font-size:0.24rem;}
+		.sub_btn .log{display: inline-block;width:1.92rem;height:0.23rem;margin:2rem 0 0.4rem 0 ;background:url(img/cooperation/log.png) no-repeat;background-size:100% 100%;}
+		</style>
+	</head>
+	<body>
+		<div class="max_width joinIn">
+			<div class="top">
+				<ul>
+					<li>
+						<div class="div_top">
+							<p class="p_top">姓名</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="您的姓名" class="name_inp" />
+							<div class="dis_none empty"></div>
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系电话</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="联系电话" class="phone_inp"/>
+							<div class="dis_none empty"></div>
+							
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系地址</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="site_inp" placeholder="联系地址"></textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p class="txt">填写加盟信息，便于我们更好的沟通合作</p>
+			<div class="bot">
+				<ul>
+					<li class="city">
+						<div class="div_top">
+							<p class="p_top">合作意向区域</p>
+						</div>
+						<div class="div_bot" id="city">
+							<p class="p_city">合作意向区域</p>
+							<span> &gt; </span>
+						</div>
+					</li>
+					<li class="citys">
+						<div class="div_top">
+							<p class="p_top">意向区域详细地址</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="site_inp" placeholder="意向区域详细地址"></textarea>
+						</div>
+					</li>
+					<li class="com_li source_li">
+						<div class="div_top">
+							<p class="p_top">分公司投资意向来源</p>
+						</div>
+						<div class="div_bot">
+							<p class="p_city">分公司投资意向来源</p>
+							<span> &gt; </span>
+						</div>
+						<div class="bot_tab">
+							<span>自由资金</span>
+							<span>部分自由资金</span>
+							<span>合作资金</span>
+						</div>
+					</li>
+					<li class="com_li nature_li">
+						<div class="div_top">
+							<p class="p_top">分公司投资性质</p>
+						</div>
+						<div class="div_bot">
+							<p class="p_city">分公司投资性质</p>
+							<span> &gt; </span>
+						</div>
+						<div class="bot_tab">
+							<span>个人投资</span>
+							<span>合伙投资</span>
+							<span>其他</span>
+						</div>
+					</li>
+					<li class="time" >
+						<div class="div_top">
+							<p class="p_top">希望开始时间</p>
+						</div>
+						<div class="div_bot" id="city">
+							<p class="p_city">希望开始时间</p>
+							<span> &gt; </span>
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">计划投资总额</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="计划投资总额" class="money_inp"/>
+							<div class="dis_none empty"></div>
+							
+						</div>
+					</li>
+					<li class="reason_li">
+						<div class="div_top">
+							<p class="p_top">加盟理由</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="reason_inp" placeholder="请加盟理由"></textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="sub_btn">
+				<span class="btn">申请加盟</span>
+				<p>如有问题请咨询拓道客服：<a href="tel:4008577785">40085-777-85</a></p>
+				<span class="log"></span>
+			</div>
+		</div>
+	</body>
+</html>
+<script src='js/jquery-2.1.0.min.js'></script>
+<script src="js/base.js"></script>
+<script src="js/joinIn/data.city.js"></script>
+<script src="js/joinIn/mui.min.js"></script>
+<script src="js/joinIn/mui.picker.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script>
+	$(function(){
+		$(".joinIn li .empty").on("mousedown",function(){
+			$(this).siblings("input").val("");
+		});
+		$(".joinIn li input").focus(function(){
+			var clas = $(this).attr("class");
+			$(this).parent(".div_bot").addClass("inp_bot");
+			$(this).parents("li").find(".p_top").show();
+			$(this).parents("li").find(".p_top").css("color","#ff7400");
+			$(this).siblings("div").show();
+			if(clas == 'name_inp'){
+				$(this).attr("placeholder","请输入您的姓名");
+			}else if(clas == 'phone_inp'){
+				$(this).attr("placeholder","请输入联系电话");
+			}else if(clas == 'site_inp'){
+				$(this).attr("placeholder","请输入联系地址");
+			}else if(clas == 'money_inp'){
+				$(this).attr("placeholder","请输入计划投资总额");
+			}
+		});
+		$(".joinIn li input").blur(function(){
+			var clas = $(this).attr("class");
+			$(this).siblings(".empty").hide();
+			if($(this).val() == ""){
+				if(clas == 'name_inp'){
+					$(this).attr("placeholder","您的姓名");
+				}else if(clas == 'phone_inp'){
+					$(this).attr("placeholder","联系电话");
+				}else if(clas == 'site_inp'){
+					$(this).attr("placeholder","联系地址");
+				}else if(clas == 'money_inp'){
+					$(this).attr("placeholder","计划投资总额");
+				}
+				$(this).parent(".div_bot").removeClass("inp_bot");
+				$(this).parents("li").find(".p_top").hide();
+			}else{
+				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
+				
+			}
+		});
+		$(".phone_inp").blur(function(){
+			if($(this).val() != ""){
+				var phone = $(this).val();
+				if(!(/^1[34578]\d{9}$/.test(phone))){
+					layer.open({
+						style:'background-color:#393b41;color:#fff;',
+						time: 2,
+						shade: false,
+						content:'请输入正确的手机号'
+					})
+					return false; 
+				}
+			}
+		});
+		$(".site_inp").focus(function(){
+			$(this).parent(".tex_bot").addClass("inp_bot");
+			$(this).parents("li").find(".p_top").show();
+			$(this).attr("placeholder","请输入联系地址");
+			$(this).parents("li").find(".p_top").css("color","#ff7400");
+			
+		});
+		$(".site_inp").blur(function(){
+			if($(this).val() == ""){
+				$(this).parents("li").find(".p_top").hide();
+				$(this).attr("placeholder","联系地址");
+				$(this).parent(".tex_bot").removeClass("inp_bot");
+			}else{
+				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
+			}
+		});
+		
+		var city_picker = new mui.PopPicker({layer:3});
+		city_picker.setData(init_city_picker);
+		$("#city").on("click", function(){
+			setTimeout(function(){
+				city_picker.show(function(items){
+					$(".city .p_city").html((items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text);
+					$(".city .p_top").show()
+				});
+			},200);
+		});
+
+		$(".source_li .div_bot").on("click",function(){
+			$(".source_li .bot_tab").show();
+		});
+		$(".source_li .bot_tab span").on("click",function(){
+			var htm = $(this).html();
+			$(".source_li .bot_tab span").removeClass("on");
+			$(this).addClass("on");
+			$(".source_li .p_top").show();
+			$(".source_li .p_city").html(htm);
+			$(".source_li .bot_tab").fadeOut();
+		});
+		$(".nature_li .div_bot").on("click",function(){
+			$(".nature_li .bot_tab").show();
+			
+		})
+		$(".nature_li .bot_tab span").on("click",function(){
+			var htm = $(this).html();
+			$(".nature_li .bot_tab span").removeClass("on");
+			$(this).addClass("on");
+			$(".nature_li .p_top").show();
+			$(".nature_li .p_city").html(htm);
+			$(".nature_li .bot_tab").fadeOut();
+		});
+		$(".reason_inp").focus(function(){
+			$(this).parent(".tex_bot").addClass("inp_bot");
+			$(this).parents("li").find(".p_top").show();
+			$(this).attr("placeholder","请输入加盟理由");
+			$(this).parents("li").find(".p_top").css("color","#ff7400");
+			
+		});
+		$(".reason_inp").blur(function(){
+			if($(this).val() == ""){
+				$(this).parents("li").find(".p_top").hide();
+				$(this).attr("placeholder","加盟理由");
+				$(this).parent(".tex_bot").removeClass("inp_bot");
+			}else{
+				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
+			}
+		});
+	})
+</script>

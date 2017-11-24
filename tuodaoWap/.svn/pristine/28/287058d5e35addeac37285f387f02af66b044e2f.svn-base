@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>平台数据</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/platfrom.css" />
+		<script src='js/zepto/zepto.js'></script>
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="max_width">
+			<div class="todayData">
+				<div class="todayTop">
+					<h3>平台今日数据播报</h3>
+					<dl>
+						<dt class="iconfont">&#xe840;</dt>
+						<p class="leftText">待收金额(万)</p>
+						<dd class="leftNumber">234662.22</dd>
+					</dl>
+				</div>
+				<div class="todaybot">
+					<div>
+						<dl>
+							<dt class="iconfont">&#xe83f;</dt>
+							<p class="leftText">已发标金额(万)</p>
+							<dd class="leftNumber">23.4</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt class="iconfont">&#xe841;</dt>
+							<p class="leftText">已发标数量(个)</p>
+							<dd class="leftNumber">55</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="ranking">
+				<h3>今日投资风云榜</h3>
+				<div class="rankingbox">
+					<div class="ranLeft">
+						<p>186****6673</p>
+						<p>186****6673</p>
+						<p>186****6673</p>
+						<p>186****6673</p>
+						<p>186****6673</p>
+						<p>186****6673</p>
+					</div>
+					<div class="ranRight">
+						<p>投资 <span>123.00</span> 元</p>
+						<p>投资 <span>25,868,548.00</span>元</p>
+						<p>投资 <span>25,868,548.00</span>元</p>
+						<p>投资 <span>25,868,548.00</span>元</p>
+						<p>投资 <span>25,868,548.00</span>元</p>
+						<p>投资 <span>25,868,548.00</span>元</p>
+					</div>
+				</div>
+			</div>
+			<div class="dataBox">
+				<div class="sevenData">
+					<h3>平台7日数据播报</h3>
+			    	<div id="main"></div>	
+				    <p class="iconTxt"><span></span>&nbsp;成交量(万元)</p>
+				</div>
+				<div class="monthsData">
+					<h3>平台月度数据播报</h3>
+		    		<div id="mainM"></div>
+		    		<p class="iconTxt"><span></span>&nbsp; 成交量(万元)</p>
+				</div>
+				<div class="ranking">
+					<h3>本月投资风云榜</h3>
+					<div class="rankingbox">
+						<div class="ranLeft">
+							<p>186****6673</p>
+							<p>186****6673</p>
+							<p>186****6673</p>
+							<p>186****6673</p>
+							<p>186****6673</p>
+							<p>186****6673</p>
+						</div>
+						<div class="ranRight">
+							<p>投资 <span>25,868,548.00</span>元</p>
+							<p>投资 <span>25,868,548.00</span>元</p>
+							<p>投资 <span>25,868,548.00</span>元</p>
+							<p>投资 <span>25,868,548.00</span>元</p>
+							<p>投资 <span>25,868,548.00</span>元</p>
+							<p>投资 <span>25,868,548.00</span>元</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="current">
+				<h3>当月实体门店业务量TOP10</h3>
+				<div id="eachData"></div>
+			</div>
+		</div>		
+	</body>
+</html>
+<script src='js/platfrom.js'></script>
+<script src="js/echarts.common.min.js"></script>

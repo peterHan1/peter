@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>帮助与反馈</title>
+	<script type="text/javascript" src="js/base.js"></script>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/infrom.css">
+	<script type="text/javascript" src="js/zepto/zepto.js"></script>
+	<script type="text/javascript" src="js/zepto/touch.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<style>
+		html,body{background-color:#f2f3f7;}
+	</style>
+</head>
+<body>
+	<div class="max_width help">
+		<div class="help_top">
+			<div class="flex">
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6aa;</i>
+					<p>注册登录</p>
+				</a>
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6ac;</i>
+					<p>银行资金存管</p>
+				</a>
+				<a href="new_help_rates.html" class="flex-1">
+					<i class="iconfont">&#xe6ab;</i>
+					<p>收费标准</p>
+				</a>
+			</div>
+			<div class="flex">
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6ad;</i>
+					<p>充值提现</p>
+				</a>
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6ae;</i>
+					<p>投资回款</p>
+				</a>
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6a4;</i>
+					<p>债权转让</p>
+				</a>
+			</div>
+			<div class="flex">
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6a7;</i>
+					<p>积分与优惠券</p>
+				</a>
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6a5;</i>
+					<p>自动投标</p>
+				</a>
+				<a href="" class="flex-1">
+					<i class="iconfont">&#xe6a8;</i>
+					<p>推荐奖励</p>
+				</a>
+			</div>
+		</div>
+		<div class="help_bot">
+			<h3>常见问题</h3>
+			<ul>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">1.关于拓道金服</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>杭州拓道互联网金融服务有限公司是一家专注于汽车抵押贷款这一细分市场的P2P互联网金融公司。拓道金服以银行的高标准，互联网的高效率，发展普惠金融，市场定位于小微投资群体和借贷群体，为民间投融资双方搭建一个安全、便捷、稳健的信息服务平台，将原先的信用借贷，转型于动产抵押借贷，做市场细分化，做专做强做稳，让小额借贷不再难。拓道金服着力解决民间投融资的信息不对称、征信不健全等问题，促进民间投融资便利化、民间借贷阳光化，力争成为国家倡导的多层次投融资体系中领先的专业汽车抵押贷款服务平台，开启金融定制时代。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">2.什么是互联网金融？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>互联网金融是传统金融行业与互联网精神相结合的新兴领域。互联网金融与传统金融的区别不仅仅在于金融业务所采用的媒介不同，更重要的在于金融参与者深谙互联网开放、平等、协作、分享的精髓。通过互联网、移动互联网等工具，使得传统金融业务具备透明度更强、参与度更高、协作性更好、中间成本更低、操作上更便捷等一系列特征。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">3.什么是先息后本？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>先息后本的本义是：先还利息再还本金。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">4.什么是等额本息？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>等额本息还款是指借入者每月按相等的金额偿还贷款本息，其中每月贷款利息按月初剩余贷款本金计算并逐月结清。</p>
+						<p>贷款初期和后期所还本金不同是由于每月的还款额相等，因此在贷款初期每月的还款中，剔除按月结清的利息后，所还的贷款本金就较少；而在贷款后期因贷款本金不断减少、每月的还款额中贷款利息也不断减少，每月所还的贷款本金就较多。即借款人每月还款额中的本金比重逐月递增、利息比重逐月递减。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">5.为什么自动投标排名会退后？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>自动投标排名出现后退可能有以下4种情况：</p>
+						<p>1.标的已经投出；</p>
+						<p>2.触碰自动投标开关；</p>
+						<p>3.账户资金不足100元或设置每次投资金额不足100元（算作无效排名）；</p>
+						<p>4.自动投标的标的设置不正确。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">6.自动投标一直投不出去？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>长期投不出去，建议您查看是否勾选了保留排名，或者账户可用余额小于100元，属于无效排名。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">7.什么是安存？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>第三方数据存管机构，保全用户信息安全。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">8.如何查看电子合同？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>PC端：点击右上角【我的账户】，左边栏【我的投资】选一个项目查看详情【查看借款协议】。</p>
+						<p>APP端：点击【资产】—【我的投资】，选一个项目，点击页面下方的【借款协议】即可查看。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">9.为什么充值时提示 交易拒绝(RM10029)？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>您的充值环境出现异常，建议您使用本人设备或更换安全环境下充值。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">10.如何更换绑定手机号码？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>将修改原因及需求、用户名、旧手机号、新手机号、姓名、身份证号，本人手持身份证近照，及身份证正反面照片，发送到tuodaojinfu@51tuodao.com邮箱，我们的工作人员会在3个工作日内进行审核更改。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">11.设置自动投标后是否能投手动标？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>自动投标设置后，您还是可以去投手动标。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">12.借款协议是否可以下载？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>PC端：点击右上角【我的账户】，左边栏【我的投资】选择一个项目查看详情【查看安存保全】，在页面的最下方点击下载。</p>
+						<p>APP端：点击【资产】—【我的投资】，选一个项目，点击页面下方的【安存保全】进行下载。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">13.无法接收到验证码？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>1.请确认手机是否安装短信拦截或过滤软件；</p>
+						<p>2.可以通过接收语音验证码来输入验证码；</p>
+						<p>3.如是充值时的验证码没有接收到，请咨询银行；</p>
+						<p>4.如有特殊情况，请通过关注“拓道金服”微信(QQ)公众号联系在线客服，服务热线：4008566685。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">14.新手标最大金额可以投多少，可以投几次？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>当前新人标的额度最大值，新人标用户只能投一次且只有首投可用。</p>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<span class="fl">15.你们有发标预告吗？</span>
+						<i class="iconfont fr">&#xe6a3;</i>
+					</a>
+					<div class="dis_none">
+						<p>拓道金服没有发标预告。</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="contact" id="contact">
+			<p>联系客服</p>
+			<p>服务时间：9：00-20：30</p>
+		</div>
+	</div>
+
+	<div id="footer_tel" class="footer_tel" style="display:none">
+		<p><i class="iconfont">&#xe83b;</i>电话：4008-566-685</p>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.help_bot li a').on("click",function(){
+				if($(this).find("i").hasClass("deg")){
+					$(this).find("i").removeClass("deg");
+				}else{
+					$(this).find("i").addClass("deg");
+				}
+
+				$(this).siblings("div").toggle();	
+			})
+
+			document.getElementById('contact').addEventListener('click',function(){
+			 			layer.open({
+			    content: $('#footer_tel').html(),
+			    btn: ['取消'],
+			    className: 'footer_tel'   
+			    ,skin: 'footer'
+			   
+			  });
+			 },false);
+
+
+			// $('.contact').tap(function(){
+				
+			// })
+
+			 
+		})
+	</script>
+</body>
+</html>

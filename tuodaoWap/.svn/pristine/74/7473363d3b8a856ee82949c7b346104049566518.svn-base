@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>关于拓道</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/infrom.css">
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+</head>
+<style>
+html,body{width:100%;height:100%;}
+
+</style>
+<body>
+	<div class="max_width">
+		<div class="about">
+			<div class="nav">
+				<ul>
+					<li>
+						<a href="javascript:;" class="on">平台信息</a>
+					</li>
+					<li>
+						<a href="javascript:;">组织架构</a>
+					</li>
+					<li>
+						<a href="javascript:;">人员信息</a>
+					</li>
+					<li>
+						<a href="javascript:;">相关证件</a>
+					</li>
+				</ul>
+			</div>
+			<div class="about_com">
+				<div class="terrace">
+					<div class="terrace_top">
+						<h3>基本信息</h3>
+						<div>
+							<p>拓道金服（杭州拓道互联网金融服务有限公司）是中国领先的汽车金融服务平台，成立于2013年11月，注册/实缴资本5000万元。公司拥有员工132人，在全国拥有80多处的合作机构</p>
+							<p>2017年，平台完成了8000万A轮融资（由杭州市财政、西湖房产集团、济民资本参股的知名机构帮实资本、虫二文化产业基金领投，蓝山资本、宏桥资本、透视资本等跟投）。在近四年的合规发展道路上，拓道金服获得了社会各界和资本市场的认可，相继被评为“中国汽车金融十强企业”、“互联网金融百强企业”。并于同年3月成功接入北京银行资金存管。</p>
+						</div>
+					</div>
+					<div class="terrace_bot">
+						<h3>企业相关信息</h3>
+						<div class="bot_icon">
+							<div class='icon_top flex'>
+								<a href="" class="flex-1">
+									<i class="iconfont">&#xe69f;</i>
+									<p>从业机构 </p>
+									<p>平台信息</p>
+								</a>
+								<a href="new_bank.html" class="flex-1">
+									<i class="iconfont">&#xe6a2;</i>
+									<p>资金存管 </p>
+									<p>北京银行</p>
+								</a>
+								<a href="" class="flex-1">
+									<i class="iconfont">&#xe6a0;</i>
+									<p>董事、监事</p>
+									<p>高级管理人员</p>
+								</a>
+							</div>
+							<div class='icon_bot flex'>
+								<a href="" class="flex-1">
+									<i class="iconfont">&#xe69e;</i>
+									<p>实际控制人与</p>
+									<p>持股5%以上股东</p>
+								</a>
+								<a href="" class="flex-1">
+									<i class="iconfont">&#xe6a1;</i>
+									<p>从业机构</p>
+									<p>重大事项信息</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="framework dis_none">
+					<div class="framework_bg"></div>
+				</div>
+				<div class="personnel dis_none">
+					<p>截止2017年8月底，拓道金服人员分布情况如下：</p>
+					<p>总人数：<span>132</span>人</p>
+					<div class="personnel_bgt"></div>
+					<div class="personnel_bgb"></div>
+				</div>
+				<div class="certificate dis_none">
+					<div class="flex">
+						<div class="div_fr div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_bg1.png" num="1">
+							<div class="txt_p">
+								<p>北京银行存管协议-1</p>
+							</div>
+						</div>
+						<div class="div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_bg2.png" num="2">
+							<div class="txt_p">
+								<p>北京银行存管协议-2</p>
+							</div>
+						</div>
+					</div>
+					<div class="flex">
+						<div class="div_fr div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_bg3.png" num="3">
+							<div class="txt_p">
+								<p>拓道金服营业执照</p>
+							</div>
+						</div>
+						<div class="div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_bg4.png" num="4">
+							<div class="txt_p">
+								<p>ICP证</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="img_show dis_none"></div>
+	</div>	
+</body>
+</html>
+<script src="js/swipeslider.min.js"></script>
+<script>
+	$(window).load(function() {
+		$(".div_img img").on("click",function(){
+			var index = $(this).attr("num");
+			var h1 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li></ul></div>'
+			var h2 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li></ul></div>'
+			var h3 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li></ul></div>'
+			var h4 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li></ul></div>'
+			$(".img_show").show();
+			if(index == 1){
+				$(".img_show").append(h1);
+			}else if(index == 2){
+				$(".img_show").append(h2);	
+			}else if(index == 3){
+				$(".img_show").append(h3);	
+			}else if(index == 4){
+				$(".img_show").append(h4);	
+			}
+			$('#full_feature').swipeslider({
+		  		autoPlay:false,
+		  		prevNextButtons:false,
+		  		bullets:false,
+		  	});
+		})
+		$(".img_show").on("click",function(event){
+			if(event.target==this){
+				$(".img_show").hide();
+			$("#full_feature").remove();
+				
+//				$(".img_show img").hide();
+			}
+		})
+		$(".nav li a").on("click",function(){
+			var index = $(this).parent("li").index();
+			$(".nav li a").removeClass("on");
+			$(this).addClass("on");
+			$(".about_com>div").eq(index).show().siblings().hide();
+		})
+	})
+</script>

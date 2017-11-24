@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>我要加盟</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="js/joinIn/mui.css"/>
+		<link rel="stylesheet" href="js/joinIn/mui.picker.css"/>
+		<link rel="stylesheet" href="css/joinIn.css" />
+		
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="max_width joinIn">
+			<div class="top">
+				<ul>
+					<li>
+						<div class="div_top">
+							<p class="p_top">姓名</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="您的姓名" class="name_inp" />
+							<div class="dis_none empty"></div>
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系电话</p>
+						</div>
+						<div class="div_bot">
+							<input type="number" placeholder="联系电话" class="phone_inp"/>
+							<div class="dis_none empty"></div>
+							
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系地址</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="site_inp" placeholder="联系地址"></textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p class="txt">填写加盟信息，便于我们更好的沟通合作</p>
+			<div class="bot">
+				<ul>
+					<li class="city">
+						<div class="div_top">
+							<p class="p_top">合作意向区域</p>
+						</div>
+						<div class="div_bot" id="city">
+							<p class="p_city">合作意向区域</p>
+							<input type="hidden" class="inp_city"/>
+							<span class="iconfont">&#xe83d;</span>
+						</div>
+					</li>
+					<li class="citys">
+						<div class="div_top">
+							<p class="p_top">意向区域详细地址</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="sites_inp" placeholder="意向区域详细地址"></textarea>
+						</div>
+					</li>
+					<li class="com_li source_li">
+						<div class="div_top">
+							<p class="p_top">分公司投资意向来源</p>
+						</div>
+						<div class="div_bot">
+							<p class="p_city">分公司投资意向来源</p>
+							<input type="hidden" class="inp_source"/>
+							<span class="iconfont">&#xe83d;</span>
+						</div>
+						<div class="bot_tab">
+							<span>自由资金</span>
+							<span>部分自由资金</span>
+							<span>合作资金</span>
+						</div>
+					</li>
+					<li class="com_li nature_li">
+						<div class="div_top">
+							<p class="p_top">分公司投资性质</p>
+						</div>
+						<div class="div_bot">
+							<p class="p_city">分公司投资性质</p>
+							<input type="hidden" class="inp_nature"/>
+							<span class="iconfont">&#xe83d;</span>
+						</div>
+						<div class="bot_tab">
+							<span>个人投资</span>
+							<span>合伙投资</span>
+							<span>其他</span>
+						</div>
+					</li>
+					<li class="time">
+						<div class="div_top">
+							<p class="p_top p_time">希望开业时间</p>
+						</div>
+						<div class="div_bot" id="time">
+							<p class="p_city" id="p_time">希望开业时间</p>
+							<input type="hidden" class="inp_time"/>
+							<span class="iconfont">&#xe83d;</span>
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">计划投资总额（元）</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="计划投资总额 " class="money_inp" value=""/>
+						</div>
+					</li>
+					<li class="reason_li">
+						<div class="div_top">
+							<p class="p_top">加盟理由</p>
+						</div>
+						<div class="tex_bot">
+							<textarea rows="2" class="reason_inp" placeholder="请加盟理由" ></textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="div_btn">
+				<span class="btn">申请加盟</span>
+				<p>如有问题请咨询拓道客服：<span class="phone">40085-777-85</span></p>
+				<span class="log"></span>
+			</div>
+		</div>
+	</body>
+	<div class="phone_show dis_none">
+		<p>拓道金服：40085-777-85</p>
+		<div class="phone_btn">
+			<span class="close">取消</span>
+			<span>	
+				<a href="tel:4008577785">拨打</a>
+			</span>
+		</div>
+	</div>
+</html>
+<script src='js/jquery-2.1.0.min.js'></script>
+<script src="js/base.js"></script>
+<script src="js/joinIn/data.city.js"></script>
+<script src="js/joinIn/mui.min.js"></script>
+<script src="js/joinIn/mui.picker.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/joinIn/joinIn.js"></script>
+

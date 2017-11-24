@@ -1,0 +1,52 @@
+*{ -webkit-tap-highlight-color: transparent;}
+input::-webkit-input-placeholder{color: #D3D3D3;}
+input:-moz-placeholder{color:#D3D3D3;}
+input::-moz-placeholder{color:#D3D3D3;}
+input:-ms-input-placeholder{color:#D3D3D3;}
+b { font-weight:normal;}
+html,body{background-color:#FBFAFA;height:100%;}
+.fl{float:left;}
+.fr{float:right;}
+.dis_none{display: none;}
+.max_widths{height:100%;overflow: hidden;position: relative;}
+.box{width:200%;height:100%;overflow:hidden;transition: all 0.5s;-moz-transition: all 0.5s;-webkit-transition: all 0.5s; -o-transition:all 0.5s;position: absolute;top:0;left:0;}
+.loan_box{width:50%;font-size:0.2rem;height:100%;}
+.loan_box .loan_fill{margin-top:0.2rem;}
+.loan_box .loan_fill .loan_litxt{background-color:#FBFAFA;border:none;color:#D3D3D3;}
+.loan_box .loan_fill ul li{width: 94%;padding:0 3%;height: 1rem;line-height:1rem;border-bottom: 1px solid #cdcdcd;background-color:#fff;overflow:hidden;}
+.loan_box .loan_fill ul li input{width:70%;height:100%;border:none;font-size:0.16rem;outline:none;float: left;}
+.loan_box .loan_fill ul li span{width:20%;font-size:0.2rem;float: left;}
+.loan_box .loan_fill ul li b{width:75%;color:#D3D3D3;float: left;}
+.loan_box .loan_fill ul li i{font-size:0.3rem;float: right;}
+.loan_box .loan_fill ul li .code_btn{width:10%;}
+.loan_box .loan_fill ul li .bcolor {color: #000;}
+.loan_box .sub_loan{margin-top:1rem;text-align:center;}
+.loan_box .sub_loan a{display:inline-block;color:#333;width:50%;height:0.8rem;text-align:center;line-height:0.8rem;border:1px solid #ededed;border-radius:5px;}
+.car_list_box{width:50%;height:100%;font-size:0.2rem;overflow: hidden;}
+.car_list_box .car_list_nav{width:96%;height:1rem;line-height:1rem;padding:0 2%;text-align:center;border-bottom:1px solid #EDEDED;z-index:999;position:fixed;top:0;background-color:#fff;}
+.car_list_box .car_list_nav h3{display: inline-block;font-weight: normal;font-size:0.3rem;}
+.car_list_box .car_list_nav span{color:#999;}
+
+.car_list_box .car_list {position: fixed;top: 1rem;bottom: 0;width: 100%;height:100%;z-index: 99;}
+
+.car_list_box .car_list .cities .title {height: 28px;padding-left: 5%;line-height: 28px;background-color: #f5f5f5;font-family: Helvetica;font-size: 0.22rem;color: #878787;}
+.car_list_box .car_list .cities .item {z-index: 99999;height: 44px;padding: 0 5%;line-height: 44px;font-size: 0.26rem;background-color: #fff;border-bottom: 1px solid #ededed;}
+.car_list_box .car_list .cities .onli {background-color: #ededed;}
+
+.car_list_box .car_list .cities .item .name {display: block;position: relative;}
+.car_list_box .car_list .cities .item .name:before,
+.car_list_box .car_list .cities .item .name:after {display: block;position: absolute;border-top: 1px solid #e5e5e5;left: 0;width: 100%;content: ' ';}
+.car_list_box .car_list .cities .item .name:before {display: none;top: 0;}
+.car_list_box .car_list .cities .item .name:after {display: block;bottom: 0;}
+.car_list_box .car_list .cities .item:active {background-color: #f0f0f0;}
+.car_list_box .car_list .cities .item:last-child .name:after {display: none;}
+.car_list_box .car_list .shortcut {position: absolute;width: 0.8rem;right: 0;font-family: Helvetica;z-index: 9999;}
+.car_list_box .car_list .shortcut .item {height: 0.32rem;line-height:0.32rem;padding-left:0.2rem;padding-top:0.1rem;text-align: center;font-size: 0.32rem;color: #fa8919;}
+.car_list_box .car_list .shortcut .jump_tips {position: fixed;top: 45%;right: 36%;z-index: 100;display: none;width: 1.4rem;padding: 0.5rem 0rem;font-size: 0.5rem;color: #fff;text-align: center;line-height: 1;background-color: rgba(0, 0, 0, 0.8);}
+.car_list_box .car_list .scroller_hook {padding-bottom: 1rem;}
+
+
+.list_one,.list_two{width:100%;height:100%;}
+.car_list_box .list_two .car_list_botul {height: 100%;margin-top:1rem;overflow-x: scroll;}
+.car_list_box .list_two ul li {z-index: 99999;height: 44px;padding: 0 16px;line-height: 44px;font-size: 0.16rem;background-color: #fff;cursor:pointer;border-bottom: 1px solid #ededed;}
+.car_list_box .list_two ul .onli{background-color: #ededed;}

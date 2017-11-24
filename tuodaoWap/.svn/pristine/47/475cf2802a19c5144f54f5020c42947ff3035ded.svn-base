@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<title>信息披露</title>
+	<script type="text/javascript" src="js/base.js"></script>
+	<link rel="stylesheet" href="css/reset.css">
+</head>
+<style>
+html,body{width:100%;height:100%;background-color:#f2f3f7;}
+.infrom{margin: 0 4%;padding-top:0.16rem;}
+.infrom a{display: block;}
+.infrom a img{height:1.2rem;margin-top: 0.2rem;}
+</style>
+<body>
+	<div class="max_width">
+		<div class="infrom">
+			<a href="new_about.html"><img src="img/infrom/infrom1.png"></a>
+			<a href=""><img src="img/infrom/infrom2.png"></a>
+			<a href=""><img src="img/infrom/infrom3.png"></a>
+			<a href=""><img src="img/infrom/infrom4.png"></a>
+			<a href=""><img src="img/infrom/infrom5.png"></a>
+			<a href=""><img src="img/infrom/infrom6.png"></a>
+		</div>
+	</div>	
+</body>
+</html>

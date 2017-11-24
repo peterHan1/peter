@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>我要加盟</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<script src='js/zepto/zepto.js'></script>
+		<script src="js/base.js"></script>
+		<style>
+		*{-webkit-overflow-scrolling: touch;box-sizing:border-box; font-family:"Microsoft YaHei";}
+		input,textarea{-webkit-appearance: normal; -moz-appearance: normal; -o-appearance: normal; appearance: normal;border:none;outline:none}
+		.dis_none{display:none;}
+		.div_bot input::-webkit-input-placeholder{color: #626262;}
+		.div_bot input:-moz-placeholder{color:#626262;}
+		.div_bot input::-moz-placeholder{color:#626262;}
+		.div_bot input:-ms-input-placeholder{color:#626262;}
+		.joinIn{background-color:#f2f3f7;overflow: hidden;}
+		.joinIn .top{width:100%;margin-top:0.2rem;}
+		.joinIn .top li{width:100%;height:1.1rem;padding:0 0.3rem;position:relative;border-bottom:1px solid #e4e4e4;overflow:hidden;background-color:#fff;font-size:0.26rem;}
+		.joinIn .top li:nth-child(3){height:1.6rem;border:none;}
+		
+		.joinIn .top li .div_top{height:0.4rem;overflow: hidden;}
+		.joinIn .top li .p_top{line-height:0.5rem;font-size:0.22rem;color:#ff7400;display: none;}
+		
+		.joinIn .top li .div_bot{height:0.66rem;line-height:0.66rem;}
+		.joinIn .top li .div_bot input{width:100%;height:100%;font-size:0.28rem;color:#212a36;caret-color:#ff7400;}
+		.joinIn .top li .div_bot div{position:absolute;right:0;top:0.4rem;width:0.24rem;height:0.24rem;margin:0.2rem;background:url(img/cooperation/x.png) no-repeat;background-size:100% 100%;z-index: 999;}
+		.joinIn .top li .tex_bot{height:0.96rem;margin-top:0.18rem;}
+		.joinIn .top li .tex_bot textarea{width:100%;height:100%;resize: none;outline: none;border: none;font-size:0.28rem;color:#212a36;caret-color:#ff7400; font-family:;}
+		
+		.joinIn .txt{line-height:0.6rem;font-size:0.2rem;color:#7e7e7e;padding:0 0.3rem;}
+		
+		.inp_bot input::-webkit-input-placeholder{color: #cacaca;}
+		.inp_bot input:-moz-placeholder{color:#cacaca;}
+		.inp_bot input::-moz-placeholder{color:#cacaca;}
+		.inp_bot input:-ms-input-placeholder{color:#cacaca;}
+		.inp_bot textarea::-webkit-input-placeholder {color: #cacaca;}
+		</style>
+	</head>
+	<body>
+		<div class="max_width joinIn">
+			<div class="top">
+				<ul>
+					<li>
+						<div class="div_top">
+							<p class="p_top">姓名</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="您的姓名" class="name_inp" />
+							<div class="dis_none empty"></div>
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系电话</p>
+						</div>
+						<div class="div_bot">
+							<input type="text" placeholder="联系电话" class="phone_inp"/>
+							<div class="dis_none empty"></div>
+							
+						</div>
+					</li>
+					<li>
+						<div class="div_top">
+							<p class="p_top">联系地址</p>
+						</div>
+						<div class="tex_bot">
+							<textarea class="site_inp" placeholder="联系地址"></textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p class="txt">填写加盟信息，便于我们更好的沟通合作</p>
+		</div>
+	</body>
+</html>
+<script src="js/layer/layer.js"></script>
+<script>
+	$(function(){
+		$(".top li .empty").on("mousedown",function(){
+			$(this).siblings("input").val("");
+		});
+		$(".top li input").focus(function(){
+			var clas = $(this).attr("class");
+			$(this).parent(".div_bot").addClass("inp_bot");
+			$(this).parents("li").find(".p_top").show();
+			$(this).parents("li").find(".p_top").css("color","#ff7400");
+			$(this).siblings("div").show();
+			if(clas == 'name_inp'){
+				$(this).attr("placeholder","请输入您的姓名");
+			}else if(clas == 'phone_inp'){
+				$(this).attr("placeholder","请输入联系电话");
+			}else if(clas == 'site_inp'){
+				$(this).attr("placeholder","请输入联系地址");
+			}
+		});
+		$(".top li input").blur(function(){
+			var clas = $(this).attr("class");
+			$(this).siblings(".empty").hide();
+			if($(this).val() == ""){
+				if(clas == 'name_inp'){
+					$(this).attr("placeholder","您的姓名");
+				}else if(clas == 'phone_inp'){
+					$(this).attr("placeholder","联系电话");
+				}else if(clas == 'site_inp'){
+					$(this).attr("placeholder","联系地址");
+				}
+				$(this).parent(".div_bot").removeClass("inp_bot");
+				$(this).parents("li").find(".p_top").hide();
+			}else{
+				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
+				
+			}
+		});
+		$(".phone_inp").blur(function(){
+			if($(this).val() != ""){
+				var phone = $(this).val();
+				if(!(/^1[34578]\d{9}$/.test(phone))){
+					layer.open({
+						style:'background-color:#393b41;color:#fff;',
+						time: 2,
+						shade: false,
+						content:'请输入正确的手机号'
+					})
+					return false; 
+				}
+			}
+		});
+		$(".site_inp").focus(function(){
+			$(this).parent(".tex_bot").addClass("inp_bot");
+			$(this).parents("li").find(".p_top").show();
+			$(this).attr("placeholder","请输入联系地址");
+			$(this).parents("li").find(".p_top").css("color","#ff7400");
+			
+		});
+		$(".site_inp").blur(function(){
+			if($(this).val() == ""){
+				$(this).parents("li").find(".p_top").hide();
+				$(this).attr("placeholder","联系地址");
+				$(this).parent(".tex_bot").removeClass("inp_bot");
+				
+			}else{
+				$(this).parents("li").find(".p_top").css("color","#b6b5b6");
+			}
+		});
+
+	})
+</script>

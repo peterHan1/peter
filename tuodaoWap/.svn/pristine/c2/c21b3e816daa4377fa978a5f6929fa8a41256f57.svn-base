@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>申请借款</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="js/loan/loan.css" />
+		<link rel="stylesheet" type="text/css" href="js/loan/plug/mui.picker.css"/>
+	</head>
+	<body>
+		<div class="max_widths">
+			<div class="box">
+				<div class="loan_box fl">
+					<div class="loan_fill">
+						<ul>
+							<li>
+								<span>借款金额</span>
+								<input type="text" placeholder="您需要多少资金？"/>
+							</li>
+							<li class="car_btn">
+								<span>车辆型号</span>
+								<b>请选择车辆型号信息</b>
+								<i> > </i>
+							</li>
+							<li class="loan_litxt">
+								<p>填写个人信息，便于拓道安排专人为您提供服务</p>
+							</li>
+							<li>
+								<span>您的姓名</span>
+								<input type="text" placeholder="请填写您的姓名？"/>
+							</li>
+							<li>
+								<span>手机号</span>
+								<input type="text" placeholder="请输入手机号，便于我们联系您"/>
+							</li>
+							<li>
+								<span>短信验证码</span>
+								<input type="text" placeholder="请输入收到短信的验证码"/>
+								<span class="code_btn">| 获取</span>
+							</li>
+							<li>
+								<span>所在地区</span>
+								<input id="city_text" class="fr bank_name" name="" value="" placeholder="请选择您所在的城市 " readonly="true">
+								<i> > </i>
+							</li>
+						</ul>
+						<div class="sub_loan">
+							<a href="###">提交申请</a>
+							<a href="tel:18539123451">18539123451</a>
+						</div>
+					</div>
+				</div>
+				<div class=" car_list_box fl">
+					<div class="list_one">
+						<div class="nav">
+							<h3>选择品牌</h3>
+							<span class="fr cancel">取消</span>
+						</div>
+							<div class="car_list car_list_hook">
+								<div class="scroller_hook">
+									<div class="cities cities_hook"></div>
+								</div>
+								<div class="shortcut shortcut_hook"></div>
+							</div>
+					</div>
+					<div class="list_two dis_none">
+						<div class="nav">
+							<span class="fl get_car"> < </span>
+							<h3>选择车系</h3>
+							<span class="fr cancel">取消</span>
+						</div>
+						<ul class="car_list_botul" >
+									
+						</ul>
+					</div>
+				</div>
+				<div class="city_list_box fl dis_none">
+					<div class="nav">
+						<h3>选择所在地区</h3>
+						<span class="fr cancel">取消</span>
+					</div>
+					<div class="city_list">
+						<div class="city_nav">
+							<div>省份</div>
+							<div>城市</div>
+						</div>
+						<div class="city">
+							<div class="city_left" id="city_left">
+								<ul class="province_ul">
+									<li province-name="北京市" class="onli">北京市</li>
+									<li province-name="天津市">天津市</li>
+									<li province-name="上海市">上海市</li>
+									<li province-name="重庆市">重庆市</li>
+									<li province-name="河北省">河北省</li>
+									<li province-name="山西省">山西省</li>
+									<li province-name="内蒙古自治区">内蒙古自治区</li>
+									<li province-name="辽宁省">辽宁省</li>
+									<li province-name="吉林省">吉林省</li>
+									<li province-name="黑龙江省">黑龙江省</li>
+									<li province-name="江苏省">江苏省</li>
+									<li province-name="浙江省">浙江省</li>
+									<li province-name="安徽省">安徽省</li>
+									<li province-name="福建省">福建省</li>
+									<li province-name="江西省">江西省</li>
+									<li province-name="山东省">山东省</li>
+									<li province-name="河南省">河南省</li>
+									<li province-name="湖北省">湖北省</li>
+									<li province-name="湖南省">湖南省</li>
+									<li province-name="广东省">广东省</li>
+									<li province-name="广西壮族自治区">广西壮族自治区</li>
+									<li province-name="海南省">海南省</li>
+									<li province-name="四川省">四川省</li>
+									<li province-name="贵州省">贵州省</li>
+									<li province-name="云南省">云南省</li>
+									<li province-name="陕西省">陕西省</li>
+									<li province-name="甘肃省">甘肃省</li>
+									<li province-name="青海省">青海省</li>
+									<li province-name="西藏自治区">西藏自治区</li>
+									<li province-name="宁夏回族自治区">宁夏回族自治区</li>
+									<li province-name="新疆维吾尔自治区">新疆维吾尔自治区</li>
+									<li province-name="香港">香港</li>
+									<li province-name="澳门">澳门</li>
+									<li province-name="台湾">台湾</li>
+								</ul>
+							</div>
+							<div class="city_right" id="city_right">
+								<div id="city_ul" class="">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>
+<script src="js/loan/plug/bscroll.min.js"></script>
+<script src='js/jquery-2.1.0.min.js'></script>
+<script src="js/base.js"></script>
+<script src="js/loan/city.js"></script>
+<script src="js/loan/car.js"></script>

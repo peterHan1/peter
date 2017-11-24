@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>提交结果</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/loan.css" />
+		<script src='js/jquery-2.1.0.min.js'></script>
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="max_width loan_resule">
+			<div class="loan_resTop">
+				<!--提交成功-->
+				<div class="win">
+					<i class="iconfont">&#xe842;</i>
+					<p>&nbsp;提交成功 !</p>
+				</div>
+				
+				<!--提交失败-->
+				<div class="lo dis_none">
+					<i class="iconfont">&#xe69d;</i>
+					<p>&nbsp;提交失败 !</p>
+				</div>
+			</div>
+			<div class="loan_resCom">
+				<!--提交成功-->
+				<div class="win">
+					<p>我们将在1个工作日内联系您</p>
+					<p>(17:30以后及非工作日提交的申请将顺延至下个工作日进行处理)</p>
+					<p>请留意接听<span class="lay_phone">40085-777-85</span>的来电</p>
+				</div>
+				<!--提交失败-->
+				<div class="lo dis_none">
+					<p>请稍后重试！</p>
+				</div>
+			</div>
+			<div class="loan_resBtn">
+				<a href="###">返回首页</a>
+			</div>
+			<div class="bot_log">
+				<p><i class="iconfont">&#xe693;</i>&nbsp;让汽车生活更精彩</p>
+			</div>
+		</div>
+	</body>
+	<div class="phone_show dis_none">
+		<p>拓道金服：40085-777-85</p>
+		<div class="phone_btn">
+			<span class="close">取消</span>
+			<span>	
+				<a href="tel:4008577785">拨打</a>
+			</span>
+		</div>
+	</div>
+</html>
+<script src="js/layer/layer.js"></script>
+<script>
+	$(function(){
+		// 提交成功
+//		$(".lo").addClass("dis_none");
+		// 提交失败
+//		$(".wid").addClass("dis_none");
+
+		$(".lay_phone").on("click",function(){
+			layer.open({
+				type:0,
+				skin:"phone_show",
+				area: "1.1rem",
+				content:$(".phone_show").html(),
+
+			})
+		});
+		$(document).on("click",".close",function(){
+			layer.closeAll();
+		})
+	})
+</script>
+
