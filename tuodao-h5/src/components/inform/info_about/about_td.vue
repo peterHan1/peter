@@ -52,6 +52,8 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.terraces
+		i
+			font-style: normal
 		h3
 			font-size: 0.28rem
 			color: #212a36

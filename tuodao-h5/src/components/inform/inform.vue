@@ -17,7 +17,7 @@
   					src: require('../../image/inform/inform1.png')
   				},
   				{
-  					url: 'platfrom',
+  					url: 'info_platform',
   					src: require('../../image/inform/inform2.png')
   				},
   				{

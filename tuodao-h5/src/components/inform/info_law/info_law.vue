@@ -106,6 +106,8 @@
 		max-width: 414px
 		margin: 0 auto
 		overflow: hidden
+		i
+			font-style: normal
 		h3
 			background-color: white
 			margin-top: 0.2rem

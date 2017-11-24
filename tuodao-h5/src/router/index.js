@@ -39,6 +39,17 @@ import knowAdva from 'components/inform/info_knowus/know_adva'
 import knowTeam from 'components/inform/info_knowus/know_team'
 import knowContact from 'components/inform/info_knowus/know_contact'
 import infoOper from 'components/inform/info_oper/info_oper'
+import operYiji2016 from 'components/inform/info_oper/oper_2016_1'
+import operErji2016 from 'components/inform/info_oper/oper_2016_2'
+import operErji2017 from 'components/inform/info_oper/oper_2017_2'
+import operSanji2017 from 'components/inform/info_oper/oper_2017_3'
+import oper2017M7 from 'components/inform/info_oper/oper_2017_m7'
+import oper2017M8 from 'components/inform/info_oper/oper_2017_m8'
+import oper2017M10 from 'components/inform/info_oper/oper_2017_m10'
+import infoPlatform from 'components/inform/info_platform/info_platform'
+import platData from 'components/inform/info_platform/plat_data'
+import platInvest from 'components/inform/info_platform/plat_invest'
+import platEchart from 'components/inform/info_platform/plat_echart'
 
 Vue.use(Router)
 
@@ -209,6 +220,53 @@ export default new Router({
 		{
 			path: '/info_oper',
 			component: infoOper
+		},
+		{
+			path: '/oper_2016_1',
+			component: operYiji2016
+		},
+		{
+			path: '/oper_2016_2',
+			component: operErji2016
+		},
+		{
+			path: '/oper_2017_2',
+			component: operErji2017
+		},
+		{
+			path: '/oper_2017_3',
+			component: operSanji2017
+		},
+		{
+			path: '/oper_2017_m7',
+			component: oper2017M7
+		},
+		{
+			path: '/oper_2017_m8',
+			component: oper2017M8
+		},
+		{
+			path: '/oper_2017_m10',
+			component: oper2017M10
+		},
+		{
+			path: '/info_platform',
+			component: infoPlatform,
+			redirect: '/plat_data',
+			children: [
+				{
+					path: '/plat_data',
+					component: platData
+				},
+				{
+					path: '/plat_invest',
+					component: platInvest
+				},
+				{
+					path: '/plat_echart',
+					component: platEchart
+				}
+			]
 		}
 	]
 })

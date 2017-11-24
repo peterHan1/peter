@@ -7,7 +7,7 @@
 			</div>
 			<div class="oper_year" v-show="isShows">
 				<ul>
-					<li v-for="year in years"  @click="selectedYear(year)" :class="{li_on: activeName == year}">
+					<li v-for="year in years"  @click="selectedYear(year)" :class="{li_on: showYear == year}">
 						<span>{{year}}</span>
 						<i class="iconfont">&#xe6a3;</i>
 					</li>
@@ -16,36 +16,14 @@
 		</div>
 		<div class="dasahe" v-show="isShows"></div>
 		<div class="oper_list">
-			<ul>
-				<li v-for="oper in operLista">
-					<a href="http://g.eqxiu.com/s/vdR4rZpZ">
-						<img src="../../../image/inform/m_10.png">
+			<ul v-for="oper in operList" v-if="showYear == oper.year">
+				<li v-for="opers in oper.yearList">
+					<a :href="opers.url" v-if="opers.old == true">
+						<img :src=opers.src>
 					</a>
-				</li>
-				<li>
-					<a href="/info_law">
-						<img src="../../../image/inform/sanji_2017.png">
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="../../../image/inform/m_8.png">
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="../../../image/inform/m_7.png">
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="../../../image/inform/erji_2017.png">
-					</a>
-					</li>
-				<li>
-					<a href="">
-						<img src="../../../image/inform/yiji_2017.png">
-					</a>
+					<router-link tag="a" :to="{ path: opers.url }" v-else>
+						<img :src=opers.src>
+					</router-link>
 				</li>
 			</ul>
 		</div>	
@@ -58,50 +36,61 @@
 				isShows: false,
 				showYear: '2017年',
 				years: ['2017年', '2016年'],
-				activeName: '2017年',
-				operLista: [
+				operList: [
 					{
-						ull: '',
-						src: require('../../../image/inform/m_10.png')
+						year: '2017年',
+						yearList: [
+							{
+								url: 'oper_2017_m10',
+								src: require('../../../image/inform/m_10.png')
+							},
+							{
+								url: 'oper_2017_3',
+								src: require('../../../image/inform/sanji_2017.png')
+							},
+							{
+								url: 'oper_2017_m8',
+								src: require('../../../image/inform/m_8.png')
+							},
+							{
+								url: 'oper_2017_m7',
+								src: require('../../../image/inform/m_7.png')
+							},
+							{
+								url: 'oper_2017_2',
+								src: require('../../../image/inform/erji_2017.png')
+							},
+							{
+								old: true,
+								url: 'http://i.eqxiu.com/s/l6wU5LLD',
+								src: require('../../../image/inform/yiji_2017.png')
+							}
+						]
 					},
 					{
-						ull: '',
-						src: require('../../../image/inform/sanji_2017.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/m_8.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/m_7.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/erji_2017.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/yiji_2017.png')
+						year: '2016年',
+						yearList: [
+							{
+								old: true,
+								url: 'http://u.eqxiu.com/s/XWgNVkcU',
+								src: require('../../../image/inform/siji_2016.png')
+							},
+							{
+								old: true,
+								url: 'http://g.eqxiu.com/s/vdR4rZpZ',
+								src: require('../../../image/inform/sanji_2016.png')
+							},
+							{
+								url: 'oper_2016_2',
+								src: require('../../../image/inform/erji_2016.png')
+							},
+							{
+								url: 'oper_2016_1',
+								src: require('../../../image/inform/yiji_2016.png')
+							}
+						]
 					}
-				],
-				operListb: [
-					{
-						ull: '',
-						src: require('../../../image/inform/siji_2016.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/sanji_2016.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/erji_2016.png')
-					},
-					{
-						ull: '',
-						src: require('../../../image/inform/yiji_2016.png')
-					}
+
 				]
 			}
 		},
@@ -114,7 +103,6 @@
 				}
 			},
 			selectedYear: function(gameName) {
-				this.activeName = gameName
 				this.showYear = gameName
 				if (this.isShows === true) {
 					this.isShows = false
