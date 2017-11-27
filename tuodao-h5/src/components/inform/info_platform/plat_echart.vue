@@ -32,7 +32,7 @@
 				let sevenM = [1183.69, 1503.12, 1341.7, 952.63, 798.37, 1270.37, 1203.5]
 				myChart.setOption({
 					grid: {
-						left: '0',
+						left: '1%',
 						right: '2%',
 						top: '10%',
 						bottom: '1%',

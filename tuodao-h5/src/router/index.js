@@ -50,6 +50,14 @@ import infoPlatform from 'components/inform/info_platform/info_platform'
 import platData from 'components/inform/info_platform/plat_data'
 import platInvest from 'components/inform/info_platform/plat_invest'
 import platEchart from 'components/inform/info_platform/plat_echart'
+import selectBank from 'components/select_bank/select_bank'
+import investSift from 'components/invest/invest_sift/investSift'
+import siftIntr from 'components/invest/invest_sift/sift_intr'
+import siftSafe from 'components/invest/invest_sift/sift_safe'
+import siftIssue from 'components/invest/invest_sift/sift_issue'
+import siftAddList from 'components/invest/invest_sift/sift_addList'
+import addResult from 'components/invest/add_result'
+import riskDetails from 'components/invest/risk_details'
 
 Vue.use(Router)
 
@@ -267,6 +275,41 @@ export default new Router({
 					component: platEchart
 				}
 			]
+		},
+		{
+			path: '/select_bank',
+			component: selectBank
+		},
+		{
+			path: '/investSift',
+			component: investSift,
+			redirect: '/sift_intr',
+			children: [
+				{
+					path: '/sift_intr',
+					component: siftIntr
+				},
+				{
+					path: '/sift_safe',
+					component: siftSafe
+				},
+				{
+					path: '/sift_issue',
+					component: siftIssue
+				},
+				{
+					path: '/sift_addList',
+					component: siftAddList
+				}
+			]
+		},
+		{
+			path: '/add_result',
+			component: addResult
+		},
+		{
+			path: '/risk_details',
+			component: riskDetails
 		}
 	]
 })
