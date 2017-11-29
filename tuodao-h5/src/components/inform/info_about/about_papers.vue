@@ -40,28 +40,20 @@
 			</div>
 		</div>
 		<div class="bigShow" v-if="showBigImg" @click="minImgFn()">
-			<div class="big" ref="big">
-				<ul ref="boxs" class="boxs" >
-					<li ref='lis' class="bigImg" v-for="imglist in imgLists" @touchstart="start($event)" @touchmove="mover($event)" @touchend="end($event)">
-						<img :src=imglist>
-					</li>
-				</ul>
-			</div>
+			<app-banner :listImg="imgLists"></app-banner>
 		</div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
+	import Banner from './Banner.vue'
 	export default {
 		data () {
 			return {
 				showImgList: true,
 				showBigImg: false,
-				index: 0,
 				num: 0,
-				startPoint: 0,
-				startEle: 0,
 				imgLists: [],
-				imgList: [
+				listImg: [
 					require('../../../image/inform/certificate_bg1.png'),
 					require('../../../image/inform/certificate_bg2.png'),
 					require('../../../image/inform/certificate_bg3.png'),
@@ -70,73 +62,21 @@
 				]
 			}
 		},
-		mounted () {
+		components: {
+			'app-banner': Banner
 		},
 		methods: {
-			init () {
-			},
-			start(e) {
-				let box = document.querySelector('.boxs')
-				box.style.transition = 'none'
-				let bigs = this.$refs.big
-				let aWidth = bigs.offsetWidth
-				let moveX = this.cssTransform(box, 'translateX')
-				let now = Math.round(-moveX / aWidth)
-				this.cssTransform(box, 'translateX', -now * aWidth)
-				this.startPoint = e.changedTouches[0].pageX
-				this.startEle = this.cssTransform(box, 'translateX')
-			},
-			mover(e) {
-				let box = this.$refs.boxs
-				let endPoint = e.changedTouches[0].pageX
-				let disX = endPoint - this.startPoint
-				this.cssTransform(box, 'translateX', disX + this.startEle)
-			},
-			end(e) {
-				let box = this.$refs.boxs
-				let bigs = this.$refs.big
-				let aWidth = bigs.offsetWidth
-				let moveX = this.cssTransform(box, 'translateX')
-				let now = Math.round(-moveX / aWidth)
-				box.style.transition = '.5s'
-				this.cssTransform(box, 'translateX', -now * aWidth)
-			},
-			cssTransform(ele, attr, val) {
-				if (!ele.transform) {
-					ele.transform = {}
-				};
-				console.log(arguments.length)
-				if (arguments.length > 2) {
-					ele.transform[attr] = val
-					let sval = ''
-					for (let s in ele.transform) {
-						if (s === 'translateX') {
-							sval += s + '(' + ele.transform[s] + 'px)'
-						}
-						ele.style.WebkitTransform = ele.style.transform = sval
-					}
-				} else {
-					val = ele.transform[attr]
-					if (typeof val === 'undefined') {
-						if (attr === 'translateX') {
-							val = 0
-						}
-					};
-					return val
-				}
-			},
 			bigImgFn(e, index) {
 				this.showImgList = false
 				this.showBigImg = true
 				this.num = index
-				let arr = this.imgList.splice(index)
-				this.imgLists = arr.concat(this.imgList)
-				this.init()
+				let arr = this.listImg.splice(index)
+				this.imgLists = arr.concat(this.listImg)
 			},
 			minImgFn() {
 				this.showImgList = true
 				this.showBigImg = false
-				this.imgList = [
+				this.listImg = [
 					require('../../../image/inform/certificate_bg1.png'),
 					require('../../../image/inform/certificate_bg2.png'),
 					require('../../../image/inform/certificate_bg3.png'),
@@ -195,39 +135,4 @@
 			position: absolute
 			top: 0
 			left: 0
-			.big
-				height: 100%
-				position: relative
-				overflow: hidden
-				display: block
-				padding-top: 0!important
-				user-select: none
-				ul
-					padding: 0
-					list-style: none
-					width: 100%
-					height: 100%
-					white-space: nowrap
-					font-size: 0
-					-webkit-transform: translateX(0)
-					transform: translateX(0)
-					position: absolute
-					bottom: 0
-					li
-						width: 100%
-						height: 100%
-						display: inline-block
-						position: relative
-						img
-							position: absolute
-							display: block
-							height: auto
-							top: 50%
-							left: 50%
-							transform: translate(-50%, -50%)
-							max-height: 100%
-							max-width: 100%
-							margin-left: auto
-							margin-right: auto
-							user-select: none
 </style>
