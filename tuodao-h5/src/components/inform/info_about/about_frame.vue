@@ -12,6 +12,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.framework
+		margin-top:0.2rem
 		background-color:$color-background-f
 		overflow:hidden
 	.framework_bg

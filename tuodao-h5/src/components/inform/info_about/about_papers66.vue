@@ -31,7 +31,7 @@
 			</div>
 			<div class="flex">
 				<div class="div_img">
-					<img class="img_only" src="../../../image/inform/certificate_bg5.png" @click="bigImgFn($event,4)">
+					<img class="img_only" src="../../../image/inform/certificate_bg5.png" @click="bigImgFn($event,5)">
 					<div class="txt_p">
 						<p>信息系统安全等级证书</p>
 					</div>
@@ -40,27 +40,35 @@
 			</div>
 		</div>
 		<div class="bigShow" v-if="showBigImg" @click="minImgFn()">
-			<div class="big" ref="big">
-				<ul ref="boxs" class="boxs" >
-					<li ref='lis' class="bigImg" v-for="imglist in imgLists" @touchstart="start($event)" @touchmove="mover($event)" @touchend="end($event)">
+			<div class="big">
+				<ul>
+					<li class="bigImg" v-for="imglist in imgList">
 						<img :src=imglist>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<div class="swiper-container swiper-container-horizontal swiper-container-ios">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				<div class="swiper-slide">Slide 4</div>
+				<div class="swiper-slide">Slide 5</div>
+			</div>
+		</div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
+	import Swiper from '../../../../static/swipeslider.min.js'
+	let galleryTop
+	let galleryThumbs
 	export default {
 		data () {
 			return {
 				showImgList: true,
 				showBigImg: false,
-				index: 0,
 				num: 0,
-				startPoint: 0,
-				startEle: 0,
-				imgLists: [],
 				imgList: [
 					require('../../../image/inform/certificate_bg1.png'),
 					require('../../../image/inform/certificate_bg2.png'),
@@ -71,78 +79,33 @@
 			}
 		},
 		mounted () {
+			this.lunbo()
 		},
 		methods: {
-			init () {
-			},
-			start(e) {
-				let box = document.querySelector('.boxs')
-				box.style.transition = 'none'
-				let bigs = this.$refs.big
-				let aWidth = bigs.offsetWidth
-				let moveX = this.cssTransform(box, 'translateX')
-				let now = Math.round(-moveX / aWidth)
-				this.cssTransform(box, 'translateX', -now * aWidth)
-				this.startPoint = e.changedTouches[0].pageX
-				this.startEle = this.cssTransform(box, 'translateX')
-			},
-			mover(e) {
-				let box = this.$refs.boxs
-				let endPoint = e.changedTouches[0].pageX
-				let disX = endPoint - this.startPoint
-				this.cssTransform(box, 'translateX', disX + this.startEle)
-			},
-			end(e) {
-				let box = this.$refs.boxs
-				let bigs = this.$refs.big
-				let aWidth = bigs.offsetWidth
-				let moveX = this.cssTransform(box, 'translateX')
-				let now = Math.round(-moveX / aWidth)
-				box.style.transition = '.5s'
-				this.cssTransform(box, 'translateX', -now * aWidth)
-			},
-			cssTransform(ele, attr, val) {
-				if (!ele.transform) {
-					ele.transform = {}
-				};
-				console.log(arguments.length)
-				if (arguments.length > 2) {
-					ele.transform[attr] = val
-					let sval = ''
-					for (let s in ele.transform) {
-						if (s === 'translateX') {
-							sval += s + '(' + ele.transform[s] + 'px)'
-						}
-						ele.style.WebkitTransform = ele.style.transform = sval
-					}
-				} else {
-					val = ele.transform[attr]
-					if (typeof val === 'undefined') {
-						if (attr === 'translateX') {
-							val = 0
-						}
-					};
-					return val
-				}
+			lunbo () {
+				galleryTop = new Swiper('.swiper-container')
+				galleryThumbs = new Swiper('.gallery-thumbs', {
+					spaceBetween: 10,
+					autoplay: 4000,
+					initialSlide: 1,
+					centeredSlides: true,
+					slidesPerView: 'auto',
+					touchRatio: 0.2,
+					slideToClickedSlide: false,
+					autoplayDisableOnInteraction: false,
+					grabCursor: true
+				})
+				galleryThumbs.params.control = galleryTop
 			},
 			bigImgFn(e, index) {
 				this.showImgList = false
 				this.showBigImg = true
 				this.num = index
-				let arr = this.imgList.splice(index)
-				this.imgLists = arr.concat(this.imgList)
-				this.init()
+				console.log(index)
 			},
 			minImgFn() {
 				this.showImgList = true
 				this.showBigImg = false
-				this.imgList = [
-					require('../../../image/inform/certificate_bg1.png'),
-					require('../../../image/inform/certificate_bg2.png'),
-					require('../../../image/inform/certificate_bg3.png'),
-					require('../../../image/inform/certificate_bg4.png'),
-					require('../../../image/inform/certificate_bg5.png')
-				]
 			}
 		}
 	}
@@ -150,6 +113,8 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	@import '../../../../static/swiper-3.4.2.min.css'
+	
 	.certificate
 		height:100%
 		.papers

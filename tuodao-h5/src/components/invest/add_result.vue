@@ -3,6 +3,7 @@
 		<div class="result_top">
 			<i class="iconfont">&#xe69c;</i>
 			<p>加入成功！</p>
+			<!-- <p>投资成功</p> -->
 		</div>
 		<div class="result_com">
 			<ul>
@@ -11,6 +12,7 @@
 					<p>精选计划20170707</p>
 				</li>
 				<li>
+					<!-- <span>投资金额</span> -->
 					<span>加入金额</span>
 					<p>4000.00元</p>
 				</li>

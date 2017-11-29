@@ -12,6 +12,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.personnel
+		margin-top:0.2rem
 		background-color:$color-background-f
 		overflow:hidden
 		padding: 0.46rem 0.3rem 0;

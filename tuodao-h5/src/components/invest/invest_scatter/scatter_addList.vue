@@ -22,9 +22,9 @@
 			<table>
 				<thead>
 					<tr>
-						<th>加入用户</th>
-						<th>加入金额</th>
-						<th>加入时间</th>
+						<th>投资用户</th>
+						<th>投资金额</th>
+						<th>投资时间</th>
 					</tr>
 				</thead>
 				<tbody>

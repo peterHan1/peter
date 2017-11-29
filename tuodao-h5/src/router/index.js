@@ -56,9 +56,19 @@ import siftIntr from 'components/invest/invest_sift/sift_intr'
 import siftSafe from 'components/invest/invest_sift/sift_safe'
 import siftIssue from 'components/invest/invest_sift/sift_issue'
 import siftAddList from 'components/invest/invest_sift/sift_addList'
+import entrust from 'components/invest/invest_sift/entrust'
 import addResult from 'components/invest/add_result'
 import riskDetails from 'components/invest/risk_details'
-
+import investScatter from 'components/invest/invest_scatter/investScatter'
+import scatterIntr from 'components/invest/invest_scatter/scatter_intr'
+import scatterSafe from 'components/invest/invest_scatter/scatter_safe'
+import scatterAddList from 'components/invest/invest_scatter/scatter_addList'
+import protocol from 'components/invest/invest_scatter/protocol_s'
+import investBond from 'components/invest/invest_bond/investBond'
+import bondIntr from 'components/invest/invest_bond/bond_intr'
+import bondSafe from 'components/invest/invest_bond/bond_safe'
+import bondAddList from 'components/invest/invest_bond/bond_addList'
+import bondProtocol from 'components/invest/invest_bond/protocol_b'
 Vue.use(Router)
 
 export default new Router({
@@ -310,6 +320,56 @@ export default new Router({
 		{
 			path: '/risk_details',
 			component: riskDetails
+		},
+		{
+			path: '/entrust',
+			component: entrust
+		},
+		{
+			path: '/investScatter',
+			component: investScatter,
+			redirect: '/scatter_intr',
+			children: [
+				{
+					path: '/scatter_intr',
+					component: scatterIntr
+				},
+				{
+					path: '/scatter_safe',
+					component: scatterSafe
+				},
+				{
+					path: '/scatter_addList',
+					component: scatterAddList
+				}
+			]
+		},
+		{
+			path: '/protocol_s',
+			component: protocol
+		},
+		{
+			path: '/investBond',
+			component: investBond,
+			redirect: '/bond_intr',
+			children: [
+				{
+					path: '/bond_intr',
+					component: bondIntr
+				},
+				{
+					path: '/bond_safe',
+					component: bondSafe
+				},
+				{
+					path: '/bond_addList',
+					component: bondAddList
+				}
+			]
+		},
+		{
+			path: '/protocol_b',
+			component: bondProtocol
 		}
 	]
 })

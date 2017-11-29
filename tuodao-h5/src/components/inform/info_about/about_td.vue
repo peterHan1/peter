@@ -52,6 +52,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.terraces
+		margin-top:0.2rem
 		i
 			font-style: normal
 		h3
