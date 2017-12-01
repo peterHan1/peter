@@ -1,7 +1,7 @@
 <template>
 	<div class="oper">
 		<div class="oper_tab">
-			<div class="oper_date" v-on:click="clickFn">
+			<div class="oper_date" @click="clickFn">
 				<span class="date_year">{{showYear}}</span>
 				<i class="iconfont">&#xe6a3;</i>
 			</div>

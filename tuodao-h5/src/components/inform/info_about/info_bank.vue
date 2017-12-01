@@ -28,8 +28,9 @@
 	@import "~common/stylus/variable"
 	.bank
 		background-color:$color-background-f
-		padding: 0 0.3rem
-		
+		padding: 0 0.3rem 0.5rem
+		font-family: 'PingFang-SC-Medium'
+		margin-top:0.2rem
 		h3
 			font-size: 0.28rem
 			color: #212a36

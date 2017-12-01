@@ -1,24 +1,49 @@
 <template>
 	<div class="plat_data">
 		<div class="tab">
-			<router-link tag="div" class="tab-item" to="/plat_data">
-				<span class="tab-link">数据汇总</span>
-			</router-link>
-			<router-link tag="div" class="tab-item" to="/plat_invest">
-				<span class="tab-link">投资/借款详情</span>
-			</router-link>
-			<router-link tag="div" class="tab-item" to="/plat_echart">
-				<span class="tab-link">数据播报</span>
-			</router-link>
+			<div class="tab-item" :class="{active:selected==index}" v-for="(tabs,index) in tabList" @click="tabClick(index,tabs.view)">
+				<span class="tab-link">{{tabs.title}}</span>
+			</div>
 		</div>
-		<div class="about_com">
-			<router-view></router-view>
-		</div>
+		<div class="about_com" :is="currentView"></div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
+	import platData from './templates/plat_data'
+	import platInvest from './templates/plat_invest'
+	import platEchart from './templates/plat_echart'
 	export default {
-
+		data () {
+			return {
+				currentView: 'plat1',
+				selected: 0,
+				tabList: [
+					{
+						title: '数据汇总',
+						view: 'plat1'
+					},
+					{
+						title: '投资/借款详情',
+						view: 'plat2'
+					},
+					{
+						title: '数据播报',
+						view: 'plat3'
+					}
+				]
+			}
+		},
+		methods: {
+			tabClick: function (index, view) {
+				this.selected = index
+				this.currentView = view
+			}
+		},
+		components: {
+			'plat1': platData,
+			'plat2': platInvest,
+			'plat3': platEchart
+		}
 	}
 </script>
 
@@ -27,6 +52,7 @@
 	.plat_data
 		max-width: 414px;
 		margin:0 auto;
+		font-family: PingFang-SC-Medium
 		.tab
 			display: flex
 			height: 0.8rem
@@ -36,16 +62,16 @@
 			.tab-item
 				flex: 1
 				text-align: center
+				color: $color-font-main
 				.tab-link
 					display:inline-block
 					height:0.8rem
-					color: $color-font-main
 					box-sizing: border-box
 					padding:0 0.1rem
-				&.router-link-active
-					.tab-link
-						color: $color-font-orange
-						border-bottom: 2px solid $color-font-orange
+		.active
+			.tab-link
+				color: $color-font-orange
+				border-bottom: 2px solid $color-font-orange
 		.about_com
 			margin-top:0.18rem
 			overflow:hidden

@@ -1,0 +1,27 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "borrowmoney": "104840.66",
+             "borrownum": "1000",
+             "borrowper": "55",
+             "investper": "66888",
+             "investban": "104840.66万",
+             "presentper": "1024",
+             "presentnum": "50",
+             "presentinvest": "1025",
+             "todynum": "66",
+             "todymoney": "666.66",
+             "overdue": "2.34",
+             "overduemoney": "0.00",
+             "overduenums": "66",
+             "overduemoneys": "88888.88",
+             "overduenums": "0",
+             "overduemoney": "666.66",
+             "overduenum": "11",
+             "relevancemoney": "0.00",
+             "relevancenum": "11"
+      },
+      "success": true
+}

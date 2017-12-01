@@ -1,0 +1,12 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "drawType": 1,
+             "prizeName": "1",
+             "prizeType": 1,
+             "prizeValue": 1
+      },
+      "success": true
+}

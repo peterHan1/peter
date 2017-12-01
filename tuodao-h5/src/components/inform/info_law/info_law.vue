@@ -106,6 +106,7 @@
 		max-width: 414px
 		margin: 0 auto
 		overflow: hidden
+		font-family: 'PingFang-SC-Medium'
 		i
 			font-style: normal
 		h3

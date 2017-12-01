@@ -36,8 +36,9 @@
 	.share
 		max-width: 414px;
 		background-color:$color-background-f
-		padding: 0 0.3rem
+		padding: 0 0.3rem 0.5rem
 		margin: 0.2rem auto 0
+		font-family: 'PingFang-SC-Medium'
 		.share_bot
 			margin-top: 0.2rem
 		h3

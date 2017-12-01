@@ -1,0 +1,55 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "list":
+             [
+                    {
+                           "amount": "12345.60",
+                           "proportion": "2.10"
+                    },
+                    {
+                           "amount": "8888.88",
+                           "proportion": "2.19"
+                    },
+                    {
+                           "amount": "666.45",
+                           "proportion": "1.00"
+                    },
+                    {
+                           "amount": "111.11",
+                           "proportion": "2.19"
+                    },
+                    {
+                           "amount": "222.22",
+                           "proportion": "0.5"
+                    },
+                    {
+                           "amount": "333.33",
+                           "proportion": "2.19"
+                    },
+                    {
+                           "amount": "444.44",
+                           "proportion": "0.07"
+                    },
+                    {
+                           "amount": "555.555",
+                           "proportion": "0.6"
+                    },
+                    {
+                           "amount": "666.666",
+                           "proportion": "0.05"
+                    },
+                    {
+                           "amount": "777.77",
+                           "proportion": "0.03"
+                    },
+                    {
+                           "amount": "999.99",
+                           "proportion": "0.02"
+                    }
+             ]
+      },
+      "success": true
+}

@@ -39,9 +39,10 @@
 	@import "~common/stylus/variable"
 	.board
 		max-width: 414px
-		padding: 0 0.3rem
+		padding: 0 0.3rem 0.5rem
 		margin: 0.2rem auto
 		background-color:$color-background-f
+		font-family: 'PingFang-SC-Medium'
 		h3
 			font-size: 0.28rem
 			color: #212a36

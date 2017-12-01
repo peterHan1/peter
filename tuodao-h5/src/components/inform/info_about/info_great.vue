@@ -40,9 +40,10 @@
 	@import "~common/stylus/variable"
 	.great
 		background-color:$color-background-f
-		padding: 0 0.3rem
+		padding: 0 0.3rem 0.5rem
 		margin: 0.2rem auto 0
-		max-width: 414px;
+		max-width: 414px
+		font-family: 'PingFang-SC-Medium'
 		h3
 			font-size: 0.28rem
 			color: #212a36

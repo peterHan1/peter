@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import demo1 from 'components/demo1/demo1'
-import demo2 from 'components/demo2/demo2'
-import demo3 from 'components/demo3/demo3'
-import demo4 from 'components/demo4/demo4'
+import share from 'components/invite/invite_share'
+import rule from 'components/invite/invite_rule'
+import friends from 'components/invite/invite_friends'
+import record from 'components/invite/invite_record'
+import center from 'components/member/member_center'
+import rules from 'components/member/member_rule'
+import privilege from 'components/member/member_privilege'
+import lotteryRule from 'components/lottery/lottery_rule'
+import lotterys from 'components/lottery/lottery_lotterys'
+import prize from 'components/lottery/lottery_prize'
 import inform from 'components/inform/inform'
 import infoAbout from 'components/inform/info_about/info_about'
-import aboutTd from 'components/inform/info_about/about_td'
-import aboutStaff from 'components/inform/info_about/about_staff'
-import aboutPapers from 'components/inform/info_about/about_papers'
-import aboutFrame from 'components/inform/info_about/about_frame'
 import infoTerrace from 'components/inform/info_about/info_terrace'
 import infoBank from 'components/inform/info_about/info_bank'
 import infoBoard from 'components/inform/info_about/info_board'
@@ -33,11 +35,6 @@ import lawMj from 'components/inform/info_law/law/law_mj'
 import infoSafety from 'components/inform/info_safety/info_safety'
 import infoRisk from 'components/inform/info_risk/info_risk'
 import infoKnowus from 'components/inform/info_knowus/info_knowus'
-import knowTd from 'components/inform/info_knowus/know_td'
-import knowPatt from 'components/inform/info_knowus/know_patt'
-import knowAdva from 'components/inform/info_knowus/know_adva'
-import knowTeam from 'components/inform/info_knowus/know_team'
-import knowContact from 'components/inform/info_knowus/know_contact'
 import infoOper from 'components/inform/info_oper/info_oper'
 import operYiji2016 from 'components/inform/info_oper/oper_2016_1'
 import operErji2016 from 'components/inform/info_oper/oper_2016_2'
@@ -47,78 +44,47 @@ import oper2017M7 from 'components/inform/info_oper/oper_2017_m7'
 import oper2017M8 from 'components/inform/info_oper/oper_2017_m8'
 import oper2017M10 from 'components/inform/info_oper/oper_2017_m10'
 import infoPlatform from 'components/inform/info_platform/info_platform'
-import platData from 'components/inform/info_platform/plat_data'
-import platInvest from 'components/inform/info_platform/plat_invest'
-import platEchart from 'components/inform/info_platform/plat_echart'
 import selectBank from 'components/select_bank/select_bank'
 import investSift from 'components/invest/invest_sift/investSift'
-import siftIntr from 'components/invest/invest_sift/sift_intr'
-import siftSafe from 'components/invest/invest_sift/sift_safe'
-import siftIssue from 'components/invest/invest_sift/sift_issue'
-import siftAddList from 'components/invest/invest_sift/sift_addList'
 import entrust from 'components/invest/invest_sift/entrust'
 import addResult from 'components/invest/add_result'
 import riskDetails from 'components/invest/risk_details'
 import investScatter from 'components/invest/invest_scatter/investScatter'
-import scatterIntr from 'components/invest/invest_scatter/scatter_intr'
-import scatterSafe from 'components/invest/invest_scatter/scatter_safe'
-import scatterAddList from 'components/invest/invest_scatter/scatter_addList'
 import protocol from 'components/invest/invest_scatter/protocol_s'
 import investBond from 'components/invest/invest_bond/investBond'
-import bondIntr from 'components/invest/invest_bond/bond_intr'
-import bondSafe from 'components/invest/invest_bond/bond_safe'
-import bondAddList from 'components/invest/invest_bond/bond_addList'
 import bondProtocol from 'components/invest/invest_bond/protocol_b'
+import newComer from 'components/newComer/newComer'
+import noticeDynamic from 'components/noticeDynamic/noticeDynamic'
+import rechargeExplain from 'components/rechargeExplain/rechargeExplain'
+import transferExplain from 'components/transferExplain/transferExplain'
+import couponExplain from 'components/couponExplain/couponExplain'
+import pointExplain from 'components/myPoint/pointExplain'
+import pointTask from 'components/myPoint/pointTask'
+import feedback from 'components/helpCenter/feedback'
+import rates from 'components/helpCenter/rates'
+import blankDeposit from 'components/helpCenter/blankDeposit'
+import excellentPlan from 'components/helpCenter/excellentPlan'
+import investBack from 'components/helpCenter/investBack'
+import loginRegister from 'components/helpCenter/loginRegister'
+import menberSystem from 'components/helpCenter/menberSystem'
+import newRequire from 'components/helpCenter/newRequire'
+import normal from 'components/helpCenter/normal'
+import obligations from 'components/helpCenter/obligations'
+import pointCoupon from 'components/helpCenter/pointCoupon'
+import prizes from 'components/helpCenter/prizes'
+import rechargeCash from 'components/helpCenter/rechargeCash'
+import selfInvest from 'components/helpCenter/selfInvest'
 Vue.use(Router)
 
 export default new Router({
 	routes: [
-		{
-			path: '/',
-			redirect: '/demo1'
-		},
-		{
-			path: '/demo1',
-			component: demo1
-		},
-		{
-			path: '/demo2',
-			component: demo2
-		},
-		{
-			path: '/demo3',
-			component: demo3
-		},
-		{
-			path: '/demo4',
-			component: demo4
-		},
 		{
 			path: '/inform',
 			component: inform
 		},
 		{
 			path: '/info_about',
-			component: infoAbout,
-			redirect: '/about_td',
-			children: [
-				{
-					path: '/about_td',
-					component: aboutTd
-				},
-				{
-					path: '/about_staff',
-					component: aboutStaff
-				},
-				{
-					path: '/about_papers',
-					component: aboutPapers
-				},
-				{
-					path: '/about_frame',
-					component: aboutFrame
-				}
-			]
+			component: infoAbout
 		},
 		{
 			path: '/info_terrace',
@@ -210,30 +176,7 @@ export default new Router({
 		},
 		{
 			path: '/info_knowus',
-			component: infoKnowus,
-			redirect: '/know_td',
-			children: [
-				{
-					path: '/know_td',
-					component: knowTd
-				},
-				{
-					path: '/know_patt',
-					component: knowPatt
-				},
-				{
-					path: '/know_adva',
-					component: knowAdva
-				},
-				{
-					path: '/know_team',
-					component: knowTeam
-				},
-				{
-					path: '/know_contact',
-					component: knowContact
-				}
-			]
+			component: infoKnowus
 		},
 		{
 			path: '/info_oper',
@@ -269,22 +212,7 @@ export default new Router({
 		},
 		{
 			path: '/info_platform',
-			component: infoPlatform,
-			redirect: '/plat_data',
-			children: [
-				{
-					path: '/plat_data',
-					component: platData
-				},
-				{
-					path: '/plat_invest',
-					component: platInvest
-				},
-				{
-					path: '/plat_echart',
-					component: platEchart
-				}
-			]
+			component: infoPlatform
 		},
 		{
 			path: '/select_bank',
@@ -292,26 +220,7 @@ export default new Router({
 		},
 		{
 			path: '/investSift',
-			component: investSift,
-			redirect: '/sift_intr',
-			children: [
-				{
-					path: '/sift_intr',
-					component: siftIntr
-				},
-				{
-					path: '/sift_safe',
-					component: siftSafe
-				},
-				{
-					path: '/sift_issue',
-					component: siftIssue
-				},
-				{
-					path: '/sift_addList',
-					component: siftAddList
-				}
-			]
+			component: investSift
 		},
 		{
 			path: '/add_result',
@@ -327,22 +236,7 @@ export default new Router({
 		},
 		{
 			path: '/investScatter',
-			component: investScatter,
-			redirect: '/scatter_intr',
-			children: [
-				{
-					path: '/scatter_intr',
-					component: scatterIntr
-				},
-				{
-					path: '/scatter_safe',
-					component: scatterSafe
-				},
-				{
-					path: '/scatter_addList',
-					component: scatterAddList
-				}
-			]
+			component: investScatter
 		},
 		{
 			path: '/protocol_s',
@@ -350,26 +244,121 @@ export default new Router({
 		},
 		{
 			path: '/investBond',
-			component: investBond,
-			redirect: '/bond_intr',
-			children: [
-				{
-					path: '/bond_intr',
-					component: bondIntr
-				},
-				{
-					path: '/bond_safe',
-					component: bondSafe
-				},
-				{
-					path: '/bond_addList',
-					component: bondAddList
-				}
-			]
+			component: investBond
 		},
 		{
 			path: '/protocol_b',
 			component: bondProtocol
+		},
+		{
+			path: '/newComer',
+			component: newComer
+		}, {
+			path: '/noticeDynamic',
+			component: noticeDynamic
+		}, {
+			path: '/rechargeExplain',
+			component: rechargeExplain
+		}, {
+			path: '/transferExplain',
+			component: transferExplain
+		}, {
+			path: '/couponExplain',
+			component: couponExplain
+		}, {
+			path: '/pointExplain',
+			component: pointExplain
+		}, {
+			path: '/pointTask',
+			component: pointTask
+		}, {
+			path: '/rates',
+			component: rates
+		}, {
+			path: '/blankDeposit',
+			component: blankDeposit
+		}, {
+			path: '/excellentPlan',
+			component: excellentPlan
+		}, {
+			path: '/investBack',
+			component: investBack
+		}, {
+			path: '/loginRegister',
+			component: loginRegister
+		}, {
+			path: '/menberSystem',
+			component: menberSystem
+		}, {
+			path: '/newRequire',
+			component: newRequire
+		}, {
+			path: '/normal',
+			component: normal
+		}, {
+			path: '/obligations',
+			component: obligations
+		}, {
+			path: '/pointCoupon',
+			component: pointCoupon
+		}, {
+			path: '/prizes',
+			component: prizes
+		}, {
+			path: '/rechargeCash',
+			component: rechargeCash
+		}, {
+			path: '/selfInvest',
+			component: selfInvest
+		},
+		{
+			path: '/share',
+			component: share
+		},
+		{
+			path: '/rule',
+			component: rule
+		},
+		{
+			path: '/friends',
+			component: friends
+		},
+		{
+			path: '/record',
+			component: record
+		},
+		{
+			path: '/feedback',
+			component: feedback
+		},
+		{
+			path: '/rates',
+			component: rates
+		},
+		{
+			path: '/center',
+			component: center
+		},
+		{
+			path: '/rules',
+			component: rules
+		},
+		{
+			path: '/privilege',
+			component: privilege
+		},
+		{
+			path: '/lotteryRule',
+			component: lotteryRule
+		},
+		{
+			path: '/lotterys',
+			component: lotterys
+		},
+		{
+			path: '/prize',
+			component: prize
 		}
 	]
 })
+

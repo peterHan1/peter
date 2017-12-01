@@ -1,0 +1,160 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      [        
+             {
+                    "name": "中国农业银行",
+                    "paymentCode": "ABC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国工商银行",
+                    "paymentCode": "ICBC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国银行",
+                    "paymentCode": "BOC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国建设银行",
+                    "paymentCode": "CCB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "交通银行",
+                    "paymentCode": "BCM",
+                    "limitOneTime": 10,
+                    "limitdayTime": 20,
+                    "limitmonthTime": 200,
+                    "payment": "0"
+             },
+             {
+                    "name": "招商银行",
+                    "paymentCode": "CMB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中信银行",
+                    "paymentCode": "CITIC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "浦发银行",
+                    "paymentCode": "SPDB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "兴业银行",
+                    "paymentCode": "CIB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国民生银行",
+                    "paymentCode": "CMBC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国光大银行",
+                    "paymentCode": "CEB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "平安银行",
+                    "paymentCode": "PAB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "华夏银行",
+                    "paymentCode": "HXB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "北京银行",
+                    "paymentCode": "BOB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "广发银行",
+                    "paymentCode": "CGB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "宁波银行",
+                    "paymentCode": "NBCB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "杭州银行",
+                    "paymentCode": "HZB",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "上海银行",
+                    "paymentCode": "BOS",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             },
+             {
+                    "name": "中国邮政",
+                    "paymentCode": "PSBC",
+                    "limitOneTime": 1,
+                    "limitdayTime": 10,
+                    "limitmonthTime": 20,
+                    "payment": "0"
+             }
+      ],
+      "success": true
+}

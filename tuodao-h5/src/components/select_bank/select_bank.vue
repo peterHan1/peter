@@ -4,10 +4,10 @@
 			<div class="ul_bank">
 				<ul id="bank_ul">
 					<li v-for="(bank,index) in bankList" @click="selectFn(bank,index)" :class="{on: i==index}">
-						<span :class="bank.name"></span>
+						<span :class="bank.paymentCode"></span>
 						<div>
-							<h4>{{bank.title}}</h4>
-							<p>{{bank.explain}}</p>
+							<h4>{{bank.name}}</h4>
+							<p>单笔限额{{bank.limitOneTime}}万 单日限额{{bank.limitdayTime}}万 每月限额{{bank.limitmonthTime}}万</p>
 						</div>
 					</li>
 				</ul>
@@ -19,106 +19,21 @@
 		data () {
 			return {
 				i: -1,
-				bankList: [
-					{
-						name: 'ICBC',
-						title: '中国工商银行',
-						explain: '单笔限额10万 单日限额20万 每月限额200万'
-					},
-					{
-						name: 'ABC',
-						title: '中国农业银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'BOC',
-						title: '中国银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CCB',
-						title: '中国建设银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'BCM',
-						title: '交通银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CMB',
-						title: '招商银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CITIC',
-						title: '中信银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'SPDB',
-						title: '浦发银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CIB',
-						title: '兴业银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CMBC',
-						title: '中国民生银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CEB',
-						title: '中国光大银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'PAB',
-						title: '平安银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'HXB',
-						title: '华夏银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'BOB',
-						title: '北京银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'CGB',
-						title: '广发银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'NBCB',
-						title: '宁波银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'HZB',
-						title: '杭州银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'BOS',
-						title: '上海银行',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					},
-					{
-						name: 'PSBC',
-						title: '中国邮政',
-						explain: '单笔限额1万 单日限额10万 每月限额20万'
-					}
-				]
+				bankList: [],
+				listUrl: '../../../static/select_bank.json'
 			}
 		},
+		mounted() {
+			this.addList()
+		},
 		methods: {
+			addList() {
+				this.$http.get(this.listUrl).then((res) => {
+					this.bankList = res.body.content
+				}, (err) => {
+					console.log(err)
+				})
+			},
 			selectFn (bank, index) {
 				this.i = index
 				console.log(bank.name)

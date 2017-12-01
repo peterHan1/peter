@@ -55,6 +55,7 @@
 		padding:0.3rem
 		max-width:414px
 		margin:0 auto
+		font-family: 'PingFang-SC-Medium'
 		div
 			margin-bottom:0.46rem
 		div:last-child

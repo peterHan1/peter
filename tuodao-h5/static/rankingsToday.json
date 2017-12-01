@@ -1,0 +1,35 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "list":
+             [
+                    {
+                           "phone": "188****888",
+                           "tenderAccount": "888.88"
+                    },
+                     {
+                           "phone": "166****666",
+                           "tenderAccount": "888.88"
+                    },
+                     {
+                           "phone": "188****888",
+                           "tenderAccount": "132456.88"
+                    },
+                     {
+                           "phone": "166****888",
+                           "tenderAccount": "888.88"
+                    },
+                     {
+                           "phone": "158****888",
+                           "tenderAccount": "6666.66"
+                    },
+                     {
+                           "phone": "155****888",
+                           "tenderAccount": "123.45"
+                    }
+             ]
+      },
+      "success": true
+}

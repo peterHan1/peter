@@ -40,6 +40,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.result
+		font-family: 'PingFang-SC-Medium'
 		.result_top
 			width:100%
 			height:2.5rem

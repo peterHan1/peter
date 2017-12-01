@@ -125,6 +125,7 @@
 		max-width:414px
 		margin:0 auto
 		color:$color-font-risk
+		font-family: 'PingFang-SC-Medium'
 		h1
 			font-size:0.46rem
 			font-weight: bold

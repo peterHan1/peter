@@ -1,0 +1,67 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": 1,
+             "pageSize": 20,
+             "size": 12,
+             "orderBy": null,
+             "startRow": 1,
+             "endRow": 12,
+             "total": 12,
+             "pages": 1,
+             "list":
+             [
+                    {
+                           "tenderTime": "2017-12-12 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "888.88"
+                    },
+                    {
+                           "tenderTime": "2017-06-06 18:08:08",
+                           "tenderUser": "188****8888",
+                           "tenderAccount": "666.66"
+                    },
+                    {
+                           "tenderTime": "2017-08-10 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "888.88"
+                    },
+                    {
+                           "tenderTime": "2017-08-08 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "789.88"
+                    },
+                    {
+                           "tenderTime": "2017-10-10 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "456.88"
+                    },
+                    {
+                           "tenderTime": "2017-12-12 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "123.88"
+                    },
+                    {
+                           "tenderTime": "2017-06-06 18:08:08",
+                           "tenderUser": "188****6666",
+                           "tenderAccount": "888.88"
+                    }
+             ],
+             "firstPage": 1,
+             "prePage": 0,
+             "nextPage": 0,
+             "lastPage": 1,
+             "isFirstPage": true,
+             "isLastPage": true,
+             "hasPreviousPage": false,
+             "hasNextPage": false,
+             "navigatePages": 8,
+             "navigatepageNums":
+             [
+                    1
+             ]
+      },
+      "success": true
+}
