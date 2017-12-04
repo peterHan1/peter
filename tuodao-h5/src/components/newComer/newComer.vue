@@ -9,7 +9,7 @@
 				</ul>
 				<img src="../../image/newComer_prize.png" alt="">
 			</div>
-			<div class="btn">注册并领取红包</div>
+			<div class="btn" @click="skipLink(1)">注册并领取红包</div>
 		</div>
 		<div class="shaw">
 			<div class="content" style="padding: 0 0.6rem 0.6rem 0.4rem;">
@@ -23,7 +23,7 @@
 					<p>100元起投</p>
 				</div>
 			</div>
-			<div class="btn">立即投资</div>
+			<div class="btn" @click="skipLink(2)">立即投资</div>
 		</div>
 		<p class="nav"><img src="../../image/newComer_02.png" alt=""></p>
 		<div class="task" id="task">
@@ -58,10 +58,11 @@
 				errorClass: '',
 				activeClass: 'isOver',
 				taskData: [],
-				apiUrl: '../../../static/task.json'
+				apiUrl: '../../../static/task.json',
+				userInfoUrl: '../../../static/userInfo.json'
 			}
 		},
-		mounted () {
+		created () {
 			this.getData()
 		},
 		methods: {
@@ -83,9 +84,6 @@
 						}
 					}
 					vm.taskData = listData
-					vm.$nextTick(function() {
-						// console.log(vm.taskData)
-					})
 				}, (res) => {
 					console.log('请求失败！')
 				})
@@ -98,6 +96,45 @@
 				} else if (code === 3) {
 					console.log('弹窗3')
 				}
+			},
+			skipLink(type) {
+				var vm = this
+				vm.$http.get(vm.userInfoUrl)
+				.then((res) => {
+					// 是否为新手
+					if (res.body.content.isNewbie === 1) {
+						// 是否投资
+						if (res.body.content.investFlag === 1) {
+							if (type === 1) {
+								vm.$router.push({path: '/pointTask'})
+							} else {
+								vm.$router.push({path: '/lottery_prize'}) // 列表
+							}
+						} else {
+							if (type === 1) {
+								vm.$router.push({path: '/pointTask'})
+							} else {
+								vm.$router.push({path: '/lottery_prize'}) // 列表
+							}
+						}
+					} else {
+						if (res.body.content.investFlag === 1) {
+							if (type === 1) {
+								vm.$router.push({path: '/pointTask'})
+							} else {
+								vm.$router.push({path: '/lottery_prize'}) // 列表
+							}
+						} else {
+							if (type === 1) {
+								vm.$router.push({path: '/pointTask'})
+							} else {
+								vm.$router.push({path: '/lottery_prize'}) // 列表
+							}
+						}
+					}
+				}, (res) => {
+					console.log('请求失败！')
+				})
 			}
 		}
 	}
@@ -144,6 +181,7 @@
 					color: #626262
 					margin-top: 0.3rem
 	.btn
+		display: block
 		width:6.3rem
 		font-size:0.3rem
 		color:#ffffff
@@ -177,8 +215,6 @@
 		border-radius:0.04rem
 		background: #ffffff
 		overflow:hidden
-		position: relative
-		height:6.63rem
 		.task_top
 			height: 0.6rem
 			line-height: 0.6rem
@@ -188,26 +224,23 @@
 			font-size: 0.2rem
 		.content
 			position: relative
+			max-height:6.08rem
 			overflow-y: auto
-			height:6.03rem
 			&::-webkit-scrollbar
 				width: 0.06rem
 			&::-webkit-scrollbar-thumb
 				width:0.05rem
-				heigth:1rem
+				heigth:0.5rem
 				border-radius:0.04rem
 				background:#b6b5b6
 			ul
-				width:100%
-				position: absolute
-				top:0
-				left:0
 				li
 					overflow:hidden
 					border-bottom: 1px solid #e4e4e4
 					font-size: 0.24rem
 					height: 1.5rem
 					padding-left: 0.3rem
+					overflow:hidden
 					.list_left
 						margin-top: 0.45rem
 						float:left

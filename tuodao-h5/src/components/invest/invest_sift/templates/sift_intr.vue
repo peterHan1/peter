@@ -61,8 +61,9 @@
 			border-bottom:1px solid #e4e4e4	
 			margin-bottom:0.3rem
 		.sift_top
-			padding:0 0.3rem
+			padding:0 0.3rem 0.3rem
 			background-color:$color-background-f
+			margin-bottom:0.2rem
 			p
 				font-size:0.24rem
 				color:#7e7e7e
@@ -70,7 +71,7 @@
 		.sift_bot
 			padding:0 0.3rem 0.4rem
 			background-color:$color-background-f
-			margin-top:0.2rem
+			margin-bottom:0.2rem
 			h3
 				margin-bottom:0
 			li

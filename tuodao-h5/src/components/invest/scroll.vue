@@ -9,7 +9,7 @@
 		<header class="pull-refresh">
 			<slot name="pull-refresh">
 				<span class="down-tip"><span class="iconfont">&#xe843;</span>下拉，返回标的信息</span>
-				<span class="up-tip"><span class="iconfont">&#xe843;</span>松开，返回标的信息</span>
+				<span class="up-tip"><span class="iconfont">&#xe844;</span>松开，返回标的信息</span>
 			</slot>
 		</header>
 		<slot></slot>

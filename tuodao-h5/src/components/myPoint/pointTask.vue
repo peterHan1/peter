@@ -8,7 +8,7 @@
 		<div class="task">
 			<div v-if="showValue">
 				<ul>
-					<li v-for="task in taskData">
+					<li v-for="task in taskNormalData">
 						<div class="list_left">
 							<span class="sp1">{{ task.taskName }}</span>
 							<span class="sp2">{{ task.score }}积分</span>
@@ -19,7 +19,7 @@
 			</div>
 			<div v-else>
 				<ul>
-					<li v-for="task in taskData">
+					<li v-for="task in taskNewData">
 						<div class="list_left">
 							<span class="sp1">{{ task.taskName }}</span>
 							<span class="sp2">{{ task.score }}积分</span>
@@ -43,37 +43,46 @@ export default {
 			activeObj2: '',
 			new_title: false,
 			bor_bom: 'bor_bom',
-			taskData: [],
-			apiUrl: '../../../static/task.json'
+			taskNormalData: [],
+			taskNewData: [],
+			apiNormalUrl: '../../../static/task.json',
+			apiNewUrl: '../../../static/taskNew.json'
 		}
 	},
-	mounted () {
+	created () {
 		this.getData(1)
 	},
 	methods: {
 		tabCut (type) {
-			var vm = this
+			// var vm = this
 			if (type === 1) {
-				vm.showValue = true
-				vm.activeObj1 = 'on'
-				vm.activeObj2 = ''
-				vm.new_title = !vm.new_title
-				vm.bor_bom = 'bor_bom'
-				vm.getData(1)
+				this.showValue = true
+				this.activeObj1 = 'on'
+				this.activeObj2 = ''
+				this.new_title = !this.new_title
+				this.bor_bom = 'bor_bom'
+				this.getData(1)
 			} else {
-				vm.showValue = false
-				vm.activeObj1 = ''
-				vm.activeObj2 = 'on'
-				vm.new_title = !vm.new_title
-				vm.bor_bom = ''
-				vm.getData(2)
+				this.showValue = false
+				this.activeObj1 = ''
+				this.activeObj2 = 'on'
+				this.new_title = !this.new_title
+				this.bor_bom = ''
+				this.getData(2)
 			}
 		},
 		getData(type) {
-			var vm = this
-			vm.$http.get(vm.apiUrl, type)
+			// var vm = this
+			var apiUrl = ''
+			if (type === 1) {
+				apiUrl = this.apiNormalUrl
+			} else {
+				apiUrl = this.apiNewUrl
+			}
+			this.$http.get(apiUrl)
 			.then((res) => {
 				var listData = res.body.content.list
+				console.log(listData)
 				for (var i = 0; i < listData.length; i++) {
 					if (listData[i].isOverdue === 'yes') {
 						listData[i].todo = '已过期'
@@ -87,10 +96,11 @@ export default {
 						listData[i].url = 'javascript:;'
 					}
 				}
-				vm.taskData = listData
-				vm.$nextTick(function() {
-					// vm.domEvent(listData)
-				})
+				if (type === 1) {
+					this.taskNormalData = listData
+				} else {
+					this.taskNewData = listData
+				}
 			}, (res) => {
 				console.log('请求失败！')
 			})
@@ -102,6 +112,15 @@ export default {
 				console.log('弹窗2')
 			} else if (code === 3) {
 				console.log('弹窗3')
+			} else if (code === 4) {
+				for (var i = 0; i < this.taskNormalData.length; i++) {
+					if (this.taskNormalData[i].code === 4) {
+						var obj = this.taskNormalData[i]
+						obj.todo = '已完成'
+						obj.isComplete = 'yes'
+						this.taskNormalData.splice(i, 1, obj)
+					}
+				}
 			}
 		}
 	}

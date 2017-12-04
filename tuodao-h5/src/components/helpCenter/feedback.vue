@@ -3,90 +3,90 @@
 		<div class="logo-area">
 			<div class="item">
 				<div class="logo">
-					<a href="">
+					<router-link to="/newRequire">
 						<dl>
 							<dt class="iconfont">&#xe6b6;</dt>
 							<dd>新手必读</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/loginRegister">
 						<dl>
 							<dt class="iconfont">&#xe6aa;</dt>
 							<dd>注册登录</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/blankDeposit">
 						<dl>
 							<dt class="iconfont">&#xe6ac;</dt>
 							<dd>银行资金存管</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 			</div>
 			<div class="item">
 				<div class="logo">
-					<a href="">
+					<router-link to="/rates">
 						<dl>
 							<dt class="iconfont">&#xe6ab;</dt>
 							<dd>收费标准</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/rechargeCash">
 						<dl>
 							<dt class="iconfont">&#xe6ad;</dt>
 							<dd>充值提现</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/investBack">
 						<dl>
 							<dt class="iconfont">&#xe6ae;</dt>
 							<dd>投资回款</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 			</div>
 			<div class="item">
 				<div class="logo">
-					<a href="">
+					<router-link to="/excellentPlan">
 						<dl>
 							<dt class="iconfont">&#xe6b7;</dt>
 							<dd>精选计划</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/obligations">
 						<dl>
 							<dt class="iconfont">&#xe6a4;</dt>
 							<dd>债权转让</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 				<div class="logo">
-					<a href="">
+					<router-link to="/selfInvest">
 						<dl>
 							<dt class="iconfont">&#xe6a5;</dt>
 							<dd>自动投标</dd>
 						</dl>
-					</a>
+					</router-link>
 				</div>
 			</div>
 		</div>
 		<div class="menu">
 			<ul>
-				<li><a href="">积分与优惠券<span class="iconfont right">&#xe6b9;</span></a></li>
-				<li><a href="">推荐奖励<span class="iconfont right">&#xe6b9;</span></a></li>
-				<li><a href="">会员体系<span class="iconfont right">&#xe6b9;</span></a></li>
-				<li><a href="">理财百科<span class="iconfont right">&#xe6b9;</span></a></li>
-				<li><a href="">常见问题<span class="iconfont right">&#xe6b9;</span></a></li>
+				<li><router-link to="/pointCoupon">积分与优惠券<span class="iconfont right">&#xe6b9;</span></router-link></li>
+				<li><router-link to="/tjReward">推荐奖励<span class="iconfont right">&#xe6b9;</span></router-link></li>
+				<li><router-link to="/memberSystem">会员体系<span class="iconfont right">&#xe6b9;</span></router-link></li>
+				<li><router-link to="/">理财百科<span class="iconfont right">&#xe6b9;</span></router-link></li>
+				<li><router-link to="/normal">常见问题<span class="iconfont right">&#xe6b9;</span></router-link></li>
 			</ul>
 		</div>
 		<div class="relation">

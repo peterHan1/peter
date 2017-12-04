@@ -63,7 +63,9 @@
 				distanceNextLevelAmount: '',
 				v: '',
 				loginStatus: '',
-				isLogin: false
+				isLogin: false,
+				accessId: '',
+				accessKey: ''
 			}
 		},
 		mounted() {
@@ -73,50 +75,59 @@
 			init() {
 				let vm = this
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-					vm.setupWebViewJavascriptBridge(function (bridge) {
-						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
-							vm.loginStatus = response.status
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_ShowRightNavItem', {
+							'rightTitle': '会员规则',
+							'url': 'http://72.127.2.40:8080/#/rules'
+						}, function (response) {
 						})
 					})
 				}
-				if (vm.loginStatus === 0) {
-					vm.isLogin = true
-				} else {
-					vm.$http.post(vm.apiUrl)
-						.then((response) => {
-							console.log(response.body.content)
-							vm.mobile = response.body.content.mobile
-							vm.lastMonthAvg = response.body.content.lastMonthAvg
-							vm.thisMonthAvg = response.body.content.thisMonthAvg
-							vm.distanceNextLevelAmount = response.body.content.distanceNextLevelAmount
-							vm.v = response.body.content.vipLevel
-							let _lines = document.getElementById('lines')
-							let _privilege = document.getElementById('privilege')
-							let liss = _privilege.getElementsByClassName('logo')
-							let lis = _lines.getElementsByClassName('line')
-							// vm.v = 1
-							for (var i = 0; i < vm.v; i++) {
-								lis[i].classList.add('white')
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.loginStatus = response.status
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							if (vm.loginStatus === '0') {
+								vm.isLogin = true
 							}
-							for (var j = 0; j < vm.v + 1; j++) {
-								liss[j].classList.add('light')
-							}
-							if (vm.v === 0) {
-								vm.now = require('../../image/member/v0.png')
-							} else if (vm.v === 1) {
-								vm.now = require('../../image/member/v1.png')
-							} else if (vm.v === 2) {
-								vm.now = require('../../image/member/v2.png')
-							} else if (vm.v === 3) {
-								vm.now = require('../../image/member/v3.png')
-							} else if (vm.v === 4) {
-								vm.now = require('../../image/member/v4.png')
-							} else if (vm.v === 5) {
-								vm.now = require('../../image/member/v5.png')
-							} else {
-								vm.now = require('../../image/member/v6.png')
-							}
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.mobile = response.body.content.mobile
+									vm.lastMonthAvg = response.body.content.lastMonthAvg
+									vm.thisMonthAvg = response.body.content.thisMonthAvg
+									vm.distanceNextLevelAmount = response.body.content.distanceNextLevelAmount
+									vm.v = response.body.content.vipLevel
+									let _lines = document.getElementById('lines')
+									let _privilege = document.getElementById('privilege')
+									let liss = _privilege.getElementsByClassName('logo')
+									let lis = _lines.getElementsByClassName('line')
+									// vm.v = 1
+									for (var i = 0; i < vm.v; i++) {
+										lis[i].classList.add('white')
+									}
+									for (var j = 0; j < vm.v + 1; j++) {
+										liss[j].classList.add('light')
+									}
+									if (vm.v === 0) {
+										vm.now = require('../../image/member/v0.png')
+									} else if (vm.v === 1) {
+										vm.now = require('../../image/member/v1.png')
+									} else if (vm.v === 2) {
+										vm.now = require('../../image/member/v2.png')
+									} else if (vm.v === 3) {
+										vm.now = require('../../image/member/v3.png')
+									} else if (vm.v === 4) {
+										vm.now = require('../../image/member/v4.png')
+									} else if (vm.v === 5) {
+										vm.now = require('../../image/member/v5.png')
+									} else {
+										vm.now = require('../../image/member/v6.png')
+									}
+								})
 						})
+					})
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

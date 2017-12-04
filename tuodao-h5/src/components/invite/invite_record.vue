@@ -39,7 +39,9 @@
 				apiUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/appInviteRecord',
 				items: [],
 				cashBackSum: '',
-				voucherSum: ''
+				voucherSum: '',
+				accessId: 'accessId',
+				accessKey: 'accessKey'
 			}
 		},
 		mounted() {
@@ -48,12 +50,36 @@
 		methods: {
 			init() {
 				let vm = this
-				vm.$http.post(vm.apiUrl)
-					.then((response) => {
-						this.items = response.body.content.recordVOList
-						this.cashBackSum = response.body.content.cashBackSum
-						this.voucherSum = response.body.content.voucherSum
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.items = response.body.content.recordVOList
+									vm.cashBackSum = response.body.content.cashBackSum
+									vm.voucherSum = response.body.content.voucherSum
+								})
+						})
 					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
 		}
 	}

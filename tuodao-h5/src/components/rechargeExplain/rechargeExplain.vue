@@ -11,7 +11,7 @@
 
 <script type="text/ecmascript-6">
 </script>
-<script src="../../common/js/base.js"></script>
+
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
 	.main

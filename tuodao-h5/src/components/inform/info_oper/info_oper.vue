@@ -41,6 +41,10 @@
 						year: '2017年',
 						yearList: [
 							{
+								url: 'oper_2017_m11',
+								src: require('../../../image/inform/m_11.png')
+							},
+							{
 								url: 'oper_2017_m10',
 								src: require('../../../image/inform/m_10.png')
 							},

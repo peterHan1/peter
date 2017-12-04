@@ -43,6 +43,7 @@ import operSanji2017 from 'components/inform/info_oper/oper_2017_3'
 import oper2017M7 from 'components/inform/info_oper/oper_2017_m7'
 import oper2017M8 from 'components/inform/info_oper/oper_2017_m8'
 import oper2017M10 from 'components/inform/info_oper/oper_2017_m10'
+import oper2017M11 from 'components/inform/info_oper/oper_2017_m11'
 import infoPlatform from 'components/inform/info_platform/info_platform'
 import selectBank from 'components/select_bank/select_bank'
 import investSift from 'components/invest/invest_sift/investSift'
@@ -60,6 +61,7 @@ import transferExplain from 'components/transferExplain/transferExplain'
 import couponExplain from 'components/couponExplain/couponExplain'
 import pointExplain from 'components/myPoint/pointExplain'
 import pointTask from 'components/myPoint/pointTask'
+import wxGzh from 'components/myPoint/wxGzh'
 import feedback from 'components/helpCenter/feedback'
 import rates from 'components/helpCenter/rates'
 import blankDeposit from 'components/helpCenter/blankDeposit'
@@ -211,6 +213,10 @@ export default new Router({
 			component: oper2017M10
 		},
 		{
+			path: '/oper_2017_m11',
+			component: oper2017M11
+		},
+		{
 			path: '/info_platform',
 			component: infoPlatform
 		},
@@ -253,61 +259,84 @@ export default new Router({
 		{
 			path: '/newComer',
 			component: newComer
-		}, {
+		},
+		{
 			path: '/noticeDynamic',
 			component: noticeDynamic
-		}, {
+		},
+		{
 			path: '/rechargeExplain',
 			component: rechargeExplain
-		}, {
+		},
+		{
 			path: '/transferExplain',
 			component: transferExplain
-		}, {
+		},
+		{
 			path: '/couponExplain',
 			component: couponExplain
-		}, {
+		},
+		{
 			path: '/pointExplain',
 			component: pointExplain
-		}, {
+		},
+		{
 			path: '/pointTask',
 			component: pointTask
-		}, {
+		},
+		{
+			path: '/wxGzh',
+			component: wxGzh
+		},
+		{
 			path: '/rates',
 			component: rates
-		}, {
+		},
+		{
 			path: '/blankDeposit',
 			component: blankDeposit
-		}, {
+		},
+		{
 			path: '/excellentPlan',
 			component: excellentPlan
-		}, {
+		},
+		{
 			path: '/investBack',
 			component: investBack
-		}, {
+		},
+		{
 			path: '/loginRegister',
 			component: loginRegister
-		}, {
+		},
+		{
 			path: '/menberSystem',
 			component: menberSystem
-		}, {
+		},
+		{
 			path: '/newRequire',
 			component: newRequire
-		}, {
+		},
+		{
 			path: '/normal',
 			component: normal
-		}, {
+		},
+		{
 			path: '/obligations',
 			component: obligations
-		}, {
+		},
+		{
 			path: '/pointCoupon',
 			component: pointCoupon
-		}, {
+		},
+		{
 			path: '/prizes',
 			component: prizes
-		}, {
+		},
+		{
 			path: '/rechargeCash',
 			component: rechargeCash
-		}, {
+		},
+		{
 			path: '/selfInvest',
 			component: selfInvest
 		},

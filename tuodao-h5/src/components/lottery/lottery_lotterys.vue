@@ -1,7 +1,7 @@
 <template>
 	<div class="lottery">
 		<div class="login-box" v-if="!isLogin">
-			<button class="btn">登录/注册</button>
+			<button class="btn" v-on:click="login()">登录/注册</button>
 			<p>登录查看我的积分</p>
 		</div>
 		<p class="integral" v-else>当前积分：<span class="sumCount" v-model="sumCount">{{sumCount}}</span></p>
@@ -67,9 +67,9 @@
         	<div class="ts3" v-show="jfShow">
         		<p>该奖品已放入您的账户中</p>
         	</div>
-        	<button class="btn" v-show="tsShow">我要领取</button>
-        	<button class="btn" v-show="ssShow">查看我的优惠券</button>
-        	<button class="btn" v-show="jfShow">查看我的积分</button>
+        	<button class="btn" v-show="tsShow" v-on:click="goService()">联系客服</button>
+        	<button class="btn" v-show="ssShow" v-on:click="goDiscount()">查看我的优惠券</button>
+        	<button class="btn" v-show="jfShow" v-on:click="goIntegral()">查看我的积分</button>
    		</slot>
    		</lottery-Dialog>
 	</div>
@@ -85,6 +85,7 @@
 		data () {
 			return {
 				apiUrl: '../../../static/draw_result.json',
+				jfUrl: 'http://72.127.2.140:8080/api/router/app/mine/getMyScoreStatistic',
 				isShow: true,
 				sumCount: 10010,
 				isLogin: true,
@@ -104,10 +105,44 @@
 				jfShow: '',
 				ssShow: '',
 				result: '',
-				prizeFont: ''
+				prizeFont: '',
+				accessId: 'accessId',
+				accessKey: 'accessKey'
 			}
 		},
+		mounted() {
+			this.getInfo()
+		},
 		methods: {
+			getInfo: function() {
+				let vm = this
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_ShowRightNavItem', {
+							'rightTitle': '我的奖品',
+							'url': 'http://72.127.2.40:8080/#/prize'
+						}, function (response) {
+						})
+					})
+				}
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							if (response.status === '0') {
+								vm.isLogin = false
+							} else {
+								vm.isLogin = true
+							}
+							vm.$http({url: vm.jfUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.sumCount = response.body.content.scoreCurrent
+								})
+						})
+					})
+				}
+			},
 			lottery1: function () {
 				this.isShow = true
 				this.tsShow = ''
@@ -206,7 +241,7 @@
 							this.sumCount = this.sumCount - 100
 							lottery.getLottery()
 							let vm = this
-							vm.$http.get(vm.apiUrl, {inverstType: 2, score: 100})
+							vm.$http({url: vm.apiUrl, method: 'get', data: {inverstType: 2, score: 100}, headers: {accessId: vm.accessId, accessKey: vm.accessKey}, emulateJSON: true})
 								.then((response) => {
 									let res = response.body.content.prizeName
 									if (res === 'iphone8') {
@@ -273,7 +308,7 @@
 							this.sumCount = this.sumCount - 10
 							lottery.getLottery()
 							let vm = this
-							vm.$http.get(vm.apiUrl, {inverstType: 1, score: 10})
+							vm.$http({url: vm.apiUrl, method: 'get', data: {inverstType: 1, score: 10}, headers: {accessId: vm.accessId, accessKey: vm.accessKey}, emulateJSON: true})
 								.then((response) => {
 									let res = response.body.content.prizeName
 									if (res === '1') {
@@ -336,6 +371,55 @@
 			},
 			closeDialogs: function (attr) {
 				this[attr] = false
+			},
+			login: function() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_Login', {}, function (response) {})
+					})
+				}
+			},
+			goDiscount: function() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GoDiscountPage', {}, function (response) {
+						})
+					})
+				}
+			},
+			goIntegral: function() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GoIntegral', {}, function (response) {
+						})
+					})
+				}
+			},
+			goService: function() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_CallNum', {
+							'callNum': '400-9899-9090'
+						}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge: function (callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
 		}
 	}

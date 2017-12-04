@@ -57,13 +57,26 @@
 				pwSecurityLevel: '',
 				time: 60,
 				sendMsgDisabled: false,
-				invitePhone: '17557280731',
+				invitePhone: '',
 				apiUrl: 'http://72.127.2.140:8080/api/router/app/loginAbout/mobileState',
 				resgistUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/register',
 				smsSendUrl: 'http://72.127.2.140:8080/api/router/app/loginAbout/smsSend'
 			}
 		},
+		http: {
+			root: '/',
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey'
+			}
+		},
+		mounted () {
+			this.init()
+		},
 		methods: {
+			init () {
+				this.invitePhone = window.location.search
+			},
 			telphones () {
 				if (!(/^1[34578]\d{9}$/.test(this.telphone))) {
 					this.tsShow = '请输入正确的手机号码'
@@ -76,9 +89,8 @@
 				let me = this
 				if (me.sendMsgDisabled === false) {
 					me.sendMsgDisabled = true
-					me.$http.post(me.smsSendUrl, {'mobile': me.telphone, 'smsType': 'register'})
+					me.$http.post(me.smsSendUrl, {'mobile': me.telphone, 'smsType': 'register'}, {emulateJSON: true})
 						.then((response) => {
-							console.log(response)
 							let interval = window.setInterval(function() {
 								if ((me.time--) <= 0) {
 									me.time = 60
@@ -113,18 +125,24 @@
 					} else if ((/^(?=.{6,16})([0-9A-Za-z]*[^0-9A-Za-z][0-9A-Za-z]*){2,}$/.test(this.pas))) {
 						this.pwSecurityLevel = 3
 					}
-					console.log(this.pwSecurityLevel)
 					this.pas = md5(this.pas)
-					this.$http.post(this.resgistUrl, {'mobile': this.telphone, 'pwd': this.pas, 'pwSecurityLevel': this.pwSecurityLevel, 'smsCode': this.yzm, 'invitePhone': this.invitePhone})
+					this.$http.post(this.resgistUrl, {'mobile': this.telphone, 'pwd': this.pas, 'pwSecurityLevel': this.pwSecurityLevel, 'smsCode': this.yzm, 'invitePhone': this.invitePhone}, {emulateJSON: true})
 						.then((response) => {
-							console.log(response)
+							if (response.body.code === 100000) {
+								this.status = true
+								this.isShow = false
+							} else {
+								this.tsShow = response.body.msg
+								this.isShow = true
+							}
 						})
 				}
 			},
 			check () {
 				let vm = this
-				vm.$http.post(vm.apiUrl, {'mobile': vm.telphone})
+				vm.$http.post(vm.apiUrl, {'mobile': vm.telphone}, {emulateJSON: true})
 					.then((response) => {
+						console.log(response)
 						if (response.body.content.status === 1) {
 							vm.tsShow = '该手机号已注册认证，请直接登录'
 							vm.isShow = true

@@ -54,7 +54,6 @@
 			onRefresh(done) {
 				done()
 				// 松开回到app界面
-				alert(666)
 			}
 		},
 		components: {

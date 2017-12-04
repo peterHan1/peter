@@ -22,6 +22,13 @@
 				items: []
 			}
 		},
+		http: {
+			root: '/',
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey'
+			}
+		},
 		mounted() {
 			this.init()
 		},

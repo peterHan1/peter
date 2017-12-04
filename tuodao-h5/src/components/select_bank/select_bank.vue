@@ -20,23 +20,50 @@
 			return {
 				i: -1,
 				bankList: [],
-				listUrl: '../../../static/select_bank.json'
+				apiUrl: 'http://72.127.2.140:8080/api/router/recharge/bankList'
 			}
 		},
 		mounted() {
-			this.addList()
+			this.init()
 		},
 		methods: {
-			addList() {
-				this.$http.get(this.listUrl).then((res) => {
-					this.bankList = res.body.content
-				}, (err) => {
-					console.log(err)
-				})
+			init() {
+				let vm = this
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									this.bankList = response.body.content
+									console.log(response)
+								}, (err) => {
+									console.log(err)
+								})
+						})
+					})
+				}
 			},
 			selectFn (bank, index) {
 				this.i = index
 				console.log(bank.name)
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
 		}
 	}

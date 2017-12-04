@@ -1,0 +1,130 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": "当前页",
+             "pageSize": "每页的数量",
+             "size": "当前页的数量",
+             "orderBy": "排序",
+             "startRow": "当前页面第一个元素在数据库中的行号",
+             "endRow": "当前页面最后一个元素在数据库中的行号",
+             "total": "总记录数",
+             "pages": "总页数",
+             "list":
+             [
+                    {
+                           "taskId": 2,
+                           "taskName": "关注微信公众号",
+                           "score": 80,
+                           "type": 2,
+                           "description": "奖励：80积分",
+                           "todo": "去关注",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "no",
+                           "isOverdue": "yes",
+                           "status":true
+                    },
+                    {
+                           "taskId": 3,
+                           "taskName": "首次成功充值",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去充值",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "no",
+                           "isOverdue": "yes",
+                           "status":true
+                    },
+                    {
+                           "taskId": 4,
+                           "taskName": "首次成功投标（非债权转让标）",
+                           "score": 40,
+                           "type": 2,
+                           "description": "奖励：40积分",
+                           "todo": "去投资",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "yes",
+                           "isOverdue": "no",
+                           "status":false
+                    },
+                    {
+                           "taskId": 5,
+                           "taskName": "首次投资等额本息散标",
+                           "score": 100,
+                           "type": 2,
+                           "description": "奖励：100积分",
+                           "todo": "去投资",
+                           "url": null,
+                           "code": 1,
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":false
+                    },
+                    {
+                           "taskId": 6,
+                           "taskName": "首次设置自动投标",
+                           "score": 40,
+                           "type": 2,
+                           "description": "奖励：40积分",
+                           "todo": "去设置",
+                           "url": null,
+                           "code": 2,
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":false
+                    },
+                    {
+                           "taskId": 7,
+                           "taskName": "首次邀请好友注册成功",
+                           "score": 50,
+                           "type": 2,
+                           "description": "奖励：50积分",
+                           "todo": "去邀请",
+                           "url": null,
+                           "code": 3,
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":false
+                    },
+                    {
+                           "taskId": 8,
+                           "taskName": "首次登录APP",
+                           "score": 40,
+                           "type": 2,
+                           "description": "奖励：40积分",
+                           "todo": "去登入",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":true
+                    },
+                    {
+                           "taskId": 9,
+                           "taskName": "首次积分兑换加息券",
+                           "score": 30,
+                           "type": 2,
+                           "description": "奖励：30积分",
+                           "todo": "去兑换",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "yes",
+                           "isOverdue": "yes",
+                           "status":true
+                    },
+                    {
+                           "taskId": 10,
+                           "taskName": "第二次投资（非债权转让标）",
+                           "score": 100,
+                           "type": 2,
+                           "description": "奖励：100积分",
+                           "todo": "去投资",
+                           "url": "http://www.baidu.com",
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":true
+                    }
+             ]
+      },
+      "success": true
+}
