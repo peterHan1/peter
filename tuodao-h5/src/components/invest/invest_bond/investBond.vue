@@ -5,13 +5,10 @@
 				<span class="tab-link">{{tabs.title}}</span>
 			</div>
 		</div>
-		<v-scroll :on-refresh="onRefresh">
-			<div class="about_com" :is="currentView"></div>
-		</v-scroll>
+		<div class="about_com" :is="currentView"></div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scroll'
 	import bondIntr from './templates/bond_intr'
 	import bondSafe from './templates/bond_safe'
 	import bondList from './templates/bond_addList'
@@ -41,17 +38,12 @@
 			}
 		},
 		methods: {
-			tabClick: function (index, view) {
+			tabClick(index, view) {
 				this.selected = index
 				this.currentView = view
-			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
 			}
 		},
 		components: {
-			'v-scroll': Scroll,
 			'inte': bondIntr,
 			'safe': bondSafe,
 			'list': bondList

@@ -1,21 +1,62 @@
 <template>
-	<div class="safe">
-		<div>
-			<h3>借款安全</h3>
-			<p><b></b>借款人按比例缴纳保证金。</p>
-			<p><b></b>车辆完成合法抵押手续。</p>
-			<p class="dot"><b></b>车辆在车管所进行登记并安装GPS追踪器，由风控部门进行全程 监控。</p>
-			<p><b></b>专业车辆评估机构评估，保证评估价格合理。</p>
-			<p><b></b>电话核实商业保单正常。</p>
+	<v-scroll :on-refresh="onRefresh">
+		<div class="safe">
+			<div>
+				<h3>借款安全</h3>
+				<p><b></b>借款人按比例缴纳保证金。</p>
+				<p><b></b>车辆完成合法抵押手续。</p>
+				<p class="dot"><b></b>车辆在车管所进行登记并安装GPS追踪器，由风控部门进行全程 监控。</p>
+				<p><b></b>专业车辆评估机构评估，保证评估价格合理。</p>
+				<p><b></b>电话核实商业保单正常。</p>
+			</div>
+			<div>
+				<h3>资金安全</h3>
+				<p>拓道金服的北京银行资金存管系统已上线，借款人、投资人和平台通过在北京银行资金存管系统开设存管账户，来实现交易和资金的结算。用户在平台上的交易资金交由银行进行管理，平台无法接触交易资金，完全分离平台与资金的接触。</p>
+			</div>
 		</div>
-		<div>
-			<h3>资金安全</h3>
-			<p>拓道金服的北京银行资金存管系统已上线，借款人、投资人和平台通过在北京银行资金存管系统开设存管账户，来实现交易和资金的结算。用户在平台上的交易资金交由银行进行管理，平台无法接触交易资金，完全分离平台与资金的接触。</p>
-		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
-	export default {}
+	import Scroll from './../../scroll'
+	export default {
+		data () {
+			return {}
+		},
+		methods: {
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
+			}
+		},
+		components: {
+			'v-scroll': Scroll
+		}
+	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

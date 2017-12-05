@@ -1,51 +1,66 @@
 <template>
-	<div class="addList">
-		<div class="flex">
-			<div class="flex-1 border_r">
-				<div>
-					<h3 class="jl">捡漏王</h3>
+	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+		<div class="addList">
+			<div class="flex">
+				<div class="flex-1 border_r">
+					<div>
+						<h3 class="jl">捡漏王</h3>
+					</div>
+					<div class="flex_bot">
+						<p>{{scattermaxList.last}}<span>积分+{{scattermaxList.last_score}}</span></p>
+					</div>
 				</div>
-				<div class="flex_bot">
-					<p>{{scattermaxList.last}}<span>积分+{{scattermaxList.last_score}}</span></p>
+				<div class="flex-1">
+					<div>
+						<h3 class="max">脱颖而出</h3>
+					</div>
+					<div class="flex_bot">
+						<p>{{scattermaxList.max}}<span>双倍积分</span></p>
+					</div>
 				</div>
 			</div>
-			<div class="flex-1">
-				<div>
-					<h3 class="max">脱颖而出</h3>
-				</div>
-				<div class="flex_bot">
-					<p>{{scattermaxList.max}}<span>双倍积分</span></p>
-				</div>
+			<div class="list">
+				<table>
+					<thead>
+						<tr>
+							<th>投资用户</th>
+							<th>投资金额</th>
+							<th>投资时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="list in scatterList">
+							<td>{{list.tenderUser}}</td>
+							<td>{{list.tenderAccount}}</td>
+							<td>{{list.tenderTime}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="list">
-			<table>
-				<thead>
-					<tr>
-						<th>投资用户</th>
-						<th>投资金额</th>
-						<th>投资时间</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="list in scatterList">
-						<td>{{list.tenderUser}}</td>
-						<td>{{list.tenderAccount}}</td>
-						<td>{{list.tenderTime}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
+	import Scroll from './../scrollList'
 	export default {
 		data () {
 			return {
+				downdata: [],
+				counter: 1,
+				num: 15,
+				pageStart: 0,
+				pageEnd: 0,
 				scatterList: [],
-				scattermaxList: [],
-				listUrl: '../../../static/scatterAddlist.json',
-				listmaxUrl: '../../../static/scatterListMax.json'
+				scattermaxList: {},
+				listUrl: 'api/router/tc/product/tender_list',
+				listmaxUrl: 'api/router/tc/product/tender_max_last'
+			}
+		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
 			}
 		},
 		mounted() {
@@ -53,18 +68,67 @@
 		},
 		methods: {
 			addList() {
-				this.$http.get(this.listUrl).then((res) => {
-					this.scatterList = res.body.content.list
-				}, (err) => {
-					console.log(err)
+				let vm = this
+				vm.$http.post(vm.listUrl, {productId: '123'}).then((response) => {
+					vm.scatterList = response.body.content.list
 				})
-				this.$http.get(this.listmaxUrl).then((res) => {
-					this.scattermaxList = res.body.content
-					console.log(this.scattermaxList)
-				}, (err) => {
-					console.log(err)
+				vm.$http.post(vm.listmaxUrl, {productId: '1'}).then((response) => {
+					vm.scattermaxList = response.body.content
 				})
+			},
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			onInfinite(done) {
+				let vm = this
+				vm.counter++
+				vm.$http.post(vm.listmaxUrl, {productId: '1'}).then((response) => {
+					vm.pageEnd = vm.num * vm.counter
+					vm.pageStart = vm.pageEnd - vm.num
+					let arr = response.data
+					let i = vm.pageStart
+					let end = vm.pageEnd
+					for (; i < end; i++) {
+						let obj = {}
+						obj['name'] = arr[i].name
+						vm.downdata.push(obj)
+						if ((i + 1) >= response.data.length) {
+							this.$el.querySelector('.load-more').style.display = 'none'
+							return
+						}
+					}
+					done()
+				})
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
+		},
+		components: {
+			'v-scroll': Scroll
 		}
 	}
 </script>

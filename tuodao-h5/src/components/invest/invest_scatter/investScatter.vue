@@ -5,23 +5,16 @@
 				<span class="tab-link">{{tabs.title}}</span>
 			</div>
 		</div>
-		<v-scroll :on-refresh="onRefresh">
-			<div class="about_com" :is="currentView"></div>
-		</v-scroll>
+		<div class="about_com" :is="currentView"></div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scroll'
 	import scatterIntr from './templates/scatter_intr'
 	import scatterSafe from './templates/scatter_safe'
 	import scatterList from './templates/scatter_addList'
 	export default {
 		data () {
 			return {
-				counter: 1,
-				num: 15,
-				pageStart: 0,
-				pageEnd: 0,
 				selected: 0,
 				currentView: 'inte',
 				tabList: [
@@ -44,14 +37,9 @@
 			tabClick: function (index, view) {
 				this.selected = index
 				this.currentView = view
-			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
 			}
 		},
 		components: {
-			'v-scroll': Scroll,
 			'inte': scatterIntr,
 			'safe': scatterSafe,
 			'issue': scatterList

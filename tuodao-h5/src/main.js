@@ -6,13 +6,14 @@ import VueResource from 'vue-resource'
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
 Vue.use(VueResource)
+
+Vue.http.options.root = 'http://72.127.2.140:8080'
 Vue.http.headers.common['requestType'] = 'APP'
 Vue.http.headers.common['sign'] = 'NO'
 Vue.http.options.headers = {
 	'Content-Type': 'application/text; charset=UTF-8'
 }
 fastclick.attach(document.body)
-
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',

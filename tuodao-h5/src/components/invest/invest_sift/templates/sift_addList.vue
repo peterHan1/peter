@@ -1,70 +1,137 @@
 <template>
-	<div class="addList">
-		<div class="flex">
-			<div class="flex-1 border_r">
-				<div>
-					<h3 class="jl">捡漏王</h3>
+	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+		<div class="addList">
+			<div class="flex"  v-show="borrowStatus">
+				<div class="flex-1 border_r">
+					<div>
+						<h3 class="jl">捡漏王</h3>
+					</div>
+					<div class="flex_bot">
+						<p>{{siftmaxList}}<span>积分+5</span></p>
+					</div>
 				</div>
-				<div class="flex_bot">
-					<p>{{siftmaxList.last}}<span>积分+{{siftmaxList.last_score}}</span></p>
+				<div class="flex-1">
+					<div>
+						<h3 class="max">脱颖而出</h3>
+					</div>
+					<div class="flex_bot">
+						<p>{{siftmaxList}}<span>双倍积分</span></p>
+					</div>
 				</div>
 			</div>
-			<div class="flex-1">
-				<div>
-					<h3 class="max">脱颖而出</h3>
-				</div>
-				<div class="flex_bot">
-					<p>{{siftmaxList.max}}<span>双倍积分</span></p>
-				</div>
+			<div class="list">
+				<table>
+					<thead>
+						<tr>
+							<th>加入用户</th>
+							<th>加入金额</th>
+							<th>加入时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="addlist in siftList">
+							<td>{{addlist.tenderUser}}</td>
+							<td>{{addlist.tenderAccount}}</td>
+							<td>{{addlist.tenderTime}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="list">
-			<table>
-				<thead>
-					<tr>
-						<th>加入用户</th>
-						<th>加入金额</th>
-						<th>加入时间</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="addlist in siftList">
-						<td>{{addlist.tenderUser}}</td>
-						<td>{{addlist.tenderAccount}}</td>
-						<td>{{addlist.tenderTime}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
+	import Scroll from './../scrollList'
 	export default {
 		data () {
 			return {
+				borrowStatus: true,
+				downdata: [],
+				counter: 1,
+				num: 15,
+				pageStart: 0,
+				pageEnd: 0,
 				siftList: [],
 				siftmaxList: [],
-				listUrl: '../../../static/siftAddlist.json',
-				listmaxUrl: '../../../static/siftListMax.json'
+				listUrl: 'api/router/JoinPlanController/getJoinPlanList',
+				listmaxUrl: 'api/router/joinPlanController/getMaxAndPic'
+			}
+		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
 			}
 		},
 		mounted() {
-			this.addList()
+			this.init()
 		},
 		methods: {
-			addList() {
-				this.$http.get(this.listUrl).then((res) => {
-					this.siftList = res.body.content.list
-				}, (err) => {
-					console.log(err)
+			init() {
+				let vm = this
+				vm.$http.post(vm.listUrl, {currentPage: '1', pageSize: '1', borrowId: '1'}).then((response) => {
+					vm.siftList = response.body.content.list
 				})
-				this.$http.get(this.listmaxUrl).then((res) => {
-					this.siftmaxList = res.body.content
-					console.log(this.siftmaxList)
-				}, (err) => {
-					console.log(err)
+				if (vm.borrowStatus === true) {
+					vm.$http.post(vm.listmaxUrl, {borrowId: '1'}).then((response) => {
+						vm.siftmaxList = response.body.content
+					})
+				}
+			},
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			onInfinite(done) {
+				let vm = this
+				vm.counter++
+				vm.$http.post(vm.listUrl).then((response) => {
+					vm.pageEnd = vm.num * vm.counter
+					vm.pageStart = vm.pageEnd - vm.num
+					let arr = response.data
+					let i = vm.pageStart
+					let end = vm.pageEnd
+					for (; i < end; i++) {
+						let obj = {}
+						obj['name'] = arr[i].name
+						vm.downdata.push(obj)
+						if ((i + 1) >= response.data.length) {
+							this.$el.querySelector('.load-more').style.display = 'none'
+							return
+						}
+					}
+					done()
 				})
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
+		},
+		components: {
+			'v-scroll': Scroll
 		}
 	}
 </script>

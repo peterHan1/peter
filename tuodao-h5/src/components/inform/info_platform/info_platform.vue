@@ -34,7 +34,7 @@
 			}
 		},
 		methods: {
-			tabClick: function (index, view) {
+			tabClick(index, view) {
 				this.selected = index
 				this.currentView = view
 			}

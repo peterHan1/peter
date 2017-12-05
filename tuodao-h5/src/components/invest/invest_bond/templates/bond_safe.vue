@@ -1,29 +1,65 @@
 <template>
-	<div class="safe">
-		<div>
-			<h3>借款安全</h3>
-			<p>汽车抵押借贷具有借款金额少、周期短、实物抵押保障、逾期处理 便捷等显著优势。</p>
+	<v-scroll :on-refresh="onRefresh">
+		<div class="safe">
+			<div>
+				<h3>借款安全</h3>
+				<p>汽车抵押借贷具有借款金额少、周期短、实物抵押保障、逾期处理 便捷等显著优势。</p>
+			</div>
+			<div>
+				<h3>风控安全 </h3>
+				<p>细化贷前调查、贷中审查、贷后管理、逾期处理等四个风控流程，把风险控制渗入每一个环节中。</p>
+				<p>通过详尽的贷前审查、审慎的贷中核查、完善的贷后管理以及妥当的逾期处理，把风险控制在合理的范围内，坚持追求所有标的均真实、有效，可追溯、可审查。</p>
+			</div>
+			<div>
+				<h3>平台安全 </h3>
+				<p>卓越的系统架构：可靠、高效、稳定，阿里云服务器，双服务器运 行，每15分钟自动备份保存平台数据。</p>
+				<p>安全的管理标准：人员安全，制度安全，系统安全，运营安全。</p>
+			</div>
+			<div>
+				<h3>资金安全</h3>
+				<p>拓道金服的北京银行资金存管系统已上线，借款人、投资人和平台均在北京银行资金存管系统开设存管账户。</p>
+				<p>借款人通过拓道金服线下门店进行车辆审核后委托拓道金服发布借款信息，平台向借款人和投资人提供信息撮合服务，投资人投标成功后款项进入借款人的存管账户，平台无法接触交易资金，资金流转清晰。</p>
+			</div>
 		</div>
-		<div>
-			<h3>风控安全 </h3>
-			<p>细化贷前调查、贷中审查、贷后管理、逾期处理等四个风控流程，把风险控制渗入每一个环节中。</p>
-			<p>通过详尽的贷前审查、审慎的贷中核查、完善的贷后管理以及妥当的逾期处理，把风险控制在合理的范围内，坚持追求所有标的均真实、有效，可追溯、可审查。</p>
-		</div>
-		<div>
-			<h3>平台安全 </h3>
-			<p>卓越的系统架构：可靠、高效、稳定，阿里云服务器，双服务器运 行，每15分钟自动备份保存平台数据。</p>
-			<p>安全的管理标准：人员安全，制度安全，系统安全，运营安全。</p>
-		</div>
-		<div>
-			<h3>资金安全</h3>
-			<p>拓道金服的北京银行资金存管系统已上线，借款人、投资人和平台均在北京银行资金存管系统开设存管账户。</p>
-			<p>借款人通过拓道金服线下门店进行车辆审核后委托拓道金服发布借款信息，平台向借款人和投资人提供信息撮合服务，投资人投标成功后款项进入借款人的存管账户，平台无法接触交易资金，资金流转清晰。</p>
-		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
+	import Scroll from './../../scroll'
 	export default {
-
+		methods: {
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
+			}
+		},
+		components: {
+			'v-scroll': Scroll
+		}
 	}
 </script>
 

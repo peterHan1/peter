@@ -27,7 +27,7 @@
 			</ul>
 		</div>
 		<div class="result_bot">
-			<span class="invest_list" @click="goInvest()">继续加入</span><span class="add_list" click="goInvestRecode()">查看投资记录</span>
+			<span class="invest_list" @click="goInvest()">继续加入</span><span class="add_list" @click="goInvestRecode()">查看投资记录</span>
 		</div>
 	</div>
 </template>
@@ -37,7 +37,7 @@
 			return {}
 		},
 		methods: {
-			goInvest: function() {
+			goInvest() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					this.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_GoonInvest', {}, function (response) {
@@ -45,15 +45,17 @@
 					})
 				}
 			},
-			goInvestRecode: function() {
+			goInvestRecode() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					this.setupWebViewJavascriptBridge(function (bridge) {
-						bridge.callHandler('h5ToNative_GoonInvestRecode', {}, function (response) {
+						bridge.callHandler('h5ToNative_GoonInvestRecode', {
+							'tenderId': 666
+						}, function (response) {
 						})
 					})
 				}
 			},
-			setupWebViewJavascriptBridge: function (callback) {
+			setupWebViewJavascriptBridge(callback) {
 				if (window.WebViewJavascriptBridge) {
 					return callback(window.WebViewJavascriptBridge)
 				}

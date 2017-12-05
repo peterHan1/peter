@@ -7,7 +7,7 @@
 						<span :class="bank.paymentCode"></span>
 						<div>
 							<h4>{{bank.name}}</h4>
-							<p>单笔限额{{bank.limitOneTime}}万 单日限额{{bank.limitdayTime}}万 每月限额{{bank.limitmonthTime}}万</p>
+							<p>单笔限额{{bank.limitOneTime}}万 单日限额{{bank.limitOneDay}}万 每月限额{{bank.limitOneMonth}}万</p>
 						</div>
 					</li>
 				</ul>
@@ -20,7 +20,9 @@
 			return {
 				i: -1,
 				bankList: [],
-				apiUrl: 'http://72.127.2.140:8080/api/router/recharge/bankList'
+				accessId: '',
+				accessKey: '',
+				apiUrl: 'api/router/recharge/bankList'
 			}
 		},
 		mounted() {
@@ -36,10 +38,7 @@
 							vm.accessKey = response.accessKey
 							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
 								.then((response) => {
-									this.bankList = response.body.content
-									console.log(response)
-								}, (err) => {
-									console.log(err)
+									vm.bankList = response.body.content
 								})
 						})
 					})
@@ -47,7 +46,12 @@
 			},
 			selectFn (bank, index) {
 				this.i = index
-				console.log(bank.name)
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GoonInvestRecode', {}, function (response) {
+						})
+					})
+				}
 			},
 			setupWebViewJavascriptBridge(callback) {
 				if (window.WebViewJavascriptBridge) {

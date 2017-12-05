@@ -5,25 +5,17 @@
 				<span class="tab-link">{{tabs.title}}</span>
 			</div>
 		</div>
-		<v-scroll :on-refresh="onRefresh">
-			<div class="about_com" :is="currentView"></div>
-		</v-scroll>
+		<div class="about_com" :is="currentView"></div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scroll'
 	import siftIntr from './templates/sift_intr'
 	import siftSafe from './templates/sift_safe'
 	import siftIssue from './templates/sift_issue'
 	import siftList from './templates/sift_addList'
-
 	export default {
 		data () {
 			return {
-				counter: 1,
-				num: 15,
-				pageStart: 0,
-				pageEnd: 0,
 				selected: 0,
 				currentView: 'inte',
 				tabList: [
@@ -47,17 +39,12 @@
 			}
 		},
 		methods: {
-			tabClick: function (index, view) {
+			tabClick(index, view) {
 				this.selected = index
 				this.currentView = view
-			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
 			}
 		},
 		components: {
-			'v-scroll': Scroll,
 			'inte': siftIntr,
 			'safe': siftSafe,
 			'issue': siftIssue,

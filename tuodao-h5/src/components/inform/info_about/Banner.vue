@@ -14,7 +14,6 @@
 	export default {
 		props: ['listImg'],
 		mounted() {
-			console.log('mounted', this)
 			var swiper = new Swiper('.swiper-container', {
 				paginationClickable: true,
 				loop: true,

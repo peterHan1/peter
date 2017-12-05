@@ -99,14 +99,14 @@
 			}
 		},
 		methods: {
-			clickFn: function () {
+			clickFn() {
 				if (this.isShows === true) {
 					this.isShows = false
 				} else {
 					this.isShows = true
 				}
 			},
-			selectedYear: function(gameName) {
+			selectedYear(gameName) {
 				this.showYear = gameName
 				if (this.isShows === true) {
 					this.isShows = false

@@ -1,44 +1,106 @@
 <template>
-	<div class="addList">
-		<div class="list">
-			<table>
-				<thead>
-					<tr>
-						<th>投资用户</th>
-						<th>投资金额</th>
-						<th>投资时间</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="list in bondList">
-						<td>{{list.tenderUser}}</td>
-						<td>{{list.tenderAccount}}</td>
-						<td>{{list.tenderTime}}</td>
-					</tr>
-				</tbody>
-			</table>
+	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+		<div class="addList">
+			<div class="list">
+				<table>
+					<thead>
+						<tr>
+							<th>投资用户</th>
+							<th>投资金额</th>
+							<th>投资时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="list in bondList">
+							<td>{{list.mobile}}</td>
+							<td>{{list.account}}</td>
+							<td>{{list.addTime}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
+	import Scroll from './../scrollList'
 	export default {
 		data () {
 			return {
 				bondList: [],
-				listUrl: '../../../static/bondAddlist.json'
+				listUrl: 'api/router/tender/transfer/list'
 			}
 		},
 		mounted() {
 			this.addList()
 		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
+			}
+		},
 		methods: {
 			addList() {
-				this.$http.get(this.listUrl).then((res) => {
-					this.bondList = res.body.content.list
-				}, (err) => {
-					console.log(err)
+				let vm = this
+				vm.$http.post(vm.listUrl, {transferId: 1}).then((response) => {
+					vm.bondList = response.body.content.list
 				})
+			},
+			onInfinite(done) {
+				let vm = this
+				vm.counter++
+				vm.$http.post(this.listUrl, {transferId: 1}).then((response) => {
+					vm.pageEnd = vm.num * vm.counter
+					vm.pageStart = vm.pageEnd - vm.num
+					let arr = response.data
+					let i = vm.pageStart
+					let end = vm.pageEnd
+					for (; i < end; i++) {
+						let obj = {}
+						obj['name'] = arr[i].name
+						vm.downdata.push(obj)
+						if ((i + 1) >= response.data.length) {
+							this.$el.querySelector('.load-more').style.display = 'none'
+							return
+						}
+					}
+					done()
+				})
+			},
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
+		},
+		components: {
+			'v-scroll': Scroll
 		}
 	}
 </script>
@@ -49,7 +111,6 @@
 		.list
 			padding:0 0.3rem
 			background-color:$color-background-f
-			margin-top:0.2rem
 			table
 				width:100%
 				tr

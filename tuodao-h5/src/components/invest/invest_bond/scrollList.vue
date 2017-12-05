@@ -13,6 +13,11 @@
 			</slot>
 		</header>
 		<slot></slot>
+		<footer class="load-more">
+			<slot name="load-more">
+				<span></span>
+			</slot>
+		</footer>
 	</section>
 	</div>
 </template>
@@ -115,9 +120,10 @@ export default {
 			let innerHeight = this.$el.querySelector('.inner').clientHeight
 			let scrollTop = this.$el.scrollTop
 			let ptrHeight = this.onRefresh ? this.$el.querySelector('.pull-refresh').clientHeight : 0
-			let infiniteHeight = this.$el.querySelector('.load-more').clientHeight
-			let bottom = innerHeight - outerHeight - scrollTop - ptrHeight
-			if (bottom < infiniteHeight) this.infinite()
+			let bottom = innerHeight - outerHeight - scrollTop - ptrHeight + 20
+			if (bottom < -20) {
+				this.infinite()
+			}
 		}
 	}
 }
@@ -165,8 +171,9 @@ export default {
 	.down-tip,.refresh-tip,.up-tip
 		display: none
 	.load-more
+		line-height:0.4rem
 		font-size:0.2rem
-		height: 0.3rem
+		height: 0.4rem
 		display: flex
 		align-items: center
 		justify-content: center

@@ -1,68 +1,104 @@
 <template>
-	<div class="sift">
-		<div class="intro">
-			<h3>项目简介</h3>
-			<p><b></b>借款人基本情况: 借款人{{scatterDetails.name}}，性别：{{scatterDetails.sex}}，现年：{{scatterDetails.age}}岁，{{scatterDetails.marriage}}，主要从事个体行业。借款人借款期间无重大支出，信誉状况良好，无不良记录。</p>
-			<p><b></b>借款人生产经营情况：{{scatterDetails.condition}}</p>
-			<p><b></b>借款用途及还款来源：借款人因经营需要，申请借款{{scatterDetails.money}}元，用于经营流动。还款来源为经营收入。</p>
-			<p><b></b>项目评级：{{scatterDetails.rate}}</p>
-		</div>
-		<div>
-			<h3>计划详情</h3>
-			<p><span>姓名</span> {{scatterDetails.name}}</p>
-			<p><span>职业</span> {{scatterDetails.occupation}}</span></p>
-			<p><span>性别</span> {{scatterDetails.sex}}</span></p>
-			<p><span>学历</span> {{scatterDetails.education}}</span></p>
-			<p><span>籍贯</span> {{scatterDetails.native}}</p>
-		</div>
-		<div class="car">
-			<h3>车辆信息</h3>
-			<p><span>车辆品牌</span> {{scatterDetails.car}}</p>
-			<p><span>车辆估价</span> {{scatterDetails.evaluate}}元</p>
-			<p><span>购买价格</span> {{scatterDetails.buymoney}}</p>
-			<p><span>购买时间</span> {{scatterDetails.buytime}}</p>
-		</div>
-		<div class="listimg">
-			<h3>审核资料</h3>
-			<div class="imglist">
-				<ul>
-					<li>
-						<img src="../../../../image/invest/td_loading.png">
-					</li>
-					<li>
-						<img src="../../../../image/invest/td_loading.png">
-					</li>
-					<li>
-						<img src="../../../../image/invest/td_loading.png">
-					</li>
-					<li>
-						<img src="../../../../image/invest/td_loading.png">
-					</li>
-				</ul>
+	<v-scroll :on-refresh="onRefresh">
+		<div class="sift">
+			<div class="intro">
+				<h3>项目简介</h3>
+				<p><b></b>借款人基本情况: 借款人: <i v-if="items != null">{{items.name}}</i>，性别：<i v-if="items != null">{{items.sex}}</i>，现年：<i v-if="items != null">{{items.age}}</i>岁，<i v-if="items != null">{{items.marriage}}</i>，主要从事个体行业。借款人借款期间无重大支出，信誉状况良好，无不良记录。</p>
+				<p><b></b>借款人生产经营情况：<i v-if="items != null">{{items.condition}}</i></p>
+				<p><b></b>借款用途及还款来源：借款人因经营需要，申请借款<i v-if="items != null">{{items.money}}</i>元，用于经营流动。还款来源为经营收入。</p>
+				<p><b></b>项目评级：<i v-if="items != null">{{items.rate}}</i></p>
+			</div>
+			<div>
+				<h3>计划详情</h3>
+				<p><span>姓名</span> <i v-if="items != null">{{items.name}}</i></p>
+				<p><span>职业</span> <i v-if="items != null">{{items.job}}</i></span></p>
+				<p><span>性别</span> <i v-if="items != null">{{items.sex}}</i></span></p>
+				<p><span>学历</span> <i v-if="items != null">{{items.education}}</i></span></p>
+				<p><span>籍贯</span> <i v-if="items != null">{{items.native}}</i></p>
+			</div>
+			<div class="car">
+				<h3>车辆信息</h3>
+				<p><span>车辆品牌</span> <i v-if="items != null">{{items.carModel}}</i></p>
+				<p><span>车辆估价</span> <i v-if="items != null">{{items.evaluate}}元</i></p>
+				<p><span>购买价格</span> <i v-if="items != null">{{items.buyPrice}}</i></p>
+				<p><span>购买时间</span> <i v-if="items != null">{{items.buyTime}}</i></p>
+			</div>
+			<div class="listimg">
+				<h3>审核资料</h3>
+				<div class="imglist">
+					<ul>
+						<li v-for="item in imgList">
+							<img :src=item.src>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
+	</v-scroll>
 </template>
 <script type="text/ecmascript-6">
+	import Scroll from './../../scroll'
 	export default {
 		data () {
 			return {
-				scatterDetails: [],
-				details: 'static/scatterDetalis.json'
+				apiUrl: 'api/router/getFrontBorrowExpand',
+				imgUrl: 'api/router/getPicListByPcode',
+				items: [],
+				imgList: []
 			}
 		},
 		mounted() {
 			this.addHtml()
 		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
+			}
+		},
 		methods: {
 			addHtml() {
-				this.$http.get(this.details).then((res) => {
-					this.scatterDetails = res.body.content
-					console.log(this.scatterDetails)
-				}, (err) => {
-					console.log(err)
+				let vm = this
+				vm.$http.post(vm.apiUrl, {productCode: '1'}).then((response) => {
+					vm.items = response.body.content
 				})
+				vm.$http.post(vm.imgUrl, {productCode: '1'}).then((response) => {
+					vm.imgList = response.body.content
+				})
+			},
+			onRefresh(done) {
+				done()
+				// 松开回到app界面
+				this.getInvestList()
+			},
+			getInvestList() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
+		},
+		components: {
+			'v-scroll': Scroll
 		}
 	}
 </script>
