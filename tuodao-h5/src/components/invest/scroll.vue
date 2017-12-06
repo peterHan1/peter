@@ -1,173 +1,173 @@
-<template lang="html">
-	<div class="yo-scroll"
-	:class="{'down':(state===0),'up':(state==1),refresh:(state===2),touch:touching}"
-	@touchstart="touchStart($event)"
-	@touchmove="touchMove($event)"
-	@touchend="touchEnd($event)"
-	@scroll="(onInfinite || infiniteLoading) ? onScroll($event) : undefined">
-		<section class="inner" :style="{ transform: 'translate3d(0, ' + top + 'px, 0)' }">
-		<header class="pull-refresh">
-			<slot name="pull-refresh">
+<template>
+	<div ref="wrapper">
+		<div>
+			<div class="pull-refresh">
 				<span class="down-tip"><span class="iconfont">&#xe843;</span>下拉，返回标的信息</span>
 				<span class="up-tip"><span class="iconfont">&#xe844;</span>松开，返回标的信息</span>
-			</slot>
-		</header>
-		<slot></slot>
-	</section>
+			</div>
+			<slot></slot>
+		</div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
-export default {
-	props: {
-		offset: {
-			type: Number,
-			default: 40
-		},
-		enableInfinite: {
-			type: Boolean,
-			default: true
-		},
-		enableRefresh: {
-			type: Boolean,
-			default: true
-		},
-		onRefresh: {
-			type: Function,
-			default: undefined,
-			required: false
-		},
-		onInfinite: {
-			type: Function,
-			default: undefined,
-			require: false
-		}
-	},
-	data() {
-		return {
-			top: 0,
-			state: 0,
-			startY: 0,
-			touching: false,
-			infiniteLoading: false
-		}
-	},
-	methods: {
-		touchStart(e) {
-			this.startY = e.targetTouches[0].pageY
-			this.startScroll = this.$el.scrollTop || 0
-			this.touching = true
-		},
-		touchMove(e) {
-			if (!this.enableRefresh || this.$el.scrollTop > 0 || !this.touching) {
-				return
-			}
-			let diff = e.targetTouches[0].pageY - this.startY - this.startScroll
-			if (diff > 0) e.preventDefault()
-			this.top = Math.pow(diff, 0.8) + (this.state === 2 ? this.offset : 0)
-			if (this.state === 2) {
-				return
-			}
-			if (this.top >= this.offset) {
-				this.state = 1
-			} else {
-				this.state = 0
-			}
-		},
-		touchEnd(e) {
-			if (!this.enableRefresh) return
-			this.touching = false
-			if (this.state === 2) {
-				this.state = 2
-				this.top = this.offset
-				return
-			}
-			if (this.top >= this.offset) {
-				this.refresh()
-			} else {
-				this.state = 0
-				this.top = 0
+	import BScroll from 'better-scroll'
+	export default {
+		props: {
+			/**
+			* 1 滚动的时候会派发scroll事件，会截流。
+			* 2 滚动的时候实时派发scroll事件，不会截流。
+			* 3 除了实时派发scroll事件，在swipe的情况下仍然能实时派发scroll事件
+			*/
+			probeType: {
+				type: Number,
+				default: 1
+			},
+			/**
+			* 点击列表是否派发click事件
+			*/
+			click: {
+				type: Boolean,
+				default: true
+			},
+			/**
+			* 是否开启横向滚动
+			*/
+			scrollX: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			* 是否派发滚动事件
+			*/
+			listenScroll: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			* 列表的数据
+			*/
+			data: {
+				type: Array,
+				default: null
+			},
+			/**
+			* 是否派发滚动到底部的事件，用于上拉加载
+			*/
+			pullup: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			* 是否派发顶部下拉的事件，用于下拉刷新
+			*/
+			pulldown: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			* 是否派发列表滚动开始的事件
+			*/
+			beforeScroll: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			* 当数据更新后，刷新scroll的延时。
+			*/
+			refreshDelay: {
+				type: Number,
+				default: 20
 			}
 		},
-		refresh() {
-			this.state = 2
-			this.top = this.offset
-			this.onRefresh(this.refreshDone)
+		mounted() {
+			// 保证在DOM渲染完毕后初始化better-scroll
+			setTimeout(() => {
+				this._initScroll()
+			}, 20)
 		},
-		refreshDone() {
-			this.state = 0
-			this.top = 0
-		},
+		methods: {
+			_initScroll() {
+				if (!this.$refs.wrapper) {
+					return
+				}
+				// better-scroll的初始化
+				this.scroll = new BScroll(this.$refs.wrapper, {
+					probeType: this.probeType,
+					click: this.click,
+					scrollX: this.scrollX
+				})
 
-		infinite() {
-			this.infiniteLoading = true
-			this.onInfinite(this.infiniteDone)
-		},
+				// 是否派发滚动事件
+				if (this.listenScroll) {
+					this.scroll.on('scroll', (pos) => {
+						console.log(pos)
+						this.$emit('scroll', pos)
+					})
+				}
 
-		infiniteDone() {
-			this.infiniteLoading = false
-		},
+				// 是否派发滚动到底部事件，用于上拉加载
+				if (this.pullup) {
+					this.scroll.on('scrollEnd', () => {
+						// 滚动到底部
+						if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+							this.$emit('scrollToEnd')
+						}
+					})
+				}
 
-		onScroll(e) {
-			if (!this.enableInfinite || this.infiniteLoading) {
-				return
+				// 是否派发顶部下拉事件，用于下拉刷新
+				if (this.pulldown) {
+					this.scroll.on('touchEnd', (pos) => {
+						// 下拉动作
+						if (pos.y > 50) {
+							this.$emit('pulldown')
+						}
+					})
+				}
+
+				// 是否派发列表滚动开始的事件
+				if (this.beforeScroll) {
+					this.scroll.on('beforeScrollStart', () => {
+						this.$emit('beforeScroll')
+					})
+				}
+			},
+			disable() {
+				// 代理better-scroll的disable方法
+				this.scroll && this.scroll.disable()
+			},
+			enable() {
+				// 代理better-scroll的enable方法
+				this.scroll && this.scroll.enable()
+			},
+			refresh() {
+				// 代理better-scroll的refresh方法
+				this.scroll && this.scroll.refresh()
+			},
+			scrollTo() {
+				// 代理better-scroll的scrollTo方法
+				this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+			},
+			scrollToElement() {
+				// 代理better-scroll的scrollToElement方法
+				this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
 			}
-			let outerHeight = this.$el.clientHeight
-			let innerHeight = this.$el.querySelector('.inner').clientHeight
-			let scrollTop = this.$el.scrollTop
-			let ptrHeight = this.onRefresh ? this.$el.querySelector('.pull-refresh').clientHeight : 0
-			let infiniteHeight = this.$el.querySelector('.load-more').clientHeight
-			let bottom = innerHeight - outerHeight - scrollTop - ptrHeight
-			if (bottom < infiniteHeight) this.infinite()
+		},
+		watch: {
+			// 监听数据的变化，延时refreshDelay时间后调用refresh方法重新计算，保证滚动效果正常
+			data() {
+				setTimeout(() => {
+					this.refresh()
+				}, this.refreshDelay)
+			}
 		}
 	}
-}
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-	.yo-scroll
-		position: absolute
-		top:0
-		right: 0
-		bottom: 0
-		left: 0
-		overflow: auto
-		z-index:99
-		-webkit-overflow-scrolling: touch
-		.inner
-			position: absolute
-			top: 0
-			width: 100%
-			transition-duration: 300ms
-		.pull-refresh
-			position: relative
-			left: 0
-			top: 0
-			width: 100%
-			height: 1rem
-			display: flex
-			align-items: center
-			justify-content: center
-			font-size:0.24rem
-			color:#b6b5b6
-			.iconfont
-				margin-right:0.1rem
-	.touch
-		.inner
-			transition-duration: 0ms
-	.down
-		.down-tip
-			display: block
-	.up
-		.up-tip
-			display: block
-	.refresh
-		.refresh-tip
-			display: block
-	.down-tip,.refresh-tip,.up-tip
-		display: none
-	.load-more
+	.pull-refresh
 		font-size:0.2rem
-		height: 0.3rem
-		display: flex
-		align-items: center
-		justify-content: center
+		line-height:1rem
+		color:#7e7e7e
+		text-align:center
+		
 </style>
