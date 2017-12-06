@@ -36,7 +36,7 @@
 	export default{
 		data () {
 			return {
-				apiUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/appInviteRecord',
+				apiUrl: 'api/router/app/h5/invite/appInviteRecord',
 				items: [],
 				cashBackSum: '',
 				voucherSum: '',
@@ -45,7 +45,9 @@
 			}
 		},
 		mounted() {
-			this.init()
+			setTimeout(() => {
+				this.init()
+			}, 500)
 		},
 		methods: {
 			init() {
@@ -63,6 +65,20 @@
 								})
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.items = response.body.content.recordVOList
+									vm.cashBackSum = response.body.content.cashBackSum
+									vm.voucherSum = response.body.content.voucherSum
+								})
+						})
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

@@ -19,7 +19,7 @@
 			<div class="sec"></div>
 		</div>
 		<div class="rule">
-			<router-link to="/rule">
+			<router-link to="/rule" replace>
 				<a href="">查看邀请规则&nbsp;></a>
 			</router-link>
 		</div>
@@ -31,8 +31,8 @@
 	export default{
 		data () {
 			return {
-				apiUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/inviteFriend',
-				ShareUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/inviteShare',
+				apiUrl: 'api/router/app/h5/invite/inviteFriend',
+				ShareUrl: 'api/router/app/h5/invite/inviteShare',
 				isLogin: false,
 				isLow: false,
 				isMiddle: false,
@@ -43,19 +43,25 @@
 			}
 		},
 		mounted() {
-			this.init()
+			setTimeout(() => {
+				this.init()
+			}, 500)
 		},
 		methods: {
 			init() {
 				let vm = this
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-					this.setupWebViewJavascriptBridge(function (bridge) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_ShowRightNavItem', {
 							'rightTitle': '邀请记录',
 							'url': 'http://72.127.2.40:8080/#/record'
 						}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function () {
+						window.TDBridge.h5ToNative_ShowRightNavItem({'rightTitle': '邀请记录', 'url': 'http://72.127.2.40:8080/#/record'})
+					}, 500)
 				}
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					vm.setupWebViewJavascriptBridge(function (bridge) {
@@ -78,15 +84,38 @@
 							})
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function () {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							if (data.status === '0') {
+								vm.isLogin = true
+							}
+							vm.$http({url: vm.apiUrl, method: 'POST', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.isOpenDeposit = response.body.content.isOpenDeposit
+									if (response.body.content.financialPlannerLevel === 1) {
+										vm.isLow = true
+									} else if (response.body.content.financialPlannerLevel === 2) {
+										vm.isMiddle = true
+									} else if (response.body.content.financialPlannerLevel === 3) {
+										vm.isKing = true
+									}
+								})
+						})
+					}, 500)
 				}
 			},
 			invite() {
 				if (this.isOpenDeposit === 1) {
 					if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 						this.setupWebViewJavascriptBridge(function (bridge) {
-							bridge.callHandler('h5ToNative_ShowOpenDepositAlert', {}, function (response) {
-							})
+							bridge.callHandler('h5ToNative_ShowOpenDepositAlert', {}, function (response) {})
 						})
+					} else if (/(Android)/i.test(navigator.userAgent)) {
+						window.TDBridge.h5ToNative_ShowOpenDepositAlert(function(data) {})
 					}
 				} else {
 					this.$http({url: this.ShareUrl, method: 'POST', headers: {accessId: this.accessId, accessKey: this.accessKey}})
@@ -102,6 +131,15 @@
 									}, function (response) {
 									})
 								})
+							} else if (/(Android)/i.test(navigator.userAgent)) {
+								window.TDBridge.h5ToNative_ShowShareView(
+									{
+										'url': response.body.content.url,
+										'title': response.body.content.title,
+										'iconUrl': response.body.content.iconUrl,
+										'content': response.body.content.content,
+										'inviteCode': response.body.content.inviteCode
+									})
 							}
 						})
 				}
@@ -127,6 +165,8 @@
 					this.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_Login', {}, function (response) {})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_Login(function(data) {})
 				}
 			}
 		}
@@ -138,6 +178,7 @@
 		max-width:414px
 		margin:0 auto
 		background-color #fff
+		overflow:hidden
 		.login-box
 			height:3.24rem
 			background-color #ff8000
@@ -161,8 +202,8 @@
 			width:6.9rem
 			height:3rem
 			background:url(../../image/invite/low.png) no-repeat
-			background-size: 100% 100%;
-			margin: .5rem auto
+			background-size: 100% 100%
+			margin:.5rem auto
 			text-align:center
 			overflow:hidden
 			p

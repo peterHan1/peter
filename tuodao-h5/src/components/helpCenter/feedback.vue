@@ -85,7 +85,7 @@
 				<li><router-link to="/pointCoupon">积分与优惠券<span class="iconfont right">&#xe6b9;</span></router-link></li>
 				<li><router-link to="/tjReward">推荐奖励<span class="iconfont right">&#xe6b9;</span></router-link></li>
 				<li><router-link to="/memberSystem">会员体系<span class="iconfont right">&#xe6b9;</span></router-link></li>
-				<li><router-link to="/">理财百科<span class="iconfont right">&#xe6b9;</span></router-link></li>
+				<li><router-link to="/encyclopedia">理财百科<span class="iconfont right">&#xe6b9;</span></router-link></li>
 				<li><router-link to="/normal">常见问题<span class="iconfont right">&#xe6b9;</span></router-link></li>
 			</ul>
 		</div>
@@ -101,6 +101,7 @@
 	.feedback
 		max-width:414px
 		margin:0 auto
+		font-family: PingFang-SC-Medium
 		.logo-area
 			background-color #fff
 			overflow:hidden

@@ -102,6 +102,19 @@
                            "status":false
                     },
                     {
+                           "taskId": 7,
+                           "taskName": "签到",
+                           "score": 50,
+                           "type": 2,
+                           "description": "奖励：50积分",
+                           "todo": "去签到",
+                           "url": null,
+                           "code": 4,
+                           "isComplete": "no",
+                           "isOverdue": "no",
+                           "status":false
+                    },
+                    {
                            "taskId": 8,
                            "taskName": "首次登录APP",
                            "score": 40,

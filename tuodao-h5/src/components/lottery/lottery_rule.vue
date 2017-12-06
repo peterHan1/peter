@@ -14,13 +14,13 @@
 	@import "~common/stylus/variable"
 	.rule
 		max-width:414px
-		min-height:100%
 		height:100%
 		overflow:hidden
-		margin: .6rem auto
+		margin: 0 auto
 		font-size:.24rem
 		color:#626262
-		// background-color #fff
+		background-color #fff
+		padding-top:.4rem
 		p
 			margin: 0 .3rem .61rem .3rem
 			line-height:.4rem

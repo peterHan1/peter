@@ -33,9 +33,9 @@
 					<li v-for="task in taskData">
 						<div class="list_left">
 							<span class="sp1">{{ task.taskName }}</span>
-							<span class="sp2">{{ task.score }}积分</span>
+							<span class="sp2">{{ task.description }}</span>
 						</div>
-						<a v-on:click="alertEvent(task.code)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']" v-bind:href="task.url">{{ task.todo }}</a>
+						<a v-on:click="taskEvent(task.appUrl,task.code,task.todo)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']">{{ task.todo }}</a>
 					</li>
 				</ul>
 			</div>
@@ -58,29 +58,26 @@
 				errorClass: '',
 				activeClass: 'isOver',
 				taskData: [],
-				apiUrl: '../../../static/task.json',
-				userInfoUrl: '../../../static/userInfo.json'
+				taskApiUrl: 'api/router/op/findUserTask',
+				accessId: '',
+				accessKey: '',
+				loginStatus: true
 			}
 		},
 		created () {
-			this.getData()
+			this.getUertInfo()
 		},
 		methods: {
 			getData() {
-				var vm = this
-				vm.$http.get(vm.apiUrl, 1)
+				let vm = this
+				vm.$http({url: vm.taskApiUrl, method: 'POST', params: {'type': 2, 'pageSize': 1000}, headers: {accessId: vm.accessId, accessKey: vm.accessKey}, emulateJSON: true})
 				.then((res) => {
-					var listData = res.body.content.list
+					let listData = res.data.content.list
 					for (var i = 0; i < listData.length; i++) {
 						if (listData[i].isOverdue === 'yes') {
 							listData[i].todo = '已过期'
-							listData[i].url = 'javascript:;'
 						} else if (listData[i].isComplete === 'yes') {
 							listData[i].todo = '已完成'
-							listData[i].url = 'javascript:;'
-						}
-						if (listData[i].url === null) {
-							listData[i].url = 'javascript:;'
 						}
 					}
 					vm.taskData = listData
@@ -88,53 +85,124 @@
 					console.log('请求失败！')
 				})
 			},
-			alertEvent(code) {
-				if (code === 1) {
-					console.log('弹窗1')
-				} else if (code === 2) {
-					console.log('弹窗2')
-				} else if (code === 3) {
-					console.log('弹窗3')
+			taskEvent(url, code, todo) {
+				if (todo === '已完成' || todo === '已过期') {
+					return false
+				} else {
+					if (code === '5') {
+						this.$router.push({path: '/friends'})
+					} else if (code === '6') {
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							var nowTime1 = new Date().valueOf()
+							var ifr = document.createElement('iframe')
+							ifr.src = 'tuodao16TD://?id=login' // 打开app的协议,id=login是传参
+							ifr.style.display = 'none'
+							window.setTimeout(function() {
+								var launchTime1 = new Date().valueOf() - nowTime1
+								if (launchTime1 < 28) {
+									// 下载app的地址
+									document.body.removeChild(ifr)
+									window.location.href = 'itms-apps://itunes.apple.com/app/id1030238074'
+								}
+							}, 25)
+							document.body.appendChild(ifr)
+						} else if (navigator.userAgent.match(/android/i)) {
+							var nowTime2 = new Date().valueOf()
+							window.setTimeout(function() {
+								var launchTime2 = new Date().valueOf() - nowTime2
+								if (launchTime2 < 28) {
+									// 下载app的地址
+									window.location.href = 'itms-apps://itunes.apple.com/app/id1030238074'
+								}
+							}, 25)
+							window.location.href = 'tuodao16TD://?id=login'
+						}
+					} else {
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							this.setupWebViewJavascriptBridge(function (bridge) {
+								bridge.callHandler(url, {}, function (response) {})
+							})
+						}
+					}
+				}
+			},
+			getUertInfo() {
+				let vm = this
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							vm.loginStatus = response.status
+							vm.getData()
+						})
+					})
 				}
 			},
 			skipLink(type) {
-				var vm = this
-				vm.$http.get(vm.userInfoUrl)
-				.then((res) => {
-					// 是否为新手
-					if (res.body.content.isNewbie === 1) {
-						// 是否投资
-						if (res.body.content.investFlag === 1) {
-							if (type === 1) {
-								vm.$router.push({path: '/pointTask'})
-							} else {
-								vm.$router.push({path: '/lottery_prize'}) // 列表
-							}
-						} else {
-							if (type === 1) {
-								vm.$router.push({path: '/pointTask'})
-							} else {
-								vm.$router.push({path: '/lottery_prize'}) // 列表
-							}
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					var nowTime1 = new Date().valueOf()
+					var ifr = document.createElement('iframe')
+					ifr.src = 'tuodao16TD://' // 打开app的协议,tuodao16TD://?id=login是传参
+					ifr.style.display = 'none'
+					window.setTimeout(function() {
+						var launchTime1 = new Date().valueOf() - nowTime1
+						if (launchTime1 < 28) {
+							// 下载app的地址
+							document.body.removeChild(ifr)
+							window.location.href = 'itms-apps://itunes.apple.com/app/id1030238074'
+						}
+					}, 25)
+					document.body.appendChild(ifr)
+				} else if (navigator.userAgent.match(/android/i)) {
+					alert(1)
+					var nowTime2 = new Date().valueOf()
+					window.setTimeout(function() {
+						var launchTime2 = new Date().valueOf() - nowTime2
+						if (launchTime2 < 28) {
+							// 下载app的地址
+							window.location.href = 'http://www.baidu.com'
+						}
+					}, 25)
+					window.location.href = 'tuodao16TD://'
+				}
+				if (this.loginStatus === '1') {
+					if (type === 1) {
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							this.setupWebViewJavascriptBridge(function (bridge) {
+								bridge.callHandler('h5ToNative_GoDiscountPage', {}, function (response) {})
+							})
 						}
 					} else {
-						if (res.body.content.investFlag === 1) {
-							if (type === 1) {
-								vm.$router.push({path: '/pointTask'})
-							} else {
-								vm.$router.push({path: '/lottery_prize'}) // 列表
-							}
-						} else {
-							if (type === 1) {
-								vm.$router.push({path: '/pointTask'})
-							} else {
-								vm.$router.push({path: '/lottery_prize'}) // 列表
-							}
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							this.setupWebViewJavascriptBridge(function (bridge) {
+								bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {})
+							})
 						}
 					}
-				}, (res) => {
-					console.log('请求失败！')
-				})
+				} else {
+					if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+						this.setupWebViewJavascriptBridge(function (bridge) {
+							bridge.callHandler('h5ToNative_Login', {}, function (response) {})
+						})
+					}
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
 			}
 		}
 	}

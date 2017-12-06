@@ -19,13 +19,15 @@
 	.rule
 		max-width: 414px
 		margin: 0 auto
+		padding-top:.38rem
+		background-color #fff
 		.box
 			margin:0 .3rem
 			.font
 				font-size:0.24rem
 				color:#626262
 				line-height:.4rem
-				margin-bottom:.64rem
+				padding-bottom:.64rem
 			.title
 				font-size:0.24rem
 				color:#626262

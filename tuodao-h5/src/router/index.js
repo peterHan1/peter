@@ -61,332 +61,556 @@ import transferExplain from 'components/transferExplain/transferExplain'
 import couponExplain from 'components/couponExplain/couponExplain'
 import pointExplain from 'components/myPoint/pointExplain'
 import pointTask from 'components/myPoint/pointTask'
-import wxGzh from 'components/myPoint/wxGzh'
 import feedback from 'components/helpCenter/feedback'
 import rates from 'components/helpCenter/rates'
 import blankDeposit from 'components/helpCenter/blankDeposit'
 import excellentPlan from 'components/helpCenter/excellentPlan'
 import investBack from 'components/helpCenter/investBack'
 import loginRegister from 'components/helpCenter/loginRegister'
-import menberSystem from 'components/helpCenter/menberSystem'
+import memberSystem from 'components/helpCenter/memberSystem'
 import newRequire from 'components/helpCenter/newRequire'
 import normal from 'components/helpCenter/normal'
 import obligations from 'components/helpCenter/obligations'
 import pointCoupon from 'components/helpCenter/pointCoupon'
-import prizes from 'components/helpCenter/prizes'
+import tjReward from 'components/helpCenter/tjReward'
 import rechargeCash from 'components/helpCenter/rechargeCash'
 import selfInvest from 'components/helpCenter/selfInvest'
+import encyclopedia from 'components/helpCenter/encyclopedia'
 Vue.use(Router)
 
 export default new Router({
 	routes: [
 		{
 			path: '/inform',
-			component: inform
+			component: inform,
+			meta: {
+				title: '信息披露'
+			}
 		},
 		{
 			path: '/info_about',
-			component: infoAbout
+			component: infoAbout,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_terrace',
-			component: infoTerrace
+			component: infoTerrace,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_bank',
-			component: infoBank
+			component: infoBank,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_board',
-			component: infoBoard
+			component: infoBoard,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_share',
-			component: infoShare
+			component: infoShare,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_great',
-			component: infoGreat
+			component: infoGreat,
+			meta: {
+				title: '关于拓道'
+			}
 		},
 		{
 			path: '/info_law',
-			component: infoLaw
+			component: infoLaw,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_xx',
-			component: lawXx
+			component: lawXx,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_jd',
-			component: lawJd
+			component: lawJd,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_zjdj',
-			component: lawZjdj
+			component: lawZjdj,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_zjcg',
-			component: lawZjcg
+			component: lawZjcg,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_zjyw',
-			component: lawZjyw
+			component: lawZjyw,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_dx',
-			component: lawDx
+			component: lawDx,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_cj',
-			component: lawCj
+			component: lawCj,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_fx',
-			component: lawFx
+			component: lawFx,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_gf',
-			component: lawGf
+			component: lawGf,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_kz',
-			component: lawKz
+			component: lawKz,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_bl',
-			component: lawBl
+			component: lawBl,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_ff',
-			component: lawFf
+			component: lawFf,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_sl',
-			component: lawSl
+			component: lawSl,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/law_mj',
-			component: lawMj
+			component: lawMj,
+			meta: {
+				title: '法律文件'
+			}
 		},
 		{
 			path: '/info_safety',
-			component: infoSafety
+			component: infoSafety,
+			meta: {
+				title: '安全保障'
+			}
 		},
 		{
 			path: '/info_risk',
-			component: infoRisk
+			component: infoRisk,
+			meta: {
+				title: '风险管理'
+			}
 		},
 		{
 			path: '/info_knowus',
-			component: infoKnowus
+			component: infoKnowus,
+			meta: {
+				title: '了解我们'
+			}
 		},
 		{
 			path: '/info_oper',
-			component: infoOper
+			component: infoOper,
+			meta: {
+				title: '运营报告'
+			}
 		},
 		{
 			path: '/oper_2016_1',
-			component: operYiji2016
+			component: operYiji2016,
+			meta: {
+				title: '拓道金服 2016年第一季度'
+			}
 		},
 		{
 			path: '/oper_2016_2',
-			component: operErji2016
+			component: operErji2016,
+			meta: {
+				title: '拓道金服 2016年第二季度'
+			}
 		},
 		{
 			path: '/oper_2017_2',
-			component: operErji2017
+			component: operErji2017,
+			meta: {
+				title: '拓道金服 2017年第二季度'
+			}
 		},
 		{
 			path: '/oper_2017_3',
-			component: operSanji2017
+			component: operSanji2017,
+			meta: {
+				title: '拓道金服 2017年第三季度'
+			}
 		},
 		{
 			path: '/oper_2017_m7',
-			component: oper2017M7
+			component: oper2017M7,
+			meta: {
+				title: '拓道金服 2017年7月份'
+			}
 		},
 		{
 			path: '/oper_2017_m8',
-			component: oper2017M8
+			component: oper2017M8,
+			meta: {
+				title: '拓道金服 2017年8月份'
+			}
 		},
 		{
 			path: '/oper_2017_m10',
-			component: oper2017M10
+			component: oper2017M10,
+			meta: {
+				title: '拓道金服 2017年10月份'
+			}
 		},
 		{
 			path: '/oper_2017_m11',
-			component: oper2017M11
+			component: oper2017M11,
+			meta: {
+				title: '拓道金服 2017年11月份'
+			}
 		},
 		{
 			path: '/info_platform',
-			component: infoPlatform
+			component: infoPlatform,
+			meta: {
+				title: '平台数据'
+			}
 		},
 		{
 			path: '/select_bank',
-			component: selectBank
+			component: selectBank,
+			meta: {
+				title: '选择银行'
+			}
 		},
 		{
 			path: '/investSift',
-			component: investSift
+			component: investSift,
+			meta: {
+				title: '项目详情'
+			}
 		},
 		{
 			path: '/add_result',
-			component: addResult
+			component: addResult,
+			meta: {
+				title: '加入结果'
+			}
 		},
 		{
 			path: '/risk_details',
-			component: riskDetails
+			component: riskDetails,
+			meta: {
+				title: '风险提示书'
+			}
 		},
 		{
 			path: '/entrust',
-			component: entrust
+			component: entrust,
+			meta: {
+				title: '精选计划授权委托书'
+			}
 		},
 		{
 			path: '/investScatter',
-			component: investScatter
+			component: investScatter,
+			meta: {
+				title: '项目详情'
+			}
 		},
 		{
 			path: '/protocol_s',
-			component: protocol
+			component: protocol,
+			meta: {
+				title: '借款协议'
+			}
 		},
 		{
 			path: '/investBond',
-			component: investBond
+			component: investBond,
+			meta: {
+				title: '项目详情'
+			}
 		},
 		{
 			path: '/protocol_b',
-			component: bondProtocol
+			component: bondProtocol,
+			meta: {
+				title: '债权转让及受让协议'
+			}
 		},
 		{
 			path: '/newComer',
-			component: newComer
+			component: newComer,
+			meta: {
+				title: '新手专区'
+			}
 		},
 		{
 			path: '/noticeDynamic',
-			component: noticeDynamic
+			component: noticeDynamic,
+			meta: {
+				title: '详情'
+			}
 		},
 		{
 			path: '/rechargeExplain',
-			component: rechargeExplain
+			component: rechargeExplain,
+			meta: {
+				title: '充值说明'
+			}
 		},
 		{
 			path: '/transferExplain',
-			component: transferExplain
+			component: transferExplain,
+			meta: {
+				title: '转让说明'
+			}
 		},
 		{
 			path: '/couponExplain',
-			component: couponExplain
+			component: couponExplain,
+			meta: {
+				title: '优惠券使用说明'
+			}
 		},
 		{
 			path: '/pointExplain',
-			component: pointExplain
+			component: pointExplain,
+			meta: {
+				title: '积分说明'
+			}
 		},
 		{
 			path: '/pointTask',
-			component: pointTask
-		},
-		{
-			path: '/wxGzh',
-			component: wxGzh
-		},
-		{
-			path: '/rates',
-			component: rates
+			component: pointTask,
+			meta: {
+				title: '我要积分'
+			}
 		},
 		{
 			path: '/blankDeposit',
-			component: blankDeposit
+			component: blankDeposit,
+			meta: {
+				title: '银行存管'
+			}
 		},
 		{
 			path: '/excellentPlan',
-			component: excellentPlan
+			component: excellentPlan,
+			meta: {
+				title: '精选计划'
+			}
 		},
 		{
 			path: '/investBack',
-			component: investBack
+			component: investBack,
+			meta: {
+				title: '投资回款'
+			}
 		},
 		{
 			path: '/loginRegister',
-			component: loginRegister
+			component: loginRegister,
+			meta: {
+				title: '注册登录'
+			}
 		},
 		{
-			path: '/menberSystem',
-			component: menberSystem
+			path: '/memberSystem',
+			component: memberSystem,
+			meta: {
+				title: '会员体系'
+			}
 		},
 		{
 			path: '/newRequire',
-			component: newRequire
+			component: newRequire,
+			meta: {
+				title: '新手必读'
+			}
 		},
 		{
 			path: '/normal',
-			component: normal
+			component: normal,
+			meta: {
+				title: '常见问题'
+			}
 		},
 		{
 			path: '/obligations',
-			component: obligations
+			component: obligations,
+			meta: {
+				title: '债权转让'
+			}
 		},
 		{
 			path: '/pointCoupon',
-			component: pointCoupon
+			component: pointCoupon,
+			meta: {
+				title: '积分和优惠券'
+			}
 		},
 		{
-			path: '/prizes',
-			component: prizes
+			path: '/tjReward',
+			component: tjReward,
+			meta: {
+				title: '推荐奖励'
+			}
 		},
 		{
 			path: '/rechargeCash',
-			component: rechargeCash
+			component: rechargeCash,
+			meta: {
+				title: '充值提现'
+			}
 		},
 		{
 			path: '/selfInvest',
-			component: selfInvest
+			component: selfInvest,
+			meta: {
+				title: '自动投标'
+			}
+		},
+		{
+			path: '/encyclopedia',
+			component: encyclopedia,
+			meta: {
+				title: '理财百科'
+			}
 		},
 		{
 			path: '/share',
-			component: share
+			component: share,
+			meta: {
+				title: '分享链接'
+			}
 		},
 		{
 			path: '/rule',
-			component: rule
+			component: rule,
+			meta: {
+				title: '邀请规则'
+			}
 		},
 		{
 			path: '/friends',
-			component: friends
+			component: friends,
+			meta: {
+				title: '邀请好友'
+			}
 		},
 		{
 			path: '/record',
-			component: record
+			component: record,
+			meta: {
+				title: '邀请记录'
+			}
 		},
 		{
 			path: '/feedback',
-			component: feedback
+			component: feedback,
+			meta: {
+				title: '帮助与反馈'
+			}
 		},
 		{
 			path: '/rates',
-			component: rates
+			component: rates,
+			meta: {
+				title: '收费标准'
+			}
 		},
 		{
 			path: '/center',
-			component: center
+			component: center,
+			meta: {
+				title: '会员中心'
+			}
 		},
 		{
 			path: '/rules',
-			component: rules
+			component: rules,
+			meta: {
+				title: '会员规则'
+			}
 		},
 		{
 			path: '/privilege',
-			component: privilege
+			component: privilege,
+			meta: {
+				title: '了解等级特权'
+			}
 		},
 		{
 			path: '/lotteryRule',
-			component: lotteryRule
+			component: lotteryRule,
+			meta: {
+				title: '活动规则'
+			}
 		},
 		{
 			path: '/lotterys',
-			component: lotterys
+			component: lotterys,
+			meta: {
+				title: '积分抽奖'
+			}
 		},
 		{
 			path: '/prize',
-			component: prize
+			component: prize,
+			meta: {
+				title: '我的奖品'
+			}
 		}
 	]
 })

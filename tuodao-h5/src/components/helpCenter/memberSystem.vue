@@ -115,6 +115,7 @@
 		margin:0 auto
 		font-size:0.28rem
 		overflow:hidden
+		font-family: PingFang-SC-Medium
 		.help_bot
 			li
 				a

@@ -16,9 +16,8 @@
 	@import "~common/stylus/variable"
 	.main
 		max-width: 414px
-		padding:0 0.3rem 0.5rem 0.3rem
+		padding:0.4rem 0.3rem 0.5rem 0.3rem
 		margin:auto
-		margin-top: 0.4rem
 		overflow:hidden
 		background: #ffffff
 		font-family: PingFang-SC-Medium

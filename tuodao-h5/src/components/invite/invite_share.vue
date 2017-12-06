@@ -58,13 +58,12 @@
 				time: 60,
 				sendMsgDisabled: false,
 				invitePhone: '',
-				apiUrl: 'http://72.127.2.140:8080/api/router/app/loginAbout/mobileState',
-				resgistUrl: 'http://72.127.2.140:8080/api/router/app/h5/invite/register',
-				smsSendUrl: 'http://72.127.2.140:8080/api/router/app/loginAbout/smsSend'
+				apiUrl: 'api/router/app/loginAbout/mobileState',
+				resgistUrl: 'api/router/app/h5/invite/register',
+				smsSendUrl: 'api/router/app/loginAbout/smsSend'
 			}
 		},
 		http: {
-			root: '/',
 			headers: {
 				accessId: 'accessId',
 				accessKey: 'accessKey'

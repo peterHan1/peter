@@ -85,7 +85,7 @@
 		data () {
 			return {
 				apiUrl: '../../../static/draw_result.json',
-				jfUrl: 'http://72.127.2.140:8080/api/router/app/mine/getMyScoreStatistic',
+				jfUrl: 'api/router/app/mine/getMyScoreStatistic',
 				isShow: true,
 				sumCount: 10010,
 				isLogin: true,
@@ -117,13 +117,20 @@
 			getInfo: function() {
 				let vm = this
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-					this.setupWebViewJavascriptBridge(function (bridge) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_ShowRightNavItem', {
 							'rightTitle': '我的奖品',
 							'url': 'http://72.127.2.40:8080/#/prize'
 						}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_ShowRightNavItem({
+							'rightTitle': '我的奖品',
+							'url': 'http://72.127.2.40:8080/#/prize'
+						})
+					}, 500)
 				}
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					vm.setupWebViewJavascriptBridge(function (bridge) {
@@ -141,6 +148,23 @@
 								})
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							if (data.status === '0') {
+								vm.isLogin = false
+							} else {
+								vm.isLogin = true
+								vm.$http({url: vm.jfUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.sumCount = response.body.content.scoreCurrent
+								})
+							}
+						})
+					}, 500)
 				}
 			},
 			lottery1: function () {
@@ -377,6 +401,8 @@
 					this.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_Login', {}, function (response) {})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_Login(function(data) {})
 				}
 			},
 			goDiscount: function() {
@@ -385,6 +411,8 @@
 						bridge.callHandler('h5ToNative_GoDiscountPage', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_GoDiscountPage(function(data) {})
 				}
 			},
 			goIntegral: function() {
@@ -393,6 +421,8 @@
 						bridge.callHandler('h5ToNative_GoIntegral', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_GoIntegral(function(data) {})
 				}
 			},
 			goService: function() {
@@ -403,6 +433,8 @@
 						}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_CallNum({'callNum': '400-9899-9090'})
 				}
 			},
 			setupWebViewJavascriptBridge: function (callback) {
@@ -433,7 +465,7 @@
 		display:none
 	.lottery
 		max-width:414px
-		margin:0 auto
+		margin:-1.28rem auto 0 auto
 		height:15.32rem
 		background:url(../../image/lottery/lottery.png) no-repeat
 		background-size:100%

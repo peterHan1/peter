@@ -18,12 +18,11 @@
 	export default{
 		data () {
 			return {
-				apiUrl: 'http://72.127.2.140:8080/api/router/app/h5/vipCenter/getVipWelfareList',
+				apiUrl: 'api/router/app/h5/vipCenter/getVipWelfareList',
 				items: []
 			}
 		},
 		http: {
-			root: '/',
 			headers: {
 				accessId: 'accessId',
 				accessKey: 'accessKey'

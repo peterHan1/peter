@@ -1,7 +1,7 @@
 <template>
 	<div class="center">
 		<div class="login-bg" v-if="isLogin">
-			<button class="btn">登录/注册</button>
+			<button class="btn" v-on:click="login()">登录/注册</button>
 			<p>登录后查看您的会员等级</p>
 			<div class="numbers">
 				<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
@@ -56,14 +56,14 @@
 		data () {
 			return {
 				now: require('../../image/member/v0.png'),
-				apiUrl: 'http://72.127.2.140:8080/api/router/app/h5/vipCenter/getUserVipData',
+				apiUrl: 'api/router/app/h5/vipCenter/getUserVipData',
 				mobile: '',
 				lastMonthAvg: '',
 				thisMonthAvg: '',
 				distanceNextLevelAmount: '',
 				v: '',
 				loginStatus: '',
-				isLogin: false,
+				isLogin: true,
 				accessId: '',
 				accessKey: ''
 			}
@@ -75,13 +75,16 @@
 			init() {
 				let vm = this
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-					this.setupWebViewJavascriptBridge(function (bridge) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_ShowRightNavItem', {
 							'rightTitle': '会员规则',
 							'url': 'http://72.127.2.40:8080/#/rules'
-						}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(() => {
+						window.TDBridge.h5ToNative_ShowRightNavItem({'rightTitle': '会员规则', 'url': 'http://72.127.2.40:8080/#/rules'})
+					}, 500)
 				}
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					vm.setupWebViewJavascriptBridge(function (bridge) {
@@ -89,8 +92,8 @@
 							vm.loginStatus = response.status
 							vm.accessId = response.accessId
 							vm.accessKey = response.accessKey
-							if (vm.loginStatus === '0') {
-								vm.isLogin = true
+							if (vm.loginStatus === '1') {
+								vm.isLogin = false
 							}
 							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
 								.then((response) => {
@@ -128,6 +131,52 @@
 								})
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(() => {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.loginStatus = data.status
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							if (vm.loginStatus === '1') {
+								vm.isLogin = false
+							}
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.mobile = response.body.content.mobile
+									vm.lastMonthAvg = response.body.content.lastMonthAvg
+									vm.thisMonthAvg = response.body.content.thisMonthAvg
+									vm.distanceNextLevelAmount = response.body.content.distanceNextLevelAmount
+									vm.v = response.body.content.vipLevel
+									let _lines = document.getElementById('lines')
+									let _privilege = document.getElementById('privilege')
+									let liss = _privilege.getElementsByClassName('logo')
+									let lis = _lines.getElementsByClassName('line')
+									// vm.v = 1
+									for (var i = 0; i < vm.v; i++) {
+										lis[i].classList.add('white')
+									}
+									for (var j = 0; j < vm.v + 1; j++) {
+										liss[j].classList.add('light')
+									}
+									if (vm.v === 0) {
+										vm.now = require('../../image/member/v0.png')
+									} else if (vm.v === 1) {
+										vm.now = require('../../image/member/v1.png')
+									} else if (vm.v === 2) {
+										vm.now = require('../../image/member/v2.png')
+									} else if (vm.v === 3) {
+										vm.now = require('../../image/member/v3.png')
+									} else if (vm.v === 4) {
+										vm.now = require('../../image/member/v4.png')
+									} else if (vm.v === 5) {
+										vm.now = require('../../image/member/v5.png')
+									} else {
+										vm.now = require('../../image/member/v6.png')
+									}
+								})
+						})
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {
@@ -145,6 +194,15 @@
 				setTimeout(function () {
 					document.documentElement.removeChild(WVJBIframe)
 				}, 0)
+			},
+			login() {
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_Login', {}, function (response) {})
+					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					window.TDBridge.h5ToNative_Login(function(data) {})
+				}
 			}
 		}
 	}

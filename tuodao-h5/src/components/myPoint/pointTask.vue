@@ -1,8 +1,8 @@
 <template>
 	<div class="main">
 		<div class="task_menu" v-bind:class="bor_bom">
-			<a v-bind:class="activeObj1" style="margin-right:2.5rem;" v-on:click="tabCut(1)">日常任务</a>
-			<a v-bind:class="activeObj2" v-on:click="tabCut(2)">新手任务</a>
+			<span @click="tabCut(1)"><a :class="activeObj1">日常任务</a></span>
+			<span @click="tabCut(2)"><a :class="activeObj2" >新手任务</a></span>
 		</div>
 		<div v-show="new_title" class="explain">在注册30天内完成任务即可获得对应的积分</div>
 		<div class="task">
@@ -11,9 +11,9 @@
 					<li v-for="task in taskNormalData">
 						<div class="list_left">
 							<span class="sp1">{{ task.taskName }}</span>
-							<span class="sp2">{{ task.score }}积分</span>
+							<span class="sp2">{{ task.description }}</span>
 						</div>
-						<a v-on:click="alertEvent(task.code)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']" v-bind:href="task.url">{{ task.todo }}</a>
+						<a v-on:click="taskEvent(task.appUrl,task.code,task.todo)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']">{{ task.todo }}</a>
 					</li>
 				</ul>
 			</div>
@@ -22,9 +22,9 @@
 					<li v-for="task in taskNewData">
 						<div class="list_left">
 							<span class="sp1">{{ task.taskName }}</span>
-							<span class="sp2">{{ task.score }}积分</span>
+							<span class="sp2">{{ task.description }}</span>
 						</div>
-						<a v-on:click="alertEvent(task.code)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']" v-bind:href="task.url">{{ task.todo }}</a>
+						<a v-on:click="taskEvent(task.appUrl,task.code,task.todo)" v-bind:class="[errorClass ,task.isComplete=='yes' || task.isOverdue=='yes' ? activeClass : '']">{{ task.todo }}</a>
 					</li>
 				</ul>
 			</div>
@@ -45,83 +45,99 @@ export default {
 			bor_bom: 'bor_bom',
 			taskNormalData: [],
 			taskNewData: [],
-			apiNormalUrl: '../../../static/task.json',
-			apiNewUrl: '../../../static/taskNew.json'
+			taskUrl: 'api/router/op/findUserTask',
+			accessId: '',
+			accessKey: ''
 		}
 	},
 	created () {
-		this.getData(1)
+		this.getUserInfo()
 	},
 	methods: {
 		tabCut (type) {
-			// var vm = this
+			let vm = this
 			if (type === 1) {
-				this.showValue = true
-				this.activeObj1 = 'on'
-				this.activeObj2 = ''
-				this.new_title = !this.new_title
-				this.bor_bom = 'bor_bom'
-				this.getData(1)
+				vm.showValue = true
+				vm.activeObj1 = 'on'
+				vm.activeObj2 = ''
+				vm.new_title = false
+				vm.bor_bom = 'bor_bom'
+				vm.getData(1)
 			} else {
-				this.showValue = false
-				this.activeObj1 = ''
-				this.activeObj2 = 'on'
-				this.new_title = !this.new_title
-				this.bor_bom = ''
-				this.getData(2)
+				vm.showValue = false
+				vm.activeObj1 = ''
+				vm.activeObj2 = 'on'
+				vm.new_title = true
+				vm.bor_bom = ''
+				vm.getData(2)
 			}
 		},
 		getData(type) {
-			// var vm = this
-			var apiUrl = ''
-			if (type === 1) {
-				apiUrl = this.apiNormalUrl
-			} else {
-				apiUrl = this.apiNewUrl
-			}
-			this.$http.get(apiUrl)
+			let vm = this
+			vm.$http({url: vm.taskUrl, method: 'POST', params: {'type': type, 'pageSize': 1000}, headers: {accessId: vm.accessId, accessKey: vm.accessKey}, emulateJSON: true})
 			.then((res) => {
-				var listData = res.body.content.list
-				console.log(listData)
+				let listData = res.data.content.list
 				for (var i = 0; i < listData.length; i++) {
 					if (listData[i].isOverdue === 'yes') {
 						listData[i].todo = '已过期'
-						listData[i].url = 'javascript:;'
-					}
-					if (listData[i].isComplete === 'yes') {
+					} else if (listData[i].isComplete === 'yes') {
 						listData[i].todo = '已完成'
-						listData[i].url = 'javascript:;'
-					}
-					if (listData[i].url === null) {
-						listData[i].url = 'javascript:;'
 					}
 				}
 				if (type === 1) {
-					this.taskNormalData = listData
+					vm.taskNormalData = listData
 				} else {
-					this.taskNewData = listData
+					vm.taskNewData = listData
 				}
 			}, (res) => {
 				console.log('请求失败！')
 			})
 		},
-		alertEvent(code) {
-			if (code === 1) {
-				console.log('弹窗1')
-			} else if (code === 2) {
-				console.log('弹窗2')
-			} else if (code === 3) {
-				console.log('弹窗3')
-			} else if (code === 4) {
-				for (var i = 0; i < this.taskNormalData.length; i++) {
-					if (this.taskNormalData[i].code === 4) {
-						var obj = this.taskNormalData[i]
-						obj.todo = '已完成'
-						obj.isComplete = 'yes'
-						this.taskNormalData.splice(i, 1, obj)
+		getUserInfo() {
+			let vm = this
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+				vm.setupWebViewJavascriptBridge(function (bridge) {
+					bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+						vm.accessId = response.accessId
+						vm.accessKey = response.accessKey
+						vm.loginStatus = response.status
+						vm.getData(1)
+					})
+				})
+			}
+		},
+		taskEvent(url, code, todo) {
+			let vm = this
+			if (todo === '已完成' || todo === '已过期') {
+				return false
+			} else {
+				if (code === '5') {
+					vm.$router.push({path: '/share'})
+				} else if (code === '6') {
+				} else {
+					if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+						vm.setupWebViewJavascriptBridge(function (bridge) {
+							bridge.callHandler(url, {}, function (response) {})
+						})
 					}
 				}
 			}
+		},
+		setupWebViewJavascriptBridge(callback) {
+			if (window.WebViewJavascriptBridge) {
+				return callback(window.WebViewJavascriptBridge)
+			}
+			if (window.WVJBCallbacks) {
+				return window.WVJBCallbacks.push(callback)
+			}
+			window.WVJBCallbacks = [callback]
+			let WVJBIframe = document.createElement('iframe')
+			WVJBIframe.style.display = 'none'
+			WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+			document.documentElement.appendChild(WVJBIframe)
+			setTimeout(function () {
+				document.documentElement.removeChild(WVJBIframe)
+			}, 0)
 		}
 	}
 }
@@ -138,12 +154,16 @@ export default {
 		.bor_bom
 			border-bottom:0.2rem solid #f2f3f7
 		.task_menu
+			width: 100%
 			height:0.8rem
-			text-align:center
+			span
+				display: inline-block
+				text-align: center
+				width: 49%
+				padding-top: 0.28rem
 			a
 				display:inline-block
 				padding-bottom:0.2rem
-				margin-top:0.28rem
 				font-size:0.28rem
 				&.on
 					color:$color-font-orange
