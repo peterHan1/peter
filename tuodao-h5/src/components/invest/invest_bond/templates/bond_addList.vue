@@ -1,5 +1,5 @@
 <template>
-	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :pullup="pullup" @pullup="getList" :listenScroll="listenScroll">
 		<div class="addList">
 			<div class="list">
 				<table>
@@ -20,13 +20,16 @@
 				</table>
 			</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scrollList'
+	import Scroll from './../../scroll'
 	export default {
 		data () {
 			return {
+				pulldown: true,
+				listenScroll: true,
+				pullup: true,
 				bondList: [],
 				listUrl: 'api/router/tender/transfer/list'
 			}
@@ -48,31 +51,11 @@
 					vm.bondList = response.body.content.list
 				})
 			},
-			onInfinite(done) {
-				let vm = this
-				vm.counter++
-				vm.$http.post(this.listUrl, {transferId: 1}).then((response) => {
-					vm.pageEnd = vm.num * vm.counter
-					vm.pageStart = vm.pageEnd - vm.num
-					let arr = response.data
-					let i = vm.pageStart
-					let end = vm.pageEnd
-					for (; i < end; i++) {
-						let obj = {}
-						obj['name'] = arr[i].name
-						vm.downdata.push(obj)
-						if ((i + 1) >= response.data.length) {
-							this.$el.querySelector('.load-more').style.display = 'none'
-							return
-						}
-					}
-					done()
-				})
-			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
+			},
+			getList() {
+				console.log('上拉了要加载了')
 			},
 			getInvestList() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -100,13 +83,21 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
+		height:100%
 	.addList
 		.list
 			padding:0 0.3rem

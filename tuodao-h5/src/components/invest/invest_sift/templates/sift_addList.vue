@@ -1,5 +1,5 @@
 <template>
-	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :pullup="pullup" @pullup="addList" :listenScroll="listenScroll">
 		<div class="addList">
 			<div class="flex"  v-show="borrowStatus">
 				<div class="flex-1 border_r">
@@ -7,7 +7,7 @@
 						<h3 class="jl">捡漏王</h3>
 					</div>
 					<div class="flex_bot">
-						<p>{{siftmaxList}}<span>积分+5</span></p>
+						<p>{{siftmaxList.picker}}<span>积分+{{siftmaxList.last_score}}</span></p>
 					</div>
 				</div>
 				<div class="flex-1">
@@ -15,7 +15,7 @@
 						<h3 class="max">脱颖而出</h3>
 					</div>
 					<div class="flex_bot">
-						<p>{{siftmaxList}}<span>双倍积分</span></p>
+						<p>{{siftmaxList.maxEr}}<span>双倍积分</span></p>
 					</div>
 				</div>
 			</div>
@@ -38,21 +38,20 @@
 				</table>
 			</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scrollList'
+	import Scroll from './../../scroll'
 	export default {
 		data () {
 			return {
 				borrowStatus: true,
 				downdata: [],
-				counter: 1,
-				num: 15,
-				pageStart: 0,
-				pageEnd: 0,
 				siftList: [],
 				siftmaxList: [],
+				pulldown: true,
+				listenScroll: true,
+				pullup: true,
 				listUrl: 'api/router/JoinPlanController/getJoinPlanList',
 				listmaxUrl: 'api/router/joinPlanController/getMaxAndPic'
 			}
@@ -61,7 +60,7 @@
 			headers: {
 				accessId: 'accessId',
 				accessKey: 'accessKey',
-				requestType: 'PC'
+				requestType: 'APP'
 			}
 		},
 		mounted() {
@@ -70,7 +69,7 @@
 		methods: {
 			init() {
 				let vm = this
-				vm.$http.post(vm.listUrl, {currentPage: '1', pageSize: '1', borrowId: '1'}).then((response) => {
+				vm.$http.post(vm.listUrl, {currentPage: 1, pageSize: 1, borrowId: '1'}).then((response) => {
 					vm.siftList = response.body.content.list
 				})
 				if (vm.borrowStatus === true) {
@@ -79,31 +78,11 @@
 					})
 				}
 			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
-			onInfinite(done) {
-				let vm = this
-				vm.counter++
-				vm.$http.post(vm.listUrl).then((response) => {
-					vm.pageEnd = vm.num * vm.counter
-					vm.pageStart = vm.pageEnd - vm.num
-					let arr = response.data
-					let i = vm.pageStart
-					let end = vm.pageEnd
-					for (; i < end; i++) {
-						let obj = {}
-						obj['name'] = arr[i].name
-						vm.downdata.push(obj)
-						if ((i + 1) >= response.data.length) {
-							this.$el.querySelector('.load-more').style.display = 'none'
-							return
-						}
-					}
-					done()
-				})
+			addList() {
+				console.log('上拉了要加载了')
 			},
 			getInvestList() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -131,13 +110,21 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
+		height:100%
 	.addList
 		.flex
 			background-color:$color-background-f

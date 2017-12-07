@@ -1,5 +1,5 @@
 <template>
-	<v-scroll :on-refresh="onRefresh">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :listenScroll="listenScroll">
 		<div class="safe">
 			<div>
 				<h3>业务安全</h3>
@@ -21,18 +21,19 @@
 				<p>借款人通过拓道金服线下门店进行车辆审核后委托拓道金服发布借款信息，平台向借款人和投资人提供信息撮合服务，投资人投标成功后款项进入借款人的存管账户，平台无法接触交易资金，资金流转清晰。</p>
 			</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
 	import Scroll from './../../scroll'
 	export default {
 		data () {
-			return {}
+			return {
+				pulldown: true,
+				listenScroll: true
+			}
 		},
 		methods: {
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
 			getInvestList() {
@@ -61,13 +62,20 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
 	.safe
 		div
 			background-color:$color-background-f

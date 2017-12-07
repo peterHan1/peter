@@ -1,5 +1,5 @@
 <template>
-	<v-scroll :on-refresh="onRefresh">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :listenScroll="listenScroll">
 		<div class="issue">
 				<div>
 					<h3>精选计划安全吗？ </h3>
@@ -30,18 +30,19 @@
 					<p>加入精选计划后，资金匹配的每笔债权，都可以在相应计划的投资详情页查看其具体金额、起止时间以及相关协议。</p>
 				</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
 	import Scroll from './../../scroll'
 	export default {
 		data () {
-			return {}
+			return {
+				pulldown: true,
+				listenScroll: true
+			}
 		},
 		methods: {
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
 			getInvestList() {
@@ -70,13 +71,20 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
 	.issue
 		padding:0 0.3rem
 		background-color:$color-background-f

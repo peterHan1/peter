@@ -1,9 +1,9 @@
 <template>
 	<div ref="wrapper">
-		<div>
-			<div class="pull-refresh">
-				<span class="down-tip"><span class="iconfont">&#xe843;</span>下拉，返回标的信息</span>
-				<span class="up-tip"><span class="iconfont">&#xe844;</span>松开，返回标的信息</span>
+		<div :class="{'down':(state===0),'up':(state==1)}" id="wrap">
+			<div class="pull_refresh">
+				<span class="down_tip"><span class="iconfont">&#xe843;</span>下拉，返回标的信息</span>
+				<span class="up_tip"><span class="iconfont">&#xe844;</span>松开，返回标的信息</span>
 			</div>
 			<slot></slot>
 		</div>
@@ -27,7 +27,7 @@
 			*/
 			click: {
 				type: Boolean,
-				default: true
+				default: false
 			},
 			/**
 			* 是否开启横向滚动
@@ -79,11 +79,16 @@
 				default: 20
 			}
 		},
+		data () {
+			return {
+				state: 0
+			}
+		},
 		mounted() {
 			// 保证在DOM渲染完毕后初始化better-scroll
 			setTimeout(() => {
 				this._initScroll()
-			}, 20)
+			}, 100)
 		},
 		methods: {
 			_initScroll() {
@@ -100,7 +105,11 @@
 				// 是否派发滚动事件
 				if (this.listenScroll) {
 					this.scroll.on('scroll', (pos) => {
-						console.log(pos)
+						if (pos.y >= 20) {
+							this.state = 1
+						} else {
+							this.state = 0
+						}
 						this.$emit('scroll', pos)
 					})
 				}
@@ -109,7 +118,8 @@
 				if (this.pullup) {
 					this.scroll.on('scrollEnd', () => {
 						// 滚动到底部
-						if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+						if (this.scroll.y <= (this.scroll.maxScrollY)) {
+							this.$emit('pullup')
 							this.$emit('scrollToEnd')
 						}
 					})
@@ -119,8 +129,13 @@
 				if (this.pulldown) {
 					this.scroll.on('touchEnd', (pos) => {
 						// 下拉动作
-						if (pos.y > 50) {
+						if (pos.y >= 20) {
+							this.state = 1
 							this.$emit('pulldown')
+							this.$emit('scrollToEnd')
+							this.state = 0
+						} else {
+							this.state = 0
 						}
 					})
 				}
@@ -164,10 +179,22 @@
 	}
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-	.pull-refresh
-		font-size:0.2rem
-		line-height:1rem
-		color:#7e7e7e
+	#wrap
+		min-height:101%
+	.pull_refresh
+		font-size:0.24rem
+		height:1rem
+		line-height:1.2rem
+		color:#b6b5b6
 		text-align:center
+		overflow:hidden
+	.down_tip,.up_tip
+		display: none
+	.down
+		.down_tip
+			display: block
+	.up
+		.up_tip
+			display: block
 		
 </style>

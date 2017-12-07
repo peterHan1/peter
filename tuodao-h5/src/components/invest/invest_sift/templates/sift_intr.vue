@@ -1,8 +1,5 @@
 <template>
-	 <scroll class="wrapper"
-          :pulldown="pulldown"
-           @pulldown="loadData"
-           :listenScroll="listenScroll">
+		<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :listenScroll="listenScroll">
 		<div class="sift">
 			<div class="sift_top">
 				<h3>项目简介</h3>
@@ -15,15 +12,15 @@
 				<ul>
 					<li>
 						<span>预计项目总额</span>
-						<p>{{items.borrowAmount}}万元</p>
+						<p>{{items.borrowAmount}}元</p>
 					</li>
 					<li>
 						<span>起投金额</span>
-						<p>500元（剩余可投小于起投金额时除外）</p>
+						<p>{{items.minAmount}}元（剩余可投小于起投金额时除外）</p>
 					</li>
 					<li>
 						<span>单笔限额</span>
-						<p>500,000元</p>
+						<p>{{items.maxAmount}}元</p>
 					</li>
 					<li>
 						<span>到账时间</span>
@@ -35,11 +32,11 @@
 					</li>
 					<li>
 						<span>计息方式</span>
-						<p>满标复审后计息</p>
+						<p>{{items.interestModelText}}</p>
 					</li>
 					<li>
 						<span>还款方式</span>
-						<p>{{items.refundWay | wayType}}，每期还款时间根据所匹配债权进行</p>
+						<p>{{items.refundWayText}}</p>
 					</li>
 					<li>
 						<span>提前退出</span>
@@ -56,7 +53,7 @@
 		data () {
 			return {
 				borrowStatus: false,
-				apiUrl: 'api/router/getFrontProduct',
+				apiUrl: 'api/router/app/getAppProductDetail',
 				items: [],
 				pulldown: true,
 				listenScroll: true
@@ -66,29 +63,21 @@
 			headers: {
 				accessId: 'accessId',
 				accessKey: 'accessKey',
-				requestType: 'PC'
+				requestType: 'APP'
 			}
 		},
-		created() {
-			// this.loadData()
+		mounted() {
+			this.init()
 		},
 		methods: {
 			init() {
 				let vm = this
-				vm.$http.post(vm.apiUrl, {id: '1'})
+				vm.$http.post(vm.apiUrl, {productCode: '20171101009'})
 					.then((response) => {
 						vm.items = response.body.content
 					})
 			},
-			loadData() {
-				console.log('shuaxin')
-			},
-			hehe() {
-				console.log('shabi')
-			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
 			getInvestList() {

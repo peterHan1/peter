@@ -1,81 +1,140 @@
 <template>
-	<v-scroll :on-refresh="onRefresh">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :listenScroll="listenScroll">
 		<div class="sift">
 			<div class="intro">
 				<h3>项目简介</h3>
-				<p><b></b>借款人基本情况: 借款人: <i v-if="items != null">{{items.name}}</i>，性别：<i v-if="items != null">{{items.sex}}</i>，现年：<i v-if="items != null">{{items.age}}</i>岁，<i v-if="items != null">{{items.marriage}}</i>，主要从事个体行业。借款人借款期间无重大支出，信誉状况良好，无不良记录。</p>
-				<p><b></b>借款人生产经营情况：<i v-if="items != null">{{items.condition}}</i></p>
-				<p><b></b>借款用途及还款来源：借款人因经营需要，申请借款<i v-if="items != null">{{items.money}}</i>元，用于经营流动。还款来源为经营收入。</p>
-				<p><b></b>项目评级：<i v-if="items != null">{{items.rate}}</i></p>
+				<p>{{items.intro}}</p>
 			</div>
 			<div>
 				<h3>计划详情</h3>
 				<p><span>姓名</span> <i v-if="items != null">{{items.name}}</i></p>
 				<p><span>职业</span> <i v-if="items != null">{{items.job}}</i></span></p>
-				<p><span>性别</span> <i v-if="items != null">{{items.sex}}</i></span></p>
+				<p><span>性别</span> <i v-if="items != null">{{items.sex | sexType}}</i></span></p>
 				<p><span>学历</span> <i v-if="items != null">{{items.education}}</i></span></p>
-				<p><span>籍贯</span> <i v-if="items != null">{{items.native}}</i></p>
+				<p><span>籍贯</span> <i v-if="items != null">{{items.census}}</i></p>
 			</div>
 			<div class="car">
 				<h3>车辆信息</h3>
-				<p><span>车辆品牌</span> <i v-if="items != null">{{items.carModel}}</i></p>
-				<p><span>车辆估价</span> <i v-if="items != null">{{items.evaluate}}元</i></p>
-				<p><span>购买价格</span> <i v-if="items != null">{{items.buyPrice}}</i></p>
-				<p><span>购买时间</span> <i v-if="items != null">{{items.buyTime}}</i></p>
+				<p><span>车辆品牌</span> <i v-if="items != null">{{items.carBrand}}</i></p>
+				<p><span>车辆估价</span> <i v-if="items != null">{{items.secondCarPrice}}元</i></p>
+				<p><span>购买价格</span> <i v-if="items != null">{{items.buyPrice}}元</i></p>
+				<p><span>购买时间</span> <i v-if="items != null">{{items.buyTime | timeType}}</i></p>
 			</div>
 			<div class="listimg">
 				<h3>审核资料</h3>
-				<div class="imglist">
+				<div class="imglist" ref="wrapimg">
 					<ul>
-						<li v-for="item in imgList">
-							<img :src=item.src>
+						<li v-for="(item,index) in imgSrc">
+							<img :src=item.picUrl @click="getImgUrl(index,$event)">
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
 	import Scroll from './../../scroll'
+	import BScroll from 'better-scroll'
 	export default {
 		data () {
 			return {
-				apiUrl: 'api/router/getFrontBorrowExpand',
+				apiUrl: 'api/router/app/getAppBorrowExpand',
 				imgUrl: 'api/router/getPicListByPcode',
 				items: [],
+				pulldown: true,
+				listenScroll: true,
+				scroll: '',
+				imgSrc: [
+					{
+						'id': 44,
+						'productId': null,
+						'productCode': '20131200002',
+						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-07/20/11_attestations_attestation_1500522147898.jpg',
+						'orderNum': 1,
+						'reamark': null
+					},
+					{
+						'id': 45,
+						'productId': null,
+						'productCode': '20131200002',
+						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
+						'orderNum': 1,
+						'reamark': null
+					},
+					{
+						'id': 44,
+						'productId': null,
+						'productCode': '20131200002',
+						'picUrl': 'https://www.51tuodao.com/upload/data/store/2016-12/01/store_new_1480597592249.jpg',
+						'orderNum': 1,
+						'reamark': null
+					},
+					{
+						'id': 44,
+						'productId': null,
+						'productCode': '20131200002',
+						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
+						'orderNum': 1,
+						'reamark': null
+					},
+					{
+						'id': 44,
+						'productId': null,
+						'productCode': '20131200002',
+						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
+						'orderNum': 1,
+						'reamark': null
+					}
+				],
 				imgList: []
 			}
 		},
 		mounted() {
 			this.addHtml()
+			this.$nextTick(() => {
+				this.scroll = new BScroll(this.$refs.wrapimg, {
+					scrollX: true
+				})
+			})
 		},
 		http: {
 			headers: {
 				accessId: 'accessId',
 				accessKey: 'accessKey',
-				requestType: 'PC'
+				requestType: 'APP'
 			}
 		},
 		methods: {
 			addHtml() {
 				let vm = this
-				vm.$http.post(vm.apiUrl, {productCode: '1'}).then((response) => {
+				vm.$http.post(vm.apiUrl, {productCode: '123'}).then((response) => {
 					vm.items = response.body.content
 				})
 				vm.$http.post(vm.imgUrl, {productCode: '1'}).then((response) => {
 					vm.imgList = response.body.content
 				})
 			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
 			getInvestList() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					this.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
+						})
+					})
+				}
+			},
+			getImgUrl(index, event) {
+				event.preventDefault()
+				event.stopPropagation()
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					this.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_ShowBigImage', {
+							'detailImgArr': this.imgSrc,
+							'currentIndex': index
+						}, function (response) {
 						})
 					})
 				}
@@ -98,13 +157,57 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
+		},
+		filters: {
+			sexType(type) {
+				switch (type) {
+				case 0:
+					return '男'
+				case 1:
+					return '女'
+				default: return ''
+				}
+			},
+			timeType(type) {
+				let date = new Date(type)
+				let Y = date.getFullYear()
+				let m = date.getMonth() + 1
+				let d = date.getDate()
+				let H = date.getHours()
+				let i = date.getMinutes()
+				let s = date.getSeconds()
+				if (m < 10) {
+					m = '0' + m
+				}
+				if (d < 10) {
+					d = '0' + d
+				}
+				if (H < 10) {
+					H = '0' + H
+				}
+				if (i < 10) {
+					i = '0' + i
+				}
+				if (s < 10) {
+					s = '0' + s
+				}
+				let t = Y + '-' + m + '-' + d
+				return t
+			}
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
 	.sift
 		div
 			padding:0 0.3rem 0.2rem
@@ -132,7 +235,7 @@
 					width:1.4rem
 		.intro
 			p
-				padding-left:0.3rem
+				// padding-left:0.3rem
 				position:relative
 				b
 					position:absolute
@@ -165,6 +268,7 @@
 			top:0
 		li
 			display:inline-block
+			margin-right:0.2rem
 		img
 			width:2.1rem
 			height:1.4rem

@@ -1,5 +1,5 @@
 <template>
-	<v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :pullup="pullup" @pullup="getList" :listenScroll="listenScroll">
 		<div class="addList">
 			<div class="flex">
 				<div class="flex-1 border_r">
@@ -30,28 +30,28 @@
 					</thead>
 					<tbody>
 						<tr v-for="list in scatterList">
-							<td>{{list.tenderUser}}</td>
-							<td>{{list.tenderAccount}}</td>
-							<td>{{list.tenderTime}}</td>
+							<td>{{list.mobile}}</td>
+							<td>{{list.money}}</td>
+							<td>{{list.addTime}}</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-	</v-scroll>
+	</scroll>
 </template>
 <script type="text/ecmascript-6">
-	import Scroll from './../scrollList'
+	import Scroll from './../../scroll'
 	export default {
 		data () {
 			return {
-				downdata: [],
+				downdata: {},
 				counter: 1,
-				num: 15,
-				pageStart: 0,
-				pageEnd: 0,
 				scatterList: [],
 				scattermaxList: {},
+				pulldown: true,
+				listenScroll: true,
+				pullup: true,
 				listUrl: 'api/router/tc/product/tender_list',
 				listmaxUrl: 'api/router/tc/product/tender_max_last'
 			}
@@ -59,8 +59,7 @@
 		http: {
 			headers: {
 				accessId: 'accessId',
-				accessKey: 'accessKey',
-				requestType: 'PC'
+				accessKey: 'accessKey'
 			}
 		},
 		mounted() {
@@ -69,37 +68,24 @@
 		methods: {
 			addList() {
 				let vm = this
-				vm.$http.post(vm.listUrl, {productId: '123'}).then((response) => {
+				vm.$http.post(vm.listUrl, {productId: '105', pageSize: 1, currentPage: 1}).then((response) => {
 					vm.scatterList = response.body.content.list
 				})
 				vm.$http.post(vm.listmaxUrl, {productId: '1'}).then((response) => {
 					vm.scattermaxList = response.body.content
 				})
 			},
-			onRefresh(done) {
-				done()
-				// 松开回到app界面
+			getApp() {
 				this.getInvestList()
 			},
-			onInfinite(done) {
+			getList() {
 				let vm = this
 				vm.counter++
-				vm.$http.post(vm.listmaxUrl, {productId: '1'}).then((response) => {
-					vm.pageEnd = vm.num * vm.counter
-					vm.pageStart = vm.pageEnd - vm.num
-					let arr = response.data
-					let i = vm.pageStart
-					let end = vm.pageEnd
-					for (; i < end; i++) {
-						let obj = {}
-						obj['name'] = arr[i].name
-						vm.downdata.push(obj)
-						if ((i + 1) >= response.data.length) {
-							this.$el.querySelector('.load-more').style.display = 'none'
-							return
-						}
-					}
-					done()
+				console.log(vm.counter)
+				vm.$http.post(vm.listUrl, {productId: '105', pageSize: 1, currentPage: vm.counter}).then((response) => {
+					let arr = response.body.content.list
+					vm.scatterList.concat(arr)
+					console.log(vm.scatterList)
 				})
 			},
 			getInvestList() {
@@ -128,13 +114,21 @@
 			}
 		},
 		components: {
-			'v-scroll': Scroll
+			'scroll': Scroll
 		}
 	}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
+	.wrapper
+		position:absolute
+		top:0
+		left:0
+		bottom:0
+		right:0
+		overflow:hidden
+		height:100%
 	.addList
 		.flex
 			background-color:$color-background-f
