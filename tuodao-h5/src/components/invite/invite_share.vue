@@ -23,8 +23,11 @@
 			</li>
 		</ul>
 		<div class="success-box" v-show="status"><img src="../../image/invite/invites_suc.png"></div>
-		<div class="btn" v-show="!register" v-on:click="telphones()">领取<span>398</span>元红包</div>
+		<div class="btn" v-show="tel" v-on:click="telphones()">领取<span>398</span>元红包</div>
 		<div class="btn" v-show="register" v-on:click="code()">领取<span>398</span>元红包</div>
+		<router-link to="/download">
+			<div class="btn" v-show="download">领取<span>398</span>元红包</div>
+		</router-link>>
 		<div class="foot-box">
 			<div class="line-one">
 				<img src="../../image/invite/shili.png">
@@ -53,7 +56,9 @@
 				tsShow: '',
 				isShow: false,
 				status: false,
+				tel: true,
 				register: false,
+				download: false,
 				pwSecurityLevel: '',
 				time: 60,
 				sendMsgDisabled: false,
@@ -130,6 +135,8 @@
 							if (response.body.code === 100000) {
 								this.status = true
 								this.isShow = false
+								this.register = false
+								this.download = true
 							} else {
 								this.tsShow = response.body.msg
 								this.isShow = true
@@ -141,13 +148,13 @@
 				let vm = this
 				vm.$http.post(vm.apiUrl, {'mobile': vm.telphone}, {emulateJSON: true})
 					.then((response) => {
-						console.log(response)
 						if (response.body.content.status === 1) {
 							vm.tsShow = '该手机号已注册认证，请直接登录'
 							vm.isShow = true
 							vm.register = false
 						} else {
 							vm.register = true
+							vm.tel = false
 							vm.isShow = false
 							if (vm.sendMsgDisabled === false) {
 								vm.send()

@@ -4,21 +4,21 @@
 			<div class="platfrom_a_top">
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.borrowmoney}}万</dt>
+						<dt>{{dataCollect.borrowAmount}}万</dt>
 						<dd>累计借款金额（元）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.borrownum}}</dt>
+						<dt>{{dataCollect.borrowNum}}</dt>
 						<dd>累计借款个数（个）</dd>
 					</dl>
 				</div>
 				<div class="flex platfrom_num">
 					<dl class="flex-1">
-						<dt>{{dataCollect.borrowper}}</dt>
+						<dt>{{dataCollect.borrowerNum}}</dt>
 						<dd>累计借款人数（人）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.investper}}</dt>
+						<dt>{{dataCollect.investorNum}}</dt>
 						<dd>累计投资人数（人）</dd>
 					</dl>
 				</div>
@@ -26,31 +26,31 @@
 			<div class="platfrom_a_com">
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.investban}}</dt>
+						<dt>{{dataCollect.nowBorrowAmount}}</dt>
 						<dd>当前借款余额（元）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.presentper}}</dt>
+						<dt>{{dataCollect.nowBorrowerNum}}</dt>
 						<dd>当前借款人数（人）</dd>
 					</dl>
 				</div>
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.presentnum}}</dt>
+						<dt>{{dataCollect.nowBorrowNum}}</dt>
 						<dd>当前借款个数（个）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.presentinvest}}</dt>
+						<dt>{{dataCollect.nowInvestorNum}}</dt>
 						<dd>当前投资人数（人）</dd>
 					</dl>
 				</div>
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.todynum}}</dt>
+						<dt>{{dataCollect.todayBorrowNum}}</dt>
 						<dd>今日已发标数量（个）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.todymoney}}</dt>
+						<dt>{{dataCollect.todayBorrowAmount}}</dt>
 						<dd>今日已发标金额（元）</dd>
 					</dl>
 				</div>
@@ -58,47 +58,47 @@
 			<div class="platfrom_a_bot">
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.overdue}}%</dt>
+						<dt>{{dataCollect.overdueRate}}%</dt>
 						<dd>逾期率</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduemoney}}</dt>
+						<dt>{{dataCollect.overdueAmount}}</dt>
 						<dd>逾期金额（元）</dd>
 					</dl>
 				</div>
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduenums}}</dt>
+						<dt>{{dataCollect.overdueNinetyNum}}</dt>
 						<dd>逾期90天（不含） <br />以上个数（个）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduemoneys}}万</dt>
+						<dt>{{dataCollect.overdueNinetyAmount}}万</dt>
 						<dd>逾期90天（不含） <br />以上金额</dd>
 					</dl>
 				</div>
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduenums}}</dt>
+						<dt>{{dataCollect.overdueNum}}</dt>
 						<dd>逾期个数（个）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduemoney}}万</dt>
+						<dt>{{dataCollect.compensationAmount}}万</dt>
 						<dd>累计代偿金额（元）</dd>
 					</dl>
 				</div>
 				<div class="flex">
 					<dl class="flex-1">
-						<dt>{{dataCollect.overduenum}}</dt>
+						<dt>{{dataCollect.compensationNum}}</dt>
 						<dd>累计代偿个数（个）</dd>
 					</dl>
 					<dl class="flex-1">
-						<dt>{{dataCollect.relevancemoney}}</dt>
+						<dt>{{dataCollect.correlationBorrowAmount}}</dt>
 						<dd>关联关系借款余额（元）</dd>
 					</dl>
 				</div>
 				<div class="">
 					<dl class="">
-						<dt>{{dataCollect.relevancenum}}</dt>
+						<dt>{{dataCollect.correlationBorrowNum}}</dt>
 						<dd>关联关系借款个数（个）</dd>
 					</dl>
 				</div>
@@ -111,7 +111,14 @@
 		data () {
 			return {
 				dataCollect: {},
-				dataUrl: '../../../static/dataSum.json'
+				dataUrl: 'api/router/getPlatfromTaskPlatData'
+			}
+		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
 			}
 		},
 		mounted() {
@@ -119,10 +126,8 @@
 		},
 		methods: {
 			dataSum() {
-				this.$http.get(this.dataUrl).then((res) => {
+				this.$http.post(this.dataUrl).then((res) => {
 					this.dataCollect = res.body.content
-				}, (err) => {
-					console.log(err)
 				})
 			}
 		}

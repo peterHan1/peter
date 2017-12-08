@@ -4,6 +4,7 @@ import share from 'components/invite/invite_share'
 import rule from 'components/invite/invite_rule'
 import friends from 'components/invite/invite_friends'
 import record from 'components/invite/invite_record'
+import download from 'components/invite/invite_download'
 import center from 'components/member/member_center'
 import rules from 'components/member/member_rule'
 import privilege from 'components/member/member_privilege'
@@ -47,7 +48,7 @@ import oper2017M11 from 'components/inform/info_oper/oper_2017_m11'
 import infoPlatform from 'components/inform/info_platform/info_platform'
 import selectBank from 'components/select_bank/select_bank'
 import investSift from 'components/invest/invest_sift/investSift'
-import entrust from 'components/invest/invest_sift/entrust'
+import protocolC from 'components/invest/invest_sift/protocol_c'
 import addResult from 'components/invest/add_result'
 import riskDetails from 'components/invest/risk_details'
 import investScatter from 'components/invest/invest_scatter/investScatter'
@@ -354,8 +355,8 @@ export default new Router({
 			}
 		},
 		{
-			path: '/entrust',
-			component: entrust,
+			path: '/protocol_c',
+			component: protocolC,
 			meta: {
 				title: '精选计划授权委托书'
 			}
@@ -610,6 +611,13 @@ export default new Router({
 			component: prize,
 			meta: {
 				title: '我的奖品'
+			}
+		},
+		{
+			path: '/download',
+			component: download,
+			meta: {
+				title: 'app下载页'
 			}
 		}
 	]

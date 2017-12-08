@@ -5,12 +5,12 @@
 			<h1>投资人授权委托书</h1>
 		</div>
 		<div>
-			<p>协议编号：<span class="num"></span></p>
+			<p>协议编号：<span class="num">{{proList.protocalCode}}</span></p>
 		</div>
 		<div>
-			<p>委托人：</p>
-			<p>身份证号：</p>
-			<p>联系方式：</p>
+			<p>委托人：{{proList.userName}}</p>
+			<p>身份证号：{{proList.idNum}}</p>
+			<p>联系方式：{{proList.mobile}}</p>
 		</div>
 		<div class="td_stamp">
 			<b class="stamp"></b>
@@ -20,7 +20,7 @@
 		<div>
 			<h3>鉴于：</h3>
 			<p>1.投资人系杭州拓道互联网金融服务有限公司（以下简称“拓道金服”）旗下经营管理的“拓道金服”网络借贷平台（网址：www.51tuodao.com）的实名注册用户，居住在中华人民共和国境内、符合中华人民共和国法律规定的完全民事行为能力人。</p>
-			<p>2.投资人自愿参与“拓道金服”网络借贷平台上发布的 <span cass=""> “精选计划” </span> 理财项目（以下简称“精选计划”）。</p>
+			<p>2.投资人自愿参与“拓道金服”网络借贷平台上发布的 <span class="pro"> {{proList.productName}} </span> 理财项目（以下简称“精选计划”）。</p>
 		</div>
 		<div>
 			<p>为实现匹配投资人的需求，投资人在此确认并授权“拓道金服”全权代理其行使下列事项：</p>
@@ -28,9 +28,9 @@
 		<div>
 			<h3>一、投资精选计划</h3>
 			<p>1.投资人不可撤销地委托并授权“拓道金服”依其专业技术和判断，将投资人的全部或部分投资本金投向“拓道金服”网络借贷平台上发布的“精选计划”理财项目。在“精选计划”项下的全部或部分借款项目的债权到期或转让后，“拓道金服”有权继续使用投资所得的部分或全部资金继续投资“精选计划”项下的其他借款项目，直至投资人精选计划投资期限届满。</p>
-			<p>2.投资人自愿选择加入“精选计划”，并不可撤销地委托并授权“拓道金服”平台依其专业技术和判断自动投标，加入金额为人民币 <span class="money"></span> 元（大写：<span class="moneys"></span>）。</p>
+			<p>2.投资人自愿选择加入“精选计划”，并不可撤销地委托并授权“拓道金服”平台依其专业技术和判断自动投标，加入金额为人民币 <span class="money">{{proList.joinMoney}}</span> 元（大写：<span class="moneys">{{proList.joinMoneyBig}}</span>）。</p>
 			<p>3.期限日：自“精选计划”满标复审之日起至“精选计划”到期后债权成功转出之日止。</p>
-			<p>4.预期回报：预期回报为年化利率 <span class="pre"></span> %。</p>
+			<p>4.预期回报：预期回报为年化利率 <span class="pre">{{proList.apr}}</span> %。</p>
 		</div>
 		<div>
 			<h3>二、签署相关协议</h3>
@@ -47,14 +47,77 @@
 			<h4>本授权委托书经投资人自行通过网络在“拓道金服”网络借贷平台上在线点击相关确认键后生效。</h4>
 		</div>
 		<div>
-			<p>委托人：</p>
+			<p>委托人：{{proList.userName}}</p>
 			<p>受托人：杭州拓道互联网金融服务有限公司</p>
 		</div>
 	</div>
 </template>
 <script type="text/ecmascript-6">
 	export default {
-
+		data () {
+			return {
+				proList: [],
+				accessId: '',
+				accessKey: '',
+				proUrl: 'api/router/joinPlanController/getPlanProtocol'
+			}
+		},
+		mounted() {
+			this.geturl()
+		},
+		methods: {
+			geturl() {
+				var vm = this
+				let tenderId = vm.$route.query.tenderId
+				if (tenderId === undefined || tenderId === '') {
+				} else {
+					vm.getProtocol(tenderId)
+				}
+			},
+			getProtocol(id) {
+				let vm = this
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							vm.$http({url: vm.proUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}, params: {'tenderId': id}})
+								.then((response) => {
+									vm.proList = response.body.content
+								})
+						})
+					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(() => {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							vm.$http({url: vm.proUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}, params: {'tenderId': id}})
+								.then((response) => {
+									vm.proList = response.body.content
+								})
+						})
+					}, 500)
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
+			}
+		}
 	}
 </script>
 
@@ -89,6 +152,8 @@
 				border-bottom:1px solid #333
 			.num
 				min-width:3.5rem
+			.pro
+				min-width:1.3rem
 			.money
 				min-width:1.24rem
 			.moneys

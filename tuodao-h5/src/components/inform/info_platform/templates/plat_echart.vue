@@ -26,8 +26,15 @@
 				monthList: [],
 				monthData: [],
 				monthMoney: [],
-				todayUrl: '../../../static/platform.json',
-				monthUrl: '../../../static/platformMonth.json'
+				todayUrl: 'api/router/getPlatfromWeekVolumeChart',
+				monthUrl: 'api/router/getPlatfromMonthVolumeChart'
+			}
+		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
 			}
 		},
 		mounted() {
@@ -35,23 +42,19 @@
 		},
 		methods: {
 			dataList() {
-				this.$http.get(this.todayUrl).then((res) => {
-					this.todayList = res.body.content.list
-					for (let i = 0; i < this.todayList.length; i++) {
-						this.todayData[i] = this.todayList[i].data
-						this.todayMoney[i] = this.todayList[i].money * 1
-					}
-					this.charts()
+				let vm = this
+				vm.$http.post(vm.todayUrl).then((res) => {
+					vm.todayData = res.body.content.key
+					vm.todayMoney = res.body.content.val
+					vm.charts()
 				}, (err) => {
 					console.log(err)
 				})
-				this.$http.get(this.monthUrl).then((res) => {
-					this.monthList = res.body.content.list
-					for (let i = 0; i < this.monthList.length; i++) {
-						this.monthData[i] = this.monthList[i].data + '月'
-						this.monthMoney[i] = this.monthList[i].money * 1
-					}
-					this.chartsM()
+				vm.$http.post(vm.monthUrl).then((res) => {
+					console.log(res)
+					vm.monthData = res.body.content.key
+					vm.monthMoney = res.body.content.val
+					vm.chartsM()
 				}, (err) => {
 					console.log(err)
 				})

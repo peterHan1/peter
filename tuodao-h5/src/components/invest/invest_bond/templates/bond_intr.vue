@@ -28,6 +28,10 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

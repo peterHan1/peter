@@ -1,7 +1,7 @@
 <template>
 	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :pullup="pullup" @pullup="getList" :listenScroll="listenScroll">
 		<div class="addList">
-			<div class="flex">
+			<div class="flex" v-show="borrowStatus">
 				<div class="flex-1 border_r">
 					<div>
 						<h3 class="jl">捡漏王</h3>
@@ -45,7 +45,9 @@
 	export default {
 		data () {
 			return {
-				downdata: {},
+				productId: '',
+				borrowStatus: true,
+				downdata: [],
 				counter: 1,
 				scatterList: [],
 				scattermaxList: {},
@@ -63,17 +65,33 @@
 			}
 		},
 		mounted() {
-			this.addList()
+			this.init()
 		},
 		methods: {
-			addList() {
+			init() {
+				var vm = this
+				vm.productId = vm.$route.query.productId
+				let status = vm.$route.query.status
+				if (status === '0') {
+					vm.borrowStatus = false
+				} else {
+					vm.borrowStatus = true
+				}
+				if (vm.productId === undefined || vm.productId === '') {
+				} else {
+					vm.addList(vm.productId)
+				}
+			},
+			addList(id) {
 				let vm = this
-				vm.$http.post(vm.listUrl, {productId: '105', pageSize: 1, currentPage: 1}).then((response) => {
+				vm.$http.post(vm.listUrl, {productId: '105', pageSize: 10, currentPage: 1}).then((response) => {
 					vm.scatterList = response.body.content.list
 				})
-				vm.$http.post(vm.listmaxUrl, {productId: '1'}).then((response) => {
-					vm.scattermaxList = response.body.content
-				})
+				if (vm.borrowStatus === true) {
+					vm.$http.post(vm.listmaxUrl, {productId: '105'}).then((response) => {
+						vm.scattermaxList = response.body.content
+					})
+				}
 			},
 			getApp() {
 				this.getInvestList()
@@ -81,11 +99,11 @@
 			getList() {
 				let vm = this
 				vm.counter++
-				console.log(vm.counter)
-				vm.$http.post(vm.listUrl, {productId: '105', pageSize: 1, currentPage: vm.counter}).then((response) => {
-					let arr = response.body.content.list
-					vm.scatterList.concat(arr)
-					console.log(vm.scatterList)
+				vm.$http.post(vm.listUrl, {productId: vm.productId, pageSize: 10, currentPage: vm.counter}).then((response) => {
+					vm.downdata = response.body.content.list
+					for (let i = 0; i < vm.downdata.length; i++) {
+						vm.scatterList.push(vm.downdata[i])
+					}
 				})
 			},
 			getInvestList() {
@@ -94,6 +112,10 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

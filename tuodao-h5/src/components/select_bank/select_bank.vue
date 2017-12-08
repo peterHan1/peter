@@ -42,6 +42,17 @@
 								})
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							vm.accessId = data.accessId
+							vm.accessKey = data.accessKey
+							vm.$http({url: vm.apiUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}})
+								.then((response) => {
+									vm.bankList = response.body.content
+								})
+						})
+					}, 500)
 				}
 			},
 			selectFn (bank, index) {
@@ -51,6 +62,10 @@
 						bridge.callHandler('h5ToNative_GoonInvestRecode', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_GoonInvestRecode()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

@@ -12,15 +12,15 @@
 				<ul>
 					<li>
 						<span>预计项目总额</span>
-						<p>{{items.borrowAmount}}元</p>
+						<p v-if="items != null">{{items.borrowAmount}}元</p>
 					</li>
 					<li>
 						<span>起投金额</span>
-						<p>{{items.minAmount}}元（剩余可投小于起投金额时除外）</p>
+						<p v-if="items != null">{{items.minAmount}}元（剩余可投小于起投金额时除外）</p>
 					</li>
 					<li>
 						<span>单笔限额</span>
-						<p>{{items.maxAmount}}元</p>
+						<p v-if="items != null">{{items.maxAmount}}元</p>
 					</li>
 					<li>
 						<span>到账时间</span>
@@ -32,11 +32,11 @@
 					</li>
 					<li>
 						<span>计息方式</span>
-						<p>{{items.interestModelText}}</p>
+						<p v-if="items != null">{{items.interestModelText}}</p>
 					</li>
 					<li>
 						<span>还款方式</span>
-						<p>{{items.refundWayText}}</p>
+						<p v-if="items != null">{{items.refundWayText}}</p>
 					</li>
 					<li>
 						<span>提前退出</span>
@@ -62,8 +62,7 @@
 		http: {
 			headers: {
 				accessId: 'accessId',
-				accessKey: 'accessKey',
-				requestType: 'APP'
+				accessKey: 'accessKey'
 			}
 		},
 		mounted() {
@@ -71,6 +70,14 @@
 		},
 		methods: {
 			init() {
+				var vm = this
+				let productCode = vm.$route.query.productCode
+				if (productCode === undefined || productCode === '') {
+				} else {
+					vm.addHtml(productCode)
+				}
+			},
+			addHtml(id) {
 				let vm = this
 				vm.$http.post(vm.apiUrl, {productCode: '20171101009'})
 					.then((response) => {
@@ -86,6 +93,10 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

@@ -1,13 +1,13 @@
 <template>
 	<scroll class="wrapper" :pulldown="pulldown" @pulldown="getApp" :pullup="pullup" @pullup="addList" :listenScroll="listenScroll">
 		<div class="addList">
-			<div class="flex"  v-show="borrowStatus">
+			<div class="flex"  v-show="borrowStatus" >
 				<div class="flex-1 border_r">
 					<div>
 						<h3 class="jl">捡漏王</h3>
 					</div>
-					<div class="flex_bot">
-						<p>{{siftmaxList.picker}}<span>积分+{{siftmaxList.last_score}}</span></p>
+					<div class="flex_bot" >
+						<p v-if="siftmaxList != null">{{siftmaxList.picker}}<span>积分+{{siftmaxList.last_score}}</span></p>
 					</div>
 				</div>
 				<div class="flex-1">
@@ -15,7 +15,7 @@
 						<h3 class="max">脱颖而出</h3>
 					</div>
 					<div class="flex_bot">
-						<p>{{siftmaxList.maxEr}}<span>双倍积分</span></p>
+						<p v-if="siftmaxList != null">{{siftmaxList.maxEr}}<span>双倍积分</span></p>
 					</div>
 				</div>
 			</div>
@@ -30,9 +30,9 @@
 					</thead>
 					<tbody>
 						<tr v-for="addlist in siftList">
-							<td>{{addlist.tenderUser}}</td>
-							<td>{{addlist.tenderAccount}}</td>
-							<td>{{addlist.tenderTime}}</td>
+							<td v-if="addlist != null">{{addlist.tenderUser}}</td>
+							<td v-if="addlist != null">{{addlist.tenderAccount}}</td>
+							<td v-if="addlist != null">{{addlist.tenderTime}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -45,6 +45,8 @@
 	export default {
 		data () {
 			return {
+				borrowId: '',
+				counter: 1,
 				borrowStatus: true,
 				downdata: [],
 				siftList: [],
@@ -52,15 +54,14 @@
 				pulldown: true,
 				listenScroll: true,
 				pullup: true,
-				listUrl: 'api/router/JoinPlanController/getJoinPlanList',
+				listUrl: 'api/router/joinPlanController/getJoinPlanList',
 				listmaxUrl: 'api/router/joinPlanController/getMaxAndPic'
 			}
 		},
 		http: {
 			headers: {
 				accessId: 'accessId',
-				accessKey: 'accessKey',
-				requestType: 'APP'
+				accessKey: 'accessKey'
 			}
 		},
 		mounted() {
@@ -68,12 +69,26 @@
 		},
 		methods: {
 			init() {
+				var vm = this
+				vm.borrowId = vm.$route.query.productId
+				let status = vm.$route.query.status
+				if (status === '0') {
+					vm.borrowStatus = false
+				} else {
+					vm.borrowStatus = true
+				}
+				if (vm.borrowId === undefined || vm.borrowId === '') {
+				} else {
+					vm.addHtml(vm.borrowId)
+				}
+			},
+			addHtml(id) {
 				let vm = this
-				vm.$http.post(vm.listUrl, {currentPage: 1, pageSize: 1, borrowId: '1'}).then((response) => {
+				vm.$http.post(vm.listUrl, {borrowId: id, pageSize: 10, currentPage: 1}).then((response) => {
 					vm.siftList = response.body.content.list
 				})
 				if (vm.borrowStatus === true) {
-					vm.$http.post(vm.listmaxUrl, {borrowId: '1'}).then((response) => {
+					vm.$http.post(vm.listmaxUrl, {borrowId: id}).then((response) => {
 						vm.siftmaxList = response.body.content
 					})
 				}
@@ -82,7 +97,14 @@
 				this.getInvestList()
 			},
 			addList() {
-				console.log('上拉了要加载了')
+				let vm = this
+				vm.counter++
+				vm.$http.post(vm.listUrl, {borrowId: vm.borrowId, pageSize: 10, currentPage: vm.counter}).then((response) => {
+					vm.downdata = response.body.content.list
+					for (let i = 0; i < vm.downdata.length; i++) {
+						vm.siftList.push(vm.downdata[i])
+					}
+				})
 			},
 			getInvestList() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -90,6 +112,10 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {
@@ -130,6 +156,7 @@
 			background-color:$color-background-f
 			display:flex
 			padding:0.32rem 0
+			margin-bottom:0.2rem
 			.border_r
 				border-right:1px solid #e4e4e4
 			.flex-1
@@ -165,7 +192,6 @@
 		.list
 			padding:0 0.3rem
 			background-color:$color-background-f
-			margin-top:0.2rem
 			table
 				width:100%
 				tr

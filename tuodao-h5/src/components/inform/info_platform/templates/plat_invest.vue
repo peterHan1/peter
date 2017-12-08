@@ -5,8 +5,8 @@
 				<h3>今日投资风云榜</h3>
 				<ul>
 					<li v-for="tolist in todayList">
-						<p>{{tolist.phone}}</p>
-						<p>投资{{tolist.tenderAccount}}元</p>
+						<p>{{tolist.username}}</p>
+						<p>投资{{tolist.amount}}元</p>
 					</li>
 				</ul>
 			</div>
@@ -14,8 +14,8 @@
 				<h3>本月投资风云榜</h3>
 				<ul>
 					<li v-for="molist in monthList">
-						<p>{{molist.phone}}</p>
-						<p>投资{{molist.tenderAccount}}元</p>
+						<p>{{molist.username}}</p>
+						<p>投资{{molist.amount}}元</p>
 					</li>
 				</ul>
 			</div>
@@ -31,8 +31,8 @@
 						<th class="th_r">占比</th>
 					</tr>
 					<tr v-for="(tenlist,index) in tenList">
-						<td>{{arrList[index]}}</td>
-						<td>{{tenlist.amount}}万元</td>
+						<td>{{tenlist.username}}</td>
+						<td>{{tenlist.amount}}元</td>
 						<td>{{tenlist.proportion}}%</td>
 					</tr>
 				</table>
@@ -48,10 +48,16 @@
 				todayList: [],
 				monthList: [],
 				tenList: [],
-				arrList: ['第一名', '第二名', '第三名', '第四名', '第五名', '第六名', '第七名', '第八名', '第九名', '第十名', '其他'],
-				todayUrl: '../../../static/rankingsToday.json',
-				monthUrl: '../../../static/rankingsMonth.json',
-				tenUrl: '../../../static/rankingsTen.json'
+				todayUrl: 'api/router/getPlatfromDayRank',
+				monthUrl: 'api/router/getPlatfromMonthRank',
+				tenUrl: 'api/router/getPlatfromBorrowRank'
+			}
+		},
+		http: {
+			headers: {
+				accessId: 'accessId',
+				accessKey: 'accessKey',
+				requestType: 'PC'
 			}
 		},
 		mounted() {
@@ -59,18 +65,19 @@
 		},
 		methods: {
 			dataSum() {
-				this.$http.get(this.todayUrl).then((res) => {
-					this.todayList = res.body.content.list
+				this.$http.post(this.todayUrl).then((res) => {
+					console.log(res)
+					this.todayList = res.body.content
 				}, (err) => {
 					console.log(err)
 				})
-				this.$http.get(this.monthUrl).then((res) => {
-					this.monthList = res.body.content.list
+				this.$http.post(this.monthUrl).then((res) => {
+					this.monthList = res.body.content
 				}, (err) => {
 					console.log(err)
 				})
-				this.$http.get(this.tenUrl).then((res) => {
-					this.tenList = res.body.content.list
+				this.$http.post(this.tenUrl).then((res) => {
+					this.tenList = res.body.content
 				}, (err) => {
 					console.log(err)
 				})

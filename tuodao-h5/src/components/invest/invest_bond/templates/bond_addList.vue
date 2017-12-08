@@ -31,6 +31,8 @@
 				listenScroll: true,
 				pullup: true,
 				bondList: [],
+				downdata: [],
+				counter: 1,
 				listUrl: 'api/router/tender/transfer/list'
 			}
 		},
@@ -47,7 +49,7 @@
 		methods: {
 			addList() {
 				let vm = this
-				vm.$http.post(vm.listUrl, {transferId: 1}).then((response) => {
+				vm.$http.post(vm.listUrl, {transferId: 11, pageSize: 10, currentPage: 1}).then((response) => {
 					vm.bondList = response.body.content.list
 				})
 			},
@@ -55,7 +57,14 @@
 				this.getInvestList()
 			},
 			getList() {
-				console.log('上拉了要加载了')
+				let vm = this
+				vm.counter++
+				vm.$http.post(vm.listUrl, {transferId: 11, pageSize: 10, currentPage: vm.counter}).then((response) => {
+					vm.downdata = response.body.content.list
+					for (let i = 0; i < vm.downdata.length; i++) {
+						vm.bondList.push(vm.downdata[i])
+					}
+				})
 			},
 			getInvestList() {
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -63,6 +72,10 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			setupWebViewJavascriptBridge(callback) {

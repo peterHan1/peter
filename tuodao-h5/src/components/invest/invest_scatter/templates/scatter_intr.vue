@@ -24,7 +24,7 @@
 				<h3>审核资料</h3>
 				<div class="imglist" ref="wrapimg">
 					<ul>
-						<li v-for="(item,index) in imgSrc">
+						<li v-for="(item,index) in imgList">
 							<img :src=item.picUrl @click="getImgUrl(index,$event)">
 						</li>
 					</ul>
@@ -45,53 +45,11 @@
 				pulldown: true,
 				listenScroll: true,
 				scroll: '',
-				imgSrc: [
-					{
-						'id': 44,
-						'productId': null,
-						'productCode': '20131200002',
-						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-07/20/11_attestations_attestation_1500522147898.jpg',
-						'orderNum': 1,
-						'reamark': null
-					},
-					{
-						'id': 45,
-						'productId': null,
-						'productCode': '20131200002',
-						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
-						'orderNum': 1,
-						'reamark': null
-					},
-					{
-						'id': 44,
-						'productId': null,
-						'productCode': '20131200002',
-						'picUrl': 'https://www.51tuodao.com/upload/data/store/2016-12/01/store_new_1480597592249.jpg',
-						'orderNum': 1,
-						'reamark': null
-					},
-					{
-						'id': 44,
-						'productId': null,
-						'productCode': '20131200002',
-						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
-						'orderNum': 1,
-						'reamark': null
-					},
-					{
-						'id': 44,
-						'productId': null,
-						'productCode': '20131200002',
-						'picUrl': 'https://www.51tuodao.com/upload/data/upfiles/images/2017-05/20/11_attestations_attestation_1495254129360.jpg',
-						'orderNum': 1,
-						'reamark': null
-					}
-				],
 				imgList: []
 			}
 		},
 		mounted() {
-			this.addHtml()
+			this.init()
 			this.$nextTick(() => {
 				this.scroll = new BScroll(this.$refs.wrapimg, {
 					scrollX: true
@@ -106,12 +64,20 @@
 			}
 		},
 		methods: {
-			addHtml() {
+			init() {
+				var vm = this
+				let productCode = vm.$route.query.productCode
+				if (productCode === undefined || productCode === '') {
+				} else {
+					vm.addHtml(productCode)
+				}
+			},
+			addHtml(id) {
 				let vm = this
-				vm.$http.post(vm.apiUrl, {productCode: '123'}).then((response) => {
+				vm.$http.post(vm.apiUrl, {productCode: id}).then((response) => {
 					vm.items = response.body.content
 				})
-				vm.$http.post(vm.imgUrl, {productCode: '1'}).then((response) => {
+				vm.$http.post(vm.imgUrl, {productCode: id}).then((response) => {
 					vm.imgList = response.body.content
 				})
 			},
@@ -124,15 +90,24 @@
 						bridge.callHandler('h5ToNative_PullDetailNib', {}, function (response) {
 						})
 					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(function() {
+						window.TDBridge.h5ToNative_PullDetailNib()
+					}, 500)
 				}
 			},
 			getImgUrl(index, event) {
 				event.preventDefault()
 				event.stopPropagation()
+				let list2 = []
+				for (let i = 0; i < this.imgSrc.length; i++) {
+					let str = this.imgSrc[i].picUrl
+					list2.push(str)
+				}
 				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 					this.setupWebViewJavascriptBridge(function (bridge) {
 						bridge.callHandler('h5ToNative_ShowBigImage', {
-							'detailImgArr': this.imgSrc,
+							'detailImgArr': list2,
 							'currentIndex': index
 						}, function (response) {
 						})

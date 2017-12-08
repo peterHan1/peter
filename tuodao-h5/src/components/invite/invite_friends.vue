@@ -19,7 +19,7 @@
 			<div class="sec"></div>
 		</div>
 		<div class="rule">
-			<router-link to="/rule" replace>
+			<router-link to="/rule">
 				<a href="">查看邀请规则&nbsp;></a>
 			</router-link>
 		</div>
@@ -174,6 +174,7 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+@import "~common/stylus/variable"
 	.invite
 		max-width:414px
 		margin:0 auto

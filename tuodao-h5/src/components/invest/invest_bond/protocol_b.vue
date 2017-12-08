@@ -7,14 +7,14 @@
 			<p>合同签订地：杭州市西湖区</p>
 		</div>
 		<div>
-			<p>甲方（债权转让人）：</p>
-			<p>在拓道金服平台用户名为：</p>
-			<p>身份证号/营业执照号：</p>
+			<p>甲方（债权转让人）：{{proList.assignorName}}</p>
+			<p>在拓道金服平台用户名为：{{proList.assignorNickName}}</p>
+			<p>身份证号/营业执照号：{{proList.assignorIdCard}}</p>
 		</div>
 		<div class="td_stamp">
-			<p>乙方（债权受让人）：</p>
-			<p>在拓道金服平台用户名为：</p>
-			<p>身份证号：</p>
+			<p>乙方（债权受让人）：{{proList.assigneeName}}</p>
+			<p>在拓道金服平台用户名为：{{proList.assigneeNickName}}</p>
+			<p>身份证号：{{proList.assigneeIdCard}}</p>
 			<b class="stamp"></b>
 		</div>
 		<div>
@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<h3>一、债权转让标的</h3>
-			<p>甲方与债务人于 签订了《借款协议》。合同约定，债务 人向甲方借款人民币 <span></span> 元，借款期限自<span></span>至<span></span>，借款利率<span></span>/年。</p>
+			<p>甲方与债务人于 签订了《借款协议》。合同约定，债务 人向甲方借款人民币 <span>{{proList.account}}</span> 元，借款期限自<span>{{proList.beginDate}}</span>至<span>{{proList.endDate}}</span>，借款利率<span>{{proList.apr}}</span>/年。</p>
 		</div>
 		<div>
 			<h3>二、债权转让</h3>
@@ -113,7 +113,70 @@
 </template>
 <script type="text/ecmascript-6">
 	export default {
-
+		data () {
+			return {
+				proList: [],
+				accessId: '',
+				accessKey: '',
+				proUrl: 'api/router/creditAssignment/protocol'
+			}
+		},
+		mounted() {
+			this.geturl()
+		},
+		methods: {
+			geturl() {
+				var vm = this
+				let tenderId = vm.$route.query.tenderId
+				if (tenderId === undefined || tenderId === '') {
+				} else {
+					vm.getProtocol(tenderId)
+				}
+			},
+			getProtocol(id) {
+				let vm = this
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					vm.setupWebViewJavascriptBridge(function (bridge) {
+						bridge.callHandler('h5ToNative_GetUserInfo', {}, function (response) {
+							vm.accessId = response.accessId
+							vm.accessKey = response.accessKey
+							vm.$http({url: vm.proUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}, params: {'tenderId': id}})
+								.then((response) => {
+									vm.proList = response.body.content
+								})
+						})
+					})
+				} else if (/(Android)/i.test(navigator.userAgent)) {
+					setTimeout(() => {
+						window.TDBridge.h5ToNative_GetUserInfo(function(data) {
+							data = JSON.parse(data)
+							vm.accessId = data.accessId
+							vm.accessKey = data.accesskey
+							vm.$http({url: vm.proUrl, method: 'post', headers: {accessId: vm.accessId, accessKey: vm.accessKey}, params: {'tenderId': id}})
+								.then((response) => {
+									vm.proList = response.body.content
+								})
+						})
+					}, 500)
+				}
+			},
+			setupWebViewJavascriptBridge(callback) {
+				if (window.WebViewJavascriptBridge) {
+					return callback(window.WebViewJavascriptBridge)
+				}
+				if (window.WVJBCallbacks) {
+					return window.WVJBCallbacks.push(callback)
+				}
+				window.WVJBCallbacks = [callback]
+				let WVJBIframe = document.createElement('iframe')
+				WVJBIframe.style.display = 'none'
+				WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__'
+				document.documentElement.appendChild(WVJBIframe)
+				setTimeout(function () {
+					document.documentElement.removeChild(WVJBIframe)
+				}, 0)
+			}
+		}
 	}
 </script>
 
