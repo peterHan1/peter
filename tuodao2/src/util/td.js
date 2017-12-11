@@ -1,18 +1,17 @@
 var Hogan = require('hogan.js');
 var conf = {
-	serverHost: ''
+	serverHost: 'http://72.127.2.140:8080/'
 };
 
 var _td = {
 	request : function(param){
 		var _this = this;
 		$.ajax({
-			type: param.method || 'get',
+			type: param.method || 'post',
 			url: param.url || '',
 			dataType: param.type || 'json',
 			data: param.data || '',
-			// async: (param.asyncType) ? true : param.asyncType,
-			async: false,
+			async: (param.asyncType) ? true : param.asyncType,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader("accessId", param.accessId || 'accessId');
 				xhr.setRequestHeader("accessKey", param.accessKey || 'accessKey');
@@ -58,23 +57,17 @@ var _td = {
 	doLogin: function() {
 		window.location.href = './userlogin.html?redirect' + encodeURIComponent(window.location.href);
 	},
-	// 设置accessId&accessKey
-	setAccess: function(cookieData) {
-		var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-		if (keys) {
-			for (var i = keys.length; i--;)
-				document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
-		}
-		for (var key in cookieData) {
-			document.cookie = key + '=' + cookieData[key];
-		}
-	},
-	// 读取accessId&accessKey
-	getAccess: function(name) {
-		var arrstr = document.cookie.split("; ");
-		for (var i = 0; i < arrstr.length; i++) {
-			var temp = arrstr[i].split("=");
-			if (temp[0] == name) return unescape(temp[1]);
+	// 获取授权账号
+	getAccess : function(name){
+		var strCookie = document.cookie;
+		var arrCookie = strCookie.split('; ');
+		var name;
+		for(var i=0;i<arrCookie.length;i++){
+			var arr=arrCookie[i].split('=');
+			if(name==arr[0]){
+				name=arr[1];
+				return name;
+			}
 		}
 	},
 	// 可能用到的验证

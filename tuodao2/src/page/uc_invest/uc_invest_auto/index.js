@@ -16,11 +16,15 @@ var autoList 	= 	require('./autoList.string');
 
 var ucInvest = {
 	init : function(){
-		this.autoOpen();
-		this.setInpForm();
-		this.urlEach();
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		this.autoOpen(headerData);
+		this.setInpForm(headerData);
+		this.urlEach(headerData);
 	},
-	urlEach : function(){
+	urlEach : function(headerData){
 		$('.auto_switchTab a').each(function () {
 			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
 				var types = $(this).attr('type');
@@ -28,7 +32,7 @@ var ucInvest = {
 				$(this).addClass('on');
 				$(".auto_com").eq(index).show().siblings(".auto_com").hide();
 				if(types == "1"){
-					ucInvest.getAutoList();
+					ucInvest.getAutoList(headerData);
 				}
 			} else {
 				$(this).removeClass('on');
@@ -37,24 +41,28 @@ var ucInvest = {
 		});
 	},
 	// 开启自动投标总人数
-	getAutoSum : function(){
-		_apiInvest.getAutoSum(function(res){
+	getAutoSum : function(headerData){
+		_apiInvest.getAutoSum(headerData,function(res){
 			autoSum = _td.renderHtml(autoSum,{
 				content:res.content,
 			});
 			$('.auto_tips').html(autoSum);
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 是否开通自动投标
-	setInpForm : function(){
-		_apiInvest.getInpForm(function(res){
+	setInpForm : function(headerData){
+		_apiInvest.getInpForm(headerData,function(res){
 			var sta = res.content.status;
+			autoSum = _td.renderHtml(autoSum,{
+				content:res.content,
+			});
+			$('.auto_tips').html(autoSum);
 			if(sta == "0"){
 				$("#switch").attr("class","switch_off");
 				$("#switch").attr("status",sta);
-				ucInvest.getAutoSum();
+				ucInvest.getAutoSum(headerData);
 			}else if(sta == "1"){
 				$(".auto_setForm").show();
 				$("#switch").attr("status",sta);
@@ -67,23 +75,23 @@ var ucInvest = {
 					content:res.content,
 				});
 				$(".auto_tips").html(ranking);
-				ucInvest.setForm();
+				ucInvest.setForm(headerData);
 			}
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 自动投标按钮打开、关闭
-	autoOpen : function(){
+	autoOpen : function(headerData){
 		$("#switch").on("click",function(){
 			var _this = $(this);
 			var sta = $(this).attr("status");
 			if($(this).is('.switch_off')){
-				ucInvest.getBank($(this));
+				ucInvest.getBank(headerData,$(this));
 			}else if(sta == "1" && $(this).is('.switch_on')){
 				console.log("已经开启 手动关闭");
 				$(".auto_setInp").remove();
-				ucInvest.closAuto($(this));
+				ucInvest.closAuto(headerData,$(this));
 			}else if(sta == "0" && $(this).is('.switch_on')){
 				console.log("没有开启 也没有保存");
 				$(".auto_setInp").remove();
@@ -93,36 +101,34 @@ var ucInvest = {
 		});
 	},
 	// 是否开通存管
-	getBank : function(el){
-		_apiInvest.getAutoBank(function(res){
-			if(res.code == 100000){
-				el.attr("class","switch_on");
-				$(".auto_ranking").show();
-				$(".auto_setForm").show();
-				var flag = res.content;
-				if(flag == false){
-					var banlHtml = '<div class="auto_deposit"><div class="auto_deposit_bg"></div><p>为了保障您的资金安全,请在充值、投资、提现前开通存管</p><a href="">立即激活存管用户</a></div>';
-					$(".auto_setBox").html(banlHtml);
-				}else{
-					autoinp = _td.renderHtml(autoInp,{});
-					$('.auto_setBox').html(autoinp);
-					$(".select_com").addClass('select');
-					ucInvest.setForm();
-				}
+	getBank : function(headerData,el){
+		_apiInvest.getAutoBank(headerData,function(res){
+			el.attr("class","switch_on");
+			$(".auto_ranking").show();
+			$(".auto_setForm").show();
+			var flag = res.content;
+			if(flag == false){
+				var banlHtml = '<div class="auto_deposit"><div class="auto_deposit_bg"></div><p>为了保障您的资金安全,请在充值、投资、提现前开通存管</p><a href="">立即激活存管用户</a></div>';
+				$(".auto_setBox").html(banlHtml);
+			}else{
+				autoinp = _td.renderHtml(autoInp,{});
+				$('.auto_setBox').html(autoinp);
+				$(".select_com").addClass('select');
+				ucInvest.setForm(headerData);
 			}
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	getAutoList : function(){
-		_apiInvest.getautoList(function(res){
+	getAutoList : function(headerData){
+		_apiInvest.autoLists(headerData,10,1,function(res){
 			list = _td.renderHtml(autoList,{
 				list:res.content.list,
 			});
 			$('#tbody_list').html(list);
 			ucInvest.trColor();
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getautoList(function(res){
+			_paging.paging("pageList",res.content.total,10,function(e){
+				_apiInvest.autoLists(headerData,10,e.current,function(res){
 					list = _td.renderHtml(autoList,{
 						list:res.content.list,
 					});
@@ -136,22 +142,19 @@ var ucInvest = {
 			console.log("请求失败");
 		});
 	},
-	closAuto : function(el){
-		_apiInvest.closeAuto(function(res){
-			if(res.code == 100000){
-				el.attr("class","switch_off");
-				el.attr("status","0");
-				$(".auto_ranking").hide();
-				$(".auto_setForm").hide();
-				ucInvest.getAutoSum();
-			}else{
-				alert("关闭失败");
-			}
-		},function(){
-			console.log("请求失败");
+	closAuto : function(headerData,el){
+		_apiInvest.closeAuto(headerData,function(res){
+			el.attr("class","switch_off");
+			el.attr("status","0");
+			$(".auto_ranking").hide();
+			$(".auto_setForm").hide();
+			ucInvest.getAutoSum(headerData);
+			ucInvest.setInpForm(headerData);
+		},function(err){
+			console.log(err);
 		});
 	},
-	setForm : function(){
+	setForm : function(headerData){
 		// 点击修改
 		$(".set_form").on("click",function(){
 			$(".select_com").addClass("select");
@@ -165,7 +168,7 @@ var ucInvest = {
 		ucInvest.customRadio();
 		ucInvest.customSelect();
 		ucInvest.tipsHover();
-		ucInvest.saveBtn();
+		ucInvest.saveBtn(headerData);
 		ucInvest.setInputMoney();
 
 	},
@@ -189,7 +192,7 @@ var ucInvest = {
 		});
 	},
 	// 保存按钮
-	saveBtn : function(){
+	saveBtn : function(headerData){
 		$(".save_btn").on("click",function(){
 			var minPeriod = $(".minPeriod").html();
 			var maxPeriod = $(".maxPeriod").html();
@@ -203,10 +206,18 @@ var ucInvest = {
 				minAccount = maxMoney;
 				maxAccount = minMoney;
 			}
-			_apiInvest.openAuto(function(res){
+			var param = {
+				minAccount : minAccount,
+				maxAccount : maxAccount,
+				minPeriod  : minPeriod,
+				maxPeriod  : maxPeriod,
+				useCoupon  : useCoupon,
+			};
+			_apiInvest.openAuto(headerData,param,function(res){
 				ucInvest.saveSub(minAccount,maxAccount);
-			},function(){
-
+				ucInvest.setInpForm(headerData);
+			},function(err){
+				console.log(err);
 			});
 		});
 	},

@@ -40,7 +40,7 @@
 			</dt>
 			<dd>
 				投资进度
-				<span class="barNum"></span>%
+				<span class="barNum"></span>
 			</dd>
 		</dl>
 	</div>
@@ -56,7 +56,7 @@
 				</div>
 			</li>
 			<li>
-				转让金额：<span class="tranMoney">{{account}}</span>元
+				转让金额：<span class="totalMoney">{{account}}</span>元
 			</li>
 			<li class="alli">
 				奖励金额：<span>{{reward}}元</span>

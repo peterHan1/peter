@@ -2,7 +2,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/invest_detail/index.js');
-
+var _details 		= require('util/invest_detail/index.js');
 var _td 			= require('util/td.js');
 var _paging 		= require('util/paging/index.js');
 var _apiInvest 		= require('api/trade-api.js');
@@ -23,14 +23,14 @@ var investDetails = {
 	},
 	addHtml : function(){
 		_apiInvest.getInvestBondDetails(1,function(res){
-			investDetails.setData(res);
+			_details.setDataBond(res);
 			listDetailsHtml = _td.renderHtml(investListBond,{
 				content:res.content,
 			});
 			$('.detail_top_left').html(listDetailsHtml);
 			var time = res.content.endTime;
 			investDetails.coundTime(time);
-			investDetails.setShow("detail_top_left");
+			_details.setShow("detail_top_left");
 			// 是否满标
 			if(res.content.finished == true){
 				transferred = _td.renderHtml(transferred,{
@@ -510,31 +510,6 @@ var investDetails = {
 			$("#sub_btn").attr("class","no_btn").val("存管清算时间，不能加入");
 		}
 	},
-	setData : function(res){
-		// 还款方式
-		var refunway = res.content.repaymentType;
-		if(refunway == "0"){
-			res.content.repaymentType = "等额本息";
-		}else if(refunway == "1"){
-			res.content.repaymentType = "按月付息";
-		}else if(refunway == "2"){
-			res.content.repaymentType = "按天付息";
-		}
-		// 投资期限单位
-		var periodunit = res.content.periodType;
-		if(periodunit == "0"){
-			res.content.periodType = "天";
-		}else if(periodunit == "1"){
-			res.content.periodType = "个月";
-		}else if(periodunit == "2"){
-			res.content.periodType = "年";
-		};
-		// 时间格式
-		var str = res.content.publishTime;
-		var oDate = new Date(str),oYear = oDate.getFullYear(),oMonth = oDate.getMonth()+1,oDay = oDate.getDate(),oTime = oYear + '-' +oMonth +'-'+ oDay;
-		res.content.publishTime = oTime;
-	},
-
 	// 三个通用
 	coundTime : function(time){
 		function times(time){
@@ -581,26 +556,6 @@ var investDetails = {
 			var s = date.getSeconds();
 			return times = y + m + d + h + f + s;
 		}
-	},
-	// 三个通用
-	setShow : function(cla){
-		var _this = $("." + cla);
-		// 加入进度
-		var totalM = _this.find('.tranMoney').html();
-		var resM =  _this.find('.lastMoney').html();
-		var plan = Math.floor((totalM-resM)/totalM*100);
-		if(plan == 0){
-			plan=100;
-		}else{
-			plan = plan;
-		};
-		_this.find($(".bar")).width(plan);
-		_this.find($(".barNum")).html(plan);
-		// 有无奖励
-		// var awardStatus = _this.find('.award').attr("award");
-		// if(awardStatus == 0){
-		// 	_this.find('.award').remove();
-		// }
 	},
 	// 三个通用
 	trColor : function(id){

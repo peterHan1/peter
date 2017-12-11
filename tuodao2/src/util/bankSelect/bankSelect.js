@@ -2,8 +2,8 @@ var _trade = require('api/trade-api.js');
 var _td = require('util/td.js');
 var dataBank = [];
 var headerData = {
-	accessId: _td.getAccess('accessId'),
-	accessKey: _td.getAccess('accessKey')
+	'accessId' : unescape(_td.getAccess('accessId')),
+	'accessKey' :unescape(_td.getAccess('accessKey'))
 };
 _trade.bankList(headerData, function(res) {
 	for (var j = 0; j < res.content.length; j++) {

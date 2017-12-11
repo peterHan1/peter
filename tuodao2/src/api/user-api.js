@@ -15,6 +15,7 @@ var _user = {
 			url     : _td.getServerUrl('api/router/user/getUserAccountInfo'),
 			accessId :headerData.accessId,
 			accessKey : headerData.accessKey,
+			// asyncType	: false,
 			success : resolve,
 			error   : reject
 		});
@@ -105,11 +106,22 @@ var _user = {
 		});
 	},
 	// 账户投资信息
-	getUserCon : function(resolve, reject){
+	getUserCon : function(headerData,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/user.json'),
-			// data 	: userData,
+			url     	: _td.getServerUrl('api/router/user/getUserAccountInfo'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
+		});
+	},
+	// 存量用户判断
+	getStockUserDeposit : function(headerData,resolve, reject){
+		_td.request({
+			method	: "post",
+			url     : _td.getServerUrl('api/router/ua/getStockUserDeposit'),
+			accessId:headerData.accessId,
+			accessKey:headerData.accessKey,
 			success : resolve,
 			error   : reject
 		});

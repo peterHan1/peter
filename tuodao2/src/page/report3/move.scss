@@ -1,0 +1,45 @@
+﻿@charset "utf-8";
+html{overflow:hidden;}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{font-family:"微软雅黑";font-size:12px;color:#000000;word-wrap:break-word;overflow:hidden;}
+button,input,select,textarea{font:12px/1.5  Arial, "宋体", Helvetica,  Verdana, sans-serif;word-wrap:break-word;color:#565756;}
+ul,li{list-style:none;margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6{font-weight:normal;font-size:100%;}
+img{border:none;border:0;vertical-align:middle;}
+a{text-decoration:none;outline:none;}
+p{margin:0;padding:0;}
+input,select,textarea{vertical-align:middle;*font-size:100%;}
+input{margin:0;outline:none;padding:0;}
+input::-ms-clear{display:none;}
+.clearfix:after{
+     content:".";       
+     display:block;       
+     height:0;       
+     clear:both;       
+     visibility:hidden;       
+
+}
+.clearfix{*zoom:1}
+.ddw{position:absolute;left:0;top:0;color:#000;font-size:16px;z-index:9999;}
+.ddw2{position:absolute;left:20px;top:0;color:#000;font-size:16px;z-index:9999;}
+.num_box{position:relative;}
+.num{color:#fff;font-size:50px;width:100%;text-align:center;position:relative;}
+.num p{position:absolute;top:0;left:50%;margin-left:-66px;}
+.num ul{width:100%;position:absolute;left:0;top:0;height:100%;}
+.num ul li{float:left;height:100%;position:relative;}
+#num_0{background:url(../../image/reports/2016/report1.png) center no-repeat}
+#num_1{ background:#e1f5ff url(../../image/reports/2016/report2.png) center no-repeat; }
+#num_2{ background:#e1f5ff url(../../image/reports/2016/report3.png) center no-repeat; }
+#num_3{ background:#e1f5ff url(../../image/reports/2016/report4.png) center no-repeat; }
+#num_4{ background:#e1f5ff url(../../image/reports/2016/report5.png) center no-repeat; }
+#num_5{ background:#e1f5ff url(../../image/reports/2016/report6.png) center no-repeat; }
+#num_6{ background:#e1f5ff url(../../image/reports/2016/report7.png) center no-repeat; }
+#num_7{ background:#e1f5ff url(../../image/reports/2016/report8.png) center no-repeat; }
+#num_8{ background:#e1f5ff url(../../image/reports/2016/report9.png) center no-repeat; }
+#num_9{ background:#e1f5ff url(../../image/reports/2016/report10.png) center no-repeat; }
+#num_10{ background:#e1f5ff url(../../image/reports/2016/report11.png) center no-repeat; }
+#num_11{ background:#1b99ef url(../../image/reports/2016/report12.png) center no-repeat; }
+
+.fixed_r{position:absolute;right:10px;top:200px;z-index:999;}
+.fixed_r li{width:24px;height:24px;background:url(../../image/reports/2016/dian.png) no-repeat;cursor:pointer;margin-bottom: 5px}
+.fixed_r li.on{background:url(../../image/reports/2016/dian.png) -24px 0}

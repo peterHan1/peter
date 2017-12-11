@@ -11,10 +11,15 @@ var bondDelRet 	= require('./bondDelRet.string');
 
 var ucInvest = {
 	init : function(){
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		var tenderId = _td.getUrlParam("tender");
 		this.eventFn();
 		this.urlEach();
-		this.detailTopHtml();
-		this.detailRetHtml();
+		this.detailTopHtml(headerData,tenderId);
+		this.detailRetHtml(headerData,tenderId);
 	},
 	urlEach : function(){
 		$('.bond_tab a').each(function () {
@@ -28,8 +33,8 @@ var ucInvest = {
 
 		});
 	},
-	detailTopHtml : function(){
-		_apiInvest.getBondTop(1,function(res){
+	detailTopHtml : function(headerData,tenderId){
+		_apiInvest.getBondTop(headerData,tenderId,function(res){
 			ucInvest.setType(res);
 			res.content.repayLastTime = ucInvest.setData(res.content.repayLastTime);
 			res.content.tenderTime = ucInvest.setData(res.content.tenderTime);
@@ -46,29 +51,40 @@ var ucInvest = {
 				$(".return_satus").html("[回款中]");
 			}
 			ucInvest.tipsHover();
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	detailRetHtml : function(){
-		_apiInvest.getBondRet(1,1,5,function(res){
+	detailRetHtml : function(headerData,tenderId){
+		_apiInvest.getBondRet(headerData,tenderId,5,1,function(res){
 			res.content.preCollectionTime = ucInvest.setData(res.content.preCollectionTime);
 			listBondRetHtml = _td.renderHtml(bondDelRet,{
 				list:res.content.list,
 			});
 			$("#tbody_list").html(listBondRetHtml);
+			if(res.content.list == null){
+				ucInvest.dataNull("tbody_list","5",str);
+			}
 			ucInvest.trColor();
 			ucInvest.setStatus();
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				listBondRetHtml = _td.renderHtml(bondDelRet,{
-					list:res.content.list,
+			_paging.paging("pageList",res.content.total,1,function(e){
+				_apiInvest.getBondRet(headerData,tenderId,5,e.current,function(res){
+					res.content.preCollectionTime = ucInvest.setData(res.content.preCollectionTime);
+					listBondRetHtml = _td.renderHtml(bondDelRet,{
+						list:res.content.list,
+					});
+					$("#tbody_list").html(listBondRetHtml);
+					if(res.content.list == null){
+						ucInvest.dataNull("tbody_list","5",str);
+					}
+					ucInvest.trColor();
+					ucInvest.setStatus();
+				},function(err){
+					console.log(err);
 				});
-				$("#tbody_list").html(listBondRetHtml);
-				ucInvest.trColor();
-				ucInvest.setStatus();
 			});
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	setType : function(res){
@@ -109,6 +125,10 @@ var ucInvest = {
 		if (ss < 10) clock += "0";
 		clock += ss + " ";
 		return clock;
+	},
+	dataNull : function(el,num,str){
+		var datanull = '<tr class="null_data"><td colspan='+num+'><div class="null_data_bg"></div><p>'+str+'</p></td></tr>';
+		$("#"+el).html(datanull);
 	},
 	eventFn : function(){
 		$(".sift_detailsBTit li").on('click',function(){

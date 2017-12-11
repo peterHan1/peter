@@ -10,43 +10,63 @@ var autoTit 	= 	require('./autoDel.string');
 var autoList	= 	require('./autoDelList.string');
 var ucInvest = {
 	init : function(){
-		this.addTopHtml();
-		this.addListHtml();
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		var tenderId = _td.getUrlParam("tender");
+		this.addTopHtml(headerData,tenderId);
+		this.addListHtml(headerData,tenderId);
 	},
-	addTopHtml : function(){
-		_apiInvest.getAutoTop(1,function(res){
+	addTopHtml : function(headerData,id){
+		_apiInvest.getAutoTop(headerData,id,function(res){
+			ucInvest.setShow(res);
 			autoDelTop = _td.renderHtml(autoTit,{
 				content:res.content,
 			});
 			$(".autoDetails_top").html(autoDelTop);
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	addListHtml : function(){
-		_apiInvest.getAutoList(1,1,10,function(res){
-			console.log(res);
+	addListHtml : function(headerData,id){
+		_apiInvest.getAutoList(headerData,id,1,1,function(res){
 			autoDelList = _td.renderHtml(autoList,{
 				list:res.content.list,
 			});
 			$("#tbody_list").html(autoDelList);
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getAutoList(1,e.current,10,function(res){
+			_paging.paging("pageList",res.content.total,1,function(e){
+				_apiInvest.getAutoList(headerData,id,1,e.current,function(res){
 					autoDelList = _td.renderHtml(autoList,{
 						list:res.content.list,
 					});
 					$("#tbody_list").html(autoDelList);
 					ucInvest.tipsHover();
 					ucInvest.trColor();
-				},function(){
-					console.log("请求失败");
+				},function(err){
+					console.log(err);
 				});
 			});
 			ucInvest.tipsHover();
 			ucInvest.trColor();
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
+	},
+	setShow : function(res){
+		var type = res.content.voucherType;
+		var money = res.content.voucherMoney;
+		// 还款方式
+		if(type == "0"){
+			res.content.voucherType = "-";
+		}else if(type == "1"){
+			res.content.voucherType = "抵用券";
+		}else if(type == "2"){
+			res.content.voucherType = "加息券";
+		}
+		if(money == "0"){
+			res.content.voucherMoney = "";
+		}
 	},
 	tipsHover : function(){
 		$(".td_tips").mouseover(function(){

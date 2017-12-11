@@ -20,16 +20,24 @@ var _paging 	= require('util/paging/index.js');
 
 var uc = {
 	init : function(){
-		this.signIn();
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		console.log("accessId: " + headerData.accessId);
+		console.log("accessKey: " + headerData.accessKey);
+		this.signIn(headerData);
 		this.trColor();
 		this.recommend();
-		this.addMoneyHtml();
-		this.monthStatus();
+		this.addMoneyHtml(headerData);
+		this.monthStatus(headerData);
 	},
-	signIn : function(){
-		_apigetOper.getUserOper(function(res){
+	signIn : function(headerData){
+		_apigetOper.getUserOper(headerData,function(res){
 			var day = res.content[0].cumulativeSignTmes;
-			if(day < 10){
+			if(day == null || day == undefined){
+				res.content[0].cumulativeSignTmes = "0";
+			}else if(day < 10){
 				res.content[0].cumulativeSignTmes = "0"+day;
 			};
 			userSigntHtml = _td.renderHtml(getUsersign,{
@@ -41,27 +49,26 @@ var uc = {
 			$('.sign').html(userSigntHtml);
 			$('.welfare').html(userIntHtml);
 			uc.numStatus();
-			uc.signInClick();
-			uc.singStatus();
+			uc.signInClick(headerData);
+			uc.singStatus(headerData);
 		},function(){
 			console.log("请求失败");
 		});
 	},
 	numStatus : function(){
 		$.each($(".p_num"),function(i){
-			if($(this).attr("num") == 0){
+			if($(this).attr("num") <= 0){
 				$(this).addClass("num_null");
 			}
 		});
 	},
-	singStatus : function(){
-		_apigetOper.userSign(function(res){
+	singStatus : function(headerData){
+		_apigetOper.userSign(headerData,function(res){
 			var num = res.content.signScore;
 			var bool = res.content.ifSign;
 			if(bool == true){
 				$("#sigin_clik").addClass('sigin_btn_yet');
 				$("#sigin_clik").find('span').html("今日已签到，积分+"+num);
-				
 			}else{
 				$("#sigin_clik").addClass('sigin_clik');
 			}
@@ -70,15 +77,15 @@ var uc = {
 			console.log("请求失败");
 		});
 	},
-	signInClick : function(){
+	signInClick : function(headerData){
 		// 签到
 		$("#sigin_clik").on("click",function(){
 			var _this = $(this);
 			if($(this).is('.sigin_btn_yet')){
 				return false;
 			}else{
-				_apigetOper.userSign(function(res){
-					var num = res.content.signScore;
+				_apigetOper.addUserSign(headerData,function(res){
+					var num = res.content;
 					uc.signAnimate(_this,num);
 				},function(){
 					console.log("签到失败");
@@ -87,8 +94,8 @@ var uc = {
 		});
 	},
 	signAnimate : function(el,num){
-		var day = parseInt($(".day2").html())+1;
-		var integral = parseInt($(".sign_integral").html()) + (num*1);
+		var day = $(".day2").html()*1 + 1;
+		var integral = $(".sign_integral").html()*1 + (num*1);
 		if (day < 10) {
 			day = "0" + day;
 		}
@@ -110,16 +117,8 @@ var uc = {
 			$(".day").css("marginTop", "0");
 		});
 	},
-	addMoneyHtml : function(){
-		var userId=document.cookie.split(";")[0].split("=")[1];
-		var userData = {
-			userId : "18539123451-lwvm5mx68dr2wxzqgnuc",
-			loginPassword:"e10adc3949ba59abbe56e057f20f883e",
-			loginSource:1
-
-		};
-		_apiReturn.getInvestUc(function(res){
-			console.log(res);
+	addMoneyHtml : function(headerData){
+		_apiReturn.getInvestUc(headerData,function(res){
 			var dueInPrincipal = res.content.totalAwaitCapitalValue;
 			var dueInInterest = res.content.totalAwaitInterestValue;
 			var usableFund = res.content.totalBalanceValue;
@@ -135,7 +134,7 @@ var uc = {
 			uc.tipsHover();
 			uc.addEchar(dueInPrincipal,dueInInterest,usableFund,freezeFund);
 		},function(){
-			console.log("请求失败");
+			console.log("666 请求失败");
 		});
 	},
 	addEchar : function(dueInPrincipal,dueInInterest,usableFund,freezeFund){
@@ -177,51 +176,49 @@ var uc = {
 		myChart.setOption(option);
 	},
 	// 月份日期状态
-	monthStatus : function(){
+	monthStatus : function(headerData){
 		_returnmon.returnMoney();
 		var year = $(".f_year").html();
 		var month = $(".f_month").html();
 		var dataMonth = year+"-"+month;
-		console.log("初始化 年-月：" + dataMonth);
-		uc.dayStatus();
-		uc.getMoney(1,1);
-		uc.getReturnList(dataMonth,1,5,1);
+		uc.dayStatus(headerData,dataMonth);
+		uc.getMoney(headerData,dataMonth);
+		uc.getReturnList(headerData,dataMonth,1,4,1);
 		_returnmon.clickMontn({
 			left: "data_top_btn_l",
 			right: "data_top_btn_r",
 			callback: function(yy,mm) {
 				dataMonth = yy+"-"+mm;
 				console.log("点击后 年-月：" + dataMonth);
-				uc.dayStatus();
-				uc.getMoney(1,1);
-				uc.getReturnList(dataMonth,1,5,1);
-				uc.dayContent();
+				uc.dayStatus(headerData,dataMonth);
+				uc.getMoney(headerData,dataMonth);
+				uc.getReturnList(headerData,dataMonth,1,4,1);
+				uc.dayContent(headerData);
 			}
 		});
-		uc.dayContent();
+		uc.dayContent(headerData);
 	},
 	// 点击某天的信息展示
-	dayContent : function(){
+	dayContent : function(headerData){
 		_returnmon.clickDay({
 			elm: "data_number",
 			callback: function(day) {
 				var getday = day;
-				uc.getMoney(getday,0);
-				uc.getReturnList(getday,1,5,1);
+				uc.getReturnList(headerData,getday,0,4,1);
 			}
 		});
 	},
 	// 获取本息
-	getMoney : function(day,type){
-		_apiReturn.getMoney(day,type,function(res){
-			$(".re_money").html(res.content.preCollection);
-		},function(){
-			console.log("请求失败");
+	getMoney : function(headerData,month){
+		_apiReturn.getMonthMoney(headerData,month,function(res){
+			$(".re_money").html(res.content);
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 给当月某天有回款的添加样式
-	dayStatus : function(){
-		_apiReturn.getMonth(function(res){
+	dayStatus : function(headerData,month){
+		_apiReturn.getMonth(headerData,month,function(res){
 			$.each(res.content,function(i,key){
 				var day = key.day;
 				var status = key.status;
@@ -234,19 +231,20 @@ var uc = {
 				$(".data_table .data_number").eq(day-1).addClass(clas);
 
 			});
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	getReturnList : function(day,type,pagesize,current){
-		_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+	getReturnList : function(headerData,day,type,pagesize,current){
+		_apiReturn.getRturnList(headerData,day,type,pagesize,current,function(res){
 			uc.setType(res);
+			console.log(res);
 			retList = _td.renderHtml(returnList,{
 				list:res.content.list,
 			});
 			$('.re_money_tbody').html(retList);
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+			_paging.paging("pageList",res.content.total,pagesize,function(e){
+				_apiReturn.getRturnList(headerData,day,type,pagesize,e.current,function(res){
 					uc.setType(res);
 					retList = _td.renderHtml(returnList,{
 						list:res.content.list,

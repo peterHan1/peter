@@ -12,36 +12,44 @@ var investSift 	= require('./Invest_sift.string');
 
 var ucInvest = {
 	init : function(){
-		var userId = "18539123451-lwvm5mx68dr2wxzqgnuc";
-		this.eventFn(userId);
-		this.addHtml(userId,"","","","","");
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		this.eventFn(headerData);
+		this.addHtml(headerData,"1","","",10,1);
 	},
-	addHtml : function(userId,sta,startime,endtime,pagesize,current){
-		_apiInvest.getSift(userId,sta,startime,endtime,pagesize,current,function(res){
-			// if(res.content != null){
-				console.log(res);
+	addHtml : function(headerData,sta,startime,endtime,pagesize,current){
+		_apiInvest.getSift(headerData,sta,startime,endtime,pagesize,current,function(res){
+			console.log(res);
+			if(res.content == null){
+				ucInvest.dataNull("tbody_list","8","当前没有加入记录");
+				if($(".pageList").length > 0){
+					$(".pageList").remove();
+				}
+			}else{
 				ucInvest.setSta(res);
 				listSiftHtml = _td.renderHtml(investSift,{
 					list:res.content.list,
 				});
-				$("#tbody_list").html(listSiftHtml);
+				$(".table_list").html(listSiftHtml);
 				ucInvest.setShow("td_sta");
-				_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-					_apiInvest.getSift(userId,sta,startime,endtime,pagesize,e.current,function(res){
+				_paging.paging("pageList",res.content.total,10,function(e){
+					_apiInvest.getSift(headerData,sta,startime,endtime,pagesize,e.current,function(res){
 						listSiftHtml = _td.renderHtml(investSift,{
 							list:res.content.list,
 						});
-						$("#tbody_list").html(listSiftHtml);
+						$(".table_list").html(listSiftHtml);
+						if(res.content == null){
+							ucInvest.dataNull("tbody_list","8","当前没有加入记录");
+						}
 						ucInvest.tipsHover();
 						ucInvest.trColor();
 					});
 				});
 				ucInvest.tipsHover();
 				ucInvest.trColor();
-			// }else{
-				// var dataNones='<tr><td colspan="8"><div class="null_data" colspan="8"><div class="null_data_bg"></div><p>当前没有加入记录</p></div></td></tr>';
-				// $("#tbody_list").html(dataNones);
-			// }
+			}
 		},function(){
 			console.log("请求失败");
 		});
@@ -76,7 +84,7 @@ var ucInvest = {
 			}
 		});
 	},
-	eventFn : function(userId){
+	eventFn : function(headerData){
 		$(".start_date").on("click",function(){
 			var _this = $(this);
 			var sta = $(this).parent(".uc_invest_tabR").attr("status");
@@ -87,8 +95,7 @@ var ucInvest = {
 				// 选择时间后回调
 			 	choose: function(dates){
 			 		$("#start_date").attr("startDate",dates);
-					ucInvest.addHtml(userId,sta,dates,endTime,"","");
-
+					ucInvest.addHtml(headerData,sta,dates,endTime,10,1);
 			  	}
 			});
 		});
@@ -102,7 +109,7 @@ var ucInvest = {
 				// 选择时间后回调
 			 	choose: function(dates){
 			 		$("#end_date").attr("endDate",dates);
-					ucInvest.addHtml(userId,sta,startTime,dates,"","");
+					ucInvest.addHtml(headerData,sta,startTime,dates,10,1);
 			  	}
 			});
 		});
@@ -110,8 +117,12 @@ var ucInvest = {
 			var sta = $(this).attr("status");
 			$(".uc_invest_tabR").attr("status",sta);
 			$(this).addClass('on').siblings('li').removeClass('on');
-			ucInvest.addHtml(userId,sta,"","","","");
+			ucInvest.addHtml(headerData,sta,"","",10,1);
 		});
+	},
+	dataNull : function(el,num,str){
+		var datanull = '<tr class="null_data"><td colspan='+num+'><div class="null_data_bg"></div><p>'+str+'</p></td></tr>';
+		$("#"+el).html(datanull);
 	},
 	tipsHover : function(){
 		$(".td_name").mouseover(function(){

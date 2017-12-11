@@ -1,10 +1,6 @@
 @import "../common/mixin";
-body {
-  background-color: #a1a1a1;
-}
 .reports1701 {
   width: 1100px;
-  height: 9000px;
   margin: 0 auto;
   .item1 {
     width: 1100px;
@@ -340,71 +336,218 @@ body {
   .img1 {
     width: 100%;
     height: 728px;
-    background: url(../../image/reports/month_10/pic01.png) center no-repeat;
+    background: url(../../image/reports/month_10/p01.png) center no-repeat;
   }
   .img2 {
     width: 100%;
     height: 1008px;
-    background: url(../../image/reports/month_10/pic02.png) center no-repeat;
+    background: url(../../image/reports/month_10/p02.png) center no-repeat;
   }
   .img3 {
     width: 100%;
     height: 579px;
-    background: url(../../image/reports/month_10/pic03.png) center no-repeat;
+    background: url(../../image/reports/month_10/p03.png) center no-repeat;
   }
   .img4 {
     width: 100%;
     height: 766px;
-    background: url(../../image/reports/month_10/pic04.png) center no-repeat;
+    background: url(../../image/reports/month_10/p04.png) center no-repeat;
   }
   .img5 {
     width: 100%;
     height: 1755px;
-    background: url(../../image/reports/month_10/pic05.png) center no-repeat;
+    background: url(../../image/reports/month_10/p05.png) center no-repeat;
   }
   .img6 {
     width: 100%;
     height: 1111px;
-    background: url(../../image/reports/month_10/pic06.png) center no-repeat;
+    background: url(../../image/reports/month_10/p06.png) center no-repeat;
   }
   .img7 {
     width: 100%;
     height: 777px;
-    background: url(../../image/reports/month_10/pic07.png) center no-repeat;
+    background: url(../../image/reports/month_10/p07.png) center no-repeat;
   }
   .img8 {
     width: 100%;
     height: 778px;
-    background: url(../../image/reports/month_10/pic08.png) center no-repeat;
+    background: url(../../image/reports/month_10/p08.png) center no-repeat;
   }
   .img9 {
     width: 100%;
     height: 795px;
-    background: url(../../image/reports/month_10/pic09.png) center no-repeat;
+    background: url(../../image/reports/month_10/p09.png) center no-repeat;
   }
   .img10 {
     width: 100%;
     height: 1686px;
-    background: url(../../image/reports/month_10/pic10.png) center no-repeat;
+    background: url(../../image/reports/month_10/p10.png) center no-repeat;
   }
   .img11 {
     width: 100%;
     height: 1386px;
-    background: url(../../image/reports/month_10/pic11.png) center no-repeat;
+    background: url(../../image/reports/month_10/p11.png) center no-repeat;
   }
   .img12 {
     width: 100%;
     height: 924px;
-    background: url(../../image/reports/month_10/pic12.png) center no-repeat;
+    background: url(../../image/reports/month_10/p12.png) center no-repeat;
   }
   .img13 {
     width: 100%;
     height: 1128px;
-    background: url(../../image/reports/month_10/pic13.png) center no-repeat;
+    background: url(../../image/reports/month_10/p13.png) center no-repeat;
   }
   .img14 {
     width: 100%;
     height: 511px;
-    background: url(../../image/reports/month_10/pic14.png) center no-repeat;
+    background: url(../../image/reports/month_10/p14.png) center no-repeat;
+  }
+}
+// 2017年11月份
+.reports1711m {
+  width: 100%;
+  .img1 {
+    width: 100%;
+    height: 400px;
+    background: url(../../image/reports/month_11/pic01.png) center no-repeat;
+  }
+  .img2 {
+    width: 100%;
+    height: 662px;
+    background: url(../../image/reports/month_11/pic02.png) center no-repeat;
+  }
+  .img3 {
+    width: 100%;
+    height: 944px;
+    background: url(../../image/reports/month_11/pic03.png) center no-repeat;
+  }
+  .img4 {
+    width: 100%;
+    height: 1232px;
+    background: url(../../image/reports/month_11/pic04.png) center no-repeat;
+  }
+  .img5 {
+    width: 100%;
+    height: 890px;
+    background: url(../../image/reports/month_11/pic05.png) center no-repeat;
+  }
+  .img6 {
+    width: 100%;
+    height: 511px;
+    background: url(../../image/reports/month_11/pic06.png) center no-repeat;
+  }
+  .img7 {
+    width: 100%;
+    height: 787px;
+    background: url(../../image/reports/month_11/pic07.png) center no-repeat;
+  }
+  .img8 {
+    width: 100%;
+    height: 441px;
+    background: url(../../image/reports/month_11/pic08.png) center no-repeat;
+  }
+  .img9 {
+    width: 100%;
+    height: 996px;
+    background: url(../../image/reports/month_11/pic09.png) center no-repeat;
+  }
+  .img10 {
+    width: 100%;
+    height: 684px;
+    background: url(../../image/reports/month_11/pic10.png) center no-repeat;
+  }
+  .img11 {
+    width: 100%;
+    height: 367px;
+    background: url(../../image/reports/month_11/pic11.png) center no-repeat;
+  }
+}
+// 2016年第一季度
+.report201601s{
+  width: 100%;
+  .img1{
+    width:100%;
+    height:1046px;
+    background: url(../../image/reports/2016/2016_1_01.jpg) center no-repeat;
+  }
+  .img2 {
+    width: 100%;
+    height: 1354px;
+    background: url(../../image/reports/2016/2016_1_02.jpg) center no-repeat;
+  }
+  .img3 {
+    width: 100%;
+    height: 1466px;
+     background: url(../../image/reports/2016/2016_1_03.jpg) center no-repeat;
+  }
+  .img4 {
+    width: 100%;
+    height: 1432px;
+     background: url(../../image/reports/2016/2016_1_04.jpg) center no-repeat;
+  }
+  .img5 {
+    width: 100%;
+    height: 1482px;
+     background: url(../../image/reports/2016/2016_1_05.jpg) center no-repeat;
+  }
+  .img6 {
+    width: 100%;
+    height: 1482px;
+     background: url(../../image/reports/2016/2016_1_06.jpg) center no-repeat;
+  }
+  .img7 {
+    width: 100%;
+    height: 1526px;
+    background: url(../../image/reports/2016/2016_1_07.jpg) center no-repeat;
+  }
+  .img8 {
+    width: 100%;
+    height: 976px;
+    background: url(../../image/reports/2016/2016_1_08.jpg) center no-repeat;
+  }
+  .img9 {
+    width: 100%;
+    height: 854px;
+    background: url(../../image/reports/2016/2016_1_09.jpg) center no-repeat;
+  }
+  .img10 {
+    width: 100%;
+    height: 850px;
+     background: url(../../image/reports/2016/2016_1_10.jpg) center no-repeat;
+  }
+  .img11 {
+    width: 100%;
+    height: 892px;
+     background: url(../../image/reports/2016/2016_1_11.jpg) center no-repeat;
+  }
+}
+// 2016年第二季度
+.report201602s{
+  width: 100%;
+  .img1{
+    width:100%;
+    height:2584px;
+    background: url(../../image/reports/2016/2016_2_01.jpg) center no-repeat;
+  }
+  .img2 {
+    width: 100%;
+    height: 1931px;
+    background: url(../../image/reports/2016/2016_2_02.jpg) center no-repeat;
+  }
+  .img3 {
+    width: 100%;
+    height: 1835px;
+     background: url(../../image/reports/2016/2016_2_03.jpg) center no-repeat;
+  }
+  .img4 {
+    width: 100%;
+    height: 2453px;
+     background: url(../../image/reports/2016/2016_2_04.jpg) center no-repeat;
+  }
+  .img5 {
+    width: 100%;
+    height: 1844px;
+     background: url(../../image/reports/2016/2016_2_05.jpg) center no-repeat;
   }
 }

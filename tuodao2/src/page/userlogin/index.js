@@ -120,13 +120,15 @@ var loginPage = {
 		if (validateResult.status) {
 			// console.log(validateResult.msg);
 			_apiUser.login(formData, function(res) {
+				// 登录成功存值
+				document.cookie='accessId='+escape(res.content.accessId);
+				document.cookie='accessKey='+escape(res.content.accessKey);
 				var cookie = {
 					accessId: res.content.accessId,
 					accessKey: res.content.accessKey
 				};
-				_td.setAccess(cookie);
+				// _td.setAccess(cookie);
 				window.location.href = _td.getUrlParam('redirect') || './index.html';
-				// return false;
 			}, function(err) {
 				// console.log(errMsg);
 				formError.allShow(err.msg);

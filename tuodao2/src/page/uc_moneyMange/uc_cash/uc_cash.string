@@ -6,6 +6,6 @@
 		<td>{{realAccount}}</td>
 		<td>{{fee}}</td>
 		<td>{{status}}</td>
-		<td class="bq">已保全</td>
+		<td class="bq"><a href="#">已保全</a></td>
 	</tr>
 {{/list}}

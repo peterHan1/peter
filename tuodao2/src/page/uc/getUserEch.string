@@ -59,8 +59,8 @@
 			<div class="hint">
 				<i class="iconfont">&#xe68d;</i>
 				<div class="tips left-tips">
-					<p>投资精选计划冻结金额：<b>0.00</b>元</p>
-					<p>投资散标冻结金额：<b>0.00</b>元</p>
+					<p>投资精选计划冻结金额：<b>{{totalPlanTenderFrost}}</b>元</p>
+					<p>投资散标冻结金额：<b>{{totalTenderFrost}}</b>元</p>
 					<p>提现冻结金额：<b>{{totalCashFrost}}</b>元</p>
 				</div>
 			</div>

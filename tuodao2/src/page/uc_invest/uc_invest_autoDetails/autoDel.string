@@ -1,6 +1,6 @@
 {{#content}}
 <div class="record_tit">
-	<a href="###" class="iconfont">&#xe6bb;</a>
+	<a href="uc_invest_auto.html?record" class="iconfont">&#xe6bb;</a>
 	<p>分散投资记录 ( {{addTime}} )</p>
 </div>
 <div class="record_con">
@@ -16,7 +16,7 @@
 			<tr>
 				<td>{{tenderMoney}}</td>
 				<td>{{minPeriod}}-{{maxPeriod}}</td>
-				<td class="td_font"><span>1%</span>加息券</td>
+				<td class="td_font"><span>{{voucherMoney}}</span>{{voucherType}}</td>
 			</tr>
 		</tbody>
 	</table>

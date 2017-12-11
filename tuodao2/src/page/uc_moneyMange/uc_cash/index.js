@@ -47,6 +47,7 @@ var cash = {
 		this.bindEvent();
 		this.btnHover();
 		this.castList();
+		this.cashTime();
 		this.load();
 		this.tabCut();
 		this.cashButton();
@@ -250,19 +251,6 @@ var cash = {
 			} else {
 				$(".qs_time").hide();
 				times = true;
-				// 提现到账时间
-				var myDate = new Date();
-				myDate = myDate.getHours();
-				if (0 <= myDate <= 9) {
-					$(".btn").val("当日9点到账");
-					$(".cash_success .dz_time i").html("当日9点到账");
-				} else if (9 < myDate <= 21) {
-					$(".btn").val("实时到账");
-					$(".cash_success .dz_time i").html("实时到账");
-				} else {
-					$(".btn").val("次日9点到账");
-					$(".cash_success .dz_time i").html("次日9点到账");
-				}
 			}
 			// 存管开通状态
 			if (res.content.status == 0) {
@@ -272,6 +260,22 @@ var cash = {
 				return;
 			}
 		});
+	},
+	cashTime: function() {
+		// 提现到账时间
+		var myDate = new Date();
+		myDate = myDate.getHours();
+		console.log(myDate);
+		if (0 <= myDate && myDate <= 9) {
+			$(".btn").val("当日9点到账");
+			$(".cash_success .dz_time i").html("当日9点到账");
+		} else if (9 < myDate && myDate <= 21) {
+			$(".btn").val("实时到账");
+			$(".cash_success .dz_time i").html("实时到账");
+		} else {
+			$(".btn").val("次日9点到账");
+			$(".cash_success .dz_time i").html("次日9点到账");
+		}
 	},
 	addColor: function() {
 		$(".cashlist tr").each(function() {

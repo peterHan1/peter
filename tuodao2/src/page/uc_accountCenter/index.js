@@ -12,7 +12,6 @@ var _user = require('api/user-api.js');
 var accountSet = {
 	init: function() {
 		this.load();
-		this.inputMutual();
 		this.inputDel();
 		this.uploadPhoto();
 		this.addAdress();
@@ -80,13 +79,6 @@ var accountSet = {
 				$(".adr_box .adr_adr span").html(consigneeAddress);
 			}
 		});
-	},
-	// input框交互样式
-	inputMutual: function() {
-		_inp.focus("input");
-		_inp.blur("input");
-		_inp.mouseover("input");
-		_inp.mouseleave("input");
 	},
 	// input框输入时删除文本按钮
 	inputDel: function() {

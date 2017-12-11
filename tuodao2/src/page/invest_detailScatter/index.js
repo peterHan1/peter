@@ -2,9 +2,8 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/fancybox/source/index.js');
-require('util/invest_detail/index.js');
 
-
+var _details 			= require('util/invest_detail/index.js');
 var _td 				= require('util/td.js');
 var _paging 			= require('util/paging/index.js');
 var _apiInvest 			= require('api/product-api.js');
@@ -31,12 +30,12 @@ var investDetails = {
 	addHtml : function(){
 		// 获取项目金额
 		_apiInvest.getInvestListDetails(1,function(res){
-			investDetails.setData(res);
+			_details.setData(res);
 			listDetailsHtml = _td.renderHtml(investListScatter,{
 				content:res.content,
 			});
 			$('.detail_top_left').html(listDetailsHtml);
-			investDetails.setShow("detail_top_left");
+			_details.setShow("detail_top_left");
 			if(res.content.finished == true){
 				// 是否满标 不需要判断登录
 				_apiTrade.getScatterFinis(function(res){
@@ -73,57 +72,8 @@ var investDetails = {
 
 		});
 	},
-	setData : function(res){
-		// 还款方式
-		var refunway = res.content.refundWay;
-		if(refunway == "0"){
-			res.content.refundWay = "等额本息";
-		}else if(refunway == "1"){
-			res.content.refundWay = "按月付息";
-		}else if(refunway == "2"){
-			res.content.refundWay = "按天付息";
-		}
-		// 项目类型
-		var product = res.content.productType;
-		if(product == "0"){
-			res.content.productType = "散标项目";
-		}else if(product == "1"){
-			res.content.productType = "精选计划";
-		}
-		// 投资期限单位
-		var periodunit = res.content.periodUnit;
-		if(periodunit == "0"){
-			res.content.periodUnit = "天";
-		}else if(periodunit == "1"){
-			res.content.periodUnit = "个月";
-		}else if(periodunit == "2"){
-			res.content.periodUnit = "年";
-		};
-	},
-	// 三个通用
-	setShow : function(cla){
-		var _this = $("." + cla);
-		// 加入进度
-		var totalM = _this.find('.totalMoney').html();
-		var resM =  _this.find('.lastMoney').html();
-		var plan = Math.floor((totalM-resM)/totalM*100);
-		if(plan == 0){
-			plan=100;
-		}else{
-			plan = plan;
-		};
-		_this.find($(".bar")).width(plan);
-		_this.find($(".barNum")).html(plan + "%");
-		// 有无奖励
-		/*var awardStatus = _this.find('.award').attr("award");
-		if(awardStatus == 0){
-			_this.find('.award').remove();
-		}else if(awardStatus == 1){
-			$(".unit").html("元");
-		}else if(awardStatus == 2){
-			$(".unit").html("%");
-		}*/
-	},
+	
+	
 	getUser : function(isapp,lastMoney,cleanTime,defineType){
 		_apiUser.getUserCon(function(res){
 			// 登录状态

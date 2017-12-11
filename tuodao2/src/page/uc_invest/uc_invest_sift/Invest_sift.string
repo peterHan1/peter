@@ -1,16 +1,33 @@
-{{#list}}
-<tr>
-	<td class="padd_left">NO.{{borrowNid}}</td>
-	<td class="td_name"><a href="uc_invest_siftDetails.html">{{productName}}</a>
-	<div class="tips left-tips">
-		{{productName}}
-	</div>
-	</td>
-	<td>{{addTime}}</td>
-	<td>{{preAccount}}</td>
-	<td>{{preAccountInterest}}</td>
-	<td>{{useVoucherRemark}}</td>
-	<td class="td_sta">{{status}}</td>
-	<td class="td_details"><a href="uc_invest_siftDetails.html?justId={{tenderId}}&status={{status}}">查看详情</a></td>
-</tr>
-{{/list}}
+<table>
+	<thead>
+		<tr>
+			<th class="padd_left">编号</th>
+			<th>项目名称</th>
+			<th>加入时间</th>
+			<th>加入金额(元)</th>
+			<th>预期收益(元)</th>
+			<th>优惠券</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody id="tbody_list">
+		{{#list}}
+		<tr>
+			<td class="padd_left">NO.{{borrowNid}}</td>
+			<td class="td_name"><a href="uc_invest_siftDetails.html">{{productName}}</a>
+			<div class="tips left-tips">
+				{{productName}}
+			</div>
+			</td>
+			<td>{{addTime}}</td>
+			<td>{{preAccount}}</td>
+			<td>{{preAccountInterest}}</td>
+			<td>{{useVoucherRemark}}</td>
+			<td class="td_sta">{{status}}</td>
+			<td class="td_details"><a href="uc_invest_siftDetails.html?justId={{tenderId}}&status={{status}}">查看详情</a></td>
+		</tr>
+		{{/list}}
+	</tbody>
+</table>
+<div class="pageList"></div>

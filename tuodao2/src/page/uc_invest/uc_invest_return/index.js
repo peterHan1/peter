@@ -12,65 +12,69 @@ var returnList 	= 	require('./returnList.string');
 
 var ucInvest = {
 	init : function(){
-		this.sumMoney();
-		this.monthStatus();
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		this.sumMoney(headerData);
+		this.monthStatus(headerData);
 	},
 
 	// 待收总额
-	sumMoney : function(){
-		_apiReturn.getsumMoney(function(res){
+	sumMoney : function(headerData){
+		_apiReturn.getsumMoney(headerData,function(res){
 			$(".sum_money").html(res.content);
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 月份日期状态
-	monthStatus : function(){
+	monthStatus : function(headerData){
 		_returnmon.returnMoney();
 		var year = $(".f_year").html();
 		var month = $(".f_month").html();
 		var dataMonth = year+"-"+month;
-		console.log("初始化 年-月：" + dataMonth);
-		ucInvest.dayStatus();
-		ucInvest.getMoney(1,1);
-		ucInvest.getReturnList(dataMonth,1,5,1);
+		ucInvest.dayStatus(headerData,dataMonth);
+		ucInvest.getMoney(headerData,dataMonth,1);
+		ucInvest.getReturnList(headerData,dataMonth,1,4,1);
 		_returnmon.clickMontn({
 			left: "data_top_btn_l",
 			right: "data_top_btn_r",
 			callback: function(yy,mm) {
 				dataMonth = yy+"-"+mm;
 				console.log("点击后 年-月：" + dataMonth);
-				ucInvest.dayStatus();
-				ucInvest.getMoney(1,1);
-				ucInvest.getReturnList(dataMonth,1,5,1);
-				ucInvest.dayContent();
+				ucInvest.dayStatus(headerData,dataMonth);
+				ucInvest.getMoney(headerData,dataMonth,1);
+				ucInvest.getReturnList(headerData,dataMonth,1,4,1);
+				ucInvest.dayContent(headerData);
 			}
 		});
-		ucInvest.dayContent();
+		ucInvest.dayContent(headerData);
 	},
 	// 点击某天的信息展示
-	dayContent : function(){
+	dayContent : function(headerData){
 		_returnmon.clickDay({
 			elm: "data_number",
-			callback: function(day) {
-				var getday = day;
-				ucInvest.getMoney(getday,0);
-				ucInvest.getReturnList(getday,1,5,1);
+			callback: function(days,day) {
+				$(".re_money_d").html(day+'日');
+				var getday = days;
+				ucInvest.getMoney(headerData,getday,0);
+				ucInvest.getReturnList(headerData,getday,0,4,1);
 			}
 		});
 	},
 	// 获取本息
-	getMoney : function(day,type){
-		_apiReturn.getMoney(day,type,function(res){
+	getMoney : function(headerData,day,type){
+		_apiReturn.getMoneys(headerData,day,type,function(res){
 			$(".per_money").html(res.content.preCollection);
 			$(".real_money").html(res.content.realCollection);
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 给当月某天有回款的添加样式
-	dayStatus : function(){
-		_apiReturn.getMonth(function(res){
+	dayStatus : function(headerData,month){
+		_apiReturn.getMonth(headerData,month,function(res){
 			$.each(res.content,function(i,key){
 				var day = key.day;
 				var status = key.status;
@@ -83,20 +87,20 @@ var ucInvest = {
 				$(".data_table .data_number").eq(day-1).addClass(clas);
 
 			});
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	getReturnList : function(day,type,pagesize,current){
-		_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+	getReturnList : function(headerData,day,type,pagesize,current){
+		_apiReturn.getRturnList(headerData,day,type,pagesize,current,function(res){
 			ucInvest.setType(res);
 			retList = _td.renderHtml(returnList,{
 				list:res.content.list,
 			});
 			$('#tbody_list').html(retList);
 			ucInvest.setStatus();
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiReturn.getRturnList(day,type,pagesize,current,function(res){
+			_paging.paging("pageList",res.content.total,pagesize,function(e){
+				_apiReturn.getRturnList(headerData,day,type,pagesize,e.current,function(res){
 					ucInvest.setType(res);
 					retList = _td.renderHtml(returnList,{
 						list:res.content.list,
@@ -138,13 +142,6 @@ var ucInvest = {
 				$(this).html("已回款");
 
 			}
-		});
-	},
-	sumMoney : function(){
-		_apiReturn.getsumMoney(function(res){
-			$(".sum_money").html(res.content);
-		},function(){
-			console.log("请求失败");
 		});
 	},
 	tipsHover : function(){

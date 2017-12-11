@@ -37,10 +37,9 @@ var formError = {
 };
 
 var headerData = {
-	accessId: _td.getAccess('accessId'),
-	accessKey: _td.getAccess('accessKey')
-};
-
+		'accessId' : unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
+	};
 var DepositInfoNew = {
 	init: function() {
 		this.bindEvent();
@@ -106,10 +105,10 @@ var DepositInfoNew = {
 			// console.log(validateResult.msg + 'ooo');
 			formError.hide();
 			$(".btn").addClass("kd");
-			// $(".btn").removeAttr('disabled');
+			$(".btn").removeAttr('disabled');
 		} else {
 			$(".btn").removeClass("kd");
-			// $(".btn").attr('disabled', 'disabled');
+			$(".btn").attr('disabled', 'disabled');
 			formError.hide();
 			var id = '#' + validateResult.id;
 			formError.show(id, validateResult.msg);
@@ -139,9 +138,14 @@ var DepositInfoNew = {
 		if (validateResult.status) {
 			formData.payPassword = md5(formData.payPassword);
 			_user.openDeposit(headerData, formData, function(res) {
-				$(".success_box").show();
-				$(".main").hide();
-				_this.countTime();
+				if(res.content.ifSuccess==true){
+					$(".success_box").show();
+					$(".main").hide();
+					_this.countTime();
+				}else{
+					$('.js_box').html(res.content.errorInfo);
+					formError.allShow();
+				}
 			}, function(err) {
 				if (err.code == 170020) {
 					$(".wait_box").show();
@@ -196,9 +200,9 @@ var DepositInfoNew = {
 		return result;
 	},
 	load: function() {
-		_user.getUserDepositInfo(headerData, function(res) {
+		_user.getStockUserDeposit(headerData, function(res) {
 			// 存管存量用户状态
-			if (res.isOpenDeposit == 1 || res.isOpenDeposit == 2) {
+			if (res.content.idCard != null) {
 				$("#user").val(res.content.realName);
 				$("#user").attr('disabled', 'disabled');
 				$("#card").val(res.content.idCard);

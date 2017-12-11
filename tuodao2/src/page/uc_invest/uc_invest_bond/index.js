@@ -15,9 +15,13 @@ var bondApply 	= 	require('./Invest_bondApply.string');
 
 var ucInvest = {
 	init : function(){
-		this.urlEach();
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
+		this.urlEach(headerData);
 	},
-	urlEach : function(){
+	urlEach : function(headerData){
 		$('.uc_bondTab a').each(function () {
 			if (location.href.indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
 				var sta = $(this).attr("status");
@@ -25,88 +29,106 @@ var ucInvest = {
 				ucInvest.initDate();
 				var oUl = '<ul class="tabUl"><li class="on" status="0">全部</li><li status="1">募集中</li><li status="2">回款中</li><li status="3">已回款</li></ul>';
 				if(sta == "0"){
-					ucInvest.addAbleHtml('0','','','10','1');
+					ucInvest.addAbleHtml(headerData,'0','','','10','1');
 				}else if(sta == "1"){
-					ucInvest.addTranHtml('1','','','10','1');
+					ucInvest.addTranHtml(headerData,'1','','','10','1',sta);
 				}else if(sta == "2"){
-					ucInvest.addTranHtml('2','','','10','1');
+					ucInvest.addTranHtml(headerData,'2','','','10','1',sta);
 				}else if(sta == "3"){
-					ucInvest.addYetHtml('0','','','10','1');
+					ucInvest.addYetHtml(headerData,'0','','','10','1');
 					$(".uc_invest_tabL").html(oUl);
-					ucInvest.yetStatusclick();
+					ucInvest.yetStatusclick(headerData);
 				}
 			} else {
 				$(this).removeClass('on');
 			};
 		});
 	},
-	addAbleHtml : function(sta,startime,endtime,pagesize,current){
-		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+	addAbleHtml : function(headerData,sta,startime,endtime,pagesize,current){
+		_apiInvest.getBond(headerData,sta,startime,endtime,pagesize,current,function(res){
 			listBondHtml = _td.renderHtml(bondAble,{
 				list:res.content.list,
 			});
 			$(".bond_box").html(listBondHtml);
+			if(res.content.list == null){
+				ucInvest.dataNull("tbody_list","7","当前没有可转让债权");
+			}
 			$(".uc_invest_tabR").attr("status",sta);
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+			_paging.paging("pageList",res.content.total,10,function(e){
+				_apiInvest.getBond(headerData,sta,startime,endtime,pagesize,e.current,function(res){
 					listBondHtml = _td.renderHtml(bondAble,{
 						list:res.content.list,
 					});
 					$(".bond_box").html(listBondHtml);
+					if(res.content.list == null){
+						ucInvest.dataNull("tbody_list","7","当前没有可转让债权");
+					}
 					$(".uc_invest_tabR").attr("status",sta);
 					ucInvest.trColor();
 					ucInvest.tipsHover();
 					ucInvest.applyClick();
-					ucInvest.dateClick();
-				},function(){
-					console.log("分页请求失败");
+					ucInvest.dateClick(headerData);
+				},function(err){
+					console.log(err);
 				});
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
 			ucInvest.applyClick();
-			ucInvest.dateClick();
-		},function(){
-			console.log("请求失败");
+			ucInvest.dateClick(headerData);
+		},function(err){
+			console.log(err);
 		});
 	},
-	addTranHtml : function(sta,startime,endtime,pagesize,current){
-		_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+	addTranHtml : function(headerData,sta,startime,endtime,pagesize,current,sta){
+		var str = '';
+		if(sta == "1"){
+			str = "当前没有转让中债权";
+		}else{
+			str = "当前没有已转让债权";
+		}
+		_apiInvest.getBond(headerData,sta,startime,endtime,pagesize,current,function(res){
 			listBondHtml = _td.renderHtml(bondTran,{
 				list:res.content.list,
 			});
 			$(".bond_box").html(listBondHtml);
+			if(res.content.list == null){
+				ucInvest.dataNull("tbody_list","9",str);
+			}
 			$(".uc_invest_tabR").attr("status",sta);
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getBond(sta,startime,endtime,pagesize,current,function(res){
+			_paging.paging("pageList",res.content.total,10,function(e){
+				_apiInvest.getBond(headerData,sta,startime,endtime,pagesize,e.current,function(res){
 					listBondHtml = _td.renderHtml(bondTran,{
 						list:res.content.list,
 					});
 					$(".bond_box").html(listBondHtml);
+					if(res.content.list == null){
+						ucInvest.dataNull("tbody_list","9",str);
+					}
 					$(".uc_invest_tabR").attr("status",sta);
 					ucInvest.trColor();
 					ucInvest.tipsHover();
-					ucInvest.dateClick();
-				},function(){
-					console.log("分页请求失败");
+					ucInvest.dateClick(headerData);
+				},function(err){
+					console.log(err);
 				});
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.dateClick();
-		},function(){
-			console.log("请求失败");
+			ucInvest.dateClick(headerData);
+		},function(err){
+			console.log(err);
 		});
 	},
-	addYetHtml : function(sta,startime,endtime,pagesize,current){
-		_apiInvest.getBondyet(sta,startime,endtime,pagesize,current,function(res){
+	addYetHtml : function(headerData,sta,startime,endtime,pagesize,current){
+		_apiInvest.getBondyet(headerData,sta,startime,endtime,pagesize,current,function(res){
 			listBondHtml = _td.renderHtml(bondYet,{
 				list:res.content.list,
 			});
 			$(".bond_box").html(listBondHtml);
 			$(".uc_invest_tabR").attr("status","3");
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getBondyet(sta,startime,endtime,pagesize,current,function(res){
+			_paging.paging("pageList",res.content.total,10,function(e){
+				_apiInvest.getBondyet(headerData,sta,startime,endtime,pagesize,e.current,function(res){
 					listBondHtml = _td.renderHtml(bondYet,{
 						list:res.content.list,
 					});
@@ -114,27 +136,27 @@ var ucInvest = {
 					$(".uc_invest_tabR").attr("status","3");
 					ucInvest.trColor();
 					ucInvest.tipsHover();
-					ucInvest.dateClick();
-				},function(){
-					console.log("分页请求失败");
+					ucInvest.dateClick(headerData);
+				},function(err){
+					console.log(err);
 				});
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.dateClick();
-		},function(){
-			console.log("请求失败");
+			ucInvest.dateClick(headerData);
+		},function(err){
+			console.log(err);
 		});
 	},
-	yetStatusclick : function(){
+	yetStatusclick : function(headerData){
 		$(".uc_invest_tabL li").on("click",function(){
 			var sta = $(this).attr("status");
 			$(this).addClass('on').siblings('li').removeClass('on');
 			$(".uc_invest_tabR").attr("yet",sta);
-			ucInvest.addYetHtml(sta,'','','10','1');
+			ucInvest.addYetHtml(headerData,sta,'','','10','1');
 		});
 	},
-	dateClick : function(){
+	dateClick : function(headerData){
 		$(".start_date").off("click").on("click",function(){
 			var _this = $(this);
 			var sta = $(this).parent(".uc_invest_tabR").attr("status");
@@ -147,17 +169,13 @@ var ucInvest = {
 			 	choose: function(dates){
 			 		$("#start_date").attr("startDate",dates);
 			 		if(sta == 0){
-			 			ucInvest.addAbleHtml('0',dates,endTime,'10','1');
-			 			console.log("可转让");
+			 			ucInvest.addAbleHtml(headerData,'0',dates,endTime,'10','1');
 			 		}else if(sta == 1){
-						ucInvest.addTranHtml('1',dates,endTime,'10','1');
-			 			console.log("转让中");
+						ucInvest.addTranHtml(headerData,'1',dates,endTime,'10','1',sta);
 			 		}else if(sta == 2){
-						ucInvest.addTranHtml('2',dates,endTime,'10','1');
-			 			console.log("已转让");
+						ucInvest.addTranHtml(headerData,'2',dates,endTime,'10','1',sta);
 			 		}else if(sta == 3){
-						ucInvest.addYetHtml(yetSta,dates,endTime,'10','1');
-			 			console.log("已受让");
+						ucInvest.addYetHtml(headerData,yetSta,dates,endTime,'10','1');
 			 		}
 			  	}
 			});
@@ -174,17 +192,13 @@ var ucInvest = {
 			 	choose: function(dates){
 			 		$("#end_date").attr("endDate",dates);
 			 		if(sta == 0){
-			 			ucInvest.addAbleHtml('0',startTime,dates,'10','1');
-			 			console.log("可转让");
+			 			ucInvest.addAbleHtml(headerData,'0',startTime,dates,'10','1');
 			 		}else if(sta == 1){
-						ucInvest.addTranHtml('1',startTime,dates,'10','1');
-			 			console.log("转让中");
+						ucInvest.addTranHtml(headerData,'1',startTime,dates,'10','1',sta);
 			 		}else if(sta == 2){
-						ucInvest.addTranHtml('2',startTime,dates,'10','1');
-			 			console.log("已转让");
+						ucInvest.addTranHtml(headerData,'2',startTime,dates,'10','1',sta);
 			 		}else if(sta == 3){
-						ucInvest.addYetHtml(yetSta,startTime,dates,'10','1');
-			 			console.log("已受让");
+						ucInvest.addYetHtml(headerData,yetSta,startTime,dates,'10','1');
 			 		}
 			  	}
 			});
@@ -252,6 +266,10 @@ var ucInvest = {
 			}
 			$(".bond_formM").append(txt);
 		};
+	},
+	dataNull : function(el,num,str){
+		var datanull = '<tr class="null_data"><td colspan='+num+'><div class="null_data_bg"></div><p>'+str+'</p></td></tr>';
+		$("#"+el).html(datanull);
 	},
 	initDate : function(){
 		$("#start_date").attr("startDate","").html("选择开始时间");

@@ -25,10 +25,10 @@
 				<td class="td_time">{{addTime}}</td>
 				<td>{{claimsValue}}</td>
 				<td>{{remaining}}期</td>
-				<td>100,000.00</td>
+				<td>{{interest}}</td>
 				<td>{{reward}}</td>
 				<td>{{status}}</td>
-				<td class='td_details'><a href="uc_invest_bondDetails.html">查看详情</a></td>
+				<td class='td_details'><a href="uc_invest_bondDetails.html?tender={{tenderId}}">查看详情</a></td>
 			</tr>
 			{{/list}}
 		</tbody>

@@ -4,7 +4,6 @@
 <div class="icon">
 	<ul>
 		<li class="deposit_icon">
-		<!-- 存管已开通 添加类名：high 文案：存管已开通-->
 			<a href="###" class="iconfont {{isOpenDeposit}}">&#xe66d;</a>
 			<div class="tips left-tips" id="{{isOpenDeposit}}"></div>
 		</li>

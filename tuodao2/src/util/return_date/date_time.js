@@ -51,8 +51,8 @@ var _retuenMon = {
 			var thism = $(".f_month").html();
 			var thisday = $(this).find('.data_day').html();
 			var datas = thisy+"-"+thism+"-"+thisday;
-			$(".re_money_d").html(thisday+'日');
-			data.callback(datas);
+			// $(".re_money_d").html(thisday+'日');
+			data.callback(datas,thisday);
 		});
 	},
 	returnMoney: function(){

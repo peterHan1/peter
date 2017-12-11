@@ -202,11 +202,13 @@ var _trade = {
 		});
 	},
 	// 债权转让详情 账户中心金额
-	getInvestUc : function(resolve, reject){
+	getInvestUc : function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/get_account.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/user/account/get_account'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 精选计划提交
@@ -234,21 +236,36 @@ var _trade = {
 		});
 	},
 	// 获取总待收金额 回款日历
-	getsumMoney : function(resolve, reject){
+	getsumMoney : function(headerData,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/unInReSumMoney.json'),
+			url     : _td.getServerUrl('api/router/tc/tender/total_collection'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 账户总览 获取本息 回款日历
+	getMonthMoney : function(headerData,month,resolve, reject){
+		_td.request({
+			url     	: _td.getServerUrl('	api/router/tc/tender/pre_month_collection'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
+			data    : {
+				month	: month
+			},
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 获取本息 回款日历
-	getMoney : function(day,type,resolve, reject){
+	getMoneys : function(headerData,day,type,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/unInReMoney.json'),
+			url     	: _td.getServerUrl('api/router/tc/tender/month_collection'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
 			data    : {
-				month	: day,
+				day	: day,
 				type 	: type,
 			},
 			success : resolve,
@@ -256,23 +273,28 @@ var _trade = {
 		});
 	},
 	// 当月某天回款 回款日历
-	getMonth : function(resolve, reject){
+	getMonth : function(headerData,month,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/unInReDate.json'),
+			url     : _td.getServerUrl('api/router/tc/tender/collection_days'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
+			data 		: {
+				month : month
+			},
 			success : resolve,
 			error   : reject
 		});
 	},
 	// 获取回款列表 回款日历
-	getRturnList : function(day,type,pagesize,current,resolve, reject){
+	getRturnList : function(headerData,day,type,pagesize,current,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/unInReList.json'),
+			url     : _td.getServerUrl('api/router/tc/tender/collection_calendar_list'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
 			data    : {
 				day			: day,
 				type 		: type,
-				pageSize 	: 5 || pagesize,
+				pageSize 	: 4 || pagesize,
 				currentPage : 1 || current
 			},
 			success : resolve,
@@ -280,14 +302,15 @@ var _trade = {
 		});
 	},
 	// 我的投资 精选计划
-	getSift : function(id,sta,startime,endtime,pagesize,current,resolve, reject){
+	getSift : function(headerData,sta,startime,endtime,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListSift.json'),
-			data    : {
-				userId 		: id,
-				status 		: sta 		|| " ",
-				startTime 	: startime 	|| " ",
-				endTime 	: endtime 	|| " ",
+			url     	: _td.getServerUrl('api/router/joinPlanController/getTenderByUserId'),
+			accessId	:headerData.accessId,
+			accessKey	:headerData.accessKey,
+			data    	: {
+				status 		: sta 		|| "",
+				startTime 	: startime 	|| "",
+				endTime 	: endtime 	|| "",
 				pageSize  	: pagesize 	|| 10,
 				currentPage	: current 	|| 1
 			},
@@ -369,10 +392,12 @@ var _trade = {
 		});
 	},
 	// 我的投资 债权转让
-	getBond : function(sta,startime,endtime,pagesize,current,resolve, reject){
+	getBond : function(headerData,sta,startime,endtime,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListBond.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/list'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				status 		: sta 		|| " ",
 				startTime 	: startime 	|| " ",
 				endTime 	: endtime 	|| " ",
@@ -384,10 +409,12 @@ var _trade = {
 		});
 	},
 	// 以受让
-	getBondyet : function(sta,startime,endtime,pagesize,current,resolve, reject){
+	getBondyet : function(headerData,sta,startime,endtime,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListBondYet.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/compromisedList'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				status 		: sta 		|| " ",
 				startTime 	: startime 	|| " ",
 				endTime 	: endtime 	|| " ",
@@ -422,10 +449,12 @@ var _trade = {
 		});
 	},
 	// 债转详情页头部
-	getBondTop : function(id,resolve, reject){
+	getBondTop : function(headerData,id,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/bondDelTop.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/tender/product/info'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				transferId : id
 			},
 			success : resolve,
@@ -433,10 +462,12 @@ var _trade = {
 		});
 	},
 	// 债转详情页 回款计划
-	getBondRet : function(id,pagesize,current,resolve, reject){
+	getBondRet : function(headerData,id,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/bondDelRet.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/tender/repayment/plan'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				tenderId : id,
 				pageSize  	: pagesize 	|| 10,
 				currentPage	: current 	|| 1
@@ -446,56 +477,75 @@ var _trade = {
 		});
 	},
 	// 我的投资 自动投标
-	getAutoBank : function(resolve, reject){
+	getAutoBank : function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/check_bank.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/check_bank'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
-	getInpForm: function(resolve, reject){
+	getInpForm: function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoInp.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/get_auto_tender'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 打开自动投标
-	openAuto : function(resolve, reject){
+	openAuto : function(headerData,param,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoAdd.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/add_auto_tender'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: param,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 关闭自动投标
-	closeAuto : function(resolve, reject){
+	closeAuto : function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoClose.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/close_auto_tender'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 开启自动投标总人数
-	getAutoSum : function(resolve, reject){
+	getAutoSum : function(headerData,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoInp.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/get_auto_tender'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 自动投标记录
-	getautoList : function(resolve, reject){
+	autoLists : function(headerData,pageSize,currentPage,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoList.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/auto_tender_list'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    : {
+				pageSize: pageSize,
+				currentPage: currentPage,
+			},
+			success 	: resolve,
+			error  		: reject
 		});
 	},
 	// 自动投标详情
-	getAutoTop : function(id,resolve, reject){
+	getAutoTop : function(headerData,id,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoDel.json'),
+			url     : _td.getServerUrl('api/router/tc/tender/auto_tender_detail'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
 			data    : {
 				autoTenderId: id
 			},
@@ -503,13 +553,15 @@ var _trade = {
 			error   : reject
 		});
 	},
-	getAutoList : function(id,pagesize,current,resolve, reject){
+	getAutoList : function(headerData,id,pagesize,current,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInAutoDelist.json'),
-			data    : {
+			url 		: _td.getServerUrl('api/router/tc/tender/sub_auto_tender_list'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: {
 				autoTenderId : id,
-				currentPage	 : 1  || current,
-				pageSize	 : 10 || pagesize
+				pageSize	 : 10 || pagesize,
+				currentPage	 : 1  || current
 			},
 			success : resolve,
 			error   : reject

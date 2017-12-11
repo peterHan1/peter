@@ -207,19 +207,31 @@ var _welfare = {
 		});
 	},
 	// 获取账户信息
-	getUserOper : function(resolve, reject){
+	getUserOper : function(headerData,resolve, reject){
 		_td.request({
-			method		: "get",
-			url     	: _td.getServerUrl('/userOperation.json'),
+			url     	: _td.getServerUrl('api/router/op/getUserOperationData'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
 			success 	: resolve,
 			error   	: reject
 		});
 	},
-	// 签到
-	userSign : function(resolve, reject){
+	// 获取签到信息
+	userSign : function(headerData,resolve, reject){
 		_td.request({
-			method	: "get",
-			url     : _td.getServerUrl('/userSign.json'),
+			url     : _td.getServerUrl('api/router/op/checkSign'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			success : resolve,
+			error   : reject
+		});
+	},
+	// 点击签到
+	addUserSign : function(headerData,resolve, reject){
+		_td.request({
+			url     : _td.getServerUrl('api/router/op/userSign'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
 			success : resolve,
 			error   : reject
 		});

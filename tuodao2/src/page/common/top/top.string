@@ -1,0 +1,6 @@
+{{#isLogin}}
+<li><a href="userlogin.html"><i class="iconfont news">&#xe686;</i>&nbsp;</a>|<a href="register.html" id="js-register">&nbsp;&nbsp;退出</a></li>
+{{/isLogin}}
+{{^isLogin}}
+<li><a href="userlogin.html">登录&nbsp;&nbsp;</a>|<a href="register.html" id="js-register">&nbsp;&nbsp;注册</a></li>
+{{/isLogin}}

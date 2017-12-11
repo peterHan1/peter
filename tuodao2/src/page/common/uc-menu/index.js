@@ -81,29 +81,27 @@ var menuList = {
 		}
 	},
 	addHmtl : function(){
-
-		var userData = {
-			userId : "18539123451-lwvm5mx68dr2wxzqgnuc",
-			loginPassword:"e10adc3949ba59abbe56e057f20f883e",
-			loginSource:1
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
 		};
-		// _apigetuc.getUserCon(userData,function(res){
-		// 	if(res.content.isOpenDeposit == 0){
-		// 		res.content.isOpenDeposit = 'none';
-		// 	}else if(res.content.isOpenDeposit == 1){
-		// 		res.content.isOpenDeposit = 'high';
-		// 	}
-		// 	var cunguan = res.content.vipLevel;
-		// 	accountHtml = _td.renderHtml(accountPho,{
-		// 		content:res.content,
-		// 	});
-		// 	$('.menu_top').html(accountHtml);
-		// 	$("#none").html("点击立即开通存管");
-		// 	$("#high").html("存管已开通");
-		// 	menuList.liHover();
-		// },function(){
-		// 	console.log("请求失败");
-		// });
+		_apigetuc.getUserCon(headerData,function(res){
+			if(res.content.isOpenDeposit == 0){
+				res.content.isOpenDeposit = 'none';
+			}else if(res.content.isOpenDeposit == 1){
+				res.content.isOpenDeposit = 'high';
+			}
+			var cunguan = res.content.vipLevel;
+			accountHtml = _td.renderHtml(accountPho,{
+				content:res.content,
+			});
+			$('.menu_top').html(accountHtml);
+			$("#none").html("点击立即开通存管");
+			$("#high").html("存管已开通");
+			menuList.liHover();
+		},function(){
+			console.log("请求失败");
+		});
 	}
 };
 $(function(){
