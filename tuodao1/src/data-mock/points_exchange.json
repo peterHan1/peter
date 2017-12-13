@@ -1,0 +1,113 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": 1,
+             "pageSize": 3,
+             "size": 6,
+             "orderBy": null,
+             "startRow": 0,
+             "endRow": 5,
+             "total": 6,
+             "pages": 3,
+             "list":
+             [
+                    {
+                           "id": 1,
+                           "type": 1,
+                           "typeName": "1%加息券",
+                           "needScore": 100,
+                           "numValue": 1,
+                           "numValueView": "1%",
+                           "effectDay": 30
+                    },
+                    {
+                           "id": 2,
+                           "type": 1,
+                           "typeName": "2%加息券",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2%",
+                           "effectDay": 30
+                    },
+                    {
+                           "id": 3,
+                           "type": 1,
+                           "typeName": "3%加息券",
+                           "needScore": 300,
+                           "numValue": 3,
+                           "numValueView": "3%",
+                           "effectDay": 30
+                    },
+                    {
+                           "id": 4,
+                           "type": 2,
+                           "typeName": "1次免费提现次数",
+                           "needScore": 100,
+                           "numValue": 1,
+                           "numValueView": "1",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 5,
+                           "type": 2,
+                           "typeName": "2次免费提现次数",
+                           "needScore": 200,
+                           "numValue": 2,
+                           "numValueView": "2",
+                           "effectDay": null
+                    },
+                    {
+                           "id": 6,
+                           "type": 2,
+                           "typeName": "3次免费提现次数",
+                           "needScore": 300,
+                           "numValue": 3,
+                           "numValueView": "3",
+                           "effectDay": null
+                    }
+             ],
+             "firstPage": 1,
+             "prePage": 0,
+             "nextPage": 0,
+             "lastPage": 1,
+             "isFirstPage": true,
+             "isLastPage": true,
+             "hasPreviousPage": false,
+             "hasNextPage": false,
+             "navigatePages": 8,
+             "navigatepageNums":
+             [
+                    1
+             ]
+      },
+      "success": true
+}

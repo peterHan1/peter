@@ -1,0 +1,10 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "preCollection": "0.00",
+             "realCollection": "207.06"
+      },
+      "success": true
+}

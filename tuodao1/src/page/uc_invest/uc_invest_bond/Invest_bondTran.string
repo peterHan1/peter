@@ -1,0 +1,45 @@
+<div class="table_list" id="alone_table">
+	<table>
+		<thead>
+			<tr>
+				<th class="padd_left">编号</th>
+				<th>项目名称</th>
+				<th>转让时间</th>
+				<th>转让金额（元）</th>
+				<th>剩余期限</th>
+				<th>预期年化</th>
+				<th>对应债权价值（元）</th>
+				<th>折价/溢价</th>
+				<th>手续费（元）</th>
+			</tr>
+		</thead>
+		<tbody id="tbody_list">
+			{{#list}}
+				<tr>
+					<td class="padd_left">NO.{{productCode}}</td>
+					<td class="td_name"><a href="###">{{productTitle}}</a>
+					<div class="tips left-tips">
+						{{productTitle}}
+					</div>
+					</td>
+					<td class="td_time">{{addTime}}</td>
+					<td>{{recoverCapital}}</td>
+					<td>{{remaining}}期</td>
+					<td>{{borrowApr}}%</td>
+					<td>{{claimsValue}}</td>
+					<td>{{discount}}</td>
+					<td>{{fee}}</td>
+				</tr>
+			{{/list}}
+			{{^list}}
+			<tr class="null_data">
+				<td colspan="8">
+					<div class="null_data_bg"></div>
+					<p>当前没有加入记录</p>
+				</td>
+			</tr>
+			{{/list}}
+		</tbody>
+	</table>
+</div>
+<div class="pageList"></div>			

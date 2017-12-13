@@ -12,17 +12,17 @@
 	<div class="welfare">
 		<%= require('html-loader!./layout/uc_menu.html') %>
 		<div class="welfare_content">
-			<div class="depository_no" style="display: none;">
+			<div class="depository_no dis_none">
 				<div class="depository_top">马上激活存管，邀请好友抢福利</div>
 				<div class="depository">
 					<img src="<%= require('../image/popup.png') %>" height="48" width="363" alt=""><br />
 					<span class="distance">为了保障您的资金安全,请在充值、投资、提现前开通存管</span><br />
-					<span class="invite_active">立即激活存管用户</span>
+					<a href="active_newuser.html" class="invite_active">立即激活存管用户</a>
 				</div>
 			</div>
-			<div class="depository_yes" >
+			<div class="depository_yes dis_none">
 				<div class="invite_nav">
-				<img src="<%= require('../image/welfare/invite_lv.png') %>" height="87" width="77" alt="">
+				<div class="lev_bg"></div>
 				<p class="lev_name">初级理财师</p>
 				<p class="distance">距中级理财师还差2个V1好友，200万总待收</p>
 				</div>
@@ -37,27 +37,26 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="invite_menu">
 				<a class="welfare_on welfare_border">邀请好友</a><a>邀请记录</a>
 			</div>
 			<div class="invite_content">
 				<div class="invite_friend">
 					<div class="invite_detail">
-						<hr />
-						<hr />
+						<hr style="left: 180px;" />
+						<hr style="left: 510px;"/>
 						<ul>
 							<li>
 								<img src="<%= require('../image/welfare/friend_01.png') %>" height="90" width="81" alt=""><span>分享或复制链接<br />和邀请码给好友</span>
 							</li>
-							<li>
+							<li style="margin: 0 180px;">
 								<img src="<%= require('../image/welfare/register_02.png') %>" height="90" width="81" alt=""><span>好友点击邀请链接或<br />填写邀请码成功注册</span>
 							</li>
 							<li>
 								<img src="<%= require('../image/welfare/invest_03.png') %>" height="90" width="81" alt=""><span>好友投资<br />立即获得奖励</span>
 							</li>
 						</ul>
-						<ol class="depository_yes_menu" style="display:none;">
+						<ol class="depository_yes_menu dis_none">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
@@ -66,15 +65,15 @@
 								</div>
 								<div class="copy copy_link">复制链接</div>
 							</li>
-							<li>
+							<li class="second_child">
 								<div style="width:180px;">
 									<p class="sp1">方法二</p>
 									<p class="sp2">复制你的专属链接给好友</p>
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
-								<div style="text-align:center;">
-									<a class="qq_share share" style="margin-right:20px;">
-									<a class="wx_share share"></a>
+								<div style="text-align:center;" id="share">
+									<a class="Cqq share" title="分享给QQ好友" style="margin-right:20px;">
+									<a class="weixin share" title="分享给微信好友"></a>
 								</div>
 							</li>
 							<li>
@@ -85,24 +84,24 @@
 								</div>
 								<div class="copy copy_code">复制邀请码</div>
 							</li>
-						</ol class="depository_no_menu" style="display:none;">
-						<ol>
+						</ol>
+						<ol class="depository_no_menu dis_none">
 							<li>
 								<div style="width:180px;">
 									<p class="sp1">方法一</p>
 									<p class="sp2">复制你的专属链接给好友</p>
 									<p class="sp3">好友通过该链接可直接注册</p>
 								</div>
-								<div class="copy copy_link">激活存管，立即分享</div>
+								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
 							</li>
-							<li>
+							<li class="second_child">
 								<div style="width:180px;">
 									<p class="sp1">方法二</p>
 									<p class="sp2">直接分享到社交平台</p>
 									<p class="sp3">好友点击可直接注册</p>
 								</div>
 								<div style="text-align:center;">
-									<div class="copy copy_link">激活存管，立即分享</div>
+									<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
 								</div>
 							</li>
 							<li>
@@ -111,7 +110,7 @@
 									<p class="sp2">复制你的邀请码给好友</p>
 									<p class="sp3">好友注册时需要填写您的邀请码a9V02</p>
 								</div>
-								<div class="copy copy_code">激活存管，立即分享</div>
+								<a href="active_newuser.html" class="copy">激活存管，立即分享</a>
 							</li>
 						</ol>
 					</div>
@@ -122,37 +121,37 @@
 								<i></i>符合理财师标准的用户，根据其名下的邀请关系（含新邀请规则前已邀请的人），按照最新的邀请规则进行相应的返现奖励！
 							</dt>
 							<dt>
-								<i></i>好友首投奖励：直接被邀请人首次投资成功并已满标复审，邀请人即可获得10元抵扣红包（使用条件：起投1000元，1个月及以上，有效期唯30天）和首次投资
+								<i></i>好友首投奖励：直接被邀请人首次投资成功并已满标复审，邀请人即可获得10元抵扣红包（使用条件：起投1000元，1个
 							</dt>
-							<dd>金额0.25%的返现奖励；</dd>
+							<dd>月及以上，有效期唯30天）和首次投资金额0.25%的返现奖励；</dd>
 							<dt><i></i>好友第二次投资起，邀请人即可根据目前的理财师等级，享受返现奖励；</dt>
 							<dt><i></i>理财师返现奖励到账时间：若投资散标项目则被邀请人每笔投资金额到期，按期返现；投资精选计划项目则奖励在精选计划到期</dt>
 							<dd>时一次性发放；</dd>
 							<dt><i></i>理财师等级及福利表：</dt>
 						</dl>
-						<table>
-							<tr>
+						<table class="order_detail_table">
+							<tr class="first_child">
 								<td style="width:120px;">邀请人等级</td>
-								<td style="width:160px;">被邀请人大道v1人数</td>
+								<td style="width:160px;">被邀请人达到v1人数</td>
 								<td style="width:208px;">邀请人总待收（只算B级用户）</td>
 								<td style="width:200px;">邀请人奖励</td>
 								<td style="width:150px;">返现奖励有效时间</td>
 							</tr>
-							<tr>
+							<tr class="second_child">
 								<td>初级理财师</td>
 								<td>无</td>
 								<td>无</td>
 								<td>直接邀请人投资收益2%返现</td>
 								<td>6个月</td>
 							</tr>
-							<tr>
+							<tr class="third_child">
 								<td>中级理财师</td>
 								<td>6人</td>
 								<td>200万</td>
 								<td>直接邀请人投资收益3%返现<br />间接邀请人投资收益1%返现</td>
 								<td>永久</td>
 							</tr>
-							<tr>
+							<tr class="fourth_child">
 								<td>王牌理财师</td>
 								<td>15人</td>
 								<td>400万</td>
@@ -170,8 +169,8 @@
 					</div>
 				</div>
 				<div class="invite_record">
-					<div>
-						<table>
+					<div style="display:block;" class="_invite_record_table">
+						<table class="invite_table">
 							<tr>
 								<th style="width:165px;">好友手机号</th>
 								<th style="width:225px;">注册时间</th>
@@ -250,17 +249,31 @@
 								<td>10.00</td>
 							</tr>
 						</table>
-					<div class="zxf_pagediv page_show" onselectstart="return false" style="-moz-user-select:none;"></div>
 					</div>
 					<div class="invite_none">
 						<img src="<%= require('../image/no_data.png') %>" height="61" width="85" alt=""><br /><br />
 						<span>当前没有邀请记录</span>
 					</div>
+					<div class="pageList" onselectstart="return false" style="-moz-user-select:none;"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%= require('html-loader!./layout/footer_nav.html') %>
 	<%= require('html-loader!./layout/footer.html') %>
+
+	<div id="invite_link" class="invite_alert dis_none">
+		<ul class="content">
+			<li style="color:#333333;">浏览器不兼容，邀请链接复制失败！</li>
+			<li style="margin:30px 0 10px 0;color:#9e9e9e;">您可以手动复制邀请链接：</li>
+			<li style="color:#ff7400;"></li>
+		</ul>
+	</div>
+	<div id="weixin_link" class="invite_alert dis_none">
+		<div class="content">
+			<div><img src="<%= require('../image/my_twoCode.png') %>"></div>
+			<p>扫一扫上面的专属二维码<br>money,money,go my home!</p>
+		</div>
+	</div>
 </body>
 </html>

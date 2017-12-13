@@ -1,0 +1,10 @@
+{{#list}}
+	<a class="media_list" href={{url}}>
+		<p><img src="../../image/media01.png" alt=""></p>
+		<ul>
+			<li class="li_1">{{title}}</li>
+			<li class="li_2">{{publishTime}}</li>
+			<li class="li_3">4月23日，由浙江省区域经济促进会与浙江经视联合主办的“新青年创业创新高峰论坛”在杭州梦想小镇举办。会议上，拓道金服联 合创始人范燨云作为新生企业代表，以“机遇与折腾”唯主题，分享了自己的创业经历...</li>
+		</ul>
+	</a>
+{{/list}}

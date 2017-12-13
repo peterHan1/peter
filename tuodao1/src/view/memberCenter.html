@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+<%= require('html-loader!./layout/top.html') %>
+<%= require('html-loader!./layout/nav.html') %>
+	<div style="height:3225px;width:100%;">
+		<div class="member_top">
+			<div class="login login_no">
+				<div class="person person_no">点击登录</div>
+				<div class="title">登录后可查看你的会员等级</div>
+			</div>
+			<div class="login login_yes" style="display:none">
+				<div class="person">
+					<span class="iconfont">&#xe6c0;</span>
+				</div>
+				<div class="name">欢迎，18768145596</div>
+				<div class="title">本月日均资产：40,000.00元，距离V1等级还差1,000.00元</div>
+			</div>
+			<div class="lev">
+			 	<div class="lev_span">
+			 		<span class="iconfont">&#xe6c0;</span>
+			 		<span class="iconfont">&#xe6c1;</span>
+			 		<span class="iconfont">&#xe6c2;</span>
+			 		<span class="iconfont">&#xe6c3;</span>
+			 		<span class="iconfont">&#xe6c4;</span>
+			 		<span class="iconfont">&#xe6c5;</span>
+			 		<span class="iconfont" style="margin-right:0px;">&#xe6c6;</span>
+			 	</div>
+				<div class="lev_hr">
+					<hr style="left: 107px;" />
+					<hr style="left: 244px;" />
+					<hr style="left: 379px;" />
+					<hr style="left: 516px;" />
+					<hr style="left: 652px;" />
+					<hr style="left: 788px;" />
+				</div>
+			</div>
+		</div>
+		<div class="hover">
+			<div class="mouseover">
+				<div class="jiantou"><span></span></div>
+					<div class="show">
+						<div class="dis_none" style="width:332px;">
+							<div class="mouse_top"><span>您本月是V0会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font">1次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:85px;"><div style="line-height:30px;">注册送388元<br />红包</div></li>
+								<li><div style="line-height:30px;">新用户购买<br />新手标<br />加息3.2%</div></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:332px;">
+							<div class="mouse_top"><span>您本月是V1会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font">2次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:85px;"><div>1张10元抵用券<br />1张50元抵用券<br />1张1%加息券</div><i>生日大礼包</i></li>
+								<li><div>2张1%加息券<br />1张2%加息券<br />50元抵用券</div><i>升级大礼包</i></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:332px;">
+							<div class="mouse_top"><span>您本月是V2会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font">3次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:85px;"><div>1张20元抵用券<br />1张80元抵用券<br />1张2%加息券<i>生日大礼包</i></li>
+								<li><div>1张1%加息券<br />2张2%加息券<br />50元抵用券</div><i>升级大礼包</i></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:332px;">
+							<div class="mouse_top"><span>您本月是V3会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font">4次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:85px;"><div>1张30元抵用券<br />1张80元抵用券<br />一张2%加息券</div><i>生日大礼包</i></li>
+								<li><div>2张1%加息券<br />2张2%加息券<br />80元抵用券</div><i>升级大礼包</i></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:350px;">
+							<div class="mouse_top"><span>您本月是V4会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font">5次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:85px;width:120px;"><div>1张30元抵用券<br />一张100元抵用券<br />一张2%加息券</div><i>生日大礼包</i></li>
+								<li><div>2张2%加息券<br />1张3%加息券<br />80元抵用券</div><i>升级大礼包</i></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:465px;">
+							<div class="mouse_top"><span>您本月是V5会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font" style="height: 75px;">6次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:103px;width:120px;"><div style="height: 75px;">1张50元抵用券<br />一张100元抵用券<br />一张2%加息券</div><i>生日大礼包</i></li>
+								<li style="height:103px;border-right:1px solid #cccccc;"><div style="height: 75px;line-height: 18px;">1张1%加息券<br />2张2%加息券<br />1张3%加息券<br />100元抵用券</div><i>升级大礼包</i></li>
+								<li><div style="font-size:18px;font-weight:bold;height:75px;line-height:75px;">专享加息标</div><i>大客户专享标</i></li>
+							</ul>
+						</div>
+						<div class="dis_none" style="width:445px;">
+							<div class="mouse_top"><span>您本月是V6会员，</span>享有以下特权</div>
+							<ul>
+								<li><div class="font" style="height: 75px;">6次</div><i>免费提现次数</i> </li>
+								<li style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;height:103px;"><div style="height: 75px;">2%加息券*1<br />100元抵扣券*1</div><i>生日大礼包</i></li>
+								<li style="height:103px;border-right:1px solid #cccccc;"><div style="height: 75px;line-height: 18px;">2张1%加息券<br />2张2%加息券<br />1张3%加息券<br />100元抵用券</div><i>升级大礼包</i></li>
+								<li><div style="font-size:18px;font-weight:bold;height:75px;line-height:75px;">专享加息标</div><i>大客户专享标</i></li>
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="member_content">
+			<div class="title_content">
+				<ul class="title_ul">
+					<li>
+						<img src="<%= require('../image/member_01.png') %>"><br/>
+						<i>免费提现次数</i><br/>
+						<span>会员等级越高</span><br/>
+						<span>免费提现次数越多</span>
+					</li>
+					<li>
+						<img src="<%= require('../image/member_02.png') %>" alt=""><br/>
+						<i>大客户专享标</i><br/>
+						<span>V3及以上会员专享</span><br/>
+						<span>加息标的，不定期发布</span>
+					</li>
+					<li>
+						<img src="<%= require('../image/member_03.png') %>" alt=""><br/>
+						<i>生日礼包</i><br/>
+						<span>生日月将收到拓道献上的</span><br/>
+						<span>生日礼包</span>
+					</li>
+					<li style="margin-right:0px;">
+						<img src="<%= require('../image/member_04.png') %>" alt=""><br/>
+						<i>升级大礼包</i><br/>
+						<span>首次升级即可免费获得</span><br/>
+						<span>升级大礼包</span>
+					</li>
+				</ul>
+				<div class="explain">
+					<table>
+						<tr style="height:30px;line-height:30px;">
+							<td>会员等级</td>
+							<td>V0</td>
+							<td>V1</td>
+							<td>V2</td>
+							<td>V3</td>
+							<td>V4</td>
+							<td>V5</td>
+							<td>V6</td>
+						</tr>
+						<tr style="height:70px;line-height:70px;">
+							<td>上月日均资产</td>
+							<td> <5万元 </td>
+							<td>5-10万元</td>
+							<td>10-30万元</td>
+							<td>30-50万元</td>
+							<td>50-100万元</td>
+							<td>100-500万元</td>
+							<td>≥500万元</td>
+						</tr>
+						<tr style="height:70px;line-height:70px;">
+							<td>免费提现次数</td>
+							<td>1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td>5</td>
+							<td>6</td>
+							<td>6</td>
+						</tr>
+						<tr style="height:70px;line-height:70px;" class="success">
+							<td>大客户专享标</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td><span class="iconfont">&#xe675;</span></td>
+							<td><span class="iconfont">&#xe675;</span></td>
+							<td><span class="iconfont">&#xe675;</span></td>
+							<td><span class="iconfont">&#xe675;</span></td>
+						</tr>
+						<tr style="height:70px;line-height:70px;">
+							<td>生日礼包</td>
+							<td>-</td>
+							<td><span>1张10元抵用券<br />1张50元抵用券<br />1张1%加息券</span></td>
+							<td><span>1张20元抵用券<br />1张80元抵用券<br />1张2%加息券</span></td>
+							<td><span>1张30元抵用券<br />1张80元抵用券<br />一张2%加息券</span></td>
+							<td><span>1张30元抵用券<br />一张100元抵用券<br />一张2%加息券</span></td>
+							<td><span>1张50元抵用券<br />一张100元抵用券<br />一张2%加息券</span></td>
+							<td><span>2张100元抵用券<br />一张2%加息券</span></td>
+						</tr>
+						<tr style="height:70px;line-height:70px;">
+							<td>升级大礼包</td>
+							<td>-</td>
+							<td><span>2张1%加息券<br />1张2%加息券<br />50元抵用券</span></td>
+							<td><span>1张1%加息券<br />2张2%加息券<br />50元抵用券</span></td>
+							<td><span>2张1%加息券<br />2张2%加息券<br />80元抵用券</span></td>
+							<td><span>2张2%加息券<br />1张3%加息券<br />80元抵用券</span></td>
+							<td><span>1张1%加息券<br />2张2%加息券<br />1张3%加息券<br />100元抵用券</span></td>
+							<td><span>2张1%加息券<br />2张2%加息券<br />1张3%加息券<br />100元抵用券</span></td>
+						</tr><span>
+						<tr style="height:70px;line-height:70px;">
+							<td>注册礼包</td>
+							<td><span>注册送388元<br />红包</span></td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr style="height:70px;line-height:70px;">
+							<td>新手专享</td>
+							<td><span>新用户购买<br />新手标<br />加息3.2%</span></td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="grow">
+				<div class="le_bor">成长体系</div>
+				<div id="myChart"></div>
+				<i style="left:285px;bottom:155px;">5万以内</i><i style="left:396px;bottom:200px;">5万</i><i style="left:490px;bottom:230px;">10万</i><i style="left:590px;bottom:292px;">30万</i><i style="left:688px;bottom:375px;">50万</i><i style="left:785px;top:170px;">100万</i><i style="left:884px;top:85px;">500万</i>
+				<div class="bottom">拓道会员等级
+					<span class="iconfont" style="padding-left:68px;">&#xe6c0</span><span class="iconfont">&#xe6c1;</span><span class="iconfont">&#xe6c2;</span><span class="iconfont">&#xe6c3;</span><span class="iconfont">&#xe6c4;</span><span class="iconfont">&#xe6c5;</span><span class="iconfont">&#xe6c6;</span>
+				</div>
+			</div>
+			<div class="member_order">
+				<div class="le_bor">会员规则</div>
+				<div class="left">
+					<div class="le_pad" style="padding-top:32px;">会员等级</div>
+					<dl>
+						<dt><i></i>拓道金服会员包括6个会员等级，根据上月日均账户资产进行划分，等级越高，特权越多；</dt>
+						<dt><i></i>账户资产=账户余额+冻结金额+待收本金；</dt>
+						<dt><i></i>上月日均账户资产 = 上月每日的账户资产之和/上月的自然月天数；</dt>
+						<dt><i></i>下月日均账户资产 = 自首投之日起每日账户资产总和/用户首投日距月底的天数；</dt>
+					</dl>
+					<div class="le_pad">新用户</div>
+					<dl>
+						<dt><i></i>新用户注册后当月会员等级默认为V0；</dt>
+						<dt><i></i>下月日均账户资产=自首投之日起，每日账户资产总和/用户首投日距月底的天数；</dt>
+					</dl>
+					<div class="le_pad">会员等级计算时间</div>
+					<dl>
+						<dt><i></i>每月1日0点，系统计算用户的上月日均账户资产，对应新的会员等级； </dt>
+						<dt><i></i>用户当月的日均净资产，只会影响下月的会员等级，不会影响本月的会员等级；</dt>
+					</dl>
+					<div class="le_pad">会员有效期</div>
+					<dl>
+						<dt><i></i>一个月</dt>
+					</dl>
+					<div class="le_pad">会员等级升降级</div>
+					<dl>
+						<dt><i></i>首次升级到新一级等级获得该等级的升级大礼包，降级或降级再升级到原已达到的等级则不享有升级大礼包奖励；</dt>
+					</dl>
+					<div class="le_pad">其他</div>
+					<dl>
+						<dt><i></i>拓道金服保留最终解释权，如有疑问请联系客服热线：4008-566-685</dt>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

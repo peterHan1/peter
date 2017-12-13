@@ -1,0 +1,10 @@
+<tr>
+	<th style="width:40%">奖品信息</th>
+	<th style="width:22%">获奖时间</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{prizeName}}</td>
+	<td>{{hanppenTime}}</td>
+</tr>
+{{/list}}

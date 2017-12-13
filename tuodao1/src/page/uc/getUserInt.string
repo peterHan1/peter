@@ -1,0 +1,49 @@
+{{#content}}
+<ul>
+	<li>
+		<a href="###" userId="{{userId}}">
+			<div class="welfare_txt">
+				<span>抵用券</span>
+				<!-- 数量为0的class名 -->
+				<p class="p_num" num="{{usableVoucher}}">{{usableVoucher}}</p>
+			</div>
+			<div class="welfare_img">
+				<div class="dyq"></div>
+			</div>
+		</a>
+	</li>
+	<li>
+		<a href="###" userId="{{userId}}">
+			<div class="welfare_txt">
+				<span>加息券</span>
+				<p class="p_num" num="{{usablePateCoupon}}">{{usablePateCoupon}}</p>
+			</div>
+			<div class="welfare_img">
+				<div class="jxq"></div>
+			</div>
+		</a>
+	</li>
+	<li>
+		<a href="###" userId="{{userId}}">
+			<div class="welfare_txt">
+				<span>我的积分</span>
+				<p class="p_num" num="{{usableScores}}">{{usableScores}}</p>
+			</div>
+			<div class="welfare_img">
+				<div class="integral"></div>
+			</div>
+		</a>
+	</li>
+	<li class="li_borno">
+		<a href="###" userId="{{userId}}">
+			<div class="welfare_txt">
+				<span>我的金币</span>
+				<p class="p_num" num="{{usableGold}}">{{usableGold}}</p>
+			</div>
+			<div class="welfare_img">
+				<div class="gold"></div>
+			</div>
+		</a>
+	</li>
+</ul>
+{{/content}}

@@ -1,0 +1,5 @@
+{{#content}}
+
+<b>当前自动排名 <span class="now">{{ranking}}</span>/<span class="sum">{{totalAutoTender}}</span></b>
+
+{{/content}}

@@ -13,195 +13,17 @@
 			<%= require('html-loader!./layout/uc_menu.html') %>
 			<div class="uc_right">
 				<div class="total_sign">
-					<div class="com_left total">
-						<div class="total_top">
-							<div class="assets">
-								<dl>
-									<dt>
-										<span>累计收益(元)</span>
-										<div class="hint">
-											<i class="iconfont">&#xe68d;</i>
-											<div class="tips left-tips">
-												存管上线后收到的收益总和
-											</div>
-										</div>
-									</dt>
-									<dd>9,999.99</dd>
-								</dl>
-							</div>
-							<div class="recharge_cash">
-								<a href="###" class="recharge">充值</a>
-								<a href="###" class="cash">提现</a>
-							</div>
-						</div>
-						<div class="total_bot">
-							<dl>
-								<dt>
-									<span>待收总额(元)</span>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											待回款的本金与利息总和
-										</div>
-									</div>
-								</dt>
-								<dd>9,999.99</dd>
-							</dl>
-							<dl>
-								<dt>
-									<span>可用余额(元)</span>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的和。
-										</div>
-									</div>
-								</dt>
-								<dd>9,999.99</dd>
-							</dl>
-						</div>
+					<div class="com_left total getUserMo">
+						
 					</div>
 					<div class="com_right sign">
-						<div class="hint_sign">
-							<i class="iconfont">&#xe68d;</i>
-							<div class="tips bottomR-tips">
-								每日签到可随机获得1-6积分哦！
-							</div>
-						</div>
-						<p class="sign_sum">您的签到总数</p>
-						<div class="sign_date">
-							<div class="sign_days">
-								<p class="day">
-									<span class="day1">11</span>
-									<span class="day2">11</span>
-								</p>
-								<b>天</b>
-							</div>
-						</div>
-						<div class="signs_integral">您的总积分<span class="sign_integral">0</span>分</div>
-						<div class="sigin_btn sigin_clik" id="sigin_clik"><span>立即签到</span></div>
-						<div class="animat"></div>
 					</div>
 				</div>
 				<div class="total_eachart">
 					<div class="com_left eachart">
-						<div id="eachart_main"></div>
-						<div class="sum_money">
-							<div class="sum_moneyT">
-								<p>总资产（元）</p>
-								<div class="hint">
-									<i class="iconfont">&#xe68d;</i>
-									<div class="tips left-tips">
-										待收金额、账户余额与冻结资金的总和。
-									</div>
-								</div>
-							</div>
-							<!-- 上万后字体30px -->
-							<div class="sum_moneyB">9,999.00</div>
-						</div>
-						<div class="eachart_R">
-							<ul>
-								<li>
-									<div class="eachart_Rtit">
-										<b class="principal_b"></b>
-										<p>待收本金<span>99,999,999.99</span>元</p>
-									</div>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											待回款的本金之和
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="eachart_Rtit">
-										<b class="interest_b"></b>
-										<p>待收利息<span>199.99</span>元</p>
-									</div>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											待回款的利息之和
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="eachart_Rtit">
-										<b class="balance_b"></b>
-										<p>可用余额<span>9999,999.99</span>元</p>
-									</div>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											充值资金，已回款资金和站岗资金的总和。
-										</div>
-									</div>
-								</li>
-								<li class="li_tips">
-									<div class="eachart_Rtit">
-										<b class="frozen_b"></b>
-										<p>冻结金额<span>999,999.99</span>元</p>
-									</div>
-									<div class="hint">
-										<i class="iconfont">&#xe68d;</i>
-										<div class="tips left-tips">
-											<p>投资精选计划冻结金额：<b>0.00</b>元</p>
-											<p>投资散标冻结金额：<b>0.00</b>元</p>
-											<p>提现冻结金额：<b>0.00</b>元</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
+						
 					</div>
 					<div class="com_right welfare">
-						<ul>
-							<li>
-								<a href="###">
-									<div class="welfare_txt">
-										<span>抵用券</span>
-										<!-- 数量为0的class名 -->
-										<p class="txt_null">0</p>
-									</div>
-									<div class="welfare_img">
-										<div class="dyq"></div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="###">
-									<div class="welfare_txt">
-										<span>加息券</span>
-										<p>1</p>
-									</div>
-									<div class="welfare_img">
-										<div class="jxq"></div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="###">
-									<div class="welfare_txt">
-										<span>我的积分</span>
-										<p>288</p>
-									</div>
-									<div class="welfare_img">
-										<div class="integral"></div>
-									</div>
-								</a>
-							</li>
-							<li class="li_borno">
-								<a href="###">
-									<div class="welfare_txt">
-										<span>我的金币</span>
-										<p>100</p>
-									</div>
-									<div class="welfare_img">
-										<div class="gold"></div>
-									</div>
-								</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 				<div class="return_money">
@@ -226,7 +48,7 @@
 						<div class="account_box"></div>
 						<div class="calendarR">
 							<div class="re_money_tlt">
-					            <p><span class="re_money_y"></span>年<span class="re_money_m"></span>月<span class="re_money_d"></span>待收本息：<span class="re_money">99,999,999.99</span>元</p>
+					            <p><span class="re_money_y"></span>年<span class="re_money_m"></span>月<span class="re_money_d"></span>待收本息：<span class="re_money"></span>元</p>
 					    	</div>
 					    	<div class="table_data">
 					    		<table id="table_list">
@@ -236,18 +58,18 @@
 								</table>
 								
 					    	</div>
-							<!-- <div class="zxf_pagediv"></div> -->
+							<div class="pageList"></div>
 						</div>
 					</div>
 				</div>
 				<div class="recommends">
 					<div class="recommends_txt">为您推荐</div>
 					<div class="recommends_list">
-						<ul>
-							<li>
+						<ul class="productHt">
+							<!-- <li>
 								<a href="">
 								<div class="pro-list">
-									<div class="t">精选计划20170607111<img src="<%= require('../image/activity.png') %>"></div>
+									<div class="t">精选计划20170607111<img src="<%= require('../image/invest/activity.png') %>"></div>
 									<div class="year">
 										<dl class="profit">
 											<dt>7.2<b>%</b></dt>
@@ -270,7 +92,7 @@
 							<li>
 								<a href="">
 								<div class="pro-list">
-									<div class="t">精选计划20170607111<img src="<%= require('../image/new-type.png') %>"></div>
+									<div class="t">精选计划20170607111<img src="<%= require('../image/invest/new-type.png') %>"></div>
 									<div class="year">
 										<dl class="profit">
 											<dt>7.2<b>%</b></dt>
@@ -293,7 +115,7 @@
 							<li class="li_borno">
 								<a href="">
 								<div class="pro-list">
-									<div class="t">吉普指南者抵押标<img src="<%= require('../image/new-type.png') %>"><img src="<%= require('../image/cooperate.png') %>"></div>
+									<div class="t">吉普指南者抵押标<img src="<%= require('../image/invest/new-type.png') %>"><img src="<%= require('../image/invest/cooperate.png') %>"></div>
 									<div class="year">
 										<dl class="profit">
 											<dt>7.2<b>%</b></dt>
@@ -312,7 +134,7 @@
 									
 								</div>
 								</a>	
-							</li>
+							</li> -->
 						</ul>
 					</div>
 				</div>

@@ -1,5 +1,8 @@
 @import '../index';
 // 我的邀请
+.dis_none{
+	display: none;
+}
 .depository_no{
 	.depository_top{
 		@include padding-border;
@@ -19,6 +22,8 @@
 			width: 340px;
 			@include height-line(40px);
 			cursor: pointer;
+			-webkit-border-radius: 20px;
+			-moz-border-radius: 20px;
 			border-radius: 20px;
 			background: #FF7400;
 			color: #ffffff;
@@ -29,18 +34,34 @@
 		}
 	}
 }
-.invite_nav{
-	height: 180px;
-	padding-top: 30px;
-	background: url(../../../image/welfare/invite_bg.png)center no-repeat;
-	text-align: center;
-	.lev_name{
-		font-size: 24px;
-		color: #f3f2f2;
-		margin: 10px 0 5px 0;
-	}
-	.distance{
-		color: $bgColor;
+.depository_yes{
+	.invite_nav{
+		height: 180px;
+		padding-top: 30px;
+		background: url('../../../image/welfare/invite_bg.png')center no-repeat;
+		text-align: center;
+		.lev_bg{
+			width: 77px;
+			height: 87px;
+			margin: auto;
+		}
+		.lev01{
+			background: url('../../../image/welfare/lev_01.png')no-repeat;
+		}
+		.lev02{
+			background: url('../../../image/welfare/lev_02.png')no-repeat;
+		}
+		.lev03{
+			background: url('../../../image/welfare/lev_03.png')no-repeat;
+		}
+		.lev_name{
+			font-size: 24px;
+			color: #f3f2f2;
+			margin: 10px 0 5px 0;
+		}
+		.distance{
+			color: $bgColor;
+		}
 	}
 }
 @include line;
@@ -65,16 +86,10 @@
 	hr{
 		position: absolute;
 		top: 106px;
-		height: 2px;
+		height: 1px;
 		width: 251px;
 		border: none;
 		background: $bgColor;
-		&:first-child{
-			left: 180px;
-		}
-		&:nth-child(2){
-			left: 510px;
-		}
 	}
 	ul{
 		padding: 58px 65px 50px 65px;
@@ -85,9 +100,6 @@
 			float: left;
 			width: 150px;
 			text-align: center;
-			&:nth-child(2){
-				margin: 0 180px;
-			}
 			img{
 				margin-bottom: 25px;
 			}
@@ -106,7 +118,7 @@
 			height: 160px;
 			float: left;
 			padding: 10px 0;
-			&:nth-child(2){
+			&.second_child{
 				border-left: 1px solid $bgColor;
 				border-right: 1px solid $bgColor;
 			}
@@ -116,13 +128,11 @@
 					width: 155px;
 					@include height-line(40px);
 					border: 1px solid $mainColor;
+					-webkit-border-radius: 25px;
+					-moz-border-radius: 25px;
 					border-radius: 25px;
 					color: $mainColor;
 					text-align: center;
-				}
-				&.copy:hover{
-					background: $mainColor;
-					color: #ffffff;
 					cursor: pointer;
 				}
 				.sp1{
@@ -144,21 +154,35 @@
 					width: 40px;
 					height: 40px;
 					border: 1px solid $bgColor;
+					-webkit-border-radius: 20px;
+					-moz-border-radius: 20px;
 					border-radius: 20px;
 					cursor: pointer;
 				}
-				.qq_share{
+				.Cqq{
 					background: url('../../../image/welfare/qq.png')no-repeat;
 					&:hover{
 						background: url('../../../image/welfare/qq_hover.png')no-repeat;
 					}
 				}
-				.wx_share{
+				.weixin{
 					background: url('../../../image/welfare/wx.png')no-repeat;
 					&:hover{
 						background: url('../../../image/welfare/wx_hover.png')no-repeat;
 					}
 				}
+			}
+			a.copy{
+				display: block;
+				margin: auto;
+				width: 155px;
+				@include height-line(40px);
+				border: 1px solid $mainColor;
+				-webkit-border-radius: 25px;
+				-moz-border-radius: 25px;
+				border-radius: 25px;
+				color: $mainColor;
+				text-align: center;
 			}
 		}
 	}
@@ -179,19 +203,19 @@
 		margin-top: 17px;
 		border-collapse: collapse;
 		tr{
-			&:first-child td{
+			&.first_child td{
 				height: 40px;
 				line-height: 25px;
 			}
-			&:nth-child(2) td{
+			&.second_child td{
 				height: 70px;
 				line-height: 25px;
 			}
-			&:nth-child(3) td{
+			&.third_child td{
 				height: 70px;
 				line-height: 25px;
 			}
-			&:last-child td{
+			&.fourth_child td{
 				height: 70px;
 				line-height: 25px;
 			}
@@ -218,12 +242,20 @@
 		margin-top: 20px;
 	}
 	.invite_none{
-		@include height-line(620px);
+		height: 390px;
+		padding-top: 100px;
 		text-align: center;
 		display: none;
 		span{
 			font-size: 14px;
 			color: #cccccc;
 		}
+	}
+}
+
+.invite_alert{
+	.content{
+		text-align: center;
+		padding: 50px 0;
 	}
 }

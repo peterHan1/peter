@@ -1,0 +1,16 @@
+<table class='gold_get_table'>
+<tr>
+	<th style="width:320px;">获取途径</th>
+	<th style="width:290px;">金币数量</th>
+	<th style="width:240px;">操作</th>
+</tr>
+{{#list}}
+<tr>
+	<tr>
+		<td>{{taskName}}</td>
+		<td>{{description}}</td>
+		<td><a href={{pcUrl}}>{{todo}}></a></td>
+	</tr>
+</tr>
+{{/list}}
+</table>

@@ -1,0 +1,61 @@
+{{#content}}
+<div class="sift_tit">
+	<a href="uc_invest_bond.html" class="iconfont">&#xe6bb;</a>
+	<p>
+		<span class="return_satus sta{{status}}" status="{{status}}"></span>
+		{{productTitle}}
+	</p>
+</div>
+<div class="sift_con">
+	<table>
+		<thead>
+			<tr>
+				<th>投资金额（元）</th>
+				<th>预期收益（元）</th>
+				<th>
+					奖励（元）
+					<div class="hint">
+						<i class="iconfont">&#xe68d;</i>
+						<div class="tips left-tips">
+							平台加息奖励，按每期回款进行发放
+						</div>
+					</div>
+				</th>
+				<th>优惠券</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{amount}}</td>
+				<td>{{interest}}</td>
+				<td>{{reward}}</td>
+				<td class="td_font">{{voucher}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="sift_con_mes">
+		<div class="sift_con_mesL">
+			<ul>
+				<li>
+					预期年化：<span>{{borrowApr}}%</span>
+				</li>
+				<li>
+					投资时间：<span class="tenderTime">{{tenderTime}}</span>
+				</li>
+				<li>
+					还款方式：<span>{{styleType}}</span>
+				</li>
+				<li>
+					到期时间：<span>{{repayLastTime}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="sift_con_mesR">
+			<a href="###">查看借款协议 ></a>
+			<a href="###">查看安存保全 ></a>
+			<!-- <a href="###">《债权转让协议》</a> -->
+		</div>
+	</div>
+</div>
+{{/content}}

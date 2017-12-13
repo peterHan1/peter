@@ -1,5 +1,4 @@
 @import "../common/mixin";
-@import "../common/layout";
 .fl{
 	float:left;
 }
@@ -16,7 +15,7 @@
 	background-color: #f25d14!important;
 }
 .dis{
-	background-color: #f2f2f2!important;
+	background-color: #EBEBE4!important;
 }
 i{
 	font-style:normal;
@@ -75,7 +74,6 @@ i.del:hover{
 		color:#e60012;
 		padding-left:13px;
 		line-height:30px;
-		display:none;
 		margin: 20px auto;
 	}
 	.person_info{
@@ -139,6 +137,11 @@ i.del:hover{
 		input{
 			height:42px;
 		}
+		// .hint{
+		// 	display: inline-block;
+		// 	cursor: pointer;
+		// 	position: relative;
+		// }
 		#wen{
 			left:350px;
 			top:8px;
@@ -190,13 +193,13 @@ i.del:hover{
 			right:6px;
 			top:8px;
 			cursor:pointer;
-			display:none;
 		}
 		.yan_kai{
 			position:absolute;
 			right:6px;
 			top:8px;
 			cursor:pointer;
+			display:none;
 		}
 		.yan:hover{
 			color:#ff7e12;
@@ -231,9 +234,11 @@ i.del:hover{
 		color:$mainColor;
 	}
 	.top{
+		width:96.6%;
 		height:40px;
-		padding: 20px 0 0 20px;
+		margin: 0 20px 0 20px;
 		color:$fontColor9e;
+		background-color: #fff;
 		a{
 			padding-right:20px;
 		}
@@ -276,9 +281,11 @@ i.del:hover{
 		color:$mainColor;
 	}
 	.top{
+		width:96.6%;
 		height:40px;
-		padding: 20px 0 0 20px;
+		margin: 0 20px 0 20px;
 		color:$fontColor9e;
+		background-color: #fff;
 		a{
 			padding-right:20px;
 		}
@@ -303,7 +310,7 @@ i.del:hover{
 		p.last{
 			margin-top:32px;
 			color:#333;
-			font-size:12px;
+			font-size:14px;
 		}
 	}
 }

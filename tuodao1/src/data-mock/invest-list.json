@@ -66,7 +66,8 @@
                            "isTimingShow": 1,
                            "isTurn": "0",
                            "collectAbortTime": null,
-                           "validTime": 1
+                           "validTime": 1,
+                           "imgurl": "../image/invest/activity.png" 
                     },
                     {
                            "id": 2,
@@ -121,7 +122,9 @@
                            "isTimingShow": 1,
                            "isTurn": "0",
                            "collectAbortTime": null,
-                           "validTime": 7
+                           "validTime": 7,
+                           "imgurl": "../image/invest/cooperate.png" 
+
                     },
                     {
                            "id": 4,
@@ -176,7 +179,9 @@
                            "isTimingShow": 1,
                            "isTurn": "0",
                            "collectAbortTime": null,
-                           "validTime": 3
+                           "validTime": 3,
+                           "imgurl": "../image/invest/exclusive.png" 
+
                     },
                     {
                            "id": 7,
@@ -231,7 +236,9 @@
                            "isTimingShow": 1,
                            "isTurn": "0",
                            "collectAbortTime": null,
-                           "validTime": 7
+                           "validTime": 7,
+                           "imgurl": "../image/invest/new-type.png" 
+
                     },
                     {
                            "id": 8,

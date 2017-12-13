@@ -4,7 +4,8 @@ var _product = {
 	// 获取banner
 	getProductList : function(resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/mock-index.json'),
+			url     : 'http://192.168.0.151:3000/mock-index.json',
+			method 	: 'get',
 			success : resolve,
 			error   : reject
 		});

@@ -1,0 +1,141 @@
+{{#content}}
+<div class="auto_setInp">
+	<ul>
+		<li>
+			<span>投资期限：</span>
+			<div class="select_com">
+				<p>
+					<span class="month minPeriod">{{minPeriod}}</span>
+					<i class="iconfont">&#xe60e;</i>
+				</p>
+				<ul class="option minOption">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>10</li>
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+					<li>15</li>
+					<li>16</li>
+					<li>17</li>
+					<li>18</li>
+					<li>19</li>
+					<li>20</li>
+					<li>21</li>
+					<li>22</li>
+					<li>23</li>
+					<li>24</li>
+					<li>25</li>
+					<li>26</li>
+					<li>27</li>
+					<li>28</li>
+					<li>29</li>
+					<li>30</li>
+					<li>31</li>
+					<li>32</li>
+					<li>33</li>
+					<li>34</li>
+					<li>35</li>
+					<li>36</li>
+				</ul>
+			</div>
+			<span class="line">—</span>
+			<div class="select_com">
+				<p>
+					<span class="month maxPeriod">{{maxPeriod}}</span>
+					<i class="iconfont">&#xe60e;</i>
+				</p>
+				<ul class="option maxOption">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>10</li>
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+					<li>15</li>
+					<li>16</li>
+					<li>17</li>
+					<li>18</li>
+					<li>19</li>
+					<li>20</li>
+					<li>21</li>
+					<li>22</li>
+					<li>23</li>
+					<li>24</li>
+					<li>25</li>
+					<li>26</li>
+					<li>27</li>
+					<li>28</li>
+					<li>29</li>
+					<li>30</li>
+					<li>31</li>
+					<li>32</li>
+					<li>33</li>
+					<li>34</li>
+					<li>35</li>
+					<li>36</li>
+				</ul>
+			</div>
+			月
+		</li>
+		<li>
+			<span>投资金额：</span>
+			<input type="text" value="{{minAccount}}" class="minAccount" disabled="disabled">
+			<span class="line">—</span>
+			<input type="text" value="{{maxAccount}}" class="maxAccount" disabled="disabled">
+			元
+			<div class="hint hints">
+				<i class="iconfont">&#xe68d;</i>
+				<div class="tips left-tips">
+					投资金额设置范围必须是100-100,000 <br>元的整数
+				</div>
+			</div>
+		</li>
+		<li class="yhq">
+			<div class="yhq_com">
+				<span>是否使用优惠券</span>
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips left-tips">
+						注：优先使用优惠金额较大的优惠券
+					</div>
+				</div> ： 
+			</div>
+			<p class="reminder" name="{{useCoupon}}" >不使用</p>
+			<div class="redios_inp dis_none">
+				<div class="redios checked" name="0" checked="{{useCoupon}}">
+					<i class="iconfont">&#xe61e;</i>
+					<span>不使用</span>
+				</div>
+				<div class="redios" name="1" checked="{{useCoupon}}">
+					<i class="iconfont">&#xe622;</i>
+					<span>使用</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div class="set_btn">
+		<a href="javascript:;" class="set_form">修改设置</a>
+	</div>
+	<div class="sub_btn dis_none">
+		<a href="javascript:;" class="save_btn">保存</a>
+		<a href="javascript:;" class="callOff">取消</a>
+	</div>
+</div>
+{{/content}}

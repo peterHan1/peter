@@ -1,0 +1,14 @@
+<table class='points_get_table'>
+	<tr>
+		<th style="width:320px;">获取途径</th>
+		<th style="width:290px;">积分数量</th>
+		<th style="width:240px;">操作</th>
+	</tr>
+{{#list}}
+	<tr>
+		<td>{{taskName}}</td>
+		<td>{{description}}</td>
+		<td><a href={{pcUrl}}>{{todo}}></a></td>
+	</tr>
+{{/list}}
+</table>

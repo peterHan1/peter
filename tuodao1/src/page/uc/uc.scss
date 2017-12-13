@@ -85,6 +85,11 @@ b,i,em{
 					}
 				}
 			}
+			.total_bot:after{
+				clear: both;
+				content: '';
+				display: block;
+			}
 			dl{
 				text-align:left;
 				margin-left:70px;
@@ -103,6 +108,7 @@ b,i,em{
 			dt{
 				color:$fontColor9e;
 				font-size:$fontSize14;
+				@extend %clearfix;
 				span{
 					float:left;
 				}
@@ -172,12 +178,12 @@ b,i,em{
 				font-size:$fontSize14;
 				width:180px;
 				@include height-line(40px);
-				background-color:#fff6ae;
 				color:#ff8783;
 				cursor:pointer;
 				
 			}
 			.sigin_clik{
+				background-color:#fff6ae;
 				&:hover{
 					background:#fff18d;
 					background: -webkit-linear-gradient(#fff4ae, #ffef7d);
@@ -229,6 +235,11 @@ b,i,em{
 					float: left;
 					cursor: pointer;
 				}
+			}
+			.sum_moneyT:after{
+				clear: both;
+				content: '';
+				display: block;
 			}
 			.sum_moneyB{
 				color:$fontColor70;
@@ -313,7 +324,7 @@ b,i,em{
 				margin:10px 0 14px;
 				float:left;
 				margin-left:25px;
-				.txt_null{
+				.num_null{
 					color:#ddd;
 				}
 				span{
@@ -403,7 +414,7 @@ b,i,em{
 					letter-spacing:1px;
 					.data_top_btn{
 						margin:13px 35px 0 0;
-						i{
+						a{
 							font-size:24px;
 							margin-left:18px;
 							color:$fontColor9e;
@@ -567,6 +578,22 @@ b,i,em{
 				}
 			}
 		}
+		.null_data{
+			background-color:#fff!important;
+			td{
+				text-align: center;
+			}
+			.null_data_bg{
+				width:85px;
+				height:61px;
+				margin:40px auto 15px;
+				background:url(../../image/no_data.png) no-repeat;
+			}
+			p{
+				font-size:$fontSize14;
+				color:$fontColor9e;
+			}
+		}
 	}
 	.recommends{
 		background-color:#fff;
@@ -601,7 +628,7 @@ b,i,em{
 							box-shadow:0 5px 30px #e7e7e7;
 						}
 					}
-					.pro-list{
+					.pro_list{
 						margin:0 auto;
 						.t{
 							font-size:16px;
@@ -655,7 +682,7 @@ b,i,em{
 							color:$fontColor9e;
 							margin-top:28px;
 						}
-						.now-invest{
+						.now_invest{
 							// display:none;
 							// opacity: 0;
 							font-size:$fontSize16;

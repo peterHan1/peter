@@ -1,0 +1,129 @@
+@import "../common/mixin";
+body{
+	background-color:$bgColor;
+	.fl{float: left;}
+	.fr{float: right;}
+	.dis_none{display:none;}
+	.join_intr{
+		height:260px;
+		background-color:#fff;
+		margin-top:30px;
+		.intr{
+			width:785px;
+			text-align: center;
+			margin-top:55px;
+			p{
+				font-size:$fontSize14;
+				color:$fontColor9e;
+				line-height:24px;
+			}
+			.e_mail{
+				margin-top:60px;
+			}
+		}
+		.join_bg{
+			margin-top:60px;
+			div{
+				display: inline-block;
+				width:152px;
+				height:188px;
+			}
+		}
+		.join_left{
+			width:167px;
+			padding-left:30px;
+			div{
+				background:url(../../image/info/join_left.png) no-repeat;
+			}
+		}
+		.join_right{
+			width:167px;
+			text-align: right;
+			padding-right:30px;
+			div{
+				background:url(../../image/info/join_right.png) no-repeat;
+			}
+		}
+	}
+	.join_job{
+		@extend %clearfix;
+		margin:20px 0 50px;
+		h3{
+			padding-left:50px;
+			font-size:$fontSize16;
+			color:$fontColor333;
+			font-weight: normal;
+			@include height-line(50px);
+			border-bottom: 1px solid #f2f2f2;
+		}
+		.job_nav{
+			width:220px;
+			background-color:#fff;
+			margin-right:20px;
+			min-height: 540px;
+			li{
+				a{
+					display: inline-block;
+					padding:20px 0 18px 50px;
+					width:170px;
+					font-size:$fontSize16;
+					color:$fontColor70;
+					&:hover{
+						color:$fontColor74;
+					}
+				}
+			}
+			li.on{
+				a{
+					color:$fontColor74;
+				}
+			}
+		}
+		.job_tab{
+			width:940px;
+			min-height: 490px;
+			background-color:#fff;
+			padding-bottom:50px;
+			h3{
+				padding-left:20px;
+			}
+			ul{
+				padding:0 20px;
+			}
+			li{
+				border-bottom: 1px solid #f2f2f2;
+				i{
+				    color: #d6d6d6;
+				    margin-right:15px;
+				}
+				a{
+					@include height-line(50px);
+					display: inline-block;
+					width:100%;
+					font-size:$fontSize14;
+					color:$fontColor333;
+					&:hover{
+						color:$fontColor74;
+					}
+				}
+				.job_intro{
+					display: none;
+				}
+			}
+			h4{
+				font-size: 16px;
+			    color: #333;
+			    font-weight: normal;
+			    margin-top:10px;
+			}
+			.job_intro{
+				p{
+					line-height: 36px;
+				    font-size: 14px;
+				    color: #9e9e9e;
+				}
+			}
+			
+		}
+	}
+}	

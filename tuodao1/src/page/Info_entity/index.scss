@@ -1,0 +1,141 @@
+@import "../common/mixin";
+body{
+	background-color:$bgColor;
+	.fl{float: left;}
+	.fr{float: right;}
+	.dis_none{display:none;}
+	.entity_box{
+		h2{
+			text-align: center;
+			font-size:$fontSize18;
+			color:$fontColor333;
+		}
+		.entity_com{
+			background-color:#fff;
+			padding:70px 0 20px;
+		}
+	}
+	.entity_scale{
+		margin-top:30px;
+		.entity_scaleBg{
+			width:855px;
+			height:100px;
+			background:url(../../image/info/entity_scaleBg.png) no-repeat;
+			margin:70px 0 0 150px;
+		}
+		ul{
+			overflow: hidden;
+			li{
+				float: left;
+				text-align: center;
+				margin-left:157px;
+				h3{
+					font-size:$fontSize18;
+					color:$fontColor333;
+					margin-top:20px;
+					font-weight: normal;
+				}
+				p{
+					font-size:$fontSize14;
+					color:$fontColor70;
+					margin-top:10px;
+
+				}
+			}
+			.mar_li{
+				margin-left:145px;
+			}
+			.mar_lis{
+				margin-left:141px;
+			}
+		}
+	}
+	.entity_shop{
+		.entity_shopImg{
+			margin-top:50px;
+			padding:0 30px 0 40px;
+			overflow: hidden;
+			img{
+				display: block;
+				float: left;
+				width:267px;
+				height:195px;
+				margin:0 10px 10px 0;
+			}
+		}
+		
+	}
+	.entity_map{
+		text-align: center;
+		#ChinaMap{
+			display: inline-block;
+			margin:0 auto;
+			width:100%;
+		}
+	}
+	.entity_site{
+		background-color:#fff;
+		padding:0 40px;
+		overflow: hidden;
+
+		.branches_position{
+			padding-left:20px;
+			font-size:$fontSize18;
+			color:$fontColor333;
+			background-color:#fbfbfb;
+			@include height-line(50px);
+		}
+		ul{
+			padding: 40px 20px;
+			overflow: hidden;
+			li{
+				width: 285px;
+				height: 140px;
+				float: left;
+				margin-right: 90px;
+				i{
+					font-size:$fontSize14;
+					margin-right:5px;
+				}
+				dt{
+					font-size:$fontSize16;
+					color:$fontColor333;
+				}
+				dd{
+					font-size:$fontSize14;
+					color:$fontColor9e;
+					overflow: hidden;
+					margin-top:10px;
+					div{
+						float: left;
+					}
+					p{
+						width: 250px;
+						float: left;
+					}
+				}
+			}
+			li.no_mr{
+				margin-right:0;
+			}
+		}
+		.ah{
+			padding:40px 0 40px 20px;
+		}
+		.jx{
+			padding:40px 0 40px 20px;
+		}
+
+	}
+	#tiplayer{
+		@include height-line(46px);
+		padding:0 15px;
+		background-color:#fff;
+		font-size:$fontSize12;
+		color:$fontColor9e;
+		#shopNum{
+			font-size:$fontSize20;
+			color:$fontColor74;
+		}
+	}
+}	

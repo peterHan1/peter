@@ -1,0 +1,59 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": 0,
+             "pageSize": 0,
+             "size": 0,
+             "orderBy": null,
+             "startRow": 0,
+             "endRow": 0,
+             "total": 0,
+             "pages": 0,
+             "list":
+             [
+                    {
+                           "addTime": "1509947566",
+                           "mobile": "18539123456",
+                           "account": "66.66",
+                           "isApp": false
+                    },
+                    {
+                           "addTime": "1510026346",
+                           "mobile": "18539123456",
+                           "account": "88.88",
+                           "isApp": true
+                    },
+                    {
+                           "addTime": "1509947566",
+                           "mobile": "18539123456",
+                           "account": "500.00",
+                           "isApp": true
+                    },
+                    {
+                           "addTime": "1510026346",
+                           "mobile": "18539123456",
+                           "account": "600.00",
+                           "isApp": false
+                    },
+                    {
+                           "addTime": "1509947566",
+                           "mobile": "18539123456",
+                           "account": "700.00",
+                           "isApp": false
+                    }
+             ],
+             "firstPage": 0,
+             "prePage": 0,
+             "nextPage": 0,
+             "lastPage": 0,
+             "isFirstPage": false,
+             "isLastPage": false,
+             "hasPreviousPage": false,
+             "hasNextPage": false,
+             "navigatePages": 0,
+             "navigatepageNums": null
+      },
+      "success": true
+}

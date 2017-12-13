@@ -1,0 +1,9 @@
+{{#list}}
+<tr>
+	<td>{{transactionTime}}</td>
+	<td>{{typeName}}</td>
+	<td>{{account}}</td>
+	<td>{{balance}}</td>
+	<td class="last"><div class='bz_tips top-tips'>{{remarks}}<span class=b></span><span class=t></span></div><i class="iconfont">&#xe670;</i></td>
+</tr>
+{{/list}}

@@ -16,10 +16,10 @@
 					<div class="auto_switchTab">
 						<ul>
 							<li>
-								<a href="uc_invest_auto.html?auto" class="on">自动投标</a>
+								<a href="uc_invest_auto.html?auto" type="0">自动投标</a>
 							</li>
 							<li>
-								<a href="uc_invest_auto.html?record">自动投标记录</a>
+								<a href="uc_invest_auto.html?record" type="1">自动投标记录</a>
 							</li>
 						</ul>	
 					</div>
@@ -29,157 +29,15 @@
 							<div class="switch_off" id="switch">
 								<div class="switch"></div>
 							</div>
-							<b class="auto_tips">已有<span>3978</span>位用户开启自动投标</b>
-							<p class="auto_ranking dis_none">当前自动排名 <span class="now">1123</span>/<span class="sum">4100</span></p>
+							<div class="auto_tips">
+							</div>
 						</div>
 						<!-- 设置 -->
 						<div class="auto_setForm dis_none">
 							<div class="auto_setFormTit">
 								自动投标设置
 							</div>
-							<div class="auto_setInp">
-								<ul>
-									<li>
-										<span>投资期限：</span>
-										<div class="select_com">
-											<p>
-												<span class="month">1</span>
-												<i class="iconfont">&#xe60e;</i>
-											</p>
-											<ul class="option">
-												<li>1</li>
-												<li>2</li>
-												<li class="on">3</li>
-												<li>4</li>
-												<li>5</li>
-												<li>6</li>
-												<li>7</li>
-												<li>8</li>
-												<li>9</li>
-												<li>10</li>
-												<li>11</li>
-												<li>12</li>
-												<li>13</li>
-												<li>14</li>
-												<li>15</li>
-												<li>16</li>
-												<li>17</li>
-												<li>18</li>
-												<li>19</li>
-												<li>20</li>
-												<li>21</li>
-												<li>22</li>
-												<li>23</li>
-												<li>24</li>
-												<li>25</li>
-												<li>26</li>
-												<li>27</li>
-												<li>28</li>
-												<li>29</li>
-												<li>30</li>
-												<li>31</li>
-												<li>32</li>
-												<li>33</li>
-												<li>34</li>
-												<li>35</li>
-												<li>36</li>
-											</ul>
-										</div>
-										<span class="line">—</span>
-										<div class="select_com">
-											<p>
-												<span class="month">36</span>
-												<i class="iconfont">&#xe60e;</i>
-											</p>
-											<ul class="option">
-												<li>1</li>
-												<li>2</li>
-												<li class="on">3</li>
-												<li>4</li>
-												<li>5</li>
-												<li>6</li>
-												<li>7</li>
-												<li>8</li>
-												<li>9</li>
-												<li>10</li>
-												<li>11</li>
-												<li>12</li>
-												<li>13</li>
-												<li>14</li>
-												<li>15</li>
-												<li>16</li>
-												<li>17</li>
-												<li>18</li>
-												<li>19</li>
-												<li>20</li>
-												<li>21</li>
-												<li>22</li>
-												<li>23</li>
-												<li>24</li>
-												<li>25</li>
-												<li>26</li>
-												<li>27</li>
-												<li>28</li>
-												<li>29</li>
-												<li>30</li>
-												<li>31</li>
-												<li>32</li>
-												<li>33</li>
-												<li>34</li>
-												<li>35</li>
-												<li>36</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<span>投资金额：</span>
-										<input type="text" value="100" disabled="disabled">
-										<span class="line">—</span>
-										<input type="text" value="100,000" disabled="disabled">
-										元
-										<div class="hint hints">
-											<i class="iconfont">&#xe68d;</i>
-											<div class="tips left-tips">
-												投资金额设置范围必须是100-100,000 <br>元的整数
-											</div>
-										</div>
-									</li>
-									<li class="yhq">
-										<div class="yhq_com">
-											<span>是否使用优惠券</span>
-											<div class="hint">
-												<i class="iconfont">&#xe68d;</i>
-												<div class="tips left-tips">
-													注：优先使用优惠金额较大的优惠券
-												</div>
-											</div> ： 
-										</div>
-										<p class="reminder">不使用</p>
-										<div class="redios_inp dis_none">
-											<div class="redios checked" name="nonuse">
-												<i class="iconfont">&#xe61e;</i>
-												<span>不使用</span>
-											</div>
-											<div class="redios" name="use">
-												<i class="iconfont">&#xe622;</i>
-												<span>使用</span>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<div class="set_btn">
-									<a href="javascript:;">修改设置</a>
-								</div>
-								<div class="sub_btn dis_none">
-									<a href="javascript:;" class="on">保存</a>
-									<a href="javascript:;" class="callOff">取消</a>
-								</div>
-							</div>
-							<!-- 银行存管未激活 -->
-							<div class="auto_deposit dis_none">
-								<div class="auto_deposit_bg"></div>
-								<p>为了保障您的资金安全,请在充值、投资、提现前开通存管</p>
-								<a href="">立即激活存管用户</a>
+							<div class="auto_setBox">
 							</div>
 						</div>
 						<div class="auto_rules">
@@ -264,7 +122,7 @@
 								</tr>
 							</thead>
 							<tbody id="tbody_list">
-								<tr>
+								<!-- <tr>
 									<td class="padd_left">2017-10-08  14:09:00</td>
 									<td>100.00</td>
 									<td>1-3</td>
@@ -344,10 +202,10 @@
 									<td>
 										<a href="uc_invest_autoDetails.html">查看分散投资记录</a>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
-						<div class="zxf_pagediv"></div>
+						<div class="pageList"></div>
 					</div>
 				</div>
 			</div>

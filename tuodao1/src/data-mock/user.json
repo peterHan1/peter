@@ -1,0 +1,18 @@
+      
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "userId": "用户编码",
+             "userName": "用户名称",
+             "mobile": "手机号码",
+             "avatarUrl": "头像路径",
+             "investFlag": "是否已投资（0：否；1：是）",
+             "isNewbie": 0,
+             "isOpenDeposit": "是否已开通存管账户（0：未开通；1：已开通）",
+             "usableFund": "9999.99",
+             "vipLevel": "vip等级(Integer)"
+      },
+      "success": true
+}

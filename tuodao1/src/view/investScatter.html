@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max-width">
+			<ul class="invest_tab">
+				<li>
+					<a href="investSift.html" productType="sift">精选计划</a>
+				</li>
+				<li data="b">
+					<a href="investScatter.html" class="on" productType="scatter">散标项目</a>
+				</li>
+				<li data="c">
+					<a href="investBond.html" productType="bond">债权转让</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="max-width">
+		<div class="invest_list">
+			<div class="invest_list_top">
+				<ul class="scatter_tab">
+					<div class="invest_nav_data">
+						<li class="on" start end status>全部</li>
+						<li start="0" end="3" status>3个月以内</li>
+						<li start="3" end="6" status>3-6个月</li>
+						<li start="7" end="12" status>7-12个月</li>
+						<li start="12" status>12个月以上</li>
+					</div>
+					<div class="invest_nav_mou">
+						<li class="on" status start end>全部</li>
+						<li class="invest_nav_type" status="0" start end>等额本息</li>
+						<li class="invest_nav_type" status="1" start end>按月付息</li>
+						<li class="invest_nav_type" status="2" start end>按天计息</li>
+					</div>
+				</ul>
+			</div>
+			<div class="invest_list_bot"></div>
+		</div>
+		<div class="pageList"></div>
+	</div>
+	
+
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

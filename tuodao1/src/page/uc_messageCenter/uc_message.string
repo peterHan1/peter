@@ -1,0 +1,8 @@
+{{#list}}
+	<li>
+		<dl>
+			<dt class="" ifRead="{{ifRead}}"><i class="iconfont">&#xe69a;</i><span>{{mailTitle}}</span><b>{{createTime}}</b></dt>
+			<dd class="dis_none">{{mailContent}}</dd>
+		</dl>
+	</li>
+{{/list}}

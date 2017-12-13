@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max-width">
+			<ul class="invest_tab">
+				<li>
+					<a href="investSift.html" data="sift" class="on">精选计划</a>
+				</li>
+				<li data="b">
+					<a href="investScatter.html" data="scatter">散标项目</a>
+				</li>
+				<li data="c">
+					<a href="investBond.html" data="bond">债权转让</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="max-width">
+		<div class="clearing">
+			
+		</div>
+		<div class="detail_top">
+			<div class="detail_top_left">
+
+			</div>
+			<div class="detail_top_right">
+				
+			</div>
+		</div>
+		<div class="detail_bot">
+			<div class="detail_tab">
+				<!-- 精选计划 -->
+				<ul>
+					<li>
+						<a href="JavaScript:;" class="on" type>项目详情</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type>安全保障</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type>常见问题</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type="phone">加入记录<span class="phoneNum"></span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="detail_con">
+				<div class="detai details">
+					<div class="details_a">
+						<div class="a_top">
+							<div class="a_topl">
+								<dl>
+									<dt></dt>
+									<dd class="font">省心</dd>
+									<dd>自动匹配优质资产</dd>
+								</dl>
+							</div>
+							<div class="a_topc">
+								<dl>
+									<dt></dt>
+									<dd class="font">安全</dd>
+									<dd>过程监控，严格筛选，银行存管</dd>
+								</dl>
+							</div>
+							<div class="a_topr">
+								<dl>
+									<dt></dt>
+									<dd class="font">高收益</dd>
+									<dd>优化配置，本金复投</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="oDiv a_con">
+							<h3>项目简介</h3>
+							<p><span>&bull;</span>精选计划是拓道金服平台推出的优先自动投标工具。经由投资人授权，并由系统为投资人实现分散投标，节省投资时间、提高投资效率的投标产品。</p>
+							<p><span>&bull;</span>平台通过多层风控把关，严格的标的筛选的过程，再以分散投标，降低投资人投资风险。</p>
+							<p><span>&bull;</span>购买精选计划产品之后，资金无闲置立即开始投标，精选计划到期后，通过债权转让的方式完成本金退出，本金收益一并返还到投资人账户余额中。</p>
+						</div>
+						<div class="a_bot">
+							<h3>计划详情</h3>
+							<table>
+								<tbody class="siftPlan">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="detai oDiv safety" style="display: none">
+					<ul>
+						<li>
+							<h3>业务安全</h3>
+							<p><span>&bull;</span>汽车抵押借贷具有借款金额少、周期短、实物抵押保障、逾期处理便捷等显著优势。</p>
+						</li>
+						<li>
+							<h3>风控安全</h3>
+							<p><span>&bull;</span>细化贷前调查、贷中审查、贷后管理、逾期处理等四个风控流程，把风险控制渗入每一个环节中</p>
+							<p><span>&bull;</span>通过详尽的贷前审查、审慎的贷中核查、完善的贷后管理以及妥当的逾期处理，把风险控制在合理的范围内，坚持追求所有标的均真实、有效，可追溯、可审查。</p>
+						</li>
+						<li>
+							<h3>平台安全性</h3>
+							<p><span>&bull;</span>卓越的系统架构：可靠、高效、稳定，阿里云服务器，双服务器运行，每15分钟自动备份保存平台数据。</p>
+							<p><span>&bull;</span>安全的管理标准：人员安全，制度安全，系统安全，运营安全。</p>
+						</li>
+						<li>
+							<h3>资金安全性</h3>
+							<p><span>&bull;</span>拓道金服的北京银行资金存管系统已上线，借款人、投资人和平台均在北京银行资金存管系统开设存管账户。</p>
+							<p><span>&bull;</span>借款人通过拓道金服线下门店进行车辆审核后委托拓道金服发布借款信息，平台向借款人和投资人提供信息撮合服务，投资人投标成功后款项进入借款人的存管账户，平台无法接触交易资金，资金流转清晰。</p>
+						</li>
+					</ul>
+				</div>
+				<div class="detai oDiv issue" style="display: none">
+					<ul>
+						<li>
+							<span>&bull;</span><h3>精选计划安全吗？</h3>
+							<p>精选计划匹配的资产均经拓道金服多层风控把关、严格筛选，并且确保资金与债权一 一匹配。</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划什么时候开始计息？</h3>
+							<p>精选计划满标复审后计息。</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划正常退出需要多久时间到账？</h3>
+							<p>精选计划到期后，如持有债权已到期，本金和收益将会回到账户余额。如持有债权未到期，将默认授权平台进行债权转让，转让成功后持有人的本金和利息即可回款到账户余额；转让退出时间预计1-3个工作日内完成。</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划支持提前退出吗？</h3>
+							<p>精选计划目前主要为1月期和3月期产品，不支持提前退出。</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划的还款方式如何？</h3>
+							<p>精选计划的还款方式以所匹配的债权为准，计划期间债权所得收益（除管理费外）回到投资人余额，本金继续复投。</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划是否可以使用优惠券？</h3>
+							<p>可以使用</p>
+							<p>举例：500000金额加入3个月期限的精选计划，若使用3%加息券，则预计所得 到期收益=500000*（11%+3%）/12*3=17500元</p>
+						</li>
+						<li>
+							<span>&bull;</span><h3>精选计划中是否可以及时看到所投资的标的？</h3>
+							<p>加入精选计划后，资金匹配的每笔债权，都可以在相应计划的投资详情页查看其具体金额、起止时间以及相关协议。</p>
+						</li>
+					</ul>
+				</div>
+				<div class="detai con_record" style="display: none">
+					<table>
+						<thead>
+							<th>加入用户</th>
+							<th>加入金额（元）</th>
+							<th>交易时间</th>
+						</thead>
+						<tbody class="chage_tr" id="tbody_list">
+						</tbody>
+					</table>
+					<div class="pageList"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 加入成功 -->
+	<div class="hint_show dis_none" id="succeed_show">
+		
+	</div>
+	<!-- 加入失败 -->
+	<div class="hint_show dis_none" id="failed_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com failed">
+			<div class="icon"></div>
+			<p>加入失败，项目已满额！</p>
+			<b>这个项目太抢手啦，试试 <a href="">其他精选计划</a>吧！</b>
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 激活存管 -->
+	<div class="hint_show dis_none" id="bank_show">
+		<div class="txt">
+			<div class="ltxt">
+				激活存管账户
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips">银行存管是指用户在P2P平台上的交易资金交由银行管理，平台无法接触交易资金的一种资金管理模式。借款人、投资人和平台通过银行方开设存管账户，来实现交易和资金的结算。<span class="bot"></span><span class="bot2"></span></div>
+				</div>
+			</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com bank">
+			<div class="icon"></div>
+			<p>拓道金服正式启用北京银行资金存管系统</p>
+			<b>为保障您的资金安全,请在充值、投资、提现前激活存管</b>
+			<span class="iskonw">
+				<a href="">立即激活存管账户</a>
+			</span>
+		</div>
+	</div>
+	<!-- 优惠券弹窗 -->
+	<div class="hint_show discount_show dis_none" id="discount_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="discount_con">
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用优惠券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+			<!-- <div class="discount_txt">单笔加入精选计划只能使用1张优惠券。</div> -->
+			<!-- 散标显示 -->
+			<div class="discount_txt">单笔投资散标项目只能使用1张优惠券。</div>
+
+			<!-- 债权转让显示 -->
+			<!-- <div class="discount_txt">单笔投资债权转让只能使用1张加息券（债权转让项目不可使用抵用券）。</div> -->
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用加息券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+
+			<ul class="ul_select">
+				<li class="jxq" data="1%加息券">
+					<p class="p_txt"><span>1</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="jxq" data="3%加息券">
+					<p class="p_txt"><span>3</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="15元抵用券">
+					<p class="p_txt">￥<span>15</span>抵用券</p>
+					<p>投资满10,000元，1个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="30元抵用券">
+					<p class="p_txt">￥<span>30</span>抵用券</p>
+					<p>投资满30,000元，3个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="70元抵用券">
+					<p class="p_txt">￥<span>70</span>抵用券</p>
+					<p>投资满10,000元，6个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="100元抵用券">
+					<p class="p_txt">￥<span>100</span>抵用券</p>
+					<p>投资满10,000元，12个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+			</ul>
+			<div class="discount_bot">
+				<span class="yes">确定</span>
+				<span class="no">取消</span>
+				<!-- <span class="iskonw">我知道了</span> -->
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

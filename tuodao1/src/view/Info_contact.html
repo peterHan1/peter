@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<%= require('html-loader!./layout/info_nav.html') %>
+	<div class="max-width">
+		<div class="contact_site">
+			<div class="fl contact_siteL">
+				<h3>公司信息</h3>
+				<p>杭州拓道互联网金融服务有限公司</p>
+				<p>地址：杭州市西湖区西溪路 550 号西溪新座 7 幢 B 座 11 楼</p>
+				<p>电话：0571-87208395</p>
+				<p>邮编：310012</p>
+			</div>
+			<img src="<%= require('../image/info/map.png') %>">
+		</div>
+		<div class="contact_way">
+			<ul>
+				<li class="bor_no">
+					<div class="client">
+						<span></span>
+						<b>客户服务</b>
+					</div>
+					<p>客服热线：40085—666—85</p>
+					<p>微信公众号：拓道金服</p>
+					<p>联系邮箱：tuodaojinfu@51tuodao.com</p>
+					<p>服务时间：9:00—20:30</p>
+				</li>
+				<li>
+					<div class="business">
+						<span></span>
+						<b>商务合作</b>
+					</div>
+					<p>推广部联系电话：0571-87203338</p>
+					<p>市场部联系电话：40085-777-85</p>
+					<p>联系邮箱：ppggb@51tuodao.com</p>
+				</li>
+				<li>
+					<div class="media">
+						<span></span>
+						<b>媒体采访</b>
+					</div>
+					<p>联系邮箱：ppggb@51tuodao.com</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

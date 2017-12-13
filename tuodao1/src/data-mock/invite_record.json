@@ -1,0 +1,44 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": "1",
+             "pageSize": "6",
+             "size": "每页行数",
+             "orderBy": "排序字段",
+             "startRow": "开始行",
+             "endRow": "结束行",
+             "total": "总记录数",
+             "pages": "10",
+             "list":
+             [
+                    {
+                           "friendPhoneNum": "好友号码",
+                           "vouchers": "抵用券",
+                           "directCashback": "直接返现",
+                           "indirectCashback": "间接返现"
+                    },
+                    {
+                           "friendPhoneNum": "好友号码",
+                           "vouchers": "抵用券",
+                           "directCashback": "直接返现",
+                           "indirectCashback": "间接返现"
+                    }
+             ],
+             "firstPage": "第一页",
+             "prePage": "上一页",
+             "nextPage": "下一页",
+             "lastPage": "最后一页",
+             "isFirstPage": "是否第一页",
+             "isLastPage": "是否最后一页",
+             "hasPreviousPage": "是否有上一页",
+             "hasNextPage": "是否有下一页",
+             "navigatePages": "导航页",
+             "navigatepageNums":
+             [
+                    1
+             ]
+      },
+      "success": true
+}

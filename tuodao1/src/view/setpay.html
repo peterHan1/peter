@@ -14,10 +14,10 @@
 				<p><b class="one">填写手机号</b><b class="two">验证手机号</b><b class="three">设置新密码</b><b class="four">完成</b></p>
 			</div>
 			<div class="phone_Num">
-				<input type="text" class="phoneNum" placeholder="请输入手机号" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
+				<input type="text" class="phoneNum" placeholder="请输入手机号" id="mobile" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]"><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<div id="slider2" class="slider"></div>
-			<input type="button" value="下一步" class="set_btn">
+			<input type="button" value="下一步" class="set_btn" jz="jz">
 		</div>
 		<div class="yanzhengma dis_none">
 			<div class="step_line">
@@ -36,7 +36,7 @@
 				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
 				<input type="text" jz="jz" maxlength="1" readonly="readonly" />
 				<input type="text" jz="jz" maxlength="1" class="lastnum" readonly="readonly" />
-				<span id="spa">-</span>
+				<span id="spa"></span>
 			</div>
 			<span class="djs">(<i class="count_num">59</i>s)&nbsp;后可重新发送验证码</span><div class="count_time">重新发送验证码</div>
 			<p class="back"><&nbsp;返回上一步</p>
@@ -50,7 +50,7 @@
 				<input type="password" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="6" placeholder="请输入6位数字支付密码密码" class="pas"><span class="iconfont yan">&#xe66b;</span><span class="iconfont yan_kai">&#xe682;</span><i class="iconfont del">&#xe68b;</i>
 			</div>
 			<p class="pay_til">支付密码必须是6位数字</p>
-			<input type="button" value="提交" class="register_btn">
+			<input type="button" value="提交" class="register_btn" jz="jz">
 		</div>
 		<div class="set_success dis_none">
 			<div class="step_line">

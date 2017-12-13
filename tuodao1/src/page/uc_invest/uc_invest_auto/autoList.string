@@ -1,0 +1,11 @@
+{{#list}}
+<tr>
+	<td class="padd_left">{{addTime}}</td>
+	<td>{{tenderMoney}}</td>
+	<td>{{minPeriod}}-{{maxPeriod}}</td>
+	<td class="th_wid">{{voucherMoney}}</td>
+	<td>
+		<a href="uc_invest_autoDetails.html?tender={{autoTenderId}}" autoId="{{autoTenderId}}">查看分散投资记录</a>
+	</td>
+</tr>
+{{/list}}

@@ -1,9 +1,34 @@
 @import '../index';
 .praise{
 	height: 90px;
+	line-height: 90px;
 	border-bottom:10px solid $bgColor;
 	cursor: pointer;
-	background: url('../../../image/welfare/praise_bg.png')center no-repeat;
+	color: #ffffff;
+	background: url('../../../image/welfare/banner.png')center no-repeat;
+	span{
+		font-size: 40px;
+		margin-left: 30px;
+	}
+	i{
+		font-size: 26px;
+	}
+	span.praise_btn{
+		display: inline-block;
+		@include height-line(30px);
+		text-align: center;
+		width: 150px;
+		font-size: 16px;
+		color: #F77648;
+		background: #FFE27E;
+		margin-left: 250px;
+		outline: none;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		border:none;
+		cursor: pointer;
+	}
 }
 .points{
 	height: 180px;
@@ -23,11 +48,15 @@
 		margin: 0 auto;
 	}
 }
+.color_main{
+	color:#ff7400;
+}
 .exchange{
+	@extend %clearfix;
 	.menu{
 		@include height-line(50px);
 		margin-left: 30px;
-		border-bottom: 2px solid $bgColor;
+		border-bottom: 1px solid $bgColor;
 		width: 880px;
 		margin-bottom: 28px;
 		a{
@@ -42,7 +71,7 @@
 	.points_detail{
 		li{
 			background: url('../../../image/welfare/dhq.png') no-repeat;
-			&:nth-child(4){
+			&.txq{
 				background: url('../../../image/welfare/cash.png') no-repeat;
 			}
 		}
@@ -52,23 +81,23 @@
 			background: url('../../../image/welfare/gold.png') no-repeat;
 		}
 	}
-	.zxf_pagediv{
-		margin-bottom: 21px;
-	}
 	.exchange_detail{
 		font-size: $fontSize14;
 		margin-bottom: 4px;
 		@include tables;
+		@extend %clearfix;
+	}
+	.duihuan{
+		@extend %clearfix;
 	}
 	.change{
-		@extend %clearfix;
 		color: #828282;
 		font-size: 12px;
 		padding-left: 30px;
 		.change_img{
 			width: 280px;
 			@include height-line(140px);
-			padding-bottom: 20px;
+			padding-bottom: 25px;
 			font-size: 22px;
 			color:#ffffff;
 			text-align: center;
@@ -84,27 +113,35 @@
 			margin-bottom: 30px;
 			.btn_div{
 				@extend %clearfix;
+				height: 35px;
+				padding: 0 3px;
 			}
-			span{
+			.btn_div{
+				span{
 				display: inline-block;
 				border:1px solid $fontColor9e;
 				height: 22px;
 				line-height: 20px;
 				text-align: center;
 				margin-bottom: 11px;
-			}
-			span:last-child,span:first-child{
-				width: 22px;
-				cursor: pointer;
-				float: right;
-				&:hover{
-					background: #FFF7F0;
 				}
-			}
-			span:nth-child(2){
-				width: 44px;
-				margin: 0 5px;
-				float: right;
+				span.add,span.cut{
+					width: 22px;
+					cursor: pointer;
+					float: right;
+					&:hover{
+						background: #FFF7F0;
+					}
+				}
+				input{
+					width: 44px;
+					margin: 0 5px;
+					float: right;
+					height: 20px;
+					line-height: 20px;
+					text-align: center;
+					outline: none;
+				}
 			}
 			.change_btn{
 				width: 253px;
@@ -114,6 +151,8 @@
 				margin: 0 auto;
 				color: $mainColor;
 				border:1px solid $mainColor;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px;
 				border-radius: 20px;
 				&:hover{
 					cursor: pointer;
@@ -122,6 +161,13 @@
 				}
 			}
 		}
+	}
+	.points_get_table tr td span.iconfont{
+		color: #57B766;
+	}
+	.point_page{
+		height: 78px;
+		margin-bottom: 0px;
 	}
 }
 
@@ -141,6 +187,8 @@
 		padding: 8px 65px;
 		background: $mainColor;
 		color: #ffffff;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
 		border-radius: 20px;
 		display: block;
 		margin: 0 auto;
@@ -151,7 +199,6 @@
 	}
 	.content{
 		@extend %clearfix;
-		width: 455px;
 		margin: 0 auto;
 		img,ul{
 			float: left;
@@ -181,6 +228,8 @@
 	.order_err{
 		width: 540px;
 		height: 30px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
 		border-radius: 3px;
 		margin: 5px auto;
 		color: red;
@@ -191,7 +240,8 @@
 			background: #F2F2F2;
 		}
 	}
-	.content ul li {
+	.content {width: 455px;}
+	ul li {
 		position: relative;
 		span{
 			z-index: 999;
@@ -200,15 +250,33 @@
 		    left: 15px;
 		    top: 8px;
 		}
+		i{
+			position: absolute;
+		    right: 10px;
+		    top: 10px;
+		    cursor: default;
+		    font-size: 18px;
+		    display: none;
+		    color: #9e9e9e;
+		    z-index: 999;
+		    &:hover{
+				color:#ff7400;
+		    }
+		}
 		input{
 			width: 224px;
 			@include height-line(40px);
 			border:1px solid #dddddd;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
 			border-radius: 5px;
 			font-size: $fontSize12;
 			color: $fontColor9e;
 			padding-left: 44px;
 			outline: none;
+			&.foucs{
+				border: 1px solid #dddddd;
+			}
 		}
 	}
 	.submit_btn{
@@ -220,19 +288,17 @@
 			@include height-line(30px);
 			outline: none;
 			border:1px solid;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
 			border-radius: 15px;
 			cursor:pointer;
-			&:first-child{
-				background: $fontColor9e;
+			&.submits{
+				background: #9e9e9e;
 				color: #ffffff;
 				margin-right: 20px;
-				&:hover{
-					background: $mainColor;
-					color: #ffffff;
-				}
 			}
-			&:last-child{
-				border-color:$fontColor9e;
+			&.cancel{
+				border-color:#9e9e9e;
 				background: #ffffff;
 			}
 		}
@@ -242,6 +308,7 @@
 .points_login{
 	.content{
 		padding-top: 40px;
+		width: 400px;
 	}
 	.center{
 		padding-top: 40px;
@@ -258,169 +325,15 @@
 		    margin: 5px auto;
 		    text-align: center;
 		    background: #F2F2F2;
+		    -webkit-border-radius: 5px;
+		    -moz-border-radius: 5px;
 		    border-radius: 5px;
+	}
+	.content{
+		width: 400px;
+		padding-top: 10px;
 	}
 	ul li{
 		line-height: 30px;
-	}
-}
-// 抽奖记录弹窗
-
-.draw_record_alert{
-	font-size: 14px;
-	.out{
-		padding: 0 26px;
-		div.zxf_pagediv{
-			padding-top: 20px;
-			margin-bottom: 0px;
-		}
-	}
-	.record_top{
-		padding: 15px 0;
-		color: $mainColor;
-		text-align: center;
-	}
-	table{
-		border-collapse: collapse;
-		text-align: left;
-		width: 100%;
-		tr{
-			&:nth-child(2n){
-				background: $bgColor;
-			}
-			th{
-				font-weight: bold;
-				color: #707070;
-				padding-left: 5%;
-				@include height-line(50px);
-			}
-			td{
-				color: #9e9e9e;
-				padding-left: 5%;
-				@include height-line(50px);
-			}
-		}
-	}
-	.record_none{
-		padding: 130px 0;
-		text-align: center;
-		color: #ccc;
-	}
-}
-// 中奖iphone，tv，牙刷弹窗
-.draw_presents_alert{
-	.presents_content{
-		@extend %clearfix;
-		padding:0 50px;
-		.present_img,.draw_explian{
-			float: left;
-			padding-top: 20px;
-		}
-		.present_img {
-			width: 180px;
-			text-align: center;
-			span{
-				font-size: 14px;
-				color: #9e9e9e;
-				padding-top: 10px;
-			}
-		}
-		.draw_explian{
-			width: 200px;
-			padding: 45px 0 0 60px;
-			li{
-				margin-bottom: 18px;
-				color: #333333;
-				font-size: 14px;
-				&:first-child{
-					font-size: 24px;
-					color: $mainColor;
-					margin-bottom: 38px;
-				}
-
-			}
-		}
-	}
-	.draw_btn{
-		text-align: center;
-		padding-top: 30px;
-		button{
-			width: 250px;
-			@include height-line(40px);
-			color: #ffffff;
-			background: $mainColor;
-			border-radius: 25px;
-			outline: none;
-			border: none;
-			cursor: pointer;
-		}
-	}
-}
-// 中奖红包，加息券弹窗
-.draw_hongbao_alert{
-	.hongbao_content{
-		padding-top: 30px;
-		li{
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.color333{
-			color: #333333;
-			font-size: 16px;
-		}
-		.color9e{
-			font-size: 14px;
-			color: #9e9e9e;
-			i{
-				color: $mainColor;
-			}
-		}
-		.draw_btn{
-			text-align: center;
-			button{
-				width: 250px;
-				@include height-line(40px);
-				color: #ffffff;
-				background: $mainColor;
-				border-radius: 25px;
-				outline: none;
-				border: none;
-				cursor: pointer;
-			}
-		}
-	}
-}
-// 中奖积分弹窗
-.draw_points_alert{
-	.points_content{
-		padding-top: 30px;
-		li{
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.color333{
-			color: #333333;
-			font-size: 16px;
-		}
-		.color9e{
-			font-size: 14px;
-			color: #9e9e9e;
-			i{
-				color: $mainColor;
-			}
-		}
-		.draw_btn{
-			text-align: center;
-			button{
-				width: 250px;
-				@include height-line(40px);
-				color: #ffffff;
-				background: $mainColor;
-				border-radius: 25px;
-				outline: none;
-				border: none;
-				cursor: pointer;
-			}
-		}
 	}
 }

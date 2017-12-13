@@ -1,0 +1,41 @@
+{{#content}}
+<div class="oDiv details_b">
+	<div class="b_t">
+		<h3>项目简介</h3>
+		<p>{{intro}}</p>
+	</div>
+	<div class="b_c">
+		<h3>借款人信息</h3>
+		<ul>
+			<li>
+				<p>姓名：{{name}}</p>
+				<p>性别：{{sex}}</p>
+			</li>
+			<li>
+				<p>学历：{{education}}</p>
+				<p>职业：{{job}}</p>
+			</li>
+			<li>
+				<p>年龄：{{age}}</p>
+				<p>户籍：{{census}}</p>
+			</li>
+		</ul>
+	</div>
+	<div class="b_l">
+		<h3>汽车信息</h3>
+		<ul>
+			<li>
+				<p>车辆品牌：{{carModel}}</p>
+				<p>车辆估价：{{secondCarPrice}}元</p>
+			</li>
+			<li>
+				<p>购买时间：{{buyTime}}</p>
+				<p>购买价格：{{buyPrice}}元</p>
+			</li>
+			<li>
+				<p>行驶公里数：{{driveKilometers}}公里</p>
+			</li>
+		</ul>
+	</div>
+</div>
+{{/content}}

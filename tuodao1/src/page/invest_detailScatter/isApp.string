@@ -1,0 +1,16 @@
+<!-- app专享标 -->
+{{#content}}
+<div class="investting" >
+	<div class="app_invest">
+		<img src="http://72.127.2.42:3000/image/APP_ewm.png" class="ewm" />
+		<p>本标的仅限在APP端投资</p>
+		<b>扫描二维码下载手机客户端</b>
+	</div>
+	<div class="agreement" id="protocol">
+		<div>
+			<input type="checkbox" id="checkinp" checked><label for="checkinp">已阅读并同意<a href="###">《借款协议》</a></label>
+		</div>
+		<a href="###" style="" class="hinta">市场有风险，投资需谨慎 &gt;</a>
+	</div>
+</div>
+{{/content}}

@@ -1,0 +1,23 @@
+<table>
+	<thead>
+		<tr>
+			<th class="padd_left">编号</th>
+			<th>项目名称</th>
+			<th>加入时间</th>
+			<th>加入金额(元)</th>
+			<th>预期收益(元)</th>
+			<th>优惠券</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody id="tbody_list">
+		<tr class="null_data">
+			<td colspan="8">
+				<div class="null_data_bg"></div>
+				<p>当前没有加入记录</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="pageList"></div>

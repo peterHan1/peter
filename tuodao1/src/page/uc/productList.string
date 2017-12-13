@@ -1,0 +1,50 @@
+{{#planOut}}
+<li type="{{productType}}">
+	<a href="invest_detailSift.html?tender={{id}}">
+	<div class="pro_list">
+		<div class="t">{{productTitle}}<img src="{{typePcUrl}}"></div>
+		<div class="year">
+			<dl class="profit">
+				<dt>{{borrowApr}}<b>%</b></dt>
+				<dd>预期年化</dd>
+			</dl>
+			<dl class="deadline">
+				<dt>{{productPeriod}}<b>个月</b></dt>
+				<dd>投资期限</dd>
+			</dl>
+		</div>
+		<div class="money">
+			<p class="total">预计项目总额：{{borrowAmount}}元</p>
+			<p class="surplus">剩余可投：{{surplusInvestAmount}}元</p>
+		</div>
+		<div class="btn">{{minAmount}} 元起投</div>
+		
+	</div>
+	</a>	
+</li>
+{{/planOut}}
+{{#borrowOut}}
+<li type="{{productType}}">
+	<a href="invest_detailScatter.html?tender={{id}}">
+	<div class="pro_list">
+		<div class="t">{{productTitle}}<img src="{{typePcUrl}}"></div>
+		<div class="year">
+			<dl class="profit">
+				<dt>{{borrowApr}}<b>%</b></dt>
+				<dd>预期年化</dd>
+			</dl>
+			<dl class="deadline">
+				<dt>{{productPeriod}}<b>个月</b></dt>
+				<dd>投资期限</dd>
+			</dl>
+		</div>
+		<div class="money">
+			<p class="total">预计项目总额：{{borrowAmount}}万元</p>
+			<p class="surplus">剩余可投：{{surplusInvestAmount}}元</p>
+		</div>
+		<div class="btn">{{minAmount}}元起投</div>
+		
+	</div>
+	</a>	
+</li>
+{{/borrowOut}}

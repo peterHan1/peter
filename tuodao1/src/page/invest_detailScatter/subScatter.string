@@ -1,0 +1,13 @@
+{{#content}}
+<div class="txt">
+	<div class="ltxt">加入成功</div>
+	<div class="rclose">&times;</div>
+</div>
+<div class="show_com succeed">
+	<div class="icon"></div>
+	<!-- 散标和转让显示 -->
+	<p>恭喜您成功投资{{amount}}元！</p>
+	<b>您可以 <a href="">继续投资</a> 或 <a href="">查看已投项目</a></b>
+	<span class="iskonw">我知道了</span>
+</div>
+{{/content}}

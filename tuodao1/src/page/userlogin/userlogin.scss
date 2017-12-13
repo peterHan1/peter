@@ -1,5 +1,4 @@
 @import "../common/mixin";
-@import "../common/layout";
 .fl{
 	float:left;
 }
@@ -48,15 +47,29 @@ i.del:hover{
 		height:80%;
 		margin: 93px auto;
 		text-align:center;
-		.login_logo{
+		.login-logo{
 			width: 179px;
 			height: 78px;
 			background:url("../../image/login.png") no-repeat;
 			margin: 0 auto 0 auto;
 		}
+		.all-errinfo{
+			margin:15px 0;
+			height:20px;
+			line-height:20px;
+			vertical-align: middle;
+			font-size:$fontSize12;
+			color:red;
+			i{
+				vertical-align: middle;	
+				margin-right:5px;
+				text-align:left;
+			}
+			
+		}
 		.user_name{
 			position:relative;
-			margin:50px auto 20px auto;
+			margin:0px auto 20px auto;
 			width:340px;
 			height:40px;
 			input{
@@ -100,7 +113,7 @@ i.del:hover{
 		.slider{	display:block;
 					margin: 20px auto 0 182px;
 				}
-		.login_btn{
+		.login-btn{
 			display:block;
 			width:260px;
 			height:40px;

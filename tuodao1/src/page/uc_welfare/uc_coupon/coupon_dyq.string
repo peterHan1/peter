@@ -1,0 +1,9 @@
+<ul class="dyq_ticket">
+{{#list}}
+	<li data-select='1'>
+		<p class="ticket_top">￥<span>{{discountAvailable}}&nbsp;</span>抵用券</p>
+		<p class="ticket_middle"><span>投资满{{moneyLimit}}元，{{dateLimit}}个月及以上标的使用</span><br />{{dateExplain}}</p>
+		<div class="ticket_bottom">{{source}}</div>
+	</li>
+{{/list}}
+</ul>

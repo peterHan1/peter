@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max-width">
+			<ul class="invest_tab">
+				<li>
+					<a href="investSift.html" productType="sift">精选计划</a>
+				</li>
+				<li data="b">
+					<a href="investScatter.html" productType="scatter">散标项目</a>
+				</li>
+				<li data="c">
+					<a href="investBond.html" class="on" productType="bond">债权转让</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="max-width">
+		<div class="invest_list">
+			<div class="invest_list_top">
+				<div class="invest_list_txt">
+					<p class="fl">温馨提示：未转让成功标的按照转让时间的先后顺序显示</p>
+					<a href="###" class="fr">查看债权转让规则 > </a>
+				</div>
+				<ul class="bond_tab">
+					<li class="on" type="0">全部</li>
+					<li type="1">3个月以内</li>
+					<li type="2">3-6个月</li>
+					<li type="3">7-12个月</li>
+					<li type="4">12个月以上</li>
+				</ul>
+			</div>
+			<div class="invest_list_bot"></div>
+		</div>
+		<div class="pageList"></div>
+	</div>
+	
+
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

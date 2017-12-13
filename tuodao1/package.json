@@ -29,6 +29,7 @@
     "html-webpack-plugin": "^2.29.0",
     "json-loader": "^0.5.7",
     "node-sass": "^3.13.0",
+    "hogan.js": "^3.0.2",
     "reload": "^2.0.1",
     "sass-loader": "^3.2.1",
     "style-loader": "^0.18.2",

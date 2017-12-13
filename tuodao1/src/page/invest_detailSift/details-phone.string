@@ -1,0 +1,21 @@
+{{#list}}
+<tr>
+	<td class="phone">
+		<!-- 首投显示 -->
+		{{#first}}
+		<i class="iconfont l">&#xe695;</i> 
+		{{/first}}
+		<span>{{tenderUser}}</span> 
+		<!-- 手机端投资显示 -->
+		<i class="iconfont r{{type}}">&#xe699;</i>
+	</td>
+	<td class="money">{{tenderAccount}}</td>
+	<td class="date">{{tenderTime}}</td>
+</tr>
+{{/list}}
+{{^list}}
+	<tr>
+		<td colspan="3">暂无加入记录</td>
+	</tr>
+{{/list}}
+

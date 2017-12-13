@@ -32,17 +32,17 @@
 			float:left;
 			margin-left:10px;
 		}
-		.return_money{
-			color:$fontColorbd;
-		}
-		.matching_money{
+		.color0{
 			color:$fontColor9E;
 		}
-		.repeal_money{
+		.color1{
+			color:$fontColor19;
+		}
+		.color2,.color3,.color5{
 			color:$fontColore6;
 		}
-		.underway_money{
-			color:$fontColor19;
+		.color4{
+			color:$fontColorbd;
 		}
 	}
 	.sift_con{
@@ -184,16 +184,19 @@
 				color:$fontColor19;
 			}
 		}
-		.zxf_pagediv{
+		.pageList{
 			margin-top:30px;
 		}
 		.null_data{
-			margin-top:160px;
 			text-align: center;
+			background-color:#fff!important;
+			td{
+				text-align: center;
+			}
 			.null_data_bg{
 				width:85px;
 				height:61px;
-				margin:0 auto 15px;
+				margin:160px auto 15px;
 				background:url(../../../image/no_data.png) no-repeat;
 			}
 			p{

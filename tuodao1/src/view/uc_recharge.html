@@ -23,25 +23,29 @@
 			<a href="" class="jh_btn">立即激活存管用户</a>
 		</div>
 		<div class="recharge_window item1">
-			<p class="title">第一步：选择充值银行</p>
-			<div class="bank_select">
-			</div>
-			<p class="title">第二步：填写充值金额</p>
-			<p class="zhye">账户余额</p>
-			<p class="number_show"><span class="money_number">2,900.00</span>&nbsp;<span>元</span></p>
-			<div class="money"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="100元起充" class="money_input1"><span>元</span></div>
-			<input type="button" class="btn" value="立即充值">
+			<form method="post">
+				<p class="title">第一步：选择充值银行</p>
+				<div class="bank_select">
+				</div>
+				<p class="title">第二步：填写充值金额</p>
+				<p class="zhye">账户余额</p>
+				<p class="number_show"><span class="money_number"></span>&nbsp;<span>元</span></p>
+				<div class="money"><input type="text" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]" id="money1" placeholder="100元起充" class="money_input1 money_input"><span>元</span></div>
+				<input type="submit" class="btn" id="btn1" value="立即充值">
+			</form>
 		</div>
 		<div class="recharge_window item2 dis_none">
-			<div class="bank_card get_fast"><span class="bank_logo Bank ICBC"></span>
-			<span class="card_num">
-				<span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><em>5587</em>
-			</span>
-			<i class="iconfont wen">&#xe68d;</i><b></b></div>
-			<p class="zhye">账户余额</p>
-			<p class="number_show"><span class="money_number">2,900.00</span>&nbsp;<span>元</span></p>
-			<div class="money"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="100元起充" class="money_input2"><span>元</span><i class="czts">本次最多可充值&nbsp;<b>50,000</b>&nbsp;元</i></div>
-			<input type="button" class="btn" value="立即充值">
+			<form>
+				<div class="bank_card get_fast"><span class="bank_logo Bank"></span>
+				<span class="card_num">
+					<span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i></span><em>5587</em>
+				</span>
+				<i class="iconfont wen">&#xe68d;</i><b></b></div>
+				<p class="zhye">账户余额</p>
+				<p class="number_show"><span class="money_number"></span>&nbsp;<span>元</span></p>
+				<div class="money"><input type="text" onkeyup="this.value=(this.value.match(/\d+(\.\d{0,2})?/)||[''])[0]" placeholder="100元起充" class="money_input2 money_input"><span>元</span><i class="czts">本次最多可充值&nbsp;<b>50,000</b>&nbsp;元</i></div>
+				<input type="button" class="btn" value="立即充值">
+			</form>
 		</div>
 		<div class="rule">
 			<p class="ts">充值提示：</p>
@@ -58,12 +62,12 @@
 <div class="success_box dis_none" id="success_box">
 	<div class="logo"><img src="<%= require('../image/end.png') %>"></div>
 	<p class="ts">跳转成功，请在网银页面完成充值！</p>
-	<p class="look">您可以&nbsp;<a href="">查看资金记录</a>&nbsp;或&nbsp;<a href="">继续充值</a>&nbsp;</p>
+	<p class="look">您可以&nbsp;<a href="uc_moneyRecord.html">查看资金记录</a>&nbsp;或&nbsp;<a href="uc_recharge.html">继续充值</a>&nbsp;</p>
 	<div class="know">我知道了</div>
 </div>
 <div class="secity_box dis_none" id="secity_box">
 	<div class="main_box">
-		<p> 验证短信已发送至手机号<span class="phoneNum">18768143339</span></p>
+		<p class="ts"> 验证短信已发送至手机号&nbsp;<span class="phoneNum"></span></p>
 		<div class="wrong_ts dis_none">您输入的验证码有误，请重新输入！</div>
 		<div class="demo" id="demo">
 			<input type="text" jz="jz" class="border" maxlength="1" id="dy" />
@@ -72,7 +76,7 @@
 			<input type="text" jz="jz" maxlength="1" readonly="readonly" />
 			<input type="text" jz="jz" maxlength="1" readonly="readonly" />
 			<input type="text" maxlength="1" class="lastnum" jz="jz" readonly="readonly" />
-			<span id="spa">-</span>
+			<span id="spa"></span>
 		</div>
 		<span class="djs">(<i class="count_num">59</i>s)&nbsp;后可重新发送验证码</span><div class="count_time">重新发送验证码</div>
 	</div>
@@ -80,14 +84,14 @@
 <div class="cz_success dis_none" id="cz_success">
 	<div class="main_box">
 		<div class="logo"><img src="<%= require('../image/end.png') %>"></div>
-		<p class="look">您已成功充值&nbsp;<span>100</span>&nbsp;元，点击可&nbsp;<a href="">继续充值</a>&nbsp;</p>
+		<p class="look">您已成功充值&nbsp;<span></span>&nbsp;元，点击可&nbsp;<a href="uc_recharge.html">继续充值</a>&nbsp;</p>
 		<div class="know">我知道了</div>
 	</div>
 </div>
 <div class="cz_fail dis_none" id="cz_fail">
 	<div class="main_box">
 		<div class="logo"><img src="<%= require('../image/fail.png') %>"></div>
-		<p class="look">充值失败，银行卡账户余额不足！</p>
+		<p class="look">充值失败，短信验证码错误或银行卡账户余额不足！</p>
 		<div class="know">我知道了</div>
 	</div>
 </div>

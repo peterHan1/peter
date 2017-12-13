@@ -6,7 +6,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/new-type.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -32,7 +32,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/new-type.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -68,7 +68,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/new-type.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -93,7 +93,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/new-type.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -118,7 +118,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/new-type.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -150,7 +150,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/activity.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -175,7 +175,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/cooperate.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -200,7 +200,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/cooperate.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -232,7 +232,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/cooperate.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -257,7 +257,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/cooperate.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>
@@ -282,7 +282,7 @@
 	<li>
 		<a href="">
 		<div class="pro-list">
-			<div class="t">雷克萨斯GS质押续贷标<img src="<%= require('../image/new-type.png') %>"></div>
+			<div class="t">雷克萨斯GS质押续贷标<img src="../../image/invest/cooperate.png"></div>
 			<div class="year">
 				<dl class="profit">
 					<dt>10<b>%+3.2%</b></dt>

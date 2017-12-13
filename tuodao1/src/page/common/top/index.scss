@@ -51,14 +51,21 @@
                     vertical-align: middle;
                     a{
                       color:$fontColor9e;
+                      vertical-align: middle;
                       &:hover{
                               color:$mainColor;
                       }
                       .iconfont{
                                 font-size:20px;
                                 vertical-align: middle;
-                                margin-right: 5px;
+                                margin-right:5px;
+                                &.news{
+                                  font-size:16px;
+                                  vertical-align: top;
+
+                                }
                       }
+
                     }
               }
     }

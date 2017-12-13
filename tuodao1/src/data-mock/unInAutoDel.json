@@ -1,0 +1,14 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "addTime": "2017-10-08 14:09:00",
+             "minPeriod": 1,
+             "maxPeriod": 3,
+             "voucherType": 0,
+             "voucherMoney": 4803.53,
+             "tenderMoney": "200.00"
+      },
+      "success": true
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= require('html-loader!./layout/header.html') %>
+	<title><%= htmlWebpackPlugin.options.title%></title>
+	</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="invest_top">
+		<div class="max-width">
+			<ul class="invest_tab">
+				<li>
+					<a href="investSift.html" data="sift">精选计划</a>
+				</li>
+				<li data="b">
+					<a href="investScatter.html" data="scatter" class="on">散标项目</a>
+				</li>
+				<li data="c">
+					<a href="investBond.html" data="bond">债权转让</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="max-width">
+		<div class="clearing">			
+		</div>
+		<div class="detail_top">
+			<div class="detail_top_left">
+				
+			</div>
+			<div class="detail_top_right">
+				
+			</div>
+		</div>
+		<div class="detail_bot">
+			<div class="detail_tab">
+				<!-- 散标项目 -->
+				<ul>
+					<li>
+						<a href="JavaScript:;" class="on" type>项目详情</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type>审核资料</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type>安全保障</a>
+					</li>
+					<li>
+						<a href="JavaScript:;" type="phone">投资记录</a>
+					</li>
+				</ul>
+			</div>
+			<div class="detail_con">
+				<!-- 项目详情 -->
+				<div class="detai details">
+					<!-- 散标 -->
+					
+				</div>
+				<!-- 审核资料 -->
+				<div class="detai audit" style="display:none">
+					<!-- 散标显示 -->
+					
+				</div>
+				<!-- 安全保障 -->
+				<div class="detai oDiv safety" style="display: none">
+					<!-- 散标显示 -->
+					<ul>
+						<li>
+							<h3>借款安全</h3>
+							<p><span>&bull;</span>借款人按比例缴纳保证金</p>
+							<p><span>&bull;</span>车辆完成合法抵押手续</p>
+							<p><span>&bull;</span>车辆已安装Gps追踪器</p>
+							<p><span>&bull;</span>多家专业车辆评估机构对比评估，保证评估价格合理</p>
+							<p><span>&bull;</span>电话核实商业保单正常</p>
+						</li>
+						<li>
+							<h3>资产安全</h3>
+							<p><span>&bull;</span>第一还款来源：拓道借款人的到期还款金额。</p>
+							<p><span>&bull;</span>第二还款来源：风险备付金制度，根据以往同类借款项目的历史统计数据，平台设定了足以覆盖不良率的风险备付金，在借款人出现逾期时，第一时间启动风险备付金保障投资人回款不受影响，后续再另行追偿，以确保平台投资人的利益。</p>
+						</li>
+					</ul>
+				</div>
+				<!-- 加入记录 -->
+				<div class="detai con_record" style="display: none" >
+					<table>
+						<thead>
+							<th>投资用户</th>
+							<th>投资金额（元）</th>
+							<th>交易时间</th>
+						</thead>
+						<tbody class="chage_tr"  id="tbody_list">
+						</tbody>
+					</table>
+					<div class="pageList"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 加入成功 -->
+	<div class="hint_show dis_none" id="succeed_show">
+		
+	</div>
+	<!-- 加入失败 -->
+	<div class="hint_show dis_none" id="failed_show">
+		<div class="txt">
+			<div class="ltxt">加入失败</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com failed">
+			<div class="icon"></div>
+			<p>投资失败，项目已满额！</p>
+			<b>这个项目太抢手啦，试试 <a href="">其他散标项目</a>吧！</b>
+			<span class="iskonw">我知道了</span>
+		</div>
+	</div>
+	<!-- 激活存管 -->
+	<div class="hint_show dis_none" id="bank_show">
+		<div class="txt">
+			<div class="ltxt">
+				激活存管账户
+				<div class="hint">
+					<i class="iconfont">&#xe68d;</i>
+					<div class="tips">银行存管是指用户在P2P平台上的交易资金交由银行管理，平台无法接触交易资金的一种资金管理模式。借款人、投资人和平台通过银行方开设存管账户，来实现交易和资金的结算。<span class="bot"></span><span class="bot2"></span></div>
+				</div>
+			</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="show_com bank">
+			<div class="icon"></div>
+			<p>拓道金服正式启用北京银行资金存管系统</p>
+			<b>为保障您的资金安全,请在充值、投资、提现前激活存管</b>
+			<span class="iskonw">
+				<a href="">立即激活存管账户</a>
+			</span>
+		</div>
+	</div>
+	<!-- 优惠券弹窗 -->
+	<div class="hint_show discount_show dis_none" id="discount_show">
+		<div class="txt">
+			<div class="ltxt">选择优惠券</div>
+			<div class="rclose">&times;</div>
+		</div>
+		<div class="discount_con">
+			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用优惠券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
+			<!-- <div class="discount_txt">单笔加入精选计划只能使用1张优惠券。</div> -->
+			<!-- 散标显示 -->
+			<div class="discount_txt">单笔投资散标项目只能使用1张优惠券。</div>
+			<ul class="ul_select">
+				<li class="jxq" data="1%加息券">
+					<p class="p_txt"><span>1</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="jxq" data="3%加息券">
+					<p class="p_txt"><span>3</span>% 年利率加息</p>
+					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="15元抵用券">
+					<p class="p_txt">￥<span>15</span>抵用券</p>
+					<p>投资满10,000元，1个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="dyq" data="30元抵用券">
+					<p class="p_txt">￥<span>30</span>抵用券</p>
+					<p>投资满30,000元，3个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="70元抵用券">
+					<p class="p_txt">￥<span>70</span>抵用券</p>
+					<p>投资满10,000元，6个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+				<li class="yhq_no" data="100元抵用券">
+					<p class="p_txt">￥<span>100</span>抵用券</p>
+					<p>投资满10,000元，12个月及以上标的使用</p>
+					<p>来自存管福利</p>
+				</li>
+			</ul>
+			<div class="discount_bot">
+				<span class="yes">确定</span>
+				<span class="no">取消</span>
+				<!-- <span class="iskonw">我知道了</span> -->
+			</div>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+	<% if (env !== "production") { %>
+	<script src="/reload/reload.js"></script>
+	<% } %>
+</body>
+</html>

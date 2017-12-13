@@ -1,0 +1,17 @@
+{{#list}}
+<tr>
+	<td class="phone">
+		<span>{{mobile}}</span>
+		{{#isApp}}
+		<i class="iconfont r">&#xe699;</i>
+		{{/isApp}}
+	</td>
+	<td class="money">{{account}}</td>
+	<td class="date">{{addTime}}</td>
+</tr>
+{{/list}}
+{{^list}}
+<tr>
+	<td colspan="3">暂无投资记录</td>
+</tr>
+{{/list}}
