@@ -1,0 +1,3 @@
+{{#list}}
+	<li><i></i><span>{{username}}</span><span>投资{{amount}}元</span></li>
+{{/list}}

@@ -17,6 +17,7 @@ var _product = {
 			data    	: {
 				id	: id
 			},
+			asyncType	: false,
 			success : resolve,
 			error   : reject
 		});

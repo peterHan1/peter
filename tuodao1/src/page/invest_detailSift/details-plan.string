@@ -9,7 +9,7 @@
 </tr>
 <tr>
 	<th>单笔限额</th>
-	<td>500,000元</td>
+	<td>{{maxAmount}}元</td>
 </tr>
 <tr>
 	<th>到账时间</th>
@@ -21,11 +21,11 @@
 </tr>
 <tr>
 	<th>计息方式</th>
-	<td>月付息到期还本，每期还款时间根据所匹配债权进行</td>
+	<td>{{interestModelText}}</td>
 </tr>
 <tr>
 	<th>还款方式</th>
-	<td>月付息到期还本，每期还款时间根据所匹配债权进行</td>
+	<td>{{refundWay}}</td>
 </tr>
 <tr>
 	<th>提前退出</th>

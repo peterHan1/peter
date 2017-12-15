@@ -127,13 +127,13 @@ var _trade = {
 		});
 	},
 	// 获取精选计划 加入记录
-	getSiftPhone : function(id,pagenum,pagesize,resolve, reject){
+	getSiftPhone : function(id,pagesize,pagenum,resolve, reject){
 		_td.request({
 			url  : _td.getServerUrl('api/router/joinPlanController/getJoinPlanList'),
 			data : {
 				borrowId	: id,
-				pageSize 	: 10 || pagesize,
-				currentPage : 1  || pagenum
+				pageSize 	: pagesize,
+				currentPage : pagenum
 			},
 			success : resolve,
 			error   : reject
@@ -145,8 +145,8 @@ var _trade = {
 			url     : _td.getServerUrl('api/router/tc/product/tender_list'),
 			data    : {
 				productId	: id,
-				pageSize 	: 10 || pagesize,
-				currentPage : 1 || pagenum
+				pageSize 	: pagesize,
+				currentPage : pagenum
 			},
 			success : resolve,
 			error   : reject
@@ -214,26 +214,43 @@ var _trade = {
 	getInvestUc : function(headerData,resolve, reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/tc/user/account/get_account'),
-			accessId	:headerData.accessId,
-			accessKey	:headerData.accessKey,
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
 			success 	: resolve,
 			error   	: reject
 		});
 	},
 	// 精选计划提交
-	subInvestSift : function(resolve, reject){
+	subInvestSift : function(headerData,params,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/subSift.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/joinPlanController/joinPlan'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: params,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 散标详情提交
-	subInvestScatter : function(resolve, reject){
+	subInvestScatter : function(headerData,params,resolve, reject){
 		_td.request({
-			url     : _td.getServerUrl('/subScatter.json'),
-			success : resolve,
-			error   : reject
+			url     	: _td.getServerUrl('api/router/tc/tender/add_tender'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: params,
+			success 	: resolve,
+			error   	: reject
+		});
+	},
+	// 散标详情 投标结果查询
+	subInvestScatterResult : function(headerData,params,resolve, reject){
+		_td.request({
+			url     	: _td.getServerUrl('api/router/tc/tender/tender_result'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: params,
+			success 	: resolve,
+			error   	: reject
 		});
 	},
 	// 债权转让提交
@@ -452,10 +469,12 @@ var _trade = {
 		});
 	},
 	// 申请转让
-	getApply : function(id,resolve,reject){
+	getApply : function(headerData,id,resolve,reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListBondApply.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/preApply'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				tenderId 	: id
 			},
 			success : resolve,
@@ -463,10 +482,12 @@ var _trade = {
 		});
 	},
 	// 提交申请转让
-	subApply : function(id,pasw,resolve,reject){
+	subApply : function(headerData,id,pasw,resolve,reject){
 		_td.request({
-			url     : _td.getServerUrl('/unInListBondApplySub.json'),
-			data    : {
+			url     	: _td.getServerUrl('api/router/creditAssignment/apply'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data    	: {
 				tenderId 	: id,
 				payPassword : pasw
 			},

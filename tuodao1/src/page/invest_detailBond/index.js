@@ -35,7 +35,7 @@ var investDetails = {
 			});
 			$('.detail_top_left').html(listDetailsHtml);
 			var time = res.content.timeLeft;
-			investDetails.coundTime(time);
+			_details.coundTime(time);
 			_details.setShow("detail_top_left");
 			// 是否满标
 			if(res.content.finished == true){
@@ -55,7 +55,7 @@ var investDetails = {
 				list:res.content.list,
 			});
 			$('.chage_tr').html(listPhoneHtml);
-			investDetails.trColor("tbody_list");
+			_details.trColor("tbody_list");
 		},function(err){
 			console.log(err);
 		});
@@ -90,11 +90,8 @@ var investDetails = {
 	},
 	// 三个通用
 	getDiscount : function(headerData,params){
-		console.log(headerData)
-		console.log(params)
 		// 获取优惠券
 		_operation.getDiscounts(headerData,params,function(res){
-			console.log(res)
 			if(res.content != ""){
 				layer.open({
 					type: 1,
@@ -129,27 +126,27 @@ var investDetails = {
 		var _this = this;
 		// 获得焦点
 		$('.investting input').focus(function(){
-			_this.focus(this);
+			_details.focus(this);
 		});
 		// 失去焦点
 		$('.investting input').blur(function(){
-			_this.blur();
+			_details.blur();
 		});
 		// 输入金额input
 		$('.investting .sub_money').focus(function(){
-			_this.inpMoneyOnFocus($(this));
+			_details.inpMoneyOnFocus($(this));
 		});
 		$('.investting .sub_money').blur(function(){
 			var thiss = $(this);
 			setTimeout(function(){
-				_this.overFormat(thiss);
+				_details.overFormat(thiss);
 			},300);
 		});
 		// 输入金额input
 		$('.investting .sub_money').keyup(function(){
 			var lastMoney = $(".lastMoney").attr("money");
 			_this.setinput($(this));
-			_this.MoneyKeyUp($(this),lastMoney);
+			_details.MoneyKeyUp($(this),lastMoney);
 			_this.QuanInit();
 		});
 		// 未登录input输入金额
@@ -162,7 +159,7 @@ var investDetails = {
 		$(".all_money").on("click",function(){
 			var lastMoney = $(".lastMoney").attr("money")*1;
 			var balance = $(".balance").attr("money")*1;
-			_this.all_money(lastMoney,balance,$(".sub_money"));
+			_details.all_money(lastMoney,balance,$(".sub_money"));
 		});
 		$(".sub_psw").keyup(function(){
 			formError.hide($(this));
@@ -186,7 +183,7 @@ var investDetails = {
 				transferId 	: productid,
 				payPassword	: md5($.trim($('#sub_psw').val())),
 				voucherId 	: $(".inp_ticket").val(),
-				money 		: $(".sub_money").val()
+				money 		: $.trim($(".sub_money").val())
 			};
 			 _this.subBtnClick(headerData,params);
 		});
@@ -228,7 +225,6 @@ var investDetails = {
 	},
 	subBond : function(headerData,params){
 		_apiInvest.subInvestBond(headerData,params,function(res){
-			console.log(res)
 			formError.allHide($(".sub_money"),$(".sub_psw"));
 			subBondOk = _td.renderHtml(subBonds,{
 				content:res.content,
@@ -243,7 +239,6 @@ var investDetails = {
 				content: $('#succeed_show')
 			});
 		},function(err){
-			console.log(err)
 			if(err.code == 142024){
 				formError.allShow($(".sub_psw"), "密码错误，请重新登录！");
 			}else if(err.code == 142019){
@@ -257,7 +252,7 @@ var investDetails = {
 					content: $('#bank_show')
 				});
 			}else{
-				$(".msg").html(err.msg);
+				$(".msg").html(err.content[0].msg);
 				// 加入失败
 				layer.open({
 					type: 1,
@@ -269,35 +264,6 @@ var investDetails = {
 				});
 			}
 		});
-	},
-
-	// 三个通用
-	focus : function(obj){
-		$('.all-errinfo').html('');
-		$('input').removeClass('focus-input');
-		$(obj).addClass('focus-input');
-	},
-	// 三个通用
-	blur : function(){
-		$('input').removeClass('focus-input');
-	},
-	// 三个通用
-	MoneyKeyUp : function(el,str){
-		var formData = {
-			money: $.trim($('#sub_money').val()),
-		};
-			// 表单验证结果
-		if (formData.money != "") {
-			validateResult = this.moneyValidate(formData,str);
-			if (validateResult.status) {
-				formError.hide(el);
-			} else {
-				var id = '#' + validateResult.id;
-				formError.show(id, validateResult.msg);
-			}
-		}else{
-			formError.hide(el);
-		};
 	},
 	// 输入金额验证
 	moneydate : function(value, type){
@@ -324,48 +290,6 @@ var investDetails = {
 		if('quota' === type){
 			return value>500000;
 		}
-	},
-	// 输入金额表单验证
-	moneyValidate:function(formData,str){
-		var result = {
-			status  : false,
-			id : false,
-			msg     : ''
-		};
-		if(investDetails.moneydate(formData.money, 'minMoney')){
-			result.msg = '不得低于起投金额100元！';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'minMoneys')){
-			result.msg = '不得低于可投金额'+str+'元';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'balance')){
-			result.msg = '余额不足';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'amount')){
-			result.msg = '您输入的金额大于当前剩余可投金额！';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'quota')){
-			result.msg = '单笔限额为500,000元！';
-			result.id = 'sub_money';
-			return result;
-		}
-		// 通过验证，返回正确提示
-		result.status   = true;
-		result.class   	= true;
-		result.msg      = '验证通过';
-		return result;
-	},
-	// 三个通用
-	all_money : function(lastMoney,balance,el){
-		if(lastMoney > balance){
-			el.val(balance).keyup().focus();
-		}else{
-			el.val(lastMoney).keyup().focus();
-		};
 	},
 	subBtnClick : function(headerData,params){
 		if($(".form-error-info").length>0){
@@ -531,53 +455,7 @@ var investDetails = {
 			$("#sub_btn").attr("class","no_btn").val("存管清算时间，不能加入");
 		}
 	},
-	// 三个通用
-	coundTime : function(result){
-		var t = Math.floor(result/1000);
-		var tt = times(t);
-		$(".coundTime").html(tt);
-		setInterval(function() {
-			t--;
-			var tt = times(t);
-			$(".coundTime").html(tt);
-		}, 1000);
-		function times(result){
-			var h = Math.floor(result / 3600) < 10 ? '0'+Math.floor(result / 3600) : Math.floor(result / 3600);
-			var m = Math.floor((result / 60 % 60)) < 10 ? '0' + Math.floor((result / 60 % 60)) : Math.floor((result / 60 % 60));
-			var s = Math.floor((result % 60)) < 10 ? '0' + Math.floor((result % 60)) : Math.floor((result % 60));
-			return result = h + "小时" + m + "分" + s + "秒";
-		}
-	},
-	// 三个通用
-	setTimes : function(res){
-		var list = res.content.list;
-		// 状态
-		$.each(list,function(i){
-			var time = list[i].addTime;
-			setTime(time);
-			list[i].addTime = times;
-		});
-		function setTime(time){
-			var date = new Date(time * 1000);
-			var y = date.getFullYear() + '-';
-			var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-			var d = (date.getDate() <10 ? "0" + date.getDate() : date.getDate()) + ' ';
-			var h = date.getHours() + ':';
-			var f = date.getMinutes() + ':';
-			var s = date.getSeconds();
-			return times = y + m + d + h + f + s;
-		}
-	},
-	// 三个通用
-	trColor : function(id){
-		// 各行变色
-		var trs=document.getElementById(id).getElementsByTagName("tr");
-		for(var i=0;i<trs.length;i++){
-			if(i%2==0){
-				trs[i].className +=" trColor";
-			}
-		};
-	},
+	
 	// 三个通用
 	// 输入金额计算
 	setinput : function(ins){
@@ -603,37 +481,6 @@ var investDetails = {
 		var award = $(".award").attr("type");
 		var inputM = $(".sub_money").val()*1;
 		investDetails.earnings(award);
-	},
-	// 三个通用
-	overFormat :function(th){
-		if(th.val() != ""){
-			th.val(Number(th.val()).toFixed(2));
-			var logNum = th.val().toString();
-			integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
-			decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
-			var m = th.val();
-			if(m == ""){
-				$(".sub_btn").val("实付0.00元，立即投资");
-				$(".predict_money").html("0.00");
-			}else{
-				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
-			}
-		};
-		$(".btn_empty").hide();
-	},
-	// 三个通用
-	inpMoneyOnFocus: function(el) {
-		var val = el.val();
-		if (val == '0.00') {
-			el.val('');
-		} else {
-			el.val(el.val().replace(/\.00/, '').replace(/(\.\d)0/, '$1'));
-		};
-		if (val != "") {
-			$(".btn_empty").show();
-		} else {
-			$(".btn_empty").hide();
-		};
 	}
 };
 var formError = {

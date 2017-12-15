@@ -11,11 +11,8 @@ var _apiInvite = require('api/operate-api.js');
 var record = require('./invite_record.string');
 var invites = {
 	init : function(){
-		this.getInviteRecord();
 		this.tabCut();
 		this.hoverEvent();
-		this.getLink();
-		this.getCode();
 		this.getUserDepository();
 	},
 	headerData : {
@@ -28,7 +25,7 @@ var invites = {
 			if(i%2!=0){
 				$(obj+' tr').eq(i).css('background','#FBFBFB');
 			}
-		})
+		});
 	},
 	// 控制welfare_content的高与左侧菜单栏高度相同
 	HeightAuto : function (){
@@ -50,27 +47,39 @@ var invites = {
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
 			var index=$(this).index();
 			$('.invite_content').children().eq(index).show().siblings().hide();
+			if(index==1){
+				invites.getInviteRecord();
+			}
 			invites.HeightAuto();
-		})
+		});
 	},
 	numberAdd : function(str){
-		return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+		var reg=/./g;
+		if(reg.test(str)){
+			var arr=String(str).split('.');
+			return String(arr[0]).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.'+arr[1];
+		}else{
+			return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+		}
 	},
 	// 用户存管是否激活
 	getUserDepository : function(){
 		_apiInvite.getMemberInfo(invites.headerData,function(res){
-			$('.depository_yes').show();
-			$('.depository_yes_menu').show();
-			invites.getFinancialPlanner();
-			// $('.mypoints1 .pointsNum').html(invites.numberAdd(res.content.returnAmount));
-			// $('.mypoints2 .pointsNum').html(invites.numberAdd(res.content.returnDyqAmount));
-			invites.HeightAuto();
-			require('./share.js');
+			if(res.content.isOpenDeposit==1){
+				$('.depository_yes').show();
+				$('.depository_yes_menu').show();
+				invites.getFinancialPlanner();
+				invites.HeightAuto();
+				invites.getLink();
+				invites.getCode(res);
+				require('./share.js');
+			}else{
+				$('.depository_no').show();
+				$('.depository_no_menu').show();
+				invites.HeightAuto();
+			}
 		},function(){
 			console.log('请求失败');
-			$('.depository_no').show();
-			$('.depository_no_menu').show();
-			invites.HeightAuto();
 		});
 	},
 	// 用户理财师等级信息
@@ -84,7 +93,9 @@ var invites = {
 				$('.invite_nav .lev_bg').addClass('lev03');
 			}
 			$('.invite_nav .lev_name').html(res.content.currentLevelName);
-			$('.invite_nav .distance').html('距'+res.content.upLevelName+'还差'+res.content.differV1Count+'个V1好友，'+res.content.differDueInFundTotal+'分总待收');
+			$('.invite_nav .distance').html('距'+res.content.upLevelName+'还差'+res.content.differV1Count+'个V1好友，'+res.content.differDueInFundTotal+'万元总待收');
+			$('.mypoints1 .pointsNum').html(invites.numberAdd(res.content.returnAmount));
+			$('.mypoints2 .pointsNum').html(invites.numberAdd(res.content.voucherAmount));
 		},function(){
 			console.log('请求失败');
 		});
@@ -123,11 +134,10 @@ var invites = {
 		var time='';
 		var linkValue='';
 		_apiInvite.getLink(invites.headerData,function(res){
-			console.log(res.content);
 			linkValue=res.content;
 		},function(){
 			console.log('请求失败');
-		})
+		});
 		$('.copy_link').on('click',function(){
 			$(this).css({background:'#ffffff',color:'#ff7400'});
 			$(this).off('mouseover mouseout');
@@ -152,14 +162,10 @@ var invites = {
 		});
 	},
 	// 复制邀请码
-	getCode : function(){
+	getCode : function(res){
 		var time='';
 		var linkValue='';
-		_apiInvite.getMemberInfo(invites.headerData,function(res){
-			linkValue=res.content.inviteCode;
-		},function(){
-			console.log('请求失败');
-		})
+		linkValue=res.content.inviteCode;
 		$('.depository_yes_menu .copy_code').on('click',function(){
 			$(this).css({background:'#ffffff',color:'#ff7400'});
 			$(this).off('mouseover mouseout');
@@ -182,16 +188,16 @@ var invites = {
 				$('.copy_code').html('复制链接');
 				invites.hoverEvent();
 				clearTimeout(time);
-			},2000);
-		});
+			},2000)
+		})
 	},
 	// 邀请记录
 	getInviteRecord : function(){
-		_apiInvite.getInviteRecord(invites.headerData,1,10,function(res){
+		_apiInvite.getInviteRecord(invites.headerData,1,function(res){
 			var listData=res.content.list;
 			$.each(listData,function(i){
 				listData[i].friendPhoneNum=listData[i].friendPhoneNum.substring(0,3)+"****"+listData[i].friendPhoneNum.substring(8,11);
-			})
+			});
 			if(res.content.list.length==0){
 				$('.invite_record').children().eq(1).show().siblings().hide();
 				return false;
@@ -202,7 +208,7 @@ var invites = {
 				$('._invite_record_table').html(bannerHtml);
 				invites.changeColor('.invite_table');
 				_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
-					_apiInvite.getInviteRecord(e.current,10,function(res){
+					_apiInvite.getInviteRecord(invites.headerData,e.current,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,
 						});
@@ -211,11 +217,11 @@ var invites = {
 					},function(){
 						console.log("分页点击请求失败");
 					});
-				});
+				})
 			}
 		},function(){
 			console.log('请求失败');
-		})
+		});
 	}
 }
 $(function(){

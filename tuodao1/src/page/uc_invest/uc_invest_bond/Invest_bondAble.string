@@ -15,7 +15,7 @@
 			{{#list}}
 			<tr>
 				<td class="padd_left">NO.{{productCode}}</td>
-				<td class="td_name"><a href="uc_invest_bondDetails.html">{{productTitle}}</a>
+				<td class="td_name"><a href="invest_detailScatter.html?tender={{productId}}&params={{productCode}}">{{productTitle}}</a>
 				<div class="tips left-tips">
 					{{productTitle}}
 				</div>

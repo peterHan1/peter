@@ -50,7 +50,7 @@
 
 	.dyq_ticket{
 		padding-top: 40px;
-		padding-bottom: 10px;
+		padding-bottom: 30px;
 		@include ticket;
 	}
 	.dyq_ticket_yes{
@@ -70,7 +70,7 @@
 	}
 	.jxq_ticket{
 		padding-top: 40px;
-		padding-bottom: 10px;
+		padding-bottom: 30px;
 		@include ticket;
 		.ticket_top{
 			margin-top: 15px;

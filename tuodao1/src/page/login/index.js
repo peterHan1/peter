@@ -1,6 +1,7 @@
 require('page/common/nav2/index.js');
 require('./login.scss');
 require('util/slider/index.js');
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var md5 = require('util/md5.js');
@@ -161,3 +162,4 @@ var loginPage = {
 $(function() {
 	loginPage.init();
 });
+

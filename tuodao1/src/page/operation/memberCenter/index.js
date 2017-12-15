@@ -74,11 +74,11 @@ option={
 };
 myChart.setOption(option);
 
-$('#top ul li').eq(1).find('a').css('color','#ff7400');
 var _td = require('util/td.js');
 var _apiMember = require('api/operate-api.js');
 var member = {
     init : function(){
+        this.getMemberInfo();
         this.spanMouserover();
     },
     headerData : {
@@ -87,7 +87,13 @@ var member = {
     },
     // 给数字添加逗号，小数点后两位
     numberAdd : function(str){
-        return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+        var reg=/./g;
+        if(reg.test(str)){
+            var arr=String(str).split('.');
+            return String(arr[0]).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.'+arr[1];
+        }else{
+            return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+        }
     },
     // 会员登录信息
     getMemberInfo:function(){
@@ -110,7 +116,7 @@ var member = {
     // 会员vip等级信息
     getLevInfo : function(){
         _apiMember.getLevInfo(member.headerData,function(res){
-            $('.login_yes .title').html('本月日均资产：'+member.numberAdd(res.content.thisMonthAvg)+'元，距离'+res.content.nextLevel+'等级还差'+member.numberAdd(res.content.distanceNextLevelAmount)+'元')
+            $('.login_yes .title').html('本月日均资产：'+member.numberAdd(res.content.thisMonthAvg)+'元，距离V'+res.content.nextLevel+'等级还差&nbsp;'+member.numberAdd(res.content.distanceNextLevelAmount)+'元')
         })
     },
     // 根据会员等级显示会员图标明亮,会员福利列表样式

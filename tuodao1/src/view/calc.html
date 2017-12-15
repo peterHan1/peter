@@ -17,21 +17,21 @@
 						<li>
 							<span>投资金额：</span>
 							<div class="bord_div">
-								<input type="text" value="" placeholder="请输入投资金额" />
+								<input type="text" value="" placeholder="请输入投资金额" id="amount" />
 								<b>元</b>
 							</div>
 						</li>
 						<li>
 							<span>投资期限：</span>
 							<div class="bord_div">
-								<input type="text" value="" placeholder="请输入投资期限" />
+								<input type="text" value="" placeholder="请输入投资期限" id="time" />
 								<b class="deadline">月</b>
 							</div>
 						</li>
 						<li>
 							<span>年化利率：</span>
 							<div class="bord_div">
-								<input type="text" value="" placeholder="请输入年化利率" />
+								<input type="text" value="" placeholder="请输入年化利率" id="rate" />
 								<b>%</b>
 							</div>
 						</li>
@@ -40,7 +40,7 @@
 						<li>
 							<span>平台奖励：</span>
 							<div class="bord_div">
-								<input type="text" value="" placeholder="请输入平台奖励（选填）" />
+								<input type="text" value="" placeholder="请输入平台奖励（选填）" id="award" />
 								<b>%</b>
 							</div>
 							<div class="hint">
@@ -68,13 +68,13 @@
 				</div>
 				
 				<div class="calc_btn">
-					<input type="submit" value="开始计算" />
+					<input type="submit" value="开始计算" id="calc_btn"  disabled />
 					<span class="reset">重置</span>
 				</div>
 			</div>
 			
 		</div>
-		<div class="calc_result">
+		<div class="calc_result dis_none">
 			<div class="top_tit">
 				<span>计算结果</span>
 				<!-- 等额本息 -->
@@ -86,20 +86,20 @@
 			</div>
 			<div class="result_money">
 				<dl>
-					<dt>99,999,999.99</dt>
+					<dt class="amount">99,999,999.99</dt>
 					<dd>投资总额（元）</dd>
 				</dl>
 				<dl>
-					<dt>99,999,999.99</dt>
+					<dt class="interest">99,999,999.99</dt>
 					<dd>总利息（元）</dd>
 				</dl>
 				<dl>
-					<dt>99,999,999.99</dt>
+					<dt class="award">99,999,999.99</dt>
 					<dd>平台奖励（元）</dd>
 				</dl>
 			</div>
 		</div>
-		<div class="calc_table">
+		<div class="calc_table dis_none">
 			<div class="top_tit">本息收款时间表</div>
 			<div>
 				<table>
@@ -113,13 +113,6 @@
 						</tr>
 					</thead>
 					<tbody id="tbody_list">
-						<tr>
-							<td>1/1</td>
-							<td>2017-05-08</td>
-							<td>99.999.999.99</td>
-							<td>99.999.999.99</td>
-							<td>100.00</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>

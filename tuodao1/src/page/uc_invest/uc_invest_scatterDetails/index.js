@@ -33,6 +33,7 @@ var ucInvest = {
 			ucInvest.setTiltStatus();
 			ucInvest.setApr("apr");
 			ucInvest.tipsHover();
+			ucInvest.getStatus();
 		},function(err){
 			console.log(err);
 		});
@@ -44,14 +45,12 @@ var ucInvest = {
 					list:res.content.list,
 				});
 				$("#tbody_list").html(listHtml);
-				ucInvest.setStatus("returnSta");
 				_paging.paging("pageList",res.content.total,5,function(e){
 					_apiInvest.getScstterList(id,e.current,5,function(res){
 						listHtml = _td.renderHtml(scatterList,{
 							list:res.content.list,
 						});
 						$("#tbody_list").html(listHtml);
-						ucInvest.setStatus("returnSta");
 						ucInvest.trColor();
 					},function(err){
 						console.log(err);
@@ -84,16 +83,31 @@ var ucInvest = {
 		switch (sta)
 		{
 			case "0":
-				status="[回款中]";
+				status="[投标中]";
 				break;
 			case "1":
-				status="[已回款]";
+				status="[募集中]";
 				break;
 			case "2":
-				status="[募集中]";
+				status="[回款中]";
+				break;
+			case "5":
+				status="[已回款]";
 				break;
 		}
 		$(".tlt_status").html(status);
+	},
+	getStatus : function(){
+		var sta = $(".tlt_status").attr("status");
+		var t = $(".ac").attr("type");
+		if(sta == 2 || sta == 5){
+			$(".prot").show();
+		}else{
+			$(".prot").remove();
+		}
+		if(t == "" || t == null){
+			$(".ac").remove();
+		}
 	},
 	scatterDetReturnWay : function(res){
 		var refundWay = res.content.refundWay;
@@ -116,14 +130,6 @@ var ucInvest = {
 		var _this = $("."+el);
 		if(_this.attr("status") == 0){
 			_this.remove();
-		}
-	},
-	setStatus : function(el){
-		var _this = $("."+el);
-		if(_this.html() == 0){
-			_this.html("未回款");
-		}else if(_this.html() == 1){
-			_this.html("已回款");
 		}
 	},
 	tipsHover : function(){

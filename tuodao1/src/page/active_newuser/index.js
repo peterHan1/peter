@@ -4,6 +4,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
 require('page/common/nav2/index.scss');
+require("util/placeholder.js");
 
 
 var _td = require('util/td.js');
@@ -200,6 +201,7 @@ var DepositInfoNew = {
 		return result;
 	},
 	load: function() {
+		 $('input, textarea').placeholder();
 		_user.getStockUserDeposit(headerData, function(res) {
 			// 存管存量用户状态
 			if (res.content.idCard != null) {

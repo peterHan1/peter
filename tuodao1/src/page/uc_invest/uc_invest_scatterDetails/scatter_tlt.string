@@ -1,6 +1,6 @@
 {{#content}}
 <div class="sift_tit">
-	<a href="###" class="iconfont">&#xe6bb;</a>
+	<a href="uc_invest_scatter.html" class="iconfont">&#xe6bb;</a>
 	<p>
 		<span class="tlt_status returnCol{{status}}" status="{{status}}"></span>
 		{{productTitle}} No.{{productCode}}  {{sourceStore}}
@@ -52,8 +52,8 @@
 			</ul>
 		</div>
 		<div class="sift_con_mesR">
-			<a href="###">查看借款协议 ></a>
-			<a href="###">查看安存保全 ></a>
+			<a href="###" class="prot">查看借款协议 ></a>
+			<a href="###" class="ac" type="{{tenderNum}}">查看安存保全 ></a>
 		</div>
 	</div>
 </div>

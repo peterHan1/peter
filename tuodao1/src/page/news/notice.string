@@ -1,5 +1,5 @@
 <ul>
 {{#list}}
-	<li><a href={{url}}><span class="le">{{title}}</span><span class="rg">{{publishTime}}</span></a></li>
+	<li><a data-url={{contentId}}><span class="le">{{title}}</span><span class="rg">{{publishTime}}</span></a></li>
 {{/list}}
 </ul>

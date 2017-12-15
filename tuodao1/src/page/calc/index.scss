@@ -11,6 +11,12 @@ b,i,em{
 	background-color:#fff;
 	margin-top:20px;
 }
+.kd{
+	background-color: $mainColor!important;
+}
+.color{
+	background-color: #f25d14!important;
+}
 .top_tit{
 	font-size:$fontSize16;
 	color:$fontColor333;
@@ -137,11 +143,8 @@ b,i,em{
 				width:300px;
 				@include height-line(40px);
 				color:#fff;
-				background-color:$mainColor;
+				background-color:#9e9e9e;
 				border-radius: 20px;
-				&:hover{
-					background-color:#f25d14;
-				}
 			}
 			span{
 				display: inline-block;
@@ -175,16 +178,21 @@ b,i,em{
 	table{
 		width:100%;
 		padding:20px 50px;
-		tr{
-			font-size: $fontSize14;
-			color:$fontColor70;
-			text-align: center;
-			@include height-line(50px);
+		#tbody_list{
+			tr:nth-child(odd){
+				background-color:$bgColorfb;
+			}
+		}
+			tr{
+				font-size: $fontSize14;
+				color:$fontColor70;
+				text-align: center;
+				@include height-line(50px);
 
-		}
-		.trColor{
-			background-color:$bgColorfb;
-		}
+			}
+			.trColor{
+				background-color:$bgColorfb;
+			}
 	}
 
 }

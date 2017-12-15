@@ -1,8 +1,8 @@
 <ul class="slides">
 {{#list}}
     <li>
-        <a href="" target="_blank">
-            <img src="{{imgUrl}}">
+        <a href="{{bannerUrl}}" target="_blank">
+            <img src="{{bannerImg}}">
         </a>
         <p></p>
     </li>

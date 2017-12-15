@@ -1,6 +1,6 @@
 var _td = require('util/td.js');
 
-var _welfare = {
+var _operate = {
 // 我的优惠券下api接口
 	// 优惠券分页查询
 	getCoupon : function(headerData,Data,resolve, reject){
@@ -77,7 +77,7 @@ var _welfare = {
 			error   	: reject
 		});
 	},
-	// 积分统计数值（可用，累计）
+	// 金币统计数值（可用，累计）
 	getGold : function(headerData,resolve, reject){
 		_td.request({
 			method		: "get",
@@ -89,7 +89,7 @@ var _welfare = {
 		});
 	},
 	// 获取gold_exchange 金币兑换专区分页查询
-	/* getGold_exchange : function(headerData,pagenum,resolve, reject){
+	getGold_exchange : function(headerData,pagenum,resolve, reject){
 		_td.request({
 			method		: "get",
 			url     	: _td.getServerUrl('/gold_exchange.json'),
@@ -100,9 +100,9 @@ var _welfare = {
 			success 	: resolve,
 			error   	: reject
 		});
-	},*/
-	// 积分兑换提交
-	/* getGold_submit : function(Data,headerData,resolve, reject){
+	},
+	// 金币兑换提交
+	getGold_submit : function(Data,headerData,resolve, reject){
 		_td.request({
 			method		: "get",
 			url     	: _td.getServerUrl('/'),
@@ -112,9 +112,9 @@ var _welfare = {
 			success 	: resolve,
 			error   	: reject
 		});
-	},*/
+	},
 	// 获取Gold_detail 金币明细
-	/* getGold_detail : function(headerData,pagenum,resolve, reject){
+	getGold_detail : function(headerData,pagenum,resolve, reject){
 		_td.request({
 			method	: "get",
 			url     : _td.getServerUrl('/gold_detail.json'),
@@ -127,9 +127,9 @@ var _welfare = {
 			success : resolve,
 			error   : reject
 		});
-	},*/
-	// 积分获取,任务列表
-	/* getGold_get : function(headerData,resolve, reject){
+	},
+	// 金币获取,任务列表
+	getGold_get : function(headerData,resolve, reject){
 		_td.request({
 			method	: "get",
 			url     : _td.getServerUrl('/gold_get.json'),
@@ -142,7 +142,7 @@ var _welfare = {
 			success 	: resolve,
 			error   	: reject
 		});
-	},*/
+	},
 // 抽奖下api接口
 	// 抽獎結果
 	getDraw_result : function(headerData,type,needScore,resolve, reject){
@@ -172,34 +172,17 @@ var _welfare = {
 			error   	: reject
 		});
 	},
-	// 抽奖详情统计
-	getDrawCount : function(headerData,resolve,reject){
-		_td.request({
-			// url     : _td.getServerUrl('api/router/op/getMyDrawStatistic'),
-			url     	: _td.getServerUrl('/draw_record.json'),
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
-			success 	: resolve,
-			error   	: reject
-		});
-	},
 // 我的邀请下api
 	// 邀请记录
-	getInviteRecord : function(headerData,pagenum,pagesize,resolve,reject){
+	getInviteRecord : function(headerData,pagenum,resolve,reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/op/getInviteRecord'),
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
-			success 	: resolve,
-			error   	: reject
-		});
-	},
-	// 是否激活存管
-	getUserDepository	: function(headerData,resolve,reject){
-		_td.request({
-			url     	: _td.getServerUrl('api/router/tc/tender/check_bank'),
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
+			data 		: {
+				currentPage 	: pagenum,
+				pageSize 		: 10
+			},
 			success 	: resolve,
 			error   	: reject
 		});
@@ -207,7 +190,7 @@ var _welfare = {
 	// 用户理财师等级信息
 	getFinancialPlanner : function(headerData,resolve,reject){
 		_td.request({
-			url     	: _td.getServerUrl('api/router/account/getFinancialPlanner'),
+			url     	: _td.getServerUrl('api/router/op/myInvitingView'),
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
 			success 	: resolve,
@@ -218,16 +201,6 @@ var _welfare = {
 	getLink	: function(headerData,resolve,reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/user/getInviteUrl'),
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
-			success 	: resolve,
-			error   	: reject
-		});
-	},
-	// 邀请码
-	getCode	: function(headerData,resolve,reject){
-		_td.request({
-			url     	: _td.getServerUrl('api/router/user/getUserAccountInfo'),
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
 			success 	: resolve,
@@ -255,12 +228,18 @@ var _welfare = {
 		});
 	},
 // 新手任务查询
-	getNewtask : function(resolve, reject){
+	getNewtask : function(headerData,resolve, reject){
 		_td.request({
-			// url     	: _td.getServerUrl('router/op/findUserTask'),
-			url     	: _td.getServerUrl('/points_get_table.json'),
-			success 	: resolve,
-			error   	: reject
+			url     	: _td.getServerUrl('api/router/op/findUserTask'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
+			data 		: {
+				type 		: 2,
+				currentPage	: 1,
+				pageSize 	: 1000
+			},
+			success 		: resolve,
+			error   		: reject
 		});
 	},
 	// 获取账户信息
@@ -300,24 +279,13 @@ var _welfare = {
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
 			data 		: params,
+			asyncType	: true,
 			success 	: resolve,
 			error   	: reject
 		});
 	},
-	getNewtask : function(headerData,resolve, reject){
-		_td.request({
-			url     	: _td.getServerUrl('api/router/op/findUserTask'),
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
-			data 		: {
-				type 		: 2,
-				currentPage	: 1,
-				pageSize 	: 1000
-			},
-			success 		: resolve,
-			error   		: reject
-		});
-	},
+// 媒体公告理财百科
+	// 列表
 	getNews : function(headerData,type,pagenum,resolve, reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/op/selectContentByContentRemark'),
@@ -332,6 +300,7 @@ var _welfare = {
 			error   	: reject
 		});
 	},
+	// 详情
 	getNewsDetail : function(headerData,ids,resolve, reject){
 		_td.request({
 			url     	: _td.getServerUrl('api/router/op/selectContentByContentId'),
@@ -340,6 +309,16 @@ var _welfare = {
 			data 		: {
 				contentId 		: ids
 			},
+			success 	: resolve,
+			error   	: reject
+		});
+	},
+// 新手指南信息披露
+	getGuideData : function(headerData,resolve, reject){
+		_td.request({
+			url     	: _td.getServerUrl('api/router/getPlatfromTaskPlatData'),
+			accessId	: headerData.accessId,
+			accessKey	: headerData.accessKey,
 			success 	: resolve,
 			error   	: reject
 		});
@@ -389,6 +368,60 @@ var _welfare = {
 			success : resolve,
 			error: reject
 		});
+	},
+	// 平台数据-7日数据播报
+	getPlatfromWeekVolumeChart: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromWeekVolumeChart'),
+			success : resolve,
+			error: reject
+		});
+	},
+	// 平台月度数据播报
+	getPlatfromMonthVolumeChart: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromMonthVolumeChart'),
+			success : resolve,
+			error: reject
+		});
+	},
+	// 借款排行榜
+	getPlatfromBorrowRank: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromBorrowRank'),
+			success : resolve,
+			error: reject
+		});
+	},
+	// 平台数据
+	getPlatfromTaskPlatData: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromTaskPlatData'),
+			success : resolve,
+			error: reject
+		});
+	},
+	// 今日投资风云榜
+	getPlatfromDayRank: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromDayRank'),
+			success : resolve,
+			error: reject
+		});
+	},
+	// 月度投资风云榜
+	getPlatfromMonthRank: function(resolve,reject){
+		_td.request({
+			method	: 'post',
+			url     : _td.getServerUrl('api/router/getPlatfromMonthRank'),
+			success : resolve,
+			error: reject
+		});
 	}
 };
-module.exports = _welfare;
+module.exports = _operate;

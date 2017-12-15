@@ -10,6 +10,7 @@ var newTask = {
 	init : function(){
 		this.newTask();
 		this.getMemberInfo();
+		this.layerJs();
 	},
 	headerData : {
 		'accessId' :unescape(_td.getAccess('accessId')),
@@ -22,6 +23,10 @@ var newTask = {
 				if (listData[i].pcUrl==null) {
 					listData[i].pcUrl='javascript:;';
 				};
+				if (listData[i].code==1 || listData[i].code==2 || listData[i].code==3
+				 || listData[i].isOverdue=='yes' || listData[i].isComplete=='yes') {
+					listData[i].pcUrl='javascript:;';
+				};
 			})
 			var bannerHtml = _td.renderHtml(newTaskHtml,{
 				list:res.content.list
@@ -29,11 +34,11 @@ var newTask = {
 			$('.task_list').html(bannerHtml);
 			newTask.mouseOver();
 			$.each(listData,function(i){
-				var reg=/非债权转让标/g;
+				var reg=/非债权/g;
 				if(reg.test(listData[i].taskName)){
-					var Names=String(listData[i].taskName).split('（非债权转让标）').join('');
+					var Names=String(listData[i].taskName).split('（')[0];
 					$('.task li').eq(i).find('.p1').html(Names+'<br /><span>（非债权转让标）</span>');
-					$('.task li').eq(i).children().first().addClass('pad_bot');
+					$('.task li').eq(i).find('.p1').css('padding-bottom','15px');
 				}
 				if((i+1)%5==0){
 					$('.task li').eq(i).addClass('mar_rgt');
@@ -53,13 +58,11 @@ var newTask = {
 				}else{
 					$('.task li').eq(i).on('click',function(e){
 						if(listData[i].code==1){
-							newTask.layerPublic(e,'points_gzh');
+							newTask.layerPublic('points_gzh');
 						}else if(listData[i].code==2){
-							newTask.layerPublic(e,'points_login');
+							newTask.layerPublic('points_login');
 						}else if(listData[i].code==3){
-							newTask.layerPublic(e,'points_invest');
-						}else{
-							window.open(listData[i].url);
+							newTask.layerPublic('points_invest');
 						}
 					})
 				}
@@ -125,7 +128,7 @@ var newTask = {
 		})
 	},
 	// 获取积分任务部分弹窗公共样式
-	layerPublic:function(e,obj){
+	layerPublic:function(obj){
 		var titles='';
 		if(obj=='points_gzh'){
 			titles='获取积分：首次关注拓道金服微信公众号';
@@ -164,7 +167,6 @@ var newTask = {
 				}
 			}
 		},function(){
-			window.open('register.html','_self');
 			console.log('请求失败');
 		})
 	},

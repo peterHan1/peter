@@ -1,4 +1,4 @@
-@import "../common/mixin";
+@import "../../page/common/mixin";
 body{
 	background-color:$bgColor;
 	.fl{float: left;}
@@ -113,7 +113,7 @@ body{
 							overflow: hidden;
 							position: absolute;
 						}
-						.tips{
+						.tip{
 							@include height-line(20px);
 							@include border-style($b-radius:5px)
 							padding: 0 10px;
@@ -191,7 +191,7 @@ body{
 				}
 				.bars{
 					width:100px;
-					margin:0 65px 0 45px;
+					margin:0 30px 0 45px;
 				}
 				.progress{
 					height: 15px;
@@ -209,10 +209,9 @@ body{
 							background-color:$mainColor;
 						}
 					}
-						
 				}
 				.butt{
-					width:90px;
+					padding:0 12px;
 					height:30px;
 					text-align:center;
 					line-height:30px;

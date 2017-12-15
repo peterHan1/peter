@@ -162,8 +162,18 @@
 	}
 	}
 }
-
-
-
-
+.null_data{
+	background-color:#fff!important;
+	.null_data_bg{
+		width:85px;
+		height:61px;
+		margin:180px auto 15px;
+		background:url(../../../image/no_data.png) no-repeat;
+	}
+	p{
+		text-align: center;
+		font-size:$fontSize14;
+		color:$fontColor9e;
+	}
+}
 .zxf_pagediv{margin-top:30px;}

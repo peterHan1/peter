@@ -2,7 +2,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/fancybox/source/index.js');
-
+var md5 				= require('util/md5.js');
 var _details 			= require('util/invest_detail/index.js');
 var _td 				= require('util/td.js');
 var _paging 			= require('util/paging/index.js');
@@ -29,14 +29,14 @@ var investDetails = {
 		};
 		console.log("accessId: " + headerData.accessId);
 		console.log("accessKey: " + headerData.accessKey);
-		var code = _td.getUrlParam("tender");
-		var paramId = _td.getUrlParam("param");
+		var paramId = _td.getUrlParam("tender");
+		var code= _td.getUrlParam("params");
 		this.addHtml(headerData,code,paramId);
-		this.inputEvent(paramId);
+		this.inputEvent(headerData,paramId);
 	},
 	addHtml : function(headerData,code,id){
 		// 获取项目金额
-		_apiInvest.getInvestListDetails(1,function(res){
+		_apiInvest.getInvestListDetails(id,function(res){
 			console.log(res)
 			_details.setData(res);
 			listDetailsHtml = _td.renderHtml(investListScatter,{
@@ -44,8 +44,9 @@ var investDetails = {
 			});
 			$('.detail_top_left').html(listDetailsHtml);
 			_details.setShow("detail_top_left");
+			$(".release").html(_details.setTime(1,$(".release").html()));
 			investDetails.awardtype();
-			if(res.content.finished == true){
+			if(res.content.borrowFullStatus == 1){
 				// 是否满标 不需要判断登录
 				_apiTrade.getScatterFinis(id,function(res){
 					finishedHtml = _td.renderHtml(finished,{
@@ -57,18 +58,20 @@ var investDetails = {
 				});
 			}else{
 				// 未满标 显示ipnut
-				investDetails.getUser(headerData,res.content.isApp,res.content.surplusInvestAmount,res.content.cleanTime,res.content.defineType);
+				investDetails.getUser(headerData,res.content.isApp,res.content.surplusInvestAmount,res.content.clearingBoolean
+,res.content.defineType);
 			}
 		},function(err){
 			console.log(err);
 		});
 		// 获取tab项目详情
 		_apiInvest.getFrontBorrowExpand(code,function(res){
-			res.content.buyTime = investDetails.setTime(1,res.content.buyTime);
 			projectDetHtml = _td.renderHtml(projectDet,{
 				content:res.content,
 			});
 			$('.details').html(projectDetHtml);
+			$(".sex").html(_details.setsex($(".sex").html()*1));
+			$(".buyTime").html(_details.setTime(1,$(".buyTime").html()));
 		},function(err){
 			console.log(err);
 		});
@@ -85,7 +88,7 @@ var investDetails = {
 	getUser : function(headerData,isapp,lastMoney,cleanTime,defineType){
 		_apiUser.getUserCon(headerData,function(res){
 			// 登录状态
-			if(isapp == true){
+			if(isapp == 1){
 				// 是否app专享
 				isAppHtml = _td.renderHtml(isApp,{
 					content:res.content,
@@ -104,11 +107,11 @@ var investDetails = {
 				if(cleanTime == true){
 					investDetails.clearing(cleanTime);
 					return false;
-				}else if(defineType == 0 && res.content.isNewbie == 0){
+				}else if(defineType == 1 && res.content.isNewbie == 0){
 					var defineTypes = true;
 					investDetails.isNewInvest(defineTypes);
 					return false;
-				}else if(defineType == 3){
+				}else if(defineType == 12){
 					var appPsw = '<input type="password" placeholder="请输入约标密码" class="com_inp appoint_psw" id="appoint_psw">';
 					$(".input_pwd").append(appPsw);
 					$("#sub_btn").attr("class","sub_btn").val("实付0.00元，立即投资");
@@ -127,9 +130,10 @@ var investDetails = {
 		});
 	},
 	// 三个通用
-	getDiscount : function(){
+	getDiscount : function(headerData,params){
 		// 获取优惠券
-		_operation.getDiscount(function(res){
+		_operation.getDiscounts(headerData,params,function(res){
+			console.log(res)
 			if(res.content != ""){
 				layer.open({
 					type: 1,
@@ -144,7 +148,7 @@ var investDetails = {
 				});
 				$('.discount_con').html(discountHtml);
 				$(".disValTxt").each(function(i){
-					if($(this).attr("data") == 1){
+					if($(this).attr("type") == 1){
 						$(this).html("抵用券");
 						$(this).parent("p").find($(".disValUnit")).html("￥");
 					}else{
@@ -157,36 +161,36 @@ var investDetails = {
 				$(".inp_disc").val("当前没有可用优惠券").addClass("no_ticket").parent($("#ticket")).removeClass('add_ticket').off("click");
 				$(".disHint").hide();
 			}
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
-	inputEvent : function(phoneId){
+	inputEvent : function(headerData,id){
 		var _this = this;
 		// 获得焦点
 		$('.investting input').focus(function(){
-			_this.focus(this);
+			_details.focus(this);
 		});
 		// 失去焦点
 		$('.investting input').blur(function(){
-			_this.blur();
+			_details.blur();
 		});
 
 		// 输入金额input
 		$('.investting .sub_money').focus(function(){
-			_this.inpMoneyOnFocus($(this));
+			_details.inpMoneyOnFocus($(this));
 		});
 		$('.investting .sub_money').blur(function(){
 			var thiss = $(this);
 			setTimeout(function(){
-				_this.overFormat(thiss);
+				_details.overFormat(thiss);
 			},300);
 		});
 		// 输入金额input
 		$('.investting .sub_money').keyup(function(){
 			var lastMoney = $(".lastMoney").attr("money");
 			_this.setinput($(this));
-			_this.MoneyKeyUp($(this),lastMoney);
+			_details.MoneyKeyUp($(this),lastMoney);
 			_this.QuanInit();
 		});
 		// 未登录input输入金额
@@ -199,7 +203,7 @@ var investDetails = {
 		$(".all_money").on("click",function(){
 			var lastMoney = $(".lastMoney").attr("money")*1;
 			var balance = $(".balance").attr("money")*1;
-			_this.all_money(lastMoney,balance,$(".sub_money"));
+			_details.all_money(lastMoney,balance,$(".sub_money"));
 		});
 		$(".sub_psw").keyup(function(){
 			formError.hide($(this));
@@ -219,10 +223,32 @@ var investDetails = {
 		});
 		// 支付按钮点击的状态
 		$(document).on("click",".sub_btn",function(){
-			 _this.subBtnClick();
+			var orderPassword = "";
+			var authCode = "";
+			if($(".appoint_psw").length > 0){
+				orderPassword = $(".appoint_psw").val();
+			}
+			if($(".authCode").length > 0){
+				authCode = $(".authCode").val();
+			}
+			var params = {
+					borrowId : id,
+					tenderMoney: $("#sub_money").val(),
+					payPassword : md5($.trim($('#sub_psw').val())),
+					voucherId : $(".inp_ticket").val(),
+					orderPassword :orderPassword,
+					authCode : authCode,
+					channel : "0"
+				};
+			 _this.subBtnClick(headerData,params);
 		});
 		$(document).on("click",".add_ticket",function(){
-			_this.yhQuan();
+			var params = {
+				scaleMoney 		: $("#sub_money").val(),
+				scaleTimeLimit	: $(".borrowPeriod").html(),
+				needType 		: 1
+			};
+			_this.yhQuan(headerData,params);
 		});
 		$(document).on("click",".iskonw",function(){
 			layer.closeAll();
@@ -252,31 +278,72 @@ var investDetails = {
 			$(this).addClass("on");
 			$(this).parent().siblings().find('a').removeClass('on');
 			if(type=="phone"){
-				_this.getListPhone(phoneId);
+				_this.getListPhone(id);
 			}
 		});
 	},
-	subScatterFn : function(){
-		_apiTrade.subInvestScatter(function(res){
+	subScatterFn : function(headerData,params){
+		_apiTrade.subInvestScatter(headerData,params,function(res){
 			formError.allHide($(".sub_money"),$(".sub_psw"),$(".appoint_psw"));
-			subScatterOk = _td.renderHtml(subScatterHtml,{
-				content:res.content,
-			});
-			$("#succeed_show").html(subScatterOk);
-			layer.open({
-				type: 1,
-				title: '',
-				closeBtn: 0,
-				skin: 'succeed_show',
-				area: ['560px', '360px'],
-				content: $('#succeed_show')
-			});
+			var dataList = {
+				tenderKey : res.content,
+				num : 0
+			};
+			var getResult = setInterval(function() {
+				dataList.num++;
+				_apiTrade.subInvestScatterResult(headerData,dataList,function(res){
+					status = res.content.status;
+					if (status == 1) {
+						subScatterOk = _td.renderHtml(subScatterHtml,{
+							content:res.content,
+						});
+						$("#succeed_show").html(subScatterOk);
+						layer.open({
+							type: 1,
+							title: '',
+							closeBtn: 0,
+							skin: 'succeed_show',
+							area: ['560px', '360px'],
+							content: $('#succeed_show')
+						});
+						clearInterval(getResult);
+					}else if(status == 2){
+						$(".msg").html(res.content.content);
+						// 加入失败
+						layer.open({
+							type: 1,
+							title:'',
+							closeBtn:0,
+							skin: 'succeed_show',
+							area:['560px','360px'],
+							content: $('#failed_show')
+						});
+						clearInterval(getResult);
+					}else{
+						if(dataList.num >= 3);
+						clearInterval(getResult);
+					}
+				},function(err){
+					$(".msg").html(err.msg);
+					// 加入失败
+					layer.open({
+						type: 1,
+						title:'',
+						closeBtn:0,
+						skin: 'succeed_show',
+						area:['560px','360px'],
+						content: $('#failed_show')
+					});
+					clearInterval(getResult);
+				});
+			}, 1000);
 		},function(err){
-			if(err.code == 142024){
+			console.log(err);
+			if(err.code == 140007){
 				formError.allShow($(".sub_psw"), "密码错误，请重新输入！");
-			}else if(err.code == 142025){
+			}else if(err.code == 140011){
 				formError.allShow($(".appoint_psw"), "约标密码错误，请重新输入！");
-			}else if(err.code == 142019){
+			}else if(err.code == 140001){
 				// 激活存管弹窗
 				layer.open({
 					type: 1,
@@ -302,7 +369,6 @@ var investDetails = {
 	},
 	getListPhone : function(id){
 		_apiTrade.getScatterPhone(id,10,1,function(res){
-			console.log(res)
 			scatterPhoneHtml = _td.renderHtml(scatterPhone,{
 				list:res.content.list,
 			});
@@ -313,43 +379,15 @@ var investDetails = {
 							list:res.content.list,
 						});
 						$(".chage_tr").html(scatterPhoneHtml);
-						investDetails.trColor("tbody_list");
-					},function(){
-
+						_details.trColor("tbody_list");
+					},function(err){
+						console.log(err);
 					});
 				});
-			investDetails.trColor("tbody_list");
+			_details.trColor("tbody_list");
 		},function(err){
-			console.log(err)
+			console.log(err);
 		});
-	},
-	// 三个通用
-	focus : function(obj){
-		$('.all-errinfo').html('');
-		$('input').removeClass('focus-input');
-		$(obj).addClass('focus-input');
-	},
-	// 三个通用
-	blur : function(){
-		$('input').removeClass('focus-input');
-	},
-	// 三个通用
-	MoneyKeyUp : function(el,str){
-		var formData = {
-			money: $.trim($('#sub_money').val()),
-		};
-			// 表单验证结果
-		if (formData.money != "") {
-			validateResult = this.moneyValidate(formData,str);
-			if (validateResult.status) {
-				formError.hide(el);
-			} else {
-				var id = '#' + validateResult.id;
-				formError.show(id, validateResult.msg);
-			}
-		}else{
-			formError.hide(el);
-		}
 	},
 	// 输入金额验证
 	moneydate : function(value, type){
@@ -377,49 +415,7 @@ var investDetails = {
 			return value>500000;
 		}
 	},
-	// 输入金额表单验证
-	moneyValidate:function(formData,str){
-		var result = {
-			status  : false,
-			id : false,
-			msg     : ''
-		};
-		if(investDetails.moneydate(formData.money, 'minMoney')){
-			result.msg = '不得低于起投金额100元！';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'minMoneys')){
-			result.msg = '不得低于可投金额'+str+'元';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'balance')){
-			result.msg = '余额不足';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'amount')){
-			result.msg = '您输入的金额大于当前剩余可投金额！';
-			result.id = 'sub_money';
-			return result;
-		}else if(investDetails.moneydate(formData.money, 'quota')){
-			result.msg = '单笔限额为500,000元！';
-			result.id = 'sub_money';
-			return result;
-		}
-		// 通过验证，返回正确提示
-		result.status   = true;
-		result.class   	= true;
-		result.msg      = '验证通过';
-		return result;
-	},
-	// 三个通用
-	all_money : function(lastMoney,balance,el){
-		if(lastMoney > balance){
-			el.val(balance).keyup().focus();
-		}else{
-			el.val(lastMoney).keyup().focus();
-		};
-	},
-	subBtnClick : function(){
+	subBtnClick : function(headerData,params){
 		if($(".form-error-info").length>0){
 			formError.allHide($(".sub_psw"),$(".sub_psw"),$(".appoint_psw"));
 		}else{
@@ -437,9 +433,9 @@ var investDetails = {
 					};
 			}
 				// 表单验证结果
-				validateResult = this.formValidate(formData);
+			validateResult = this.formValidate(formData);
 			if (validateResult.status) {
-				investDetails.subScatterFn();
+				investDetails.subScatterFn(headerData,params);
 			} else {
 				var clas = '.' + validateResult.class;
 				formError.allShow(clas, validateResult.msg);
@@ -487,7 +483,7 @@ var investDetails = {
 		}
 	},
 	// 三个通用
-	yhQuan : function(){
+	yhQuan : function(headerData,params){
 		// 优惠券点击
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
@@ -496,7 +492,7 @@ var investDetails = {
 			$(".sub_money").focus();
 			return false;
 		}else if($(".invest_money p").length <= 0){
-			investDetails.getDiscount();
+			investDetails.getDiscount(headerData,params);
 			$(".ul_select li").each(function(){
 				var vals = $(this).attr("id");
 				if(val == vals){
@@ -603,73 +599,12 @@ var investDetails = {
 			$("#sub_btn").attr("class","no_btn").val("新手专享，非新手不能加入");
 		}
 	},
-	// 三个通用
-	coundTime : function(time){
-		function times(time){
-			var nowTime = new Date();
-			var endTime = new Date(time * 1000);
-			var t = endTime.getTime() - nowTime.getTime();
-			var hour = Math.floor(t / 1000 / 60 / 60 % 24);
-			var min = Math.floor(t / 1000 / 60 % 60);
-			var sec = Math.floor(t / 1000 % 60);
-
-			if (hour < 10) {
-				hour = "0" + hour;
-			}
-			if (min < 10) {
-				min = "0" + min;
-			}
-			if (sec < 10) {
-				sec = "0" + sec;
-			}
-			var countDownTime = hour + "小时" + min + "分" + sec + "秒";
-			$(".coundTime").html(countDownTime);
-		}
-		times(time);
-		setInterval(function() {
-			times(time);
-		}, 1000);
-	},
-	// 三个通用
-	setTimes : function(res){
-		var list = res.content.list;
-		// 状态
-		$.each(list,function(i){
-			var time = list[i].addTime;
-			setTime(time);
-			list[i].addTime = times;
-		});
-	},
-	setTime : function(type,time) {
-		var date = new Date(time * 1);
-		var y = date.getFullYear() + '-';
-		var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-		var d = (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + ' ';
-		var h = (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ':';
-		var f = (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ':';
-		var s = (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
-		if(type == 1){
-			return times = y + m + d;
-		}else{
-			return times = y + m + d + h + f + s;
-		}
-	},
 	// 预期年化是否有奖励显示隐藏
 	awardtype : function(){
 		var type = $(".award").attr("type");
 		if(type == 0){
 			$(".award").html("");
 		}
-	},
-	// 三个通用
-	trColor : function(id){
-		// 各行变色
-		var trs=document.getElementById(id).getElementsByTagName("tr");
-		for(var i=0;i<trs.length;i++){
-			if(i%2==0){
-				trs[i].className +=" trColor";
-			}
-		};
 	},
 	// 三个通用
 	// 输入金额计算
@@ -695,37 +630,7 @@ var investDetails = {
 		var award = $(".award").attr("type");
 		var inputM = $(".sub_money").val()*1;
 		investDetails.earnings(inputM,award);
-	},
-	overFormat :function(th){
-		if(th.val() != ""){
-			th.val(Number(th.val()).toFixed(2));
-			var logNum = th.val().toString();
-			integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
-			decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
-			var m = th.val();
-			if(m == ""){
-				$(".sub_btn").val("实付0.00元，立即投资");
-				$(".predict_money").html("0.00");
-			}else{
-				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
-			}
-		};
-		$(".btn_empty").hide();
-	},
-	// 三个通用
-	inpMoneyOnFocus: function(el) {
-		var val = el.val();
-		if (val == '0.00') {
-			el.val('');
-		} else {
-			el.val(el.val().replace(/\.00/, '').replace(/(\.\d)0/, '$1'));
-		};
-		if (val != "") {
-			$(".btn_empty").show();
-		} else {
-			$(".btn_empty").hide();
-		}
-	},
+	}
 };
 var formError = {
 	show : function(id,errMsg){

@@ -1,0 +1,32 @@
+@import '../common/mixin.scss';
+@import '../common/layout';
+.main{
+	@include width-max;
+	font-size: 16px;
+	margin-top: 30px;
+	border-bottom:50px solid $bgColor;
+	.encyclopediaDetail{
+		background:#ffffff;
+		.encyclopediaDetail_top{
+			@include height-line(50px);
+			padding: 0 70px 0 50px;
+			color: #333333;
+			border-bottom: 1px solid $bgColor;
+			span{
+				font-size: 14px;
+				color: #9e9e9e;
+			}
+			i{
+				color: #9e9e9e;
+			}
+			.rg{
+				float: right;
+			}
+		}
+		.encyclopediaDetail_content{
+			padding: 30px 80px 70px 50px;
+			color: #9e9e9e;
+			line-height:42px;
+		}
+	}
+}

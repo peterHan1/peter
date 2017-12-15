@@ -5,19 +5,6 @@ require('page/common/uc-menu/index.js');
 require('page/common/uc-menu/index.scss');
 require('util/layer/index.js');
 
-// 获取积分任务完成，插入到table最下面
-/*$(function(){
-	$('.points_get_table a').on('click',function(){
-		var tr=$('<tr></tr>');
-		tr.html($(this).parent().parent().html());
-		$(this).parent().parent().remove();
-		tr.find('a').html('<span class="iconfont">&#xe675;</span>&nbsp;已完成');
-		tr.find('a').css('color','#8B8B8B');
-		tr.find('span').css('color','#57B766');
-		$('.points_get_table').append(tr);
-		$('.points_get_table tr').css('background','#ffffff');
-	})
-})*/
 var _paging = require('util/paging/index.js');
 var _td = require('util/td.js');
 var _apiPointsGold = require('api/operate-api.js');
@@ -30,12 +17,12 @@ var gold_get = require('./gold_get_table.string');
 var pointsGold = {
 	init : function(){
 		this.getPoints();
-		// this.getGold();
+		this.getGold();
 		this.drawHtml();
 		this.layerJs();
 		this.tabCut();
 		this.exchangeNum();
-		// this.getGold_exchange()
+		this.getGold_exchange()
 		this.exchangeTab();
 	},
 	// praise控制抽奖板块的出现隐藏
@@ -70,7 +57,13 @@ var pointsGold = {
 	},
 	// 给数字添加逗号，小数点后两位
 	numberAdd : function(str){
-		return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+		var reg=/./g;
+		if(reg.test(str)){
+			var arr=String(str).split('.');
+			return String(arr[0]).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.'+arr[1];
+		}else{
+			return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
+		}
 	},
 	// 获取积分详细信息
 	getPoints : function(){
@@ -136,7 +129,6 @@ var pointsGold = {
 	getPoints_exchange : function(){
 		_apiPointsGold.getPoints_exchange(pointsGold.headerData,1,function(res){
 			var listData = res.content.list;
-			console.log(res.content.total + '666' + listData.length)
 			var bannerHtml = _td.renderHtml(points_exchange,{
 				list:res.content.list,
 			});
@@ -146,7 +138,6 @@ var pointsGold = {
 			pointsGold.elHeight();
 			pointsGold.exchange_btn(listData);
 			_paging.paging('point_page',res.content.total,res.content.pageSize,function(e){
-				console.log(e.current)
 				_apiPointsGold.getPoints_exchange(pointsGold.headerData,e.current,function(res){
 					listData = res.content.list;
 					var bannerHtml = _td.renderHtml(points_exchange,{
@@ -348,14 +339,14 @@ var pointsGold = {
 	},
 	// 获取积分任务
 	getPoints_get : function(){
-		console.log(pointsGold.headerData.accessId + '666' + pointsGold.headerData.accessKey)
 		_apiPointsGold.getPoints_get(pointsGold.headerData,function(res){
 			var listData=res.content.list;
 			$.each(listData,function(i){
 				if (listData[i].pcUrl==null) {
 					listData[i].pcUrl='javascript:;';
 				};
-				if (listData[i].todo=='去投资') {
+				if (listData[i].code==1 || listData[i].code==2 || listData[i].code==3
+				 || listData[i].isOverdue=='yes' || listData[i].isComplete=='yes') {
 					listData[i].pcUrl='javascript:;';
 				};
 			})
@@ -375,11 +366,11 @@ var pointsGold = {
 				}else{
 					$('._points_get_table tr').eq(i+1).find('a').on('click',function(e){
 						if(listData[i].code==1){
-							pointsGold.layerPublic(e,'points_gzh');
+							pointsGold.layerPublic('points_gzh');
 						}else if(listData[i].code==2){
-							pointsGold.layerPublic(e,'points_login');
+							pointsGold.layerPublic('points_login');
 						}else if(listData[i].code==3){
-							pointsGold.layerPublic(e,'points_invest');
+							pointsGold.layerPublic('points_invest');
 						}else if(listData[i].code==4){
 							pointsGold.getUserSign();
 						}
@@ -420,11 +411,11 @@ var pointsGold = {
 				}else{
 					$('.points_get_table tr').eq(i+1).find('a').on('click',function(e){
 						if(listData[i].code==1){
-							pointsGold.layerPublic(e,'points_gzh');
+							pointsGold.layerPublic('points_gzh');
 						}else if(listData[i].code==2){
-							pointsGold.layerPublic(e,'points_login');
+							pointsGold.layerPublic('points_login');
 						}else if(listData[i].code==3){
-							pointsGold.layerPublic(e,'points_invest');
+							pointsGold.layerPublic('points_invest');
 						}
 					})
 				}
@@ -614,7 +605,7 @@ var pointsGold = {
 		})
 	},
 	// 获取积分任务部分弹窗公共样式
-	layerPublic : function(e,obj){
+	layerPublic : function(obj){
 		var titles='';
 		if(obj=='points_gzh'){
 			titles='获取积分：首次关注拓道金服微信公众号';

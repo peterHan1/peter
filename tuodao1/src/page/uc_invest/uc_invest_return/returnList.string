@@ -8,3 +8,11 @@
 	<td class="return_td_status" status="{{status}}">{{status}}</td>
 </tr>
 {{/list}}
+{{^list}}
+	<tr class="null_data">
+		<td colspan="6">
+			<div class="null_data_bg"></div>
+			<p>当前没有回款信息</p>
+		</td>
+	</tr>
+{{/list}}

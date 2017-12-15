@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="main">
+		<div class="platform">
+			<div class="guide_top">平台介绍</div>
+			<ul class="content">
+				<li class="left">
+					拓道金服是国内领先的专注汽车金融领域的互联网金融服务平台。通过线上+线下的投融资模式， 线上+线下的业务管理模式，严谨的借款人筛选机制，严格的风控手段，为投资方、借款方创造了一个高效率、高便捷、高安全的服务平台
+					<p><img src="<%= require('../image/guide/guide_1.png') %>" alt=""></p>
+				</li>
+				<li class="right"><img src="<%= require('../image/guide/guide_2.png') %>" alt=""></li>
+			</ul>
+		</div>
+		<div class="data">
+			<div class="guide_top">数据披露<span class="data_right">截止至2017-11-20 08:57:57</span></div>
+			<ul class="content">
+				<li>
+					<p>累计交易额</p>
+					<p class="col_main account"><span>32</span>&nbsp;亿&nbsp;<span>9033</span>&nbsp;万&nbsp;<span>3657</span>元</p>
+				</li>
+				<li style="margin: 0 160px 0 160px;">
+					<p>为用户赚取</p>
+					<p class="col_main num2"><span>32</span>&nbsp;亿&nbsp;<span>9033</span>&nbsp;万&nbsp;<span>3657</span>&nbsp;元</p>
+				</li>
+				<li style="margin-right:190px;">
+					<p>已安全运营</p>
+					<p class="col_main num3"><span>1298</span>&nbsp;天</p>
+				</li>
+				<li>
+					<p>已加入用户</p>
+					<p class="col_main regNum"><span>10</span>&nbsp;万&nbsp;<span>189</span>&nbsp;人</p>
+				</li>
+			</ul>
+		</div>
+		<div class="safe">
+			<div class="guide_top">安全保障</div>
+			<ul class="content">
+				<li>
+					<img src="<%= require('../image/guide/guide_3.png') %>" alt="">
+					<p class="col_333">数据安全</p>
+					<p>无忧存证，司法保全</p>
+				</li>
+				<li>
+					<img src="<%= require('../image/guide/guide_4.png') %>" alt="">
+					<p class="col_333">资金安全</p>
+					<p>账户资金由北京银行存管</p>
+				</li>
+				<li>
+					<img src="<%= require('../image/guide/guide_5.png') %>" alt="">
+					<p class="col_333">反欺诈云</p>
+					<p>确保贷前贷后风控监察</p>
+				</li>
+				<li>
+					<img src="<%= require('../image/guide/guide_6.png') %>" alt="">
+					<p class="col_333">法律安全</p>
+					<p>天册、盈科律师事务所战略合作</p>
+				</li>
+			</ul>
+		</div>
+		<div class="step">
+			<div class="guide_top">轻松&nbsp;5&nbsp;步完成理财</div>
+			<ul class="content" style="padding-bottom: 30px;">
+				<li class="list_con">
+					<div class="font"><i>1</i>&nbsp;注册</div>
+					<div class="explain">
+						<div><img src="<%= require('../image/guide/guide_7.png') %>" alt=""></div>
+						<p style="text-align: left;">还没有加入拓道金服？只需 手机号快速注册</p>
+					</div>
+				</li>
+				<li class="list_mark">></li>
+				<li class="list_con">
+					<div class="font"><i>2</i>&nbsp;激活存管账户</div>
+					<div class="explain">
+						<div><img src="<%= require('../image/guide/guide_8.png') %>" alt=""></div>
+						<p>银行存管保证资金安全</p>
+					</div>
+				</li>
+				<li class="list_mark">></li>
+				<li class="list_con">
+					<div class="font"><i>3</i>&nbsp;充值</div>
+					<div class="explain">
+						<div><img src="<%= require('../image/guide/guide_9.png') %>" alt=""></div>
+						<p style="text-align: left;">提前充值，账户余额充足方便投资</p>
+					</div>
+				</li>
+				<li class="list_mark">></li>
+				<li class="list_con">
+					<div class="font"><i>4</i>&nbsp;投标</div>
+					<div class="explain">
+						<div><img src="<%= require('../image/guide/guide_10.png') %>" alt=""></div>
+						<p>选择适合你的标的进行投资</p>
+					</div>
+				</li>
+				<li class="list_mark">></li>
+				<li class="list_con">
+					<div class="font"><i>5</i>&nbsp;坐等收益</div>
+					<div class="explain">
+						<div><img src="<%= require('../image/guide/guide_11.png') %>" alt=""></div>
+						<p>轻松坐等收益</p>
+					</div>
+				</li>
+			</ul>
+			<a href="" class="btn">我要赚钱</a>
+		</div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

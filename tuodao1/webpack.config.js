@@ -40,6 +40,8 @@ var config = {
 		'invest_detailBond' 		: ['./src/page/invest_detailBond/index.js'],
 		'active_newuser' 			: ['./src/page/active_newuser/index.js'],
 		'uc'						: ['./src/page/uc/index.js'],
+		'uc_oldList'				: ['./src/page/uc_old/old_list/index.js'],
+		'uc_oldDetail'				: ['./src/page/uc_old/old_detail/index.js'],
 		'uc_recharge'				: ['./src/page/uc_moneyMange/uc_recharge/index.js'],
 		'uc_cash'					: ['./src/page/uc_moneyMange/uc_cash/index.js'],
 		'uc_moneyRecord'			: ['./src/page/uc_moneyMange/uc_moneyRecord/index.js'],
@@ -57,6 +59,7 @@ var config = {
 		'calc'						: ['./src/page/calc/index.js'],
 		'help'						: ['./src/page/help/index.js'],
 		'encyclopedia'			 	: ['./src/page/encyclopedia/index.js'],
+		'encyclopedia_detail'		: ['./src/page/encyclopedia_detail/index.js'],
 		'uc_points_gold'			: ['./src/page/uc_welfare/uc_points_gold/index.js'],
 		'uc_invite'					: ['./src/page/uc_welfare/uc_invite/index.js'],
 		'uc_coupon'					: ['./src/page/uc_welfare/uc_coupon/index.js'],
@@ -64,6 +67,7 @@ var config = {
 		'draw_present'				: ['./src/page/uc_welfare/draw_present/index.js'],
 		'memberCenter'				: ['./src/page/operation/memberCenter/index.js'],
 		'newcomer'					: ['./src/page/operation/newcomer/index.js'],
+		'new_guide'					: ['./src/page/operation/new_guide/index.js'],
 		'news'						: ['./src/page/news/index.js'],
 		'news_detail'				: ['./src/page/news_detail/index.js'],
 		'Info_contact'				: ['./src/page/Info_contact/index.js'],
@@ -97,7 +101,10 @@ var config = {
 		'legal_bl'					: ['./src/page/legalFile/index.js'],
 		'legal_ff'					: ['./src/page/legalFile/index.js'],
 		'legal_sl'					: ['./src/page/legalFile/index.js'],
-		'legal_mj'					: ['./src/page/legalFile/index.js']
+		'legal_mj'					: ['./src/page/legalFile/index.js'],
+		'transferAgreement'			: ['./src/page/agreement/index.js'],
+		'borrowAgreement'			: ['./src/page/agreement/index.js'],
+		'authorization'				: ['./src/page/agreement/index.js']
 
 	},
 	output: {
@@ -173,6 +180,8 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('invest_detailBond','理财专区-详情页')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_recharge','账户充值')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc','账户总览')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_oldList','老账户列表')),
+		new HtmlWebpackPlugin(getHtmlConfig('uc_oldDetail','老账户详情')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_cash','账户提现')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_moneyRecord','资金记录')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_messageCenter','资金记录')),
@@ -190,6 +199,7 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('calc','计算器')),
 		new HtmlWebpackPlugin(getHtmlConfig('help','帮助中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('encyclopedia','理财百科')),
+		new HtmlWebpackPlugin(getHtmlConfig('encyclopedia_detail','理财百科详情')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_points_gold','积分和金币')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_invite','我的邀请')),
 		new HtmlWebpackPlugin(getHtmlConfig('uc_coupon','我的优惠券')),
@@ -197,6 +207,7 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('draw_present','积分大抽奖')),
 		new HtmlWebpackPlugin(getHtmlConfig('memberCenter','会员中心')),
 		new HtmlWebpackPlugin(getHtmlConfig('newcomer','新手专区')),
+		new HtmlWebpackPlugin(getHtmlConfig('new_guide','新手指南')),
 		new HtmlWebpackPlugin(getHtmlConfig('news','新闻公告')),
 		new HtmlWebpackPlugin(getHtmlConfig('news_detail','新闻公告详情')),
 		new HtmlWebpackPlugin(getHtmlConfig('Info_contact','联系我们')),
@@ -230,7 +241,11 @@ var config = {
 		new HtmlWebpackPlugin(getHtmlConfig('legal_bl','关于办理非法集资刑事案件适用法律若干问题的意见')),
 		new HtmlWebpackPlugin(getHtmlConfig('legal_ff','最高人民法院关于非法集资刑事案件性质认定问题的通知')),
 		new HtmlWebpackPlugin(getHtmlConfig('legal_sl','最高人民法院关于审理非法集资刑事案件具体应用法律若干问题的解释')),
-		new HtmlWebpackPlugin(getHtmlConfig('legal_mj','最高人民法院关于审理民间借贷案件适用法律若干问题的规定'))
+		new HtmlWebpackPlugin(getHtmlConfig('legal_mj','最高人民法院关于审理民间借贷案件适用法律若干问题的规定')),
+		new HtmlWebpackPlugin(getHtmlConfig('legal_bl','关于办理非法集资刑事案件适用法律若干问题的意见')),
+		new HtmlWebpackPlugin(getHtmlConfig('transferAgreement','转让协议')),
+		new HtmlWebpackPlugin(getHtmlConfig('borrowAgreement','借款协议')),
+		new HtmlWebpackPlugin(getHtmlConfig('authorization','授权委托书'))
 
 	]
 };

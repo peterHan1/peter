@@ -4,6 +4,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/laydate/index.js');
 require('util/layer/index.js');
+var md5 		= require('util/md5.js');
 var _tips 		= 	require('util/tips/index.js');
 var _td 		= 	require('util/td.js');
 var _apiInvest 	= 	require('api/trade-api.js');
@@ -66,16 +67,16 @@ var ucInvest = {
 					$(".uc_invest_tabR").attr("status",sta);
 					ucInvest.trColor();
 					ucInvest.tipsHover();
-					ucInvest.applyClick();
 					ucInvest.dateClick(headerData);
+					ucInvest.eventFn(headerData);
 				},function(err){
 					console.log(err);
 				});
 			});
 			ucInvest.trColor();
 			ucInvest.tipsHover();
-			ucInvest.applyClick();
 			ucInvest.dateClick(headerData);
+			ucInvest.eventFn(headerData);
 		},function(err){
 			console.log(err);
 		});
@@ -204,11 +205,11 @@ var ucInvest = {
 			});
 		});
 	},
-	applyClick : function(){
+	eventFn : function(headerData){
 		// 申请转让
 		$(".transfer_clk a").on("click",function(){
 			var id = $(this).attr("tenderId");
-			_apiInvest.getApply(id,function(res){
+			_apiInvest.getApply(headerData,id,function(res){
 				listApply = _td.renderHtml(bondApply,{
 					content:res.content,
 				});
@@ -219,8 +220,8 @@ var ucInvest = {
 					$(".bond_show_box").html("");
 					layer.closeAll();
 				});
-			},function(){
-
+			},function(err){
+				console.log(err);
 			});
 			layer.open({
 				type: 1,
@@ -233,9 +234,9 @@ var ucInvest = {
 		// 确认转让点击
 		$(document).on("click",".affirm_btn",function(){
 			var id = $(this).attr("tenderId");
-			var pasw = $(".sub_psw").val();
+			var pasw = md5($.trim($('.sub_psw').val()))
 			var tlt = $(".applyTlt").html();
-			_apiInvest.subApply(id,pasw,function(res){
+			_apiInvest.subApply(headerData,id,pasw,function(res){
 				$(".applyOkTlt").html(tlt);
 				layer.closeAll();
 				layer.open({
@@ -245,8 +246,12 @@ var ucInvest = {
 					area: ['740px', '594px'],
 					content: $('#bond_showOk')
 				});
-			},function(){
-				show_mess("密码错误，请重新输入");
+			},function(err){
+				if(err.code == 142024){
+					show_mess("密码错误，请重新输入");
+				}else{
+					show_mess(msg);
+				}
 			});
 		});
 		$(".bond_ok_close").on("click",function(){

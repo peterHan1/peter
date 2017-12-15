@@ -23,19 +23,19 @@
 					<div class="box">
 						<dl>
 							<dt>累计借款金额（元）</dt>
-							<dd>104840.66万</dd>
+							<dd class="borrowAmount">104840.66万</dd>
 						</dl>
 					</div>
 					<div class="box">
 						<dl>
 							<dt>累计借款人数（人）</dt>
-							<dd>69</dd>
+							<dd class="borrowerNum">69</dd>
 						</dl>
 					</div>
 					<div class="box last">
 						<dl>
 							<dt>累计借款个数（个）</dt>
-							<dd>1000</dd>
+							<dd class="borrowNum">1000</dd>
 						</dl>
 					</div>
 				</div>
@@ -44,27 +44,27 @@
 				<div class="main_box">
 					<div class="box">
 						<dl>当前借款余额（元）</dl>
-						<dd>104840.66万</dd>
+						<dd class="nowBorrowAmount">104840.66万</dd>
 					</div>
 					<div class="box">
 						<dl>当前借款人数（人）</dl>
-						<dd>69</dd>
+						<dd class="nowBorrowerNum">69</dd>
 					</div>
 					<div class="box last">
 						<dl>当前借款个数（个）</dl>
-						<dd>1000</dd>
+						<dd class="nowBorrowNum">1000</dd>
 					</div>
 					<div class="box">
 						<dl>当前投资人数（人））</dl>
-						<dd>69</dd>
+						<dd class="nowInvestorNum">69</dd>
 					</div>
 					<div class="box">
 						<dl>今日已发标数量（个）</dl>
-						<dd>69</dd>
+						<dd class="todayBorrowNum">69</dd>
 					</div>
 					<div class="box last">
 						<dl>今日已经发标金额（元）</dl>
-						<dd>651.72万</dd>
+						<dd class="todayBorrowAmount">651.72万</dd>
 					</div>
 				</div>
 			</div>
@@ -72,39 +72,39 @@
 				<div class="main_box">
 					<div class="box">
 						<dl>逾期率</dl>
-						<dd>2.34%</dd>
+						<dd class="overdueRate"><span></span>%</dd>
 					</div>
 					<div class="box">
 						<dl>逾期金额（元）</dl>
-						<dd>0.00</dd>
+						<dd class="overdueAmount">0.00</dd>
 					</div>
 					<div class="box last">
 						<dl>逾期个数（个）</dl>
-						<dd>0</dd>
+						<dd class="overdueNum">0</dd>
 					</div>
 					<div class="box long">
 						<dl>逾期90天（不含）以上金额（元）</dl>
-						<dd>104840.66万</dd>
+						<dd class="overdueNinetyAmount">104840.66万</dd>
 					</div>
 					<div class="box long">
 						<dl>逾期90天（不含）以上个数（个）</dl>
-						<dd>69</dd>
+						<dd class="overdueNinetyNum">69</dd>
 					</div>
 					<div class="box last">
 						<dl>累计代偿金额（元）</dl>
-						<dd>104840.66万</dd>
+						<dd class="compensationAmount">104840.66万</dd>
 					</div>
 					<div class="box">
 						<dl>累计代偿个数（个）</dl>
-						<dd>69</dd>
+						<dd class="compensationNum">69</dd>
 					</div>
 					<div class="box">
 						<dl>关联关系借款余额（元）</dl>
-						<dd>0.00</dd>
+						<dd class="correlationBorrowAmount">0.00</dd>
 					</div>
 					<div class="box last">
 						<dl>关联关系借款个数（个）</dl>
-						<dd>0</dd>
+						<dd class="correlationBorrowNum">0</dd>
 					</div>
 				</div>
 			</div>
@@ -113,72 +113,48 @@
 		<div class="borrow_details clear">
 			<div class="left">
 				<p>今日投资风云榜</p>
-				<ul>
-					<li><i><img src="<%= require('../image/info/fir.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i><img src="<%= require('../image/info/sec.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i><img src="<%= require('../image/info/thr.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
-				</ul>
+				<div class="main-box">
+					<ul class="img">
+						<li><i><img src="<%= require('../image/info/fir.png') %>" alt="" /></i></li>
+						<li><i><img src="<%= require('../image/info/sec.png') %>" alt="" /></i></li>
+						<li><i><img src="<%= require('../image/info/thr.png') %>" alt="" /></i></li>
+					</ul>
+					<ul class="content"></ul>
+				</div>
 			</div>
 			<div class="right">
 				<p>本月投资风云榜</p>
-				<ul>
-					<li><i><img src="<%= require('../image/info/fir.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i><img src="<%= require('../image/info/sec.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i><img src="<%= require('../image/info/thr.png') %>" alt="" /></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
-					<li><i></i><span>139****3339</span><span>投资389400元</span></li>
+				<div class="main-box">
+					<ul class="img">
+						<li><i><img src="<%= require('../image/info/fir.png') %>" alt="" /></i></li>
+						<li><i><img src="<%= require('../image/info/sec.png') %>" alt="" /></i></li>
+						<li><i><img src="<%= require('../image/info/thr.png') %>" alt="" /></i></li>
+					</ul>
+					<ul class="content">
+				</div>
 				</ul>
 			</div>
 		</div>
 		<div class="paihang clear">
 			<p class="til">借款排行榜</p>
 			<p class="bt">前10名借款人分布</p>
-			<table>
+			<table class="table1">
 				<tr>
-					<td class="one">排名</td>
-					<td>第一名</td>
-					<td>第二名</td>
-					<td>第三名</td>
-					<td>第四名</td>
-					<td>第五名</td>
-					<td>第六名</td>
-					<td>第七名</td>
-					<td>第八名</td>
-					<td>第九名</td>
-					<td>第十名</td>
-					<td>其他</td>
+					<td>排名</td>
 				</tr>
 				<tr>
-					<td class="one">待还金额</td>
-					<td>2997.77万元</td>
-					<td>201.50万元</td>
-					<td>181.50万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
-					<td>129.65万元</td>
+					<td>待还金额</td>
 				</tr>
 				<tr>
-					<td class="one">占比</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
-					<td>2.79%</td>
+					<td>占比</td>
+				</tr>
+			</table>
+			<table class="table2">
+				<tr class="ones">
+				</tr>
+				<tr class="twos">
+				</tr>
+				<tr class="threes">
 				</tr>
 			</table>
 			<p class="bz">备注：当前第一名借款人为二手车经销商，车辆库存质押</p>

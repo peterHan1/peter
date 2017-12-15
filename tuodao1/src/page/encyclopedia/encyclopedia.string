@@ -1,0 +1,3 @@
+{{#list}}
+<li><a class="mouseover" data-url={{contentId}}>{{title}}</a><span>{{publishTime}}</span></li>
+{{/list}}

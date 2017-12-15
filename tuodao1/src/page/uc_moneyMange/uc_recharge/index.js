@@ -5,6 +5,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/security/security.scss');
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var _yzm = require('util/security/security.js');
@@ -53,6 +54,7 @@ var recharge = {
 	},
 	bindEvent: function() {
 		var _this = this;
+		$('input, textarea').placeholder();
 		// 获得焦点
 		$('form div input').focus(function() {
 			_this.focus(this);

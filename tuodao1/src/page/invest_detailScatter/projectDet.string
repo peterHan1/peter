@@ -9,7 +9,7 @@
 		<ul>
 			<li>
 				<p>姓名：{{name}}</p>
-				<p>性别：{{sex}}</p>
+				<p>性别：<i class="sex">{{sex}}</i></p>
 			</li>
 			<li>
 				<p>学历：{{education}}</p>
@@ -29,7 +29,7 @@
 				<p>车辆估价：{{secondCarPrice}}元</p>
 			</li>
 			<li>
-				<p>购买时间：{{buyTime}}</p>
+				<p>购买时间：<i class="buyTime">{{buyTime}}</i></p>
 				<p>购买价格：{{buyPrice}}元</p>
 			</li>
 			<li>
