@@ -2,8 +2,8 @@
 <div class="sift_tit">
 	<a href="uc_invest_bond.html" class="iconfont">&#xe6bb;</a>
 	<p>
-		<span class="return_satus sta{{status}}" status="{{status}}"></span>
-		{{productTitle}}
+		<span class="return_satus sta{{status}}">{{statusText}}</span>
+		{{productTitle}} NO.{{productCode}}
 	</p>
 </div>
 <div class="sift_con">
@@ -29,7 +29,12 @@
 				<td>{{amount}}</td>
 				<td>{{interest}}</td>
 				<td>{{reward}}</td>
+				{{#voucher}}
 				<td class="td_font">{{voucher}}</td>
+				{{/voucher}}
+				{{^voucher}}
+				<td class="td_font">-</td>
+				{{/voucher}}
 			</tr>
 		</tbody>
 	</table>
@@ -38,13 +43,13 @@
 		<div class="sift_con_mesL">
 			<ul>
 				<li>
-					预期年化：<span>{{borrowApr}}%</span>
+					预期年化：<span>{{borrowApr}}</span>
 				</li>
 				<li>
-					投资时间：<span class="tenderTime">{{tenderTime}}</span>
+					投资时间：<span>{{tenderTime}}</span>
 				</li>
 				<li>
-					还款方式：<span>{{styleType}}</span>
+					还款方式：<span>{{wayText}}</span>
 				</li>
 				<li>
 					到期时间：<span>{{repayLastTime}}</span>
@@ -52,9 +57,9 @@
 			</ul>
 		</div>
 		<div class="sift_con_mesR">
-			<a href="###">查看借款协议 ></a>
+			<a href="borrowAgreement.html?tender={{tenderId}}">查看借款协议 ></a>
 			<a href="###">查看安存保全 ></a>
-			<!-- <a href="###">《债权转让协议》</a> -->
+			<!-- <a href="transferAgreement.html?tender={{tenderId}}">《债权转让协议》</a> -->
 		</div>
 	</div>
 </div>

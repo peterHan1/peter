@@ -1,0 +1,22 @@
+<tr>
+	<th>项目编号</th>
+	<th>项目名称</th>
+	<th>投资时间</th>
+	<th>投资金额</th>
+	<th>到期收益</th>
+	<th>奖励</th>
+	<th>状态</th>
+	<th>操作</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{productCode}}</td>
+	<td>{{productTitle}}</td>
+	<td>{{tenderTime}}</td>
+	<td>{{preAccount}}</td>
+	<td>{{interest}}</td>
+	<td>{{prize}}</td>
+	<td>{{statusName}}</td>
+	<td><a data-id={{tenderId}}>查看详情</a></td>
+</tr>
+{{/list}}

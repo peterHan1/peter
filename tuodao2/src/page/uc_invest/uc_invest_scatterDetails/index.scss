@@ -32,14 +32,11 @@
 			float:left;
 			margin-left:10px;
 		}
+		.returnCol0,.returnCol1{
+			color:$fontColor9e;
+		}
 		.returnCol5{
 			color:$fontColorbd;
-		}
-		.returnCol1{
-			color:$fontColor9E;
-		}
-		.returnCol0{
-			color:$fontColore6;
 		}
 		.returnCol2{
 			color:$fontColor19;
@@ -173,19 +170,19 @@
 				padding-left:30px;
 			}
 		}
-		.zxf_pagediv{
+		.pageList{
 			margin-top:30px;
 		}
 		.null_data{
-			margin-top:160px;
-			text-align: center;
+			background-color:#fff!important;
 			.null_data_bg{
 				width:85px;
 				height:61px;
-				margin:0 auto 15px;
+				margin:160px auto 15px;
 				background:url(../../../image/no_data.png) no-repeat;
 			}
 			p{
+				text-align: center;
 				font-size:$fontSize14;
 				color:$fontColor9e;
 			}

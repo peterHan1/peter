@@ -48,10 +48,12 @@ var _retuenMon = {
 			$("."+data.elm).removeClass("datas_on");
 			$(this).addClass("datas_on");
 			var thisy = $(".f_year").html();
-			var thism = $(".f_month").html();
+			var thism = $(".f_month").html()*1;
+			if(thism < 10){
+				thism = "0" + thism;
+			}
 			var thisday = $(this).find('.data_day').html();
 			var datas = thisy+"-"+thism+"-"+thisday;
-			// $(".re_money_d").html(thisday+'日');
 			data.callback(datas,thisday);
 		});
 	},

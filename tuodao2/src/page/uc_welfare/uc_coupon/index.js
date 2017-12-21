@@ -6,7 +6,7 @@ require('page/common/uc-menu/index.scss');
 
 var _paging = require('util/paging/index.js');
 var _td = require('util/td.js');
-var _apiCoupon = require('api/operationCenter-api.js');
+var _apiCoupon = require('api/operate-api.js');
 var couponDyq = require('./coupon_dyq.string');
 var couponJxq = require('./coupon_jxq.string');
 
@@ -17,8 +17,8 @@ var coupon = {
 		this.tabCut();
 	},
 	headerData : {
-		accessId 	: _td.getAccess('accessId'),
-		accessKey 	: _td.getAccess('accessKey')
+		'accessId' :unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
 	},
 	pages : function(res){
 		return parseInt(res.content.total/9)+1;
@@ -38,11 +38,13 @@ var coupon = {
 		var j='';
 		_apiCoupon.getCoupon(coupon.headerData,data,function(res){
 			var listData=res.content.list;
+			var total=res.content.total;
+			var pageSize=res.content.pageSize;
 			$.each(listData,function(i){
 				listData[i].moneyLimit=coupon.numberAdd(listData[i].moneyLimit);
 			})
 			var bannerHtml = _td.renderHtml(couponDyq,{
-				list:res.content.list,
+				list:res.content.list
 			});
 			$('.dyq_tickets').html(bannerHtml);
 			/*$.each(listData,function(i){
@@ -56,7 +58,7 @@ var coupon = {
 				$('.dyq_tickets ul').addClass('dyq_ticket_guoqi');
 			}
 			coupon.HeightAuto();
-			_paging.paging('dyq_page',res.content.total,res.content.pageSize,function(e){
+			_paging.paging('dyq_page',total,pageSize,function(e){
 				data = {
 					discountType 	: type,
 					discountStatus 	: status,
@@ -70,7 +72,7 @@ var coupon = {
 						listData[i].moneyLimit=coupon.numberAdd(listData[i].moneyLimit);
 					})
 					var bannerHtml = _td.renderHtml(couponDyq,{
-						list:res.content.list,
+						list:res.content.list
 					});
 					$('.dyq_tickets').html(bannerHtml);
 					if(status==1){
@@ -106,8 +108,10 @@ var coupon = {
 			pageSize		: 9
 		}
 		_apiCoupon.getCoupon(coupon.headerData,data,function(res){
+			var total=res.content.total;
+			var pageSize=res.content.pageSize;
 			var bannerHtml = _td.renderHtml(couponJxq,{
-				list:res.content.list,
+				list:res.content.list
 			});
 			$('.jxq_tickets').html(bannerHtml);
 			if(status==1){
@@ -119,8 +123,7 @@ var coupon = {
 			}
 			coupon.getJxq();
 			coupon.HeightAuto();
-
-			_paging.paging('jxq_page',res.content.total,res.content.pageSize,function(e){
+			_paging.paging('jxq_page',total,pageSize,function(e){
 				data = {
 					discountType 	: type,
 					discountStatus 	: status,
@@ -130,7 +133,7 @@ var coupon = {
 				};
 				_apiCoupon.getCoupon(coupon.headerData,data,function(res){
 					var bannerHtml = _td.renderHtml(couponJxq,{
-						list:res.content.list,
+						list:res.content.list
 					});
 					$('.jxq_tickets').html(bannerHtml);
 					if(status==1){

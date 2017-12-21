@@ -9,3 +9,11 @@
 	</td>
 </tr>
 {{/list}}
+{{^list}}
+	<tr class="null_data">
+		<td colspan="5">
+			<div class="null_data_bg"></div>
+			<p>当前没有投资记录</p>
+		</td>
+	</tr>
+{{/list}}

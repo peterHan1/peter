@@ -92,6 +92,16 @@ var _td = {
 		if ('minLength' === type) {
 			return value.length >= 6;
 		}
+	},
+	// 各行变色兼容写法
+	trColor : function(id){
+		// 各行变色
+		var trs=document.getElementById(id).getElementsByTagName("tr");
+		for(var i=0;i<trs.length;i++){
+			if(i%2==0){
+				trs[i].className +=" trColor";
+			}
+		};
 	}
 };
 

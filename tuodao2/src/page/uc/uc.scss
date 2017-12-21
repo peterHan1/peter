@@ -578,6 +578,22 @@ b,i,em{
 				}
 			}
 		}
+		.null_data{
+			background-color:#fff!important;
+			td{
+				text-align: center;
+			}
+			.null_data_bg{
+				width:85px;
+				height:61px;
+				margin:40px auto 15px;
+				background:url(../../image/no_data.png) no-repeat;
+			}
+			p{
+				font-size:$fontSize14;
+				color:$fontColor9e;
+			}
+		}
 	}
 	.recommends{
 		background-color:#fff;
@@ -612,7 +628,7 @@ b,i,em{
 							box-shadow:0 5px 30px #e7e7e7;
 						}
 					}
-					.pro-list{
+					.pro_list{
 						margin:0 auto;
 						.t{
 							font-size:16px;
@@ -666,7 +682,7 @@ b,i,em{
 							color:$fontColor9e;
 							margin-top:28px;
 						}
-						.now-invest{
+						.now_invest{
 							// display:none;
 							// opacity: 0;
 							font-size:$fontSize16;

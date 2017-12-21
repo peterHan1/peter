@@ -1,12 +1,22 @@
 {{#list}}
 <tr>
-	<td class="padd_left">NO.{{borrowNid}}</td>
+	<td class="padd_left">NO.{{effectDate}}</td>
 	<td class="td_name">
-		<a href="###">{{productName}}</a>
+		<a href="###">{{effectDay}}</a>
 	</td>
-	<td>{{addTime}}</td>
-	<td>{{account}}</td>
-	<td>{{status}}</td>
-	<td class="tb_oper" opera={{status}}></td>
+	<td>{{dateLimit}}</td>
+	<td>{{source}}</td>
+	<td class="discount">{{staText}}</td>
+	<td class="tb_oper" opera={{dateExplain}}>
+		<a href="{{dateExplain}}"> </a>
+	</td>
 </tr>
+{{/list}}
+{{^list}}
+	<tr class="null_data">
+		<td colspan="6">
+			<div class="null_data_bg"></div>
+			<p>资产匹配成功后显示债券明细</p>
+		</td>
+	</tr>
 {{/list}}

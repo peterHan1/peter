@@ -3,8 +3,16 @@
 	<td class="padd_left">{{collectionTime}}</td>
 	<td class="return_td_name"><a href="">{{productTitile}}</a><div class="tips left-tips">{{productTitile}}</div></td>
 	<td class="return_td_periods">{{period}}/{{periods}}</td>
-	<td class="return_td_type">{{type}}</td>
+	<td class="return_td_type">{{typeText}}</td>
 	<td class="return_td_money">{{collectionMoney}}元</td>
-	<td class="return_td_status" status="{{status}}">{{status}}</td>
+	<td class="return_td_status {{tstatusClas}}">{{tstatusText}}</td>
 </tr>
+{{/list}}
+{{^list}}
+	<tr class="null_data">
+		<td colspan="6">
+			<div class="null_data_bg"></div>
+			<p>当前没有回款信息</p>
+		</td>
+	</tr>
 {{/list}}

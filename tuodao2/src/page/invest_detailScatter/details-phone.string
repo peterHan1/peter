@@ -13,4 +13,9 @@
 	<td class="date">{{addTime}}</td>
 </tr>
 {{/list}}
+{{^list}}
+<tr>
+	<td colspan="3">暂无投资记录</td>
+</tr>
+{{/list}}
 

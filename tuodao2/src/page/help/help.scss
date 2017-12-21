@@ -18,10 +18,7 @@
 				font-size: 16px;
 				color: #9e9e9e;
 				margin-bottom: 40px;
-				&:hover{
-					color: $mainColor;
-					cursor: pointer;
-				}
+				cursor: pointer;
 			}
 		}
 	}
@@ -98,43 +95,68 @@
 						margin-right: 15px;
 					}
 				}
-			}
-		}
-	}
-}
-.encyclopedia {
-	@include width-max;
-	margin-top: 30px;
-	.ency_top{
-		font-size: 16px;
-		color: #333333;
-		padding-left: 30px;
-		background: #ffffff;
-		@include height-line(50px);
-		border-bottom: 1px solid $bgColor;
-	}
-	ul{
-		padding: 0 30px;
-		font-size: 14px;
-		background: #ffffff;
-		li{
-			border-bottom: 1px solid $bgColor;
-			@include height-line(50px);
-			a{
-				color: #707070;
-				&:hover{
-					color: $mainColor;
+				.sp1{
+					margin: 0 116px 0 80px;
+				}
+				.sp2{
+					display: inline-block;
+					width: 100px;
+				}
+				.sp2{
+					display: inline-block;
+					width: 110px;
+				}
+				table{
+					border-collapse: collapse;
+    				background: #f8f8f8;
+    				&.coupon{
+    					width: 620px;
+						tr{
+							width: 100%;
+							td,th{
+								padding-left: 13px;
+								border: 2px solid #ffffff;
+							    color: #707070;
+							}
+						}
+    				}
+    				&.prize{
+    					width: 850px;
+    					text-align: center;
+						tr{
+							width: 100%;
+							td,th{
+								border: 2px solid #ffffff;
+							    color: #707070;
+							}
+						}
+    				}
+    				&.member1{
+    					width: 850px;
+						tr{
+							width: 100%;
+							td,th{
+								padding-left: 10px;
+								border: 2px solid #ffffff;
+							    color: #707070;
+							}
+						}
+    				}
+    				&.member2{
+    					width: 850px;
+    					text-align: center;
+						tr{
+							width: 100%;
+							td,th{
+								border: 2px solid #ffffff;
+							    color: #707070;
+							    line-height: 30px;
+							}
+						}
+    				}
 				}
 			}
-			span{
-				float: right;
-				color: #9e9e9e;
-			}
 		}
-	}
-	.pageList{
-		margin: 0;
-		padding: 30px 0 50px 0;
 	}
 }
 .dis_none{

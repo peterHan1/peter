@@ -1,0 +1,34 @@
+{{#content}}
+<tr>
+	<th>预计项目总额</th>
+	<td>{{borrowAmount}}元</td>
+</tr>
+<tr>
+	<th>起投金额</th>
+	<td>{{minAmount}}元（剩余可投小于起投金额时除外）</td>
+</tr>
+<tr>
+	<th>单笔限额</th>
+	<td>{{maxAmount}}元</td>
+</tr>
+<tr>
+	<th>到账时间</th>
+	<td>系统通过债权转让方式完成到期退出。用户持有的债权完成转让后应得本息即可到账。</td>
+</tr>
+<tr>
+	<th>退出方式</th>
+	<td>系统通过债权转让方式完成到期退出。</td>
+</tr>
+<tr>
+	<th>计息方式</th>
+	<td>{{interestModelText}}</td>
+</tr>
+<tr>
+	<th>还款方式</th>
+	<td>{{refundWayText}}</td>
+</tr>
+<tr>
+	<th>提前退出</th>
+	<td>该项目不支持提前退出</td>
+</tr>
+{{/content}}

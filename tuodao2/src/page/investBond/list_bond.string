@@ -1,0 +1,49 @@
+<ul class="list_bond">
+{{#list}}
+<li class="debt">
+	<a href="invest_detailBond.html?product={{transferId}}" class="full" target="_blank"></a> 
+	<div class="invest_list_title">
+		<p class="fl">{{name}}</p>
+	</div>
+	<div class="invest_list_con">
+		<dl class="expect {{parCla}}">
+			<dt><span>{{apr}}</span>%<i class="award">{{platformAprFmt}}</i></dt>
+			<dd>预期年化</dd>
+		</dl>
+		<dl class="data">
+			<dt><span class="num_font">{{periodFmt}}</span></dt>
+			<dd>剩余期限</dd>
+		</dl>
+		<dl class="refund">
+			<dt><span class="num_font">{{claimsValueFmt}}</span></dt>
+			<dd>债权价值</dd>
+		</dl>
+		<dl class="transfer">
+			<dt><span class="num_font">{{rewardFmt}}</span></dt>
+			<dd>奖励金额</dd>
+		</dl>
+		<dl class="summoney">
+			<dt><span class="num_font totalMoney">{{accountFmt}}</span></dt>
+			<dd>转让金额</dd>
+		</dl>
+		<dl class="residue">
+			<dt><span class="num_font resMoney">{{lastAccountFmt}}</span></dt>
+			<dd>剩余可投</dd>
+		</dl>
+		<dl class="bars">
+			<dt>
+				<div class="progress">
+					<div class="progress_wrapper">
+						<div class="bar" {{barxx}}></div>
+					</div>
+				</div>
+			</dt>
+			<dd>投资进度 <span class="barNum">{{barTxt}}</span>%</dd>
+		</dl>
+		<div class="fl butt {{btnCla}}">{{btnTxt}}</div>
+	</div>
+</li>
+{{/list}}
+</ul>
+
+ 

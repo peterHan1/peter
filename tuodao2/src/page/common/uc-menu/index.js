@@ -4,13 +4,18 @@ var _td			= require('util/td.js');
 var _apigetuc 	= require('api/user-api.js');
 var accountPho	= require('./uc_menu.string');
 
+var _operate = require('api/operate-api.js');
 var menuList = {
 	init : function(){
+		var headerData = {
+			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessKey' :unescape(_td.getAccess('accessKey'))
+		};
 		this.eachA();
 		this.eventFn();
 		this.liHover();
 		this.elHeight();
-		this.addHmtl();
+		this.addHmtl(headerData);
 	},
 	eventFn : function(){
 		$(".menu_list").on("click",function(){
@@ -80,11 +85,7 @@ var menuList = {
 			$(".uc_menu").height(hL);
 		}
 	},
-	addHmtl : function(){
-		var headerData = {
-			'accessId' : unescape(_td.getAccess('accessId')),
-			'accessKey' :unescape(_td.getAccess('accessKey'))
-		};
+	addHmtl : function(headerData){
 		_apigetuc.getUserCon(headerData,function(res){
 			if(res.content.isOpenDeposit == 0){
 				res.content.isOpenDeposit = 'none';
@@ -99,8 +100,11 @@ var menuList = {
 			$("#none").html("点击立即开通存管");
 			$("#high").html("存管已开通");
 			menuList.liHover();
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
+		});
+		_operate.getMailLogsCountNoRead(headerData,function(res){
+			$('.menu_bot .messages-center em').html(res.content);
 		});
 	}
 };

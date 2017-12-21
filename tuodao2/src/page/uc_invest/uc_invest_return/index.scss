@@ -244,26 +244,22 @@ b,i,em{
 				}
 			}
 		}
-		.re_money_null{
-			width:100%;
-			.return_noData{
+		.null_data{
+			background-color:#fff!important;
+			.null_data_bg{
+				width:85px;
+				height:61px;
+				margin:180px auto 15px;
+				background:url(../../../image/no_data.png) no-repeat;
+			}
+			p{
 				text-align: center;
-				@extend %clearfix;
-				.return_noData_bg{
-					margin:165px auto 15px;
-					width:85px;
-					height:60px;
-					background:url(../../../image/uc/return_noData.png) no-repeat;
-				}
-				p{
-					font-size:$fontSize12;
-					color:#ddd;
-				}
+				font-size:$fontSize14;
+				color:$fontColor9e;
 			}
 		}
-		
 	}
-	div.zxf_pagediv{
+	div.pageList{
 		margin-bottom: 0;
 	}
 }

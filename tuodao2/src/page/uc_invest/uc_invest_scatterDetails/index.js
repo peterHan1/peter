@@ -11,106 +11,116 @@ var scatterTlt 	= require('./scatter_tlt.string');
 var scatterList = require('./scatter_list.string');
 
 var ucInvest = {
-	init : function(){
-		this.addTlt(1);
-		this.addList(1,1,5);
+	init: function() {
+		var headerData = {
+			'accessId': unescape(_td.getAccess('accessId')),
+			'accessKey': unescape(_td.getAccess('accessKey'))
+		};
+		var tender = _td.getUrlParam("tender");
+		this.addTlt(headerData, tender);
+		this.addList(headerData, tender, 1, 5);
 	},
-	addTlt : function(id){
-		_apiInvest.getScstterDet(id,function(res){
-			tltHtml = _td.renderHtml(scatterTlt,{
-				content:res.content,
-			});
-			$(".sift_detailsT").html(tltHtml);
-			ucInvest.setShow("coupon_con");
-			ucInvest.setType("refundWay");
-			ucInvest.setApr("apr");
+	addTlt: function(headerData, id) {
+		_apiInvest.getScstterDet(headerData, id, function(res) {
+			var commons = res.content;
+			var vouchers = ucInvest.setShow(commons.voucherType, commons.voucherMoney);
+			commons.refundWayText = ucInvest.scatterDetReturnWay(commons.refundWay);
+			commons.voucherVal = vouchers.m;
+			commons.voucherText = vouchers.voucher;
+			commons.voucherTUnit = vouchers.unit;
+			$(".sift_detailsT").html(_td.renderHtml(scatterTlt, {
+				content: commons
+			}));
 			ucInvest.tipsHover();
-		},function(){
-			console.log("请求失败");
+			ucInvest.getStatus();
+		}, function(err) {
+			console.log(err);
 		});
 	},
-	addList : function(id,current,page){
-		_apiInvest.getScstterList(id,current,page,function(res){
-			console.log(res);
-			listHtml = _td.renderHtml(scatterList,{
-				list:res.content.list,
-			});
-			$("#tbody_list").html(listHtml);
-			ucInvest.setStatus("returnSta");
-			_paging.paging("pageList",res.content.pages,res.content.pageNum,res.content.pageSize,function(e){
-				_apiInvest.getScstterList(id,e.current,5,function(res){
-					listHtml = _td.renderHtml(scatterList,{
-						list:res.content.list,
+	addList: function(headerData, id, current, page) {
+		_apiInvest.getScstterList(headerData, id, current, page, function(res) {
+			if (res.content.list != null) {
+				$("#tbody_list").html(_td.renderHtml(scatterList, {
+					list: res.content.list
+				}));
+				_paging.paging("pageList", res.content.total, 5, function(e) {
+					_apiInvest.getScstterList(id, e.current, 5, function(res) {
+						$("#tbody_list").html(_td.renderHtml(scatterList, {
+							list: res.content.list
+						}));
+						_td.trColor("tbody_list");
+					}, function(err) {
+						console.log(err);
 					});
-					$("#tbody_list").html(listHtml);
-					ucInvest.setStatus("returnSta");
-					ucInvest.trColor();
-				},function(){
-					console.log(请求失败);
 				});
-			});
-			ucInvest.trColor();
-		},function(){
-			console.log(请求失败);
+				_td.trColor("tbody_list");
+			} else {
+				var dataNones = '<tr><td colspan="8"><div class="null_data" colspan="8"><div class="null_data_bg"></div><p>当前没有回款计划</p></div></td></tr>';
+				$("#tbody_list").html(dataNones);
+			}
+		}, function(err) {
+			console.log(err);
 		});
 	},
-	setShow : function(el){
-		var _this = $("."+el);
-		if(_this.html() == 1){
-			_this.html("抵用券");
-			_this.siblings(".unit").html("元");
-		}else if(_this.html() == 2){
-			_this.html("加息券");
-			_this.siblings(".unit").html("%");
-		}else if(_this.html() == 0){
-			_this.parent("td").html("-");
+	setShow: function(type, money) {
+		switch (type) {
+			case 0:
+				return {
+					"voucher": "-",
+					"m": "",
+					"unit": ""
+				};
+			case 1:
+				return {
+					"voucher": "抵用券",
+					"m": money,
+					"unit": "元"
+				};
+			case 2:
+				return {
+					"voucher": "加息券",
+					"m": money,
+					"unit": "%"
+				};
+			default:
+				return "";
 		}
 	},
-	setType : function(el){
-		var _this = $("."+el);
-		if(_this.html() == 0){
-			_this.html("等额本息");
-		}else if(_this.html() == 1){
-			_this.html("按月付息，到期还本");
-		}else if(_this.html() == 2){
-			_this.html("按天计息");
+	getStatus: function() {
+		var sta = $(".tlt_status").attr("status");
+		var t = $(".ac").attr("type");
+		if (sta == 2 || sta == 5) {
+			$(".prot").show();
+		} else {
+			$(".prot").remove();
+		}
+		if (t == "" || t == null) {
+			$(".ac").remove();
 		}
 	},
-	setApr : function(el){
-		var _this = $("."+el);
-		if(_this.attr("status") == 0){
-			_this.remove();
+	scatterDetReturnWay: function(refundWay) {
+		switch (refundWay) {
+			case 0:
+				return "等额本息";
+			case 1:
+				return "按月付息，到期还本";
+			case 2:
+				return "按天付息";
+			default:
+				return "";
 		}
 	},
-	setStatus : function(el){
-		var _this = $("."+el);
-		if(_this.html() == 0){
-			_this.html("未回款");
-		}else if(_this.html() == 1){
-			_this.html("已回款");
-		}
-	},
-	tipsHover : function(){
-		$(".hint").mouseover(function(){
-			_tips.getTipsRight($(this),0);
+	tipsHover: function() {
+		$(".hint").mouseover(function() {
+			if ($(this).find("a").width() >= $(this).width()) {
+				_tips.getTipsRight($(this), 0);
+			}
 		});
-		$(".hint").mouseout(function(){
+		$(".hint").mouseout(function() {
 			$(this).find('.tips').hide();
 		});
-	},
-	trColor : function(){
-		trColor('tbody_list');
-		// 各行变色
-		function trColor(id){
-			var trs=document.getElementById(id).getElementsByTagName("tr");
-			for(var i=0;i<trs.length;i++){
-				if(i%2==0){
-					trs[i].className +=" trColor";
-				}
-			};
-		}
 	}
 };
-$(function(){
+$(function() {
 	ucInvest.init();
 });

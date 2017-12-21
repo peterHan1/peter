@@ -1,0 +1,33 @@
+{
+      "code": 100000,
+      "content":
+      {
+             "endRow": 0,
+             "firstPage": 0,
+             "hasNextPage": false,
+             "hasPreviousPage": false,
+             "isFirstPage": false,
+             "isLastPage": false,
+             "lastPage": 0,
+             "list":
+             [
+                    {
+                           "collectionTime": "2017-12-14",
+                           "status": "回款中",
+                           "interest": "0.83",
+                           "capital": "0.83"
+                    }
+             ],
+             "navigatePages": 0,
+             "nextPage": 0,
+             "pageNum": 0,
+             "pageSize": 0,
+             "pages": 0,
+             "prePage": 0,
+             "size": 0,
+             "startRow": 0,
+             "total": 3
+      },
+      "msg": "成功",
+      "success": true
+}

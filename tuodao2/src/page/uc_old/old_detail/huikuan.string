@@ -1,0 +1,17 @@
+
+<tr>
+	<th>回款时间</th>
+	<th>状态</th>
+	<th>应还本金（元）</th>
+	<th>应还收益（元）</th>
+	<th>期数</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{collectionTime}}</td>
+	<td>{{status}}</td>
+	<td>{{capital}}元</td>
+	<td>{{interest}}</td>
+	<td>{{period}}/{{periods}}</td>
+</tr>
+{{/list}}

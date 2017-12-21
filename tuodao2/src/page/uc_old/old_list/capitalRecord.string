@@ -1,0 +1,20 @@
+<tr>
+	<th>时间</th>
+	<th>类型</th>
+	<th>存入</th>
+	<th>支出</th>
+	<th>冻结</th>
+	<th>余额</th>
+	<th>备注</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{transactionTime}}</td>
+	<td>类型</td>
+	<td>{{typeName}}</td>
+	<td>支出</td>
+	<td>冻结</td>
+	<td>{{account}}</td>
+	<td>备注</td>
+</tr>
+{{/list}}

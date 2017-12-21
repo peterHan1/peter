@@ -1,11 +1,8 @@
 {{#content}}
 <div class="sift_tit">
-	<a href="###" class="iconfont">&#xe6bb;</a>
+	<a href="uc_invest_sift.html" class="iconfont">&#xe6bb;</a>
 	<p>
-		<span class="return_money">[已回款]</span>
-		<span class="matching_money">[匹配中]</span>
-		<span class="repeal_money">[已撤标]</span>
-		<span class="underway_money">[回款中]</span>
+		<span class="status color{{status}}">{{statusText}}</span>
 		{{productName}}
 	</p>
 </div>
@@ -43,7 +40,7 @@
 				<td>{{frostAccount}}</td>
 				<td>{{arrivalAccount}}</td>
 				<td>{{platformInterest}}</td>
-				<td class="td_font"><span>1%</span>加息券</td>
+				<td class="td_font vouType" type={{voucherType}}><span>{{voucherMoney}}</span>{{voucherType}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -52,24 +49,20 @@
 		<div class="sift_con_mesL">
 			<ul>
 				<li>
-					预期年化：<span>10%</span>
+					预期年化：<span>{{borrowApr}}%</span>
 				</li>
 				<li>
 					加入时间：<span>{{addTime}}</span>
 				</li>
 				<li>
-					还款方式：<span>{{repayType}}</span>
+					还款方式：<span>{{returnWayText}}</span>
 				</li>
 				<li>
 					预计退出时间：<span>{{outTime}}</span>
 				</li>
 			</ul>
 		</div>
-		<div class="sift_con_mesR">
-			<a href="###">《精选计划授权委托书》</a>
-			<!-- <p>投资金额和优惠券已返回到账户</p> -->
-			<!-- <p>满标复审后生成授权委托书</p> -->
-		</div>
+		<div class="sift_con_mesR"></div>
 	</div>
 </div>
 {{/content}}

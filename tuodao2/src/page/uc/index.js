@@ -7,7 +7,8 @@ var _td			= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
 var _apigetuc 	= require('api/user-api.js');
 var _apiReturn 	= require('api/trade-api.js');
-var _apigetOper = require('api/operationCenter-api.js');
+var _apiProduct = require('api/product-api.js');
+var _apigetOper = require('api/operate-api.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var echarts 	= require('util/echarts/echarts.common.min.js');
 var returnList 	= require('./returnList.string');
@@ -15,6 +16,7 @@ var getUserMon	= require('./getUserMon.string');
 var getUserEch	= require('./getUserEch.string');
 var getUsersign	= require('./getUserSign.string');
 var getUserInt	= require('./getUserInt.string');
+var productList	= require('./productList.string');
 var _paging 	= require('util/paging/index.js');
 
 
@@ -27,10 +29,10 @@ var uc = {
 		console.log("accessId: " + headerData.accessId);
 		console.log("accessKey: " + headerData.accessKey);
 		this.signIn(headerData);
-		this.trColor();
-		this.recommend();
+		_td.trColor('table_list');
 		this.addMoneyHtml(headerData);
 		this.monthStatus(headerData);
+		this.productUcList(headerData);
 	},
 	signIn : function(headerData){
 		_apigetOper.getUserOper(headerData,function(res){
@@ -51,8 +53,8 @@ var uc = {
 			uc.numStatus();
 			uc.signInClick(headerData);
 			uc.singStatus(headerData);
-		},function(){
-			console.log("请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	numStatus : function(){
@@ -73,8 +75,8 @@ var uc = {
 				$("#sigin_clik").addClass('sigin_clik');
 			}
 		},
-		function() {
-			console.log("请求失败");
+		function(err) {
+			console.log(err);
 		});
 	},
 	signInClick : function(headerData){
@@ -133,8 +135,8 @@ var uc = {
 			$('.eachart').html(userEchartHtml);
 			uc.tipsHover();
 			uc.addEchar(dueInPrincipal,dueInInterest,usableFund,freezeFund);
-		},function(){
-			console.log("666 请求失败");
+		},function(err){
+			console.log(err);
 		});
 	},
 	addEchar : function(dueInPrincipal,dueInInterest,usableFund,freezeFund){
@@ -179,7 +181,10 @@ var uc = {
 	monthStatus : function(headerData){
 		_returnmon.returnMoney();
 		var year = $(".f_year").html();
-		var month = $(".f_month").html();
+		var month = $(".f_month").html()*1;
+		if(month < 10){
+			month = "0" + month;
+		};
 		var dataMonth = year+"-"+month;
 		uc.dayStatus(headerData,dataMonth);
 		uc.getMoney(headerData,dataMonth);
@@ -188,8 +193,10 @@ var uc = {
 			left: "data_top_btn_l",
 			right: "data_top_btn_r",
 			callback: function(yy,mm) {
+				if(mm < 10){
+					mm = "0" + mm;
+				};
 				dataMonth = yy+"-"+mm;
-				console.log("点击后 年-月：" + dataMonth);
 				uc.dayStatus(headerData,dataMonth);
 				uc.getMoney(headerData,dataMonth);
 				uc.getReturnList(headerData,dataMonth,1,4,1);
@@ -238,7 +245,6 @@ var uc = {
 	getReturnList : function(headerData,day,type,pagesize,current){
 		_apiReturn.getRturnList(headerData,day,type,pagesize,current,function(res){
 			uc.setType(res);
-			console.log(res);
 			retList = _td.renderHtml(returnList,{
 				list:res.content.list,
 			});
@@ -251,15 +257,27 @@ var uc = {
 					});
 					$('.re_money_tbody').html(retList);
 					uc.tipsHover();
-					uc.trColor();
-				},function(){
-					console.log("请求失败");
+					_td.trColor('table_list');
+				},function(err){
+					console.log(err);
 				});
 			});
 			uc.tipsHover();
-			uc.trColor();
-		},function(){
-			console.log("请求失败");
+			_td.trColor('table_list');
+		},function(err){
+			console.log(err);
+		});
+	},
+	productUcList: function(headerData){
+		_apiProduct.getProductUcList(headerData,function(res){
+			paoductHtml = _td.renderHtml(productList,{
+				planOut:res.content.planOut,
+				borrowOut:res.content.borrowOut,
+			});
+			$(".productHt").html(paoductHtml);
+			uc.recommend();
+		},function(err){
+			console.log(err);
 		});
 	},
 	// 回款类型
@@ -274,24 +292,17 @@ var uc = {
 			}
 		});
 	},
-	trColor : function(){
-		trColor('table_list');
-		// 各行变色
-		function trColor(id){
-			var trs=document.getElementById(id).getElementsByTagName("tr");
-			for(var i=0;i<trs.length;i++){
-				if(i%2==0){
-					trs[i].className +=" trColor";
-				}
-			};
-		}
-	},
 	recommend : function(){
 		$('.recommends_list li').hover(function(){
-			var html = '<div class="now-invest">立即加入</div>';
-			$(this).find('.pro-list').append(html);
+			var type = $(this).attr("type");
+			if(type == 1){
+				var htm = '<div class="now_invest">立即加入</div>';
+			}else{
+				var htm = '<div class="now_invest">立即投资</div>';
+			}
+			$(this).find('.pro_list').append(htm);
 		},function(){
-			$(this).find('.now-invest').remove();
+			$(this).find('.now_invest').remove();
 		});
 	},
 	tipsHover : function(){
@@ -311,17 +322,9 @@ var uc = {
 		});
 		$(".hint_sign").mouseout(function(){
 			$(this).find('.tips').hide();
-			// $(".tips").find("span").remove();
 		});
 	}
 };
 $(function(){
 	uc.init();
 });
-
-var dataTxt = [
-	{"name":"梅德赛斯奔驰s601","await":"1,000.00","yet":"1,111.00","reutrnDate":"1507601410000","type":"收益","status":"已回款","periods":"1/6","money":"500.00"},
-	{"name":"梅德赛斯奔驰s602","await":"1,000.00","yet":"1,111.00","reutrnDate":"1510366210000","type":"本息","status":"待回款","periods":"1/1","money":"100.00"},
-	{"name":"梅德赛斯奔驰s603","await":"1,000.00","yet":"1,111.00","reutrnDate":"1506823810000","type":"本息","status":"已回款","periods":"1/5","money":"200.00"},
-	{"name":"梅德赛斯奔驰s604","await":"5555.00","yet":"2,222.00","reutrnDate":"1513051930000","type":"收益","status":"待回款","periods":"-","money":"300.00"},
-];

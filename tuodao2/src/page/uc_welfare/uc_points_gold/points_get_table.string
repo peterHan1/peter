@@ -7,8 +7,8 @@
 {{#list}}
 	<tr>
 		<td>{{taskName}}</td>
-		<td>{{score}}积分</td>
-		<td><a href={{url}}>{{todo}}> </a></td>
+		<td>{{description}}</td>
+		<td><a href={{pcUrl}}>{{todo}}></a></td>
 	</tr>
 {{/list}}
 </table>

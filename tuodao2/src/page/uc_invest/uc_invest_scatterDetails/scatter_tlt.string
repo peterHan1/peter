@@ -1,8 +1,8 @@
 {{#content}}
 <div class="sift_tit">
-	<a href="###" class="iconfont">&#xe6bb;</a>
+	<a href="uc_invest_scatter.html" class="iconfont">&#xe6bb;</a>
 	<p>
-		<span class="tlt_status returnCol{{status}}" status="{{status}}">[已回款]</span>
+		<span class="tlt_status returnCol{{status}}" status="{{status}}">[{{statusName}}]</span>
 		{{productTitle}} No.{{productCode}}  {{sourceStore}}
 	</p>
 </div>
@@ -29,7 +29,7 @@
 				<td>{{preAccount}}</td>
 				<td>{{interest}}</td>
 				<td>{{award}}</td>
-				<td class="td_font"><span>{{voucherMoney}}</span><b class="unit"></b><b class="coupon_con">{{voucherType}}</b></td>
+				<td class="td_font"><span>{{voucherVal}}</span><b>{{voucherTUnit}}</b><b>{{voucherText}}</b></td>
 			</tr>
 		</tbody>
 	</table>
@@ -38,13 +38,13 @@
 		<div class="sift_con_mesL">
 			<ul>
 				<li>
-					预期年化：<span>{{baseApr}}%</span><span class="apr" status="{{platformApr}}">+{{platformApr}}%</span>
+					预期年化：<span>{{baseApr}}%</span>{{#platformApr}}<span>+{{platformApr}}%</span>{{/platformApr}}
 				</li>
 				<li>
 					投资时间：<span>{{tenderTime}}</span>
 				</li>
 				<li>
-					还款方式：<span class="refundWay">{{refundWay}}</span>
+					还款方式：<span>{{refundWayText}}</span>
 				</li>
 				<li>
 					到期时间：<span>{{endTime}}</span>
@@ -52,8 +52,8 @@
 			</ul>
 		</div>
 		<div class="sift_con_mesR">
-			<a href="###">查看借款协议 ></a>
-			<a href="###">查看安存保全 ></a>
+			<a href="borrowAgreement.html?tender={{tenderId}}" class="prot">查看借款协议 ></a>
+			<a href="###" class="ac" type="{{tenderNum}}">查看安存保全 ></a>
 		</div>
 	</div>
 </div>

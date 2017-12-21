@@ -1,0 +1,171 @@
+@import '../../common/mixin.scss';
+@import '../../common/layout';
+.uc_invest_details{
+	@include width-max;
+	background: #ffffff;
+	margin: 30px auto 50px;
+	padding-bottom: 50px;
+	@extend %clearfix;
+	.top22{
+		height:160px;
+		border-bottom:1px dashed #ebebeb;
+		margin:0px 30px;
+		.diya .zuo{
+			margin-top: 25px;
+			font-size: 16px;
+			b{
+				font-size: 14px;
+				color:#fefefe;
+				width:70px;
+				height:20px;
+				background:#3aa2fa;
+				display:inline-block;
+				text-align: center;
+				font-weight: normal;
+				margin-right: 10px;
+			}
+			i{
+				font-size:14px;
+				color:#a3a3a3;
+				font-style: normal;
+			}
+			span{
+				margin:0px 10px;
+			}
+		}
+		.diya a{
+			margin-top: 25px;
+			font-size: 14px;
+			color:#ff711c;
+			float:right;
+
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		.zhong ul{
+			float:left;
+			margin-right: 60px;
+		}
+		.zhong li{
+			margin-top: 20px;
+		}
+	}
+	.money{
+		height:155px;
+		border-bottom: 1px solid #ebebeb;
+		.money_1{
+			height:155px;
+			.left{
+				width:730px;
+				float:left;
+				dl{
+					float:left;
+					margin-right: 10px;
+					margin-left:30px;
+				}
+				.dl-width-em{
+					width:100px;
+					margin-left:40px;
+				}
+				dt{
+					margin-top: 45px;
+					position:relative;
+					i{
+						font-size:20px;
+						position:absolute;
+						top: -10px;
+						left: 30px;
+						font-weight: bold;
+						color:#6a6974;
+						cursor:pointer;
+					}
+					.tips em{
+						position:absolute;
+						top: -32px;
+						left:-70px;
+						z-index:2;
+						color:#ff711c;
+						font-size: 12px;
+						font-style: normal;
+						border:1px solid #ffdfcc;
+						background-color:#fff4ee;
+						padding:2px 5px;
+						border-radius: 5px;
+					}
+					.tips div{
+						width:8px;
+						height:5px;
+						position:absolute;
+						top: -10px;
+						left:42px;
+						z-index:3;
+					}
+				}
+				dd{
+					margin-top: 10px;
+					font-size: 28px;
+					color:#ff8a10;
+
+					b{
+						font-size:14px;
+						font-weight: normal;
+					}
+				}
+			}
+			.right{
+				width:140px;
+				height:60px;
+				line-height:27px;
+				float:right;
+				margin-top:58px;
+				margin-right:10px;
+				a{
+					font-size: 14px;
+					color:#3aa2fa;
+
+					&:hover{
+						text-decoration: underline;
+					}
+				}
+				p{
+					font-size:12px;
+					color:#a3a3a3;
+				}
+			}
+		}
+	}
+	.huikuan{
+		height:50px;
+		line-height:50px;
+		padding-left: 30px;
+		color:#000;
+		font-weight:bold;
+	}
+	table{
+		width: 100%;
+		th{
+			border: 1px solid #ebebeb;
+			border-left:0;
+			border-right:0;
+			width:190px;
+			height:50px;
+			font-size: 14px;
+			color:#000;
+			font-weight: normal;
+		}
+		td{
+			color:#585858;
+		}
+	}
+	.dis_none{
+		display: none;
+	}
+	.fl{
+		float: left;
+	}
+	.clear {
+	    zoom: 1;
+	    clear: both;
+	}
+}

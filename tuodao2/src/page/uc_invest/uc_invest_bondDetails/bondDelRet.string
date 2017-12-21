@@ -1,9 +1,17 @@
 {{#list}}
 	<tr>
-		<td class="padd_left">{{preCollectionTime}}</td>
+		<td class="padd_left">{{collectionTime}}</td>
 		<td>{{period}} / {{periods}}</td>
-		<td>{{preCapital}}</td>
-		<td>{{preInterest}}</td>
-		<td class="return_status">{{status}}</td>
+		<td>{{capital}}</td>
+		<td>{{interest}}</td>
+		<td class="return_status {{statusClas}}">{{status}}</td>
 	</tr>
+{{/list}}
+{{^list}}
+<tr class="null_data">
+	<td colspan="5">
+		<div class="null_data_bg"></div>
+		<p>当前没有回款计划</p>
+	</td>
+</tr>
 {{/list}}

@@ -15,9 +15,10 @@ var _page = require('util/paging/index.js');
 
 
 var headerData = {
-	accessId: _td.getAccess('accessId'),
-	accessKey: _td.getAccess('accessKey')
-};
+		'accessId' : unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
+	};
+
 var type = -1;
 var moneyRecord = {
 	init: function() {
@@ -33,7 +34,6 @@ var moneyRecord = {
 			pageSize: 10,
 		};
 		_trade.moneyRecord(headerData, data, function(res) {
-			// console.log(res);
 			if (res.content.list.length == 0) {
 				$(".no_data").show();
 			}
@@ -61,18 +61,19 @@ var moneyRecord = {
 	// 日历
 	laydate: function() {
 		var _this = this;
-		$(".layer_date").on("click", function(event) {
+		var startTime;
+		var endTime;
+		$(".layer_date1").on("click",function(event){
+			endTime=$("#end_date").html();
 			laydate({
 				format: 'YYYY-MM-DD',
-				// 选择时间后回调
 				choose: function(dates) {
-					// console.log(dates);
 					var data = {
 						type: type,
 						currentPage: 1,
 						pageSize: 10,
 						startTime: dates,
-						endTime: dates
+						endTime: endTime
 					};
 					_trade.moneyRecord(headerData, data, function(res) {
 						if (res.content.list.length == 0) {
@@ -89,6 +90,48 @@ var moneyRecord = {
 								currentPage: e.current,
 								pageSize: 10,
 								startTime: dates,
+								endTime: endTime
+							};
+							_trade.moneyRecord(headerData, data, function(res) {
+								moneyHtml = _td.renderHtml(moneyRecords, {
+									list: res.content.list,
+								});
+								$('.money_records').html(moneyHtml);
+								_this.remark();
+							});
+						});
+					});
+				}
+			});
+		});
+		$(".layer_date2").on("click", function(event) {
+			startTime=$("#start_date").html();
+			laydate({
+				format: 'YYYY-MM-DD',
+				// 选择时间后回调
+				choose: function(dates) {
+					var data = {
+						type: type,
+						currentPage: 1,
+						pageSize: 10,
+						startTime: startTime,
+						endTime: dates
+					};
+					_trade.moneyRecord(headerData, data, function(res) {
+						if (res.content.list.length == 0) {
+							$(".no_data").show();
+						}
+						moneyHtml = _td.renderHtml(moneyRecords, {
+							list: res.content.list,
+						});
+						$('.money_records').html(moneyHtml);
+						_this.remark();
+						_page.paging('pageList', res.content.total, 10, function(e) {
+							var data = {
+								type: type,
+								currentPage: e.current,
+								pageSize: 10,
+								startTime: startTime,
 								endTime: dates
 							};
 							_trade.moneyRecord(headerData, data, function(res) {
@@ -164,6 +207,9 @@ var moneyRecord = {
 				"left": "50%",
 				"margin-left": -width
 			});
+		});
+		$(".record_box tbody tr .last i").on("mouseleave", function() {
+			$(".bz_tips").hide();
 		});
 	}
 };

@@ -1,9 +1,0 @@
-<ul class="jxq_ticket">
-{{#list}}
-	<li data-select='1'>
-		<p class="ticket_top"><span>{{discountAvailable}}</span>%&nbsp;年利率加息</p>
-		<p class="ticket_middle">{{dateExplain}}</p>
-		<div class="ticket_bottom">{{source}}</div>
-	</li>
-{{/list}}
-</ul>

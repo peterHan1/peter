@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var proxy = require('http-proxy-middleware');
 
 var isDev = process.env.NODE_ENV !== 'online';
 var app = express();
@@ -14,6 +15,11 @@ app.set('view engine', 'html');
 
 app.locals.env = process.env.NODE_ENV || 'dev';
 app.locals.reload = true;
+
+app.use('/api', proxy({
+    target: "http://72.127.2.140:8080/",
+    changeOrigin: true
+}));
 
 if (isDev){
 	var webpack = require('webpack'),

@@ -31,7 +31,14 @@
 					<td>{{fee}}</td>
 				</tr>
 			{{/list}}
+			{{^list}}
+			<tr class="null_data">
+				<td colspan="9">
+					<div class="null_data_bg"></div>
+					<p class="nullText"></p>
+				</td>
+			</tr>
+			{{/list}}
 		</tbody>
 	</table>
 </div>
-<div class="pageList"></div>			

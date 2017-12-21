@@ -1,0 +1,20 @@
+<tr>
+	<th>项目标题</th>
+	<th>剩余期限</th>
+	<th>年化利率</th>
+	<th>可转本金</th>
+	<th>应收利息</th>
+	<th>可转让天数</th>
+	<th>操作</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{title}}</td>
+	<td>{{productTitle}}</td>
+	<td>{{tenderTime}}</td>
+	<td>{{amount}}</td>
+	<td>{{isInterest}}</td>
+	<td>{{startTime}}</td>
+	<td><a data-id={{tenderId}}>查看详情</a></td>
+</tr>
+{{/list}}

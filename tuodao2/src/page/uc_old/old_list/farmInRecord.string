@@ -1,0 +1,22 @@
+<tr>
+	<th>项目标题</th>
+	<th>剩余期限</th>
+	<th>年化利率</th>
+	<th>投资时间</th>
+	<th>投资金额(元)</th>
+	<th>到期收益(元)</th>
+	<th>状态</th>
+	<th>操作</th>
+</tr>
+{{#list}}
+<tr>
+	<td>{{title}}</td>
+	<td>{{endTime}}</td>
+	<td>{{tenderTime}}</td>
+	<td>{{startTime}}</td>
+	<td>{{amount}}</td>
+	<td>{{interest}}</td>
+	<td>{{status}}</td>
+	<td><a data-id={{transferId}}>查看详情</a></td>
+</tr>
+{{/list}}

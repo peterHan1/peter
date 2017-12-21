@@ -3,14 +3,14 @@
 	<div class="title">
 		<p>{{productTitle}}</p>
 		<div class="type">
-			<img src="http://72.127.2.42:3000/image/invest/exclusive.png" class="fl">
-			<div class="tips">仅限新注册用户首次投资<span class="bot"></span><span class="bot2"></span></div>
+			<img src="{{typePcUrl}}" class="fl">
+			<div class="tips">{{typeRemark}}<span class="bot"></span><span class="bot2"></span></div>
 		</div>
 	</div>
 	<div class="major">
 		<dl class="expect">
 			<dt>
-				<span class="borrowApr">{{borrowApr}}</span>%<span class="award" type="2" >+<b class="awardApr">2</b><i class="awardUnit">%</i></span>
+				<span class="borrowApr">{{borrowApr}}</span>%<span>{{awardText}}</span>
 			</dt>
 			<dd>
 				预期年化
@@ -18,7 +18,7 @@
 		</dl>
 		<dl class="date">
 			<dt>
-				<span class="borrowPeriod">{{productPeriod}}</span><span>{{periodUnit}}</span>
+				<span class="borrowPeriod">{{productPeriod}}</span><span>{{periodUnitText}}</span>
 			</dt>
 			<dd>
 				投资期限
@@ -26,7 +26,7 @@
 		</dl>
 		<dl class="summoney">
 			<dt>
-				<span class="lastMoney" money="{{surplusInvestAmount}}">{{surplusInvestAmount}}</span>元
+				<span>{{surplusAmountFormatStr}}</span>
 			</dt>
 			<dd>
 				剩余可投
@@ -36,34 +36,33 @@
 			<dt>
 				<div class="progress">
 					<div class="progress_wrapper">
-						<div class="bar" style="width:80%;"></div>
+						<div class="bar" {{barxx}}></div>
 					</div>
 				</div>
 			</dt>
 			<dd>
 				加入进度
-				<span class="barNum">80%</span>
+				<span class="barNum">{{barTxt}}%</span>
 			</dd>
 		</dl>
 	</div>
 	<div class="intro">
-	<!-- 精选计划显示 -->
 		<ul>
 			<li>
 
-				预计项目总额： <span class="totalMoney">{{borrowAmount}}</span>元
+				预计项目总额： <span>{{borrowAmountFormatStr}}</span>
 			</li>
 			<li>
-				项目类型：<span>{{productType}}</span>
+				项目类型：<span>{{productsType}}</span>
 			</li>
 			<li class="alli">
 				提前退出：<span>该项目不支持提前退出</span>
 			</li>
 			<li>
-				计息方式：<span>满标复审计息</span>
+				计息方式：<span>{{interestModelText}}</span>
 			</li>
 			<li>
-				还款方式：<span>{{refundWay}}</span>
+				还款方式：<span>{{refundWayText}}</span>
 				<div class="hint">
 					<i class="iconfont">&#xe68d;</i>
 					<div class="tips">{{refundWayText}}<span class="bot"></span><span class="bot2"></span></div>
@@ -71,7 +70,7 @@
 				
 			</li>
 			<li class="alli">
-				发布时间：<span>{{publishTime}}</span>
+				发布时间：<span>{{pubTime}}</span>
 			</li>
 		</ul>
 	</div>

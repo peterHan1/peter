@@ -5,7 +5,8 @@ require('util/layer/index.js');
 
 var _paging = require('util/paging/index.js');
 var _td = require('util/td.js');
-var _apiDraw = require('api/operationCenter-api.js');
+var _apiDraw = require('api/operate-api.js');
+var record = require('./draw_record.string');
 // 抽奖动画效果
 var lottery = {
     place : 0,     // 请求后指定停留在某个位置
@@ -20,8 +21,8 @@ var lottery = {
     prize : -1,    // 中奖位置
     jgtime: 800,   // 中奖后几秒后开始弹窗
     headerData : {
-		accessId : _td.getAccess('accessId'),
-		accessKey : _td.getAccess('accessKey')
+		'accessId' :unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
 	},
     init : function(id){
         if ($("#"+id).find(".lottery-unit").length>0) {
@@ -329,27 +330,28 @@ var lottery = {
             lottery.stop2();
             lottery.click=true;
 			}
-    	},function(){
-    		console.log("请求失败");
+    	},function(res){
+    		console.log(res.msg);
     	})
     },
 	// 抽奖记录
 	getDrawRecord : function(){
-		_apiDraw.getDrawRecord(1,5,function(res){
+		_apiDraw.getDrawRecord(lottery.headerData,1,function(res){
+			$('.record_top .draw_num').html(res.content.total);
 			if(res.content.list.length==0){
 				$('.record_none').show()
 				$('.record_yes').hide();
 				return false;
 			}else{
 				var bannerHtml = _td.renderHtml(record,{
-					list:res.content.list,
+					list:res.content.list
 				});
-				$('._Draw_record_table').html(bannerHtml);
+				$('.record_table').html(bannerHtml);
 				lottery.changeColor('.Draw_table');
 				_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
-					_apiInvite.getDrawRecord(e.current,5,function(res){
+					_apiInvite.getDrawRecord(lottery.headerData,e.current,function(res){
 						var bannerHtml = _td.renderHtml(record,{
-							list:res.content.list,
+							list:res.content.list
 						});
 						$('._invite_record_table').html(bannerHtml);
 						lottery.changeColor('.invite_table');
@@ -460,6 +462,8 @@ var lottery = {
 		})
 		// 抽奖记录弹窗
 		$('.draw_record a').on('click',function(){
+			lottery.getPoints();
+			lottery.getDrawRecord();
 			layer.open({
 				type: 1,
 				title: ['我的抽奖记录','font-size:14px;','color:#333;'],
@@ -467,7 +471,6 @@ var lottery = {
 				area: ['635px', 'auto'],
 				content: $('#draw_record')
 			});
-			lottery.changeColor('.record_yes .record_table');
 		})
 		// 点击弹窗我知道了，关闭弹窗并恢复抽奖页面初始样式
 		$('.draw_alert .draw_btn button').on('click',function(){

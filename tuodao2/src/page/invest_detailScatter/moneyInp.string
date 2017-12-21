@@ -6,13 +6,13 @@
 					可用余额
 			</p>
 			<div class="money">
-				<b><span class="balance" money="{{usableFund}}">{{usableFund}}</span><i>元</i></b>
+				<b><span>{{usableFund}}</span><i>元</i></b>
 				<a href="###">充值</a>
 			</div>
 		</div>
 	</div>
-	<div class="com_styl invest_money" >	
-		<input type="text" placeholder="500元起投，单笔限额50万元" class="com_inp sub_money" id="sub_money">
+	<div class="com_styl invest_money" >
+		<input type="text" placeholder="{{subMoney}}" class="com_inp sub_money" id="sub_money">
 		<i class="iconfont btn_empty">&#xe68b;</i>
 		<div class="iconfont fontcol all_money"><i>余额全投&nbsp;</i></div>
 	</div>
@@ -27,11 +27,7 @@
 	</div>
 	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
 	<div class="input_sub">
-		<!-- 倒计时 -->
-		<!-- <div class="countdown times"><span><b>00</b> : <i>00</i> : <em>00</em>后开抢</span></div> -->
-
-		<!-- 正常投标按钮 -->
-		<input type="submit" id="sub_btn" value="实付0.00元，立即加入" class="">
+		<input type="submit" id="sub_btn" value="{{brnTxt}}" class="{{btnClas}}" />
 	</div>
 	<div class="agreement" id="protocol">
 		<div>

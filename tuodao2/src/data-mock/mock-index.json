@@ -1,29 +1,29 @@
 {
-    "code":100000, 
-    "msg": "成功", 
-    "content": 
+    "code":100000,
+    "msg": "成功",
+    "content":
         [
                 {
-                    "imgUrl": "/image/banner/banner1.png", 
-                    "title": "A轮融资正式22", 
+                    "imgUrl": "/image/banner/banner1.png",
+                    "title": "A轮融资正式22",
                     "linkUrl": "/image/banner/banner1.png"
                 },
-                { 
-                    "imgUrl": "/image/banner/banner3.png", 
-                    "title": "2016第4季度运营报告新app", 
+                {
+                    "imgUrl": "/image/banner/banner3.png",
+                    "title": "2016第4季度运营报告新app",
                     "linkUrl": "/image/banner/banner2.png"
                 },
                 {
-                    "imgUrl": "/image/banner/banner1.png", 
-                    "title": "A轮融资正式22", 
+                    "imgUrl": "/image/banner/banner1.png",
+                    "title": "A轮融资正式22",
                     "linkUrl": "/image/banner/banner3.png"
                 },
                 {
-                    "imgUrl": "/image/banner/banner1.png", 
-                    "title": "A轮融资正式22", 
+                    "imgUrl": "/image/banner/banner1.png",
+                    "title": "A轮融资正式22",
                     "linkUrl": "image/banner/banner4.png"
                 }
 
         ]
-            
+
 }

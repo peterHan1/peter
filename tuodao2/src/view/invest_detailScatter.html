@@ -11,13 +11,13 @@
 		<div class="max-width">
 			<ul class="invest_tab">
 				<li>
-					<a href="invest.html?sift" data="sift">精选计划</a>
+					<a href="investSift.html" data="sift">精选计划</a>
 				</li>
 				<li data="b">
-					<a href="invest.html?scatter" data="scatter" class="on">散标项目</a>
+					<a href="investScatter.html" data="scatter" class="on">散标项目</a>
 				</li>
 				<li data="c">
-					<a href="invest.html?bond" data="bond">债权转让</a>
+					<a href="investBond.html" data="bond">债权转让</a>
 				</li>
 			</ul>
 		</div>
@@ -41,30 +41,22 @@
 						<a href="JavaScript:;" class="on" type>项目详情</a>
 					</li>
 					<li>
-						<a href="JavaScript:;" type>审核资料</a>
+						<a href="JavaScript:;" type="audit">审核资料</a>
 					</li>
 					<li>
 						<a href="JavaScript:;" type>安全保障</a>
 					</li>
 					<li>
-						<a href="JavaScript:;" type="phone">投资记录</a>
+						<a href="JavaScript:;" type="list">投资记录</a>
 					</li>
 				</ul>
 			</div>
 			<div class="detail_con">
-				<!-- 项目详情 -->
 				<div class="detai details">
-					<!-- 散标 -->
-					
 				</div>
-				<!-- 审核资料 -->
 				<div class="detai audit" style="display:none">
-					<!-- 散标显示 -->
-					
 				</div>
-				<!-- 安全保障 -->
 				<div class="detai oDiv safety" style="display: none">
-					<!-- 散标显示 -->
 					<ul>
 						<li>
 							<h3>借款安全</h3>
@@ -81,7 +73,6 @@
 						</li>
 					</ul>
 				</div>
-				<!-- 加入记录 -->
 				<div class="detai con_record" style="display: none" >
 					<table>
 						<thead>
@@ -97,11 +88,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 加入成功 -->
-	<div class="hint_show dis_none" id="succeed_show">
-		
-	</div>
-	<!-- 加入失败 -->
+	<div class="hint_show dis_none" id="succeed_show"></div>
 	<div class="hint_show dis_none" id="failed_show">
 		<div class="txt">
 			<div class="ltxt">加入失败</div>
@@ -109,12 +96,11 @@
 		</div>
 		<div class="show_com failed">
 			<div class="icon"></div>
-			<p>投资失败，项目已满额！</p>
+			<p>投资失败，<i class="msg"></i>！</p>
 			<b>这个项目太抢手啦，试试 <a href="">其他散标项目</a>吧！</b>
 			<span class="iskonw">我知道了</span>
 		</div>
 	</div>
-	<!-- 激活存管 -->
 	<div class="hint_show dis_none" id="bank_show">
 		<div class="txt">
 			<div class="ltxt">
@@ -135,55 +121,12 @@
 			</span>
 		</div>
 	</div>
-	<!-- 优惠券弹窗 -->
 	<div class="hint_show discount_show dis_none" id="discount_show">
 		<div class="txt">
 			<div class="ltxt">选择优惠券</div>
 			<div class="rclose">&times;</div>
 		</div>
-		<div class="discount_con">
-			<!-- <div class="discount_txt"><i class="iconfont">&#xe671;</i>当前没有可用优惠券，请根据优惠券使用条件更改加入金额或尝试其它标的！</div> -->
-			<!-- <div class="discount_txt">单笔加入精选计划只能使用1张优惠券。</div> -->
-			<!-- 散标显示 -->
-			<div class="discount_txt">单笔投资散标项目只能使用1张优惠券。</div>
-			<ul class="ul_select">
-				<li class="jxq" data="1%加息券">
-					<p class="p_txt"><span>1</span>% 年利率加息</p>
-					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
-					<p>来自存管福利</p>
-				</li>
-				<li class="jxq" data="3%加息券">
-					<p class="p_txt"><span>3</span>% 年利率加息</p>
-					<p><span>2017/05/05</span>-<span>2017/06/06</span></p>
-					<p>来自存管福利</p>
-				</li>
-				<li class="dyq" data="15元抵用券">
-					<p class="p_txt">￥<span>15</span>抵用券</p>
-					<p>投资满10,000元，1个月及以上标的使用</p>
-					<p>来自存管福利</p>
-				</li>
-				<li class="dyq" data="30元抵用券">
-					<p class="p_txt">￥<span>30</span>抵用券</p>
-					<p>投资满30,000元，3个月及以上标的使用</p>
-					<p>来自存管福利</p>
-				</li>
-				<li class="yhq_no" data="70元抵用券">
-					<p class="p_txt">￥<span>70</span>抵用券</p>
-					<p>投资满10,000元，6个月及以上标的使用</p>
-					<p>来自存管福利</p>
-				</li>
-				<li class="yhq_no" data="100元抵用券">
-					<p class="p_txt">￥<span>100</span>抵用券</p>
-					<p>投资满10,000元，12个月及以上标的使用</p>
-					<p>来自存管福利</p>
-				</li>
-			</ul>
-			<div class="discount_bot">
-				<span class="yes">确定</span>
-				<span class="no">取消</span>
-				<!-- <span class="iskonw">我知道了</span> -->
-			</div>
-		</div>
+		<div class="discount_con"></div>
 	</div>
 	<%= require('html-loader!./layout/footer_nav.html') %>
 	<%= require('html-loader!./layout/footer.html') %>

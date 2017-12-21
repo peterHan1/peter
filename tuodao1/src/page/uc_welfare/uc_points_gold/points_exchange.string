@@ -1,9 +1,0 @@
-<ul class="change">
-{{#list}}
-	<li>
-		<div class="change_img">{{numValue}}</div>
-		<div class="btn_div">每张兑换需要<i>{{needScore}}</i>积分 <span class="add">+</span><input type="text" value="1"/><span class="cut">-</span></div>
-		<div class="change_btn" data-type="{{type}}" data-id="{{id}}">立即兑换</div>
-	</li>
-{{/list}}
-</ul>

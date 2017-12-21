@@ -4,6 +4,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/footer-nav/index.scss');
 require('page/common/nav2/index.scss');
+require("util/placeholder.js");
 
 
 var _td = require('util/td.js');
@@ -12,6 +13,7 @@ var _user = require('api/user-api.js');
 var md5 = require('util/md5.js');
 var _hover = require('util/btnHover.js');
 var _tips = require('util/tips/index.js');
+var isStockUser;
 
 // 表单里的错误提示
 var formError = {
@@ -137,21 +139,45 @@ var DepositInfoNew = {
 		// 验证成功
 		if (validateResult.status) {
 			formData.payPassword = md5(formData.payPassword);
-			_user.openDeposit(headerData, formData, function(res) {
-				if(res.content.ifSuccess==true){
-					$(".success_box").show();
-					$(".main").hide();
-					_this.countTime();
-				}else{
-					$('.js_box').html(res.content.errorInfo);
-					formError.allShow();
-				}
-			}, function(err) {
-				if (err.code == 170020) {
-					$(".wait_box").show();
-					$(".main").hide();
-				}
-			});
+			if(isStockUser == 1) {
+				var formData = {
+					bankCode: $('#Bank_sel_hid .xx i').attr('bank'),
+					bankNum: $('.card_num').val().replace(/\s+/g, ""),
+					reservationMobile: $.trim($('#mobile').val()),
+					payPassword: $.trim($('#pwd').val()),
+				};
+				_user.openDepositStock(headerData, formData, function(res) {
+					if(res.content.ifSuccess==true){
+						$(".success_box").show();
+						$(".main").hide();
+						_this.countTime();
+					}else{
+						$('.js_box').html(res.content.errorInfo);
+						formError.allShow();
+					}
+				}, function(err) {
+					if (err.code == 170020) {
+						$(".wait_box").show();
+						$(".main").hide();
+					}
+				});
+			} else {
+				_user.openDeposit(headerData, formData, function(res) {
+					if(res.content.ifSuccess==true){
+						$(".success_box").show();
+						$(".main").hide();
+						_this.countTime();
+					}else{
+						$('.js_box').html(res.content.errorInfo);
+						formError.allShow();
+					}
+				}, function(err) {
+					if (err.code == 170020) {
+						$(".wait_box").show();
+						$(".main").hide();
+					}
+				});
+			}
 		}
 		// 验证失败
 		else {
@@ -200,23 +226,17 @@ var DepositInfoNew = {
 		return result;
 	},
 	load: function() {
+		 $('input, textarea').placeholder();
 		_user.getStockUserDeposit(headerData, function(res) {
 			// 存管存量用户状态
-			if (res.content.idCard != null) {
+			if (res.content.isStockUser == 1 && res.content.isBindBank == 1) {
+				isStockUser = 1;
 				$("#user").val(res.content.realName);
 				$("#user").attr('disabled', 'disabled');
 				$("#card").val(res.content.idCard);
 				$("#card").attr('disabled', 'disabled');
-				$("#Bank_sel").hide();
-				$("#Bank_sel_hid .xx i").addClass(res.content.bankCode);
-				$("#Bank_sel_hid .xx i").attr("bank", res.content.bankCode);
-				$("#Bank_sel_hid .xx em").html(res.content.bankName);
-				$("#Bank_sel_hid").removeClass('dis_none');
-				$("#bankCard").val(res.content.bankNum);
-				$("#bankCard").attr('disabled', 'disabled');
-				$("#Bank_sel_hid").addClass("dis");
-			} else {
-				return;
+			} else if(res.content.isStockUser == 1 && res.content.isBindBank == 0) {
+				isStockUser = 1;
 			}
 		}, function(err) {
 			console.log(err);

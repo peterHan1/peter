@@ -3,7 +3,9 @@ var _td = require('util/td.js');
 $(function() {
 	var dataBank = [];
 	var dataBankFont = [];
-	var dataBankXe = [];
+	var dataBankones = [];
+	var dataBankday = [];
+	var dataBankmonth = [];
 	var headerData = {
 		'accessId' : unescape(_td.getAccess('accessId')),
 		'accessKey' :unescape(_td.getAccess('accessKey'))
@@ -12,12 +14,14 @@ $(function() {
 		for (var j = 0; j < res.content.length; j++) {
 			dataBank.push(res.content[j].paymentCode);
 			dataBankFont.push(res.content[j].name);
-			dataBankXe.push(res.content[j].limitOneTime);
+			dataBankones.push(res.content[j].limitOneTime);
+			dataBankday.push(res.content[j].limitOneDay);
+			dataBankmonth.push(res.content[j].limitOneMonth);
 		}
 		var ulEle = document.createElement('ul');
 		$('#Bank').append(ulEle);
 		for (var i = 0; i < dataBank.length; i++) {
-			$('#Bank ul').append('<li><b><i class="Bank ' + dataBank[i] + '" bank="' + dataBank[i] + '"></i><em>' + dataBankFont[i] + '</em></b><b>（' + dataBankXe[i] + '）</b></li>');
+			$('#Bank ul').append('<li><b><i class="Bank ' + dataBank[i] + '" bank="' + dataBank[i] + '"></i><em>' + dataBankFont[i] + '</em></b><b>（单笔'+dataBankones[i]+'万  单日'+dataBankday[i]+'万  单月'+dataBankmonth[i]+'万）</b></li>');
 		}
 		$('#Bank li').eq(dataBank.length - 1).css('border-bottom', '0');
 		$('#Bank_sel').on('click', function() {

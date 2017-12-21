@@ -13,6 +13,7 @@ var help = {
 		this.leftClick();
 		this.tabCut();
 		$('#top ul li').eq(3).find('a').css('color','#ff7400');
+		$('.menu_left li').eq(0).off('mouseover mouseout');
 	},
 	leftMouseover:function(){
 		$('.menu_left li').on({

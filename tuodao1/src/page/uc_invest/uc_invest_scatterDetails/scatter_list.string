@@ -1,9 +1,0 @@
-{{#list}}
-<tr>
-	<td class="padd_left">{{collectionTime}}</td>
-	<td>{{period}} / {{periods}}</td>
-	<td>{{capital}}</td>
-	<td>{{interest}}</td>
-	<td class="returnSta returnCol{{status}}">{{status}}</td>
-</tr>
-{{/list}}

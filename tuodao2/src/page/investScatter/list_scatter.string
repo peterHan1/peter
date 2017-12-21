@@ -1,0 +1,48 @@
+<ul class="list_scatter">
+{{#list}}
+<li>
+	<a href="invest_detailScatter.html?tender={{id}}&params={{productCode}}" class="full" target="_blank"></a> 
+	<div class="invest_list_title">
+		<p class="fl">{{productTitle}}</p>
+		<div class="fl type">
+			<img src="{{typePcUrl}}" class="fl">
+			{{#tipsType}}<div class="tip tips" type="{{defineType}}">{{typeRemark}}<span class="bot"></span><span class="bot2"></span></div>{{/tipsType}}
+		</div>
+	</div>
+	<div class="invest_list_con">
+		<dl class="expect {{txtClas}}">
+			<dt><span>{{borrowApr}}</span>%<i class="award">{{awardText}}</i></dt>
+			<dd>预期年化</dd>
+		</dl>
+		<dl class="data">
+			<dt><span class="num_font">{{productPeriod}}</span><span>{{periodUnitText}}</span></dt>
+			<dd>投资期限</dd>
+		</dl>
+		<dl class="refund">
+			<dt class="refundWayText">{{refundWay}}</dt>
+			<dd>还款方式</dd>
+		</dl>
+		<dl class="summoney">
+			<dt><span class="num_font totalMoney" m="{{borrowAmount}}">{{borrowAmountFormatStr}}</span></dt>
+			<dd>项目总额</dd>
+		</dl>
+		<dl class="residue">
+			<dt><span class="num_font resMoney" m="{{surplusInvestAmount}}">{{surplusAmountFormatStr}}</span></dt>
+			<dd>剩余可投</dd>
+		</dl>
+		<dl class="bars">
+			<dt>
+				<div class="progress">
+					<div class="progress_wrapper">
+						<div class="bar" {{barxx}}></div>
+					</div>
+				</div>
+			</dt>
+			<dd>投资进度 <span class="barNum">{{barTxt}}</span>%</dd>
+		</dl>
+		<div class="fr butt {{btnClas}}">{{showBtn}}</div>
+	</div>
+</li>
+{{/list}}
+</ul>
+ 

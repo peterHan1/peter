@@ -2,7 +2,14 @@
 <tr>
 	<td class="padd_left">{{preCollectionTime}}</td>
 	<td>{{preInterest}}</td>
-	<td class="td_wid" status="{{status}}">{{status}}</td>
+	<td class="td_wid returnsta returnsta{{status}}">{{statusTxt}}</td>
 </tr>
-
+{{/list}}
+{{^list}}
+	<tr class="null_data">
+		<td colspan="6">
+			<div class="null_data_bg"></div>
+			<p>当前没有回款计划</p>
+		</td>
+	</tr>
 {{/list}}

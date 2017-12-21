@@ -1,0 +1,114 @@
+@import '../../common/mixin.scss';
+@import '../../common/layout';
+
+.uc_old{
+	@include width-max;
+	background: #ffffff;
+	margin: 30px auto 50px;
+	padding-bottom: 50px;
+	@extend %clearfix;
+	.uc_old_top{
+		height:75px;
+		border-bottom:1px solid #ebebeb;
+		line-height:75px;
+		color:#a3a3a3;
+		font-size:12px;
+		a{
+			display:block;
+			width:106px;
+			height:32px;
+			color:#fff;
+			background-color:#ff8a10;
+			float:right;
+			line-height:32px;
+			text-align:center;
+			border-radius: 3px;
+			margin:23px 25px 0 0;
+		}
+		span{
+			margin-left:25px;
+		}
+	}
+	.uc_old_list{
+		height:1010px;
+		overflow: hidden;
+		.uc_old_listTop{
+			height:50px;
+			border-bottom:1px solid #ebebeb;
+			line-height:50px;
+			color:#585858;
+			font-size:16px;
+			ul{
+				margin-left:65px;
+				li{
+					float:left;
+					width:85px;
+					margin-right:25px;
+					text-align:center;
+					cursor: pointer;
+				}
+				.on{
+					color:#ff711c;
+					border-bottom:2px solid #ff8a10;
+					height:48px;
+				}
+			}
+		}
+		.old_Ul{
+			height:50px;
+			border-bottom:1px solid #ebebeb;
+			line-height:50px;
+			color:#585858;
+			font-size:14px;
+			padding-left:845px;
+			cursor: pointer;
+			li{
+				float:left;
+				margin-left:38px;
+				&.on{
+					color:#ff711c;
+				}
+			}
+		}
+		.old_Table table{
+			width: 100%;
+			font-size: 14px;
+			margin-bottom:40px;
+			background: #f9f9f9;
+			text-align: center;
+			color: #585858;
+			border-left: 0;
+			position: relative;
+			th{
+				font-size:14px;
+				height: 50px;
+				color: #404040;
+				position: relative;
+				border-bottom: 1px solid #ebebeb;
+			}
+			td{
+				color:#585858;
+				background: #fff;
+				height: 50px;
+				border: 1px solid #ebebeb;
+				border-left: 0;
+				border-top: 0;
+				a{
+					color:#31baf2;
+						&:hover{
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+		table td{
+			padding:0 20px;
+		}
+		.old_padding{
+			padding:0;
+		}
+	}
+}
+.dis_none{
+	display: none;
+}

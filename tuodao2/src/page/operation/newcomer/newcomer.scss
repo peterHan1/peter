@@ -85,33 +85,33 @@
 			margin-bottom: 20px;
 			float: left;
 			cursor: pointer;
-			.p1{
-				font-size: 16px;
-				color: #9e9e9e;
-				padding-top: 20px;
-				padding-bottom: 40px;
-				span{
-					font-size: 14px;
-				}
-			}
-			.p2{
-				font-size: 48px;
-				color: #ff7400;
-			}
-			.p3{
-				font-size: 18px;
-				padding-bottom: 20px;
-				color: #ff7400;
-			}
-			.btn{
-				@include height-line(43px);
-				color: #9e9e9e;
+			a{
 				display: block;
-				font-size: 16px;
-				cursor: pointer;
-			}
-			p.pad_bot{
-				padding-bottom: 15px;
+				.p1{
+					font-size: 16px;
+					color: #9e9e9e;
+					padding-top: 20px;
+					padding-bottom: 40px;
+					span{
+						font-size: 14px;
+					}
+				}
+				.p2{
+					font-size: 48px;
+					color: #ff7400;
+				}
+				.p3{
+					font-size: 18px;
+					padding-bottom: 20px;
+					color: #ff7400;
+				}
+				.btn{
+					@include height-line(43px);
+					color: #9e9e9e;
+					display: block;
+					font-size: 16px;
+					cursor: pointer;
+				}
 			}
 			&.mar_rgt{
 				margin-right: 0px;

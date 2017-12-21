@@ -4,6 +4,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require("util/bankSelect/bankSelect.scss");
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var md5 = require('util/md5.js');
@@ -13,10 +14,12 @@ var _page = require('util/paging/index.js');
 var _hover = require('util/btnHover.js');
 
 var headerData = {
-	accessId: _td.getAccess('accessId'),
-	accessKey: _td.getAccess('accessKey')
-};
+		'accessId' :unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
+	};
 
+var isOpenDeposit=false;
+var times;
 // 表单里的错误提示
 var formError = {
 	show: function(id, errMsg) {
@@ -56,6 +59,7 @@ var cash = {
 	},
 	bindEvent: function() {
 		var _this = this;
+		$('input, textarea').placeholder();
 		// 获得焦点
 		$('form div input').focus(function() {
 			_this.focus(this);
@@ -65,7 +69,7 @@ var cash = {
 			_this.blur();
 		});
 		$('form div input').keyup(function() {
-			formError.hide();
+			_this.blur();
 		});
 		$('form div input').mouseover(function() {
 			_this.mouseover(this);
@@ -96,7 +100,7 @@ var cash = {
 		// 表单验证结果
 		validateResult = this.formValidate(formData);
 		// console.log(validateResult);
-		if (validateResult.status) {
+		if (validateResult.status && times==true) {
 			// console.log(validateResult.msg + 'ooo');
 			formError.hide();
 			$(".btn").addClass("kd");
@@ -141,7 +145,6 @@ var cash = {
 					}
 				});
 			}, function(err) {
-				console.log(err);
 				formError.allShow(err.msg);
 			});
 		}
@@ -252,12 +255,11 @@ var cash = {
 				$(".qs_time").hide();
 				times = true;
 			}
-			// 存管开通状态
-			if (res.content.status == 0) {
+		},function(err){
+			if(err.code==170019){
+				isOpenDeposit=true;
 				$(".content0").show();
 				$(".content").hide();
-			} else {
-				return;
 			}
 		});
 	},
@@ -265,7 +267,6 @@ var cash = {
 		// 提现到账时间
 		var myDate = new Date();
 		myDate = myDate.getHours();
-		console.log(myDate);
 		if (0 <= myDate && myDate <= 9) {
 			$(".btn").val("当日9点到账");
 			$(".cash_success .dz_time i").html("当日9点到账");
@@ -293,11 +294,13 @@ var cash = {
 	},
 	// tab栏切换
 	tabCut: function() {
-		$('.cash_top ul li a').each(function() {
-			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
-				$(this).parent().addClass('on');
-				$(this).parent().siblings('li').removeClass('on');
-				var _index = $(this).parent().index();
+		$(".cash_top ul li").on("click",function(){
+			if(isOpenDeposit==true){
+				return false;
+			}else{
+				$(this).addClass('on');
+				$(this).siblings('li').removeClass('on');
+				var _index = $(this).index();
 				$(".cash_window").eq(_index).show().siblings(".cash_window").hide();
 			}
 		});
@@ -333,7 +336,6 @@ var cash = {
 						$(".sj_money .sjdz b").html(realAccount);
 						$(".cash_success .cash_count .cashnum").html(realAccount);
 					}, function(err) {
-						console.log(err);
 					});
 				} else {
 					return;

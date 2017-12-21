@@ -5,6 +5,7 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 require('util/security/security.scss');
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var _yzm = require('util/security/security.js');
@@ -13,10 +14,12 @@ var _hover = require('util/btnHover.js');
 
 
 var headerData = {
-	accessId: _td.getAccess('accessId'),
-	accessKey: _td.getAccess('accessKey')
-};
+		'accessId' : unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
+	};
 
+var isOpenDeposit=false;
+var times;
 // 表单里的错误提示
 var formError = {
 	show: function(id, errMsg) {
@@ -40,8 +43,8 @@ var recharge = {
 		this.bindEvent();
 		this.btnHover();
 		this.bankSelect();
-		this.tabCut();
 		this.load();
+		this.tabCut();
 		this.tsShow();
 		this.shortBtn();
 		this.shortCut();
@@ -52,6 +55,7 @@ var recharge = {
 	},
 	bindEvent: function() {
 		var _this = this;
+		$('input, textarea').placeholder();
 		// 获得焦点
 		$('form div input').focus(function() {
 			_this.focus(this);
@@ -61,7 +65,7 @@ var recharge = {
 			_this.blur();
 		});
 		$('form div input').keyup(function() {
-			formError.hide();
+			_this.blur();
 		});
 		$('form div input').mouseover(function() {
 			_this.mouseover(this);
@@ -91,7 +95,7 @@ var recharge = {
 		// 表单验证结果
 		validateResult = this.formValidate(formData);
 		// console.log(validateResult);
-		if (validateResult.status) {
+		if (validateResult.status && times==true) {
 			// console.log(validateResult.msg + 'ooo');
 			formError.hide();
 			$("#btn1").addClass("kd");
@@ -116,7 +120,7 @@ var recharge = {
 		var _this = this;
 		var formData = {
 			money: $.trim($('#money1').val()),
-			bankId: $('#btn1').attr('bankId'),
+			bankId: $('#btn1').attr('bankId')
 		};
 		formData.money = formData.money.replace(/,/g, '');
 		// 表单验证结果
@@ -126,7 +130,6 @@ var recharge = {
 			var win = window.open();
 			win.document.write("跳转中.....");
 			_trade.rechargeOnline(headerData, formData, function(res) {
-				console.log(res);
 				layer.open({
 					type: 1,
 					title: '网银跳转提示',
@@ -205,18 +208,19 @@ var recharge = {
 		});
 	},
 	tabCut: function() {
-		$('.recharge_top ul li a').each(function() {
-			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
-				$(this).parent().addClass('on');
-				$(this).parent().siblings('li').removeClass('on');
-				var _index = $(this).parent().index() + 1;
+		$(".recharge_top ul li").on("click",function(){
+			if(isOpenDeposit==true){
+				return false;
+			}else{
+				var _index = $(this).index() + 1;
+				$(this).addClass('on');
+				$(this).siblings('li').removeClass('on');
 				$(".recharge_window").eq(_index).show().siblings(".recharge_window").hide();
 			}
 		});
 	},
 	load: function() {
 		_trade.rechargeInfo(headerData, function(res) {
-			// console.log(res);
 			// 用户开通存管信息
 			$(".item0").hide();
 			// 银行卡logo
@@ -246,7 +250,8 @@ var recharge = {
 				$(".item2 .btn").val("立即充值");
 			}
 		}, function(err) {
-			if (err.code == 141012) {
+			if (err.code == 170019) {
+				isOpenDeposit=true;
 				$(".item0").show();
 				$(".item1").hide();
 				$(".item2").hide();
@@ -303,11 +308,11 @@ var recharge = {
 	},
 	// 快捷充值按钮变亮
 	shortBtn: function() {
-		$(".item2 .money_input2").on("blur", function() {
+		$(".item2 .money_input2").on("keyup", function() {
 			var ts = "<p class='wrong_mess'>&nbsp;<i class=iconfont>&#xe671;</i>&nbsp;<em class=wz>本次充值金额范围：100元-5万元！</em></p>";
 			var val = $.trim($(".money_input2").val());
 			val = val.replace(/,/g, '');
-			if (val != "" && val > 100 && val < 50000) {
+			if (val != "" && val >= 100 && val < 50000 && times==true) {
 				$(".item2 .btn").addClass("kd");
 				$(this).siblings(".wrong_mess").remove();
 				$(this).removeClass("red");
@@ -394,7 +399,6 @@ var recharge = {
 				smsCode: str
 			};
 			_trade.fastPay(headerData, data, function(res) {
-				console.log(res);
 				layer.closeAll();
 				layer.open({
 					type: 1,

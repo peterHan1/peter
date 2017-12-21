@@ -1,6 +1,7 @@
 require('page/common/nav2/index.js');
 require('./userlogin.scss');
 require('util/slider/index.js');
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var md5 = require('util/md5.js');
@@ -43,6 +44,7 @@ var loginPage = {
 	},
 	bindEvent: function() {
 		var _this = this;
+		 $('input, textarea').placeholder();
 		// 获得焦点
 		$('form div input').focus(function() {
 			_this.focus(this);
@@ -198,6 +200,8 @@ var loginPage = {
 					result.id = true;
 					result.msg = '验证通过';
 				}
+			},function(err){
+				console.log(err);
 			});
 		}
 		return result;

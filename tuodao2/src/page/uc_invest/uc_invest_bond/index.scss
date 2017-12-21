@@ -114,11 +114,10 @@
 					position:relative;
 					width:110px;
 					padding-right:50px;
-
 					a{
 						display: inline-block;
 						float: left;
-						width:108px;
+						max-width:108px;
 						text-overflow: ellipsis;
 						white-space: nowrap;
 						overflow: hidden;
@@ -153,7 +152,7 @@
 				padding-right:10px;
 				width:60px;
 				a{
-					width:70px;
+					max-width:60px;
 				}
 			}
 			.td_time{
@@ -177,7 +176,7 @@
 				padding-right:25px;
 				width:60px;
 				a{
-					width:60px;
+					max-width:60px;
 				}
 			}
 			.td_time{
@@ -189,7 +188,7 @@
 		}
 	}
 }
-.zxf_pagediv{
+.pageList{
 	margin-top:30px;
 }
 #tbody_list{

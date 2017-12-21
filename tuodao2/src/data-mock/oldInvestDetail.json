@@ -1,0 +1,22 @@
+{
+      "code": 100000,
+      "content":
+      {
+             "addTime": "2017-11-14 16:20:12",
+             "apr": "10.0",
+             "endTime": "2017-10-26",
+             "interest": "2.50",
+             "platformApr": "0.0",
+             "preAccount": "100.00",
+             "productCode": "20131200126",
+             "productId": 35,
+             "productTitle": "二哥专用标",
+             "repaymentType": 1,
+             "status": 2,
+             "tenderId": 0,
+             "voucherMoney": "0.0",
+             "voucherType": 0
+      },
+      "msg": "成功",
+      "success": true
+}

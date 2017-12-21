@@ -4,6 +4,14 @@
 	<td>{{period}} / {{periods}}</td>
 	<td>{{capital}}</td>
 	<td>{{interest}}</td>
-	<td class="returnSta returnCol{{status}}">{{status}}</td>
+	<td class="returnSta returnCol{{status}}">{{statusName}}</td>
+</tr>
+{{/list}}
+{{^list}}
+<tr class="null_data">
+	<td colspan="8">
+		<div class="null_data_bg"></div>
+		<p>当前没有回款计划</p>
+	</td>
 </tr>
 {{/list}}

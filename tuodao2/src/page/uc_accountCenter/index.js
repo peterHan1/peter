@@ -5,9 +5,14 @@ require("./uc_accountCenter.scss");
 require('util/layer/layer.js');
 require('util/layer/layer.scss');
 
-
+var _td = require('util/td.js');
 var _del = require('util/delButton.js');
 var _user = require('api/user-api.js');
+
+var headerData = {
+		'accessId' : unescape(_td.getAccess('accessId')),
+		'accessKey' :unescape(_td.getAccess('accessKey'))
+	};
 
 var accountSet = {
 	init: function() {
@@ -22,8 +27,7 @@ var accountSet = {
 	},
 	load: function() {
 		// 获取账户设置信息接口
-		_user.getAccountSetting(function(res) {
-			console.log(res);
+		_user.getAccountSetting(headerData,function(res) {
 			// 是否开通存管账户
 			var isOpenDeposit = res.content.isOpenDeposit;
 			if (isOpenDeposit == 1) {
@@ -139,9 +143,7 @@ var accountSet = {
 					consigneeMobile: phone,
 					consigneeAddress: adr
 				};
-				_user.updateConsigneeInfo(data, function(res) {
-					console.log(res);
-				});
+				_user.updateConsigneeInfo(headerData,data, function(res) {});
 			} else {
 				return false;
 			}

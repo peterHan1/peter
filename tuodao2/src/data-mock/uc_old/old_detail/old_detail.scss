@@ -1,0 +1,65 @@
+@import '../../common/mixin.scss';
+@import '../../common/layout';
+.uc_invest_details{
+	@include width-max;
+	background: #ffffff;
+	margin: 30px auto 50px;
+	padding-bottom: 50px;
+	@extend %clearfix;
+}
+.uc_invest_details .top{height:160px;border-bottom:1px dashed #ebebeb;margin:0px 30px;}
+.uc_invest_details .top .diya{margin-top:20px;}
+.uc_invest_details .top .diya .zuo{margin-top: 25px;font-size: 16px;}
+.uc_invest_details .top .diya .zuo b{font-size: 14px;color:#fefefe;padding:2px 18px;border-radius:3px;background:#ffb005;font-weight: normal;}
+.uc_invest_details .top .diya .zuo i{font-size:15px;color:#a3a3a3;font-style: normal;}
+.uc_invest_details .top .diya .zuo span{margin:0px 10px;}
+.uc_invest_details .top .diya a{margin-right:280px;font-size: 14px;color:#ff711c;float:right;}
+.uc_invest_details .top .diya a:hover{text-decoration: underline;}
+.uc_invest_details .top .zhong ul{float:left;margin-right: 60px;margin-top:6px;}
+.uc_invest_details .top .zhong li{margin-top: 17px;}
+
+.uc_invest_details .top22{height:160px;border-bottom:1px dashed #ebebeb;margin:0px 30px;}
+.uc_invest_details .top22 .diya .zuo{margin-top: 25px;font-size: 16px;}
+.uc_invest_details .top22 .diya .zuo b{font-size: 14px;color:#fefefe;width:70px;height:20px;background:#3aa2fa;display:inline-block;text-align: center;font-weight: normal;margin-right: 10px;}
+.uc_invest_details .top22 .diya .zuo i{font-size:14px;color:#a3a3a3;font-style: normal;}
+.uc_invest_details .top22 .diya .zuo span{margin:0px 10px;}
+.uc_invest_details .top22 .diya a{margin-top: 25px;font-size: 14px;color:#ff711c;float:right;}
+.uc_invest_details .top22 .diya a:hover{text-decoration: underline;}
+.uc_invest_details .top22 .zhong ul{float:left;margin-right: 60px;}
+.uc_invest_details .top22 .zhong li{margin-top: 20px;}
+
+.uc_invest_details .money{height:155px;border-bottom: 1px solid #ebebeb;}
+.uc_invest_details .money .money_1{height:155px;}
+.uc_invest_details .money .money_1 .left{/*background:blue;*/width:730px;float:left;}
+.uc_invest_details .money .money_1 .left dl{float:left;margin-right: 10px;margin-left:30px;}
+.uc_invest_details .money .money_1 .left .dl-width-em{width:100px;margin-left:40px;}
+.uc_invest_details .money .money_1 .left dt{margin-top: 45px;position:relative;}
+.uc_invest_details .money .money_1 .left dt i{font-size:24px;position:absolute;top: -10px;color:#6a6974;cursor:pointer;}
+.uc_invest_details .money .money_1 .left dt .tips em{position:absolute;top: -32px;left:-70px;z-index:2;color:#ff711c;font-size: 12px;font-style: normal;border:1px solid #ffdfcc;background-color:#fff4ee;padding:2px 5px;border-radius: 5px;}
+.uc_invest_details .money .money_1 .left dt .tips div{background:url('../../../image/tips.png') -46px -3px;width:8px;height:5px;position:absolute;top: -10px;left:42px;z-index:3;}
+.uc_invest_details .money .money_1 .left dd{margin-top: 10px;font-size: 28px;color:#ff8a10;}
+/*.uc_invest_details .money .money_1 .left dd.red{color:#f96269;}*/
+.uc_invest_details .money .money_1 .left dd b{font-size:14px;font-weight: normal;}
+.uc_invest_details .money .money_1 .right{width:140px;height:60px;line-height:27px;float:right;margin-top:58px;margin-right:10px;}
+.uc_invest_details .money .money_1 .right a{font-size: 14px;color:#3aa2fa;}
+.uc_invest_details .money .money_1 .right a:hover{text-decoration: underline;}
+.uc_invest_details .money .money_1 .right p{font-size:12px;color:#a3a3a3;}
+
+
+.uc_invest_details .huikuan{height:50px;line-height:50px;/*border-bottom: 1px solid #ebebeb;*/padding-left: 30px;color:#000;font-weight:bold;}
+.uc_invest_details table th{border: 1px solid #ebebeb;border-left:0;border-right:0;width:190px;height:50px;font-size: 14px;color:#000;font-weight: normal;}
+/*.uc_invest_details table tr .black{color:#000;border:0px;}
+.uc_invest_details table .white{background:#fff;}*/
+.uc_invest_details table td{color:#585858;}
+
+.uc_invest_details_old{width: 1100px; float: inherit; margin: 60px auto 80px auto;}
+.dis_none{
+	display: none;
+}
+.fl{
+	float: left;
+}
+.clear {
+    zoom: 1;
+    clear: both;
+}

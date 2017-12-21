@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+	<%= require('html-loader!./layout/top.html') %>
+	<%= require('html-loader!./layout/nav.html') %>
+	<div class="uc_right uc_invest_details uc_invest_details_old">
+		<div class="top22">
+			<div class="diya clear">
+				<div class="zuo fl" id="detailsTitle"></div>
+				<a href="javascript:history.go(-1);">返回</a>
+			</div>
+			<div class="zhong clear">
+				<ul>
+					<li>年化利率：<span id="borrowApr"></span></li>
+					<li>到期日期：<span id="time"></span></li>
+				</ul>
+				<ul>
+					<li>还款方式：<span id="borrowStyle">无</span></li>
+					<li>距离到期时间：<span id="day"></span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="money">
+			<div class="money_1">
+				<div class="left">
+					<dl>
+						<dt>投资金额</dt>
+						<dd class="red"><span id="tenderAccount"></span><b>元</b></dd>
+					</dl>
+					<dl>
+						<dt>到期收益</dt>
+						<dd><span id="interest"></span><b>元</b></dd>
+					</dl>
+					<dl>
+						<dt>
+							奖励<i class="iconfont">&#xe68d;</i>
+							<div class="tips">
+								<em>平台加息奖励，开始计息发放</em>
+								<div></div>
+							</div>
+
+						</dt>
+						<dd><span id="award"></span><b>元</b></dd>
+					</dl>
+	                <dl>
+	                    <dt>优惠券</dt>
+	                    <dd><span id="VouType" style="font-size: 15px"></span><b></b></dd>
+	                </dl>
+				</div>
+				<div class="right" id="view">
+					<a target="_blank" href="/front/protocol/protocol_dy?param=35072" class="fl">查看借款协议</a>
+					<a href="https://www.51cunzheng.com/investment-detail?recordNo=16UQDIQ2U7618N911784&amp;partnerKey=ee9b6a358a543c7f5b29124770002bd8&amp;nonce=1513327914785&amp;signature=d2411477946ae31cbad525d4e0f40c64" target="_blank" class="fl">查看安存保全</a>
+				</div>
+			</div>
+		</div>
+		<div class="huikuan">回款计划</div>
+		<table class="huikuanTable">
+			<tr>
+				<th>回款时间</th>
+				<th>状态</th>
+				<th>应还本金（元）</th>
+				<th>应还收益（元）</th>
+				<th>期数</th>
+			</tr>
+		</table>
+	    <div class="pageList"></div>
+	</div>
+	<%= require('html-loader!./layout/footer_nav.html') %>
+	<%= require('html-loader!./layout/footer.html') %>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <div class="investting" >
 	<div class="login_btn">
-		<a href="userlogin.html">登录</a>查看账户可用余额，或<a href="">立即注册</a>
+		<a href="userlogin.html">登录</a>查看账户可用余额，或<a href="register.html">立即注册</a>
 	</div>
 	<div class="com_styl invest_money" >
-		<input type="text" placeholder="100元起投" class="com_inp outInp_money">
+		<input type="text" placeholder="500元起投，单笔限额50万元" class="com_inp outInp_money">
 		<i class="iconfont btn_empty">&#xe68b;</i>
 	</div>
 	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>

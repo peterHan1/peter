@@ -1,0 +1,41 @@
+{
+      "code": 100000,
+      "msg": "成功",
+      "content":
+      {
+             "pageNum": 0,
+             "pageSize": 0,
+             "size": 0,
+             "orderBy": null,
+             "startRow": 0,
+             "endRow": 0,
+             "total": 1,
+             "pages": 0,
+             "list":
+             [
+                    {
+                           "productCode": "20131200126",
+                           "productTitle": "二哥专用标",
+                           "tenderId": 52,
+                           "tenderTime": "2017-11-16 15:35:39",
+                           "preAccount": "1,000.00",
+                           "interest": "8.33",
+                           "statusName": "已回款",
+                           "endTime": "2017-10-26",
+                           "prize": 12,
+                           "tenderType": 0
+                    }
+             ],
+             "firstPage": 0,
+             "prePage": 0,
+             "nextPage": 0,
+             "lastPage": 0,
+             "isFirstPage": false,
+             "isLastPage": false,
+             "hasPreviousPage": false,
+             "hasNextPage": false,
+             "navigatePages": 0,
+             "navigatepageNums": null
+      },
+      "success": true
+}

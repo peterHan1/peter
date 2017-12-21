@@ -2,7 +2,7 @@ require("../setpassword/setpassword.scss");
 require('util/slider/index.js');
 require('page/common/nav2/index.js');
 require('util/security/security.scss');
-
+require("util/placeholder.js");
 
 var _td = require('util/td.js');
 var _yzm = require('util/security/security.js');
@@ -49,6 +49,7 @@ var forgetPayPw = {
 	},
 	bindEvent: function() {
 		var _this = this;
+		$('input, textarea').placeholder();
 		// 获得焦点
 		$('div input').focus(function() {
 			if ($(this).attr("jz") == "jz") {
