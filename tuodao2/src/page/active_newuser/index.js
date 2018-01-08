@@ -39,7 +39,7 @@ var formError = {
 };
 
 var headerData = {
-		'accessId' : unescape(_td.getAccess('accessId')),
+		'accessId' :unescape(_td.getAccess('accessId')),
 		'accessKey' :unescape(_td.getAccess('accessKey'))
 	};
 var DepositInfoNew = {
@@ -57,18 +57,18 @@ var DepositInfoNew = {
 		// 获得焦点
 		$('form div input').focus(function() {
 			_this.focus(this);
+			formError.hide();
 		});
 		// 失去焦点
 		$('form div input').blur(function() {
 			_this.blur();
 		});
 		$('form div input').keyup(function() {
+		});
+		$("#mobile").keyup(function(){
 			if ($('#mobile').val().length >= 11) {
 				_this.blur();
-			} else {
-				if ($('#mobile').val().length > 0) {
-					_this.blur();
-				}
+			}else{
 				formError.hide();
 			}
 		});
@@ -127,13 +127,13 @@ var DepositInfoNew = {
 	submit: function() {
 		var _this = this;
 		var formData = {
-				realName: $.trim($('.user').val()),
-				idCard: $.trim($('.card').val()),
-				bankCode: $('#Bank_sel_hid .xx i').attr('bank'),
-				bankNum: $('.card_num').val().replace(/\s+/g, ""),
-				reservationMobile: $.trim($('#mobile').val()),
-				payPassword: $.trim($('#pwd').val()),
-			},
+			realName: $.trim($('.user').val()),
+			idCard: $.trim($('.card').val()),
+			bankCode: $('#Bank_sel_hid .xx i').attr('bank'),
+			bankNum: $('.card_num').val().replace(/\s+/g, ""),
+			reservationMobile: $.trim($('#mobile').val()),
+			payPassword: $.trim($('#pwd').val()),
+		},
 		// 表单验证结果
 		validateResult = this.formValidate(formData);
 		// 验证成功
@@ -151,6 +151,7 @@ var DepositInfoNew = {
 						$(".success_box").show();
 						$(".main").hide();
 						_this.countTime();
+						// 未完待续.....
 					}else{
 						$('.js_box').html(res.content.errorInfo);
 						formError.allShow();
@@ -175,6 +176,8 @@ var DepositInfoNew = {
 					if (err.code == 170020) {
 						$(".wait_box").show();
 						$(".main").hide();
+					}else{
+						formError.allShow();
 					}
 				});
 			}
@@ -199,24 +202,44 @@ var DepositInfoNew = {
 		if (!_td.validate(formData.idCard, 'require')) {
 			return result;
 		}
-
 		if (!_td.validate(formData.bankCode, 'require')) {
 			return result;
 		}
 		if (!_td.validate(formData.bankNum, 'bankCard')) {
-			result.msg = '请输入正确的银行卡号！';
-			result.id = 'bankCard';
-			return result;
+			if(formData.bankNum==""){
+				result.msg = '';
+				result.id = false;
+				return result;
+			}else{
+				result.status = false,
+				result.msg = '请输入正确的银行卡号！';
+				result.id = 'bankCard';
+				return result;
+			}
 		}
 		if (!_td.validate(formData.reservationMobile, 'mobile')) {
-			result.msg = '手机号必须由11位纯数字组成';
-			result.id = 'mobile';
-			return result;
+			if(formData.reservationMobile == ""){
+				result.msg = '';
+				result.id = false;
+				return result;
+			}else{
+				result.status = false,
+				result.msg = '手机号必须由11位纯数字组成';
+				result.id = 'mobile';
+				return result;
+			}
 		}
 		if (!_td.validate(formData.payPassword, 'minLength')) {
-			result.msg = '支付密码必须是6位数字！';
-			result.id = 'pwd';
-			return result;
+			if(formData.payPassword == ""){
+				result.msg = '';
+				result.id = false;
+				return result;
+			}else{
+				result.status = false,
+				result.msg = '支付密码必须是6位数字！';
+				result.id = 'pwd';
+				return result;
+			}
 		}
 
 		// 通过验证，返回正确提示
@@ -271,7 +294,6 @@ var DepositInfoNew = {
 		$(".bank_all #wen").on("mouseover", function() {
 			$(".bank_all .tips").show();
 		});
-
 		$(".bank_all #wen").on("mouseleave", function() {
 			$(".bank_all .tips").hide();
 		});
@@ -284,7 +306,9 @@ var DepositInfoNew = {
 			$(".success_box .mid span i").text(num);
 			if (num <= 0) {
 				$(".success_box .mid span i").text(0);
-				history.go(-1);
+				window.location.href = "../../view/investSift.html";
+				clearInterval(timer);
+				return false;
 			}
 		}, 1000);
 	},

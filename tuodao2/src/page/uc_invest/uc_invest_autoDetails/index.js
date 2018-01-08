@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 var _td 		= require('util/td.js');
@@ -20,17 +20,19 @@ var ucInvest = {
 		this.addListHtml(headerData, tenderId);
 	},
 	addTopHtml: function(headerData, id) {
+		var _this = this;
 		_apiInvest.getAutoTop(headerData, id, function(res) {
-			ucInvest.setShow(res);
+			_this.setShow(res);
 			autoDelTop = _td.renderHtml(autoTit, {
 				content: res.content,
 			});
 			$(".autoDetails_top").html(autoDelTop);
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	addListHtml: function(headerData, id) {
+		var _this = this;
 		_apiInvest.getAutoList(headerData, id, 1, 1, function(res) {
 			autoDelList = _td.renderHtml(autoList, {
 				list: res.content.list,
@@ -42,17 +44,24 @@ var ucInvest = {
 						list: res.content.list,
 					});
 					$("#tbody_list").html(autoDelList);
-					ucInvest.tipsHover();
+					_this.tipsHover();
 					_td.trColor("tbody_list");
 				}, function(err) {
-					console.log(err);
+					_this.logout(err);
 				});
 			});
-			ucInvest.tipsHover();
+			_this.tipsHover();
 			_td.trColor("tbody_list");
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
+	},
+	logout: function(err){
+		if(err.code == 100105){
+			_td.doLogin();
+		}else{
+			console.log(err);
+		}
 	},
 	setShow: function(res) {
 		var type = res.content.voucherType;
@@ -71,9 +80,7 @@ var ucInvest = {
 	},
 	tipsHover: function() {
 		$(".td_tips").mouseover(function() {
-			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), 13);
-			}
+			_tips.getTipsRight($(this), 13);
 		});
 		$(".td_tips").mouseout(function() {
 			$(this).find('.tips').hide();

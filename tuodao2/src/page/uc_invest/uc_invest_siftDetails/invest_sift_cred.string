@@ -3,12 +3,15 @@
 	<td class="padd_left">NO.{{effectDate}}</td>
 	<td class="td_name">
 		<a href="###">{{effectDay}}</a>
+		<div class="tips left-tips">
+			{{effectDay}}
+		</div>
 	</td>
 	<td>{{dateLimit}}</td>
 	<td>{{source}}</td>
 	<td class="discount">{{staText}}</td>
 	<td class="tb_oper" opera={{dateExplain}}>
-		<a href="{{dateExplain}}"> </a>
+		<a href="{{explainUrl}}" class="{{explainClas}}">{{explainTxt}}</a>
 	</td>
 </tr>
 {{/list}}

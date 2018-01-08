@@ -2,11 +2,10 @@ require('./memberCenter.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
-var echarts = require('echarts/lib/echarts');
-require('echarts/lib/chart/bar');
+var echarts     = require('util/echarts/echarts.common.min.js');
 var data3 = ['50','100','150','220','330','470','630'];
 var myChart = echarts.init(document.getElementById('myChart'));
-option={
+option = {
     grid: {
             top: '15%',
             containLabel: true
@@ -74,29 +73,29 @@ option={
 };
 myChart.setOption(option);
 
-var _td = require('util/td.js');
-var _apiMember = require('api/operate-api.js');
+var _td         = require('util/td.js');
+var _apiMember  = require('api/operate-api.js');
 var member = {
     init : function(){
         this.getMemberInfo();
         this.spanMouserover();
     },
     headerData : {
-        'accessId' :unescape(_td.getAccess('accessId')),
+        'accessId'  :unescape(_td.getAccess('accessId')),
         'accessKey' :unescape(_td.getAccess('accessKey'))
     },
     // 给数字添加逗号，小数点后两位
     numberAdd : function(str){
-        var reg=/\./g;
-        if(reg.test(str)){
-            var arr=String(str).split('.');
+        var reg = /\./g;
+        if (reg.test(str)) {
+            var arr = String(str).split('.');
             return String(arr[0]).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.'+arr[1];
-        }else{
+        } else {
             return String(str).split('').reverse().join('').replace(/(\d{3})/g,'$1,').replace(/\,$/,'').split('').reverse().join('')+'.00';
         }
     },
     // 会员登录信息
-    getMemberInfo:function(){
+    getMemberInfo : function(){
         _apiMember.getMemberInfo(member.headerData,function(res){
             $('.login_no').hide();
             $('.login_yes').show();
@@ -109,19 +108,21 @@ var member = {
             $('.login_yes').hide();
             $('.login_no').show();
             $('.person_no').on('click',function(){
-                window.open('userlogin.html','_self');
+                _td.doLogin();
             })
         })
     },
     // 会员vip等级信息
     getLevInfo : function(){
         _apiMember.getLevInfo(member.headerData,function(res){
-            $('.login_yes .title').html('本月日均资产：'+member.numberAdd(res.content.thisMonthAvg)+'元，距离V'+res.content.nextLevel+'等级还差&nbsp;'+member.numberAdd(res.content.distanceNextLevelAmount)+'元');
+            $('.login_yes .title').html('本月日均资产：---元，距离V--等级还差&nbsp;---元');
+        },function(){
+            $('.login_yes .title').html('本月日均资产：---元，距离V--等级还差&nbsp;---元');
         })
     },
     // 根据会员等级显示会员图标明亮,会员福利列表样式
     levImage:function(lev){
-        switch (lev){
+        switch (lev) {
             case 0 :
                 $('.person_yes span').html('&#xe6c0;');
                 break;
@@ -144,13 +145,13 @@ var member = {
                 $('.person_yes span').html('&#xe6c6;');
                 break;
         }
-        if(lev<=0){
+        if (lev <= 0) {
             $('.lev_span span').eq(0).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
-        }else{
-            for(var i=0;i<=lev;i++){
+        } else {
+            for (var i=0;i<=lev;i++) {
                 $('.lev_span span').eq(i).css({'background':'#ffffff','color':'#ff7400','border-color':'#ffffff'});
             }
-            for(var i=0;i<lev;i++){
+            for (var i=0;i<lev;i++) {
                 $('.lev_hr hr').eq(i).css('background','#fff');
             }
         }
@@ -158,38 +159,38 @@ var member = {
             $('.explain table tr').eq(i).children().eq(lev+1).css('color','#ff7400');
             $('.explain table tr .iconfont').css('color','#57B766');
             $.each($('.explain table tr td'),function(i){
-                if($('.explain table tr td').eq(i).html()=='-'){
+                if ($('.explain table tr td').eq(i).html() == '-') {
                     $('.explain table tr td').eq(i).css('color','#9e9e9e');
                 }
             })
         })
     },
     // 根据会员等级，悬浮会员等级图标后的样式
-    spanMouserover:function(){
+    spanMouserover : function(){
         $('.lev_span span').on({
-            mouseover:function(){
-                var index=$(this).index();
-                var left_num=-76+index*137;
-                if (index==4) {
+            mouseover : function() {
+                var index = $(this).index();
+                var left_num = -76+index*137;
+                if (index == 4) {
                     $('.mouseover').css('left','462px');
-                }else if(index==5){
+                } else if (index==5) {
                     $('.mouseover').css('left','541px');
-                }else if(index==6){
+                } else if (index==6) {
                     $('.mouseover').css('left','689px');
-                }else{
+                } else {
                     $('.mouseover').css('left',left_num+'px');
                 }
                 $('.mouseover .show').children().eq(index).show();
-                if($(this).css('color')=='rgb(255, 116, 0)'){
+                if ($(this).css('color') == 'rgb(255, 116, 0)') {
                     $('.mouseover').css('color','#ff7400').show();
                     $('.mouseover .mouse_top span').html('您本月是V'+index+'会员，');
-                }else{
+                } else {
                     $('.mouseover').css('color','#9e9e9e').show();
                     $('.mouseover .mouse_top span').html('V'+index+'会员');
                 }
             },
-            mouseout:function(){
-                var index=$(this).index();
+            mouseout : function() {
+                var index = $(this).index();
                 $('.mouseover .show').children().eq(index).hide();
                 $('.mouseover').hide();
             }

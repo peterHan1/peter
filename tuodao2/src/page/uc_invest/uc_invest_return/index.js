@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
@@ -30,6 +30,7 @@ var ucInvest = {
 	},
 	// 月份日期状态
 	monthStatus: function(headerData) {
+		var _this = this;
 		_returnmon.returnMoney();
 		var year = $(".f_year").html();
 		var month = $(".f_month").html() * 1;
@@ -37,9 +38,9 @@ var ucInvest = {
 			month = "0" + month;
 		};
 		var dataMonth = year + "-" + month;
-		ucInvest.dayStatus(headerData, dataMonth);
-		ucInvest.getMoney(headerData, dataMonth, 1);
-		ucInvest.getReturnList(headerData, dataMonth, 1, 4, 1);
+		_this.dayStatus(headerData, dataMonth);
+		_this.getMoney(headerData, dataMonth, 1);
+		_this.getReturnList(headerData, dataMonth, 1, 4, 1);
 		_returnmon.clickMontn({
 			left: "data_top_btn_l",
 			right: "data_top_btn_r",
@@ -48,23 +49,24 @@ var ucInvest = {
 					mm = "0" + mm;
 				};
 				dataMonth = yy + "-" + mm;
-				ucInvest.dayStatus(headerData, dataMonth);
-				ucInvest.getMoney(headerData, dataMonth, 1);
-				ucInvest.getReturnList(headerData, dataMonth, 1, 4, 1);
-				ucInvest.dayContent(headerData);
+				_this.dayStatus(headerData, dataMonth);
+				_this.getMoney(headerData, dataMonth, 1);
+				_this.getReturnList(headerData, dataMonth, 1, 4, 1);
+				_this.dayContent(headerData);
 			}
 		});
-		ucInvest.dayContent(headerData);
+		_this.dayContent(headerData);
 	},
 	// 点击某天的信息展示
 	dayContent: function(headerData) {
+		var _this = this;
 		_returnmon.clickDay({
 			elm: "data_number",
 			callback: function(days, day) {
 				$(".re_money_d").html(day + '日');
 				var getday = days;
-				ucInvest.getMoney(headerData, getday, 0);
-				ucInvest.getReturnList(headerData, getday, 0, 4, 1);
+				_this.getMoney(headerData, getday, 0);
+				_this.getReturnList(headerData, getday, 0, 4, 1);
 			}
 		});
 	},
@@ -78,48 +80,39 @@ var ucInvest = {
 		});
 	},
 	getReturnList: function(headerData, day, type, pagesize, current) {
+		var _this = this;
 		_apiReturn.getRturnList(headerData, day, type, pagesize, current, function(res) {
 			var lists = res.content.list;
-			for (i in lists) {
-				var type = lists[i].type;
-				var status = lists[i].status;
-				var types = ucInvest.setType(type);
-				var sta = ucInvest.setStatus(status);
-				lists[i].typeText = types;
-				lists[i].tstatusText = sta.txt;
-				lists[i].tstatusClas = sta.clas;
-			};
-			retList = _td.renderHtml(returnList, {
-				list: lists,
-			});
-			$('#tbody_list').html(retList);
+			_this.getReturnListFn(lists);
 			_paging.paging("pageList", res.content.total, pagesize, function(e) {
 				_apiReturn.getRturnList(headerData, day, type, pagesize, e.current, function(res) {
 					var lists = res.content.list;
-					for (i in lists) {
-						var type = lists[i].type;
-						var status = lists[i].status;
-						var types = ucInvest.setType(type);
-						var sta = ucInvest.setStatus(status);
-						lists[i].typeText = types;
-						lists[i].tstatusText = sta.txt;
-						lists[i].tstatusClas = sta.clas;
-					};
-					retList = _td.renderHtml(returnList, {
-						list: lists,
-					});
-					$('#tbody_list').html(retList);
-					ucInvest.tipsHover();
-					_td.trColor("tbody_list");
+					_this.getReturnListFn(lists);
 				}, function(err) {
 					console.log(err);
 				});
 			});
-			ucInvest.tipsHover();
-			_td.trColor("tbody_list");
 		}, function(err) {
 			console.log(err);
 		});
+	},
+	getReturnListFn: function(lists){
+		var _this = this;
+		for (i in lists) {
+			var type = lists[i].type;
+			var status = lists[i].status;
+			var types = _this.setType(type);
+			var sta = _this.setStatus(status);
+			lists[i].typeText = types;
+			lists[i].tstatusText = sta.txt;
+			lists[i].tstatusClas = sta.clas;
+		};
+		retList = _td.renderHtml(returnList, {
+			list: lists,
+		});
+		$('#tbody_list').html(retList);
+		_this.tipsHover();
+		_td.trColor("tbody_list");
 	},
 	// 给当月某天有回款的添加样式
 	dayStatus: function(headerData, month) {

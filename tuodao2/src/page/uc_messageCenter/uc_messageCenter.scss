@@ -1,7 +1,9 @@
 @import '../common/mixin';
-@import '../common/layout';
 .dis_none{
 	display:none;
+}
+#messagesCenter{
+	color: $mainColor;
 }
 .color{
 	color:#ff7400!important;

@@ -40,7 +40,7 @@
 				<td>{{frostAccount}}</td>
 				<td>{{arrivalAccount}}</td>
 				<td>{{platformInterest}}</td>
-				<td class="td_font vouType" type={{voucherType}}><span>{{voucherMoney}}</span>{{voucherType}}</td>
+				<td class="td_font">{{^repayType}}<span>{{voucherMoney}}</span>{{/repayType}} {{voucherUnit}}</td>
 			</tr>
 		</tbody>
 	</table>

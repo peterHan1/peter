@@ -1,0 +1,197 @@
+<div class="draw_menu">
+	<a class="welfare_on on"><img style="vertical-align: text-bottom;" src="../../../image/welfare/draw_re.png" alt="">&nbsp;抽iPhone8</a>
+	<a>抽688积分</a>
+</div>
+<div class="draw_title"><span class="circle1"></span><span class="circle2"></span><span class="title">可用积分：<p id="draw" style="display:inline-block;">110</p></span><span class="circle2"></span><span class="circle1"></span></div>
+<div class="draw_content">
+	<div class="draw_step">
+		<div class="drawPresent">
+			<ul class="draw_presents" id="draw_present">
+				<li class="lottery-unit lottery-unit-0">
+					<div class="presents_content">
+						<img src="../../../image/welfare/iphone8.png" alt="">
+					</div>
+					<p>iPhone8</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-1">
+					<div class="presents_content">
+						<img src="../../../image/welfare/xmTV.png" alt="">
+					</div>
+					<p>小米电视</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-2">
+					<div class="presents_content">
+						<img src="../../../image/welfare/flp.png" alt="">
+					</div>
+					<p>飞利浦电动牙刷</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-7">
+					<div class="presents_content">
+						<img src="../../../image/welfare/3jxq.png" alt="">
+					</div>
+					<p>3%加息券</p>
+					<div class="mask"></div>
+				</li>
+				<li class="fifth_child back_go" id="go_draw_100">
+					<div class="go_word">100积分抽一次</div>
+					<div class="none_points">
+						<a href="uc_points_gold.html?type=exchange">获取积分&nbsp;> </a>
+					</div>
+				</li>
+				<li class="lottery-unit lottery-unit-3">
+					<div class="presents_content">
+						<img src="../../../image/welfare/268hb.png" alt="">
+					</div>
+					<p>268元红包</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-6">
+					<div class="presents_content">
+						<img src="../../../image/welfare/68hb.png" alt="">
+					</div>
+					<p>68元红包</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-5">
+					<div class="presents_content">
+						<img src="../../../image/welfare/388hb.png" alt="">
+					</div>
+					<p>388元红包</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-4">
+					<div class="presents_content">
+						<img src="../../../image/welfare/10hb.png" alt="">
+					</div>
+					<p>10元红包</p>
+					<div class="mask"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="drawPoints" style="display:none;">
+			<ul class="draw_presents draw_points" id="draw_point">
+				<li class="lottery-unit lottery-unit-0">
+					<div class="points_content">
+						<img src="../../../image/welfare/688jf.png" alt="">
+					</div>
+					<p>668积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-1">
+					<div class="points_content">
+						<img src="../../../image/welfare/366jf.png" alt="">
+					</div>
+					<p>366积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-2">
+					<div class="points_content">
+						<img src="../../../image/welfare/166jf.png" alt="">
+					</div>
+					<p>166积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-7">
+					<div class="points_content">
+						<img src="../../../image/welfare/1jf.png" alt="">
+					</div>
+					<p>1积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="fifth_child back_go" id="go_draw_10">
+					<div class="go_word">10积分抽一次</div>
+					<div class="none_points">
+						<a href="uc_points_gold.html?type=exchange">获取积分&nbsp;> </a>
+					</div>
+				</li>
+				<li class="lottery-unit lottery-unit-3">
+					<div class="points_content">
+						<img src="../../../image/welfare/66jf.png" alt="">
+					</div>
+					<p>66积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-6">
+					<div class="points_content">
+						<img src="../../../image/welfare/6jf.png" alt="">
+					</div>
+					<p>6积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-5">
+					<div class="points_content">
+						<img src="../../../image/welfare/16jf.png" alt="">
+					</div>
+					<p>16积分</p>
+					<div class="mask"></div>
+				</li>
+				<li class="lottery-unit lottery-unit-4">
+					<div class="points_content">
+						<img src="../../../image/welfare/36jf.png" alt="">
+					</div>
+					<p>36积分</p>
+					<div class="mask"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="draw_order">
+	<div class="order_word">抽奖规则</div>
+	<dl>
+		<dt>
+			<i></i>【抽iPhone8】活动，每次抽奖需消耗100积分，【抽688积分】活动，每次抽奖需消耗10积分，扣除的积分将不予退回；
+		</dt>
+		<dt style="padding-bottom:0px;">
+			<i></i>若您抽中的为虚拟类的奖品，请在我的优惠券或我的积分中查看；若抽中实物类奖品，请在5个工作日内联系客服并提供您的收获地址，我们将安排发货；
+		</dt>
+		<dd>如需折现，请在首次联系客服是声明（失误奖品可按原价折现），折现后，拓道将不再发放实物奖品。若5个工作日内未联系，则视为自动放弃；</dd>
+		<dt><i></i>中奖的商品不开具相应的发票；如不需要折现，商品无质量问题，不支持退换货；</dt>
+		<dt><i></i>活动中严禁作弊，一旦发现取消相应奖励；</dt>
+		<dt><i></i>本活动最终解释权归拓道金服所有，有任何问题请联系电话：4008566685。</dt>
+	</dl>
+</div>
+
+<div id="draw_record" class="draw_record_alert dis_none">
+	<div class="out">
+		<div class="record_top">
+			<span>当前可用积分为<i class="points_yes">200</i>分，已累计抽奖<i class="draw_num">50</i>次</span>
+		</div>
+		<div class="record_yes">
+			<table class="record_table">
+			</table>
+			<div class="pageList record_page" onselectstart="return false" style="-moz-user-select:none;"></div>
+		</div>
+		<div class="record_none dis_none"><img src="../../../image/no_data.png" alt=""><br /><br />当前没有中奖记录</div>
+	</div>
+</div>
+<div id="draw_presents" class="draw_presents_alert dis_none draw_alert">
+	<div class="presents_content">
+		<div class="present_img"><p></p><span>iPhone8</span></div>
+		<ul class="draw_explian">
+			<li style="font-size: 24px;color: #ff7400;margin-bottom: 38px;">恭喜您中奖啦！</li>
+			<li><span class="iconfont">&#xe6b3;</span>&nbsp;40085-666-85</li>
+			<li>请您在5个工作日拨打客服电话否则将视为放弃奖励</li>
+		</ul>
+	</div>
+	<div class="draw_btn"><button>我知道了</button></div>
+</div>
+<div id="draw_hongbao" class="draw_hongbao_alert dis_none draw_alert">
+	<ul class="hongbao_content">
+		<li class="hb_img"></li>
+		<li class="color333">恭喜您抽中<span>388元红包</span>！</li>
+		<li class="color9e">您可以去<a href="uc_coupon.html">我的优惠券</a>中查看获得的<span>红包</span></li>
+		<li class="draw_btn"><button>我知道了</button></li>
+	</ul>
+</div>
+<div id="draw_points" class="draw_points_alert dis_none draw_alert">
+	<ul class="points_content">
+		<li class="point_img"><img src="../../../image/welfare/jf_alert.png" alt=""></li>
+		<li class="color333">恭喜您抽中&nbsp;<span>388</span>&nbsp;积分！</li>
+		<li class="color9e"><span>不要泄气，小奖怡情</span></li>
+		<li class="draw_btn"><button>我知道了</button></li>
+	</ul>
+</div>

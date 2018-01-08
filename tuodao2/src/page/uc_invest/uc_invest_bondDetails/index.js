@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 var _tips 		= require('util/tips/index.js');
@@ -34,24 +34,26 @@ var ucInvest = {
 		});
 	},
 	detailTopHtml: function(headerData, tenderId) {
+		var _this = this;
 		_apiInvest.getBondTop(headerData, tenderId, function(res) {
 			var com = res.content;
-			com.statusText = ucInvest.detailsStatus(com.status);
-			com.wayText = ucInvest.detailsReturnWay(com.styleType);
+			com.statusText = _this.detailsStatus(com.status);
+			com.wayText = _this.detailsReturnWay(com.styleType);
 			$(".sift_detailsT").html(_td.renderHtml(bondDel, {
 				content: com
 			}));
-			ucInvest.tipsHover();
+			_this.tipsHover();
 		}, function(err) {
 			console.log(err);
 		});
 	},
 	detailRetHtml: function(headerData, tenderId) {
+		var _this = this;
 		_apiInvest.getBondRet(headerData, tenderId, 5, 1, function(res) {
-			ucInvest.detailRetHtmlFn(res.content.list);
+			_this.detailRetHtmlFn(res.content.list);
 			_paging.paging("pageList", res.content.total, 5, function(e) {
 				_apiInvest.getBondRet(headerData, tenderId, 5, e.current, function(res) {
-					ucInvest.detailRetHtmlFn(res.content.list);
+					_this.detailRetHtmlFn(res.content.list);
 				}, function(err) {
 					console.log(err);
 				});
@@ -61,8 +63,9 @@ var ucInvest = {
 		});
 	},
 	detailRetHtmlFn: function(lists) {
+		var _this = this;
 		for (i in lists) {
-			lists[i].statusClas = ucInvest.setListStatus(lists[i].status);
+			lists[i].statusClas = _this.setListStatus(lists[i].status);
 		}
 		$("#tbody_list").html(_td.renderHtml(bondDelRet, {
 			list: lists

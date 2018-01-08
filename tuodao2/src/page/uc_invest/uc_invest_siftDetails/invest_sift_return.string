@@ -2,7 +2,7 @@
 <tr>
 	<td class="padd_left">{{preCollectionTime}}</td>
 	<td>{{preInterest}}</td>
-	<td class="td_wid returnsta returnsta{{status}}">{{statusTxt}}</td>
+	<td class="td_wid returnsta{{status}}">{{statusTxt}}</td>
 </tr>
 {{/list}}
 {{^list}}

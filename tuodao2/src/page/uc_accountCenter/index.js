@@ -130,20 +130,21 @@ var accountSet = {
 				var name = $(".username").val();
 				var phone = $(".phonenum").val();
 				var adr = $(".useradress").val();
-				$(".adress .adress_text .adr_name").find('span').html(name);
-				$(".adress .adress_text .adr_phone").find('span').html(phone);
-				$(".adress .adress_text .adr_adr").find('span').html(adr);
-				$(".adress .adress_text .adr_box").show();
-				$(".adress .adress_text .adr_ts").hide();
-				$(".adress .adress_text a").hide();
-				$(".adress .adress_top a").show();
 				layer.closeAll();
 				var data = {
 					consignee: name,
 					consigneeMobile: phone,
 					consigneeAddress: adr
 				};
-				_user.updateConsigneeInfo(headerData,data, function(res) {});
+				_user.updateConsigneeInfo(headerData,data, function(res) {
+					$(".adress .adress_text .adr_name").find('span').html(name);
+					$(".adress .adress_text .adr_phone").find('span').html(phone);
+					$(".adress .adress_text .adr_adr").find('span').html(adr);
+					$(".adress .adress_text .adr_box").show();
+					$(".adress .adress_text .adr_ts").hide();
+					$(".adress .adress_text a").hide();
+					$(".adress .adress_top a").show();
+				});
 			} else {
 				return false;
 			}

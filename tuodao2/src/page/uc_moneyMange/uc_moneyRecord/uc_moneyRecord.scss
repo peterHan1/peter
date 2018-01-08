@@ -1,5 +1,10 @@
 @import '../../common/mixin';
-@import '../../common/layout';
+#capital{
+	display: block;
+}
+#ucMoneyRecord{
+	color: $mainColor;
+}
 .ones{
 	color:#fff!important;
 	background-color: #ff7400!important;

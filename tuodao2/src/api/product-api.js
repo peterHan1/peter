@@ -58,7 +58,7 @@ var _product = {
 	// 我的投资
 	oldInvest : function(headerData,pageNum,type,resolve,reject){
 		_td.request({
-			// url     	: _td.getServerUrl('api/router/tc/tender/oldTender_list'),
+			// url     	: _td.getServerUrl('/api/router/tc/tender/oldTender_list'),
 			method		: "get",
 			url     	: _td.getServerUrl('/oldInvest.json'),
 			accessId	: headerData.accessId,
@@ -75,7 +75,7 @@ var _product = {
 	// 我的投资--标详情
 	oldInvestDetail : function(headerData,ids,resolve,reject){
 		_td.request({
-			// url     	: _td.getServerUrl('api/router/tc/tender/oldApp_tender_detail'),
+			// url     	: _td.getServerUrl('/api/router/tc/tender/oldApp_tender_detail'),
 			method		: "get",
 			url     	: _td.getServerUrl('/oldInvestDetail.json'),
 			accessId	: headerData.accessId,
@@ -100,7 +100,7 @@ var _product = {
 	// 资金记录
 	oldCapital : function(headerData,pageNum,type,resolve,reject){
 		_td.request({
-			// url     	: _td.getServerUrl('api/router/tc/account/oldAccount_log_list'),
+			// url     	: _td.getServerUrl('/api/router/tc/account/oldAccount_log_list'),
 			method		: "get",
 			url     	: _td.getServerUrl('/oldCapital.json'),
 			accessId	: headerData.accessId,
@@ -117,7 +117,7 @@ var _product = {
 	// 转让记录列表
 	oldTransfer : function(headerData,pageNum,resolve,reject){
 		_td.request({
-			// url     	: _td.getServerUrl('api/router/creditAssignment/oldAppTransferLog'),
+			// url     	: _td.getServerUrl('/api/router/creditAssignment/oldAppTransferLog'),
 			method		: "get",
 			url     	: _td.getServerUrl('/oldTransfer.json'),
 			accessId	: headerData.accessId,
@@ -146,7 +146,7 @@ var _product = {
 	// 受让记录列表
 	oldFarmIn : function(headerData,pageNum,resolve,reject){
 		_td.request({
-			// url     	: _td.getServerUrl('api/router/creditAssignment/oldAppCompromisedList'),
+			// url     	: _td.getServerUrl('/api/router/creditAssignment/oldAppCompromisedList'),
 			method		: "get",
 			url     	: _td.getServerUrl('/oldfarmIn.json'),
 			accessId	: headerData.accessId,

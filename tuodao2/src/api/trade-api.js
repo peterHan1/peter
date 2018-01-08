@@ -345,6 +345,12 @@ var _trade = {
 				pageSize  	: pagesize,
 				currentPage	: current
 			},
+			beforeFn 	: function(){
+				_td.removeError();
+			},
+			completeFn 	: function(){
+				_td.layerLeave();
+			},
 			success : resolve,
 			error   : reject
 		});
@@ -404,6 +410,12 @@ var _trade = {
 				endTime 	: endtime 	|| "",
 				pageSize  	: pagesize,
 				currentPage	: current
+			},
+			beforeFn 	: function(){
+				_td.removeError();
+			},
+			completeFn 	: function(){
+				_td.layerLeave();
 			},
 			success : resolve,
 			error   : reject
@@ -478,6 +490,12 @@ var _trade = {
 			accessKey	: headerData.accessKey,
 			data    	: {
 				tenderId 	: id
+			},
+			beforeFn 	: function(){
+				_td.layerLoad();
+			},
+			completeFn 	: function(){
+				_td.layerLeave();
 			},
 			success : resolve,
 			error   : reject

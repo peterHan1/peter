@@ -4,7 +4,9 @@
 		<p>{{productTitle}}</p>
 		<div class="type">
 			<img src="{{typePcUrl}}" class="fl">
+			{{#definetype}}
 			<div class="tips">{{typeRemark}}<span class="bot"></span><span class="bot2"></span></div>
+			{{/definetype}}
 		</div>
 	</div>
 	<div class="major">

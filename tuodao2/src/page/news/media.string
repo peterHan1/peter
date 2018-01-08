@@ -1,6 +1,6 @@
 {{#list}}
-	<a class="media_list" data-url={{contentId}}>
-		<p><img src={{url}} alt=""></p>
+	<a class="media_list" href="news_detail.html?type=media&id={{contentId}}">
+		<p><img src={{thumbnail}} alt=""></p>
 		<ul>
 			<li class="li_1">{{title}}</li>
 			<li class="li_2">{{publishTime}}</li>

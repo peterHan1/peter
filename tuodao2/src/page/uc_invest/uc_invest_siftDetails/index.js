@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 var _tips 		= require('util/tips/index.js');
@@ -23,29 +23,31 @@ var ucInvest = {
 		this.siftRetHtml(headerData, tender);
 	},
 	siftTopHtml: function(headerData, tender) {
+		var _this = this;
 		_apiInvest.getSiftDel(headerData, tender, function(res) {
 			var com = res.content;
-			com.returnWayText = ucInvest.siftDetReturnWay(com.repayType);
-			com.statusText = ucInvest.siftDetStatus(com.status);
+			com.returnWayText = _this.siftDetReturnWay(com.repayType);
+			com.voucherUnit = _this.siftvouType(com.voucherType);
+			com.statusText = _this.siftDetStatus(com.status);
 			$(".sift_detailsT").html(_td.renderHtml(siftDel, {
 				content: com
 			}));
-			ucInvest.setProto(com.status, com.voucherType, com.borrowId);
-			ucInvest.siftvouType();
-			ucInvest.tipsHover();
+			_this.setProto(com.status, com.voucherType, com.borrowId);
+			_this.tipsHover();
 		}, function(err) {
 			console.log(err);
 		});
 	},
 	siftCreHtml: function(headerData, tender) {
+		var _this = this;
 		_apiInvest.getSiftCred(headerData, tender, 5, 1, function(res) {
 			if (res.content == null) {
-				ucInvest.dataNull("tbody_list", "6", "资产匹配成功后显示债券明细");
+				_this.dataNull("tbody_list", "6", "资产匹配成功后显示债券明细");
 			} else {
-				ucInvest.siftCreHtmlFn(res.content.list);
+				_this.siftCreHtmlFn(res.content.list);
 				_paging.paging("crePage", res.content.total, 5, function(e) {
 					_apiInvest.getSiftCred(headerData, tender, 5, e.current, function(res) {
-						ucInvest.siftCreHtmlFn(res.content.list);
+						_this.siftCreHtmlFn(res.content.list);
 					}, function(err) {
 						console.log(err);
 					});
@@ -56,28 +58,30 @@ var ucInvest = {
 		});
 	},
 	siftCreHtmlFn: function(lists) {
+		var _this = this;
 		for (i in lists) {
 			var sta = lists[i].discountAvailable;
-			var staTxt = ucInvest.siftAvailable(sta);
+			var staTxt = _this.siftAvailable(sta);
+			var dateExplains = _this.siftCreOper(lists[i].dateExplain);
 			lists[i].staText = staTxt;
+			lists[i].explainTxt = dateExplains.txt;
+			lists[i].explainClas = dateExplains.clas;
+			lists[i].explainUrl = dateExplains.url;
 		};
-		var borwA = "<a href='###'>查看借款协议</a>";
-		var tranA = "<a href='###'>查看转让协议</a>";
-		$("#tbody_list").html(_td.renderHtml(siftCre, {
-			list: lists
-		}));
-		ucInvest.siftCreOper(borwA, tranA);
+		$("#tbody_list").html(_td.renderHtml(siftCre, {list: lists}));
+		_this.listTipsHover();
 	},
 	siftRetHtml: function(headerData, tender) {
+		var _this = this;
 		_apiInvest.getSiftReturn(headerData, tender, 5, 1, function(res) {
 			console.log(res);
 			if (res.content == null) {
-				ucInvest.dataNull("tbody_list", "6", "当前没有回款计划");
+				_this.dataNull("tbody_list", "6", "当前没有回款计划");
 			} else {
-				ucInvest.siftRetHtmlFn(res.content.list);
+				_this.siftRetHtmlFn(res.content.list);
 				_paging.paging("retPage", res.content.total, 5, function(e) {
 					_apiInvest.getSiftReturn(headerData, tender, 5, e.current, function(res) {
-						ucInvest.siftRetHtmlFn(res.content.list);
+						_this.siftRetHtmlFn(res.content.list);
 					}, function(err) {
 						console.log(err);
 					});
@@ -88,9 +92,10 @@ var ucInvest = {
 		});
 	},
 	siftRetHtmlFn: function(lists) {
+		var _this = this;
 		for (i in lists) {
 			var status = lists[i].status;
-			var statusTxt = ucInvest.siftReturnSts(status);
+			var statusTxt = _this.siftReturnSts(status);
 			lists[i].statusText = statusTxt;
 		};
 		siftReHtml = _td.renderHtml(siftRet, {
@@ -100,21 +105,12 @@ var ucInvest = {
 		_td.trColor("tbody_list");
 		_td.trColor("tbodys_list");
 	},
-	siftCreOper: function(a1, a2) {
-		var oper = $(".tb_oper");
-		$.each(oper, function(i) {
-			var h = $(this).attr("opera");
-			if (h == "待回款") {
-				$(this).html(a1);
-			} else if (h == "匹配中") {
-				$(this).html("满标复审后生成借款协议");
-			} else if (h == "转让成功") {
-				$(this).html(a2);
-			}
-		});
-		var a1 = '<a href="###">查看借款协议</a>';
-		var a2 = '满标复审后生成借款协议';
-		var a3 = '<a href="###">查看转让协议</a>';
+	siftCreOper: function(dateExplain) {
+		if(dateExplain == null || dateExplain == ""){
+			return {"txt":"满标复审后生成授权委托书","clas":"aNull","url":"javascript:;"};
+		}else{
+			return {"txt":"查看借款协议","clas":"aData","url":dateExplain};
+		}
 	},
 	siftAvailable: function(sta) {
 		switch (sta) {
@@ -199,10 +195,16 @@ var ucInvest = {
 				return "";
 		}
 	},
-	siftvouType: function() {
-		var typ = $(".vouType").attr("type");
-		if (typ == "0") {
-			$(".vouType").html("-");
+	siftvouType: function(type) {
+		switch (type) {
+			case 0:
+				return "-";
+			case 1:
+				return "抵用券";
+			case 2:
+				return "加息券";
+			default:
+				return "";
 		}
 	},
 	dataNull: function(el, num, str) {
@@ -217,9 +219,17 @@ var ucInvest = {
 		});
 	},
 	tipsHover: function() {
+		$(".hint").mouseover(function() {
+			_tips.getTipsRight($(this), -10);
+		});
+		$(".hint").mouseout(function() {
+			$(this).find('.tips').hide();
+		});
+	},
+	listTipsHover: function(){
 		$(".td_name").mouseover(function() {
 			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), 0);
+				_tips.getTipsRight($(this), 12);
 			}
 		});
 		$(".td_name").mouseout(function() {

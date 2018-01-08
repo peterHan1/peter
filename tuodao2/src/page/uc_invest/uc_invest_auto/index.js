@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
@@ -25,6 +25,7 @@ var ucInvest = {
 		this.urlEach(headerData);
 	},
 	urlEach: function(headerData) {
+		var _this = this;
 		$('.auto_switchTab a').each(function() {
 			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href') != "") {
 				var types = $(this).attr('type');
@@ -32,7 +33,7 @@ var ucInvest = {
 				$(this).addClass('on');
 				$(".auto_com").eq(index).show().siblings(".auto_com").hide();
 				if (types == "1") {
-					ucInvest.getAutoList(headerData);
+					_this.getAutoList(headerData);
 				}
 			} else {
 				$(this).removeClass('on');
@@ -42,17 +43,19 @@ var ucInvest = {
 	},
 	// 开启自动投标总人数
 	getAutoSum: function(headerData) {
+		var _this = this;
 		_apiInvest.getAutoSum(headerData, function(res) {
 			autoSum = _td.renderHtml(autoSum, {
 				content: res.content,
 			});
 			$('.auto_tips').html(autoSum);
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	// 是否开通自动投标
 	setInpForm: function(headerData) {
+		var _this = this;
 		_apiInvest.getInpForm(headerData, function(res) {
 			var sta = res.content.status;
 			autoSum = _td.renderHtml(autoSum, {
@@ -62,7 +65,7 @@ var ucInvest = {
 			if (sta == "0") {
 				$("#switch").attr("class", "switch_off");
 				$("#switch").attr("status", sta);
-				ucInvest.getAutoSum(headerData);
+				_this.getAutoSum(headerData);
 			} else if (sta == "1") {
 				$(".auto_setForm").show();
 				$("#switch").attr("status", sta);
@@ -75,23 +78,24 @@ var ucInvest = {
 					content: res.content,
 				});
 				$(".auto_tips").html(ranking);
-				ucInvest.setForm(headerData);
+				_this.setForm(headerData);
 			}
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	// 自动投标按钮打开、关闭
 	autoOpen: function(headerData) {
+		var _thiss = this;
 		$("#switch").on("click", function() {
 			var _this = $(this);
 			var sta = $(this).attr("status");
 			if ($(this).is('.switch_off')) {
-				ucInvest.getBank(headerData, $(this));
+				_thiss.getBank(headerData, $(this));
 			} else if (sta == "1" && $(this).is('.switch_on')) {
 				console.log("已经开启 手动关闭");
 				$(".auto_setInp").remove();
-				ucInvest.closAuto(headerData, $(this));
+				_thiss.closAuto(headerData, $(this));
 			} else if (sta == "0" && $(this).is('.switch_on')) {
 				console.log("没有开启 也没有保存");
 				$(".auto_setInp").remove();
@@ -102,6 +106,7 @@ var ucInvest = {
 	},
 	// 是否开通存管
 	getBank: function(headerData, el) {
+		var _this = this;
 		_apiInvest.getAutoBank(headerData, function(res) {
 			el.attr("class", "switch_on");
 			$(".auto_ranking").show();
@@ -114,10 +119,10 @@ var ucInvest = {
 				autoinp = _td.renderHtml(autoInp, {});
 				$('.auto_setBox').html(autoinp);
 				$(".select_com").addClass('select');
-				ucInvest.setForm(headerData);
+				_this.setForm(headerData);
 			}
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	getAutoList: function(headerData) {
@@ -134,27 +139,29 @@ var ucInvest = {
 					});
 					$('#tbody_list').html(list);
 					_td.trColor("tbody_list");
-				}, function() {
-					console.log("分页请求失败");
+				}, function(err) {
+					_this.logout(err);
 				});
 			});
-		}, function() {
-			console.log("请求失败");
+		}, function(err) {
+			_this.logout(err);
 		});
 	},
 	closAuto: function(headerData, el) {
+		var _this = this;
 		_apiInvest.closeAuto(headerData, function(res) {
 			el.attr("class", "switch_off");
 			el.attr("status", "0");
 			$(".auto_ranking").hide();
 			$(".auto_setForm").hide();
-			ucInvest.getAutoSum(headerData);
-			ucInvest.setInpForm(headerData);
+			_this.getAutoSum(headerData);
+			_this.setInpForm(headerData);
 		}, function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	setForm: function(headerData) {
+		var _this = this;
 		// 点击修改
 		$(".set_form").on("click", function() {
 			$(".select_com").addClass("select");
@@ -164,13 +171,12 @@ var ucInvest = {
 			$(".sub_btn").show();
 			$(".redios_inp").show();
 		});
-		ucInvest.cancelBtn();
-		ucInvest.customRadio();
-		ucInvest.customSelect();
-		ucInvest.tipsHover();
-		ucInvest.saveBtn(headerData);
-		ucInvest.setInputMoney();
-
+		_this.cancelBtn();
+		_this.customRadio();
+		_this.customSelect();
+		_this.tipsHover();
+		_this.saveBtn(headerData);
+		_this.setInputMoney();
 	},
 	// 取消按钮
 	cancelBtn: function() {
@@ -180,7 +186,6 @@ var ucInvest = {
 				$("#switch").attr("class", "switch_off");
 				$(".auto_setForm").hide();
 				$(".auto_setInp").remove();
-
 			} else {
 				$(".select_com").removeClass("select");
 				$(".auto_setInp input").attr("disabled", "disabled");
@@ -193,6 +198,7 @@ var ucInvest = {
 	},
 	// 保存按钮
 	saveBtn: function(headerData) {
+		var _this = this;
 		$(".save_btn").on("click", function() {
 			var minPeriod = $(".minPeriod").html();
 			var maxPeriod = $(".maxPeriod").html();
@@ -214,10 +220,10 @@ var ucInvest = {
 				useCoupon: useCoupon,
 			};
 			_apiInvest.openAuto(headerData, param, function(res) {
-				ucInvest.saveSub(minAccount, maxAccount);
-				ucInvest.setInpForm(headerData);
+				_this.saveSub(minAccount, maxAccount);
+				_this.setInpForm(headerData);
 			}, function(err) {
-				console.log(err);
+				_this.logout(err);
 			});
 		});
 	},
@@ -236,6 +242,13 @@ var ucInvest = {
 		$(".redios_inp").hide();
 		$(".minAccount").val(minAccount);
 		$(".maxAccount").val(maxAccount);
+	},
+	logout: function(err){
+		if(err.code == 100105){
+			_td.doLogin();
+		}else{
+			console.log(err);
+		}
 	},
 	customRadio: function() {
 		// 自定义radio
@@ -293,14 +306,10 @@ var ucInvest = {
 	},
 	tipsHover: function() {
 		$(".hint").mouseover(function() {
-			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), 0);
-			}
+			_tips.getTipsRight($(this), 0);
 		});
 		$(".hints").mouseover(function() {
-			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), -10);
-			}
+			_tips.getTipsRight($(this), -10);
 		});
 		$(".hint").mouseout(function() {
 			$(this).find('.tips').hide();

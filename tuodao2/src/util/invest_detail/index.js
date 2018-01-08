@@ -1,7 +1,9 @@
 require('./index.scss');
 var _td = require('util/td.js');
+var _formError = require('./formError.js');
 var _details = {
-	setinput : function(ins,amount,apr,awardType,awardScale,period,borrowType,refundWay){
+	// 输入金额相关 start
+	setinput : function(ins,amount,apr,awardType,awardScale,period,refundWay){
 		var $amountInput = ins;
 		event = window.event || event;
 		if (event.keyCode == 37 | event.keyCode == 39) {
@@ -20,35 +22,107 @@ var _details = {
 		}else{
 			$(".sub_btn").val("实付"+m+"元，立即投资");
 		};
-		_details.earnings(ins.val(),apr,awardType,awardScale,period,borrowType,refundWay);
+		_details.earnings(ins.val(),apr,awardType,awardScale,period,refundWay);
 	},
 	// 收益算法
-	earnings : function(inMoney,apr,awardType,awardScale,period,borrowType,refundWay){
-		//  apr:年利率 awardType:奖励类型 0无1金额2利率 awardScale:奖励利率 period:期限 标的类型：borrowType type:还款类型
-		if(awardType == 0){
-			// 无奖励
-			var income = _details.MonthlyApr(inMoney,apr);
-			$(".predict_money").html(income);
-		}else if(awardType == 1 || awardType == 2){
-			// 平台奖励
-			if(awardType == 2){
-				// 年化率
-				var income = _details.MonthlyApr(inMoney,apr);
-				// 奖励利息
-				var awardIncome = _details.MonthlyApr(inMoney,awardScale);
-				if(awardIncome > 0){
-					$(".predict_money").html(income+"+"+awardIncome);
-				}else{
-					$(".predict_money").html(income);
-				}
-			}else if(awardType == 1){
-				// 奖励金额
-				var income = _details.MonthlyApr(inMoney,apr);
-				$(".predict_money").html(income +"+"+ awardScale);
+	earnings : function(inMoney,apr,awardType,awardScale,period,refundWay){
+		//  apr:年利率 awardType:奖励类型 0无1金额2利率 awardScale:奖励利率 period:期限 refundWay:还款类型 0等额本息 1按月付息 2 按天付息
+		var earHtml = _details.MonthlyApr(inMoney,apr,awardScale,period,refundWay);
+		$(".predict_money").html(earHtml);
+		$(".coupon_money").html(" ");
+	},
+	MonthlyApr : function(inputM,apr,awardScale,period,refundWay){
+		// 输入金额
+		var nowMoney = inputM;
+		// 年利率
+		var nowApr = apr;
+		// 奖励利率
+		var nowawardApr = awardScale;
+		// 期限
+		var nowperiod = period;
+		// 奖励利率收益
+		var scale_amount =nowMoney*(nowawardApr/100);
+
+		if(refundWay == 0){
+			// 等额本息
+			// 年利率收益
+			var perMonthApr =   nowApr * 0.01 / 12;
+			// 奖励利率收益
+			var awardApr = nowawardApr * 0.01 / 12;
+			// 期限
+			var period = nowperiod*1;
+			// 输入金额
+			var amt = nowMoney;
+			// 正常收益
+			amount = _details.getMonthInterest(amt,perMonthApr,period);
+			if(awardApr == 0){
+				scale_amount = 0;
+			}else{
+				// 奖励收益
+				scale_amount = _details.getMonthInterest(amt,awardApr,period);
 			}
+		}else if(refundWay == 1){
+			// 按月付息
+			// 正常收益
+			amount = nowMoney *(nowApr/100) * (nowperiod*1)/12 ;
+			// 奖励收益
+			scale_amount = scale_amount * (nowperiod*1)/12 ;
+		}else if(refundWay == 2){
+			// 正常收益
+			amount = nowMoney *(nowApr/100) * (nowperiod*1)/365 ;
+			// 奖励收益
+			scale_amount = scale_amount * (nowperiod*1)/365 ;
+		};
+		if(scale_amount.toFixed(2)==0){
+			// 没有奖励
+			var earHtml =  amount.toFixed(2);
+			return earHtml;
+			// $(".predict_money").html(earHtml);
+		}else{
+			// 有奖励
+			var earHtml =  amount.toFixed(2) + "  +  "+scale_amount.toFixed(2);
+			return earHtml;
+			// $(".predict_money").html(earHtml);
 		}
 	},
-
+	getMonthInterest : function(amt,perMonthApr,period){
+		var interset = 0;
+		var preMonth = amt * perMonthApr* Math.pow((1+perMonthApr), period)/(Math.pow((1+perMonthApr), period)-1);
+		var leftAcc = amt;
+		for (var i=0;i<period;i++){
+			var perInterest = parseFloat((leftAcc * perMonthApr).toFixed(2));
+			interset += perInterest;
+			var perCapital = parseFloat((preMonth - perInterest).toFixed(2));
+			leftAcc -= perCapital;
+		}
+		return interset;
+	},
+	// 输入金额格式化
+	overFormat :function(th){
+		if(th.val() != ""){
+			th.val(Number(th.val()).toFixed(2));
+			var logNum = th.val().toString();
+			integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
+			decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
+			var m = th.val();
+			if(m == ""){
+				$(".sub_btn").val("实付0.00元，立即投资");
+				$(".predict_money").html("0.00");
+			}else{
+				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
+			}
+		};
+		$(".btn_empty").hide();
+	},
+	// 余额全投
+	all_money : function(lastMoney,balance,el){
+		if(lastMoney > balance){
+			el.val(balance).keyup().focus();
+		}else{
+			el.val(lastMoney).keyup().focus();
+		};
+	},
+	// 输入金额相关 end
 	// 新手标
 	isNewInvest : function(){
 		var isNewHtml = '<p><i class="iconfont">&#xe68f;</i>这是新手专享标的，只有未投资过的新用户才可享受加息3%的新手奖励。 您已经投资过了，快去看看其它标的吧!</p>';
@@ -59,12 +133,7 @@ var _details = {
 		var cleHtml = '<p><i class="iconfont">&#xe694;</i>当前是存管系统清算时间（每天23:55 - 00:05 ），不可进行投资，充值，提现操作，请您稍后重试。由此给您造成不便，敬请谅解！</p>';
 		$(".clearing").html(cleHtml);
 	},
-	// 按月付息
-	MonthlyApr : function(inputM,apr){
-		var period = $(".borrowPeriod").html()*1;
-		var awardIncome = (inputM*(apr/100)/12*period).toFixed(2);
-		return awardIncome;
-	},
+	// 优惠券相关 start
 	// 优惠券list点击选择
 	disSelect : function(el){
 		var sel = '<b class="select_b"></b>';
@@ -79,21 +148,20 @@ var _details = {
 		$(".yes").attr("type",types);
 	},
 	// 选择优惠券 确定点击
-	disBtn : function(el){
+	addBtn_q : function(el,apr,period,refundWay){
 		var disId = el.attr("id");
 		var apr = el.attr("apr");
 		var types = el.attr("type");
 		if(types == 1){
 			types = " 元抵用券";
-			var disSpan = '<span>+'+apr+'</span>';
-			$(".predict_money span").remove();
-			$(".predict_money").append(disSpan);
+			$(".coupon_money").html(" ");
+			$(".coupon_money").html(" + " + apr);
 		}else{
 			types = "% 加息券";
 			var inputM = $(".sub_money").val()*1;
-			var addAward = '<span>+'+_details.MonthlyApr(inputM,apr)+'</span>';
-			$(".predict_money span").remove();
-			$(".predict_money").append(addAward);
+			var addAward = _details.MonthlyApr(inputM,apr,0,period,refundWay);
+			$(".coupon_money").html(" ");
+			$(".coupon_money").html(" + " + addAward);
 		}
 		$(".inp_disc").val(apr + types).css("color","#333");
 		$(".inp_ticket").val(disId);
@@ -110,7 +178,9 @@ var _details = {
 			$(".disHint").show();
 		}
 	},
-	// 通用表单验证
+	// 优惠券相关 end
+
+	// 通用表单验证 start
 	formValidate : function(formData){
 		var result = {
 			status  : false,
@@ -150,13 +220,13 @@ var _details = {
 		if (formData.money != "") {
 			validateResult = _details.moneyValidate(formData,str,lm,ym,productType);
 			if (validateResult.status) {
-				formError.hide(el);
+				_formError.hide(el);
 			} else {
 				var id = '#' + validateResult.id;
-				formError.show(id, validateResult.msg);
+				_formError.show(id, validateResult.msg);
 			}
 		}else{
-			formError.hide(el);
+			_formError.hide(el);
 		}
 	},
 	// 输入金额表单验证
@@ -223,7 +293,8 @@ var _details = {
 			return value>500000;
 		}
 	},
-	// 性别
+	// 通用表单验证 end
+	// 格式化 start
 	setsex : function(sex){
 		switch (sex)
 		{
@@ -243,6 +314,14 @@ var _details = {
 			case 1:
 				return "精选计划";
 			default: return "";
+		}
+	},
+	setDefineType : function(type){
+		var deType;
+		if(type == 1){
+			return deType = true;
+		}else{
+			return deType = false;
 		}
 	},
 	// 时间格式化
@@ -310,6 +389,16 @@ var _details = {
 			return result = h + ":" + m + ":" + s;
 		}
 	},
+	// 加入进度
+	setBarShow : function(totalM,resM){
+		var plan = Math.floor((totalM-resM)/totalM*100);
+		if(totalM == resM){
+			return {"planTxt":0,"barWin":"style=width:0%"};
+		}else{
+			return {"planTxt":plan,"barWin":"style=width:"+plan+"%"};
+		}
+	},
+	// 格式化 end
 	// input输入
 	mouseover : function(obj){
 		$('input').removeClass('hover-input');
@@ -326,15 +415,6 @@ var _details = {
 	blur : function(){
 		$('input').removeClass('focus-input');
 	},
-	// 加入进度
-	setBarShow : function(totalM,resM){
-		var plan = Math.floor((totalM-resM)/totalM*100);
-		if(totalM == resM){
-			return {"planTxt":0,"barWin":"style=width:0%"};
-		}else{
-			return {"planTxt":plan,"barWin":"style=width:"+plan+"%"};
-		}
-	},
 	// input得到焦点
 	inpMoneyOnFocus: function(el) {
 		var val = el.val();
@@ -348,67 +428,6 @@ var _details = {
 		} else {
 			$(".btn_empty").hide();
 		}
-	},
-	// 输入金额格式化
-	overFormat :function(th){
-		if(th.val() != ""){
-			th.val(Number(th.val()).toFixed(2));
-			var logNum = th.val().toString();
-			integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
-			decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
-			var m = th.val();
-			if(m == ""){
-				$(".sub_btn").val("实付0.00元，立即投资");
-				$(".predict_money").html("0.00");
-			}else{
-				$(".sub_btn").val("实付"+ integerNum+decimalNum +"元，立即投资");
-			}
-		};
-		$(".btn_empty").hide();
-	},
-	// 余额全投
-	all_money : function(lastMoney,balance,el){
-		if(lastMoney > balance){
-			el.val(balance).keyup().focus();
-		}else{
-			el.val(lastMoney).keyup().focus();
-		};
-	},
-	trColor : function(id){
-		// 各行变色
-		var trs=document.getElementById(id).getElementsByTagName("tr");
-		for(var i=0;i<trs.length;i++){
-			if(i%2==0){
-				trs[i].className +=" trColor";
-			}
-		};
-	},
-};
-var formError = {
-	show : function(id,errMsg){
-		$(id).addClass('err-input');
-		var el = '<p class="form-error-info">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span>'+errMsg+'</span></p>';
-		$(".invest_money p").remove();
-		return $(id).parent().append(el);
-	},
-	hide : function(el){
-		el.removeClass('err-input');
-		el.parent("div").find('p').remove();
-	},
-	allShow : function(cla,errMsg){
-		var txt = "<span class='mess'><i class='iconfont'>&#xe671;</i>"+ errMsg +"</span>";
-		$(".current_money").addClass("cur_money");
-		if($(".mess").length > 0){
-			$(".mess").remove();
-		}
-		$(".current_money").append(txt);
-		$(cla).addClass('err-input');
-	},
-	allHide : function(el,els){
-		$(".current_money").removeClass("cur_money");
-		el.removeClass('err-input');
-		els.removeClass('err-input');
-		$(".mess").remove();
 	}
 };
 module.exports = _details;

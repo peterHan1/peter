@@ -3,6 +3,12 @@
 .dis_none{
 	display: none;
 }
+#welfare{
+	display: block;
+}
+#myInvite{
+	color: $mainColor;
+}
 .depository_no{
 	.depository_top{
 		@include padding-border;

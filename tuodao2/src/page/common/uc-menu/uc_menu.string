@@ -4,8 +4,8 @@
 <div class="icon">
 	<ul>
 		<li class="deposit_icon">
-			<a href="###" class="iconfont {{isOpenDeposit}}">&#xe66d;</a>
-			<div class="tips left-tips" id="{{isOpenDeposit}}"></div>
+			<a href="{{depositUrl}}" class="iconfont {{depositClas}}">&#xe66d;</a>
+			<div class="tips left-tips">{{depositTxt}}</div>
 		</li>
 		<li class="grade_icon">
 			<a href="###" class="iconfont grade ">&#xe6d{{vipLevel}};</a>

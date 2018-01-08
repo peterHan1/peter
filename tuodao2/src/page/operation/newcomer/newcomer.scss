@@ -1,5 +1,4 @@
 @import '../../common/mixin.scss';
-@import '../../common/layout';
 .comer_top{
 	width: 100%;
 	height: 300px;
@@ -18,11 +17,13 @@
 		.left{
 			width: 565px;
 			height: 313px;
+			display: block;
 			background: url('../../../image/newcomer.png')center no-repeat;
 			float: left;
 			cursor: pointer;
 		}
 		.right{
+			display: block;
 			background: #ffffff;
 			float: right;
 			width: 565px;
@@ -88,10 +89,16 @@
 			a{
 				display: block;
 				.p1{
+
 					font-size: 16px;
 					color: #9e9e9e;
 					padding-top: 20px;
-					padding-bottom: 40px;
+					height: 85px;
+					-moz-box-sizing: border-box;
+					-webkit-box-sizing: border-box;
+					-o-box-sizing: border-box;
+					-ms-box-sizing: border-box;
+					box-sizing: border-box;
 					span{
 						font-size: 14px;
 					}

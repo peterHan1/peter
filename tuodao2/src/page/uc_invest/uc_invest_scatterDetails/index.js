@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 
@@ -21,18 +21,19 @@ var ucInvest = {
 		this.addList(headerData, tender, 1, 5);
 	},
 	addTlt: function(headerData, id) {
+		var _this = this;
 		_apiInvest.getScstterDet(headerData, id, function(res) {
 			var commons = res.content;
-			var vouchers = ucInvest.setShow(commons.voucherType, commons.voucherMoney);
-			commons.refundWayText = ucInvest.scatterDetReturnWay(commons.refundWay);
+			var vouchers = _this.setShow(commons.voucherType, commons.voucherMoney);
+			commons.refundWayText = _this.scatterDetReturnWay(commons.refundWay);
 			commons.voucherVal = vouchers.m;
 			commons.voucherText = vouchers.voucher;
 			commons.voucherTUnit = vouchers.unit;
 			$(".sift_detailsT").html(_td.renderHtml(scatterTlt, {
 				content: commons
 			}));
-			ucInvest.tipsHover();
-			ucInvest.getStatus();
+			_this.tipsHover();
+			_this.getStatus();
 		}, function(err) {
 			console.log(err);
 		});
@@ -112,9 +113,7 @@ var ucInvest = {
 	},
 	tipsHover: function() {
 		$(".hint").mouseover(function() {
-			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), 0);
-			}
+			_tips.getTipsRight($(this), 0);
 		});
 		$(".hint").mouseout(function() {
 			$(this).find('.tips').hide();

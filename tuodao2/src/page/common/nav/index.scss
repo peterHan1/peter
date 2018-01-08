@@ -26,7 +26,7 @@
                         @include border-style($b-color:#fff);
                         border-bottom:0;
                         position: relative;
-                        z-index:9;
+                        z-index:1000;
                         &.on{
                           @include border-style;
                           a{
@@ -71,7 +71,6 @@
                             width:110px;
                             position:absolute;
                             top:68px;
-                            
                             left:-1px;
                             display:none;
                              padding:3px 0 5px 0; 
@@ -101,7 +100,7 @@
         text-align:center;
         margin:18px 0 0 30px;
         position:relative;
-        z-index:9;
+        z-index:1000;
         &.on div a{
           color:$mainColor;
           b{
@@ -150,7 +149,6 @@
         top:34px;
         padding:22px 0 5px 0;
         left:-1px;
-
         dd{
           line-height:34px;
           height:34px;

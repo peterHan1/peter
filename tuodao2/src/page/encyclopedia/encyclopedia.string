@@ -1,3 +1,3 @@
 {{#list}}
-<li><a class="mouseover" data-url={{contentId}}>{{title}}</a><span>{{publishTime}}</span></li>
+<li><a class="mouseover" href="encyclopedia_detail.html?id={{contentId}}">{{title}}</a><span>{{publishTime}}</span></li>
 {{/list}}

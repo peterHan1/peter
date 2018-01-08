@@ -1,5 +1,10 @@
 @import '../../common/mixin';
-@import '../../common/layout';
+#capital{
+	display: block;
+}
+#ucCash{
+	color: $mainColor;
+}
 .on{
 	color:#ff7400!important;
 	border-bottom:2px solid #ff7400;

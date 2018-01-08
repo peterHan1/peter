@@ -1,7 +1,6 @@
 var _td = require('util/td.js');
 
 var _operate = {
-// 我的优惠券下api接口
 	// 优惠券分页查询
 	getCoupon : function(headerData,Data,resolve, reject){
 		_td.request({
@@ -13,7 +12,6 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 我的积分下api接口
 	// 积分统计数值（可用，累计）
 	getPoints : function(headerData,resolve, reject){
 		_td.request({
@@ -64,12 +62,13 @@ var _operate = {
 		});
 	},
 	// 积分获取,任务列表
-	getPoints_get : function(headerData,resolve, reject){
+	getTasks : function(headerData,status,resolve, reject){
 		_td.request({
 			url     : '/api/router/op/findUserTask',
-			data    : {
-				currentPage 	: 1,
-				pageSize 		: 1000
+			data 		: {
+				type 		: status,
+				currentPage	: 1,
+				pageSize 	: 1000
 			},
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
@@ -145,7 +144,6 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 抽奖下api接口
 	// 抽獎結果
 	getDraw_result : function(headerData,type,needScore,resolve, reject){
 		_td.request({
@@ -174,7 +172,6 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 我的邀请下api
 	// 邀请记录
 	getInviteRecord : function(headerData,pagenum,resolve,reject){
 		_td.request({
@@ -209,7 +206,7 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 获取会员账户信息
+	// 获取会员账户信息
 	getMemberInfo : function(headerData,resolve, reject){
 		_td.request({
 			url     	: '/api/router/user/getUserAccountInfo',
@@ -229,19 +226,12 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 新手任务查询
-	getNewtask : function(headerData,resolve, reject){
+	// 新手专区获取首页新手标1信息
+	getNewInfo : function(resolve, reject){
 		_td.request({
-			url     	: '/api/router/op/findUserTask',
-			accessId	: headerData.accessId,
-			accessKey	: headerData.accessKey,
-			data 		: {
-				type 		: 2,
-				currentPage	: 1,
-				pageSize 	: 1000
-			},
-			success 		: resolve,
-			error   		: reject
+			url     : '/api/router/getJuniorJump',
+			success : resolve,
+			error   : reject
 		});
 	},
 	// 获取账户信息
@@ -286,8 +276,7 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 媒体公告理财百科
-	// 列表
+	// 媒体公告理财百科列表
 	getNews : function(headerData,type,pagenum,resolve, reject){
 		_td.request({
 			url     	: '/api/router/op/selectContentByContentRemark',
@@ -302,7 +291,7 @@ var _operate = {
 			error   	: reject
 		});
 	},
-	// 详情
+	// 媒体公告理财百科详情
 	getNewsDetail : function(headerData,ids,resolve, reject){
 		_td.request({
 			url     	: '/api/router/op/selectContentByContentId',
@@ -315,7 +304,7 @@ var _operate = {
 			error   	: reject
 		});
 	},
-// 新手指南信息披露
+	// 新手指南信息披露
 	getGuideData : function(headerData,resolve, reject){
 		_td.request({
 			url     	: '/api/router/getPlatfromTaskPlatData',

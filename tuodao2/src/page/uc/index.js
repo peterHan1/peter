@@ -1,18 +1,17 @@
-require('./uc.scss');
 require('page/common/uc-menu/index.js');
+require('./uc.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
-
+require('util/layer/index.js');
 var _td			= require('util/td.js');
 var _tips 		= require('util/tips/index.js');
-var _apigetuc 	= require('api/user-api.js');
+var _apiUser 	= require('api/user-api.js');
 var _apiReturn 	= require('api/trade-api.js');
 var _apiProduct = require('api/product-api.js');
 var _apigetOper = require('api/operate-api.js');
 var _returnmon 	= require('util/return_date/date_time.js');
 var echarts 	= require('util/echarts/echarts.common.min.js');
 var returnList 	= require('./returnList.string');
-var getUserMon	= require('./getUserMon.string');
 var getUserEch	= require('./getUserEch.string');
 var getUsersign	= require('./getUserSign.string');
 var getUserInt	= require('./getUserInt.string');
@@ -22,19 +21,19 @@ var _paging 	= require('util/paging/index.js');
 
 var uc = {
 	init : function(){
+		var _this = this;
 		var headerData = {
 			'accessId' : unescape(_td.getAccess('accessId')),
 			'accessKey' :unescape(_td.getAccess('accessKey'))
 		};
-		console.log("accessId: " + headerData.accessId);
-		console.log("accessKey: " + headerData.accessKey);
-		this.signIn(headerData);
+		_this.signIn(headerData);
 		_td.trColor('table_list');
-		this.addMoneyHtml(headerData);
-		this.monthStatus(headerData);
-		this.productUcList(headerData);
+		_this.addMoneyHtml(headerData);
+		_this.monthStatus(headerData);
+		_this.productUcList(headerData);
 	},
 	signIn : function(headerData){
+		var _this = this;
 		_apigetOper.getUserOper(headerData,function(res){
 			var day = res.content[0].cumulativeSignTmes;
 			if(day == null || day == undefined){
@@ -50,11 +49,11 @@ var uc = {
 			});
 			$('.sign').html(userSigntHtml);
 			$('.welfare').html(userIntHtml);
-			uc.numStatus();
-			uc.signInClick(headerData);
-			uc.singStatus(headerData);
+			_this.numStatus();
+			_this.signInClick(headerData);
+			_this.singStatus(headerData);
 		},function(err){
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	numStatus : function(){
@@ -65,6 +64,7 @@ var uc = {
 		});
 	},
 	singStatus : function(headerData){
+		var _this = this;
 		_apigetOper.userSign(headerData,function(res){
 			var num = res.content.signScore;
 			var bool = res.content.ifSign;
@@ -76,10 +76,11 @@ var uc = {
 			}
 		},
 		function(err) {
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	signInClick : function(headerData){
+		var _thiss = this;
 		// 签到
 		$("#sigin_clik").on("click",function(){
 			var _this = $(this);
@@ -88,9 +89,11 @@ var uc = {
 			}else{
 				_apigetOper.addUserSign(headerData,function(res){
 					var num = res.content;
-					uc.signAnimate(_this,num);
-				},function(){
-					console.log("签到失败");
+					_thiss.signAnimate(_this,num);
+				},function(err){
+					layer.msg(err.msg + "签到失败", {
+						time: 2000
+					});
 				});
 			};
 		});
@@ -120,23 +123,24 @@ var uc = {
 		});
 	},
 	addMoneyHtml : function(headerData){
+		var _this = this;
 		_apiReturn.getInvestUc(headerData,function(res){
-			var dueInPrincipal = res.content.totalAwaitCapitalValue;
-			var dueInInterest = res.content.totalAwaitInterestValue;
-			var usableFund = res.content.totalBalanceValue;
-			var freezeFund = res.content.totalFrostValue;
-			userMoneyHtml = _td.renderHtml(getUserMon,{
-				content:res.content,
-			});
+			var com = res.content;
+			var dueInPrincipal = com.totalAwaitCapitalValue;
+			var dueInInterest = com.totalAwaitInterestValue;
+			var usableFund = com.totalBalanceValue;
+			var freezeFund = com.totalFrostValue;
 			userEchartHtml = _td.renderHtml(getUserEch,{
-				content:res.content,
+				content:com,
 			});
-			$('.getUserMo').html(userMoneyHtml);
+			$(".user_earning").html(com.totalEarnings);
+			$(".user_await").html(com.totalAwait);
+			$(".user_balan").html(com.totalBalance);
 			$('.eachart').html(userEchartHtml);
-			uc.tipsHover();
-			uc.addEchar(dueInPrincipal,dueInInterest,usableFund,freezeFund);
+			_this.tipsHover();
+			_this.addEchar(dueInPrincipal,dueInInterest,usableFund,freezeFund);
 		},function(err){
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	addEchar : function(dueInPrincipal,dueInInterest,usableFund,freezeFund){
@@ -179,6 +183,7 @@ var uc = {
 	},
 	// 月份日期状态
 	monthStatus : function(headerData){
+		var _this = this;
 		_returnmon.returnMoney();
 		var year = $(".f_year").html();
 		var month = $(".f_month").html()*1;
@@ -186,9 +191,9 @@ var uc = {
 			month = "0" + month;
 		};
 		var dataMonth = year+"-"+month;
-		uc.dayStatus(headerData,dataMonth);
-		uc.getMoney(headerData,dataMonth);
-		uc.getReturnList(headerData,dataMonth,1,4,1);
+		_this.dayStatus(headerData,dataMonth);
+		_this.getMoney(headerData,dataMonth);
+		_this.getReturnList(headerData,dataMonth,1,4,1);
 		_returnmon.clickMontn({
 			left: "data_top_btn_l",
 			right: "data_top_btn_r",
@@ -197,34 +202,37 @@ var uc = {
 					mm = "0" + mm;
 				};
 				dataMonth = yy+"-"+mm;
-				uc.dayStatus(headerData,dataMonth);
-				uc.getMoney(headerData,dataMonth);
-				uc.getReturnList(headerData,dataMonth,1,4,1);
-				uc.dayContent(headerData);
+				_this.dayStatus(headerData,dataMonth);
+				_this.getMoney(headerData,dataMonth);
+				_this.getReturnList(headerData,dataMonth,1,4,1);
+				_this.dayContent(headerData);
 			}
 		});
-		uc.dayContent(headerData);
+		_this.dayContent(headerData);
 	},
 	// 点击某天的信息展示
 	dayContent : function(headerData){
+		var _this = this;
 		_returnmon.clickDay({
 			elm: "data_number",
 			callback: function(day) {
 				var getday = day;
-				uc.getReturnList(headerData,getday,0,4,1);
+				_this.getReturnList(headerData,getday,0,4,1);
 			}
 		});
 	},
 	// 获取本息
 	getMoney : function(headerData,month){
+		var _this = this;
 		_apiReturn.getMonthMoney(headerData,month,function(res){
 			$(".re_money").html(res.content);
 		},function(err){
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	// 给当月某天有回款的添加样式
 	dayStatus : function(headerData,month){
+		var _this = this;
 		_apiReturn.getMonth(headerData,month,function(res){
 			$.each(res.content,function(i,key){
 				var day = key.day;
@@ -239,43 +247,45 @@ var uc = {
 
 			});
 		},function(err){
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	getReturnList : function(headerData,day,type,pagesize,current){
+		var _this = this;
 		_apiReturn.getRturnList(headerData,day,type,pagesize,current,function(res){
-			uc.setType(res);
+			_this.setType(res);
 			retList = _td.renderHtml(returnList,{
 				list:res.content.list,
 			});
 			$('.re_money_tbody').html(retList);
 			_paging.paging("pageList",res.content.total,pagesize,function(e){
 				_apiReturn.getRturnList(headerData,day,type,pagesize,e.current,function(res){
-					uc.setType(res);
+					_this.setType(res);
 					retList = _td.renderHtml(returnList,{
 						list:res.content.list,
 					});
 					$('.re_money_tbody').html(retList);
-					uc.tipsHover();
+					_this.tipsHover();
 					_td.trColor('table_list');
 				},function(err){
 					console.log(err);
 				});
 			});
-			uc.tipsHover();
+			_this.tipsHover();
 			_td.trColor('table_list');
 		},function(err){
-			console.log(err);
+			_this.logout(err);
 		});
 	},
 	productUcList: function(headerData){
+		var _this = this;
 		_apiProduct.getProductUcList(headerData,function(res){
 			paoductHtml = _td.renderHtml(productList,{
 				planOut:res.content.planOut,
 				borrowOut:res.content.borrowOut,
 			});
 			$(".productHt").html(paoductHtml);
-			uc.recommend();
+			_this.recommend();
 		},function(err){
 			console.log(err);
 		});
@@ -304,6 +314,13 @@ var uc = {
 		},function(){
 			$(this).find('.now_invest').remove();
 		});
+	},
+	logout: function(err){
+		if(err.code == 100105){
+			_td.doLogin();
+		}else{
+			console.log(err);
+		}
 	},
 	tipsHover : function(){
 		$(".hint").mouseover(function(){

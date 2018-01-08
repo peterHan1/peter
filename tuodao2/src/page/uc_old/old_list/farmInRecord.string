@@ -17,6 +17,6 @@
 	<td>{{amount}}</td>
 	<td>{{interest}}</td>
 	<td>{{status}}</td>
-	<td><a data-id={{transferId}}>查看详情</a></td>
+	<td><a href="uc_oldDetail.html?type=farmIn&id={{tenderId}}">查看详情</a></td>
 </tr>
 {{/list}}

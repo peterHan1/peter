@@ -137,7 +137,7 @@ var recharge = {
 					area: ['560px', '350px'],
 					content: $('#success_box')
 				});
-				 win.document.write(res.content);
+				win.document.write(res.content);
 			}, function(err) {
 				layer.open({
 					type: 1,

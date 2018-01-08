@@ -3,9 +3,9 @@ require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/layer/index.js');
 
-var _paging = require('util/paging/index.js');
-var _td = require('util/td.js');
-var _apiData = require('api/product-api.js');
+var _paging 	= require('util/paging/index.js');
+var _td 		= require('util/td.js');
+var _apiData 	= require('api/product-api.js');
 var huikuanHtml = require('./huikuan.string');
 
 var oldDetail = {
@@ -25,22 +25,17 @@ var oldDetail = {
 				$('.uc_invest_details .tips').hide();
 			})
 	},
+	// 获取url参数
 	getUrlDetail : function(){
-		var url=window.location.search;
-        //转换成字符串
-        url=url.toString();
-        var array=new Array();//用来存放分分割后的字符串
-        array=url.split("?");
-        var arrys=array[1].toString().split("=");
-        var ids=parseInt(arrys[1]);
-        var type=arrys[0];
+        var type = _td.getUrlParam('type');
+        var ids = _td.getUrlParam('id');
         oldDetail.getData(type,ids);
         oldDetail.getHuikuan(ids);
 	},
 	getHuikuan : function(ids){
 		_apiData.huikuanList(oldDetail.headerData,ids,1,function(res){
-			if(res.content.list.length==0){
-				$('.huikuanTable').append('<tr><td colspan="5" class="get_data">暂无记录</td></tr>');
+			if (res.content.list.length == 0) {
+				$('.huikuanTable').html('<tr><th>回款时间</th><th>状态</th><th>应还本金（元）</th><th>应还收益（元）</th><th>期数</th></tr><tr><td colspan="5" class="get_data">暂无记录</td></tr>');
 				return false;
 			}
 			var bannerHtml = _td.renderHtml(huikuanHtml,{
@@ -59,6 +54,7 @@ var oldDetail = {
 			});
 		},function(){
 			console.log('请求失败');
+			$('.huikuanTable').html('<tr><th>回款时间</th><th>状态</th><th>应还本金（元）</th><th>应还收益（元）</th><th>期数</th></tr><tr><td colspan="5" class="get_data">数据加载失败</td></tr>');
 		})
 	},
 	getHtml : function(res){
@@ -69,35 +65,42 @@ var oldDetail = {
 		$('#tenderAccount').html(res.content.preAccount);
 		$('#interest').html(res.content.preAccount);
 		$('#award').html(res.content.preAccount);
-		if(res.content.voucherType==0){
+		if (res.content.voucherType == 0) {
 			$('#VouType').text('不使用');
-		}else if(res.content.voucherType==1){
+		} else if (res.content.voucherType == 1) {
 			$('#VouType').text('使用抵扣券');
-		}else{
+		} else {
 			$('#VouType').text('使用加息券');
 		}
-		if(res.content.repaymentType==0){
+		if (res.content.repaymentType == 0) {
 			$('#borrowStyle').text('等额本息');
-		}else if(res.content.repaymentType==1){
+		} else if (res.content.repaymentType == 1) {
 			$('#borrowStyle').text('按月付息,到期还本');
-		}else{
+		} else {
 			$('#borrowStyle').text('按天计息');
 		}
+		// 借款协议，安全保存跳转
+		$('.right a').eq(0).on('click',function(){
+			$(this).attr('href','borrowAgreement.html?tender='+res.content.tenderId);
+		})
+		$('.right a').eq(1).on('click',function(){
+			$(this).attr('href','borrowAgreement.html?tender='+res.content.tenderId);
+		})
 	},
 	getData : function (type,ids) {
-		if(type=="myInvest"){
+		if (type == "myInvest") {
 			_apiData.oldInvestDetail(oldDetail.headerData,ids,function(res){
 				oldDetail.getHtml(res);
 			},function(){
 				console.log('请求失败');
 			})
-		}else if(type=="transfer"){
+		} else if (type == "transfer") {
 			_apiData.oldTransferDetail(oldDetail.headerData,ids,function(res){
 				oldDetail.getHtml(res);
 			},function(){
 				console.log('请求失败');
 			})
-		}else if(type=="farmIn"){
+		} else if (type == "farmIn") {
 			_apiData.oldFarmInDetail(oldDetail.headerData,ids,function(res){
 				oldDetail.getHtml(res);
 			},function(){

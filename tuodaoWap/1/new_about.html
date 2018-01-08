@@ -16,7 +16,36 @@
 </head>
 <style>
 html,body{width:100%;height:100%;}
+ .ui-flex {
+        display: -webkit-box !important;
+        display: -webkit-flex !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
 
+    .ui-flex, .ui-flex *, .ui-flex :after, .ui-flex :before {
+        box-sizing: border-box
+    }
+
+    .ui-flex.justify-center {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+    .ui-flex.center {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
 </style>
 <body>
 	<div class="max_width">
@@ -90,13 +119,13 @@ html,body{width:100%;height:100%;}
 				<div class="certificate dis_none">
 					<div class="flex">
 						<div class="div_fr div_img flex-1">
-							<img class="lazy" src="img/infrom/certificate_bg1.png" num="1">
+							<img class="lazy" src="img/infrom/certificate_bg1.png" num="0">
 							<div class="txt_p">
 								<p>北京银行存管协议-1</p>
 							</div>
 						</div>
 						<div class="div_img flex-1">
-							<img class="lazy" src="img/infrom/certificate_bg2.png" num="2">
+							<img class="lazy" src="img/infrom/certificate_bg2.png" num="1">
 							<div class="txt_p">
 								<p>北京银行存管协议-2</p>
 							</div>
@@ -104,27 +133,44 @@ html,body{width:100%;height:100%;}
 					</div>
 					<div class="flex">
 						<div class="div_fr div_img flex-1">
-							<img class="lazy" src="img/infrom/certificate_bg3.png" num="3">
+							<img class="lazy" src="img/infrom/certificate_sm3.png" num="2">
 							<div class="txt_p">
 								<p>拓道金服营业执照</p>
 							</div>
 						</div>
 						<div class="div_img flex-1">
-							<img class="lazy" src="img/infrom/certificate_bg4.png" num="4">
+							<img class="lazy" src="img/infrom/certificate_sm4.png" num="3">
 							<div class="txt_p">
-								<p>ICP证</p>
+								<p>ICP证-1</p>
 							</div>
 						</div>
 					</div>
 					<div class="flex">
 						<div class="div_fr div_img flex-1">
-							<img class="lazy" src="img/infrom/framework_bg.png" num="5">
+							<img class="lazy" src="img/infrom/certificate_sm5.png" num="4">
 							<div class="txt_p">
-								<p>拓道金服营业执照</p>
+								<p>ICP证-2</p>
 							</div>
 						</div>
 						<div class="div_img flex-1">
-							
+							<img class="lazy" src="img/infrom/certificate_sm6.png" num="5">
+							<div class="txt_p">
+								<p>ICP证-3</p>
+							</div>
+						</div>
+					</div>
+					<div class="flex">
+						<div class="div_fr div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_sm7.png" num="6">
+							<div class="txt_p">
+								<p>信息系统安全等级证书</p>
+							</div>
+						</div>
+						<div class="div_img flex-1">
+							<img class="lazy" src="img/infrom/certificate_sm8.png" num="7">
+							<div class="txt_p">
+								<p>信息系统等级测评基本页</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -137,38 +183,30 @@ html,body{width:100%;height:100%;}
 <script src="js/swipeslider.min.js"></script>
 <script>
 	$(window).load(function() {
+		var imgListBg = [];
+		var imgBg = ["img/infrom/certificate_bg1.png","img/infrom/certificate_bg2.png","img/infrom/certificate_bg3.jpg","img/infrom/certificate_bg4.jpg","img/infrom/certificate_bg5.jpg","img/infrom/certificate_bg6.jpg","img/infrom/certificate_bg7.png","img/infrom/certificate_bg8.jpg"];
 		$(".div_img img").on("click",function(){
 			var index = $(this).attr("num");
-			var h1 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li><li class="sw-slide"><img src="img/infrom/framework_bg.png"></li></ul></div>'
-			var h2 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li><li class="sw-slide"><img src="img/infrom/framework_bg.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li></ul></div>'
-			var h3 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li><li class="sw-slide"><img src="img/infrom/framework_bg.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li></ul></div>'
-			var h4 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/certificate_bg4.png"></li>   <li class="sw-slide"><img src="img/infrom/framework_bg.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li></ul></div>'
-			var h5 = '<div id="full_feature" class="swipslider"><ul class="sw-slides"><li class="sw-slide"><img src="img/infrom/framework_bg.png"></li>   <li class="sw-slide"><img src="img/infrom/certificate_bg1.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg2.png"></li><li class="sw-slide"><img src="img/infrom/certificate_bg3.png"></li></ul></div>'
-			$(".img_show").show();
-			if(index == 1){
-				$(".img_show").append(h1);
-			}else if(index == 2){
-				$(".img_show").append(h2);	
-			}else if(index == 3){
-				$(".img_show").append(h3);	
-			}else if(index == 4){
-				$(".img_show").append(h4);	
-			}else if(index == 5){
-				$(".img_show").append(h5);	
+			var bigBg = imgBg.splice(index);
+			imgListBg = bigBg.concat(imgBg);
+			var listImg = "";
+			for(i in imgListBg){
+				var oLi = '<li class="sw-slide"><img src="'+imgListBg[i]+'"></li>';
+				listImg += oLi;
 			}
+			var oDiv = '<div id="full_feature" class="swipslider"><ul class="sw-slides">'+listImg+'</ul></div>';
+			$(".img_show").show();
+			$(".img_show").append(oDiv);
 			$('#full_feature').swipeslider({
 		  		autoPlay:false,
 		  		prevNextButtons:false,
 		  		bullets:false,
 		  	});
 		})
-		$(".img_show").on("click",function(event){
-			if(event.target==this){
-				$(".img_show").hide();
+		$(".img_show").on("click",function(){
+			imgBg = ["img/infrom/certificate_bg1.png","img/infrom/certificate_bg2.png","img/infrom/certificate_bg3.jpg","img/infrom/certificate_bg4.jpg","img/infrom/certificate_bg5.jpg","img/infrom/certificate_bg6.jpg","img/infrom/certificate_bg7.png","img/infrom/certificate_bg8.jpg"];
+			$(".img_show").hide();
 			$("#full_feature").remove();
-				
-//				$(".img_show img").hide();
-			}
 		})
 		$(".nav li a").on("click",function(){
 			var index = $(this).parent("li").index();

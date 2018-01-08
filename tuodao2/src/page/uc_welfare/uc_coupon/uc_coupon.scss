@@ -1,4 +1,10 @@
 @import '../index';
+#welfare{
+	display: block;
+}
+#myCoupon{
+	color: $mainColor;
+}
 .coupon_menu{
 	padding-left: 30px;
 	@include height-line(50px);

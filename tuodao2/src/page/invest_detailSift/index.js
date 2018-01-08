@@ -3,6 +3,7 @@ require('page/common/nav/index.js');
 require('util/layer/index.js');
 var md5 		= require('util/md5.js');
 var _details 	= require('util/invest_detail/index.js');
+var _formError 	= require('util/invest_detail/formError.js');
 var _td 		= require('util/td.js');
 var _paging 	= require('util/paging/index.js');
 var _apiInvest 	= require('api/product-api.js');
@@ -35,6 +36,7 @@ var investDetails = {
 			var setBar = _details.setBarShow(com.borrowAmount, com.surplusInvestAmount);
 			com.productsType = _details.setData(com.productType);
 			com.pubTime = _details.setTime(0, com.publishTime);
+			com.definetype = _details.setDefineType(com.defineType);
 			com.barTxt = setBar.planTxt;
 			com.barxx = setBar.barWin;
 			_apiTrade.getSiftPhone(tender, 10, 1, function(res) {
@@ -100,11 +102,12 @@ var investDetails = {
 							userCom.brnTxt = "实付0.00元，立即加入";
 							$('.detail_top_right').html(_td.renderHtml(moneyInp, {content: userCom}));
 						}
-						investDetails.setInvestMoney(userCom.usableFund, com.borrowApr, com.awardType, com.awardScale, com.productPeriod, com.borrowType, com.surplusInvestAmount, com.refundWay, com.productType);
+						investDetails.setInvestMoney(userCom.usableFund, com.borrowApr, com.awardType, com.awardScale, com.productPeriod, com.surplusInvestAmount, com.refundWay, com.productType);
 					}, function(err) {
 						// 未登录
 						logOutHtml = _td.renderHtml(logOut);
 						$('.detail_top_right').html(logOutHtml);
+						investDetails.setInvestOutMoney(com.borrowApr,com.awardType,com.awardScale,com.productPeriod,com.refundWay);
 					});
 				}
 			}
@@ -112,12 +115,12 @@ var investDetails = {
 			console.log(err);
 		});
 	},
-	setInvestMoney: function(balance, apr, awardType, awardScale, period, borrowType, amount, refundWay, productType) {
-		// par:年利率，awardType:奖励类型 0无1金额2利率，awardScale:奖励利率，period:期限，borrowType:标的类型0天标1月标，amount:剩余可投，type:还款类型，productType:项目类型0散标1精选
+	setInvestMoney: function(balance, apr, awardType, awardScale, period, amount, refundWay, productType) {
+		// par:年利率，awardType:奖励类型 0无1金额2利率，awardScale:奖励利率，period:期限，amount:剩余可投，type:还款类型，productType:项目类型0散标1精选
 		// 输入金额input
 		var balances = (balance.replace(/,/g, "")) * 1;
 		$('.investting .sub_money').keyup(function() {
-			_details.setinput($(this), amount, apr, awardType, awardScale, period, borrowType, refundWay);
+			_details.setinput($(this), amount, apr, awardType, awardScale, period, refundWay);
 			_details.MoneyKeyUp($(this), amount, amount, balances, productType);
 			_details.QuanInit();
 		});
@@ -125,10 +128,22 @@ var investDetails = {
 		$(".all_money").on("click", function() {
 			_details.all_money(amount, balances, $(".sub_money"));
 		});
+		// 清空按钮
+		$(".btn_empty").on("click", function() {
+			_formError.hide($(".sub_money"));
+			$(".sub_money").val("").blur();
+			_details.setinput($(".sub_money"),amount,apr,awardType,awardScale,period,refundWay);
+			_details.QuanInit();
+		});
+		$(document).on("click", ".discount_bot .add_quan", function() {
+			_details.addBtn_q($(this),apr,period,refundWay);
+		});
+	},
+	setInvestOutMoney: function(apr,awardType,awardScale,period,refundWay){
 		// 未登录input输入金额
 		$('.investting .outInp_money').keyup(function() {
-			var inputM = $(this).val() * 1;
-			_details.earnings(inputM, apr, awardType, awardScale, period, borrowType, refundWay);
+			var inpoutM = $(this).val() * 1;
+			_details.earnings(inpoutM,apr,awardType,awardScale,period,refundWay);
 		});
 	},
 	// 获取投资列表
@@ -186,7 +201,7 @@ var investDetails = {
 	// 点击投资
 	subBtnClick: function(headerData, params) {
 		if ($(".form-error-info").length > 0) {
-			formError.allHide($(".sub_psw"), $(".sub_psw"));
+			_formError.allHide($(".sub_psw"), $(".sub_psw"));
 		} else {
 			var formData = {
 					money: $.trim($('#sub_money').val()),
@@ -198,14 +213,14 @@ var investDetails = {
 				investDetails.subSiftFn(headerData, params);
 			} else {
 				var clas = '.' + validateResult.class;
-				formError.allShow(clas, validateResult.msg);
+				_formError.allShow(clas, validateResult.msg);
 			}
 		}
 	},
 	// 点击投资调取接口
 	subSiftFn: function(headerData, params) {
 		_apiTrade.subInvestSift(headerData, params, function(res) {
-			formError.allHide($(".sub_money"), $(".sub_psw"));
+			_formError.allHide($(".sub_money"), $(".sub_psw"));
 			var dataList = {
 				tenderKey: res.content,
 				num: 0
@@ -261,7 +276,7 @@ var investDetails = {
 			}, 1000);
 		}, function(err) {
 			if (err.code == 142024) {
-				formError.allShow($(".sub_psw"), "密码错误，请重新登录！");
+				_formError.allShow($(".sub_psw"), "密码错误，请重新登录！");
 			} else if (err.code == 142019) {
 				// 激活存管弹窗
 				layer.open({
@@ -291,7 +306,7 @@ var investDetails = {
 		var val = $(".inp_ticket").val();
 		var sel = '<b class="select_b"></b>';
 		if ($(".sub_money").val() == "") {
-			formError.show($("#sub_money"), "选择优惠券前需要填写加入金额！");
+			_formError.show($("#sub_money"), "选择优惠券前需要填写加入金额！");
 			$(".sub_money").focus();
 		} else if ($(".invest_money p").length <= 0) {
 			investDetails.getDiscount(headerData, params);
@@ -326,20 +341,13 @@ var investDetails = {
 			}, 300);
 		});
 		$(".sub_psw").keyup(function() {
-			formError.hide($(this));
+			_formError.hide($(this));
 		});
 		$('.investting input').mouseover(function() {
 			_details.mouseover(this);
 		});
 		$('.investting input').mouseout(function() {
 			_details.mouseout();
-		});
-		// 清空按钮
-		$(".btn_empty").on("click", function() {
-			formError.hide($(".sub_money"));
-			$(".sub_money").val("").blur();
-			_details.setinput($(".sub_money"));
-			_details.QuanInit();
 		});
 		// 支付按钮点击的状态
 		$(document).on("click", ".sub_btn", function() {
@@ -372,9 +380,6 @@ var investDetails = {
 		$(document).on("click", ".ul_select li", function() {
 			_details.disSelect($(this));
 		});
-		$(document).on("click", ".discount_bot .add_quan", function() {
-			_details.disBtn($(this));
-		});
 		$(document).on("click", ".discount_bot .no", function() {
 			$(".ul_select li .select_b").remove();
 			$(".yes").removeClass("add_quan");
@@ -390,33 +395,18 @@ var investDetails = {
 				_this.getListPhone(tender);
 			}
 		});
-	}
-};
-var formError = {
-	show: function(id, errMsg) {
-		$(id).addClass('err-input');
-		var el = '<p class="form-error-info">&nbsp;<i class="iconfont">&#xe671;</i>&nbsp;<span>' + errMsg + '</span></p>';
-		$(".invest_money p").remove();
-		return $(id).parent().append(el);
-	},
-	hide: function(el) {
-		el.removeClass('err-input');
-		el.parent("div").find('p').remove();
-	},
-	allShow: function(cla, errMsg) {
-		var txt = "<span class='mess'><i class='iconfont'>&#xe671;</i>" + errMsg + "</span>";
-		$(".current_money").addClass("cur_money");
-		if ($(".mess").length > 0) {
-			$(".mess").remove();
-		}
-		$(".current_money").append(txt);
-		$(cla).addClass('err-input');
-	},
-	allHide: function(el, els) {
-		$(".current_money").removeClass("cur_money");
-		el.removeClass('err-input');
-		els.removeClass('err-input');
-		$(".mess").remove();
+		// 已阅读
+		$("#checkinp").on("click",function(){
+			if($(this).is(':checked')) {
+				$("#sub_btn").removeClass("no_btn").addClass("sub_btn");
+			}else{
+				$("#sub_btn").removeClass("sub_btn").addClass("no_btn");
+			}
+		});
+		// 登录点击跳转
+		$(".loginBtn").on("click",function(){
+			_td.doLogin();
+		});
 	}
 };
 $(function() {

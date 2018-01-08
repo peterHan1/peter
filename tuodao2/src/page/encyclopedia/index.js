@@ -21,18 +21,12 @@ var encyclopedias = {
 				list:res.content.list
 			});
 			$('.content').html(bannerHtml);
-			$('.content li a').on('click',function(){
-				$(this).attr('href','encyclopedia_detail.html?'+$(this)[0].getAttribute("data-url"));
-			})
 			_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
 				_apiNews.getNews(encyclopedias.headerData,2,e.current,function(res){
 					var bannerHtml = _td.renderHtml(encyclopediaHtml,{
 						list:res.content.list
 					});
 					$('.content').html(bannerHtml);
-					$('.content li a').on('click',function(){
-						$(this).attr('href','encyclopedia_detail.html?'+$(this)[0].getAttribute("data-url"));
-					})
 				},function(){
 					console.log("分页点击请求失败");
 				});

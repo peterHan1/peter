@@ -52,7 +52,7 @@ $(function() {
 		var time = $("#" + time).val();
 		var rate = $("#" + rate).val();
 		var award = $("#" + award).val();
-		if (amount != "" && time != "" && rate != "" && award != "") {
+		if (amount != "" && time != "" && rate != "") {
 			$("#" + btn).addClass(name);
 			$("#" + btn).removeAttr("disabled");
 			$("#" + btn).on("mouseover", function() {
@@ -91,7 +91,6 @@ $(function() {
 				var apr = rate;
 				var period = time;
 				var interest = account * (apr * 0.01 + award * 0.01) / 12;
-
 				var perMonthAprAll = (apr * 0.01 + award * 0.01) / 12;
 				var perMonthApr = apr * 0.01 / 12;
 				preMonth = Number(account * perMonthApr * Math.pow((1 + perMonthApr), period) / (Math.pow((1 + perMonthApr), period) - 1)).toFixed(2);
@@ -104,6 +103,9 @@ $(function() {
 				var planList = new List();
 				for (var i = 0; i < period; i++) {
 					var plan = new Array();
+					var d = new Date();
+					d.setMonth(d.getMonth()+i+1);
+					var months = d.getFullYear() + "-"+ (d.getMonth() + 1) +"-"+ d.getDate();
 					var per = (i + 1) + "/" + period;
 					var perCapital, perInterest;
 					if (i == period - 1) {
@@ -123,6 +125,7 @@ $(function() {
 					plan[2] = perCapital;
 					plan[3] = perInterest;
 					plan[4] = 0;
+					plan[5] = months;
 					planList.add(plan);
 				}
 				var left = 0;
@@ -131,7 +134,7 @@ $(function() {
 					left = Number(Number(left) + Number(planList.get(i)[1])).toFixed(2);
 				}
 				for (var i = 0; i < planList.size(); i++) {
-					var $tr = $("<tr><td>" + planList.get(i)[0] + "</td><td>" + planList.get(i)[1] + "</td><td>" + planList.get(i)[2] + "</td><td>" + planList.get(i)[3] + "</td><td>" + planList.get(i)[4] + "</td>");
+					var $tr = $("<tr><td>" + planList.get(i)[0] + "</td><td>" + planList.get(i)[5] + "</td><td>" + planList.get(i)[1] + "</td><td>" + planList.get(i)[2] + "</td><td>" + planList.get(i)[3] + "</td>");
 					$(".calc_table table #tbody_list").append($tr);
 				}
 				var bxhj = Number(profit) + Number(account);
@@ -149,6 +152,9 @@ $(function() {
 				var leftAll = Number((principal * perMonthApr).toFixed(2) * period + Number(principal)).toFixed(2);
 
 				for (var i = 0; i < period; i++) {
+					var d = new Date();
+					d.setMonth(d.getMonth()+i+1);
+					var months = d.getFullYear() + "-"+ (d.getMonth() + 1) +"-"+ d.getDate();
 					var per = (i + 1) + "/" + period;
 					var perInterest = (principal * perMonthApr).toFixed(2);
 					var perCapital = 0;
@@ -166,7 +172,7 @@ $(function() {
 
 					leftAll = Number(leftAll - preMonth).toFixed(2) < 0.2 ? 0 : Number(leftAll - preMonth).toFixed(2);
 
-					var $tr = $("<tr><td>" + per + "</td><td>" + preMonth + "</td><td>" + perCapital + "</td><td>" + perInterest + "</td><td>" + leftAll + "</td>");
+					var $tr = $("<tr><td>" + per + "</td><td>" + months + "</td><td>" + preMonth + "</td><td>" + perCapital + "</td><td>" + perInterest + "</td>");
 					$(".calc_table table #tbody_list").append($tr);
 				}
 				$(".result_money .interest").html(interest);
@@ -183,16 +189,16 @@ $(function() {
 				var per = "1/1";
 				var perInterest = (principal * perMonthApr * period).toFixed(2);
 				var perCapital = principal;
-
+				var d = new Date();
+				var months = d.getFullYear() + "-"+ (d.getMonth() + 1) +"-"+ d.getDate();
 				var preMonth = Number(Number(perInterest) + Number(perCapital)).toFixed(2);
-
 				profit = Number(Number(profit) + Number(perInterest)).toFixed(2);
 				leftAcc = Number(Number(leftAcc) - Number(perCapital)).toFixed(2) < 0.2 ? 0 : Number(Number(leftAcc) - Number(perCapital)).toFixed(2);
 
 
 				leftAll = Number(leftAll - preMonth).toFixed(2) < 0.2 ? 0 : Number(leftAll - preMonth).toFixed(2);
 
-				var $tr = $("<tr><td>" + per + "</td><td>" + preMonth + "</td><td>" + perCapital + "</td><td>" + perInterest + "</td><td>" + leftAll + "</td>");
+				var $tr = $("<tr><td>" + per + "</td><td>" + months + "</td><td>" + preMonth + "</td><td>" + perCapital + "</td><td>" + perInterest + "</td>");
 				$(".calc_table table #tbody_list").append($tr);
 				$(".result_money .interest").html(profit);
 				$(".result_money .award").html(allAward);

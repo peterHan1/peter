@@ -3,12 +3,11 @@ var _tips 		= require('util/tips/index.js');
 var _td			= require('util/td.js');
 var _apigetuc 	= require('api/user-api.js');
 var accountPho	= require('./uc_menu.string');
-
-var _operate = require('api/operate-api.js');
+var _operate 	= require('api/operate-api.js');
 var menuList = {
 	init : function(){
 		var headerData = {
-			'accessId' : unescape(_td.getAccess('accessId')),
+			'accessId' 	: unescape(_td.getAccess('accessId')),
 			'accessKey' :unescape(_td.getAccess('accessKey'))
 		};
 		this.eachA();
@@ -17,17 +16,31 @@ var menuList = {
 		this.elHeight();
 		this.addHmtl(headerData);
 	},
+	addHmtl : function(headerData){
+		_apigetuc.getUserCon(headerData,function(res){
+			var com = res.content;
+			var deposit = menuList.setOpenDeposit(com.isOpenDeposit);
+			com.depositTxt = deposit.txt;
+			com.depositUrl = deposit.url;
+			com.depositClas = deposit.clas;
+			$('.menu_top').html(_td.renderHtml(accountPho,{content:com}));
+			menuList.liHover();
+		},function(err){
+			console.log(err);
+		});
+		_operate.getMailLogsCountNoRead(headerData,function(res){
+			$('.menu_bot .messages-center em').html(res.content);
+		});
+	},
 	eventFn : function(){
 		$(".menu_list").on("click",function(){
-			if($(this).siblings('div').css('display')=='block'){
+			if ($(this).siblings('div').css('display') == 'block') {
 				$(this).siblings('div').slideUp();
 				$(this).find('span').html('&#xe83d;');
-			}else{
+			} else {
 				$(this).siblings('div').slideDown();
-				$(this).parent().siblings('li').find(".menu_fund").slideUp();
-				$(this).parent().siblings('li').find(".menu_list").find('span').html('&#xe83d;');
 				$(this).find('span').html('&#xe6a4;');
-				var url=$(this).siblings("div").find("a").eq(0).attr("href");
+				var url = $(this).siblings("div").find("a").eq(0).attr("href");
 				var flag = false;
 				var menu_a = $(this).parent("li").find('.menu_fund a');
 				$.each(menu_a,function(){
@@ -42,7 +55,7 @@ var menuList = {
 						return false;
 					}
 				});
-				if(flag != true){
+				if ( flag != true ){
 					window.location.href=url;
 				}
 			}
@@ -57,20 +70,8 @@ var menuList = {
 			var href1 = locat.substring(0,symbol);
 			var href2 = thisa.substring(0,symbols);
 			if (location.href.indexOf($(this).attr('href')) > -1 && $(this).attr('href')!="" || location.href.indexOf($(this).attr('details')) > -1 || href1.indexOf(href2)>0) {
-				$(this).addClass('menu_on');
-				$(this).parent(".menu_fund").show();
 				$(this).parent(".menu_fund").siblings(".menu_list").find("span").html("&#xe6a4;");
-			} else {
-				$(this).removeClass('menu_on');
 			}
-		});
-	},
-	liHover : function(){
-		$('.icon li').mouseover(function(){
-			_tips.getTipsRight($(this),3);
-		});
-		$('.icon li').mouseout(function(){
-			$(this).find('.tips').hide();
 		});
 	},
 	elHeight : function(){
@@ -85,26 +86,19 @@ var menuList = {
 			$(".uc_menu").height(hL);
 		}
 	},
-	addHmtl : function(headerData){
-		_apigetuc.getUserCon(headerData,function(res){
-			if(res.content.isOpenDeposit == 0){
-				res.content.isOpenDeposit = 'none';
-			}else if(res.content.isOpenDeposit == 1){
-				res.content.isOpenDeposit = 'high';
-			}
-			var cunguan = res.content.vipLevel;
-			accountHtml = _td.renderHtml(accountPho,{
-				content:res.content,
-			});
-			$('.menu_top').html(accountHtml);
-			$("#none").html("点击立即开通存管");
-			$("#high").html("存管已开通");
-			menuList.liHover();
-		},function(err){
-			console.log(err);
+	setOpenDeposit : function(type){
+		if(type == 1){
+			return {"txt":"存管已开通","url":"javascript:;","clas":"high"};
+		}else{
+			return {"txt":"点击立即开通存管","url":"active_newuser.html","clas":"none"};
+		}
+	},
+	liHover : function(){
+		$('.icon li').mouseover(function(){
+			_tips.getTipsRight($(this),3);
 		});
-		_operate.getMailLogsCountNoRead(headerData,function(res){
-			$('.menu_bot .messages-center em').html(res.content);
+		$('.icon li').mouseout(function(){
+			$(this).find('.tips').hide();
 		});
 	}
 };

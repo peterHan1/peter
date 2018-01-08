@@ -64,7 +64,7 @@ var config = {
 		'uc_invite'					: ['./src/page/uc_welfare/uc_invite/index.js'],
 		'uc_coupon'					: ['./src/page/uc_welfare/uc_coupon/index.js'],
 		'friends'					: ['./src/page/uc_welfare/friends/index.js'],
-		'draw_present'				: ['./src/page/uc_welfare/draw_present/index.js'],
+		'draw_present'				: ['./src/page/activities/index.js'],
 		'memberCenter'				: ['./src/page/operation/memberCenter/index.js'],
 		'newcomer'					: ['./src/page/operation/newcomer/index.js'],
 		'new_guide'					: ['./src/page/operation/new_guide/index.js'],

@@ -1,11 +1,10 @@
 @import '../../common/mixin.scss';
-@import '../../common/layout';
-
 .uc_old{
 	@include width-max;
 	background: #ffffff;
 	margin: 30px auto 50px;
 	padding-bottom: 50px;
+	min-height: 950px;
 	@extend %clearfix;
 	.uc_old_top{
 		height:75px;
@@ -30,7 +29,6 @@
 		}
 	}
 	.uc_old_list{
-		height:1010px;
 		overflow: hidden;
 		.uc_old_listTop{
 			height:50px;

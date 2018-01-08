@@ -1,14 +1,13 @@
-require('./uc_invite.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('page/common/uc-menu/index.js');
-require('page/common/uc-menu/index.scss');
+require('./uc_invite.scss');
 require('util/layer/index.js');
 
-var _paging = require('util/paging/index.js');
-var _td = require('util/td.js');
-var _apiInvite = require('api/operate-api.js');
-var record = require('./invite_record.string');
+var _td				= require('util/td.js');
+var _apiOperate 	= require('api/operate-api.js');
+var _paging 		= require('util/paging/index.js');
+var record 			= require('./invite_record.string');
 var invites = {
 	init : function(){
 		this.tabCut();
@@ -16,13 +15,13 @@ var invites = {
 		this.getUserDepository();
 	},
 	headerData : {
-		'accessId' :unescape(_td.getAccess('accessId')),
+		'accessId' 	:unescape(_td.getAccess('accessId')),
 		'accessKey' :unescape(_td.getAccess('accessKey'))
 	},
 	// table隔行变色
 	changeColor : function(obj){
 		$.each($(obj+' tr'),function(i){
-			if(i%2!=0){
+			if (i%2 != 0) {
 				$(obj+' tr').eq(i).css('background','#FBFBFB');
 			}
 		});
@@ -33,10 +32,10 @@ var invites = {
 		$('.uc_menu').siblings('div').height('auto');
 		var hL = $('.uc_menu')[0].clientHeight;
 		var hR = $('.uc_menu').siblings('div')[0].clientHeight;
-		if(hR>=905){
+		if (hR >= 905) {
 			$(".uc_menu").height(hR);
 			$('.uc_menu').siblings('div').height(hR);
-		}else{
+		} else {
 			$('.uc_menu').siblings('div').height(hL);
 			$(".uc_menu").height(hL);
 		}
@@ -45,9 +44,9 @@ var invites = {
 	tabCut : function(){
 		$('.invite_menu a').on("click",function(event){
 			$(this).addClass('welfare_border').siblings().removeClass('welfare_border');
-			var index=$(this).index();
+			var index = $(this).index();
 			$('.invite_content').children().eq(index).show().siblings().hide();
-			if(index==1){
+			if (index == 1) {
 				invites.getInviteRecord();
 			}
 			invites.HeightAuto();
@@ -64,8 +63,8 @@ var invites = {
 	},
 	// 用户存管是否激活
 	getUserDepository : function(){
-		_apiInvite.getMemberInfo(invites.headerData,function(res){
-			if(res.content.isOpenDeposit==1){
+		_apiOperate.getMemberInfo(invites.headerData,function(res){
+			if (res.content.isOpenDeposit == 1) {
 				$('.depository_yes').show();
 				$('.depository_yes_menu').show();
 				invites.getFinancialPlanner();
@@ -73,23 +72,25 @@ var invites = {
 				invites.getLink();
 				invites.getCode(res);
 				require('./share.js');
-			}else{
+			} else {
 				$('.depository_no').show();
 				$('.depository_no_menu').show();
 				invites.HeightAuto();
 			}
 		},function(){
+			$('.depository_no').show();
+			$('.depository_no_menu').show();
 			console.log('请求失败');
 		});
 	},
 	// 用户理财师等级信息
 	getFinancialPlanner : function(){
-		_apiInvite.getFinancialPlanner(invites.headerData,function(res){
-			if(res.content.currentLevelName=='初级理财师'){
+		_apiOperate.getFinancialPlanner(invites.headerData,function(res){
+			if (res.content.currentLevelName == '初级理财师') {
 				$('.invite_nav .lev_bg').addClass('lev01');
-			}else if(res.content.currentLevel=='中级理财师'){
+			} else if (res.content.currentLevel == '中级理财师') {
 				$('.invite_nav .lev_bg').addClass('lev02');
-			}else{
+			} else {
 				$('.invite_nav .lev_bg').addClass('lev03');
 			}
 			$('.invite_nav .lev_name').html(res.content.currentLevelName);
@@ -111,8 +112,20 @@ var invites = {
 			}
 		});
 	},
-	// 复制操作，必须放在event事件里才能生效，放在接口函数内不能生效
+	// 复制操作，兼容ie浏览器
 	copyEvent : function(copyValue){
+		// 动态创建 input 元素
+	  	var aux = document.createElement("input");
+	  	// 获得需要复制的内容
+	 	aux.setAttribute("value", copyValue);
+	 	// aux.setAttribute("value",'试验');
+	  	// 添加到 DOM 元素中
+	  	document.body.appendChild(aux);
+	    window.clipboardData.setData('text', aux.value);
+	    document.body.removeChild(aux);
+	},
+	// 复制操作，兼容主流浏览器，必须放在event事件里才能生效，放在接口函数内不能生效
+	copyEvents : function(copyValue){
 		// 动态创建 input 元素
 	  	var aux = document.createElement("input");
 	  	// 获得需要复制的内容
@@ -125,27 +138,43 @@ var invites = {
 	  	// 获得选中的内容
 	    var content = window.getSelection().toString();
 	  	// 执行复制命令
-	  	document.execCommand("copy");
+	  	document.execCommand("Copy");
 	  	// 将 input 元素移除
 	  	document.body.removeChild(aux);
 	},
 	// 复制邀请链接地址
 	getLink : function(){
-		var time='';
-		var linkValue='';
-		_apiInvite.getLink(invites.headerData,function(res){
-			linkValue=res.content;
+		var time = '';
+		var linkValue = '';
+		_apiOperate.getLink(invites.headerData,function(res){
+			linkValue = res.content;
 		},function(){
 			console.log('请求失败');
 		});
 		$('.copy_link').on('click',function(){
-			$(this).css({background:'#ffffff',color:'#ff7400'});
-			$(this).off('mouseover mouseout');
-			invites.copyEvent(linkValue);
-			if(document.execCommand("copy")){
-		  		$('.copy_link').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-		  	}else{
-		  		$('#invite_link li').eq(2).html(linkValue);
+			if (window.clipboardData) {// 如果是IE浏览器,获取剪贴板内容
+		        invites.copyEvent(linkValue);
+		        if (window.clipboardData.getData("text") != linkValue) {
+		        	$('#invite_link li').eq(2).html(linkValue);
+					layer.open({
+						type: 1,
+						title: ['复制邀请链接','color: #707070;'],
+						skin: 'invite_alert',
+						area: ['580px', 'auto'],
+						content: $('#invite_link')
+					});
+					return false;
+		        }
+		        $(this).css({background:'#ffffff',color:'#ff7400'});
+				$(this).off('mouseover mouseout');
+			    $('.copy_link').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			} else if (document.execCommand('copy', false, null)) {
+		    	invites.copyEvents(linkValue);
+			    $(this).css({background:'#ffffff',color:'#ff7400'});
+				$(this).off('mouseover mouseout');
+			    $('.copy_link').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			} else {
+				$('#invite_link li').eq(2).html(linkValue);
 				layer.open({
 					type: 1,
 					title: ['复制邀请链接','color: #707070;'],
@@ -164,18 +193,34 @@ var invites = {
 	// 复制邀请码
 	getCode : function(res){
 		var time='';
-		var linkValue='';
-		linkValue=res.content.inviteCode;
 		$('.depository_yes_menu .copy_code').on('click',function(){
-			$(this).css({background:'#ffffff',color:'#ff7400'});
-			$(this).off('mouseover mouseout');
-			invites.copyEvent(linkValue);
-			if(document.execCommand("copy")){
-		  		$('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
-		  	}else{
-		  		$('#invite_link li').eq(0).html('浏览器不兼容，邀请码复制失败！');
+			if (window.clipboardData) {// 如果是IE浏览器,获取剪贴板内容
+		        invites.copyEvent(res.content.inviteCode);
+		        if (window.clipboardData.getData("text") != res.content.inviteCode) {
+		        	$('#invite_link li').eq(0).html('浏览器不兼容，邀请码复制失败！');
+			  		$('#invite_link li').eq(1).html('您可以手动复制邀请码：');
+			  		$('#invite_link li').eq(2).html(res.content.inviteCode);
+					layer.open({
+						type: 1,
+						title: ['复制邀请码','color: #707070;'],
+						skin: 'invite_alert',
+						area: ['580px', 'auto'],
+						content: $('#invite_link')
+					});
+					return false;
+		        }
+		        $(this).css({background:'#ffffff',color:'#ff7400'});
+				$(this).off('mouseover mouseout');
+			    $('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			} else if(document.execCommand('copy', false, null)){
+		    	invites.copyEvents(res.content.inviteCode);
+			    $(this).css({background:'#ffffff',color:'#ff7400'});
+				$(this).off('mouseover mouseout');
+			    $('.copy_code').html('<span class="iconfont">&#xe675;</span>&nbsp;复制成功');
+			} else {
+				$('#invite_link li').eq(0).html('浏览器不兼容，邀请码复制失败！');
 		  		$('#invite_link li').eq(1).html('您可以手动复制邀请码：');
-		  		$('#invite_link li').eq(2).html(linkValue);
+		  		$('#invite_link li').eq(2).html(res.content.inviteCode);
 				layer.open({
 					type: 1,
 					title: ['复制邀请码','color: #707070;'],
@@ -184,8 +229,8 @@ var invites = {
 					content: $('#invite_link')
 				});
 			}
-			time=setTimeout(function(){
-				$('.copy_code').html('复制链接');
+			time = setTimeout(function(){
+				$('.copy_code').html('复制邀请码');
 				invites.hoverEvent();
 				clearTimeout(time);
 			},2000)
@@ -193,22 +238,22 @@ var invites = {
 	},
 	// 邀请记录
 	getInviteRecord : function(){
-		_apiInvite.getInviteRecord(invites.headerData,1,function(res){
-			var listData=res.content.list;
+		_apiOperate.getInviteRecord(invites.headerData,1,function(res){
+			var listData = res.content.list;
 			$.each(listData,function(i){
-				listData[i].friendPhoneNum=listData[i].friendPhoneNum.substring(0,3)+"****"+listData[i].friendPhoneNum.substring(8,11);
+				listData[i].friendPhoneNum = listData[i].friendPhoneNum.substring(0,3)+"****"+listData[i].friendPhoneNum.substring(8,11);
 			});
-			if(res.content.list.length==0){
+			if (res.content.list.length == 0) {
 				$('.invite_record').children().eq(1).show().siblings().hide();
 				return false;
-			}else{
+			} else {
 				var bannerHtml = _td.renderHtml(record,{
 					list:res.content.list,
 				});
 				$('._invite_record_table').html(bannerHtml);
 				invites.changeColor('.invite_table');
 				_paging.paging('pageList',res.content.total,res.content.pageSize,function(e){
-					_apiInvite.getInviteRecord(invites.headerData,e.current,function(res){
+					_apiOperate.getInviteRecord(invites.headerData,e.current,function(res){
 						var bannerHtml = _td.renderHtml(record,{
 							list:res.content.list,
 						});
@@ -220,10 +265,12 @@ var invites = {
 				})
 			}
 		},function(){
+			$('.invite_record').html('<img src="" alt="" />');
 			console.log('请求失败');
 		});
 	}
 }
+
 $(function(){
 	invites.init();
 })

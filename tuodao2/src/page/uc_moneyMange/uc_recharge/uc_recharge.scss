@@ -1,5 +1,10 @@
 @import '../../common/mixin';
-@import '../../common/layout';
+#capital{
+	display: block;
+}
+#ucRecharge{
+	color: $mainColor;
+}
 em{
 	font-style:normal;
 }

@@ -25,7 +25,7 @@
 		<input type="password" placeholder="请输入支付密码" class="com_inp sub_psw" id="sub_psw">
 		<div><a href="" class="fontcol">忘记密码&nbsp;</a></div>
 	</div>
-	<div class="predict">预计收益：<b class="predict_money">0.00</b>元</div>
+	<div class="predict">预计收益：<b class="predict_money">0.00</b><b class="coupon_money"></b>元</div>
 	<div class="input_sub">
 		<input type="submit" id="sub_btn" value="{{brnTxt}}" class="{{btnClas}}">
 	</div>

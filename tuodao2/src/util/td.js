@@ -13,6 +13,7 @@ var _td = {
 			data: param.data || '',
 			async: (param.asyncType) ? true : param.asyncType,
 			beforeSend: function(xhr) {
+				param.beforeFn && param.beforeFn();
 				xhr.setRequestHeader("accessId", param.accessId || 'accessId');
 				xhr.setRequestHeader("accessKey", param.accessKey || 'accessKey');
 				xhr.setRequestHeader("requestType", "PC");
@@ -22,7 +23,6 @@ var _td = {
 				// 请求成功
 				if (100000 === res.code) {
 					typeof param.success === 'function' && param.success(res);
-
 				}
 				// 请求数据错误
 				else {
@@ -31,6 +31,9 @@ var _td = {
 				// else if(10 === res.status){
 				// 	 _this.doLogin();
 				// }
+			},
+			complete: function () {
+				param.completeFn && param.completeFn();
 			},
 			error: function(err) {
 				typeof param.error === 'function' && param.error(err.statusText);
@@ -55,7 +58,7 @@ var _td = {
 	},
 	// 统一登录
 	doLogin: function() {
-		window.location.href = './userlogin.html?redirect' + encodeURIComponent(window.location.href);
+		window.location.href = './userlogin.html?redirect=' + encodeURIComponent(window.location.href);
 	},
 	// 获取授权账号
 	getAccess : function(name){
@@ -81,9 +84,6 @@ var _td = {
 		if ('mobile' === type) {
 			return /^1[34578]\d{9}$/.test(value);
 		}
-		if ('only' === type) {
-			return false;
-		}
 		// 银行卡号验证
 		if ('bankCard' === type) {
 			return /^([1-9]{1})(\d{14}|\d{18})$/.test(value);
@@ -95,13 +95,33 @@ var _td = {
 	},
 	// 各行变色兼容写法
 	trColor : function(id){
-		// 各行变色
 		var trs=document.getElementById(id).getElementsByTagName("tr");
 		for(var i=0;i<trs.length;i++){
 			if(i%2==0){
 				trs[i].className +=" trColor";
 			}
 		};
+	},
+	// 自定义遮罩层出现
+	layerLoad : function(){
+		var local_layer = "<div id='local_layer'><div></div></div>";
+		$("body").append(local_layer);
+	},
+	// 自定义遮罩层隐藏
+	layerLeave : function(){
+		if($("#local_layer").length > 0){
+			$("#local_layer").remove();
+		}
+	},
+	// 自定义接口失败加载
+	getError : function(id){
+		var oDiv = "<div class='errStyle'></div>";
+		$("."+id).append(oDiv);
+	},
+	removeError : function(){
+		if($(".errStyle").length > 0){
+			$(".errStyle").remove();
+		}
 	}
 };
 

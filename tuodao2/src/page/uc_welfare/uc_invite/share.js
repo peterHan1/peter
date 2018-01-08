@@ -1,19 +1,18 @@
-
-//分享
+// 分享
 $(document).ready(function(e) {
   var share_url = encodeURIComponent('http://www.51tuodao.com/front/register');
   var share_title = encodeURIComponent('money,money,go my home!!');
-  var share_pic = "http://static.51tuodao.com/pc2.0/images/logo.png";  //默认的分享图片
-  var share_from = encodeURIComponent("拓道金服"); //分享自（仅用于QQ空间，新浪的只需更改appkey 和 ralateUid就行）
-  //Qzone
+  var share_pic = "http://static.51tuodao.com/pc2.0/images/logo.png";  // 默认的分享图片
+  var share_from = encodeURIComponent("拓道金服"); // 分享自（仅用于QQ空间，新浪的只需更改appkey 和 ralateUid就行）
+  // Qzone
   $('#share a.Qzone').click(function(e) {
       window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+share_url+"&title="+share_title+"&pics="+share_pic+"&site="+share_from+"","newwindow");
   });
-  //Cqq qq friends
+  // Cqq qq friends
   $('#share a.Cqq').click(function(e) {
       window.open("http://connect.qq.com/widget/shareqq/index.html?url="+share_url+"&title="+share_title+"&pics="+share_pic+"&site="+share_from+"","newwindow");
   });
-  //Sina Weibo
+  // Sina Weibo
   $('#share a.sina_wb').click(function(e) {
   var param = {
       url:share_url ,
@@ -29,11 +28,11 @@ $(document).ready(function(e) {
     }
     window.open('http://v.t.sina.com.cn/share/share.php?' + temp.join('&'));
   });
-  //tengxun_wb
+  // tengxun_wb
   $('#share a.tengxun_wb').click(function(e) {
     window.open('http://share.v.t.qq.com/index.php?c=share&a=index&title='+share_title+'&site='+share_from+'&pic='+share_pic+'&url='+share_url+'','newwindow');
   });
-  //renren
+  // renren
   $('#share a.renren').click(function(e) {
     window.open('http://widget.renren.com/dialog/share?resourceUrl='+share_url+'&title='+share_title+'&images='+share_pic+'','newwindow');
   });

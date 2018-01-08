@@ -13,8 +13,53 @@
 			<%= require('html-loader!./layout/uc_menu.html') %>
 			<div class="uc_right">
 				<div class="total_sign">
-					<div class="com_left total getUserMo">
-						
+					<div class="com_left total">
+						<div class="total_top">
+							<div class="assets">
+								<dl>
+									<dt>
+										<span>累计收益(元)</span>
+										<div class="hint">
+											<i class="iconfont">&#xe68d;</i>
+											<div class="tips left-tips">
+												存管上线后收到的收益总和
+											</div>
+										</div>
+									</dt>
+									<dd class="user_earning"></dd>
+								</dl>
+							</div>
+							<div class="recharge_cash">
+								<a href="uc_recharge.html" class="recharge">充值</a>
+								<a href="uc_cash.html" class="cash">提现</a>
+							</div>
+						</div>
+						<div class="total_bot">
+							<dl>
+								<dt>
+									<span>待收总额(元)</span>
+									<div class="hint">
+										<i class="iconfont">&#xe68d;</i>
+										<div class="tips left-tips">
+											待回款的本金与利息总和
+										</div>
+									</div>
+								</dt>
+								<dd class="user_await"></dd>
+							</dl>
+							<dl>
+								<dt>
+									<span>可用余额(元)</span>
+									<div class="hint">
+										<i class="iconfont">&#xe68d;</i>
+										<div class="tips left-tips">
+											充值资金，已回款资金和站岗资金的和。
+										</div>
+									</div>
+								</dt>
+								<dd class="user_balan"></dd>
+							</dl>
+						</div>
 					</div>
 					<div class="com_right sign">
 					</div>
@@ -38,7 +83,7 @@
 							</div>
 						</div>
 						<div class="date_titR">
-							<a href="###">
+							<a href="uc_invest_return.html">
 								查看更多
 								<i class="iconfont">&#xe69a;</i>
 							</a>

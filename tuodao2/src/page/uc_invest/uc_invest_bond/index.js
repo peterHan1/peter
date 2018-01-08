@@ -1,5 +1,5 @@
-require('./index.scss');
 require('page/common/uc-menu/index.js');
+require('./index.scss');
 require('page/common/top/index.js');
 require('page/common/nav/index.js');
 require('util/laydate/index.js');
@@ -10,7 +10,9 @@ var _td 		= require('util/td.js');
 var _apiInvest 	= require('api/trade-api.js');
 var _paging 	= require('util/paging/index.js');
 var bondAble 	= require('./Invest_bondAble.string');
+var AbleNull 	= require('./Invest_bondAbleNull.string');
 var bondTran 	= require('./Invest_bondTran.string');
+var TranNull 	= require('./Invest_bondTranNull.string');
 var bondYet 	= require('./Invest_bondYet.string');
 var bondApply 	= require('./Invest_bondApply.string');
 
@@ -23,22 +25,23 @@ var ucInvest = {
 		this.urlEach(headerData);
 	},
 	urlEach: function(headerData) {
+		var _this = this;
 		$('.uc_bondTab a').each(function() {
 			if (location.href.indexOf($(this).attr("href")) > -1 && $(this).attr("href") != "") {
 				var sta = $(this).attr("status");
 				$(this).addClass('on');
-				ucInvest.initDate();
+				_this.initDate();
 				var oUl = '<ul class="tabUl"><li class="on" status="0">全部</li><li status="1">募集中</li><li status="2">回款中</li><li status="3">已回款</li></ul>';
 				if (sta == "0") {
-					ucInvest.addAbleHtml(headerData, "0", "", "", "10", "1");
+					_this.addAbleHtml(headerData, "0", "", "", "10", "1");
 				} else if (sta == "1") {
-					ucInvest.addTranHtml(headerData, "1", "", "", "10", "1", sta);
+					_this.addTranHtml(headerData, "1", "", "", "10", "1", sta);
 				} else if (sta == "2") {
-					ucInvest.addTranHtml(headerData, "2", "", "", "10", "1", sta);
+					_this.addTranHtml(headerData, "2", "", "", "10", "1", sta);
 				} else if (sta == "3") {
-					ucInvest.addYetHtml(headerData, "0", "", "", "10", "1");
+					_this.addYetHtml(headerData, "0", "", "", "10", "1");
 					$(".uc_invest_tabL").html(oUl);
-					ucInvest.yetStatusclick(headerData);
+					_this.yetStatusclick(headerData);
 				}
 			} else {
 				$(this).removeClass('on');
@@ -46,52 +49,60 @@ var ucInvest = {
 		});
 	},
 	addAbleHtml: function(headerData, sta, startime, endtime, pagesize, current) {
+		$(".uc_invest_tabR").attr("status", sta);
+		var _this = this;
 		_apiInvest.getBond(headerData, sta, startime, endtime, pagesize, current, function(res) {
-			ucInvest.addAbleHtmlFn(headerData, res.content.list, sta);
+			_this.addAbleHtmlFn(headerData, res.content.list, sta);
 			_paging.paging("pageList", res.content.total, 10, function(e) {
 				_apiInvest.getBond(headerData, sta, startime, endtime, pagesize, e.current, function(res) {
-					ucInvest.addAbleHtmlFn(headerData, res.content.list, sta);
+					_this.addAbleHtmlFn(headerData, res.content.list, sta);
 				}, function(err) {
-					console.log(err);
+					$("#bond_box").html(_td.renderHtml(AbleNull));
 				});
 			});
 		}, function(err) {
-			console.log(err);
+			$("#bond_box").html(_td.renderHtml(AbleNull));
 		});
 	},
 	addAbleHtmlFn: function(headerData, lists, sta) {
+		var _this = this;
 		$("#bond_box").html(_td.renderHtml(bondAble, {
 			list: lists
 		}));
-		$(".uc_invest_tabR").attr("status", sta);
 		_td.trColor("tbody_list");
-		ucInvest.tipsHover();
-		ucInvest.dateClick(headerData);
-		ucInvest.eventFn(headerData);
+		_this.tipsHover();
+		_this.dateClick(headerData);
+		_this.eventFn(headerData);
 	},
 	addTranHtml: function(headerData, sta, startime, endtime, pagesize, current, stas) {
+		$(".uc_invest_tabR").attr("status", sta);
+		var _this = this;
 		_apiInvest.getBond(headerData, sta, startime, endtime, pagesize, current, function(res) {
-			ucInvest.addTranHtmlFn(headerData, res.content.list, stas);
+			_this.addTranHtmlFn(headerData, res.content.list, stas);
 			_paging.paging("pageList", res.content.total, 10, function(e) {
 				_apiInvest.getBond(headerData, sta, startime, endtime, pagesize, e.current, function(res) {
-					ucInvest.addTranHtmlFn(headerData, res.content.list, stas);
+					_this.addTranHtmlFn(headerData, res.content.list, stas);
 				}, function(err) {
-					console.log(err);
+					$("#bond_box").html(_td.renderHtml(TranNull));
+					$(".nullText").html(_this.addTranNull(sta * 1));
+					_this.dateClick(headerData);
 				});
 			});
 		}, function(err) {
-			console.log(err);
+			$("#bond_box").html(_td.renderHtml(TranNull));
+			$(".nullText").html(_this.addTranNull(sta * 1));
+			_this.dateClick(headerData);
 		});
 	},
 	addTranHtmlFn: function(headerData, lists, sta) {
+		var _this = this;
 		$("#bond_box").html(_td.renderHtml(bondTran, {
 			list: lists
 		}));
-		$(".uc_invest_tabR").attr("status", sta);
-		$(".nullText").html(ucInvest.addTranNull(sta * 1));
+		$(".nullText").html(_this.addTranNull(sta * 1));
 		_td.trColor("tbody_list");
-		ucInvest.tipsHover();
-		ucInvest.dateClick(headerData);
+		_this.tipsHover();
+		_this.dateClick(headerData);
 	},
 	addTranNull: function(sta) {
 		switch (sta) {
@@ -104,11 +115,13 @@ var ucInvest = {
 		}
 	},
 	addYetHtml: function(headerData, sta, startime, endtime, pagesize, current) {
+		var _this = this;
+		$(".uc_invest_tabR").attr("status", "3");
 		_apiInvest.getBondyet(headerData, sta, startime, endtime, pagesize, current, function(res) {
-			ucInvest.addYetHtmlFn(headerData, res.content.list);
+			_this.addYetHtmlFn(headerData, res.content.list);
 			_paging.paging("pageList", res.content.total, 10, function(e) {
 				_apiInvest.getBondyet(headerData, sta, startime, endtime, pagesize, e.current, function(res) {
-					ucInvest.addYetHtmlFn(headerData, res.content.list);
+					_this.addYetHtmlFn(headerData, res.content.list);
 				}, function(err) {
 					console.log(err);
 				});
@@ -118,26 +131,27 @@ var ucInvest = {
 		});
 	},
 	addYetHtmlFn: function(headerData, lists) {
+		var _this = this;
 		$("#bond_box").html(_td.renderHtml(bondYet, {
 			list: lists
 		}));
-		$(".uc_invest_tabR").attr("status", "3");
 		_td.trColor("tbody_list");
-		ucInvest.tipsHover();
-		ucInvest.dateClick(headerData);
+		_this.tipsHover();
+		_this.dateClick(headerData);
 	},
 	yetStatusclick: function(headerData) {
+		var _this = this;
 		$(".uc_invest_tabL li").on("click", function() {
 			var sta = $(this).attr("status");
 			$(this).addClass("on").siblings("li").removeClass("on");
 			$(".uc_invest_tabR").attr("yet", sta);
-			ucInvest.initDate();
-			ucInvest.addYetHtml(headerData, sta, "", "", "10", "1");
+			_this.initDate();
+			_this.addYetHtml(headerData, sta, "", "", "10", "1");
 		});
 	},
 	dateClick: function(headerData) {
+		var _this = this;
 		$(".start_date").off("click").on("click", function() {
-			var _this = $(this);
 			var sta = $(this).parent(".uc_invest_tabR").attr("status");
 			var yetSta = $(this).parent(".uc_invest_tabR").attr("yet");
 			var endTime = $("#end_date").attr('endDate');
@@ -148,19 +162,18 @@ var ucInvest = {
 				choose: function(dates) {
 					$("#start_date").attr("startDate", dates);
 					if (sta == 0) {
-						ucInvest.addAbleHtml(headerData, '0', dates, endTime, '10', '1');
+						_this.addAbleHtml(headerData, '0', dates, endTime, '10', '1');
 					} else if (sta == 1) {
-						ucInvest.addTranHtml(headerData, '1', dates, endTime, '10', '1', sta);
+						_this.addTranHtml(headerData, '1', dates, endTime, '10', '1', sta);
 					} else if (sta == 2) {
-						ucInvest.addTranHtml(headerData, '2', dates, endTime, '10', '1', sta);
+						_this.addTranHtml(headerData, '2', dates, endTime, '10', '1', sta);
 					} else if (sta == 3) {
-						ucInvest.addYetHtml(headerData, yetSta, dates, endTime, '10', '1');
+						_this.addYetHtml(headerData, yetSta, dates, endTime, '10', '1');
 					}
 				}
 			});
 		});
 		$(".end_date").off("click").on("click", function() {
-			var _this = $(this);
 			var sta = $(this).parent(".uc_invest_tabR").attr("status");
 			var startTime = $("#start_date").attr('startDate');
 			var yetSta = $(this).parent(".uc_invest_tabR").attr("yet");
@@ -171,19 +184,20 @@ var ucInvest = {
 				choose: function(dates) {
 					$("#end_date").attr("endDate", dates);
 					if (sta == 0) {
-						ucInvest.addAbleHtml(headerData, '0', startTime, dates, '10', '1');
+						_this.addAbleHtml(headerData, '0', startTime, dates, '10', '1');
 					} else if (sta == 1) {
-						ucInvest.addTranHtml(headerData, '1', startTime, dates, '10', '1', sta);
+						_this.addTranHtml(headerData, '1', startTime, dates, '10', '1', sta);
 					} else if (sta == 2) {
-						ucInvest.addTranHtml(headerData, '2', startTime, dates, '10', '1', sta);
+						_this.addTranHtml(headerData, '2', startTime, dates, '10', '1', sta);
 					} else if (sta == 3) {
-						ucInvest.addYetHtml(headerData, yetSta, startTime, dates, '10', '1');
+						_this.addYetHtml(headerData, yetSta, startTime, dates, '10', '1');
 					}
 				}
 			});
 		});
 	},
 	eventFn: function(headerData) {
+		var _this = this;
 		// 申请转让
 		$(".transfer_clk a").on("click", function() {
 			var id = $(this).attr("tenderId");
@@ -193,20 +207,22 @@ var ucInvest = {
 				});
 				$(".bond_show_box").html(listApply);
 				$(".sub_btn").attr("tenderId", id);
-				ucInvest.inputUp();
+				_this.inputUp();
+				layer.open({
+					type: 1,
+					title: '',
+					closeBtn: 0,
+					area: ['740px', '594px'],
+					content: $('#bond_show')
+				});
 				$(".close_btn").on("click", function() {
 					$(".bond_show_box").html("");
 					layer.closeAll();
 				});
 			}, function(err) {
-				console.log(err);
-			});
-			layer.open({
-				type: 1,
-				title: '',
-				closeBtn: 0,
-				area: ['740px', '594px'],
-				content: $('#bond_show')
+				layer.msg(err.msg + ",请稍后重试", {
+					time: 2000
+				});
 			});
 		});
 		// 确认转让点击
@@ -262,7 +278,7 @@ var ucInvest = {
 	tipsHover: function() {
 		$(".td_name").mouseover(function() {
 			if ($(this).find("a").width() >= $(this).width()) {
-				_tips.getTipsRight($(this), 15);
+				_tips.getTipsRight($(this), 12);
 			}
 		});
 		$(".td_name").mouseout(function() {

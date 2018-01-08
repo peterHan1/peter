@@ -8,7 +8,7 @@ var _paging = {
 			// 当前页
 			current: 1,
 			// 显示条数 pageSize
-			shownum: pageSize,
+			shownum: 6,
 			backfun: backFuntion
 		});
 	}

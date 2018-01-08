@@ -5,6 +5,12 @@ var _user = {
 		_td.request({
 			url 	: '/api/router/user/login',
 			data 	: param,
+			beforeFn 	: function(){
+				_td.layerLoad();
+			},
+			completeFn 	: function(){
+				_td.layerLeave();
+			},
 			success : resolve,
 			error 	: reject,
 		});
@@ -147,6 +153,12 @@ var _user = {
 			url     	: '/api/router/user/logout',
 			accessId	: headerData.accessId,
 			accessKey	: headerData.accessKey,
+			beforeFn 	: function(){
+				_td.layerLoad();
+			},
+			completeFn 	: function(){
+				_td.layerLeave();
+			},
 			success 	: resolve,
 			error   	: reject
 		});

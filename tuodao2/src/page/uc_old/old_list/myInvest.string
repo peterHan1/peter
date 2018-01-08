@@ -17,6 +17,6 @@
 	<td>{{interest}}</td>
 	<td>{{prize}}</td>
 	<td>{{statusName}}</td>
-	<td><a data-id={{tenderId}}>查看详情</a></td>
+	<td><a href="uc_oldDetail.html?type=myInvest&id={{tenderId}}">查看详情</a></td>
 </tr>
 {{/list}}

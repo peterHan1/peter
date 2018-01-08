@@ -15,6 +15,6 @@
 	<td>{{amount}}</td>
 	<td>{{isInterest}}</td>
 	<td>{{startTime}}</td>
-	<td><a data-id={{tenderId}}>查看详情</a></td>
+	<td><a href="uc_oldDetail.html?type=transfer&id={{tenderId}}">查看详情</a></td>
 </tr>
 {{/list}}

@@ -1,4 +1,6 @@
 @import "../../common/mixin";
+#myInvest{display: block;}
+#investScatter{color: $mainColor;}
 .max-width{@extend %clearfix;}
 .uc_main{
 	margin: 30px 0 50px;@extend %clearfix;
