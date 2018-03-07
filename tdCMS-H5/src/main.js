@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
+import 'common/js/base.js'
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 // 接口地址

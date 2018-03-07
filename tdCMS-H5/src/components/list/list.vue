@@ -1,6 +1,11 @@
 <template>
-	<div class="box">
-		这是列表页
+	<div class="max_width">
+		<div class="logo">
+			<img src="../../assets/image/logo.png">
+		</div>
+		<div class="title">
+			列表页
+		</div>
 	</div>
 </template>
 
@@ -27,6 +32,14 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
-	.box
-		font-size:12px
+	.logo
+		background-color: #4879BC
+		padding: 0.2rem 0.2rem
+		img
+			display: block
+	.title
+		font-size: 0.4rem
+		text-align: center
+		line-height: 2rem
+		color: $color-font-orange
 </style>

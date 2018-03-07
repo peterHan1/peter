@@ -1,13 +1,8 @@
 <template>
 	<div class="max_width">
-		<div class="logo"></div>
-		<p>
-			<router-link to="/list">列表页: /list</router-link>
-		</p>
-		<p>
-			<router-link to="/details">测试大图: /details</router-link>
-		</p>
-		<div class="imgs"></div>
+		<div class="logo">
+			<img src="../../assets/image/img1.png">
+		</div>
 	</div>
 </template>
 
@@ -15,6 +10,7 @@
 export default {
 	data () {
 		return {
+			datas: {},
 			dataUrl: 'json/platform/data?t=1520320914881'
 		}
 	},
@@ -33,13 +29,9 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
-	.max_width
-		font-size:0.4rem
-		.logo
+	.logo
+		width: 100%
+		img
+			display: block
 			width: 100%
-			height: 1rem
-			background: #4879BC url(../../assets/image/logo.png) no-repeat 50% 50%
-		p
-			line-height:0.6rem
-			padding:0 0.2rem
 </style>
