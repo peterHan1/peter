@@ -58,22 +58,27 @@
      </div>
      <ul>
        <li>
-         <span>套餐类型：</span>
-         <span>每小时2元</span>
+          <span></span>
+          <span>套餐类型：</span>
+          <span>每小时2元</span>
        </li>
        <li>
+          <span></span>
          <span>使用时长：</span>
          <span>50分钟</span>
        </li>
        <li>
+          <span></span>
          <span>应付金额：</span>
          <span>2元</span>
        </li>
        <li>
+          <span></span>
          <span>实付金额：</span>
          <span>2元</span>
        </li>
        <li>
+          <span></span>
          <span>租借时间：</span>
          <span>2018-01-28 12:21:37</span>
        </li>
@@ -86,24 +91,15 @@
   export default {
     data () {
       return {
-        money: ['充150', '充100', '充50', '充20'],
-        num: 9
       }
     },
     methods: {
-      selectMoney (index) {
-        this.num = index
-      },
-      recharge () {
-
-      }
     }
   }
 </script>
 
 <style scoped lang="less">
   .borrowPay{
-    height: 100%;
     background-color: #f9f9f9;
     .borrowMess{
       background-color: #fff;
@@ -255,27 +251,33 @@
         margin-bottom: 0.33rem;
       }
       ul{
-        padding: 0 0.58rem 0 0.8rem;
+        padding: 0 0.58rem 0 0.52rem;
       }
       li{
         line-height: 0.6rem;
         color: #333;
         font-size: 0.28rem;
+        position: relative;
+        overflow: hidden;
+        padding-left: 0.26rem;
         span{
           display:inline-block;
         }
         span:nth-child(1){
-          float: left;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0.1rem;
+            height: 0.1rem;
+            background-color: #ffc600;
+            border-radius: 50%;
         }
         span:nth-child(2){
-          float: right;
+          float: left;
         }
-        &::before {
-          content: "\02022";
-          margin-left: -75px;
-          color: #ffc600;
-          font-style: normal;
-          text-decoration: none;
+        span:nth-child(3){
+          float: right;
         }
       }
     }
