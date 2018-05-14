@@ -1,12 +1,12 @@
 <template>
  <div class="order">
     <div class="currentTxt">当前使用详情：</div>
-    <div class="list">
+    <div id="list">
       <p>
         <span>包月借49元</span>
         <span>使用中<i class="iconfont">&#xe67a;</i></span>
       </p>
-      <div v-show="true">
+      <div>
         <ul>
           <li>
             <span></span>
@@ -51,12 +51,12 @@
     </div>
     <div class="status">
       <div class="pastTxt">以往使用详情：</div>
-      <div class="list" @click="detailShow()">
-        <p>
+      <div id="list" :class="showClass">
+        <p @click="detailShow($event)">
           <span>小时借</span>
-          <span>已完成<i class="iconfont">&#xe67b;</i></span>
+          <span>已完成<i class="iconfont">&#xe67a;</i></span>
         </p>
-        <div v-show="false">
+        <div>
           <ul>
             <li>
               <span></span>
@@ -96,12 +96,12 @@
           </ul>
         </div>
       </div>
-      <div class="list" @click="detailShow()">
-        <p>
+      <div id="list" :class="showClass">
+        <p @click="detailShow($event)">
           <span>小时借</span>
-          <span>已完成<i class="iconfont">&#xe67b;</i></span>
+          <span>已完成<i class="iconfont">&#xe67a;</i></span>
         </p>
-        <div v-show="false">
+        <div>
           <ul>
             <li>
               <span></span>
@@ -149,11 +149,18 @@
   export default {
     data () {
       return {
-       
+        showClass: 'listShow'
       }
     },
     methods: {
-     
+      detailShow (obj) {
+        let clas = obj.currentTarget.parentNode.className
+        if (clas === 'listShow') {
+          obj.currentTarget.parentNode.className = 'listShows'
+        } else {
+          obj.currentTarget.parentNode.className = 'listShow'
+        }
+      }
     }
   }
 </script>
@@ -170,7 +177,7 @@
       color: #ff8400;
       padding-left: 0.08rem;
     }
-    .list{
+    #list{
       background-color: #fff;
       padding: 0 0.22rem;
       overflow: hidden;
@@ -188,7 +195,9 @@
           color: #979797;
           float: right;
           i{
+            display: inline-block;
             margin-left: 0.1rem;
+            transition: transform 0.2s ease-in;
           }
         }
       }
@@ -232,6 +241,15 @@
         text-align: center;
         border-radius: 5px;
         background-color: #ffc600;
+      }
+    }
+    .listShow{
+      height: 0.87rem;
+      overflow: hidden;
+      p{
+        i{
+          transform: rotate(180deg);
+        }
       }
     }
     .status{

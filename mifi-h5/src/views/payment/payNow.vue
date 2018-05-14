@@ -100,13 +100,13 @@
     },
     methods: {
       subSelect () {
-        this.isShow = true;
+        this.isShow = true
       },
       closeSub () {
-        this.isShow = false;
+        this.isShow = false
       },
       waySelect (txt) {
-        this.wayPay = txt;
+        this.wayPay = txt
       }
     }
   }
