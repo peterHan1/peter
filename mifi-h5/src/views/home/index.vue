@@ -1,7 +1,7 @@
 <template>
   <div>
     <prompt-bar></prompt-bar>
-   <!--  <flexbox class="product" orient="vertical" :gutter="20">
+    <!-- <flexbox class="product" orient="vertical" :gutter="20">
       <flexbox-item v-for="item in productItem" :key="item.id">
         <div class="product-item">
           <div class="ribbon" v-if="item.gifted" >
@@ -14,8 +14,8 @@
           <p class="content">{{ item.content }}</p>
         </div>
       </flexbox-item>
-    </flexbox> -->
-    <!-- <flexbox style="margin-top: 0.4rem">
+    </flexbox>
+    <flexbox style="margin-top: 0.4rem">
       <flexbox-item>
         <flexbox>
           <flexbox-item :span="1/5" :order="1">
@@ -36,19 +36,22 @@
       </flexbox-item>
     </flexbox> -->
     <!-- <divider class="default-font" style="margin: 0.64rem">上海大厦</divider> -->
+    <red-packet></red-packet>
   </div>
 </template>
 
 <script>
   import { Divider, Flexbox, FlexboxItem, XButton } from 'vux'
   import PromptBar from '../../components/PromptBar'
+  import redPacket from '../../components/redPacket'
   export default {
     components: {
       Divider,
       Flexbox,
       FlexboxItem,
       XButton,
-      PromptBar
+      PromptBar,
+      redPacket
     },
     data () {
       return {

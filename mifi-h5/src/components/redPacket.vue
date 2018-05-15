@@ -24,9 +24,12 @@
       height: 100%;
     }
     .packetBg{
+      width: 90%;
+      height: 60%;
       position: fixed;
-      background: url(../assets/packet_bg.png) no-repeat;
-      top: 50%;
+      background: url(../assets/img/packet_bg.png) no-repeat;
+      background-size: 100% 100%;
+      top: 60%;
       left: 50%;
       z-index: 10;
       transform: translateX(-50%) translateY(-50%);
