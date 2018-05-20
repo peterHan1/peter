@@ -174,12 +174,12 @@
       li{
         line-height: 0.6rem;
         color: #333;
-        font-size: 0.28rem;
         overflow: hidden;
         position: relative;
         padding-left: 0.28rem;
         span{
           display:inline-block;
+          font-size: 0.28rem;
         }
         span:nth-child(1){
             position: absolute;

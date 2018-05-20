@@ -1,8 +1,27 @@
 <template>
- <div class="order">
+ <div class="details">
+   <div class="detailTop">
+         <div class="useStatus">
+           <div class="iconfont">&#xe619;</div>
+           <div>
+             <p>使用中</p>
+             <p>感谢您使用悠游随身WIFI</p>
+           </div>
+         </div>
+         <div class="psw">
+           <p>
+             WiFi：&nbsp;&nbsp;&nbsp;
+             yoyo
+           </p>
+           <p>
+             密码：&nbsp;&nbsp;&nbsp;
+             12345678
+           </p>
+         </div>
+     </div>
     <div class="currentTxt">当前使用详情：</div>
     <div id="list">
-      <p>
+      <p @click="detailShow($event)">
         <span>包月借49元</span>
         <span>使用中<i class="iconfont">&#xe67a;</i></span>
       </p>
@@ -44,9 +63,6 @@
             <span>随身MIFI</span>
           </li>
         </ul>
-        <div class="renewal">
-          续费
-        </div>
       </div>
     </div>
     <div class="status">
@@ -166,16 +182,55 @@
 </script>
 
 <style scoped lang="less">
-  .order{
+  .details{
     min-height: 100%;
     background-color: #f9f9f9;
     padding: 0.28rem 0.33rem 0.2rem;
     box-sizing: border-box;
+    .detailTop{
+      background-color: #fff;
+      padding-left: 18%;
+      padding-bottom: 0.6rem;
+      .useStatus{
+        padding-top: 0.6rem;
+        div{
+          display: inline-block;
+        }
+        div:nth-child(1){
+          font-size: 0.7rem;
+          color: #09ba07;
+          font-weight: bolder;
+          line-height: 0;
+        }
+        div:nth-child(2){
+          color: #333;
+          margin-left: 0.45rem;
+          p:nth-child(1){
+            font-size: 0.32rem;
+            font-family: PingFangSC-Medium, sans-serif;
+          }
+          p:nth-child(2){
+            font-size: 0.3rem;
+          }
+        }
+      }
+      .psw{
+        padding-left: 0.6rem;
+        margin-top: 0.55rem;
+        p{
+          font-size: 0.34rem;
+          color: #333;
+          font-family: PingFangSC-Medium, sans-serif;
+          line-height: 0.5rem;
+        }
+      }
+    }
     .currentTxt{
       line-height: 0.64rem;
       font-size: 0.28rem;
       color: #ff8400;
       padding-left: 0.08rem;
+      margin-top: 0.2rem;
     }
     #list{
       background-color: #fff;
@@ -213,6 +268,7 @@
         span{
           display:inline-block;
          font-size: 0.28rem;
+         color: #636262;
         }
         span:nth-child(1){
             position: absolute;
@@ -230,16 +286,6 @@
         span:nth-child(3){
           float: right;
         }
-      }
-      .renewal{
-        width: 90%;
-        margin: 0.45rem auto 0.4rem;
-        line-height: 0.88rem;
-        font-size: 0.34rem;
-        color: #323232;
-        text-align: center;
-        border-radius: 5px;
-        background-color: #ffc600;
       }
     }
     .listShow{

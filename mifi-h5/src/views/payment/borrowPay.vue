@@ -256,12 +256,12 @@
       li{
         line-height: 0.6rem;
         color: #333;
-        font-size: 0.28rem;
         position: relative;
         overflow: hidden;
         padding-left: 0.26rem;
         span{
           display:inline-block;
+          font-size: 0.28rem;
         }
         span:nth-child(1){
             position: absolute;

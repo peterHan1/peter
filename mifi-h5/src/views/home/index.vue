@@ -1,7 +1,7 @@
 <template>
   <div>
     <prompt-bar></prompt-bar>
-    <!-- <flexbox class="product" orient="vertical" :gutter="20">
+    <flexbox class="product" orient="vertical" :gutter="20">
       <flexbox-item v-for="item in productItem" :key="item.id">
         <div class="product-item">
           <div class="ribbon" v-if="item.gifted" >
@@ -34,8 +34,8 @@
           </flexbox-item>
         </flexbox>
       </flexbox-item>
-    </flexbox> -->
-    <!-- <divider class="default-font" style="margin: 0.64rem">上海大厦</divider> -->
+    </flexbox>
+    <divider class="default-font" style="margin: 0.64rem">上海大厦</divider>
     <red-packet></red-packet>
   </div>
 </template>
