@@ -10,6 +10,7 @@
           <div>
             ￥<span>8</span>
           </div>
+          <b>红包已放入您的余额，请打开我的钱包查看</b>
           <router-link to="/purse">查看红包</router-link>
         </div>
       </div>
@@ -18,7 +19,7 @@
 </template>
 <script>
   export default {
-    data() {
+    data () {
       return {
         isShow: true,
         clasName: 'packetBg',
@@ -27,13 +28,13 @@
       }
     },
     methods: {
-      closeFn() {
-        this.isShow = false;
+      closeFn () {
+        this.isShow = false
       },
-      apartMoney() {
-        this.clasName = 'apartBg';
-        this.apartShow = false;
-        this.packetmesShow = true;
+      apartMoney () {
+        this.clasName = 'apartBg'
+        this.apartShow = false
+        this.packetmesShow = true
       }
     }
   }
@@ -104,14 +105,20 @@
           }
           div{
             color: #d5c495;
-            line-height: 2.7rem;
+            line-height: 2.3rem;
             font-size: 0.4rem;
             span{
               font-size: 0.9rem;
               font-style: Impact;
             }
           }
+          b{
+            display: block;
+            font-size: 0.12rem;
+            color: #000;
+          }
           a{
+            line-height: 0.8rem;
             font-size: 0.22rem;
             color: #b7a05f;
             text-decoration: underline;
