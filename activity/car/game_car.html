@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true"> 
+	<title>拓道金服</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/catch_car.css">
+	<script type="text/javascript" src="js/base.js"></script>
+	
+	<style>
+		html,body{height: 100%;width: 100%;}
+	</style>
+</head>
+<body>
+	<div class="game_car max_width">
+		<audio src="//www.51tuodao.com/static/pc2.0/images/game/bgm_cargame.mp3" id="car_music" autoplay="autoplay" preload loop="loop" hidden="true" ></audio>
+		<div class="game_tool">
+			<div class="game_line"></div>
+			<div class="game_grab">
+				<img src="image/claws_bg1.png" class="claws"/>
+				<img src="image/claws_bg2.png" class="claw"/>
+			</div>
+		</div>
+		<div id="result" class="result"></div>
+		<!--剩余次数-->
+		<!--<div class="game_num">
+			<span>1</span>
+		</div>-->
+		<!--剩余次数不可点击-->
+		<div class="no_num">
+			<span>1</span>
+		</div>
+		<div class="game_bottom">
+			<div class="car_list" id="car_list">
+				<div id="car">
+					<ul id="car_1">
+						<li class="box d1"><img src="image/car01.gif"></li>
+						<li class="box d2"><img src="image/car02.gif"></li>
+						<li class="box d3"><img src="image/car03.gif"></li>
+						<li class="box d4"><img src="image/car04.gif"></li>
+						<li class="box d5"><img src="image/car05.gif"></li>
+						<li class="box d6"><img src="image/car06.gif"></li>
+						<li class="box d7"><img src="image/car07.gif"></li>
+						<li class="box d8"><img src="image/car08.gif"></li>
+					</ul>
+					<ul id="car_2"></ul>
+				</div>
+			</div>
+			<div class="game_btn">
+				<div id="btn_rule"></div>
+				<div id="btn_go"></div>
+				<div id="btn_music"></div>
+			</div>
+			<div class="game_list">
+				<ul>
+					<li>恭喜 <span>177****111</span> 刚刚在抓车中获得了<span>加息券30%</span></li>
+					<li>恭喜 <span>177****222</span> 刚刚在抓车中获得了<span>加息券3%</span></li>
+					<li>恭喜 <span>177****333</span> 刚刚在抓车中获得了<span>加息券3%</span></li>
+					<li>恭喜 <span>177****444</span> 刚刚在抓车中获得了<span>加息券3%</span></li>
+					<li>恭喜 <span>177****555</span> 刚刚在抓车中获得了<span>加息券3%</span></li>
+				</ul>
+			</div>
+		</div>
+		<!--规则弹窗-->
+		<div class="layer_box layer_Canon dis_none">
+			<div class="layer_rule">
+				<h2>游戏说明</h2>
+				<div class="layer_ruleTxt">
+					<p><span>活动时间：</span>2018年9月1日- 结束时间提前3天通知</p>
+					<p><span>奖励发放：</span>本活动虚拟礼品实时到您的拓道账户中，实物奖励将在抽中奖励3个工作日内以等额抵用券（现金券）形式发放到您的拓道账户中，若48小时内未收到，请联系拓道客服人员；</p>
+					<p><span>游戏奖品：</span>13英寸256G Mac book air价值8415元（限一台）、戴森吸尘器V10价值4950元（限一台）、米家IH智能电饭煲 价值999元（限五台）；现金：56元，16元，6元，抵用券：88元、38元，10元；加息券：3%；积分：188积分；</p>
+					<p><span>游戏规则：</span>活动期间内每天登录可享1次免费抓车机会，机会次日清零； 每日首次分享可享1次抓车机会；机会活动结束清零； 投资单日累计每满2万元（债权转让标除外）获得1次抓车机会，机会次日清零； 每300积分可兑换1次抓车机会，获得机会无限制；机会活动结束清零； 邀请好友注册且首投成功，邀请人可获得3次抓车机会，获得机会无限制，机会活动结束清零；</p>
+				</div>
+				<div class="play_game">
+					<span class="play_car"></span>
+				</div>
+				<div class="rule_txt">该活动最终解释权归拓道金服所有</div>
+			</div>
+			<div class="shade"></div>
+		</div>
+		<!--未登录弹窗-->
+		<div class="layer_box layer_login dis_none">
+			<div class="game_login">
+				<h3>您还未登录，赶紧去登录来玩游戏吧！</h3>
+				<div class="login"></div>
+				<p class="layer_txt">该活动最终解释权归拓道金服所有</p>
+			</div>
+			<div class="shade"></div>
+		</div>
+		<!--次数已用完-->
+		<div class="layer_box layer_over dis_none">
+			<div class="game_over">
+				<h3>很遗憾！您的抓取次数已用完~</h3>
+				<div class="game_add"></div>
+				<div class="game_reset"></div>
+				<p class="layer_txt">该活动最终解释权归拓道金服所有</p>
+			</div>
+			<div class="shade"></div>
+		</div>
+		<!--奖品弹窗-->
+		<div class="layer_box layer_award dis_none">
+			<div class="layer_cont">
+				<h2>恭喜你！抓到了~</h2>
+				<div class="award_box">
+					<div class="award_bg">
+						<img src="image/treasure_bg.png" />
+					</div>
+				</div>
+				<p class="award_user">点击领取奖品按钮即可领取</p>
+				<p class="award_txt dis_none"></p>
+				<div class="get_award"></div>
+				<div class="game_resets"></div>
+				<p class="layer_txt">该活动最终解释权归拓道金服所有</p>
+			</div>
+			<div class="shade"></div>
+		</div>
+		<div class="layer_box layer_loading dis_none">
+			<div class="loading">
+				<span class="loading_bg"></span><p>抽奖中。。</p>
+			</div>
+			<div class="shade"></div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/game_car.js"></script>
