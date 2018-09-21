@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>公告动态</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/notice.css">
+    <link rel="stylesheet" href="js/plus/dropload.css">
+    <style>
+    	.demo2{
+			transform-origin: 13px 15px;
+			transform: rotate(-90deg);
+		}
+		.hehe{
+			display: inline-block;
+			position: absolute;
+			left: -5px;
+			top: -5px;
+		}
+    </style>
+</head>
+<body>
+<div class="outer">
+	<!--<div class="dropload-refresh">
+		<div class="refresh_logo">
+			<svg height="40" width="40" class="hehe">
+		    	<circle class="demo2" id="J_demo2" cx="10" cy="20" r="15" fill="none" stroke="#FF7102" stroke-width="2" stroke-dasharray="0,10000"/>
+			</svg>
+		</div>
+		<p>下拉可以刷新</p>
+	</div>-->
+    <div class="header">
+        <div class="tab">
+            <a href="javascript:;" class="item cur">公告</a>
+            <a href="javascript:;" class="item">动态</a>
+        </div> 
+
+    </div>
+
+        
+    <div class="inner">
+        <div class="lists"></div>
+        <div class="lists"></div>
+    </div>
+</div>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/plus/dropload.js"></script>
+<script>
+    
+$(function(){
+    var itemIndex = 0;
+    var tab1LoadEnd = false;
+    var tab2LoadEnd = false;
+    // tab
+    $('.tab .item').on('click',function(){
+        var $this = $(this);
+        itemIndex = $this.index();
+        $this.addClass('cur').siblings('.item').removeClass('cur');
+        $('.lists').eq(itemIndex).show().siblings('.lists').hide();
+
+        // 如果选中菜单一
+        if(itemIndex == '0'){
+            // 如果数据没有加载完
+            if(!tab1LoadEnd){
+                dropload.unlock();
+                dropload.noData(false);
+            }else{
+                dropload.lock('down');
+                dropload.noData();
+            }
+        // 如果选中菜单二
+        }else if(itemIndex == '1'){
+            if(!tab2LoadEnd){
+                dropload.unlock();
+                dropload.noData(false);
+            }else{
+                dropload.lock('down');
+                dropload.noData();
+            }
+        }
+        // 重置
+        dropload.resetload();
+    });
+
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+
+    var counter2 = 0;
+    // 每页展示4个
+    var num2 = 4;
+    var pageStart2 = 0,pageEnd2 = 0;
+
+    var counter3 = 0;
+    // 每页展示4个
+    var num3 = 4;
+    var pageStart3 = 0,pageEnd3 = 0;
+
+
+    var counter4 = 0;
+    // 每页展示4个
+    var num4 = 4;
+    var pageStart4 = 0,pageEnd4 = 0;
+	
+    var dropload = $('.inner').dropload({
+        // scrollArea : window,
+        domUp : {
+            domClass   : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh"><div class="refresh_logo"><svg height="40" width="40" class="hehe"><circle class="demo2" id="J_demo2" cx="10" cy="20" r="15" fill="none" stroke="#FF7102" stroke-width="2" stroke-dasharray="0,10000"/></svg></div><p>下拉可以刷新</p></div>',
+            domUpdate  : '<div class="dropload-update"><span class="update_logo"><b></b></span><p>松开立即刷新</p></div>',
+            domLoad    : '<div class="dropload-load"><span class="loading_logo"><b></b></span><p>加载中</p></div>'
+        },
+        domDown : {
+            domClass   : 'dropload-down',
+//          domRefresh : '<div class="dropload-refresh"><span class="refresh_logo"><b></b></span><p>上拉加载更多</p></div>',
+            domLoad    : '<div class="dropload-load"><span class="loading_logo"><b></b></span><p>加载中</p></div>',
+            domNoData  : '<div class="dropload-noData">暂无数据</div>'
+        },
+        boboFn : function(h){
+        	var he = h._offsetY;
+        	var num = he * 100 / 60;
+        	console.log(num)
+    		var demo2 =  document.querySelector("#J_demo2");
+        	if(demo2) {
+        		var demo2 =  document.querySelector("#J_demo2");
+				var circleLength = Math.floor(2 * Math.PI * demo2.getAttribute("r"));
+		      	var val = parseFloat(num).toFixed(2);
+			    val = Math.max(0,val);
+			    val = Math.min(100,val);
+			    demo2.setAttribute("stroke-dasharray","" + circleLength * val / 100 + ",10000");
+        	}
+        },
+        loadUpFn : function(me){
+            // 加载菜单一的数据
+//          if(itemIndex == '0'){
+//              $.ajax({
+//                  type: 'GET',
+//                  url: 'json/notice.json',
+//                  dataType: 'json',
+//                  success: function(data){
+//                      var result = '';
+//                      counter3++;
+//                      pageEnd3 = num3 * counter3;
+//                      pageStart3 = pageEnd3 - num3;
+//
+//                      if(pageStart3 <= data.lists.length){
+//                          for(var i = pageStart3; i < pageEnd3-4; i++){
+//                              result +=   '<a class="item_notice opacity" href="'+data.lists[i].link+'">'
+//                                              +'<div>'
+//                                              +'<span>'+data.lists[i].title+'</span>'
+//                                              +'<b>'+data.lists[i].date+'</b>'
+//                                              +'</div>'
+//                                              +'<section class="c">'+data.lists[i].content+'</section>' 
+//                                          +'</a>';
+//
+//                              if((i + 1) >= data.lists.length){
+//                                  // 数据加载完
+//                                  tab1LoadEnd = true;
+//                                  dropload.lock();
+//                                  dropload.noData();
+//                                  break;
+//                              }
+//                          }
+//                          // 为了测试，延迟1秒加载
+//                          setTimeout(function(){
+//                              $('.lists').eq(0).append(result);
+//                              // 每次数据加载完，必须重置
+//                              dropload.resetload();
+//                          },1000);
+//                      }
+//                  },
+//                  error: function(xhr, type){
+//                      alert('Ajax error!');
+//                      // 即使加载出错，也得重置
+//                      dropload.resetload();
+//                  }
+//              });
+//          // 加载菜单二的数据
+//          }else if(itemIndex == '1'){
+//              $.ajax({
+//                  type: 'GET',
+//                  url: 'json/notice.json',
+//                  dataType: 'json',
+//                  success: function(data){
+//                      var result = '';
+//                      counter4++;
+//                      pageEnd4 = num4 * counter4;
+//                      pageStart4 = pageEnd4 - num4;
+//                      for(var i = pageStart4; i < pageEnd4-4; i++){
+//                          result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
+//                                          +'<img src="'+data.lists[i].pic+'" alt="">'
+//                                          +'<div>'
+//                                          +'<p class="t">'+data.lists[i].title+'</p>'
+//                                          +'<p class="d">'+data.lists[i].date+'</p>'
+//                                          +'<p class="c">'+data.lists[i].content+'</p>'
+//                                          +'</div>'
+//                                      +'</a>';
+//                          if((i + 1) >= data.lists.length){
+//                                  // 数据加载完
+//                                  tab1LoadEnd = true;
+//                                  dropload.lock();
+//                                  // 无数据
+//                                  dropload.noData();
+//                                  break;
+//                              }
+//                      }
+//                      // 为了测试，延迟1秒加载
+//                      setTimeout(function(){
+//                          $('.lists').eq(1).append(result);
+//                          // 每次数据加载完，必须重置
+//                          dropload.resetload();
+//                      },1000);
+//                  },
+//                  error: function(xhr, type){
+//                      alert('Ajax error!');
+//                      // 即使加载出错，也得重置
+//                      dropload.resetload();
+//                  }
+//              });
+//          }
+        },
+        loadDownFn : function(me){
+            // 加载菜单一的数据
+            if(itemIndex == '0'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/notice.json',
+                    dataType: 'json',
+                    success: function(data){
+                        var result = '';
+                        counter++;
+                        pageEnd = num * counter;
+                        pageStart = pageEnd - num;
+
+                        if(pageStart <= data.lists.length){
+                            for(var i = pageStart; i < pageEnd; i++){
+                                result +=   '<a class="item_notice opacity" href="'+data.lists[i].link+'">'
+                                                +'<div>'
+                                                +'<span>'+data.lists[i].title+'</span>'
+                                                +'<b>'+data.lists[i].date+'</b>'
+                                                +'</div>'
+                                                +'<section class="c">'+data.lists[i].content+'</section>' 
+                                            +'</a>';
+                                if((i + 1) >= data.lists.length){
+                                    // 数据加载完
+                                    tab1LoadEnd = true;
+                                    dropload.lock();
+                                    // 无数据
+                                    dropload.noData();
+                                    break;
+                                }
+                            }
+                            // 为了测试，延迟1秒加载
+                            setTimeout(function(){
+                                $('.lists').eq(0).append(result);
+                                // 每次数据加载完，必须重置
+                                dropload.resetload();
+                            },1000);
+                        }
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        dropload.resetload();
+                    }
+                });
+            // 加载菜单二的数据
+            }else if(itemIndex == '1'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/notice.json',
+                    dataType: 'json',
+                    success: function(data){
+                        var result = '';
+                         counter2++;
+                        pageEnd2 = num2 * counter2;
+                        pageStart2 = pageEnd2 - num2;
+                        for(var i = pageStart2; i < pageEnd2; i++){
+                            result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
+                                            +'<img src="'+data.lists[i].pic+'" alt="">'
+                                            +'<div>'
+                                            +'<p class="t">'+data.lists[i].title+'</p>'
+                                            +'<p class="d">'+data.lists[i].date+'</p>'
+                                            +'<p class="c">'+data.lists[i].content+'</p>'
+                                            +'</div>'
+                                        +'</a>';
+                            if((i + 1) >= data.lists.length){
+                                    // 数据加载完
+                                    tab1LoadEnd = true;
+                                    dropload.lock();
+                                    // 无数据
+                                    dropload.noData();
+                                    break;
+                                }
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            $('.lists').eq(1).append(result);
+                            // 每次数据加载完，必须重置
+                            dropload.resetload();
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        dropload.resetload();
+                    }
+                });
+            }
+        },
+        distance : 60
+    });
+});
+</script>
+</body>
+</html>
