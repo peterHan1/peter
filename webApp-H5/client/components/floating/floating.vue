@@ -85,12 +85,13 @@
 </script>
 <style lang="stylus" scoped>
   .floating
-    height: 1.2rem
-    width: 1.2rem
+    height: 120px
+    width: 120px
     z-index: 999
     position: absolute
     top: 50%
     right: 0
-    border-radius: 2px
-    background-color: rgba(0, 0, 0, 0.55) 
+    border-radius: 5px
+    background: url('../../assets/images/floating.png') no-repeat
+    background-size: 100% 100%
 </style>

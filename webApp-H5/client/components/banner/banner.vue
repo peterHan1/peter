@@ -1,14 +1,17 @@
 <template>
-  <swipe :auto="0">
-    <swipe-item>1</swipe-item>
-    <swipe-item>2</swipe-item>
-    <swipe-item>3</swipe-item>
+  <swipe :auto="4000">
+    <swipe-item v-for="(item,index) in bannerImg">
+     <router-link  :to="item.bannerA">
+       <img :src="item.imgUrl">
+     </router-link>
+    </swipe-item>
   </swipe>
 </template>
 <script>
   import { Swipe, SwipeItem } from 'mint-ui'
+
   export default {
-    name: 'index',
+    props: ['bannerImg'],
     data () {
       return {
       }
@@ -27,7 +30,7 @@
   .mint-swipe 
     overflow: hidden;
     position: relative;
-    height: 200px;
+    height: 300px;
     .mint-swipe-items-wrap
       position: relative
       overflow: hidden
@@ -39,6 +42,14 @@
         width: 100%
         height: 100%
         display: none
+        a
+          display: block
+          height: 100%
+          width: 100%
+          img
+            display: block
+            width: 100%
+            height: 100% 
       div.is-active
         display: block
         -webkit-transform: none
@@ -54,9 +65,8 @@
       height: 8px
       display: inline-block
       border-radius: 100%
-      background: #000
-      opacity: 0.2
+      background: red
       margin: 0 3px
     .mint-swipe-indicator.is-active
-      background: #fff
+      background: blue
 </style>

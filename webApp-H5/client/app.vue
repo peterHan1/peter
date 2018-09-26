@@ -1,31 +1,23 @@
 <template>
   <div id="app">
-    <Dialog></Dialog>
-    <!-- <Banner></Banner> -->
+    <router-view/>
     <!-- <div id="cover"></div>
     <Header></Header>
     <Demo></Demo>
-    <Footer></Footer>
-    <Floating></Floating> -->
+    <Footer></Footer> -->
   </div>
 </template>
 
 <script>
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
-import Floating from './layout/floating.vue'
 import Demo from './views/demo/demo.vue'
-import Banner from './components/banner/banner.vue'
-import Dialog from './components/layer/dialog.vue'
 
 export default {
   components: {
     Header,
     Footer,
-    Demo,
-    Floating,
-    Banner,
-    Dialog
+    Demo
   }
 }
 </script>
