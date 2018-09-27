@@ -3,7 +3,6 @@ import Vue from 'vue'
 
 let instance
 const Await = function (config = {}) {
-  console.log(config)
   let Tpl = Vue.extend(Template)
   instance = new Tpl()
   instance.$data.show = config.bloon

@@ -24,7 +24,19 @@
       }
     },
     mounted () {
-      Layer.Open()
+      Layer.Open({
+        title: '这是一个弹窗',
+        closeX: true,
+        content: '关注拓道金服服务号，您的贴身管家，账户状态实时跟进，重大活动及时知晓（<span style="color: #FF6600;">已自动复制微信号h1d888</span>)',
+        cancelBtn: '取消',
+        confirmBtn: '确定',
+        cancelBtnFn: function () {
+          Layer.Close()
+        },
+        confirmBtnFn: function () {
+          console.log('点击了确定')
+        }
+      })
     },
     methods: {
     },
@@ -37,11 +49,10 @@
 </script>
 
 <style lang="stylus" scoped>
-	.index_box
-		height: 100%
-		width: 100%
-		.banner
-			width: 100%
-			height: 340px
+  .index_box
+    height: 100%
+    width: 100%
+    .banner
+      width: 100%
+      height: 340px
 </style>
-

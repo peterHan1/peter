@@ -1,4 +1,4 @@
-import Template from './layer.vue'
+import Template from './layer_win.vue'
 import Vue from 'vue'
 
 let instance
@@ -12,20 +12,12 @@ const Await = function (param = {}) {
   document.body.appendChild(instance.$mount().$el)
 }
 
-const Open = function (parameter) {
-  console.log(1)
+const winOpen = function (parameter) {
   let bloon = { show: true }
   let parame = Object.assign(bloon, parameter)
   Await.call(this, { parame })
 }
-const Close = function (parameter) {
-  let bloon = { show: false }
-  instance.$data.param = bloon
-}
 
-export default {Open, Close}
+export default winOpen
 
-module.exports = {
-  Open,
-  Close
-}
+module.exports = { winOpen }
