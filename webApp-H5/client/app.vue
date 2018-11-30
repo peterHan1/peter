@@ -1,45 +1,36 @@
 <template>
-  <div id="app">
-    <router-view/>
-    <!-- <div id="cover"></div>
-    <Header></Header>
-    <Demo></Demo>
-    <Footer></Footer> -->
+  <div>
+    <!-- <div>{{fullName}} {{counter}}</div> -->
+    <router-view />
   </div>
 </template>
-
 <script>
-import Header from './layout/header.vue'
-import Footer from './layout/footer.jsx'
-import Demo from './views/demo/demo.vue'
-
+import {
+  mapState,
+  mapGetters
+} from 'vuex'
 export default {
-  components: {
-    Header,
-    Footer,
-    Demo
+  metaInfo: {
+    title: '拓道金服'
+  },
+  mounted () {
+    console.log(this.$store)
+  },
+  computed: {
+    ...mapState({
+      counter: 'count'
+    }),
+    ...mapGetters(['fullName'])
+    // count () {
+    //   return this.$store.state.count
+    // },
+    // fullName () {
+    //   return this.$store.getters.fullName
+    // }
   }
 }
 </script>
-
 <style lang="stylus" scoped>
-#app{
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-}
-#cover{
-  position absolute
-  left 0
-  top 0
-  right 0
-  bottom 0
-  background-color #999
-  opacity .9
-  z-index -1
-}
-</style>
 
+</style>
 
