@@ -49,10 +49,10 @@
       z-index: 999
       overflow: hidden
       background-color: rgba(0,0,0,0.6)
-      padding:0.2rem 0.3rem
+      padding: 20px 30px
       border-radius: 5px
     .msg
-      font-size: 0.3rem
+      font-size: 30px
       color: #fff
       white-space: nowrap
 </style>

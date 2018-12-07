@@ -2,7 +2,7 @@
   <div>
     <tabs :value="tabValue" @change="handleChangeTab">
       <tab label="平台信息" index="1">
-        <span>基本信息</span>
+        <span>基本信息s5</span>
       </tab>
       <tab label="组织架构" index="2">
         <div>组织架构</div>

@@ -2,7 +2,7 @@
   <header class="header_nav">
     <div class="header_left" v-if="navLeftTxt">
       <span @click="returnFn" v-if="navLeftTxt === 'icon'" class="iconfont">&#xe687;</span>
-      <span @click="navLeftFn" class="leftTxt" v-else>{{navLeftTxt}}</span>
+      <span @click="navLeftFn" :class="{fontX}" class="iconfont leftTxt" v-else v-html="navLeftTxt"></span>
     </div>
     <span><slot /></span>
     <div class="header_right" v-if="navRightTxt" @click="navRightFn">{{navRightTxt}}</div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'Header',
-  props: ['navLeftTxt', 'navRightTxt'],
+  props: ['navLeftTxt', 'navRightTxt', 'fontX'],
   data () {
     return {
     }
@@ -35,8 +35,8 @@ export default {
 <style lang="stylus" scoped>
   .header_nav
     background-color: #fff
-    height: 0.88rem
-    line-height: 0.88rem
+    height: 88px
+    line-height: 88px
     width: 100%
     border-bottom: 1px solid #E8E8E8
     position: fixed
@@ -46,21 +46,23 @@ export default {
     overflow: hidden
     box-sizing: border-box
     text-align: center
-    font-size: 0.34rem
+    font-size: 34px
     color: #333
     z-index: 98
     .header_left
       position: absolute
-      left: 0.3rem
+      left: 30px
       display: inline-block
-      font-size: 0.34rem
+      font-size: 34px
     .leftTxt
-      font-size: 0.32rem
+      font-size: 30px
       color: #626262
     .header_right
       color: #626262
       position: absolute
-      right: 0.28rem
-      font-size: 0.36rem
+      right: 28px
+      font-size: 26px
       display: inline-block
+    .fontX
+      font-size: 42px  
 </style>

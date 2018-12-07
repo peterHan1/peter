@@ -1,3 +1,3 @@
 <template>
-  <div>platform</div>
+  <div>platformsssss</div>
 </template>

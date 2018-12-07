@@ -1,3 +1,3 @@
 <template>
-  <div>组织架构</div>
+  <div>组织架构sssssss</div>
 </template>

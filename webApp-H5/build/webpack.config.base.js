@@ -1,5 +1,6 @@
 const path = require('path')
 const vueLoaderOptions = require('./vue-loader.config')
+const staticBaseUrl = require('../static.url.config')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -8,7 +9,7 @@ const config = {
   output: {
     filename: '[name][hash:8].js',
     path: path.join(__dirname, '../public'),
-    publicPath: 'http://127.0.0.1:8888/public/'
+    publicPath: staticBaseUrl(isDev)
   },
   resolve: {
     alias: {

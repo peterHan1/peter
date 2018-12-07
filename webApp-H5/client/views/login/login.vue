@@ -4,7 +4,7 @@
     <div class="phone_box">
       <div class="phone">
         <span>账号</span>
-        <input type="tell" placeholder="请输入手机号" maxlength="11" v-model="phoneVal">
+        <input type="number" placeholder="请输入手机号" oninput="if(value.length>11)value=value.slice(0,11)" v-model="phoneVal">
         <i class="iconfont" v-show="phoneVal" @click="emptyVal()">&#xe69d;</i>
       </div>
       <div class="hint_phone" v-show="phoneVal">{{phoneVal}}</div>
@@ -13,12 +13,12 @@
       </div>
       <p>拓道金服承诺不会泄露您的个人信息</p>
     </div>
-    <Popup v-show="layerCode" @on-close="codeClose()" @on-sub="codeSub()" close="取消" submit="确定">
+    <Layer v-show="layerCode" :cssSet="'30%'" @on-close="codeClose()" @on-sub="codeSub()" close="取消" submit="确定" >
       <div class="importTxt">
         <input type="text" placeholder="请输入图片验证" v-model="phoneCode"/>
-        <img src="../../assets/images/phoneCode.jpg" alt="">
+        <img src="../../assets/images/login/phoneCode.jpg" alt="">
       </div>
-    </Popup>
+    </Layer>
   </div>
 </template>
 
@@ -51,7 +51,7 @@
         }
       },
       navLeftFn () {
-        console.log('点击了取消')
+        this.$router.push({path: '/index'})
       },
       codeClose () {
         this.layerCode = false
@@ -60,6 +60,8 @@
       codeSub () {
         if (!this.phoneCode) {
           this.$Msg('请输入验证码', 2000)
+        } else {
+          this.$router.push({path: '/loginPwd', query: {id: this.phoneVal}})
         }
       }
     },
@@ -72,89 +74,87 @@
 <style lang="stylus" scoped>
   .login_box
     height: 100%
-    background-color: #F2F3F7
-    padding-top: 0.88rem
+    padding-top: 88px
     box-sizing: border-box
     .phone_box
       overflow: hidden
     .phone
-      height: 0.9rem
+      height: 90px
       background-color: #fff
-      padding: 0 0.3rem
-      margin-top: 0.3rem
+      padding: 0 30px
+      margin-top: 30px
       span
         display: block
         color: #333
-        font-size: 0.26rem
-        line-height: 0.9rem
+        font-size: 26px
+        line-height: 90px
         float: left
-        padding: 0 0.4rem 0 0.1rem
+        padding: 0 40px 0 10px
       input
         display: block
-        height: 100%
+        line-height: 90px
         width: 75%
-        font-size: 0.26rem
+        font-size: 26px
         float: left
         border: none
-        caret-color:#7b99ef
-        color: #333
+        caret-color:#ff711c
       i
         display: block
         float: right
-        font-size: 0.36rem
+        font-size: 36px
         color: #D8D8D8
-        line-height: 0.9rem
-        padding-right: 0.3rem
+        line-height: 90px
+        padding-right: 30px
     .hint_phone
       width: 90%
-      height: 0.9rem
-      line-height: 0.9rem
+      height: 90px
+      line-height: 90px
       background-color: #cce6f5
       border-radius: 5px
-      margin: 0.22rem auto 0
+      margin: 22px auto 0
       position: relative
-      font-size: 0.46rem
+      font-size: 46px
       color: #6695d2
       text-align: center
     .hint_phone:after
       content: ''
       position: absolute
-      top: -0.4rem
+      top: -35px
       left: 50%
-      margin-left: -0.2rem
+      margin-left: -20px
       display: block
-      border-width: 0.2rem
+      border-width: 20px
       border-style: solid
       border-color: transparent transparent #cce6f5 transparent
     .sub_btn
       width: 90%
-      margin: 0.6rem auto 0
+      margin: 60px auto 0
     p
-      font-size: 0.26rem
+      font-size: 26px
       color: #8f8f8f
       text-align: center
-      line-height: 1.1rem
+      line-height: 110px
     .importTxt
       overflow: hidden
-      padding: 0.4rem 0.3rem
+      padding: 40px 30px
       input
         width: 55%
-        height: 0.7rem
+        height: 70px
         display: block
         float: left
         border: 1px solid #ccc
-        padding: 0 0.1rem;
+        padding: 0 10px;
         box-sizing: border-box
-        font-size: 0.28rem
+        font-size: 28px
       img
         width: 40%
-        height: 0.6rem
+        height: 60px
         display: block
         float: right
         margin-top: 1.5%
     .code_btn
-      line-height: 0.8rem
-      font-size: 0.28rem
+      line-height: 80px
+      font-size: 28px
       display: flex
       border-top: 1px solid #ccc
       div
@@ -167,8 +167,4 @@
         border-right: 1px solid #ccc
       .code_btn2
         color: #FF6600
-  .layer_hd
-    img
-      width: 6rem
-      height: 7rem
 </style>
