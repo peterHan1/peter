@@ -90,8 +90,8 @@
           </li>
         </ul>
         <div v-show="interestTxt === 'C'" class="interest">
-          <div v-for="item in interestList" :key="item.value">
-            <p>{{item.value}}</p>
+          <div v-for="item in interestList" :key="item.value" @click="selectList($event)">
+            <p>{{item.val}}</p>
             <p>有效期至</p>
             <p>{{item.data}}</p>
           </div>
@@ -136,8 +136,9 @@ export default {
       voucherTxt: 'A',
       typeStatus: '',
       interestList: [
-        {'value': '333%', 'time': '2018-12-12'}, {'value': '3%', 'time': '2018-12-12'}, {'value': '3%', 'time': '2018-12-12'}, {'value': '3%', 'time': '2018-12-12'}, {'value': '3%', 'time': '2018-12-12'}
-      ]
+        {'val': '1%', 'time': '2018-12-12'}, {'val': '2%', 'time': '2018-12-12'}, {'val': '3%', 'time': '2018-12-12'}, {'val': '1%', 'time': '2018-12-12'}, {'val': '2%', 'time': '2018-12-12'}
+      ],
+      touchNum: 0
     }
   },
   mounted () {
@@ -199,6 +200,20 @@ export default {
     },
     couponShow () {
       this.couponshow = false
+    },
+    selectList (e) {
+      let vm = this
+      let num = document.createElement('span')
+      if (e.currentTarget.className === 'on') {
+        let s = e.currentTarget.querySelectorAll('span')[0]
+        e.currentTarget.classList.remove('on')
+        e.currentTarget.removeChild(s)
+      } else {
+        vm.touchNum++
+        num.innerText = vm.touchNum
+        e.currentTarget.classList.add('on')
+        e.currentTarget.appendChild(num)
+      }
     }
   },
   filters: {
@@ -402,6 +417,8 @@ export default {
         background-size: 100% 100%
         padding: 20px 0
         position: relative
+        span
+          display: none
       p
         padding: 0 20px
         font-size: 16px
@@ -411,19 +428,19 @@ export default {
         text-align: left
         font-size: 40px
         color: #fff
-      .on:after
-        content: ''
-        display: block
-        width: 80px
-        height: 80px
-        line-height: 80px
-        color: #ff711c
-        font-size: 50px
-        text-align: center
-        background-color: #fff
-        border-radius: 100%
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
+      /deep/ .on
+        span
+          display: block
+          width: 80px
+          height: 80px
+          line-height: 80px
+          color: #ff711c
+          font-size: 50px
+          text-align: center
+          background-color: #fff
+          border-radius: 100%
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
 </style>
