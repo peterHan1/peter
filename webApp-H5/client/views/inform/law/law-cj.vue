@@ -1,5 +1,6 @@
 <template>
   <div class="law_cj">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b><span>中国人民银行</span> <span>工业和信息化部</span> <span>公安部</span> <span>财政部</span> <span>工商总局</span> <span>法制办</span> <span>银监会</span> <span>证监会</span> <span>保监会</span> <span>国家互联网信息办公室</span></b><b></b>
     </p>
@@ -114,7 +115,7 @@ export default {
 <style lang="stylus" scoped>
   .law_cj
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height: 0.36rem

@@ -1,5 +1,6 @@
 <template>
   <div class="law_zjcg">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p style="text-align:center;">
       <span style="font-family:'Arial Negreta', 'Arial';font-weight:700;">网络借贷资金存管业务指引</span>
     </p>
@@ -251,7 +252,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .law_zjcg
-    padding:0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     font-size: 0.24rem
     overflow: hidden

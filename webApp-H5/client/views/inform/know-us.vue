@@ -1,6 +1,7 @@
 <template>
-	<div class="know_us">
-		<div><img src="../../assets/images/know_us/know_us1.png" class="max_img"></div>
+	<div class="know-us">
+    <Header navLeftTxt="icon">了解我们</Header>
+		<div><img src="../../assets/images/inform/know-us/know-us1.png" class="max_img"></div>
       <div class="team">
         <Carousel :imgs="imgs" @itemIndex="itemIndex">
           <div class="sc-content" v-if="show === 1">
@@ -17,38 +18,38 @@
           </div>
         </Carousel>
       </div>
-      <div><img src="../../assets/images/know_us/know_us2.png" class="max_img"></div>
+      <div><img src="../../assets/images/inform/know-us/know-us2.png" class="max_img"></div>
         <div class="data">
           <ul>
             <li>
               <section>
-                <div style="margin-top: 21.1px;"><img src="../../assets/images/know_us/know_us3_1.png" class="max_img"></div>
+                <div style="margin-top: 21.1px;"><img src="../../assets/images/inform/know-us/know-us3-1.png" class="max_img"></div>
                 <p>经撮合交易总额</p>
                 <p>1,263,258,915元</p>
               </section>
               <section>
-                <div><img src="../../assets/images/know_us/know_us3_3.png" class="max_img"></div>
+                <div><img src="../../assets/images/inform/know-us/know-us3-3.png" class="max_img"></div>
                 <p>注册用户</p>
                 <p>74,237人</p>
               </section>
             </li>
               <!--<li>
                    <section>
-                      <div><img src="images/know_us/know_us3_2.png" class="max_img"></div>
+                      <div><img src="images/know-us/know-us3-2.png" class="max_img"></div>
                       <p>为用户赚取</p>
                       <p>24,367,642元</p>
                   </section>
                   <section>
-                      <div><img src="images/know_us/know_us3_4.png" class="max_img"></div>
+                      <div><img src="images/know-us/know-us3-4.png" class="max_img"></div>
                       <p>平台运营时间</p>
                       <p>993天</p>
                   </section>
               </li>-->
           </ul>
         </div>
-        <div><img src="../../assets/images/know_us/know_us4.png" class="max_img"></div>
-        <div><img src="../../assets/images/know_us/know_us5_001.png" class="max_img"></div>
-        <!-- <div><img src="../../assets/images/know_us/signature_now.png" class="max_img"></div> -->
+        <div><img src="../../assets/images/inform/know-us/know-us4.png" class="max_img"></div>
+        <div><img src="../../assets/images/inform/know-us/know-us5.png" class="max_img"></div>
+        <!-- <div><img src="../../assets/images/inform/know-us/signature_now.png" class="max_img"></div> -->
         <div class="contact">联系我们</div>
         <ol class="ol_bot">
           <li>服务热线：400-85-666-85</li>
@@ -60,9 +61,9 @@
     </div>
 </template>
 <script>
-import img1 from '../../assets/images/know_us/ll.png'
-import img2 from '../../assets/images/know_us//zlj.png'
-import img3 from '../../assets/images/know_us/fxy.png'
+import img1 from '../../assets/images/inform/know-us/ll.png'
+import img2 from '../../assets/images/inform/know-us/zlj.png'
+import img3 from '../../assets/images/inform/know-us/fxy.png'
 export default {
   metaInfo: {
     title: '了解我们'
@@ -85,79 +86,80 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-    .know_us
-        background: #45aeff
-        font-family:"微软雅黑"
-        -webkit-text-size-adjust:none
-        color: #a8afb3
-        .team
-            background:url(../../assets/images/know_us/team.png) no-repeat
-            background-size: 100%
-            margin-bottom: 0.3rem
-            height: 6.43rem
-            padding: 0.9rem 5% 0
-            h2
-                color: #333
-                font-size: 0.3rem
-                margin: 0
-                padding: 0
-                font-weight: bold
-                b
-                    display: block
-                    font-size: 0.3rem
-                    font-weight: normal
-                    margin-top: 0.1rem
-    div img
-        margin-bottom: 0.3rem
-    div.data
-        background:url(../../assets/images/know_us/know_us3.png) no-repeat
-        background-size: 100%
-        margin-bottom: 0.3rem
-        height:4rem
-        li
-            display: flex
-        li:first-child
-            padding-top:1.2rem
-            margin-bottom:0.2rem
-        section
-            width:50%
-            text-align:center
-            div img
-                width:25%
-                padding:0
-                margin:0
-            p
-                line-height:0.4rem
-                padding:0
-                margin:0
-                font-size:0.28rem
-            p:last-child
-                color:#ff411c
-    .sc-content
-            color: #333
-            text-align:left
-            padding: 0 0.1rem
-            margin-top: 0.1rem
-            line-height:0.36rem
-            h2
-                font-weight: bold
-                text-align: center
-            p
-                margin-top: 0.1rem
-    div.contact
-        font-size: 0.4rem
-        color: #fff
-        padding: 0 0.1rem
-        text-align: center
-        margin-bottom:0.1rem
-    ol li
-        font-size: 0.26rem
-        color: #fff
-        padding: 0 5%
-        line-height: 0.4rem
-        margin-bottom: 0.05rem
-    .ol_bot
-        padding-bottom: 0.4rem
-    .max_img
-        width: 100%
+  .know-us
+    padding-top: 0.88rem
+    background: #45aeff
+    font-family:"微软雅黑"
+    -webkit-text-size-adjust:none
+    color: #a8afb3
+    .team
+      background:url(../../assets/images/inform/know-us/team.png) no-repeat
+      background-size: 100%
+      margin-bottom: 0.3rem
+      height: 6.43rem
+      padding: 0.9rem 5% 0
+      h2
+        color: #333
+        font-size: 0.3rem
+        margin: 0
+        padding: 0
+        font-weight: bold
+        b
+          display: block
+          font-size: 0.3rem
+          font-weight: normal
+          margin-top: 0.1rem
+  div img
+    margin-bottom: 0.3rem
+  div.data
+    background:url(../../assets/images/inform/know-us/know-us3.png) no-repeat
+    background-size: 100%
+    margin-bottom: 0.3rem
+    height:4rem
+    li
+      display: flex
+    li:first-child
+      padding-top:1.2rem
+      margin-bottom:0.2rem
+    section
+      width:50%
+      text-align:center
+      div img
+        width:25%
+        padding:0
+        margin:0
+      p
+        line-height:0.4rem
+        padding:0
+        margin:0
+        font-size:0.28rem
+      p:last-child
+        color:#ff411c
+  .sc-content
+    color: #333
+    text-align:left
+    padding: 0 0.1rem
+    margin-top: 0.1rem
+    line-height:0.36rem
+    h2
+      font-weight: bold
+      text-align: center
+    p
+      margin-top: 0.1rem
+  div.contact
+    font-size: 0.4rem
+    color: #fff
+    padding: 0 0.1rem
+    text-align: center
+    margin-bottom:0.1rem
+  ol li
+    font-size: 0.26rem
+    color: #fff
+    padding: 0 5%
+    line-height: 0.4rem
+    margin-bottom: 0.05rem
+  .ol_bot
+    padding-bottom: 0.4rem
+  .max_img
+    width: 100%
 </style>

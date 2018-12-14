@@ -10,9 +10,6 @@ import {
   mapGetters
 } from 'vuex'
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   mounted () {
     console.log(this.$store)
   },
@@ -31,5 +28,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+
 </style>
 

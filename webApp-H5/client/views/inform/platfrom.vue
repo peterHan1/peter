@@ -1,5 +1,6 @@
 <template>
   <div class="platform">
+    <Header navLeftTxt="icon">平台数据</Header>
     <tabs :value="tabValue" @change="handleChangeTab">
       <tab label="数据汇总" index="1">
         <div class="platform_a platform_bot">
@@ -205,7 +206,7 @@
     </tabs>
     <div class="inform_signature">
       <div><h3 class="title">法人签章</h3></div>
-      <img src="../../assets/images/inform/signature_2.png" alt="">
+      <img src="../../assets/images/inform/signature-2.png" alt="">
     </div>
   </div>
 </template>
@@ -265,20 +266,20 @@ export default {
       this.tabValue = value
       if (value === '1') {
       } else if (value === '2') {
-        this.items1 = [{phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}]
-        this.items2 = [{phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}]
-        this.items3 = [{money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}]
+        // this.items1 = [{phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}, {phone: '133****4126', money: '303198.24'}]
+        // this.items2 = [{phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}, {phone: '133****4126', money: '585343.00'}]
+        // this.items3 = [{money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}, {money: '58.24', point: '0.05%'}]
       } else if (value === '3') {
-        this.myChart1 = {
-          id: 'ranking',
-          dataX: this.$store.state.platform.dataSeven.dataX,
-          series: this.$store.state.platform.dataSeven.series
-        }
-        this.myChart2 = {
-          id: 'monthsData',
-          dataX: this.$store.state.platform.dataMonth.dataX,
-          series: this.$store.state.platform.dataMonth.series
-        }
+        // this.myChart1 = {
+        //   id: 'ranking',
+        //   dataX: this.$store.state.platform.dataSeven.dataX,
+        //   series: this.$store.state.platform.dataSeven.series
+        // }
+        // this.myChart2 = {
+        //   id: 'monthsData',
+        //   dataX: this.$store.state.platform.dataMonth.dataX,
+        //   series: this.$store.state.platform.dataMonth.series
+        // }
       }
     }
   },
@@ -288,13 +289,15 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-  .platform h3
-    line-height:0.8rem
-    font-size:0.26rem
-    color:#212a36
-    font-weight: normal
-    background-color:white
-    border-bottom: 1px solid #e4e4e4
+  .platform
+    padding-top: 0.88rem
+    h3
+      line-height:0.8rem
+      font-size:0.26rem
+      color:#212a36
+      font-weight: normal
+      background-color:white
+      border-bottom: 1px solid #e4e4e4
   .platform_top
     width:100%
     height:0.8rem

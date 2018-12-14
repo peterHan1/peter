@@ -1,5 +1,6 @@
 <template>
   <div class="law_jd">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="margin-left:0.0000pt;text-indent:0.0000pt;text-align:center;">
       <b>网络借贷信息中介机构业务活动管理暂行办法</b><b></b>
     </p>
@@ -724,7 +725,7 @@ export default {
 <style lang="stylus" scoped>
   .law_jd
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height: 0.36rem

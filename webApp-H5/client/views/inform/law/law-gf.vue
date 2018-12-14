@@ -1,5 +1,6 @@
 <template>
   <div class="law_gf">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
        <b><span>工业和信息化部令（第</span>20号）</b><b></b>
     </p>
@@ -222,7 +223,7 @@ export default {
 <style lang="stylus" scoped>
   .law_gf
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height:0.36rem

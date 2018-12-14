@@ -1,5 +1,6 @@
 <template>
   <div class="oper">
+    <Header navLeftTxt="icon">运营报告</Header>
     <div class="oper_tab">
       <div class="oper_date" @click="isShow = !isShow">
         <span class="fl date_year">{{ year }}年</span>
@@ -27,44 +28,44 @@
     <div class="oper_list">
       <transition name="fade" v-if="year === 2018">
         <div class="year">
-          <router-link to="/operations_report_2018_m10"><img src="../../assets/images/oper/m10_banner.png"></router-link>
-          <router-link to="/operations_report_2018_m9"><img src="../../assets/images/oper/m9_banner.png"></router-link>
-          <router-link to="/operations_report_2018_m8"><img src="../../assets/images/oper/m8_banner.png"></router-link>
-          <router-link to="/operations_report_2018_m7"><img src="../../assets/images/oper/m7_banner.png"></router-link>
-          <router-link to="/operations_report_2018_m6"><img src="../../assets/images/oper/m6_banner.jpg"></router-link>
-          <router-link to="/operations_report_2018_m5"><img src="../../assets/images/oper/m5_banner.jpg"></router-link>
-          <router-link to="/operations_report_2018_m4"><img src="../../assets/images/oper/m4_banner.jpg"></router-link>
-          <router-link to="/operations_report_2018_m3"><img src="../../assets/images/oper/m3_banner.jpg"></router-link>
-          <router-link to="/operations_report_2018_m2"><img src="../../assets/images/oper/m2_banner.jpg"></router-link>
-          <router-link to="/operations_report_2018_m1"><img src="../../assets/images/oper/m1_banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m10"><img src="../../assets/images/oper/m10-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m09"><img src="../../assets/images/oper/m9-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m08"><img src="../../assets/images/oper/m8-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m07"><img src="../../assets/images/oper/m7-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m06"><img src="../../assets/images/oper/m6-banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m05"><img src="../../assets/images/oper/m5-banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m04"><img src="../../assets/images/oper/m4-banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m03"><img src="../../assets/images/oper/m3-banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m02"><img src="../../assets/images/oper/m2-banner.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2018-m01"><img src="../../assets/images/oper/m1-banner.jpg"></router-link>
         </div>
       </transition>
       <transition name="fade" v-else-if="year === 2017">
         <div class="year">
-          <router-link to="/operations_report_2017"><img src="../../assets/images/oper/2017year_banner.png"></router-link>
-          <router-link to="/operations_report_2017_m12"><img src="../../assets/images/oper/m_12.jpg"></router-link>
-          <router-link to="/operations_report_2017_m11"><img src="../../assets/images/oper/m_11.png"></router-link>
-          <router-link to="/operations_report_2017_m10"><img src="../../assets/images/oper/m_10.png"></router-link>
-          <router-link to="/operations_report_2017_三"><img src="../../assets/images/oper/sanji_2017.png"></router-link>
-          <router-link to="/operations_report_2017_m8"><img src="../../assets/images/oper/m_8.png"></router-link>
-          <router-link to="/operations_report_2017_m7"><img src="../../assets/images/oper/m_7.png"></router-link>
-          <router-link to="/operations_report_2017_二"><img src="../../assets/images/oper/erji_2017.png"></router-link>
-          <router-link to="/operations_report_2017_一"><img src="../../assets/images/oper/yiji_2017.png"></router-link>
+          <router-link to="/operations_report_2017"><img src="../../assets/images/oper/2017year-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-m12"><img src="../../assets/images/oper/m-12.jpg"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-m11"><img src="../../assets/images/oper/m-11.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-m10"><img src="../../assets/images/oper/m-10.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-q3"><img src="../../assets/images/oper/sanji-2017.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-m08"><img src="../../assets/images/oper/m-8.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-m07"><img src="../../assets/images/oper/m-7.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-q2"><img src="../../assets/images/oper/erji-2017.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017-q1"><img src="../../assets/images/oper/yiji-2017.png"></router-link>
         </div>
       </transition>
       <transition name="fade" v-else>
         <div class="year">
-          <router-link to="/operations_report_2016"><img src="../../assets/images/oper/2016year_banner.png"></router-link>
-          <router-link to="/"><img src="../../assets/images/oper/siji.png"></router-link>
-          <router-link to="/"><img src="../../assets/images/oper/sanji.png"></router-link>
-          <router-link to="/operations_report_2016_二"><img src="../../assets/images/oper/erji.png"></router-link>
-          <router-link to="/operations_report_2016_一"><img src="../../assets/images/oper/yiji.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2016"><img src="../../assets/images/oper/2016year-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2016-q4"><img src="../../assets/images/oper/siji.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2016-q3"><img src="../../assets/images/oper/sanji.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2016-q2"><img src="../../assets/images/oper/erji.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2016-q1"><img src="../../assets/images/oper/yiji.png"></router-link>
         </div>
       </transition>
     </div>
     <div class="inform_signature">
       <div><h3 class="title">法人签章</h3></div>
-      <img src="../../assets/images/inform/signature_2.png" alt="">
+      <img src="../../assets/images/inform/signature-2.png" alt="">
     </div>
     <div class="dasahe" v-if="show = isShow" @click="close"></div>
   </div>
@@ -104,16 +105,13 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-  html,body
-    width:100%
-    height:100%
-    background-color: #ffffff
   img
     width:6.9rem
     height:2.5rem
   .oper
     position:relative
     width:100%
+    padding-top: 0.88rem
     background-color: #ffffff
     .fr
       float: right

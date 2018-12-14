@@ -1,6 +1,6 @@
 <template>
   <div class="law_dx">
-    <p>
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b>电信和互联网用户个人信息保护规定</b><b></b>
     </p>
@@ -229,7 +229,6 @@
     <p align="justify" style="margin-left:0.0000pt;text-indent:24.0000pt;text-align:justify;">
       <span>第二十五条&emsp;本规定自</span>2013年9月1日起施行。
     </p>
-    </p>
     <p>
       <br />
     </p>
@@ -248,7 +247,7 @@ export default {
 <style lang="stylus" scoped>
   .law_dx
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height: 0.36rem

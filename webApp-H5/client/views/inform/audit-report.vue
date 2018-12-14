@@ -1,26 +1,27 @@
 <template>
   <div class="auditReport">
+    <Header navLeftTxt="icon">审计报告</Header>
     <div class="div_box">
       <div class="div_img">
         <router-link to="/inform/audit-report/audit-report-2017">
-          <img class="lazy" src="../../assets/images/inform/auditReportP2017.png">
+          <img class="lazy" src="../../assets/images/inform/audit/audit-report-2017.png">
         </router-link>
       </div>
       <div class="div_img">
         <router-link to="/inform/audit-report/audit-report-2018">
-          <img class="lazy" src="../../assets/images/inform/auditReportP2018.png">
+          <img class="lazy" src="../../assets/images/inform/audit/audit-report-2018.png">
         </router-link>
       </div>
       <div class="div_img">
-        <router-link to="/inform/audit-report/audit-report-2018_2">
-          <img class="lazy" src="../../assets/images/inform/auditReportP2018_2.png">
+        <router-link to="/inform/audit-report/audit-report-2018-2">
+          <img class="lazy" src="../../assets/images/inform/audit/audit-report-2018-2.png">
         </router-link>
       </div>
     </div>
     <div class="inform_signature">
       <router-link to="new_auditReport_sign">
         <div><h3 class="title">法人签章</h3></div>
-        <img src="../../assets/images/inform/signature_2.png" alt="">
+        <img src="../../assets/images/inform/signature-2.png" alt="">
       </router-link>
     </div>
   </div>
@@ -37,7 +38,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .auditReport
-    padding:0.2rem 0 0.4rem
+    padding:1.08rem 0 0.4rem
     background-color:#f2f3f7
     .div_img
       height:3.66rem

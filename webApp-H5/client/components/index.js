@@ -6,6 +6,8 @@ import Loading from './loading/index'
 import Floating from './floating/index'
 import Swiper from './swiper/index'
 import Carousel from './carousel/index'
+import Radio from './radio/index'
+import Scroll from './scroll/index'
 
 const components = [
   Header,
@@ -13,7 +15,9 @@ const components = [
   FooterNav,
   Floating,
   Swiper,
-  Carousel
+  Carousel,
+  Radio,
+  Scroll
 ]
 const install = function (Vue) {
   if (install.installed) return
@@ -29,5 +33,7 @@ export default {
   FooterNav,
   Floating,
   Swiper,
-  Carousel
+  Carousel,
+  Radio,
+  Scroll
 }

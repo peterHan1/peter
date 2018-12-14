@@ -1,5 +1,6 @@
 <template>
   <div class="law_bl">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b>关于办理非法集资刑事案件适用法律</b><b></b>
     </p>
@@ -153,7 +154,7 @@ export default {
 <style lang="stylus" scoped>
   .law_bl
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height:0.36rem

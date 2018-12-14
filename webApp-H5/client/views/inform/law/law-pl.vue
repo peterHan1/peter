@@ -1,5 +1,6 @@
 <template>
   <div class="law_pl">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p style="text-align: center;">
       <span style="font-family:'Arial Negreta', 'Arial';font-weight:700;">网络借贷信息中介机构业务活动信息披露指引</span>
     </p>
@@ -959,7 +960,7 @@ export default {
 <style lang="stylus" scoped>
   .law_pl
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height: 0.36rem

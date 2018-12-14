@@ -1,5 +1,6 @@
 <template>
   <div class="law_mj">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b>最高人民法院关于审理民间借贷案件适用法律若干问题的规定</b><b></b>
     </p>
@@ -342,7 +343,7 @@ export default {
 <style lang="stylus" scoped>
   .law_mj
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height:0.36rem

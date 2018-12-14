@@ -1,5 +1,6 @@
 <template>
   <div class="bank">
+    <Header navLeftTxt="icon">关于拓道</Header>
     <h3>资金存管 </h3>
       <div>
         <h4>一、资金存管依据：</h4>
@@ -45,7 +46,7 @@ export default {
     font-weight: normal
     border-bottom: 1px solid #e4e4e4
   .bank
-    padding: 0.2rem 0.3rem
+    padding: 1.08rem 0.3rem 0.2rem
     background-color: white
     h4
       font-size: 0.24rem

@@ -1,5 +1,6 @@
 <template>
   <div class="law_ff">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b>最高人民法院关于非法集资刑事案件性质认定问题的通知</b><b></b>
     </p>
@@ -63,7 +64,7 @@ export default {
 <style lang="stylus" scoped>
   .law_ff
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height:0.36rem

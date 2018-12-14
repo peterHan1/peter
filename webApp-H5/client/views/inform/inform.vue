@@ -1,5 +1,6 @@
 <template>
   <div class="inform">
+    <Header navLeftTxt="icon">信息披露</Header>
     <router-link to="inform/about"><img src="../../assets/images/inform/inform1.png"></router-link>
     <router-link to="inform/platfrom"><img src="../../assets/images/inform/inform2.png"></router-link>
     <router-link to="inform/oper-report"><img src="../../assets/images/inform/inform3.png"></router-link>
@@ -22,7 +23,7 @@ export default {
 <style lang="stylus" scoped>
   .inform
     margin: 0 4%
-    padding-top:0.16rem
+    padding-top:1.1rem
     a
       display: block
       img

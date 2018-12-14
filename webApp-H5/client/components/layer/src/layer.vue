@@ -1,13 +1,13 @@
 <template>
-  <div >
+  <div>
     <div class="layer" :style="{top: cssSet}">
       <slot />
-      <div class="layer_btn" v-show="close||submit">
+      <div class="layer_btn" v-show="close || submit">
         <div class="layer_btn1" @click="codeClose" v-show="close">{{close}}</div>
         <div class="layer_btn2" @click="codeSub" v-show="submit">{{submit}}</div>
       </div>
     </div>
-    <div class="shade"></div>
+    <div class="shade" @click="shadeClose"></div>
   </div>
 </template>
 <script>
@@ -16,11 +16,15 @@
     props: ['close', 'submit', 'cssSet'],
     data () {
       return {
+        bo: true
       }
     },
     mounted () {
     },
     methods: {
+      shadeClose () {
+        this.$emit('shade-close')
+      },
       codeClose () {
         this.$emit('on-close')
       },

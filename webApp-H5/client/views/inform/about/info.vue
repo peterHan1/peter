@@ -1,5 +1,6 @@
 <template>
   <div class="info">
+    <Header navLeftTxt="icon">关于拓道</Header>
     <h3>从业机构平台信息</h3>
     <table>
       <tr>
@@ -121,9 +122,8 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .info
-    padding-bottom:0.2rem
     background-color: white
-    padding: 0 0.3rem 0.2rem
+    padding: 1.08rem 0.3rem 0.2rem
     h3
       font-size:0.28rem
       color:#212a36

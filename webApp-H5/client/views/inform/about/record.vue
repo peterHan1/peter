@@ -1,5 +1,6 @@
 <template>
   <div class="record_box">
+    <Header navLeftTxt="icon">备案信息</Header>
     <ul>
       <li>
         <span>地方金融监管部门的备案登记信息</span>
@@ -47,7 +48,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '关于拓道'
+    title: '备案信息'
   },
   data () {
     return {}
@@ -57,8 +58,13 @@ export default {
 <style lang="stylus" scoped>
   .record_box
     background-color: white
-    padding: 0.2 0.3rem
+    padding: 1.08rem 0.3rem 0.2rem
     height: 100%
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
     li
       overflow: hidden
       font-size:0.24rem

@@ -1,5 +1,6 @@
 <template>
   <div class="law_kz">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b>工商总局等十七部门关于印发《开展互联网金融广告及以投资理财名义从事金融活动风险专项整治工作实施方案》的通知</b><b></b>
     </p>
@@ -238,7 +239,7 @@ export default {
 <style lang="stylus" scoped>
   .law_kz
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height:0.36rem

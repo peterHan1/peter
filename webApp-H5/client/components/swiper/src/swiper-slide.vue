@@ -117,7 +117,7 @@
     opacity: 1
     width:100%
     height:100%
-    padding:0.8rem 0
+    padding:1.68rem 0 0.8rem
     touch-action: none
     box-sizing:border-box
     background-color:#000
@@ -133,7 +133,7 @@
       background-color: transparent
       position: absolute
       left: 0
-      top:0
+      top:0.88rem
     .slider
       height: 100%
       touch-action: none

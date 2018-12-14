@@ -1,5 +1,6 @@
 <template>
   <div class="law_fx">
+    <Header navLeftTxt="icon">法律文件</Header>
     <p align="center" style="text-align:center;">
       <b><span>关于印发《</span>P2P网络借贷风险专项整治工作实施方案》的通知</b><b></b>
     </p>
@@ -246,7 +247,7 @@ export default {
 <style lang="stylus" scoped>
   .law_fx
     font-size: 0.24rem
-    padding: 0.2rem 5%
+    padding: 1.02rem 5% 0.2rem
     background-color: #fff
     p
       line-height: 0.36rem

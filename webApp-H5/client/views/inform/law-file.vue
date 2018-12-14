@@ -1,5 +1,6 @@
 <template>
   <div class="law">
+    <Header navLeftTxt="icon">法律文件</Header>
     <h3>法律法规</h3>
     <ul>
       <li>
@@ -98,7 +99,7 @@
     </ul>
     <div class="inform_signature">
       <div><h3 class="title">法人签章</h3></div>
-      <img src="../../assets/images/inform/signature_2.png" alt="">
+      <img src="../../assets/images/inform/signature-2.png" alt="">
     </div>
   </div>
 </template>
@@ -114,6 +115,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .law
+    padding-top: 0.88rem
     overflow: hidden
     h3
       background-color:white

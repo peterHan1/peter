@@ -1,5 +1,6 @@
 <template>
   <div class="board">
+    <Header navLeftTxt="icon">关于拓道</Header>
     <h3>董事、监事、高级管理人员 </h3>
     <div class="zlj">
       <dl>
@@ -54,8 +55,13 @@ export default {
     margin-top: 0.6rem
   .board
     background-color: white
-    padding: 0.2rem 0.3rem
+    padding: 1.08rem 0.3rem 0.2rem
     height: 100%
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
     .position
       font-size: 0.26rem
       color: #212a36

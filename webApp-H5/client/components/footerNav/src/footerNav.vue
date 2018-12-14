@@ -8,7 +8,7 @@
 			<div class="projectIcon"></div>
       <div>项目</div>
 		</router-link>
-		<router-link to="/">
+		<router-link to="/"  :class="{'on': navClass == 'found'}">
 			<div class="findIcon"></div>
       <div>发现</div>
 		</router-link>
