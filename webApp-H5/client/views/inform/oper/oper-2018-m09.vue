@@ -1,5 +1,6 @@
 <template>
   <div class="month-9">
+    <Header navLeftTxt="icon">拓道金服<span>2018</span>年度<span>9</span>月份运营报告</Header>
     <div class="month-9-banner"></div>
     <div class="month-9-bg1"></div>
     <div class="month-9-bg2"></div>
@@ -27,13 +28,15 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .month-9
-      overflow:hidden
-      background-color:#fff
+    overflow:hidden
+    padding-top: 0.88rem
+    background-color:#fff
+    span
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
     .month-9-banner
       height:2.86rem
       background:url(../../../assets/images/oper/oper-2018-m9/img1.png) no-repeat

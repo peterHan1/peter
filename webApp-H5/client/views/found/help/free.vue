@@ -1,8 +1,8 @@
 <template>
   <div class="help">
-    <Header navLeftTxt="icon" navRightTxt="意见反馈">省心投</Header>
+    <Header navLeftTxt="icon" @navRightFn="navRightFn()" navRightTxt="意见反馈">省心投</Header>
     <div class="help_bot">
-      <ul class="content_ul ul_sx">
+      <ul>
         <li>
           <a @click="active1 = !active1">
             <span class="fl">1.省心投多长时间匹配完成呢？</span>
@@ -68,7 +68,7 @@
         </li>
         <li>
           <a @click="active8 = !active8">
-            <span class="fl">8.通过省心投投资的标的是否可以转让？</span>
+            <span class="fl">8.通过省心投出借的标的是否可以转让？</span>
             <i class="iconfont fr" :class="{deg: active8}">&#xe6a3;</i>
           </a>
           <div v-show="active8">
@@ -86,11 +86,11 @@
         </li>
         <li>
           <a @click="active10 = !active10">
-            <span class="fl">10.是否可以及时查看使用省心投投资的标的？</span>
+            <span class="fl">10.是否可以及时查看使用省心投出借的标的？</span>
             <i class="iconfont fr" :class="{deg: active10}">&#xe6a3;</i>
           </a>
           <div v-show="active10">
-            <p>加入省心投的资金所匹配的每个标的，都可以在相应的投资详情页查看其具体金额、起止时间以及相关协议。</p>
+            <p>加入省心投的资金所匹配的每个标的，都可以在相应的出借详情页查看其具体金额、起止时间以及相关协议。</p>
           </div>
         </li>
         <li>
@@ -125,6 +125,11 @@ export default {
       active10: false,
       active11: false
     }
+  },
+  methods: {
+    navRightFn () {
+      this.$router.push('/found/help/suggestion')
+    }
   }
 }
 </script>
@@ -138,53 +143,34 @@ export default {
     .fr
       float:right
   .help_bot
-    table
-      width:100%
-      border-collapse:collapse
-      tr
-        line-height:0.5rem
-      th
-        border:1px solid #d8d8d8
-        padding:0 0.1rem
-      td
-        border:1px solid #d8d8d8
-        padding:0 0.1rem
     margin:0.2rem 0 1.23rem
-    h3
-      font-size: 0.28rem
-      color: #212a36
-      height: 0.8rem
-      line-height: 0.8rem
-      border-bottom: 1px solid #e4e4e4
-      padding:0 0.3rem
-      background-color:white
-    li a
-      background-color:white
-      display:block
-      border-bottom: 1px solid #e4e4e4
-      height:0.8rem
-      line-height:0.8rem
-      font-size:0.24rem
-      color:#626262
-      padding:0 0.3rem
-      .iconfont
-        -webkit-transition:.3s
-        -moz-transition: .3s
-        -ms-transition: .3s
-        -o-transition: .3s
-        transition: .3s
-      .deg
-        -webkit-transform:rotate(180deg)
-        -moz-transform:rotate(180deg)
-        -ms-transform:rotate(180deg)
-        -o-transform:rotate(180deg)
-        transform:rotate(180deg)
-        -webkit-transition:.3s
-        -moz-transition: .3s
-        -ms-transition: .3s
-        -o-transition: .3s
-        transition: .3s
     li
+      a
+        background-color:white
+        display:block
+        border-bottom: 1px solid #e4e4e4
+        height:0.8rem
+        line-height:0.8rem
+        font-size:0.24rem
+        color:#626262
+        padding:0 0.3rem
+        .iconfont
+          -webkit-transition:.3s
+          -moz-transition: .3s
+          -ms-transition: .3s
+          -o-transition: .3s
+          transition: .3s
+        .deg
+          -webkit-transform:rotate(180deg)
+          -moz-transform:rotate(180deg)
+          -ms-transform:rotate(180deg)
+          -o-transform:rotate(180deg)
+          transform:rotate(180deg)
+          -webkit-transition:.3s
+          -moz-transition: .3s
+          -ms-transition: .3s
+          -o-transition: .3s
+          transition: .3s
       div
         font-size:0.24rem
         color:#626262
@@ -192,23 +178,4 @@ export default {
         p
           line-height:0.4rem
           text-align: justify
-        #tables
-          text-align: center
-          margin: 0.15rem 0
-          tr
-            line-height: 0.4rem
-            th
-              color: #333
-          th,td
-            padding: 0rem
-            overflow: hidden
-            height: 1.04rem
-            vertical-align: middle
-          tr p
-            text-align: center
-      .invest_txt
-        font-size:0.2rem
-        padding:0
-        color:#999
-        margin: 0.16rem 0
 </style>

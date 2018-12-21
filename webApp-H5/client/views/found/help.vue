@@ -1,55 +1,78 @@
 <template>
   <div class="help">
-    <Header navLeftTxt="icon" navRightTxt="意见反馈">帮助与反馈</Header>
+    <Header navLeftTxt="icon" @navRightFn="navRightFn()" navRightTxt="意见反馈">帮助与反馈</Header>
     <div class="help_top">
       <div class="flex">
-        <router-link to="help_login" class="flex-1">
+        <router-link to="/found/help/login" class="flex-1">
           <i class="iconfont">&#xe6aa;</i>
           <p>注册登录</p>
         </router-link>
-        <router-link to="help_bank" class="flex-1">
+        <router-link to="/found/help/bank" class="flex-1">
           <i class="iconfont">&#xe6ac;</i>
           <p>银行资金存管</p>
         </router-link>
-        <router-link to="help_rates" class="flex-1">
+        <router-link to="/found/help/rates" class="flex-1">
           <i class="iconfont">&#xe6ab;</i>
           <p>收费标准</p>
         </router-link>
       </div>
       <div class="flex">
-        <router-link to="help_cash" class="flex-1">
+        <router-link to="/found/help/cash" class="flex-1">
           <i class="iconfont">&#xe6ad;</i>
           <p>充值提现</p>
         </router-link>
-        <router-link to="help_payment" class="flex-1">
+        <router-link to="/found/help/payment" class="flex-1">
           <i class="iconfont">&#xe6ae;</i>
-          <p>投资回款</p>
+          <p>出借回款</p>
         </router-link>
-        <router-link to="/found/help/help-free" class="flex-1">
+        <router-link to="/found/help/free" class="flex-1">
           <i class="iconfont">&#xe6bc;</i>
           <p>省心投</p>
         </router-link>
       </div>
       <div class="flex">
-        <router-link to="help_creditor" class="flex-1">
+        <router-link to="/found/help/creditor" class="flex-1">
           <i class="iconfont">&#xe6a4;</i>
           <p>债权转让</p>
         </router-link>
-        <router-link to="help_auto" class="flex-1">
+        <router-link to="/found/help/auto" class="flex-1">
           <i class="iconfont">&#xe6a5;</i>
           <p>自动投标</p>
         </router-link>
-        <router-link to="help_points" class="flex-1">
+        <router-link to="/found/help/point" class="flex-1">
           <i class="iconfont">&#xe6a7;</i>
           <p>积分</p>
         </router-link>
       </div>
     </div>
     <div class="help_bot" style="margin-bottom:0.2rem;">
-      <h3>推荐奖励</h3>
+      <h3>业务授权</h3>
       <ul>
         <li>
-          <a href="javascript:;" @click="active1 = !active1">
+          <a href="javascript:" @click="actives = !actives">
+            <span class="fl">1.业务授权是什么？</span>
+            <i class="iconfont fr" :class="{deg: actives}">&#xe6a3;</i>
+          </a>
+          <div v-show="actives">
+            <p>属于银行存管升级后，存管系统的一个功能，针对出借人在平台进行出借过程中，若出借人需要使用自动投标的功能，则必须进行授权。</p>
+          </div>
+        </li>
+        <li>
+          <a href="javascript:" @click="active0 = !active0">
+            <span class="fl">2.业务授权的的金额是什么？</span>
+            <i class="iconfont fr" :class="{deg: active0}">&#xe6a3;</i>
+          </a>
+          <div v-show="active0">
+            <p>出借人授权后单笔可出借的最大金额</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="help_bot" style="margin-bottom:0.2rem;">
+      <h3>推荐方式</h3>
+      <ul>
+        <li>
+          <a @click="active1 = !active1">
             <span class="fl">1.推荐方式有哪些？</span>
             <i class="iconfont fr" :class="{deg: active1}">&#xe6a3;</i>
           </a>
@@ -58,8 +81,8 @@
             <p>B、手机端：登录拓道金服APP，点击点击【发现】—【邀请好友】，复制推荐码或分享推荐链接到第三方社交平台。</p>
           </div>
         </li>
-        <li>
-          <a href="javascript:;" @click="active2 = !active2">
+        <!-- <li>
+          <a @click="active2 = !active2">
             <span class="fl">2.邀请规则和奖励？</span>
             <i class="iconfont fr" :class="{deg: active2}">&#xe6a3;</i>
           </a>
@@ -124,23 +147,23 @@
             <p>4.拓道客等级升降级：</p>
             <p>若拓道客满足升级条件时，则可以当天直接升级为更高级拓道客；同时每个月月初0点，系统会重新计算每个拓道客的等级，若有未满足条件的拓道客，则会进行降级。</p>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="help_bot">
       <h3>常见问题</h3>
       <ul>
         <li>
-          <a href="javascript:;" @click="active3 = !active3">
+          <a @click="active3 = !active3">
             <span class="fl">1.关于拓道金服</span>
             <i class="iconfont fr" :class="{deg: active3}">&#xe6a3;</i>
           </a>
           <div v-show="active3">
-            <p>杭州拓道互联网金融服务有限公司是一家专注于汽车抵押贷款这一细分市场的P2P互联网金融公司。拓道金服以银行的高标准，互联网的高效率，发展普惠金融，市场定位于小微投资群体和借贷群体，为民间投融资双方搭建一个安全、便捷、稳健的信息服务平台，将原先的信用借贷，转型于动产抵押借贷，做市场细分化，做专做强做稳，让小额借贷不再难。拓道金服着力解决民间投融资的信息不对称、征信不健全等问题，促进民间投融资便利化、民间借贷阳光化，力争成为国家倡导的多层次投融资体系中领先的专业汽车抵押贷款服务平台，开启金融定制时代。</p>
+            <p>杭州拓道互联网金融服务有限公司是一家专注于汽车抵押贷款这一细分市场的P2P互联网金融公司。拓道金服以银行的高标准，互联网的高效率，发展普惠金融，市场定位于小微出借群体和借贷群体，为民间投融资双方搭建一个安全、便捷、稳健的信息服务平台，将原先的信用借贷，转型于动产抵押借贷，做市场细分化，做专做强做稳，让小额借贷不再难。拓道金服着力解决民间投融资的信息不对称、征信不健全等问题，促进民间投融资便利化、民间借贷阳光化，力争成为国家倡导的多层次投融资体系中领先的专业汽车抵押贷款服务平台，开启金融定制时代。</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active4 = !active4">
+          <a @click="active4 = !active4">
             <span class="fl">2.什么是互联网金融？</span>
             <i class="iconfont fr" :class="{deg: active4}">&#xe6a3;</i>
           </a>
@@ -149,7 +172,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active5 = !active5">
+          <a @click="active5 = !active5">
             <span class="fl">3.什么是先息后本？</span>
             <i class="iconfont fr" :class="{deg: active5}">&#xe6a3;</i>
           </a>
@@ -158,7 +181,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active6 = !active6">
+          <a @click="active6 = !active6">
             <span class="fl">4.什么是等额本息？</span>
             <i class="iconfont fr" :class="{deg: active6}">&#xe6a3;</i>
           </a>
@@ -168,7 +191,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active7 = !active7">
+          <a @click="active7 = !active7">
             <span class="fl">5.为什么自动投标排名会退后？</span>
             <i class="iconfont fr" :class="{deg: active7}">&#xe6a3;</i>
           </a>
@@ -176,12 +199,12 @@
             <p>自动投标排名出现后退可能有以下4种情况：</p>
             <p>1.标的已经投出；</p>
             <p>2.触碰自动投标开关；</p>
-            <p>3.账户资金不足100元或设置每次投资金额不足100元（算作无效排名）；</p>
+            <p>3.账户资金不足100元或设置每次出借金额不足100元（算作无效排名）；</p>
             <p>4.自动投标的标的设置不正确。</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active8 = !active8">
+          <a @click="active8 = !active8">
             <span class="fl">6.自动投标一直投不出去？</span>
             <i class="iconfont fr" :class="{deg: active8}">&#xe6a3;</i>
           </a>
@@ -190,7 +213,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active9 = !active9">
+          <a @click="active9 = !active9">
             <span class="fl">7.什么是安存？</span>
             <i class="iconfont fr" :class="{deg: active9}">&#xe6a3;</i>
           </a>
@@ -199,17 +222,17 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active10 = !active10">
+          <a @click="active10 = !active10">
             <span class="fl">8.如何查看电子合同？</span>
             <i class="iconfont fr" :class="{deg: active10}">&#xe6a3;</i>
           </a>
           <div v-show="active10">
-            <p>PC端：点击右上角【我的账户】，左边栏【我的投资】选一个项目查看详情【查看借款协议】。</p>
-            <p>APP端：点击【资产】—【我的投资】，选一个项目，点击页面下方的【借款协议】即可查看。</p>
+            <p>PC端：点击右上角【我的账户】，左边栏【我的出借】选一个项目查看详情【查看借款协议】。</p>
+            <p>APP端：点击【资产】—【我的出借】，选一个项目，点击页面下方的【借款协议】即可查看。</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active11 = !active11">
+          <a @click="active11 = !active11">
             <span class="fl">9.为什么充值时提示 交易拒绝(RM10029)？</span>
             <i class="iconfont fr" :class="{deg: active11}">&#xe6a3;</i>
           </a>
@@ -218,7 +241,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active12 = !active12">
+          <a @click="active12 = !active12">
             <span class="fl">10.如何更换绑定手机号码？</span>
             <i class="iconfont fr" :class="{deg: active12}">&#xe6a3;</i>
           </a>
@@ -227,7 +250,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active13 = !active13">
+          <a @click="active13 = !active13">
             <span class="fl">11.设置自动投标后是否能投手动标？</span>
             <i class="iconfont fr" :class="{deg: active13}">&#xe6a3;</i>
           </a>
@@ -236,17 +259,17 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active14 = !active14">
+          <a @click="active14 = !active14">
             <span class="fl">12.借款协议是否可以下载？</span>
             <i class="iconfont fr" :class="{deg: active14}">&#xe6a3;</i>
           </a>
           <div v-show="active14">
-            <p>PC端：点击右上角【我的账户】，左边栏【我的投资】选择一个项目查看详情【查看安存保全】，在页面的最下方点击下载。</p>
-            <p>APP端：点击【资产】—【我的投资】，选一个项目，点击页面下方的【安存保全】进行下载。</p>
+            <p>PC端：点击右上角【我的账户】，左边栏【我的出借】选择一个项目查看详情【查看安存保全】，在页面的最下方点击下载。</p>
+            <p>APP端：点击【资产】—【我的出借】，选一个项目，点击页面下方的【安存保全】进行下载。</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active15 = !active15">
+          <a @click="active15 = !active15">
             <span class="fl">13.无法接收到验证码？</span>
             <i class="iconfont fr" :class="{deg: active15}">&#xe6a3;</i>
           </a>
@@ -258,7 +281,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active16 = !active16">
+          <a @click="active16 = !active16">
             <span class="fl">14.新手标最大金额可以投多少，可以投几次？</span>
             <i class="iconfont fr" :class="{deg: active16}">&#xe6a3;</i>
           </a>
@@ -267,7 +290,7 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active17 = !active17">
+          <a @click="active17 = !active17">
             <span class="fl">15.你们有发标预告吗？</span>
             <i class="iconfont fr" :class="{deg: active17}">&#xe6a3;</i>
           </a>
@@ -276,17 +299,17 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active18 = !active18">
-            <span class="fl">16.投资人风险承受能力测评的目的和规则是什么？</span>
+          <a @click="active18 = !active18">
+            <span class="fl">16.出借人风险承受能力测评的目的和规则是什么？</span>
             <i class="iconfont fr" :class="{deg: active18}">&#xe6a3;</i>
           </a>
           <div v-show="active18">
-            <p>1、根据《网络借贷信息中介机构业务活动管理暂行办法》第二十六条，为保障投资人投资合适的产品，拓道金服根据投资人风险承受能力评估结果，将投资人风险承受能力由低到高分为谨慎型、稳健型、平衡型、积极型、激进型五种类型；</p>
-            <p>2、投资人风险承受能力评估结果有效期为一年，如果一年内没有进行过风险承受能力评估，在下次投资时需要重新进行评估；</p>
+            <p>1、根据《网络借贷信息中介机构业务活动管理暂行办法》第二十六条，为保障出借人出借合适的产品，拓道金服根据出借人风险承受能力评估结果，将出借人风险承受能力由低到高分为谨慎型、稳健型、平衡型、积极型、激进型五种类型；</p>
+            <p>2、出借人风险承受能力评估结果有效期为一年，如果一年内没有进行过风险承受能力评估，在下次出借时需要重新进行评估；</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active19 = !active19">
+          <a @click="active19 = !active19">
             <span class="fl">17.拓道金服对项目的风险评估结果是如何分类的？</span>
             <i class="iconfont fr" :class="{deg: active19}">&#xe6a3;</i>
           </a>
@@ -317,20 +340,20 @@
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active20 = !active20">
+          <a @click="active20 = !active20">
             <span class="fl">18. 不同风险承受能力测评结果会有什么限制条件？</span>
             <i class="iconfont fr" :class="{deg: active20}">&#xe6a3;</i>
           </a>
           <div v-show="active20">
-            <p>谨慎型投资人，可以投资风险评估结果为A的产品，可投总金额不超过40万元；</p>
-            <p>稳健型投资人，可以投资风险评估结果为A和B的产品，可投总金额不超过60万元；</p>
-            <p>平衡型投资人，可以投资风险评估结果为A和B的产品，可投总金额不超过80万元；</p>
-            <p>积极型投资人，可以投资风险评估结果为A、B和C的产品，可投总金额不超过100万元；</p>
-            <p>激进型投资人，可以投资所有的产品，可投总金额不超过9999万元。</p>
+            <p>谨慎型出借人，可以出借风险评估结果为A的产品，可投总金额不超过40万元；</p>
+            <p>稳健型出借人，可以出借风险评估结果为A和B的产品，可投总金额不超过60万元；</p>
+            <p>平衡型出借人，可以出借风险评估结果为A和B的产品，可投总金额不超过80万元；</p>
+            <p>积极型出借人，可以出借风险评估结果为A、B和C的产品，可投总金额不超过100万元；</p>
+            <p>激进型出借人，可以出借所有的产品，可投总金额不超过9999万元。</p>
           </div>
         </li>
         <li>
-          <a href="javascript:;" @click="active21 = !active21">
+          <a @click="active21 = !active21">
             <span class="fl">19. 如何提升测评分值？</span>
             <i class="iconfont fr" :class="{deg: active21}">&#xe6a3;</i>
           </a>
@@ -426,6 +449,8 @@ export default {
   },
   data () {
     return {
+      actives: false,
+      active0: false,
       active1: false,
       active2: false,
       active3: false,
@@ -448,6 +473,11 @@ export default {
       active20: false,
       active21: false
     }
+  },
+  methods: {
+    navRightFn () {
+      this.$router.push('/found/help/suggestion')
+    }
   }
 }
 </script>
@@ -458,8 +488,8 @@ export default {
     padding: 0.88rem 0 1.23rem
     .fr
       float: right
-    a
-      color:#7e8c8d
+    a p
+      color: #212a36
     .help_top
       background-color:white
       padding:0.4rem 0

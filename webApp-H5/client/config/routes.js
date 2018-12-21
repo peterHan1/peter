@@ -4,36 +4,6 @@ export default [
     redirect: '/index'
   },
   {
-    path: '/infoShow',
-    component: () => import('views/info-show/index.vue')
-  },
-  {
-    path: '/infoShow/about',
-    component: () => import('views/info-show/about.vue'),
-    children: [
-      {
-        path: 'platform',
-        component: () => import('views/info-show/platform.vue')
-      },
-      {
-        path: 'organize',
-        component: () => import('views/info-show/organize.vue')
-      },
-      {
-        path: 'personnel',
-        component: () => import('views/info-show/personnel.vue')
-      },
-      {
-        path: 'papers',
-        component: () => import('views/info-show/papers.vue')
-      },
-      {
-        path: 'corporation',
-        component: () => import('views/info-show/corporation.vue')
-      }
-    ]
-  },
-  {
     path: '/exam',
     component: () => import('views/inform/exam.vue')
   },
@@ -128,6 +98,10 @@ export default [
   {
     path: '/inform/oper-report/oper-2017-m12',
     component: () => import('views/inform/oper/oper-2017-m12.vue')
+  },
+  {
+    path: '/inform/oper-report/oper-2017',
+    component: () => import('views/inform/oper/oper-2017.vue')
   },
   {
     path: '/inform/oper-report/oper-2018-m01',
@@ -306,8 +280,96 @@ export default [
     component: () => import('views/found/help.vue')
   },
   {
-    path: '/found/help/help-free',
-    component: () => import('views/found/help/help-free.vue')
+    path: '/found/help/login',
+    component: () => import('views/found/help/login.vue')
+  },
+  {
+    path: '/found/help/bank',
+    component: () => import('views/found/help/bank.vue')
+  },
+  {
+    path: '/found/help/rates',
+    component: () => import('views/found/help/rates.vue')
+  },
+  {
+    path: '/found/help/cash',
+    component: () => import('views/found/help/cash.vue')
+  },
+  {
+    path: '/found/help/payment',
+    component: () => import('views/found/help/payment.vue')
+  },
+  {
+    path: '/found/help/free',
+    component: () => import('views/found/help/free.vue')
+  },
+  {
+    path: '/found/help/creditor',
+    component: () => import('views/found/help/creditor.vue')
+  },
+  {
+    path: '/found/help/auto',
+    component: () => import('views/found/help/auto.vue')
+  },
+  {
+    path: '/found/help/point',
+    component: () => import('views/found/help/point.vue')
+  },
+  {
+    path: '/found/help/suggestion',
+    component: () => import('views/found/help/suggestion.vue')
+  },
+  {
+    path: '/ensure',
+    component: () => import('views/activity/ensure.vue')
+  },
+  {
+    path: '/newcomer',
+    component: () => import('views/activity/newcomer.vue')
+  },
+  {
+    path: '/invite-friend',
+    component: () => import('views/activity/invite-friend.vue')
+  },
+  {
+    path: '/be-invited',
+    component: () => import('views/activity/be-invited.vue')
+  },
+  {
+    path: '/invite-prize-record',
+    component: () => import('views/activity/invite-prize-record.vue')
+  },
+  {
+    path: '/invite-people-record',
+    component: () => import('views/activity/invite-people-record.vue')
+  },
+  {
+    path: '/invite-rule',
+    component: () => import('views/activity/invite-rule.vue')
+  },
+  {
+    path: '/get-coupon',
+    component: () => import('views/activity/get-coupon.vue')
+  },
+  {
+    path: '/td-share',
+    component: () => import('views/activity/td-share.vue')
+  },
+  {
+    path: '/good-car',
+    component: () => import('views/activity/good-car.vue')
+  },
+  {
+    path: '/good-car-next',
+    component: () => import('views/activity/good-car-next.vue')
+  },
+  {
+    path: '/good-car-ok',
+    component: () => import('views/activity/good-car-ok.vue')
+  },
+  {
+    path: '/notice',
+    component: () => import('views/activity/notice.vue')
   },
   {
     path: '/login',
@@ -331,15 +393,15 @@ export default [
   },
   {
     path: '/myCenter',
-    component: () => import('views/my-center/my-center.vue')
+    component: () => import('views/my-center/index.vue')
   },
   {
     path: '/totalIncome',
-    component: () => import('views/my-center/total-income.vue')
+    component: () => import('views/my-center/asset/total-income.vue')
   },
   {
     path: '/totalMoney',
-    component: () => import('views/my-center/total-money.vue')
+    component: () => import('views/my-center/asset/total-money.vue')
   },
   {
     path: '/ucSet',
@@ -392,5 +454,41 @@ export default [
   {
     path: '/autoLoan',
     component: () => import('views/my-center/auto-loan/auto-loan.vue')
+  },
+  {
+    path: '/returnMoney',
+    component: () => import('views/my-center/return-money/index.vue')
+  },
+  {
+    path: '/moneyRecord',
+    component: () => import('views/my-center/money-record/money-record.vue')
+  },
+  {
+    path: '/recharge',
+    component: () => import('views/my-center/fund/recharge.vue')
+  },
+  {
+    path: '/rachargeRecord',
+    component: () => import('views/my-center/fund/racharge-record.vue')
+  },
+  {
+    path: '/cash',
+    component: () => import('views/my-center/fund/cash.vue')
+  },
+  {
+    path: '/cashExplain',
+    component: () => import('views/my-center/fund/cash-explain.vue')
+  },
+  {
+    path: '/cashRecord',
+    component: () => import('views/my-center/fund/cash-record.vue')
+  },
+  {
+    path: '/myBond',
+    component: () => import('views/my-center/my-bond/my-bond.vue')
+  },
+  {
+    path: '/bondExplain',
+    component: () => import('views/my-center/my-bond/bond-explain.vue')
   }
 ]

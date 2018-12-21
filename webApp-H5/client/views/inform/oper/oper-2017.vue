@@ -1,5 +1,6 @@
 <template>
   <div class="year-2017">
+    <Header navLeftTxt="icon">拓道金服<i>2017</i>年度运营报告</Header>
     <div>
       <span class="year-2017-bg1"></span>
     </div>
@@ -45,15 +46,17 @@ export default {
 <style lang="stylus" scoped>
   .year-2017
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    i
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
     div span
       display:inline-block
-      width:7.5rem
+      width:100%
     .year-2017-bg1
       height:2.93rem
       background:url(../../../assets/images/oper/oper-2017year/2017year-1.png) no-repeat

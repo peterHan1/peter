@@ -1,5 +1,6 @@
 <template>
   <div class="jd-2-16">
+    <Header navLeftTxt="icon">拓道金服<i>2016</i>年第二季度运营报告</Header>
     <div>
       <span class="jd-2-bg1"></span>
     </div>
@@ -23,7 +24,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '拓道金服2016年第二季度运营报告'
+    title: '拓道金服2016第二季度运营报告'
   },
   data () {
     return {}
@@ -33,15 +34,19 @@ export default {
 <style lang="stylus" scoped>
   .jd-2-16
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    i
+      color: #333
+      font-weight: bold
     div
       width:100%
       text-align:center
       overflow: hidden
       font-size: 0
-    div span
-      display:inline-block
-      width:7.5rem
+      span
+        display:inline-block
+        width:100%
     .jd-2-bg1
       height:12.66rem
       background:url(../../../assets/images/oper/oper-2016/2016-2-1.jpg) no-repeat

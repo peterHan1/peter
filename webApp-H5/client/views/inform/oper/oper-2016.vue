@@ -1,32 +1,15 @@
 <template>
   <div class="year-2016">
-    <div>
-      <span class="year-2016-bg1"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg2"></span>
-    </div>
-    <div >
-      <span class="year-2016-bg3"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg4"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg5"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg6"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg7"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg8"></span>
-    </div>
-    <div>
-      <span class="year-2016-bg9"></span>
-    </div>
+    <Header navLeftTxt="icon">拓道金服<span>2016</span>年度运营报告</Header>
+    <div class="year-2016-bg1"></div>
+    <div class="year-2016-bg2"></div>
+    <div  class="year-2016-bg3"></div>
+    <div class="year-2016-bg4"></div>
+    <div class="year-2016-bg5"></div>
+    <div class="year-2016-bg6"></div>
+    <div class="year-2016-bg7"></div>
+    <div class="year-2016-bg8"></div>
+    <div class="year-2016-bg9"></div>
   </div>
 </template>
 <script>
@@ -42,15 +25,14 @@ export default {
 <style lang="stylus" scoped>
   .year-2016
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    span
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
-    div span
-      display:inline-block
-      width:7.5rem
     .year-2016-bg1
       height:2.88rem
       background:url(../../../assets/images/oper/oper-2016year/2016year-1.png) no-repeat

@@ -1,6 +1,7 @@
 <template>
   <div class="found">
-    <div class="top">发现</div>
+    <!-- <div class="top">发现</div> -->
+    <Header>发现</Header>
     <ul class="header">
       <li>
         <router-link to="/found/member-lev">
@@ -97,7 +98,7 @@
         关注拓道金服服务号，您的贴身管家，账户状态实时跟进，重大活动及时知晓（<span>已自动复制微信号<br />tuodao666</span>）
       </div>
     </Layer>
-    <FooterNav  :navClass="'found'"></FooterNav>
+    <footer-nav  :navClass="'found'"></footer-nav>
   </div>
 </template>
 <script>
@@ -132,7 +133,7 @@ export default {
   .found
     font-family: PingFangSC-Regular
     position: relative
-    padding: 1.28rem 0 1.12rem
+    padding: 0.88rem 0 1.12rem
     a
       color:#7e8c8d
   .top

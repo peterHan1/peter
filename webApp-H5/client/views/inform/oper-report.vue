@@ -6,24 +6,22 @@
         <span class="fl date_year">{{ year }}年</span>
         <span class="fr iconfont">&#xe6a3;</span>
       </div>
-      <transition name="fade">
-        <div class="oper_year" v-if="isShow">
-          <ul>
-            <li :class="{li_on: active[0]}" @click="select(2018)">
-              <span class="fl">2018年</span>
-              <span class="fr iconfont" v-if="selectedOne == year">&#xe6a9;</span>
-            </li>
-            <li :class="{li_on: active[1]}" @click="select(2017)">
-              <span class="fl">2017年</span>
-              <span class="fr iconfont" v-if="selectedTwo == year">&#xe6a9;</span>
-            </li>
-            <li :class="{li_on: active[2]}" @click="select(2016)">
-              <span class="fl">2016年</span>
-              <span class="fr iconfont" v-if="selectedThree == year">&#xe6a9;</span>
-            </li>
-          </ul>
-        </div>
-      </transition>
+      <div class="oper_year" v-if="isShow">
+        <ul>
+          <li :class="{li_on: active[0]}" @click="select(2018)">
+            <span class="fl">2018年</span>
+            <span class="fr iconfont" v-if="selectedOne == year">&#xe6a9;</span>
+          </li>
+          <li :class="{li_on: active[1]}" @click="select(2017)">
+            <span class="fl">2017年</span>
+            <span class="fr iconfont" v-if="selectedTwo == year">&#xe6a9;</span>
+          </li>
+          <li :class="{li_on: active[2]}" @click="select(2016)">
+            <span class="fl">2016年</span>
+            <span class="fr iconfont" v-if="selectedThree == year">&#xe6a9;</span>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="oper_list">
       <transition name="fade" v-if="year === 2018">
@@ -42,7 +40,7 @@
       </transition>
       <transition name="fade" v-else-if="year === 2017">
         <div class="year">
-          <router-link to="/operations_report_2017"><img src="../../assets/images/oper/2017year-banner.png"></router-link>
+          <router-link to="/inform/oper-report/oper-2017"><img src="../../assets/images/oper/2017year-banner.png"></router-link>
           <router-link to="/inform/oper-report/oper-2017-m12"><img src="../../assets/images/oper/m-12.jpg"></router-link>
           <router-link to="/inform/oper-report/oper-2017-m11"><img src="../../assets/images/oper/m-11.png"></router-link>
           <router-link to="/inform/oper-report/oper-2017-m10"><img src="../../assets/images/oper/m-10.png"></router-link>
@@ -178,8 +176,4 @@ export default {
     img
       width: 100%
       height: 3.8rem
-  .fade-enter-active, .fade-leave-active
-    transition: opacity 0.2s ease
-  .fade-enter, .fade-leave-to
-    opacity: 0
 </style>

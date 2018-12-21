@@ -1,5 +1,6 @@
 <template>
   <div class="jd-1-16">
+    <Header navLeftTxt="icon">拓道金服<i>2016</i>年第一季度运营报告</Header>
     <div class="jd-1-bg1"></div>
     <div class="jd-1-bg2"></div>
     <div class="jd-1-bg3"></div>
@@ -16,7 +17,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '拓道金服2016年第一季度运营报告'
+    title: '拓道金服2016第一季度运营报告'
   },
   data () {
     return {}
@@ -26,7 +27,11 @@ export default {
 <style lang="stylus" scoped>
   .jd-1-16
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    i
+      color: #333
+      font-weight: bold
     div
       width:100%
     .jd-1-bg1

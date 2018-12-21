@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-      <router-link to="" class="evaluation">
+      <router-link to="appraisal/index" class="evaluation">
         <span>风险评测</span>
         <span>去评测 <i class="iconfont">&#xe83d;</i> </span>
       </router-link>
@@ -45,8 +45,8 @@
             <p>123,456,78.00</p>
           </div>
           <div>
-            <router-link to="" >提现</router-link>
-            <router-link to="" >充值 </router-link>
+            <router-link to="/cash" >提现</router-link>
+            <router-link to="/recharge" >充值 </router-link>
           </div>
         </div>
       </div>
@@ -57,18 +57,22 @@
             <p>出借记录</p>
           </li>
           <li>
-            <div class="bondBg"></div>
-            <p>债权转让</p>
+            <router-link to="/myBond" >
+              <div class="bondBg"></div>
+              <p>债权转让</p>
+            </router-link>
           </li>
           <li>
-            <router-link to="returnMoney" >
+            <router-link to="/returnMoney" >
               <div class="returnBg"></div>
               <p>回款日历</p>
             </router-link>
           </li>
           <li>
-            <div class="fundBg"></div>
-            <p>资金流水</p>
+            <router-link to="/moneyRecord" >
+              <div class="fundBg"></div>
+              <p>资金流水</p>
+            </router-link>
           </li>
         </ul>
       </div>

@@ -8,6 +8,8 @@ import Swiper from './swiper/index'
 import Carousel from './carousel/index'
 import Radio from './radio/index'
 import Scroll from './scroll/index'
+import citySelect from './city-select/index'
+import timeSelect from './time-select/index'
 
 const components = [
   Header,
@@ -17,7 +19,9 @@ const components = [
   Swiper,
   Carousel,
   Radio,
-  Scroll
+  Scroll,
+  citySelect,
+  timeSelect
 ]
 const install = function (Vue) {
   if (install.installed) return
@@ -35,5 +39,7 @@ export default {
   Swiper,
   Carousel,
   Radio,
-  Scroll
+  Scroll,
+  citySelect,
+  timeSelect
 }

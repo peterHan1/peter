@@ -1,5 +1,6 @@
 <template>
   <div class="month-1">
+    <Header navLeftTxt="icon">拓道金服<span>2018</span>年度<span>1</span>月份运营报告</Header>
     <div class="oper-title"></div>
     <div class="abos-bg"></div>
     <div class="trends-bg"></div>
@@ -17,7 +18,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '拓道金服2018年度1月份运营报告'
+    title: '拓道金服2018年1月份运营报告'
   },
   data () {
     return {}
@@ -27,12 +28,14 @@ export default {
 <style lang="stylus" scoped>
   .month-1
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    span
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
     .oper-title
       width:100%
       margin:0

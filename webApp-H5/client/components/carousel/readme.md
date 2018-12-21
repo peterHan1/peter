@@ -1,4 +1,4 @@
-使用说明：
+使用说明：现主要使用在know-us.vue的页面中，效果三张图片轮播，可拖拽
 <Carousel :imgs="imgs" @itemIndex="itemIndex">
   <div class="自定义类" v-if="show === 1">
     <h2>刘磊<b>COO</b></h2>

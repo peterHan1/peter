@@ -5,7 +5,7 @@
     <div class="bank_message">
       <div class="bank_bg">
         <div class="bank_left">
-          <div class="ABOC"></div>
+          <div class="ABOC imgSize"></div>
         </div>
         <div class="bank_right">
           <h6>农业银行</h6>
@@ -101,74 +101,4 @@
         float: left
       a:nth-child(2)
         float: right
-    .ABOC
-      background:url(../../../assets/images/bank-list/ABOC.png) no-repeat
-      background-size: 100% 100%
-    .BKCH
-      background:url(../../../assets/images/bank-list/BKCH.png) no-repeat
-      background-size: 100% 100%
-    .CIBK
-      background:url(../../../assets/images/bank-list/CIBK.png) no-repeat
-      background-size: 100% 100%
-    .EVER
-      background:url(../../../assets/images/bank-list/EVER.png) no-repeat
-      background-size: 100% 100%
-    .CMBC
-      background:url(../../../assets/images/bank-list/CMBC.png) no-repeat
-      background-size: 100% 100%
-    .BOJS
-      background:url(../../../assets/images/bank-list/BOJS.png) no-repeat
-      background-size: 100% 100%
-    .FJIB
-      background:url(../../../assets/images/bank-list/FJIB.png) no-repeat
-      background-size: 100% 100%
-    .GDBK
-      background:url(../../../assets/images/bank-list/GDBK.png) no-repeat
-      background-size: 100% 100%
-    .HXBK
-      background:url(../../../assets/images/bank-list/HXBK.png) no-repeat
-      background-size: 100% 100%
-    .ICBK
-      background:url(../../../assets/images/bank-list/ICBK.png) no-repeat
-      background-size: 100% 100%
-    .GZCB
-      background:url(../../../assets/images/bank-list/GZCB.png) no-repeat
-      background-size: 100% 100%
-    .HFBA
-      background:url(../../../assets/images/bank-list/HFBA.png) no-repeat
-      background-size: 100% 100%
-    .MSBC
-      background:url(../../../assets/images/bank-list/MSBC.png) no-repeat
-      background-size: 100% 100%
-    .PCBC
-      background:url(../../../assets/images/bank-list/PCBC.png) no-repeat
-      background-size: 100% 100%
-    .PSBC
-      background:url(../../../assets/images/bank-list/PSBC.png) no-repeat
-      background-size: 100% 100%
-    .SZDB
-      background:url(../../../assets/images/bank-list/SZDB.png) no-repeat
-      background-size: 100% 100%
-    .HZCB
-      background:url(../../../assets/images/bank-list/HZCB.png) no-repeat
-      background-size: 100% 100%
-    .ZJCB
-      background:url(../../../assets/images/bank-list/ZJCB.png) no-repeat
-      background-size: 100% 100%
-    .SPDB
-      background:url(../../../assets/images/bank-list/SPDB.png) no-repeat
-      background-size: 100% 100%
-    .BJCN
-      background:url(../../../assets/images/bank-list/BJCN.png) no-repeat
-      background-size: 100% 100%
-    .BOSH
-      background:url(../../../assets/images/bank-list/BOSH.png) no-repeat
-      background-size: 100% 100%
-    .COMM
-      background:url(../../../assets/images/bank-list/COMM.png) no-repeat
-      background-size: 100% 100%
-    .BKNB
-      background:url(../../../assets/images/bank-list/BKNB.png) no-repeat
-      background-size: 100% 100%
-    
 </style>

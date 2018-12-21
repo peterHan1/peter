@@ -5,13 +5,16 @@
       <span @click="navLeftFn" :class="{fontX}" class="iconfont leftTxt" v-else v-html="navLeftTxt"></span>
     </div>
     <span><slot /></span>
-    <div class="header_right" v-if="navRightTxt" @click="navRightFn">{{navRightTxt}}</div>
+    <div class="header_right"  @click="navRightFn" >
+      <span class="iconfont" v-if="navRightIcon === 'icon'" v-html="navRightTxt"></span>
+      <span v-else v-html="navRightTxt"></span>
+    </div>
   </header>
 </template>
 <script>
 export default {
   name: 'Header',
-  props: ['navLeftTxt', 'navRightTxt', 'fontX'],
+  props: ['navLeftTxt', 'navRightTxt', 'fontX', 'navRightIcon'],
   data () {
     return {
     }
@@ -63,6 +66,9 @@ export default {
       right: 28px
       font-size: 26px
       display: inline-block
+    .iconfont
+      font-size: 36px
+      color: #999  
     .fontX
       font-size: 42px  
 </style>

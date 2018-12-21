@@ -1,5 +1,6 @@
 <template>
   <div class="month-4">
+    <Header navLeftTxt="icon">拓道金服<span>2018</span>年度<span>4</span>月份运营报告</Header>
     <div class="abos-bg"></div>
     <div class="trends-bg"></div>
     <div class="stands-out"></div>
@@ -22,13 +23,15 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .month-4
-      overflow:hidden
-      background-color:#fff
+    overflow:hidden
+    padding-top: 0.88rem
+    background-color:#fff
+    span
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
     .abos-bg
       height:2.86rem
       background:url(../../../assets/images/oper/oper-2018-m4/img1.png) no-repeat

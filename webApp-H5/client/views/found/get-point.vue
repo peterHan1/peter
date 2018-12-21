@@ -3,12 +3,12 @@
     <Header navLeftTxt="icon">赚积分</Header>
     <ul class="con">
       <!-- <li v-for="item in items">
-        <p>每成功投资1000元赠送<span>1</span>积分</p>
+        <p>每成功出借1000元赠送<span>1</span>积分</p>
         <p>可累计</p>
         <router-link to="">去出借<span class="iconfont">&#xe83d;</span></router-link>
       </li> -->
       <li>
-        <p>每成功投资1000元赠送<span>1</span>积分</p>
+        <p>每成功出借1000元赠送<span>1</span>积分</p>
         <p>可累计</p>
         <router-link to="">去出借&nbsp;<span class="iconfont">&#xe83d;</span></router-link>
       </li>

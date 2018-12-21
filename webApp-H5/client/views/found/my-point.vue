@@ -4,6 +4,7 @@
       <div class="header">
         <div  class="top">
           我的积分
+          <span class="iconfont" @click="back">&#xe687;</span>
           <router-link to="/found/point-rule">使用说明</router-link>
         </div>
         <p class="point">{{ point }}</p>
@@ -65,6 +66,9 @@ export default {
     change () {
       this.active = !this.active
       this.state = !this.state
+    },
+    back () {
+      window.history.go(-1)
     }
   }
 }
@@ -102,11 +106,16 @@ export default {
           text-align: center
           font-size: 0.36rem
           z-index: 98
+          span
+            position: absolute
+            left: 0.3rem
+            color: #fff
+            font-size: 0.34rem
           a
             position: absolute
-            right: 0.28rem
+            right: 0.3rem
             color: #fff
-            font-size: 0.28rem
+            font-size: 0.26rem
         p
           font-size: 0.7rem
           font-family: DIN

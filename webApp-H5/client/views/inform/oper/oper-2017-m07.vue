@@ -1,5 +1,6 @@
 <template>
   <div class="m-7">
+    <Header navLeftTxt="icon">拓道金服<i>2017</i>年度<i>7</i>月份运营报告</Header>
     <div class="oper-title"></div>
     <div class="abo">
       <span class="abo-bg"></span>
@@ -48,6 +49,10 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .m-7
+    padding-top: 0.88rem
+    i
+      color: #333
+      font-weight: bold
     div
       width:100%
       background-color:#fff

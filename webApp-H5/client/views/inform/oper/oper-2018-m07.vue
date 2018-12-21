@@ -1,32 +1,15 @@
 <template>
   <div class="month-7">
-    <div>
-      <span class="month-7-bg1"></span>
-    </div>
-    <div>
-      <span class="month-7-bg2"></span>
-    </div>
-    <div >
-      <span class="month-7-bg3"></span>
-    </div>
-    <div>
-      <span class="month-7-bg4"></span>
-    </div>
-    <div>
-      <span class="month-7-bg5"></span>
-    </div>
-    <div>
-      <span class="month-7-bg6"></span>
-    </div>
-    <div>
-      <span class="month-7-bg7"></span>
-    </div>
-    <div>
-      <span class="inform-charge"></span>
-    </div>
-    <div>
-      <span class="month-7-bg8"></span>
-    </div>
+    <Header navLeftTxt="icon">拓道金服<span>2018</span>年度<span>7</span>月份运营报告</Header>
+    <div class="month-7-bg1"></div>
+    <div class="month-7-bg2"></div>
+    <div class="month-7-bg3"></div>
+    <div class="month-7-bg4"></div>
+    <div class="month-7-bg5"></div>
+    <div class="month-7-bg6"></div>
+    <div class="month-7-bg7"></div>
+    <div class="inform-charge"></div>
+    <div class="month-7-bg8"></div>
   </div>
 </template>
 <script>
@@ -42,15 +25,14 @@ export default {
 <style lang="stylus" scoped>
   .month-7
     overflow:hidden
+    padding-top: 0.88rem
     background-color:#fff
+    span
+      color: #333
+      font-weight: bold
     div
       width:100%
-      text-align:center
       overflow: hidden
-      font-size: 0
-      span
-        display:inline-block
-        width:100%
     .month-7-bg1
       height:2.88rem
       background:url(../../../assets/images/oper/oper-2018-m7/img1.png) no-repeat

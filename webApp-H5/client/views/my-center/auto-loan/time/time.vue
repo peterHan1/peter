@@ -78,13 +78,14 @@ export default {
       border-bottom: 1px solid #eaeaea
       background-color: #eaeaea
       height: 80px
+      display: flex
       span
         display: inline-block
-        width: 49%
         text-align: center
         line-height: 80px
         font-size: 30px
         color: #000
+        flex: 1
       span:nth-child(1)
         float: left  
       span:nth-child(2)

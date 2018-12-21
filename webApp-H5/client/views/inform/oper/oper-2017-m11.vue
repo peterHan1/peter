@@ -1,5 +1,6 @@
 <template>
   <div class="m-11">
+    <Header navLeftTxt="icon">拓道金服<i>2017</i>年度<i>11</i>月份运营报告</Header>
     <div class="oper-title"></div>
     <div class="abos">
       <span class="abos-bg"></span>
@@ -40,7 +41,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '拓道金服2017年度11月份运营报告'
+    title: '拓道金服2017年11月份运营报告'
   },
   data () {
     return {}
@@ -50,10 +51,14 @@ export default {
 <style lang="stylus" scoped>
   .m-11
     overflow:hidden
+    padding-top: 0.88rem
     background: -webkit-linear-gradient(#e1d0f9, #ae91ee)
     background: -o-linear-gradient(#e1d0f9, #ae91ee)
     background: -moz-linear-gradient(#e1d0f9, #ae91ee)
     background: linear-gradient(#e1d0f9, #ae91ee)
+    i
+      color: #333
+      font-weight: bold
     div
       width:7.3rem
       text-align:center

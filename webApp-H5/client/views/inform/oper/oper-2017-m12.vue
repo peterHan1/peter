@@ -1,5 +1,6 @@
 <template>
   <div class="m-12">
+    <Header navLeftTxt="icon">拓道金服<i>2017</i>年度<i>12</i>月份运营报告</Header>
     <div class="oper-title"></div>
     <div class="abos">
       <span class="abos-bg"></span>
@@ -50,10 +51,14 @@ export default {
 <style lang="stylus" scoped>
   .m-12
     overflow:hidden
+    padding-top: 0.88rem
     background: -webkit-linear-gradient(#3f71fb, #3b6afb)
     background: -o-linear-gradient(#3f71fb, #3b6afb)
     background: -moz-linear-gradient(#3f71fb, #3b6afb)
     background: linear-gradient(#3f71fb, #3b6afb)
+    i
+      color: #333
+      font-weight: bold
     div
       width:7.3rem
       text-align:center
