@@ -1,7 +1,7 @@
 <template>
   <div class="myCenter">
     <div class="my_nav">
-      <div><span></span><span class="vip0"></span></div><div><i class="newsIn"></i></div>
+      <div><span></span><span class="vip0"></span></div>
     </div>
     <div class="my_box">
       <div class="myCenter_top">
@@ -34,10 +34,6 @@
           </div>
         </div>
       </div>
-      <router-link to="appraisal/index" class="evaluation">
-        <span>风险评测</span>
-        <span>去评测 <i class="iconfont">&#xe83d;</i> </span>
-      </router-link>
       <div class="myCenter_money">
         <div class="money_bot">
           <div>
@@ -53,8 +49,10 @@
       <div class="myCenter_fund">
         <ul>
           <li>
-            <div class="loanBg"></div>
-            <p>出借记录</p>
+            <router-link to="/myInvest" >
+              <div class="loanBg"></div>
+              <p>出借记录</p>
+            </router-link>
           </li>
           <li>
             <router-link to="/myBond" >
@@ -79,27 +77,14 @@
       <div class="myCenter_list">
         <ul>
           <li class="coupon_bg">
-            <router-link to="" >
+            <router-link to="/discount" >
               <span class="coupon">优惠券</span>
-              <b>1张加息券</b>
-              <i class="iconfont">&#xe83d;</i>
-            </router-link>
-          </li>
-          <li class="int_bg">
-            <router-link to="" >
-              <span>我的积分</span>
               <i class="iconfont">&#xe83d;</i>
             </router-link>
           </li>
           <li class="invite_bg">
-            <router-link to="" >
+            <router-link to="/inviteRecord" >
               <span>邀请记录</span>
-              <i class="iconfont">&#xe83d;</i>
-            </router-link>
-          </li>
-          <li class="auto_bg">
-            <router-link to="/autoLoan" >
-              <span>自动投标</span>
               <i class="iconfont">&#xe83d;</i>
             </router-link>
           </li>
@@ -142,8 +127,6 @@
 
 <style lang="stylus" scoped>
   .myCenter
-    height: 100%
-    box-sizing: border-box
     .my_nav
       position: fixed
       left: 0
@@ -198,19 +181,6 @@
           background-size: 100% 100%
         .vip6
           background: url(../../assets/images/my-center/vip6.png) no-repeat
-          background-size: 100% 100%
-      div:nth-child(2)
-        height: 100%
-        line-height: 68px
-        float: right
-        i
-          display: inline-block
-          width: 54px
-          height: 54px
-          background: url(../../assets/images/my-center/newsBg.png) no-repeat
-          background-size: 100% 100%
-        i.newsIn
-          background: url(../../assets/images/my-center/newsIn.png) no-repeat
           background-size: 100% 100%
     .my_box
       background-color: #F2F3F7
@@ -298,7 +268,7 @@
           margin-top: 5px
         .money_bot
           display: flex
-          padding: 26px 0
+          padding: 28px 0
           div
             flex: 1
             overflow: hidden
@@ -309,7 +279,7 @@
             font-size: 28px
             color: #FF7102
             background-color: #F0F0F7
-            border-radius: 20px
+            border-radius: 40px
             text-align: center
             float: left
             margin-top: 10px
@@ -368,18 +338,6 @@
             span
               font-size: 30px
               color: #333
-            .coupon
-              position: relative
-            .coupon:after
-              display: block
-              content: ''
-              width: 8px
-              height: 8px
-              background-color: #ff7102
-              border-radius: 50%
-              position: absolute
-              top: -5px
-              right: -10px
             b
               position: absolute
               right: 80px
@@ -405,14 +363,8 @@
           .coupon_bg a:before
             background: url(../../assets/images/my-center/coupon_bg.png) no-repeat
             background-size: 100% 100%
-          .int_bg a:before
-            background: url(../../assets/images/my-center/int_bg.png) no-repeat
-            background-size: 100% 100%
           .invite_bg a:before
             background: url(../../assets/images/my-center/invite_bg.png) no-repeat
-            background-size: 100% 100%
-          .auto_bg a:before
-            background: url(../../assets/images/my-center/auto_bg.png) no-repeat
             background-size: 100% 100%
           .old_bg a:before
             background: url(../../assets/images/my-center/old_bg.png) no-repeat

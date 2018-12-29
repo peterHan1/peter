@@ -6,13 +6,13 @@
     </div>
     <load-more :load-top="loadTop" :load-bottom="loadBottom" :all-loaded="allLoaded">
       <div class="left" v-if="active">
-        <router-link to="" v-for="item in items1" class="item_notice opacity">
+        <router-link to="" v-for="item in items1" class="item_notice opacity" :key="item">
           <div><span>{{item.title}}</span><b>{{item.time}}</b></div>
           <section>{{item.explain}}</section>
         </router-link>
       </div>
       <div class="right" v-else>
-        <router-link to="" v-for="item in items2" class="item opacity">
+        <router-link to="" v-for="item in items2" class="item opacity" :key="item">
           <img src="//www.51tuodao.com/upload/data/upfiles/images/2018-09/21/106102_article_new_1537493529289.png">
           <div>
             <p class="t">{{item.title}}</p>

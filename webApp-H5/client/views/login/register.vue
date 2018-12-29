@@ -2,19 +2,22 @@
   <div class="register_box">
     <Header :navLeftTxt="'icon'" @navLeftFn="navLeftFn()" >注册</Header>
     <div class="reg_box">
-      <p class="phoneTxt">已向您的手机号166****6666发送验证码,请查收</p>
       <ul>
+        <li>
+          <span>图形验证码</span>
+          <input type="text" placeholder="请输入图形验证码" class="codeInp" v-model="imgCode" />
+          <img src="../../assets/images/login/phoneCode.jpg" alt="">
+        </li>
         <li>
           <span>验证码</span>
           <input type="number" placeholder="请输入验证码" v-model="phoneVal"/>
-          <div class="phoneCode" v-if="codeNum">{{countTime}}s后重发</div>
+          <div class="phoneCode count_style" v-if="codeNum">{{countTime}}s</div>
           <div class="phoneCode" @click="getCode()" v-else>获取验证码</div>
         </li>
         <li>
           <span>设置密码</span>
-          <input :type="pwdType" placeholder="设置6-16位登录密码" v-model="pwdVal"/>
-          <div class="iconfont" @click="inputType()"><b v-if="showIcon">&#xe692;</b><b v-else>&#xe68a;</b></div>
-          <i class="iconfont" v-show="pwdVal" @click="emptyVal()">&#xe69d;</i>
+          <input class="inp_width" :type="pwdType" placeholder="设置6-16位字母或数字登录密码" v-model="pwdVal"/>
+          <div class="iconfont inpType" @click="inputType()"><b v-if="showIcon">&#xe692;</b><b v-else>&#xe68a;</b></div>
         </li>
       </ul>
       <div class="inviter">
@@ -26,13 +29,12 @@
           </li>
         </ul>
       </div>
-      <div class="clause">
-        <i class="iconfont" :class="iconOk?'iconOn':'iconNo'" @click="consentTd()">&#xe618;</i>
-        <span>我已阅读并同意<router-link to="" >《网贷禁止性行为说明》、</router-link><router-link to="" >《网络借贷风险告知书》</router-link>及<router-link to="" >《拓道金服用户注册协议》</router-link></span>
-      </div>
       <div class="sub_btn">
-        <div class="td_btn" :class="phoneVal.length != 0 && pwdVal.length >= 6 && pwdVal.length <= 16 && iconOk?'td_btnHig':'td_btnNo'" @click="subBth()">确定</div>
-        <P>收不到短信验证码？点击<span>获取语音验证码</span></P>
+        <div class="td_btn" :class="phoneVal.length != 0 && pwdVal.length >= 6 && pwdVal.length <= 16 && iconOk?'td_btnHig':'td_btnNo'" @click="subBth()">下一步</div>
+      </div>
+      <div class="clause">
+        <i class="iconfont">&#xe618;</i>
+        <span>我已阅读并同意<router-link to="" >《网贷禁止性行为说明》</router-link><router-link to="" >《网络借贷风险告知书》</router-link>及<router-link to="" >《拓道金服用户注册协议》</router-link></span>
       </div>
     </div>
   </div>
@@ -46,6 +48,7 @@
     data () {
       return {
         pwdType: 'password',
+        imgCode: '',
         pwdVal: '',
         phoneVal: '',
         showIcon: true,
@@ -79,12 +82,6 @@
           }
         }, 1000)
       },
-      consentTd () {
-        this.iconOk = !this.iconOk
-      },
-      emptyVal () {
-        this.pwdVal = ''
-      },
       inviterFn () {
         this.inviter_phone = !this.inviter_phone
         this.rotate = !this.rotate
@@ -101,101 +98,89 @@
     padding-top: 88px
     box-sizing: border-box
     .reg_box
-      .phoneTxt
-        font-size: 24px
-        color: #777
-        padding-left: 60px
-        line-height: 90px
-      li
-        height: 88px
+      margin-top: 20px
+      ul
+        padding: 0 30px
         background-color: #fff
-        border-bottom: 1px solid #efeff4
-        span
-          display: block
-          height: 100%
-          width: 130px
-          line-height: 80px
-          font-size: 26px
-          color: #333
-          float: left
-          margin-left: 60px
-        input
-          display: block
-          height: 100%
-          font-size: 26px
-          color: #333
-          float: left
-          caret-color:#ff711c
-        input::-webkit-input-placeholder
-          color: #c7c7cd
-        input:-moz-placeholder
-          color: #c7c7cd
-        input::-moz-placeholder
-          color: #c7c7cd
-        input:-ms-input-placeholder
-          color: #c7c7cd
-        .inp_width
-          width: 60%
-        div
-          display: block
-          height: 100%
-          float: right
-          margin-right: 40px
-          line-height: 88px
-          font-size: 26px
-          color: #777
+        li
+          height: 100px
+          border-bottom: 1px solid #efeff4
           position: relative
-          b
-            font-size: 50px
-        .phoneCode
-          padding-left: 40px
-        .phoneCode:before
-          content: ''
-          display: block
-          height: 32px
-          border-left: 1px solid #bfbfbf;
-          position: absolute
-          left: 0
-          top: 50%
-          margin-top: -(@height / 2)px
-        i
-          display: block
-          height: 100%
-          font-size: 36px
-          color: #D8D8D8
-          float: right
-          line-height: 88px
-          margin-right: 30px
+          overflow: hidden
+          span
+            display: block
+            line-height: 100px
+            font-size: 28px
+            color: #333
+            float: left
+            margin-right: 20px
+          input
+            display: block
+            line-height: 98px
+            font-size: 28px
+            color: #333
+            float: left
+            caret-color:#ff711c
+          .inp_width
+            width: 70%
+          img
+            display: block
+            width: 184px
+            height: 60px
+            float: right
+            margin-top: -(@height/2)px
+            position: absolute
+            right: 0
+            top: 50%
+          .inpType
+            position: absolute
+            right: 0
+            b
+              font-size: 50px
+              line-height: 99px
+              color: #D8D8D8
+          .phoneCode
+            display: block
+            width: 185px
+            line-height: 60px
+            font-size: 26px
+            color: #fff
+            margin-top: -30px
+            position: absolute
+            right: 0
+            top: 50%
+            background-color: #FF7102
+            text-align: center
+            border-radius: 6px
+          .count_style
+            background-color: #ccc
+        li:last-child
+          border: none    
       .clause
-        font-size: 24px
+        font-size: 22px
         color: #999
-        padding: 0 60px
+        padding: 30px 60px 0 40px
         overflow: hidden
         span
           display: inline-block
           text-align: justify
           width: 90%
+          line-height: 40px
         i
           display: inline-block
           width: 6%
           height: 100%
           text-align: center
-          font-size: 36px
+          font-size: 30px
           vertical-align: top
-        .iconOn
-          color: #ff711c
-        .iconNo
-          color: #ddd
+          color: #ccc
         a
           color: #ff711c
       .inviter
-        padding: 40px 0 0
-        .inviterUl
-          padding-bottom: 20px
         p
-          font-size: 26px
+          font-size: 28px
           color: #999
-          padding: 0 58px 40px
+          padding: 40px 30px 20px
           span
             display: inline-block
             font-size: 30px
@@ -209,12 +194,5 @@
             color: #ff711c
       .sub_btn
         width: 90%
-        margin: 60px auto 0
-        p
-          font-size: 20px
-          color: #a2a2a2
-          text-align: center
-          line-height: 100px
-          span
-            color: #ff711c
+        margin: 30px auto 0
 </style>

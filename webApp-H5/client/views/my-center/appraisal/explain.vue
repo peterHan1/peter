@@ -1,6 +1,6 @@
 <template>
   <div class="explain">
-    <Header :navLeftTxt="'icon'" @navLeftFn="navLeftFn()">风险承受能力说明</Header>
+    <Header :navLeftTxt="'&#xe687; <b>退出</b>'" @navLeftFn="navLeftFn()">风险承受能力说明</Header>
     <div class="explain_top">原则上，投资人风险承受能力与产品的项目风险评估结果一一对应，相互关联，即原则上：</div>
       <ul>
         <li>
@@ -40,6 +40,9 @@
     mounted () {
     },
     methods: {
+      navLeftFn () {
+        this.$router.push({path: '/ucSet'})
+      }
     },
     components: {
     }
@@ -55,11 +58,9 @@
     left: 0
     background-color: #fff
     padding: 88px 40px 0
-    overflow: auto
-    box-sizing: border-box
     .explain_top,.explain_bot
       color: #333
-      font-size: 26px
+      font-size: 28px
       line-height: 48px
     .explain_top
       margin-top: 50px
@@ -69,7 +70,7 @@
       margin-top: 15px
       div
         color: #333
-        font-size: 23px
+        font-size: 24px
         overflow: hidden
         span
           float: left
@@ -87,6 +88,6 @@
           line-height: 64px
       p
         color: #777
-        font-size: 23px
+        font-size: 24px
         line-height: 36px
 </style>

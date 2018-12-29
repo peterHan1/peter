@@ -2,19 +2,18 @@
   <header class="header_nav">
     <div class="header_left" v-if="navLeftTxt">
       <span @click="returnFn" v-if="navLeftTxt === 'icon'" class="iconfont">&#xe687;</span>
-      <span @click="navLeftFn" :class="{fontX}" class="iconfont leftTxt" v-else v-html="navLeftTxt"></span>
+      <span @click="navLeftFn" class="iconfont leftTxt" v-else v-html="navLeftTxt"></span>
     </div>
     <span><slot /></span>
-    <div class="header_right"  @click="navRightFn" >
-      <span class="iconfont" v-if="navRightIcon === 'icon'" v-html="navRightTxt"></span>
-      <span v-else v-html="navRightTxt"></span>
+    <div class="header_right"  @click="navRightFn" v-if="navRightTxt">
+      <span v-html="navRightTxt"></span>
     </div>
   </header>
 </template>
 <script>
 export default {
   name: 'Header',
-  props: ['navLeftTxt', 'navRightTxt', 'fontX', 'navRightIcon'],
+  props: ['navLeftTxt', 'navRightTxt'],
   data () {
     return {
     }
@@ -49,7 +48,7 @@ export default {
     overflow: hidden
     box-sizing: border-box
     text-align: center
-    font-size: 34px
+    font-size: 36px
     color: #333
     z-index: 98
     .header_left
@@ -59,16 +58,15 @@ export default {
       font-size: 34px
     .leftTxt
       font-size: 30px
-      color: #626262
+      /deep/ b
+        font-size: 32px
+        color: #666
     .header_right
-      color: #626262
+      color: #999
       position: absolute
       right: 28px
       font-size: 26px
       display: inline-block
     .iconfont
       font-size: 36px
-      color: #999  
-    .fontX
-      font-size: 42px  
 </style>

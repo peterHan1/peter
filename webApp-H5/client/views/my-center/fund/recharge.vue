@@ -74,12 +74,14 @@
         .bankInfo
           float: left
           margin-top: 30px
-          margin-left: 10px
+          margin-left: 30px
           font-size: 28px
           p:nth-child(1)
-            color: #333333
+            line-height: 40px
+            color: #333
           p:nth-child(2)
-            color: #666666
+            line-height: 40px
+            color: #666
       li:nth-child(2)
           padding: 0 30px
           background-color: #fff
@@ -123,13 +125,14 @@
         color: #333
         font-size: 28px
         b
-          color: #F97C3C
+          color: #FC8D26
     .sub_btn
       padding: 20px 30px 0
     .txt
         padding: 0 40px
         margin-top: 50px
         p
-          font-size: 20px
-          color: #999999
+          font-size: 24px
+          color: #999
+          line-height: 33px
 </style>

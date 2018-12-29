@@ -2,114 +2,39 @@
   <div class="recode">
     <Header :navLeftTxt="'icon'">提现记录</Header>
     <div class="recodeTop">
-      <span>提现金额(元)/时间</span>
-      <span>状态</span>
+      <span>提现金额(元)/类型</span>
+      <span>状态/时间</span>
     </div>
     <ul>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
+        <p>
+          <span>5000.00 <b>(含3元手续费)</b> </span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>快速到账</span>
+          <span>2018-06-07 10:00</span>
+        </p>
       </li>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
+        <p>
+          <span>5000.00 <b>(含3元手续费)</b> </span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>快速到账</span>
+          <span>2018-06-07 10:00</span>
+        </p>
       </li>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>审核通过</div>
+        <p>
+          <span>5000.00 <b>(含3元手续费)</b> </span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>快速到账</span>
+          <span>2018-06-07 10:00</span>
+        </p>
       </li>
     </ul>
   </div>
@@ -136,47 +61,43 @@
 <style lang="stylus" scoped>
   .recode
     width: 100%
-    padding-top: 176px
+    padding-top: 88px
     box-sizing: border-box
     .recodeTop
-      position: fixed
-      top: 88px
-      left: 0
-      right: 0
-      line-height: 90px
+      line-height: 100px
       padding: 0 30px 
       font-size: 28px
-      color: #333
+      color: #666
       background-color: #f2f3f7
       span:nth-child(2)
         float: right
     ul
       background-color: #fff
       li
-        padding: 0 30px
-        border-bottom:1px solid #f2f3f7
+        padding: 21px 30px
+        border-bottom:1px solid #E8E8E8
         overflow: hidden
-        div:nth-child(1)
-          display: inline-block
+        p
+          display: flex
+          font-size: 28px
+          color: #999
+          span
+            flex: 1
+          span:nth-child(1)
+            text-align: left
+          span:nth-child(2)
+            text-align: right  
+        p:nth-child(1)
+          padding-bottom: 10px
           color: #333
-          float: left
-          height: 120px
-          p
-            line-height: 40px
+          span:nth-child(1)
+            font-size: 36px
+            b
+              font-size: 24px
+          span:nth-child(2)
             font-size: 30px
-            margin-top: 20px
-            span
-              font-size: 22px
-              color: #999
-          p:nth-child(2)
-            margin-top: 0
-            font-size: 22px
-            color: #999
-        div:nth-child(2)
-          display: inline-block
-          color: #333
-          float: right
-          line-height: 120px
+        p:nth-child(2)
+          line-height: 40px
       li:last-child
         border: none
 </style>

@@ -7,109 +7,34 @@
     </div>
     <ul>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
+        <p>
+          <span>5000.00</span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>工商银行 尾号0902</span>
+          <span> 2018-06-07 10:00</span>
+        </p>
       </li>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
+        <p>
+          <span>5000.00</span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>工商银行 尾号0902</span>
+          <span> 2018-06-07 10:00</span>
+        </p>
       </li>
       <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
-      </li>
-      <li>
-        <div>
-          <p>666.66 <span>(含0.0元手续费)</span></p>
-          <p>2018-06-06 16:16:16</p>
-        </div>
-        <div>充值成功</div>
+        <p>
+          <span>5000.00</span>
+          <span>成功</span>
+        </p>
+        <p>
+          <span>网银</span>
+          <span> 2018-06-07 10:00</span>
+        </p>
       </li>
     </ul>
   </div>
@@ -136,47 +61,38 @@
 <style lang="stylus" scoped>
   .recode
     width: 100%
-    padding-top: 176px
-    box-sizing: border-box
+    padding-top: 88px
     .recodeTop
-      position: fixed
-      top: 88px
-      left: 0
-      right: 0
-      line-height: 90px
+      line-height: 99px
       padding: 0 30px 
       font-size: 28px
-      color: #333
+      color: #666
       background-color: #f2f3f7
       span:nth-child(2)
         float: right
     ul
       background-color: #fff
       li
-        padding: 0 30px
+        padding: 21px 30px
         border-bottom:1px solid #f2f3f7
-        overflow: hidden
-        div:nth-child(1)
-          display: inline-block
+        p
+          display: flex
+          color: #999
+          font-size: 28px
+          span
+            flex: 1
+          span:nth-child(1)
+            text-align: left
+          span:nth-child(2)
+            text-align: right
+        p:nth-child(1)
           color: #333
-          float: left
-          height: 120px
-          p
-            line-height: 40px
+          line-height: 50px
+          padding-bottom: 8px
+          span:nth-child(1)
+            font-size: 36px
+          span:nth-child(2)
             font-size: 30px
-            margin-top: 20px
-            span
-              font-size: 22px
-              color: #999
-          p:nth-child(2)
-            margin-top: 0
-            font-size: 22px
-            color: #999
-        div:nth-child(2)
-          display: inline-block
-          color: #333
-          float: right
-          line-height: 120px
       li:last-child
         border: none
 </style>

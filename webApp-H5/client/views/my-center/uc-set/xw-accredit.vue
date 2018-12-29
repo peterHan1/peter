@@ -1,10 +1,11 @@
 <template>
   <div class="accredit">
-    <Header :navLeftTxt="'icon'" :navRightTxt="'授权说明'" @navRightFn="navRightFn()">业务授权</Header>
+    <Header :navLeftTxt="'icon'">业务授权</Header>
     <ul>
       <li>
         <span>业务授权</span>
-        <span>已授权</span>
+        <!-- <span>已授权</span> -->
+        <span>已过期 <router-link to="" >重新授权</router-link></span>
       </li>
       <li>
         <span>授权金额 <i class="iconfont" @click="openLayer()">&#xe833;</i></span>
@@ -32,9 +33,6 @@
     mounted () {
     },
     methods: {
-      navRightFn () {
-        this.$router.push({path: '/accreditExplain', query: {id: this.phoneVal}})
-      },
       openLayer () {
         this.layerShow = true
       },
@@ -63,6 +61,8 @@
           font-size: 28px
           display: block
           line-height: 100px
+          a
+            color: #FF6866
           i
             display: inline-block
             padding: 0 10px
@@ -82,5 +82,5 @@
       color: #333
       line-height: 50px
       text-align: center
-      padding-top: 20px 
+      padding: 50px 0 20px
 </style>

@@ -5,6 +5,8 @@ const HTMLPlugin = require('html-webpack-plugin')
 const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
+const PostCompilePlugin = require('webpack-post-compile-plugin')
+const TransformModulesPlugin = require('webpack-transform-modules-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -17,7 +19,9 @@ const defaultPlugin = [
   new HTMLPlugin({
     template: path.join(__dirname, 'template.html')
   }),
-  new VueClientPlugin()
+  new VueClientPlugin(),
+  new PostCompilePlugin(),
+  new TransformModulesPlugin()
 ]
 
 const devServer = {
@@ -50,7 +54,13 @@ if (isDev) {
                 sourceMap: true
               }
             },
-            'stylus-loader'
+            {
+              loader: 'stylus-loader',
+              options: {
+                'resolve url': true
+              }
+            }
+            // 'stylus-loader'
           ]
         }
       ]
@@ -74,6 +84,13 @@ if (isDev) {
     module: {
       rules: [
         {
+          test: /\.css$/,
+          ues: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+        {
           test: /\.styl$/,
           use: ExtractPlugin.extract({
             fallback: 'style-loader',
@@ -85,7 +102,13 @@ if (isDev) {
                   sourceMap: true
                 }
               },
-              'stylus-loader'
+              {
+                loader: 'stylus-loader',
+                options: {
+                  'resolve url': true
+                }
+              }
+              // 'stylus-loader'
             ]
           })
         }

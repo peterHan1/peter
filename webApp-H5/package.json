@@ -21,6 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "better-scroll": "^1.13.2",
+    "cube-ui": "^1.12.6",
     "echarts": "^4.2.0-rc.2",
     "ejs": "^2.5.7",
     "koa": "^2.4.1",
@@ -75,6 +77,8 @@
     "vue-template-compiler": "2.5.13",
     "webpack": "3.10.0",
     "webpack-dev-server": "2.9.7",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "webpack-post-compile-plugin": "^0.4.1",
+    "webpack-transform-modules-plugin": "^0.3.5"
   }
 }

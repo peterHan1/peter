@@ -12,7 +12,7 @@
 <script>
 export default {
   metaInfo: {
-    title: '信息披露'
+    title: '信息披露2'
   }
 }
 </script>

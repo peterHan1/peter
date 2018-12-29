@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <Header :navLeftTxt="'&#xe9ba;'" :fontX="'fontX'" @navLeftFn="navLeftFn()">风险测评</Header>
+    <Header :navLeftTxt="'&#xe687; <b>退出</b>'" @navLeftFn="navLeftFn()">风险测评</Header>
     <div class="subject" v-for="(item,index) in listTxt" v-show="index==next" :key="item.value">
       <div class="tlt">{{item.quiz}}</div>
       <div class="select">
@@ -18,8 +18,8 @@
     </div>
     <div class="subBtn" v-show="next==7">
       <div class="checkTxt" @click="haveRead()">
-        <i class="iconfont on" v-if="iconShow">&#xe846;</i>
-        <i class="iconfont" v-else>&#xe9b8;</i>
+        <i class="iconfont on" v-if="iconShow">&#xe6c4;</i>
+        <i class="iconfont" v-else>&#xe6c3;</i>
         <span>我已明确投资风险并愿意接受风险带来的损失</span>
       </div>
       <div class="btn" :class="iconShow && selectShow?'submitBtn':''" @click="subSelect()">
@@ -155,9 +155,9 @@
         font-size: 28px
         padding: 30px 50px 30px 40px
         border-bottom: 1px solid #d8d8d8
-        color: #333
+        color: #666
       li.on
-        color: #FF7400
+        color: #FF7102
         background: url(../../../assets/images/my-center/onBg.png) no-repeat
         background-size: 5%
         background-position: 97% 50%
@@ -182,12 +182,11 @@
         margin-top: 28px
       .getBack
         color: #ff711c
-        font-size: 26px
+        font-size: 28px
         position: absolute
         left: 40px
         bottom: 0
     .subBtn
-      padding: 0 70px
       font-size: 24px
       text-align: center
       margin-top: 80px
@@ -195,30 +194,31 @@
         color: #a3a3a3
         font-size: 24px
         overflow: hidden
-        span
-          float: left
-          display: inline-block
-          line-height: 85px
+        height: 86px
+        display: flex
+        justify-content: center
+        align-items: center
         i
-          float: left
+          font-size: 30px
+          color: #5887FF
           display: inline-block
-          line-height: 85px
-          font-size: 34px
+          line-height: 40px
           margin-right: 10px
-        i.on
-          color: #ff711c
+        span
+          display: inline-block
+          line-height: 40px  
       .checkTxt.on
         i
           color: #ff711c
       .btn
         display: inline-block
-        width: 100%
+        width: 58%
         font-size: 32px
         text-align: center
         color: #ff711c
         border: 2px solid #ff711c
-        border-radius: 5px
-        line-height: 86px
+        border-radius: 35px
+        line-height: 74px
       .submitBtn
         background-color: #ff711c
         color: #fff

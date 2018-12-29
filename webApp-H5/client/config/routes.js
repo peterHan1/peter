@@ -1,8 +1,16 @@
 export default [
   {
     path: '/',
-    redirect: '/index'
+    redirect: '/project'
   },
+  // {
+  //   path: '/test',
+  //   component: () => import('views/project/up.vue')
+  // },
+  // {
+  //   path: '/project',
+  //   component: () => import('views/project/list.vue')
+  // },
   {
     path: '/exam',
     component: () => import('views/inform/exam.vue')
@@ -388,6 +396,18 @@ export default [
     component: () => import('views/login/register.vue')
   },
   {
+    path: '/resetPwd',
+    component: () => import('views/login/reset-pwd.vue')
+  },
+  {
+    path: '/registerResult',
+    component: () => import('views/login/register-result.vue')
+  },
+  {
+    path: '/registerLaw',
+    component: () => import('views/login/register-law.vue')
+  },
+  {
     path: '/index',
     component: () => import('views/index/index.vue')
   },
@@ -421,15 +441,15 @@ export default [
   },
   {
     path: '/deposit',
-    component: () => import('views/my-center/uc-set/xw-deposit.vue')
+    component: () => import('views/xw-deposit/xw-deposit.vue')
+  },
+  {
+    path: '/depositResult',
+    component: () => import('views/xw-deposit/deposit-result.vue')
   },
   {
     path: '/accredit',
     component: () => import('views/my-center/uc-set/xw-accredit.vue')
-  },
-  {
-    path: '/accreditExplain',
-    component: () => import('views/my-center/uc-set/xw-accredit-explain.vue')
   },
   {
     path: '/tdAbout',
@@ -450,10 +470,6 @@ export default [
   {
     path: '/appraisal/explain',
     component: () => import('views/my-center/appraisal/explain.vue')
-  },
-  {
-    path: '/autoLoan',
-    component: () => import('views/my-center/auto-loan/auto-loan.vue')
   },
   {
     path: '/returnMoney',
@@ -484,11 +500,71 @@ export default [
     component: () => import('views/my-center/fund/cash-record.vue')
   },
   {
+    path: '/cashResult',
+    component: () => import('views/my-center/fund/cash-result.vue')
+  },
+  {
+    path: '/rechargeResult',
+    component: () => import('views/my-center/fund/recharge-result.vue')
+  },
+  {
     path: '/myBond',
     component: () => import('views/my-center/my-bond/my-bond.vue')
   },
   {
     path: '/bondExplain',
     component: () => import('views/my-center/my-bond/bond-explain.vue')
+  },
+  {
+    path: '/myInvest',
+    component: () => import('views/my-center/my-invest/my-invest.vue')
+  },
+  {
+    path: '/myInvestDetails',
+    component: () => import('views/my-center/my-invest/invest-details.vue')
+  },
+  {
+    path: '/mySiftDetails',
+    component: () => import('views/my-center/my-invest/sift-details.vue')
+  },
+  {
+    path: '/creditorList',
+    component: () => import('views/my-center/my-invest/creditor-list.vue')
+  },
+  {
+    path: '/inviteRecord',
+    component: () => import('views/my-center/invite-record/invite-record.vue')
+  },
+  {
+    path: '/inviteList',
+    component: () => import('views/my-center/invite-record/invite-list.vue')
+  },
+  {
+    path: '/discount',
+    component: () => import('views/my-center/discount/discount.vue')
+  },
+  {
+    path: '/xwTransit',
+    component: () => import('views/xw-deposit/xw-transit.vue')
+  },
+  {
+    path: '/investList',
+    component: () => import('views/invest-list/invest-list.vue')
+  },
+  {
+    path: '/invitedRecord',
+    component: () => import('views/my-center/Invited-record.vue')
+  },
+  {
+    path: '/investAdd',
+    component: () => import('views/invest-details/invest-add.vue')
+  },
+  {
+    path: '/investResult',
+    component: () => import('views/invest-details/add/invest-result.vue')
+  },
+  {
+    path: '/scatter-protocol',
+    component: () => import('views/invest-details/protocol/scatter-protocol.vue')
   }
 ]

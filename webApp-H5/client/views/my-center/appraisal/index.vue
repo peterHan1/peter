@@ -50,5 +50,5 @@
         bottom: 100px
         left: 24%
         background-color: #ff8a10
-        border-radius: 20px
+        border-radius: 37px
 </style>

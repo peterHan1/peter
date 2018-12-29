@@ -10,6 +10,7 @@ module.exports = (isDev) => {
       require('postcss-px2rem')({
         remUnit: 100
       })
-    ]
+    ],
+    extract: false
   }
 }

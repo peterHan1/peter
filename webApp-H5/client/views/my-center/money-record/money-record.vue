@@ -84,11 +84,11 @@
     padding-top: 88px
     box-sizing: border-box
     .recodeTop
-      line-height: 90px
+      line-height: 88px
       background-color: #fff
       padding: 0 30px 
-      font-size: 28px
-      color: #333333
+      font-size: 30px
+      color: #333
       span:nth-child(2)
         float: right
     ul
@@ -96,19 +96,20 @@
       padding: 0 30px
       background-color: #fff
       li
-        padding: 10px 0px
-        line-height: 120px
-        font-size: 24px
         border-bottom:1px solid #f2f3f7
         p:nth-child(1)
           line-height: 40px
           color: #333
+          font-size: 28px
+          padding-top: 20px
           span:nth-child(2)
             float: right
-            color: #F97C3C
+            color: #FF7102
         p:nth-child(2)
-          line-height: 40px
-          color: #999
+          font-size: 24px
+          line-height: 33px
+          color: #666
+          padding: 10px 0 20px
           span:nth-child(2)
             float: right
       li:last-child

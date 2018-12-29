@@ -1,51 +1,9 @@
 <template>
   <div class="bondBox">
-    <Header :navLeftTxt="'icon'" :navRightTxt="'&#xe833;'" @navRightFn="navRightFn()" :navRightIcon="'icon'">债权转让</Header>
+    <Header :navLeftTxt="'icon'">债权转让</Header>
     <div class="bondList">
-      <ul>
-        <li>
-          <p>
-            <span>宝马X6抵押续贷标 <b>No.2018110006688</b> </span>
-            <span>还款中</span>
-          </p>
-          <p>
-            <span>出借金额：666.66元</span>
-            <span>到期收益：88.88元</span>
-          </p>
-          <p>
-            <span>出借时间：2018.12.12 12:12</span>
-            <span>到期时间：2019-12-13</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>宝马X6抵押续贷标 <b>No.2018110006688</b> </span>
-            <span>还款中</span>
-          </p>
-          <p>
-            <span>出借金额：666.66元</span>
-            <span>到期收益：88.88元</span>
-          </p>
-          <p>
-            <span>出借时间：2018.12.12 12:12</span>
-            <span>到期时间：2019-12-13</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>宝马X6抵押续贷标 <b>No.2018110006688</b> </span>
-            <span>还款中</span>
-          </p>
-          <p>
-            <span>出借金额：666.66元</span>
-            <span>到期收益：88.88元</span>
-          </p>
-          <p>
-            <span>出借时间：2018.12.12 12:12</span>
-            <span>到期时间：2019-12-13</span>
-          </p>
-        </li>
-      </ul>
+      <p>请在电脑端登录官网或在APP端查看</p>
+      <router-link to="" >下载APP</router-link>
     </div>
   </div>
 </template>
@@ -77,45 +35,20 @@
     padding-top: 88px
     box-sizing: border-box
     .bondList
-      li
-        background-color: #fff
-        margin-top: 20px
-        p
-          font-size: 28px
-          color: #333
-          line-height: 70px
-          padding: 0 30px
-          overflow: hidden
-          b
-            font-size: 22px
-            color: #999
-          span:nth-child(1)
-            float: left  
-          span:nth-child(2)
-            float: right
-        p:nth-child(3)
-          font-size: 22px
-          color: #999
-          border-top: 1px solid #f2f3f7  
+      text-align: center
+      overflow: hidden
+      p
+        font-size: 28px
+        color: #666
+        margin-top: 50%
+      a
+        display: inline-block
+        width: 50%
+        line-height: 74px
+        text-align: center
+        font-size: 30px
+        color: #fff
+        background: linear-gradient(153deg,rgba(252,141,38,1) 0%,rgba(248,123,60,1) 100%)
+        border-radius: 37px
+        margin-top: 60px
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

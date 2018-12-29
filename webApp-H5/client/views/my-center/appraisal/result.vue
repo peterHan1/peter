@@ -1,6 +1,6 @@
 <template>
   <div class="resule">
-    <Header :navLeftTxt="'&#xe9ba;'" :fontX="'fontX'" @navLeftFn="navLeftFn()" :navRightTxt="'说明'" @navRightFn="navRightFn()">风险测评</Header>
+    <Header :navLeftTxt="'&#xe687; <b>退出</b>'" @navLeftFn="navLeftFn()">风险测评</Header>
 		<p class="resule_txt">您的评估结果为</p>
     <div class="resule_com">
       <p>谨慎型</p>
@@ -10,6 +10,7 @@
       <router-link to="/ucSet" class="resule_btn">完成</router-link>
     </div>
     <router-link to="/appraisal/list" class="resule_rest">重新测评</router-link>
+    <router-link to="/appraisal/explain" class="resule_rest">测评说明</router-link>
 	</div>
 </template>
 
@@ -40,7 +41,6 @@
 <style lang="stylus" scoped>
   .resule
     text-align: center
-    overflow: auto
     position: fixed
     left: 0
     top: 0
@@ -48,35 +48,33 @@
     bottom: 0
     background-color: #fff
     .resule_txt
-      color: #777
+      color: #999
       font-size: 30px
-      margin-top: 116px
+      margin-top: 140px
     .resule_time
-      color: #a3a3a3
-      font-size: 25px
-      margin-top: 60px
-    .resule_accom
-      padding: 0 40px
+      color: #999
+      font-size: 30px
+      margin-top: 50px
     .resule_btn
       display: block
-      width: 100%
-      background-color: #ff711c
+      width: 58%
+      background-color: #FF7102
       color: #fff
-      font-size: 32px
-      line-height: 88px
+      font-size: 30px
+      line-height: 74px
       text-align: center
-      border-radius: 5px
-      margin-top: 108px
+      border-radius: 35px
+      margin: 108px auto 0
     .resule_rest
       display: block
       font-size: 26px
-      color: #ff711c
+      color: #FF7102
       margin-top: 50px
     .resule_com
       height: 378px
       line-height: 378px
       width: 415px
-      margin: 55px auto 0
+      margin: 50px auto 0
       color: #333
       font-size: 63px
       text-align: center

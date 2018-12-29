@@ -47,19 +47,19 @@
     overflow: hidden
     border-radius: 20px
     .layer_btn
-      line-height: 80px
-      font-size: 30px
+      line-height: 85px
+      font-size: 32px
       display: flex
-      border-top: 1px solid #ccc
+      border-top: 1px solid #E8E8E8
       margin-top: 20px
       div
         flex: 1
         text-align: center
       .layer_btn1
-        color: #ccc
-        border-right: 1px solid #ccc
+        color: #999
+        border-right: 1px solid #E8E8E8
       .layer_btn2
-        color: #FF6600
+        color: #FF7102
   .shade
     position: fixed
     top: 0

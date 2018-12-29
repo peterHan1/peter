@@ -41,7 +41,7 @@
     </ul>
     <ul>
       <li>
-        <router-link to="">
+        <router-link to="/found/member-lev">
           <span>拓道会员</span>
           <i class="iconfont">&#xe83d;</i>
         </router-link>

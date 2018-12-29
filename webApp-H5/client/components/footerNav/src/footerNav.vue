@@ -4,13 +4,9 @@
       <div class="indexIcon"></div>
 			<div>首页</div>
 		</router-link>
-		<router-link to="/">
+		<router-link to="/investList" :class="{'on': navClass == 'investList'}">
 			<div class="projectIcon"></div>
       <div>项目</div>
-		</router-link>
-		<router-link to="/"  :class="{'on': navClass == 'found'}">
-			<div class="findIcon"></div>
-      <div>发现</div>
 		</router-link>
 		<router-link to="/myCenter" :class="{'on': navClass == 'myCenter'}">
 			<div class="myCenterIcon"></div>
@@ -32,7 +28,7 @@ export default {
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .footerNav
     background-color: #fff
-    height: 92px
+    height: 93px
     width: 100%
     border-top: 1px solid #E0E0E0
     position: fixed

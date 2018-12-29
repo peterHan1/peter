@@ -1,6 +1,6 @@
 <template>
   <div class="login_box">
-    <Header :navLeftTxt="'取消'" @navLeftFn="navLeftFn()" >登录/注册</Header>
+    <Header :navLeftTxt="'&#xe687;'" @navLeftFn="navLeftFn()" >登录/注册</Header>
     <div class="phone_box">
       <div class="phone">
         <span>账号</span>
@@ -9,16 +9,10 @@
       </div>
       <div class="hint_phone" v-show="phoneVal">{{phoneVal}}</div>
       <div class="sub_btn">
-        <div class="td_btn" :class="phoneVal.length == 11?'td_btnHig':'td_btnNo'" @click="subBth()">确定</div>
+        <div class="td_btn" :class="phoneVal.length == 11?'td_btnHig':'td_btnNo'" @click="subBth()">下一步</div>
       </div>
       <p>拓道金服承诺不会泄露您的个人信息</p>
     </div>
-    <Layer v-show="layerCode" :cssSet="'30%'" @on-close="codeClose()" @on-sub="codeSub()" close="取消" submit="确定" >
-      <div class="importTxt">
-        <input type="text" placeholder="请输入图片验证" v-model="phoneCode"/>
-        <img src="../../assets/images/login/phoneCode.jpg" alt="">
-      </div>
-    </Layer>
   </div>
 </template>
 
@@ -30,7 +24,6 @@
     data () {
       return {
         phoneVal: '',
-        layerCode: false,
         phoneCode: '',
         layer_show: true
       }
@@ -45,28 +38,17 @@
         this.phoneVal = ''
       },
       subBth () {
-        let val = this.phoneVal
-        if (val.length === 11) {
-          this.layerCode = true
+        if (!this.phoneVal) {
+          this.$Msg('请输入手机号', 2000)
+        } else {
+          this.$router.push({path: '/loginPwd', query: {id: this.phoneVal}})
         }
       },
       navLeftFn () {
         this.$router.push({path: '/index'})
-      },
-      codeClose () {
-        this.layerCode = false
-        console.log(this.layerCode)
-      },
-      codeSub () {
-        if (!this.phoneCode) {
-          this.$Msg('请输入验证码', 2000)
-        } else {
-          this.$router.push({path: '/loginPwd', query: {id: this.phoneVal}})
-        }
       }
     },
     components: {
-      // Layer
     }
   }
 </script>
@@ -86,15 +68,15 @@
       span
         display: block
         color: #333
-        font-size: 26px
+        font-size: 28px
         line-height: 90px
         float: left
-        padding: 0 40px 0 10px
+        padding: 0 20px 0 10px
       input
         display: block
         line-height: 90px
         width: 75%
-        font-size: 26px
+        font-size: 28px
         float: left
         border: none
         caret-color:#ff711c
@@ -104,7 +86,7 @@
         font-size: 36px
         color: #D8D8D8
         line-height: 90px
-        padding-right: 30px
+        padding-right: 9px
     .hint_phone
       width: 90%
       height: 90px
@@ -130,8 +112,8 @@
       width: 90%
       margin: 60px auto 0
     p
-      font-size: 26px
-      color: #8f8f8f
+      font-size: 24px
+      color: #999
       text-align: center
       line-height: 110px
     .importTxt

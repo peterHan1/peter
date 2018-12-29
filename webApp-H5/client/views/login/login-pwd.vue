@@ -1,7 +1,6 @@
 <template>
   <div class="login_box">
     <Header :navLeftTxt="'icon'" @navLeftFn="navLeftFn()" >输入登录密码</Header>
-
     <div class="phone_box">
       <div class="phone">
         <span>密码</span>
@@ -9,10 +8,18 @@
         <div class="iconfont" @click="inputType()"><b v-if="showIcon">&#xe692;</b><b v-else>&#xe68a;</b></div>
         <i class="iconfont" v-show="pwdVal" @click="emptyVal()">&#xe69d;</i>
       </div>
+      <div class="pwd_operate">
+        <p @click="rememberFn()">
+          <i class="iconfont on" v-if="remember">&#xe6c4;</i>
+          <i class="iconfont" v-else>&#xe6c3;</i>
+          记住我
+        </p>
+        <router-link to="/forgetPwd" class="forgetPwd">忘记登录密码? </router-link>
+      </div>
       <div class="sub_btn">
         <div class="td_btn" :class="pwdVal.length != 0?'td_btnHig':'td_btnNo'" @click="subBth()">确定</div>
       </div>
-      <router-link to="forgetPwd" class="forgetPwd">忘记登录密码? </router-link>
+      <p class="td_txt">拓道金服承诺不会泄露您的个人信息</p>
     </div>
   </div>
 </template>
@@ -26,7 +33,8 @@
       return {
         pwdType: 'password',
         showIcon: true,
-        pwdVal: ''
+        pwdVal: '',
+        remember: false
       }
     },
     mounted () {
@@ -42,6 +50,9 @@
       },
       subBth () {
         console.log(this.pwdVal)
+      },
+      rememberFn () {
+        this.remember = !this.remember
       }
     },
     components: {
@@ -57,22 +68,23 @@
     .phone_box
       overflow: hidden
     .phone
-      height: 90px
+      height: 100px
       background-color: #fff
       padding: 0 30px
       margin-top: 30px
+      overflow: hidden
       span
         display: block
         color: #333
-        font-size: 26px
-        line-height: 90px
+        font-size: 28px
+        line-height: 100px
         float: left
-        padding: 0 40px 0 10px
+        padding: 0 20px 0 10px
       input
         display: block
         width: 60%
-        line-height: 90px
-        font-size: 26px
+        line-height: 99px
+        font-size: 28px
         float: left
         border: none
         caret-color: #ff711c
@@ -90,13 +102,26 @@
         font-size: 50px
         color: #D8D8D8
         line-height: 90px
-    .forgetPwd
-      font-size: 26px
-      color: #7b99ef
-      float: right
-      margin-right: 55px
-      line-height: 100px
+    .pwd_operate
+      padding: 0 30px
+      line-height: 86px
+      overflow: hidden
+      p
+        display: inline-block
+        font-size: 24px
+        color: #999
+        .on
+          color: #5887FF
+      .forgetPwd
+        font-size: 24px
+        color: #69A5E4
+        float: right
     .sub_btn
       width: 90%
-      margin: 60px auto 0
+      margin: 0 auto
+    .td_txt
+      font-size: 24px
+      color: #999
+      text-align: center
+      line-height: 90px
 </style>

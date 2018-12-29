@@ -10,10 +10,12 @@
       <li>
         <input type="text" placeholder="请输入验证码" class="codeInp" v-model="phoneCode" />
         <span @click="getCodeFn" v-if="countNum">获取验证码</span>
-        <span v-else>{{countTime}}秒</span>
+        <span class="count_style" v-else>{{countTime}}秒</span>
       </li>
     </ul>
-    <div class="nextBtn" :class="imgCode && phoneCode?'higBtn':'garyBth'">下一步</div>
+    <div class="sub_btn">
+      <div class="td_btn" :class="imgCode && phoneCode?'higBtn':'garyBth'" @click="resetFn()">下一步</div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +57,9 @@
           }, 2000)
           console.log(this.imgCode)
         }
+      },
+      resetFn () {
+        this.$router.push({path: '/resetPwd'})
       }
     },
     components: {
@@ -69,44 +74,48 @@
     box-sizing: border-box
     ul
       background-color: #fff
-      padding: 0 40px 0 110px
+      padding: 0 30px 0 100px
       li
         border-bottom: 1px solid #e8e8e8
-        font-size: 26px
+        font-size: 28px
         height: 100px
         line-height: 100px
         position: relative
         input
           display: block
-          line-height: 100px
+          line-height: 98px
           width: 100%
           float: left
           caret-color: #ff711c
+          font-size: 28px
         .codeInp
           width: 60%
         img
           display: block
-          height: 56px
+          width: 184px
+          height: 60px
           float: right
-          margin-top: -28px
+          margin-top: -30px
           position: absolute
           right: 0
           top: 50%
         span
           display: block
-          height: 56px
+          height: 60px
           float: right
-          font-size: 24px
-          width: 175px
-          line-height: 56px
-          background-color: #ff711c
+          font-size: 26px
+          width: 186px
+          line-height: 60px
+          background-color: #FF7102
           color: #fff
           text-align: center
-          border-radius: 5px
-          margin-top: -28px
+          border-radius: 6px
+          margin-top: -30px
           position: absolute
           right: 0
           top: 50%
+        .count_style
+          background-color: #ccc  
       li:before
         content: ''
         display: block
@@ -131,16 +140,8 @@
         background-size: 100% 100%
       li:last-child
         border: none
-    .nextBtn
-      display: block
-      width: 80%
-      height: 88px
-      line-height: 88px
-      margin: 100px auto 0
-      text-align: center
-      font-size: 32px
-      color: #fff
-      border-radius: 5px
+    .sub_btn
+      padding: 20px 30px 0
     .higBtn
       background-color: #ff711c
     .garyBth

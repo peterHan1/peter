@@ -76,6 +76,7 @@ export default {
       font-size: 28px
       color: #333
       margin-top: 30px
+      text-align: justify
     table
       text-align: center
       border-collapse: collapse

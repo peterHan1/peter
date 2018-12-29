@@ -14,12 +14,12 @@
               <p>邀请好友</p>
             </router-link>
             <router-link to="">
-              <div class="safety"></div>
-              <p>安全保障</p>
-            </router-link>
-            <router-link to="">
               <div class="inform"></div>
               <p>信息披露</p>
+            </router-link>
+            <router-link to="">
+              <div class="downApp"></div>
+              <p>下载APP</p>
             </router-link>
           </div>
             <router-link to="" class="td_message">
@@ -29,28 +29,7 @@
             </router-link>
         </div>
     </div>
-    <!-- <div class="finance_list">
-      <div class="finance_top">
-        <span>省心投</span>
-         <router-link to="">更多 > </router-link>
-      </div>
-      <div class="finance_bot">
-        <div class="finance_tlt">
-          <h3>省心投20170908</h3><span></span>
-        </div>
-        <div class="loading">
-          <div class="loading_top"></div>
-          <div class="loading_con"></div>
-          <div class="loading_bot"></div>
-          <p>项目加载中...</p>
-        </div>
-      </div>
-    </div> -->
     <div class="finance_list">
-      <div class="finance_top">
-        <span>省心投</span>
-         <router-link to="">更多 <i class="iconfont">&#xe83d;</i> </router-link>
-      </div>
       <div class="finance_bot">
         <div class="finance_tlt">
           <h3>省心投20170908</h3><img src="../../assets/images/index/finance_type.png" />
@@ -81,10 +60,6 @@
       </div>
     </div>
     <div class="finance_list">
-      <div class="finance_top">
-        <span>散标项目</span>
-         <router-link to="">更多 <i class="iconfont">&#xe83d;</i> </router-link>
-      </div>
       <div class="finance_bot">
         <div class="finance_tlt">
           <h3>省心投20170908</h3><img src="../../assets/images/index/finance_type.png" />
@@ -130,9 +105,17 @@
           <p>已为用户赚取(元)</p>
         </div>
       </div>
-      <div class="td_deposit"><span>您的资金由银行资金存管系统进行存管</span></div>
+      <div class="indexLink">
+        <span>电脑版</span>|
+        <span>下载APP</span>|
+        <span>帮助中心</span>
+      </div>
+      <div class="tdNum">
+        <p>Copyright Reserved 2013-2018</p>
+        <p>浙ICP备 13034095号</p>
+        <p>增值电信业务经营许可证编号：浙B2-20160394</p>
+      </div>
     </div>
-    <Floating></Floating>
     <footer-nav :navClass="'index'"></footer-nav>
   </div>
 </template>
@@ -176,7 +159,7 @@
   .index_box
     min-height: 100%
     width: 100%
-    padding-bottom: 130px
+    padding-bottom: 150px
     .index_top
       position: relative
       height: 626px
@@ -223,8 +206,8 @@
             .invite
               background: url(../../assets/images/index/invite_bg.png) no-repeat
               background-size: 100% 100%
-            .safety
-              background: url(../../assets/images/index/safety_bg.png) no-repeat
+            .downApp
+              background: url(../../assets/images/index/down_bg.png) no-repeat
               background-size: 100% 100%
             .inform
               background: url(../../assets/images/index/inform_bg.png) no-repeat
@@ -263,39 +246,6 @@
       background-color: #fff
       width: 100%
       padding-bottom: 30px
-      .finance_top
-        overflow: hidden
-        height: 100px
-        border-bottom: 1px solid #E8E8E8
-        padding: 0 30px
-        box-sizing: border-box
-        span
-          display: inline-block
-          font-size: 32px
-          color: #333
-          float: left
-          line-height: 100px
-          position: relative
-          padding-left: 20px
-          font-weight: bold
-        span:after
-          content: ''
-          display: inline-block
-          width: 8px
-          height: 28px
-          background-color: #FF7102
-          border-radius: 5px
-          position: absolute
-          left: 0
-          top: 35%
-        a
-          display: inline-block
-          font-size: 28px
-          color: #999
-          float: right
-          line-height: 100px
-          i
-            font-size: 24px
       .finance_bot
         padding: 0 30px 4px
         box-sizing: border-box
@@ -334,7 +284,6 @@
               font-size: 24px
               color: #999
               line-height: 33px
-              margin-top: 5px
             p.rate
               font-size: 68px
               color: #FF7102
@@ -342,40 +291,6 @@
                 font-size: 32px
           div.list:nth-child(1)
             text-align: left
-        .loading
-          margin-top: 20px
-          .loading_top,.loading_con,.loading_bot
-            width: 40%
-            height: 40px
-            background-color: #DBDBDB
-            border-radius: 20px
-            margin-bottom: 30px
-            position: relative
-            transition: all 0.25s ease-in-out
-          .loading_con
-            width: 65%
-          .loading_bot
-            width: 95%
-          p
-            font-size: 28px
-            color: #ccc
-          .loading_top:after,.loading_bot:after,.loading_con:after
-            display: block
-            content:""
-            height: 40px
-            background: #fff
-            border-radius: 20px
-            position: absolute
-            left: 0
-            top: 0
-            animation: progshow 1.5s infinite
-          @keyframes progshow 
-            0%
-              width: 0
-              opacity: 0.8
-            100%
-              width: 100%
-              opacity: 0.1
     .td_box
       padding: 0 30px
       .td_time
@@ -402,22 +317,23 @@
             color: #999
             line-height: 30px
             margin-top: 5px
-      .td_deposit
+      .indexLink
+        text-align: center
+        font-size: 22px
+        color: #E8E8E8
+        span
+          margin: 0 38px
+          color: #5887FF
+        span:nth-child(2)
+          padding-left: 20px
+          margin-right: 44px
+      .tdNum
         font-size: 24px
         color: #999
+        line-height: 33px
         text-align: center
-        span
-          display: inline-block
-          position: relative
-        span:before
-          content: ''
-          position: absolute
-          left: -30px
-          top: 50%
-          display: inline-block
-          width: 22px
-          height: 26px
-          margin-top: -13px
-          background: url(../../assets/images/index/td_deposit.png)
-          background-size: 100% 100%
+        p:nth-child(1)
+          padding: 39px 0 23px
+        p:nth-child(2)
+          padding-bottom: 8px
 </style>

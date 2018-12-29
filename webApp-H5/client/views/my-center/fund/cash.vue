@@ -1,6 +1,6 @@
 <template>
   <div class="cashBox">
-    <Header :navLeftTxt="'icon'" :fontX="'fontX'" @navLeftFn="navLeftFn()" :navRightTxt="'提现记录'" @navRightFn="navRightFn()">提现</Header>
+    <Header :navLeftTxt="'icon'" @navLeftFn="navLeftFn()" :navRightTxt="'提现记录'" @navRightFn="navRightFn()">提现</Header>
     <div class="bankTop">
       <span>到账银行</span>
       <span>中国工商银行(尾号3720)</span>
@@ -57,7 +57,7 @@
       <div class="hint_txt">{{hint}}</div>
     </Layer>
     <Layer v-show="cashMaintain" @on-close="maintainClose()" @on-sub="maintainSub()" close="否" submit="是" >
-      <div class="hint_txt">快速到账维护中，是否转普通到账</div>
+      <div class="maintain_txt">快速到账维护中，是否转普通到账</div>
     </Layer>
   </div>
 </template>
@@ -200,6 +200,7 @@ export default {
               color: #FC8D26
               line-height: 125px
               float: right
+              font-size: 28px
           .cost_money
             padding: 22px 0 15px
             p
@@ -221,27 +222,31 @@ export default {
         li
           padding-top: 17px
           height: 170px
-          color: #999
         p
           line-height: 60px
           position: relative
           padding-left: 50px
           font-size: 28px
+          color: #333
           i
             position: absolute
             left: 0
             font-size: 36px
-            color: #7b99ef
+            color: #5887FF
         div
           padding-left: 50px    
           padding-right: 19px
           font-size: 24px
+          color: #999
           span
             color: #FC8D26    
         li:nth-child(1)
           border-bottom: 1px solid #F2F3F7
         .notAllow
-          color: #ccc
+          p
+            color: #ccc
+          div
+            color: #ccc
           i
             color: #ccc
           span
@@ -257,13 +262,17 @@ export default {
     .money_txt
       font-size: 24px
       color: #333
-      padding: 30px 0 0 40px
+      padding: 30px 0 0
       p
         line-height: 40px
-        span
-          color: #F97C3C
+        text-align: center
     .hint_txt
       font-size: 28px
       color: #333
-      padding: 30px 40px 10px
+      padding: 60px 40px 16px
+    .maintain_txt
+      text-align: center
+      font-size: 28px
+      color: #333
+      padding: 48px 40px 21px  
 </style>

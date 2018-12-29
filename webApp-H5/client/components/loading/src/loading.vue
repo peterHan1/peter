@@ -1,15 +1,21 @@
 <template>
   <div class="loadBox" v-if="loadShow">
-      <div class="loading">
-         <div class="load right">
-            <div class="loads rightLoad"></div>
-        </div>
-        <div class="load left">
-            <div class="loads leftLoad"></div>
-        </div>
-        <div class="logo"></div>
+    <div class="load">
+      <div class="wrapper">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+        <div class="line4"></div>
+        <div class="line5"></div>
+        <div class="line6"></div>
+        <div class="line7"></div>
+        <div class="line8"></div>
+        <div class="line9"></div>
+        <div class="line10"></div>
+        <div class="line11"></div>
+        <div class="line12"></div>
       </div>
-      <div class="shade"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -26,89 +32,75 @@
   }
 </script>
 <style lang="stylus" scoped>
-  .loadBox
-    -webkit-transition: opacity 0.3s ease
-    -moz-transition: opacity 0.3s ease
-    transition: opacity 0.3s ease
-    z-index: 99
-    -webkit-user-select: none
-    .loading
-      width: 220px
-      height: 220px
-      position: fixed
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
-      background: #fff
-      z-index: 999
-      overflow: hidden
-      background-color: #fff
-      border-radius: 20px
-      box-sizing: border-box
-      .logo
-        width: 70px
-        height: 70px
-        background: url(img/loading_logo.png) no-repeat
-        background-size: 100% 100%
-        position: absolute
-        left: 50%
-        top: 50%
-        transform: translate(-50%, -50%)
-      .load
-        width: 66px
-        height: 130px
-        position: absolute
-        top: 50%
-        transform: translateY(-50%)
-        overflow: hidden
-      .right
-        right: 45px
-      .left
-        left: 45px
-      .loads
-        width: 130px
-        height: 130px
-        border: 5px solid #ededed
-        border-radius: 50%
-        position: absolute
-        top: 0
-        -webkit-transform: rotate(45deg)
-        transform: rotate(45deg)
-        box-sizing: border-box
-      .rightLoad
-        right: 2px
-        -webkit-animation: load_right 3s linear infinite
-      .leftLoad
-        left: 2px
-        -webkit-animation: load_left 3s linear infinite
-      @-webkit-keyframes load_right
-        0%
-          -webkit-transform: rotate(45deg)
-          border-bottom: 5px solid #fb9c3a
-          border-left: 5px solid #fb9c3a
-        25%
-          -webkit-transform: rotate(135deg)
-        50%
-          -webkit-transform: rotate(225deg)
-        75%
-          -webkit-transform: rotate(315deg)
-        100%
-          -webkit-transform: rotate(405deg)
-          border-bottom: 5px solid #fcaa46
-          border-left: 5px solid #fcaa46
-      @-webkit-keyframes load_left
-        0%
-          -webkit-transform: rotate(45deg)
-          border-bottom: 5px solid #fcaa46
-          border-left: 5px solid #fcaa46
-        25%
-          -webkit-transform: rotate(135deg)
-        50%
-          -webkit-transform: rotate(225deg)
-        75%
-          -webkit-transform: rotate(315deg)
-        100%
-          -webkit-transform: rotate(405deg)
-          border-bottom: 5px solid #fb9c3a
-          border-left: 5px solid #fb9c3a
+.loadBox
+  position: fixed
+  left: 50%
+  top: 50%
+  background-color: rgba(0,0,0,0.7)
+  border-radius: 10px
+  width: 180px
+  height: 180px
+  transform: translate(-50%, -50%)
+  .load
+    position: absolute
+    top: 20%
+    left: 50%
+  .wrapper
+    position: relative
+    display: inline-block
+    zoom: 0.3
+    div
+      width: 3px
+      height: 16px
+      background: #a4a2a4
+      position: absolute
+      left: 100%
+      top: 100%
+      opacity: 0
+      animation: loading 1.2s linear infinite
+    .line1
+      transform: rotate(0deg) translate(0, -34px)
+      animation-delay: 0s
+    .line2
+      transform: rotate(30deg) translate(0, -34px)
+      animation-delay: 0.1s
+    .line3
+      transform: rotate(60deg) translate(0, -34px)
+      animation-delay: 0.2s
+    .line4
+      transform: rotate(90deg) translate(0, -34px)
+      animation-delay: 0.3s
+    .line5
+      transform: rotate(120deg) translate(0, -34px)
+      animation-delay: 0.4s
+    .line6
+      transform: rotate(150deg) translate(0, -34px)
+      animation-delay: 0.5s
+    .line7
+      transform: rotate(180deg) translate(0, -34px)
+      animation-delay: 0.6s
+    .line8
+      transform: rotate(210deg) translate(0, -34px)
+      animation-delay: 0.7s
+    .line9
+      transform: rotate(240deg) translate(0, -34px)
+      animation-delay: 0.8s
+    .line10
+      transform: rotate(270deg) translate(0, -34px)
+      animation-delay: 0.9s
+    .line11
+      transform: rotate(300deg) translate(0, -34px)
+      animation-delay: 1.0s
+    .line12
+      transform: rotate(330deg) translate(0, -34px)
+      animation-delay: 1.1s
+  @keyframes loading
+    from
+      opacity: 1
+      width: 5px
+      height: 20px
+    to
+      opacity: 0.25
+      width: 5px
+      height: 20px    
 </style>
