@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    redirect: '/project'
+    redirect: '/inform'
   },
   // {
   //   path: '/test',
@@ -12,280 +12,288 @@ export default [
   //   component: () => import('views/project/list.vue')
   // },
   {
-    path: '/exam',
-    component: () => import('views/inform/exam.vue')
-  },
-  {
     path: '/inform',
-    component: () => import('views/inform/inform.vue')
+    component: () => import('views/inform/index.vue')
   },
   {
-    path: '/inform/about',
-    component: () => import('views/inform/about.vue')
+    path: '/inform/aboutTd',
+    component: () => import('views/inform/about-td/index.vue')
   },
   {
-    path: '/inform/about/info',
-    component: () => import('views/inform/about/info.vue')
+    path: '/inform/aboutTd/info',
+    component: () => import('views/inform/about-td/info.vue')
   },
   {
-    path: '/inform/about/bank',
-    component: () => import('views/inform/about/bank.vue')
+    path: '/inform/aboutTd/bank',
+    component: () => import('views/inform/about-td/bank.vue')
   },
   {
-    path: '/inform/about/board',
-    component: () => import('views/inform/about/board.vue')
+    path: '/inform/aboutTd/board',
+    component: () => import('views/inform/about-td/board.vue')
   },
   {
-    path: '/inform/about/shareholder',
-    component: () => import('views/inform/about/shareholder.vue')
+    path: '/inform/aboutTd/shareholder',
+    component: () => import('views/inform/about-td/shareholder.vue')
   },
   {
-    path: '/inform/about/record',
-    component: () => import('views/inform/about/record.vue')
+    path: '/inform/aboutTd/record',
+    component: () => import('views/inform/about-td/record.vue')
   },
   {
-    path: '/inform/about/great',
-    component: () => import('views/inform/about/great.vue')
+    path: '/inform/aboutTd/great',
+    component: () => import('views/inform/about-td/great.vue')
   },
   {
-    path: '/inform/platfrom',
-    component: () => import('views/inform/platfrom.vue')
+    path: '/inform/platfromData',
+    component: () => import('views/inform/platfrom-data/platfrom-data.vue')
   },
   {
-    path: '/inform/oper-report',
-    component: () => import('views/inform/oper-report.vue')
+    path: '/inform/operReport',
+    component: () => import('views/inform/oper-report/index.vue')
   },
   {
-    path: '/inform/oper-report/oper-2016-q1',
-    component: () => import('views/inform/oper/oper-2016-q1.vue')
+    path: '/inform/operReport/oper-2016-q1',
+    component: () => import('views/inform/oper-report/oper-2016-q1.vue')
   },
   {
-    path: '/inform/oper-report/oper-2016-q2',
-    component: () => import('views/inform/oper/oper-2016-q2.vue')
+    path: '/inform/operReport/oper-2016-q2',
+    component: () => import('views/inform/oper-report/oper-2016-q2.vue')
   },
   {
-    path: '/inform/oper-report/oper-2016-q3',
-    component: () => import('views/inform/oper/oper-2016-q3.vue')
+    path: '/inform/operReport/oper-2016-q3',
+    component: () => import('views/inform/oper-report/oper-2016-q3.vue')
   },
   {
-    path: '/inform/oper-report/oper-2016-q4',
-    component: () => import('views/inform/oper/oper-2016-q4.vue')
+    path: '/inform/operReport/oper-2016-q4',
+    component: () => import('views/inform/oper-report/oper-2016-q4.vue')
   },
   {
-    path: '/inform/oper-report/oper-2016',
-    component: () => import('views/inform/oper/oper-2016.vue')
+    path: '/inform/operReport/oper-2016',
+    component: () => import('views/inform/oper-report/oper-2016.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-q1',
-    component: () => import('views/inform/oper/oper-2017-q1.vue')
+    path: '/inform/operReport/oper-2017-q1',
+    component: () => import('views/inform/oper-report/oper-2017-q1.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-q2',
-    component: () => import('views/inform/oper/oper-2017-q2.vue')
+    path: '/inform/operReport/oper-2017-q2',
+    component: () => import('views/inform/oper-report/oper-2017-q2.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-q3',
-    component: () => import('views/inform/oper/oper-2017-q3.vue')
+    path: '/inform/operReport/oper-2017-q3',
+    component: () => import('views/inform/oper-report/oper-2017-q3.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-m07',
-    component: () => import('views/inform/oper/oper-2017-m07.vue')
+    path: '/inform/operReport/oper-2017-m07',
+    component: () => import('views/inform/oper-report/oper-2017-m07.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-m08',
-    component: () => import('views/inform/oper/oper-2017-m08.vue')
+    path: '/inform/operReport/oper-2017-m08',
+    component: () => import('views/inform/oper-report/oper-2017-m08.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-m10',
-    component: () => import('views/inform/oper/oper-2017-m10.vue')
+    path: '/inform/operReport/oper-2017-m10',
+    component: () => import('views/inform/oper-report/oper-2017-m10.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-m11',
-    component: () => import('views/inform/oper/oper-2017-m11.vue')
+    path: '/inform/operReport/oper-2017-m11',
+    component: () => import('views/inform/oper-report/oper-2017-m11.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017-m12',
-    component: () => import('views/inform/oper/oper-2017-m12.vue')
+    path: '/inform/operReport/oper-2017-m12',
+    component: () => import('views/inform/oper-report/oper-2017-m12.vue')
   },
   {
-    path: '/inform/oper-report/oper-2017',
-    component: () => import('views/inform/oper/oper-2017.vue')
+    path: '/inform/operReport/oper-2017',
+    component: () => import('views/inform/oper-report/oper-2017.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m01',
-    component: () => import('views/inform/oper/oper-2018-m01.vue')
+    path: '/inform/operReport/oper-2018-m01',
+    component: () => import('views/inform/oper-report/oper-2018-m01.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m02',
-    component: () => import('views/inform/oper/oper-2018-m02.vue')
+    path: '/inform/operReport/oper-2018-m02',
+    component: () => import('views/inform/oper-report/oper-2018-m02.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m03',
-    component: () => import('views/inform/oper/oper-2018-m03.vue')
+    path: '/inform/operReport/oper-2018-m03',
+    component: () => import('views/inform/oper-report/oper-2018-m03.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m04',
-    component: () => import('views/inform/oper/oper-2018-m04.vue')
+    path: '/inform/operReport/oper-2018-m04',
+    component: () => import('views/inform/oper-report/oper-2018-m04.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m05',
-    component: () => import('views/inform/oper/oper-2018-m05.vue')
+    path: '/inform/operReport/oper-2018-m05',
+    component: () => import('views/inform/oper-report/oper-2018-m05.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m06',
-    component: () => import('views/inform/oper/oper-2018-m06.vue')
+    path: '/inform/operReport/oper-2018-m06',
+    component: () => import('views/inform/oper-report/oper-2018-m06.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m07',
-    component: () => import('views/inform/oper/oper-2018-m07.vue')
+    path: '/inform/operReport/oper-2018-m07',
+    component: () => import('views/inform/oper-report/oper-2018-m07.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m08',
-    component: () => import('views/inform/oper/oper-2018-m08.vue')
+    path: '/inform/operReport/oper-2018-m08',
+    component: () => import('views/inform/oper-report/oper-2018-m08.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m09',
-    component: () => import('views/inform/oper/oper-2018-m09.vue')
+    path: '/inform/operReport/oper-2018-m09',
+    component: () => import('views/inform/oper-report/oper-2018-m09.vue')
   },
   {
-    path: '/inform/oper-report/oper-2018-m10',
-    component: () => import('views/inform/oper/oper-2018-m10.vue')
+    path: '/inform/operReport/oper-2018-m10',
+    component: () => import('views/inform/oper-report/oper-2018-m10.vue')
   },
   {
-    path: '/inform/audit-report',
-    component: () => import('views/inform/audit-report.vue')
+    path: '/inform/operReport/oper-2018-m11',
+    component: () => import('views/inform/oper-report/oper-2018-m11.vue')
   },
   {
-    path: '/inform/audit-report/audit-report-2017',
+    path: '/inform/operReport/oper-2018-m12',
+    component: () => import('views/inform/oper-report/oper-2018-m12.vue')
+  },
+  {
+    path: '/inform/auditReport',
+    component: () => import('views/inform/audit-report/index.vue')
+  },
+  {
+    path: '/inform/auditReport/auditReport-2017',
     component: () => import('views/inform/audit-report/audit-report-2017.vue')
   },
   {
-    path: '/inform/audit-report/audit-report-2018',
+    path: '/inform/auditReport/auditReport-2018',
     component: () => import('views/inform/audit-report/audit-report-2018.vue')
   },
   {
-    path: '/inform/audit-report/audit-report-2018-2',
+    path: '/inform/auditReport/auditReport-2018-2',
     component: () => import('views/inform/audit-report/audit-report-2018-2.vue')
   },
   {
-    path: '/inform/law-file',
-    component: () => import('views/inform/law-file.vue')
+    path: '/inform/auditReport/auditReport-sign',
+    component: () => import('views/inform/audit-report/audit-report-sign.vue')
   },
   {
-    path: '/inform/law-file/law-pl',
-    component: () => import('views/inform/law/law-pl.vue')
+    path: '/inform/lawFile',
+    component: () => import('views/inform/law-file/index.vue')
   },
   {
-    path: '/inform/law-file/law-xx',
-    component: () => import('views/inform/law/law-xx.vue')
+    path: '/inform/lawFile/law-pl',
+    component: () => import('views/inform/law-file/law-pl.vue')
   },
   {
-    path: '/inform/law-file/law-jd',
-    component: () => import('views/inform/law/law-jd.vue')
+    path: '/inform/lawFile/law-xx',
+    component: () => import('views/inform/law-file/law-xx.vue')
   },
   {
-    path: '/inform/law-file/law-zjdj',
-    component: () => import('views/inform/law/law-zjdj.vue')
+    path: '/inform/lawFile/law-jd',
+    component: () => import('views/inform/law-file/law-jd.vue')
   },
   {
-    path: '/inform/law-file/law-zjcg',
-    component: () => import('views/inform/law/law-zjcg.vue')
+    path: '/inform/lawFile/law-zjdj',
+    component: () => import('views/inform/law-file/law-zjdj.vue')
   },
   {
-    path: '/inform/law-file/law-dx',
-    component: () => import('views/inform/law/law-dx.vue')
+    path: '/inform/lawFile/law-zjcg',
+    component: () => import('views/inform/law-file/law-zjcg.vue')
   },
   {
-    path: '/inform/law-file/law-cj',
-    component: () => import('views/inform/law/law-cj.vue')
+    path: '/inform/lawFile/law-dx',
+    component: () => import('views/inform/law-file/law-dx.vue')
   },
   {
-    path: '/inform/law-file/law-fx',
-    component: () => import('views/inform/law/law-fx.vue')
+    path: '/inform/lawFile/law-cj',
+    component: () => import('views/inform/law-file/law-cj.vue')
   },
   {
-    path: '/inform/law-file/law-gf',
-    component: () => import('views/inform/law/law-gf.vue')
+    path: '/inform/lawFile/law-fx',
+    component: () => import('views/inform/law-file/law-fx.vue')
   },
   {
-    path: '/inform/law-file/law-kz',
-    component: () => import('views/inform/law/law-kz.vue')
+    path: '/inform/lawFile/law-gf',
+    component: () => import('views/inform/law-file/law-gf.vue')
   },
   {
-    path: '/inform/law-file/law-bl',
-    component: () => import('views/inform/law/law-bl.vue')
+    path: '/inform/lawFile/law-kz',
+    component: () => import('views/inform/law-file/law-kz.vue')
   },
   {
-    path: '/inform/law-file/law-ff',
-    component: () => import('views/inform/law/law-ff.vue')
+    path: '/inform/lawFile/law-bl',
+    component: () => import('views/inform/law-file/law-bl.vue')
   },
   {
-    path: '/inform/law-file/law-sl',
-    component: () => import('views/inform/law/law-sl.vue')
+    path: '/inform/lawFile/law-ff',
+    component: () => import('views/inform/law-file/law-ff.vue')
   },
   {
-    path: '/inform/law-file/law-mj',
-    component: () => import('views/inform/law/law-mj.vue')
+    path: '/inform/lawFile/law-sl',
+    component: () => import('views/inform/law-file/law-sl.vue')
+  },
+  {
+    path: '/inform/lawFile/law-mj',
+    component: () => import('views/inform/law-file/law-mj.vue')
   },
   {
     path: '/inform/risk',
-    component: () => import('views/inform/risk.vue')
+    component: () => import('views/inform/risk/risk.vue')
   },
   {
-    path: '/inform/know-us',
-    component: () => import('views/inform/know-us.vue')
+    path: '/inform/knowUs',
+    component: () => import('views/inform/know-us/know-us.vue')
   },
   {
     path: '/found',
-    component: () => import('views/found/found.vue')
+    component: () => import('views/found/index.vue')
   },
   {
-    path: '/found/my-point',
-    component: () => import('views/found/my-point.vue')
+    path: '/found/myPoint',
+    component: () => import('views/found/my-point/my-point.vue')
   },
   {
-    path: '/found/get-point',
-    component: () => import('views/found/get-point.vue')
+    path: '/found/getPoint',
+    component: () => import('views/found/my-point/get-point.vue')
   },
   {
-    path: '/found/point-rule',
-    component: () => import('views/found/point-rule.vue')
+    path: '/found/pointRule',
+    component: () => import('views/found/my-point/point-rule.vue')
   },
   {
-    path: '/found/point-exchange',
-    component: () => import('views/found/point-exchange.vue')
+    path: '/found/pointExchange',
+    component: () => import('views/found/my-point/point-exchange.vue')
   },
   {
-    path: '/found/my-coupon',
-    component: () => import('views/found/my-coupon.vue')
+    path: '/found/myCoupon',
+    component: () => import('views/found/my-coupon/my-coupon.vue')
   },
   {
-    path: '/found/my-coupon-used',
-    component: () => import('views/found/my-coupon-used.vue')
+    path: '/found/myCouponUsed',
+    component: () => import('views/found/my-coupon/my-coupon-used.vue')
   },
   {
-    path: '/found/my-coupon-useless',
-    component: () => import('views/found/my-coupon-useless.vue')
+    path: '/found/myCouponUseless',
+    component: () => import('views/found/my-coupon/my-coupon-useless.vue')
   },
   {
-    path: '/found/jxq-exchange',
-    component: () => import('views/found/jxq-exchange.vue')
+    path: '/found/jxqExchange',
+    component: () => import('views/found/my-coupon/jxq-exchange.vue')
   },
   {
-    path: '/found/exchange-success',
-    component: () => import('views/found/exchange-success.vue')
+    path: '/found/exchangeSuccess',
+    component: () => import('views/found/my-coupon/exchange-success.vue')
   },
   {
-    path: '/found/contact',
-    component: () => import('views/found/contact.vue')
+    path: '/found/contactUs',
+    component: () => import('views/found/contact-us/contact-us.vue')
   },
   {
-    path: '/found/member-lev',
-    component: () => import('views/found/member-lev.vue')
+    path: '/found/myLevel',
+    component: () => import('views/found/my-level/my-level.vue')
   },
   {
     path: '/found/help',
-    component: () => import('views/found/help.vue')
+    component: () => import('views/found/help/index.vue')
   },
   {
     path: '/found/help/login',
@@ -336,11 +344,11 @@ export default [
     component: () => import('views/activity/newcomer.vue')
   },
   {
-    path: '/invite-friend',
+    path: '/inviteFriend',
     component: () => import('views/activity/invite-friend.vue')
   },
   {
-    path: '/be-invited',
+    path: '/beInvited',
     component: () => import('views/activity/be-invited.vue')
   },
   {
@@ -352,32 +360,52 @@ export default [
     component: () => import('views/activity/invite-people-record.vue')
   },
   {
-    path: '/invite-rule',
+    path: '/inviteRule',
     component: () => import('views/activity/invite-rule.vue')
   },
   {
-    path: '/get-coupon',
+    path: '/getCoupon',
     component: () => import('views/activity/get-coupon.vue')
   },
   {
-    path: '/td-share',
+    path: '/tdShare',
     component: () => import('views/activity/td-share.vue')
   },
   {
-    path: '/good-car',
+    path: '/goodCar',
     component: () => import('views/activity/good-car.vue')
   },
   {
-    path: '/good-car-next',
+    path: '/goodCarNext',
     component: () => import('views/activity/good-car-next.vue')
   },
   {
-    path: '/good-car-ok',
+    path: '/goodCarOk',
     component: () => import('views/activity/good-car-ok.vue')
+  },
+  {
+    path: '/anniversaryFive',
+    component: () => import('views/activity/anniversary-five.vue')
+  },
+  {
+    path: '/anniversaryFiveLoad',
+    component: () => import('views/activity/anniversary-five-load.vue')
+  },
+  {
+    path: '/doubleEleven',
+    component: () => import('views/activity/double-eleven.vue')
+  },
+  {
+    path: '/publicBenefit',
+    component: () => import('views/activity/public-benefit.vue')
   },
   {
     path: '/notice',
     component: () => import('views/activity/notice.vue')
+  },
+  {
+    path: '/activityList',
+    component: () => import('views/activity/activity-list.vue')
   },
   {
     path: '/login',
@@ -528,6 +556,10 @@ export default [
     component: () => import('views/my-center/my-invest/sift-details.vue')
   },
   {
+    path: '/myScatterDetails',
+    component: () => import('views/my-center/my-invest/scatter-details.vue')
+  },
+  {
     path: '/creditorList',
     component: () => import('views/my-center/my-invest/creditor-list.vue')
   },
@@ -564,7 +596,63 @@ export default [
     component: () => import('views/invest-details/add/invest-result.vue')
   },
   {
-    path: '/scatter-protocol',
+    path: '/scatterProtocol',
     component: () => import('views/invest-details/protocol/scatter-protocol.vue')
+  },
+  {
+    path: '/scatterProtocol',
+    component: () => import('views/invest-details/protocol/scatter-protocol.vue')
+  },
+  {
+    path: '/riskTip',
+    component: () => import('views/invest-details/protocol/risk-tip.vue')
+  },
+  {
+    path: '/banExplain',
+    component: () => import('views/invest-details/protocol/ban-explain.vue')
+  },
+  {
+    path: '/siftProtocol',
+    component: () => import('views/invest-details/protocol/sift-protocol.vue')
+  },
+  {
+    path: '/scatterDetailsEnter',
+    component: () => import('views/invest-details/scatter-details/index.vue'),
+    children: [
+      {
+        path: '/scatterDetails',
+        meta: {
+          scatterIndex: 0
+        },
+        component: () => import('views/invest-details/scatter-details/scatter-details.vue')
+      },
+      {
+        path: '/scatterDetailsNext',
+        meta: {
+          scatterIndex: 1
+        },
+        component: () => import('views/invest-details/scatter-details/scatter-details-next.vue')
+      }
+    ]
+  },
+  {
+    path: '/siftDetailsEnter',
+    component: () => import('views/invest-details/sift-details/index.vue'),
+    children: [
+      {
+        path: '/siftDetails',
+        meta: {
+          siftIndex: 0
+        },
+        component: () => import('views/invest-details/sift-details/sift-details.vue')
+      },
+      {
+        path: '/siftDetailsNext',
+        meta: {
+          siftIndex: 1
+        },
+        component: () => import('views/invest-details/sift-details/sift-details-next.vue')
+      }
+    ]
   }
 ]

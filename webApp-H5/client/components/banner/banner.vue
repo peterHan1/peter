@@ -30,7 +30,7 @@
   .mint-swipe 
     overflow: hidden;
     position: relative;
-    height: 340px;
+    height: 330px;
     .mint-swipe-items-wrap
       position: relative
       overflow: hidden
@@ -56,19 +56,17 @@
         transform: none
   .mint-swipe-indicators
     position: absolute
-    bottom: 35px
+    bottom: 25px
     left: 50%
     -webkit-transform: translateX(-50%)
     transform: translateX(-50%)
     .mint-swipe-indicator
-      width: 10px
-      height: 10px
-      display: inline-block
-      border-radius: 100%
+      width: 14px
+      height: 14px
+      border-radius: 50px
       background-color: rgba(255,255,255,0.7)
-      margin: 0 3px
+      margin: 0 6px
+      float: left
     .mint-swipe-indicator.is-active
       background-color: #fff
-      padding: 0 5px
-      border-radius: 5px
 </style>

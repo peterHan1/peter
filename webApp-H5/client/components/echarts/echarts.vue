@@ -118,7 +118,6 @@ export default {
   },
   mounted () {
     this.draw()
-    console.log(this.myChart.title)
   }
 }
 </script>

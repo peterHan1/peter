@@ -30,10 +30,10 @@
         </ul>
       </div>
       <div class="sub_btn">
-        <div class="td_btn" :class="phoneVal.length != 0 && pwdVal.length >= 6 && pwdVal.length <= 16 && iconOk?'td_btnHig':'td_btnNo'" @click="subBth()">下一步</div>
+        <div class="td_btn" :class="phoneVal.length != 0 && pwdVal.length >= 6 && pwdVal.length <= 16 && clauses?'td_btnHig':'td_btnNo'" @click="subBth()">下一步</div>
       </div>
       <div class="clause">
-        <i class="iconfont">&#xe618;</i>
+        <i class="iconfont" :class="[clauses?'on':'']" @click="clauseFn">&#xe618;</i>
         <span>我已阅读并同意<router-link to="" >《网贷禁止性行为说明》</router-link><router-link to="" >《网络借贷风险告知书》</router-link>及<router-link to="" >《拓道金服用户注册协议》</router-link></span>
       </div>
     </div>
@@ -53,38 +53,54 @@
         phoneVal: '',
         showIcon: true,
         inviter_phone: false,
-        iconOk: true,
         rotate: false,
         codeNum: false,
-        countTime: 5
+        countTime: 5,
+        clauses: false
       }
     },
     mounted () {
     },
     methods: {
       subBth () {
-        this.$Loading.Load()
-        this.$Loading.Close()
-        console.log('注册')
+        let vm = this
+        if (vm.imgCode === '' || vm.phoneVal === '' || vm.pwdVal === '') {
+          this.$Msg('请完整填写信息！', 2000)
+        } else if (!/^[0-9A-Za-z]{6,16}$/.test(vm.pwdVal)) {
+          this.$Msg('请输入6-16位数字或字母密码', 2000)
+        } else if (!vm.clauses) {
+          this.$Msg('请阅读并同意风险告知书与注册协议', 2000)
+        } else {
+          // this.$Loading.Load()
+          // this.$Loading.Close()
+          console.log('注册')
+        }
       },
       inputType () {
         this.pwdType = this.pwdType === 'password' ? 'text' : 'password'
         this.showIcon = !this.showIcon
       },
       getCode () {
-        this.codeNum = true
-        let timer = setInterval(() => {
-          this.countTime--
-          if (this.countTime <= 0) {
-            this.countTime = 60
-            this.codeNum = false
-            clearInterval(timer)
-          }
-        }, 1000)
+        if (this.imgCode.length === 4) {
+          this.codeNum = true
+          let timer = setInterval(() => {
+            this.countTime--
+            if (this.countTime <= 0) {
+              this.countTime = 60
+              this.codeNum = false
+              clearInterval(timer)
+            }
+          }, 1000)
+        } else {
+          this.$Msg('请输入正确图形验证码！', 2000)
+        }
       },
       inviterFn () {
         this.inviter_phone = !this.inviter_phone
         this.rotate = !this.rotate
+      },
+      clauseFn () {
+        this.clauses = !this.clauses
       }
     },
     components: {
@@ -120,7 +136,7 @@
             font-size: 28px
             color: #333
             float: left
-            caret-color:#ff711c
+            caret-color: #ff711c
           .inp_width
             width: 70%
           img
@@ -174,6 +190,8 @@
           font-size: 30px
           vertical-align: top
           color: #ccc
+        .on
+          color: #ff711c
         a
           color: #ff711c
       .inviter
@@ -191,7 +209,6 @@
           .up
             transform:rotate(-180deg)
             transition: all 0.5s
-            color: #ff711c
       .sub_btn
         width: 90%
         margin: 30px auto 0

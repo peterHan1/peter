@@ -14,12 +14,13 @@ const Message = function (config = {}) {
   document.body.appendChild(instance.$mount().$el)
 }
 
-const Msg = function (message, time) {
+const Msg = function (message, time, types) {
   Message.call(this, {
     time: time || 3000,
     message: {
       content: message
-    }
+    },
+    msgType: types
   })
 }
 export default Msg

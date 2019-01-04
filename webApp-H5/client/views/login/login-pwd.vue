@@ -17,7 +17,7 @@
         <router-link to="/forgetPwd" class="forgetPwd">忘记登录密码? </router-link>
       </div>
       <div class="sub_btn">
-        <div class="td_btn" :class="pwdVal.length != 0?'td_btnHig':'td_btnNo'" @click="subBth()">确定</div>
+        <Button :btnClass="pwdVal.length >= 6?'btnRule':'btnRulegary'" @btnFn="subBtn()">确定</Button>
       </div>
       <p class="td_txt">拓道金服承诺不会泄露您的个人信息</p>
     </div>
@@ -48,7 +48,7 @@
       emptyVal () {
         this.pwdVal = ''
       },
-      subBth () {
+      subBtn () {
         console.log(this.pwdVal)
       },
       rememberFn () {
@@ -64,7 +64,6 @@
   .login_box
     height: 100%
     padding-top: 88px
-    box-sizing: border-box
     .phone_box
       overflow: hidden
     .phone
@@ -103,13 +102,14 @@
         color: #D8D8D8
         line-height: 90px
     .pwd_operate
-      padding: 0 30px
-      line-height: 86px
+      padding: 26px 30px 0
       overflow: hidden
+
       p
         display: inline-block
         font-size: 24px
         color: #999
+        float: left
         .on
           color: #5887FF
       .forgetPwd
@@ -117,8 +117,8 @@
         color: #69A5E4
         float: right
     .sub_btn
-      width: 90%
-      margin: 0 auto
+      width: 100%
+      padding: 27px 30px 0
     .td_txt
       font-size: 24px
       color: #999

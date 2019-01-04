@@ -3,7 +3,6 @@
     <div class="index_top">
       <Banner :banner-img="imgArr" class="banner"></Banner>
       <div class="oper_box">
-        <div class="banner_botBg"></div>
         <div class="oper_list">
             <router-link to="">
               <div class="novice"></div>
@@ -30,7 +29,7 @@
         </div>
     </div>
     <div class="finance_list">
-      <div class="finance_bot">
+      <router-link to="">
         <div class="finance_tlt">
           <h3>省心投20170908</h3><img src="../../assets/images/index/finance_type.png" />
         </div>
@@ -43,7 +42,7 @@
           </div>
           <div class="list list_style">
             <div>
-               <p>1个月</p>
+              <p>1个月</p>
               <p>期限</p>
             </div>
           </div>
@@ -55,12 +54,12 @@
           </div>
         </div>
         <div class="finance_btn">
-          <router-link to="" class="td_btn td_btnHig">立即加入</router-link>
+          <Button :btnClass="'btnRule'">立即加入</Button>
         </div>
-      </div>
+      </router-link>
     </div>
     <div class="finance_list">
-      <div class="finance_bot">
+      <router-link to="">
         <div class="finance_tlt">
           <h3>省心投20170908</h3><img src="../../assets/images/index/finance_type.png" />
         </div>
@@ -73,7 +72,7 @@
           </div>
           <div class="list list_style">
             <div>
-               <p>1个月</p>
+              <p>1个月</p>
               <p>期限</p>
             </div>
           </div>
@@ -85,9 +84,9 @@
           </div>
         </div>
         <div class="finance_btn">
-          <router-link to="" class="td_btn td_btnNo">立即加入</router-link>
+          <Button :btnClass="'btnRulegary'">立即加入</Button>
         </div>
-      </div>
+      </router-link>
     </div>
     <div class="td_box">
       <div class="td_time">已合规运营 <span>4年6个月</span></div>
@@ -164,29 +163,27 @@
       position: relative
       height: 626px
       overflow: hidden
-      background-color: #fff
+      margin-bottom: 20px
       .banner
         position: absolute
         top: 0
         left: 0
         right: 0
+        height: 54%
       .oper_box
         position: absolute
         left: 0
         right: 0
         top: 290px
-        height: 285px
-        .banner_botBg
-          width: 100%
-          height: 50px
-          background: url(../../assets/images/index/banner_botBg.png) no-repeat
-          background-size: 100% 100%
+        height: 53%
+        background: url(../../assets/images/index/banner_botBgs.png) no-repeat
+        background-size: 100% 100%
         .oper_list
           display: flex
+          align-items: center
           width: 100%
+          height: 256px
           border-bottom: 1px solid #E8E8E8
-          padding-bottom: 42px
-          background-color: #fff
           a
             flex: 1
             text-align: center
@@ -199,7 +196,7 @@
               display: inline-block
               width: 118px
               height: 118px
-              margin-top: 23px
+              margin-top: 33px
             .novice
               background: url(../../assets/images/index/novice_bg.png) no-repeat
               background-size: 100% 100%
@@ -215,7 +212,6 @@
       .td_message
         display: block
         width: 100%
-        height: 70px
         line-height: 0
         overflow: hidden
         span
@@ -223,7 +219,7 @@
           float: left
           font-size: 28px
           color: #666
-          line-height: 70px
+          line-height: 77px
           margin-left: 28px
         .message_bg
           display: block
@@ -240,57 +236,58 @@
           line-height: 70px
           float: right
           color: #666
-          margin-right: 30px
+          margin-right: 30px    
     .finance_list
-      margin-top: 20px
       background-color: #fff
       width: 100%
-      padding-bottom: 30px
-      .finance_bot
-        padding: 0 30px 4px
-        box-sizing: border-box
-        .finance_tlt
-          padding-top: 19px
-          line-height: 0
-          h3
-            display: inline-block
-            font-size: 28px
+      padding: 0 30px 30px
+      margin-bottom: 20px
+      a
+        display: block
+      .finance_tlt
+        padding-top: 19px
+        line-height: 0
+        h3
+          display: inline-block
+          font-size: 28px
+          color: #333
+          line-height: 70px
+          font-weight: normal
+        img
+          display: inline-block
+          width: 94px
+          height: 36px
+          margin-left: 16px
+          vertical-align: text-bottom
+      .finance_mes
+        display: flex
+        .list
+          flex: 1
+          text-align: center
+          height: 115px
+          position: relative
+          div
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+          p:nth-child(1)
+            font-size: 30px
             color: #333
-            line-height: 70px
-            font-weight: normal
-          img
-            display: inline-block
-            width: 94px
-            height: 36px
-            margin-left: 16px
-            vertical-align: text-bottom
-        .finance_mes
-          display: flex
-          .list
-            flex: 1
-            text-align: center
-            height: 115px
-            position: relative
-            div
-              position: absolute
-              bottom: 0
-              left: 0
-              right: 0
-            p:nth-child(1)
-              font-size: 30px
-              color: #333
-              line-height: 52px
-            p:nth-child(2)
-              font-size: 24px
-              color: #999
-              line-height: 33px
-            p.rate
-              font-size: 68px
-              color: #FF7102
-              span
-                font-size: 32px
-          div.list:nth-child(1)
-            text-align: left
+            line-height: 52px
+          p:nth-child(2)
+            font-size: 24px
+            color: #999
+            line-height: 33px
+          p.rate
+            font-size: 68px
+            color: #FF7102
+            span
+              font-size: 32px
+        div.list:nth-child(1)
+          text-align: left
+      .finance_btn
+        margin-top: 20px    
     .td_box
       padding: 0 30px
       .td_time

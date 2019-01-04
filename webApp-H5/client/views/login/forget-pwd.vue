@@ -14,7 +14,7 @@
       </li>
     </ul>
     <div class="sub_btn">
-      <div class="td_btn" :class="imgCode && phoneCode?'higBtn':'garyBth'" @click="resetFn()">下一步</div>
+      <Button :btnClass="imgCode && phoneCode?'btnRule':'btnRulegary'" @btnFn="resetFn()">下一步</Button>
     </div>
   </div>
 </template>
@@ -69,12 +69,12 @@
 
 <style lang="stylus" scoped>
   .forgetPwd
-    min-height: 100%
+    height: 100%
     padding-top: 88px
-    box-sizing: border-box
+    background-color: #fff
     ul
-      background-color: #fff
       padding: 0 30px 0 100px
+      border-top: 30px solid #F2F3F7
       li
         border-bottom: 1px solid #e8e8e8
         font-size: 28px
@@ -138,12 +138,6 @@
         margin-top: -(@height/2)
         background: url(../../assets/images/login/icon3.png) no-repeat
         background-size: 100% 100%
-      li:last-child
-        border: none
     .sub_btn
       padding: 20px 30px 0
-    .higBtn
-      background-color: #ff711c
-    .garyBth
-      background-color: #DEDEDE
 </style>

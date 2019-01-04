@@ -4,6 +4,4 @@
 node_modules
 public
 server-build
-static.url.config.js
-src
 mock

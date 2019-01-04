@@ -1,8 +1,20 @@
 <template>
     <transition name="modal">
         <div class="msgBox" v-if="show">
-            <div class="message">
-                <div class="msg">{{message.content}}</div>
+            <div class="message" >
+                <div class="msg" v-if="msgType === 'msg'">{{message.content}}</div>
+                <div class="msgIcon msgOk" v-if="msgType === 'ok'">
+                  <i class="iconfont">&#xe6c5;</i>
+                  <p>加载完成</p>
+                </div>
+                <div class="msgIcon msgOk" v-if="msgType === 'no'">
+                  <i class="iconfont">&#xe6c5;</i>
+                  <p>加载失败</p>
+                </div>
+                <div class="msgIcon msgOk" v-if="msgType === 'warning'">
+                  <i class="iconfont">&#xe6c5;</i>
+                  <p>警示信息</p>
+                </div>
             </div>
         </div>
     </transition>
@@ -15,14 +27,16 @@
         time: 3000,
         message: {
           content: ''
-        }
+        },
+        msgType: ''
       }
     },
     mounted () {
-      let _this = this
+      let vm = this
+      vm.msgType = vm.msgType === undefined ? 'msg' : vm.msgType
       setTimeout(() => {
-        _this.show = false
-      }, _this.time)
+        vm.show = false
+      }, vm.time)
     },
     methods: {
     }
@@ -49,10 +63,22 @@
       z-index: 999
       overflow: hidden
       background-color: rgba(0,0,0,0.6)
-      padding: 20px 30px
-      border-radius: 5px
+      border-radius: 10px
     .msg
       font-size: 30px
       color: #fff
-      white-space: nowrap
+      text-align: center
+      padding: 20px 30px
+    .msgIcon
+      text-align: center
+      width: 180px
+      height: 180px
+      padding-top: 30px
+      .iconfont
+        font-size: 72px
+        color: #fff
+      p
+        font-size: 28px
+        color: #fff
+        margin-top: 10px
 </style>

@@ -9,7 +9,8 @@
       </div>
       <div class="hint_phone" v-show="phoneVal">{{phoneVal}}</div>
       <div class="sub_btn">
-        <div class="td_btn" :class="phoneVal.length == 11?'td_btnHig':'td_btnNo'" @click="subBth()">下一步</div>
+        <!-- <div class="td_btn" :class="phoneVal.length == 11?'td_btnHig':'td_btnNo'" >下一步</div> -->
+        <Button :btnClass="phoneVal.length == 11?'btnRule':'btnRulegary'" @btnFn="subBtn()">下一步</Button>
       </div>
       <p>拓道金服承诺不会泄露您的个人信息</p>
     </div>
@@ -37,9 +38,9 @@
       emptyVal () {
         this.phoneVal = ''
       },
-      subBth () {
-        if (!this.phoneVal) {
-          this.$Msg('请输入手机号', 2000)
+      subBtn () {
+        if (!this.phoneVal || this.phoneVal.length < 11) {
+          this.$Msg('请输正确的入手机号！', 2000)
         } else {
           this.$router.push({path: '/loginPwd', query: {id: this.phoneVal}})
         }
@@ -91,12 +92,12 @@
       width: 90%
       height: 90px
       line-height: 90px
-      background-color: #cce6f5
+      background-color: #CDE7F5
       border-radius: 5px
       margin: 22px auto 0
       position: relative
-      font-size: 46px
-      color: #6695d2
+      font-size: 44px
+      color: #7697D5
       text-align: center
     .hint_phone:after
       content: ''
@@ -109,8 +110,8 @@
       border-style: solid
       border-color: transparent transparent #cce6f5 transparent
     .sub_btn
-      width: 90%
-      margin: 60px auto 0
+      width: 100%
+      padding: 52px 30px 0
     p
       font-size: 24px
       color: #999

@@ -1,6 +1,7 @@
 <template>
   <div class="be-invited">
     <div class="header">
+      <a href="https://www.51tuodao.com/front/app/downLoadForPhone2" class="download"></a>
       <div class="content">
         <div class="point">
           <div class="imgs"><img src="../../assets/images/activity/be-invited/be-invited2.png" alt=""></div>
@@ -34,9 +35,8 @@
     <div class="footer">
       <a class="btn first" @click="first" v-if="btnShow">领取388元红包</a>
       <a class="btn second" @click="second" v-else>领取388元红包</a>
-      <a href="https://www.51tuodao.com/front/app/downLoadForPhone2" class="download">下载拓道金服APP</a>
       <div class="advantage"><img src="../../assets/images/activity/be-invited/be-invited4.png" alt=""></div>
-      <div class="address" :class="{bg: show}">
+      <div class="address">
         <p>客服电话：<a href="tel:400-85-666-85">400-85-666-85</a></p>
         <p>©️杭州拓道网络金融服务有限公司版权所有</p>
       </div>
@@ -165,12 +165,22 @@ export default {
     background-size: 100%
     .header
       width: 100%
-      height: 8.56rem
+      height: 7.89rem
       overflow: hidden
       padding-bottom: 0.4rem
+      .download
+        display: block
+        width: 2.69rem
+        height: 0.95rem
+        background: url(../../assets/images/activity/be-invited/download.png) no-repeat
+        background-size: 100% 100%
+        position: absolute
+        top: 0
+        right: 0.2rem
+        -webkit-tap-highlight-color: rgba(0,0,0,0)
       .content
         width: 6.6rem
-        margin:6.67rem auto 0
+        margin:6rem auto 0
         overflow: hidden
         font-size: 0.26rem
         color: #fff
@@ -296,18 +306,6 @@ export default {
         background: linear-gradient(#FADCA8, #FEC123)
         margin: auto
         box-shadow: 0 5px 20px rgba(254,193,35,.3)
-      .download
-        font-size: 0.34rem
-        background: #E7443A
-        display: block
-        margin:0.4rem auto 0
-        width: 3.37rem
-        height: .8rem
-        color: #ffffff
-        text-align: center
-        line-height: .85rem
-        border-radius: .5rem
-        border: 0.02rem solid #ffffff
       .advantage
         text-align: center
         margin-bottom: 0.9rem
@@ -337,8 +335,6 @@ export default {
           a
             color: #FDC125
             text-decoration: none
-      .bg
-        background: url(../../assets/images/activity/be-invited/repeat.png)repeat-x
   .popup
     width: 100%
     height: 100%

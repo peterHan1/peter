@@ -147,7 +147,7 @@
         img
           position: absolute
           display: block
-          height: 100%
+          height: auto
           width: 100%
           vertical-align: middle
           top: 50%

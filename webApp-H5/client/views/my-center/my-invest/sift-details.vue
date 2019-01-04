@@ -15,7 +15,7 @@
 				<span>冻结金额(元)</span>
 				<span>800.00</span>
 			</li>
-            <li>
+      <li>
 				<span>优惠券</span>
 				<span>2%加息券</span>
                 <!-- 未使用、10元抵用券 -->

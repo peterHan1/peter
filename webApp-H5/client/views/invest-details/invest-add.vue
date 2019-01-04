@@ -40,7 +40,10 @@
     </Layer>
     <Layer v-show="dealShow" @on-close="dealClose()" @on-sub="dealSub()" close="不同意" submit="同意" >
       <div class="protocol_txt">
-        <div><Scatter></Scatter></div>
+        <div class="protocol_box">
+          <Ban></Ban>
+          <Scatter></Scatter>
+        </div>
       </div>
     </Layer>
   </div>
@@ -48,7 +51,8 @@
 
 <script>
 import List from './add/discount-list.vue'
-import Scatter from './protocol/scatter-protocol.vue'
+import Ban from './protocol/ban.vue'
+import Scatter from './protocol/scatter.vue'
 export default {
   metaInfo: {
     title: '拓道金服'
@@ -116,7 +120,8 @@ export default {
   },
   components: {
     List,
-    Scatter
+    Scatter,
+    Ban
   }
 }
 </script>
@@ -232,7 +237,7 @@ export default {
   .protocol_txt
     height: 5rem
     padding-top: 20px
-    div
+    .protocol_box
       height: 100%
       overflow: scroll
       -webkit-overflow-scrolling: touch

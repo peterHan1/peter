@@ -116,10 +116,14 @@
 						color: #FF7102
 						font-size: 32px
 			div
-				line-height: 80px
+				height: 80px
 				border-top: 1px solid #E8E8E8
+				display: flex
+				align-items: center
 				a
+					flex: 1
 					color: #FF7102
+					font-size: 24px
 				a:nth-child(2)
-					float: right		
+					text-align: right
 </style>

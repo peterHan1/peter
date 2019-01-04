@@ -10,7 +10,7 @@
       </li>
     </ul>
     <div class="sub_btn">
-      <div class="td_btn" :class="pwdOne.length >= 6 && pwdOne.length <= 16 && pwdTwo.length >= 6 && pwdTwo.length <= 16?'higBtn':'garyBth'" @click="resetFn()">确定</div>
+      <Button :btnClass="pwdOne.length >= 6 && pwdOne.length <= 16 && pwdTwo.length >= 6 && pwdTwo.length <= 16?'btnRule':'btnRulegary'" @btnFn="resetFn()">确定</Button>
     </div>
   </div>
 </template>
@@ -84,8 +84,4 @@
         border: none
     .sub_btn
       padding: 20px 30px 0
-    .higBtn
-      background-color: #ff711c
-    .garyBth
-      background-color: #DEDEDE
 </style>

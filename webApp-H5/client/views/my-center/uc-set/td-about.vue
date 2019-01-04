@@ -50,10 +50,8 @@
 
 <style lang="stylus" scoped>
   .tdAbout
-    min-height: 100%
     background-color: #fff
     padding-top: 88px
-    box-sizing: border-box
     .logo
       width: 260px
       height: 132px

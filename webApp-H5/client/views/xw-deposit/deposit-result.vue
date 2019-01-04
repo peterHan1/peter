@@ -8,9 +8,15 @@
 			<!-- <p>激活存管成功！</p> -->
 			<p>激活存管失败！</p>
 			<div class="result_btn">
-        <!-- <router-link to="">返回</router-link> -->
-        <!-- <router-link to="">完成</router-link> -->
-        <router-link to="">请重新激活存管</router-link>
+        <!-- <router-link to="">
+					<Button :btnClass="'btnBorder'">返回</Button>
+				</router-link> -->
+        <!-- <router-link to="">
+					<Button :btnClass="'btnBorder'">完成</Button>
+				</router-link> -->
+        <router-link to="">
+					<Button :btnClass="'btnBorder'">请重新激活存管</Button>
+				</router-link>
 			</div>
 		</div>
   </div>
@@ -68,11 +74,6 @@
 		.result_btn
 			margin: 60px 0 120px
 			a
-				display: inline-block
-				line-height: 74px
-				font-size: 30px
-				border-radius: 34px
-				width: 440px
-				color: #FF7102
-				border: 2px solid #FF7102
+				margin: 0 auto
+				display: block
 </style>

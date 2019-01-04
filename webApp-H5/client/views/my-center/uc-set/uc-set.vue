@@ -10,13 +10,13 @@
           <span>未激活存管账户 <i class="iconfont">&#xe83d;</i></span>
         </router-link> -->
         <!--已实名-->
-        <router-link to="ucAutonym">
+        <router-link to="/ucAutonym">
           <span>实名认证</span>
           <span>已认证 <i class="iconfont">&#xe83d;</i></span>
         </router-link>
       </li>
       <li>
-        <router-link to="bankCard">
+        <router-link to="/bankCard">
           <span>我的银行卡号</span>
           <span>建设银行 尾号6666 <i class="iconfont">&#xe83d;</i></span>
           <!-- <span>未激活存管账户 <i class="iconfont">&#xe83d;</i></span> -->
@@ -32,7 +32,7 @@
         <!-- <span>未激活存管账户 <i class="iconfont">&#xe83d;</i></span> -->
       </li>
       <li>
-        <router-link to="accredit">
+        <router-link to="/accredit">
           <span>业务授权</span>
           <span>已授权 <i class="iconfont">&#xe83d;</i></span>
           <!-- <span>未激活存管账户 <i class="iconfont">&#xe83d;</i></span> -->
@@ -41,25 +41,25 @@
     </ul>
     <ul>
       <li>
-        <router-link to="/found/member-lev">
+        <router-link to="/found/myLevel">
           <span>拓道会员</span>
           <i class="iconfont">&#xe83d;</i>
         </router-link>
       </li>
       <li>
-        <router-link to="appraisal/index">
+        <router-link to="/appraisal/index">
           <span>风险承受能力测评</span>
           <i class="iconfont">&#xe83d;</i>
         </router-link>
       </li>
       <li>
-        <router-link to="setPwd">
+        <router-link to="/setPwd">
           <span>密码管理</span>
           <i class="iconfont">&#xe83d;</i>
         </router-link>
       </li>
       <li>
-        <router-link to="tdAbout">
+        <router-link to="/tdAbout">
           <span>关于拓道</span>
           <i class="iconfont">&#xe83d;</i>
         </router-link>

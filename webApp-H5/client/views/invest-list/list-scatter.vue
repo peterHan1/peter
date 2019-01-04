@@ -2,12 +2,12 @@
   <div class="listBox">
     <ul>
       <li>
-        <router-link to="/">
+        <router-link to="/scatterDetailsEnter">
           <p class="listTlt">大众帕萨特抵押续贷标 <span class="activity bgSize"></span><span class="double bgSize"></span> </p>
           <div class="listCon">
             <span>8<i>%</i></span>
             <span>1个月</span>
-            <span><b>立即出借</b></span>
+            <span><Button :btnClass="'btnAdd'">立即出借</Button></span>
           </div>
           <div class="bar">
             <b style="width: 50%"></b>
@@ -20,12 +20,12 @@
         </router-link>  
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/scatterDetailsEnter">
           <p class="listTlt">哈弗H6抵押续贷标 <span class="collaborate bgSize"></span> </p>
           <div class="listCon">
             <span>12.5<i>%</i></span>
             <span>1个月</span>
-            <span class="time"><b>20:00开抢</b></span>
+            <span><Button :btnClass="'bthAwait'">20:00开抢</Button></span>
           </div>
           <div class="bar">
             <b></b>
@@ -38,12 +38,12 @@
         </router-link>  
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/scatterDetailsEnter">
           <p class="listTlt">哈弗H6抵押续贷标 <span class="transfer bgSize"></span> </p>
           <div class="listCon">
             <span>12.5<i>%</i></span>
             <span>1个月</span>
-            <span class="time"><b>20:00开抢</b></span>
+            <span><Button :btnClass="'bthAwait'">20:00开抢</Button></span>
           </div>
           <div class="bar">
             <b></b>
@@ -59,12 +59,12 @@
     <div class="separate"><span>已抢完</span></div>
     <ul class="listOver">
       <li>
-        <router-link to="/">
+        <router-link to="/scatterDetailsEnter">
           <p class="listTlt">丰田皇冠抵押续贷标</p>
           <div class="listCon">
             <span>12.5<i>%</i></span>
             <span>1个月</span>
-            <span class="time"><b>已抢完</b></span>
+            <span><Button :btnClass="'btnGray'">已抢完</Button></span>
           </div>
           <p class="listBot">
             <span>一次性还本付息</span>
@@ -73,12 +73,12 @@
         </router-link>  
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/scatterDetailsEnter">
           <p class="listTlt">福特探险者抵押标</p>
           <div class="listCon">
             <span>12.5<i>%</i></span>
             <span>1个月</span>
-            <span class="time"><b>已抢完</b></span>
+            <span><Button :btnClass="'btnGray'">已抢完</Button></span>
           </div>
           <p class="listBot">
             <span>一次性还本付息</span>
@@ -158,18 +158,6 @@
         line-height: 110px
       span:nth-child(3)
         text-align: right
-        b
-          display: inline-block
-          width: 170px
-          line-height: 68px
-          background-color: #FF7102
-          border-radius: 36px
-          text-align: center
-          color: #fff
-          font-size: 28px
-      span.time
-        b
-          background-color: rgba(255,113,2,0.6)
     .bar
       padding-top: 25px
       position: relative

@@ -3,7 +3,9 @@
     <Header :navLeftTxt="'icon'">债权转让</Header>
     <div class="bondList">
       <p>请在电脑端登录官网或在APP端查看</p>
-      <router-link to="" >下载APP</router-link>
+      <div class="btn">
+        <Button :btnClass="'downApp'" @btnFn="downApp()">下载APP</Button>
+      </div>
     </div>
   </div>
 </template>
@@ -20,8 +22,8 @@
     mounted () {
     },
     methods: {
-      navRightFn () {
-        this.$router.push({path: '/bondExplain'})
+      downApp () {
+        console.log('下载app')
       }
     },
     components: {
@@ -41,14 +43,6 @@
         font-size: 28px
         color: #666
         margin-top: 50%
-      a
-        display: inline-block
-        width: 50%
-        line-height: 74px
-        text-align: center
-        font-size: 30px
-        color: #fff
-        background: linear-gradient(153deg,rgba(252,141,38,1) 0%,rgba(248,123,60,1) 100%)
-        border-radius: 37px
-        margin-top: 60px
+      .btn
+        padding-top: 60px  
 </style>

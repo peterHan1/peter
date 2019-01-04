@@ -7,10 +7,16 @@
 			<p>出借成功</p>
 			<div class="result_btn">
 				<!--投资成功显示两个按钮-->
-				<!-- <a href="javascript:;" class="result_left">继续出借</a> -->
-				<!-- <a href="javascript:;" class="result_right">查看出借记录</a> -->
+				<!-- <span class="result_left">
+					<Button :btnClass="'loanBtn'">继续出借</Button>
+				</span>
+				<span class="result_right">
+					<Button :btnClass="'loanBorder'">查看出借记录</Button>
+				</span> -->
 				<!--投资失败和处理中显示一个按钮-->
-				<a href="" class="result_return">返回</a>
+				<span class="result_return">
+					<Button :btnClass="'btnBorder'">返回</Button>
+				</span>
 			</div>
 		</div>
 		<!--成功显示列表，失败和处理中隐藏 -->
@@ -84,24 +90,10 @@
 			margin-top: 40px
 		.result_btn
 			margin: 60px 0 120px
-			a
+			span
 				display: inline-block
-				width: 260px
-				line-height: 74px
-				font-size: 30px
-				border-radius: 34px
 			.result_left
-				color: #fff
-				background: linear-gradient(to right,#FC8D26,#F87B3C)
-				border-radius: 37px
 				margin-right: 40px
-			.result_right
-				color: #FF7102
-				border: 2px solid #FF7102
-			.result_return
-				width: 4.8rem
-				color: #FF7102
-				border: 2px solid #FF7102
 	.result_list
 		border-top: 20px solid #F2F3F7
 		p

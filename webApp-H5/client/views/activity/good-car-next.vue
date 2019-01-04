@@ -112,7 +112,7 @@
     </div>
     <div class="div_btn">
       <span class="btn">申请加盟</span>
-      <p>如有问题请咨询拓道客服：<span class="phone">400-998-7666</span></p>
+      <p>如有问题请咨询拓道客服：<a class="phone" href="tel:400-998-7666">400-998-7666</a></p>
     </div>
     <city-select @cityValue="getCityValue" :city-show="cityShow" @on-close="cityShow = false"></city-select>
     <time-select @dateValue="getDateValue" :date-show="dateShow" @on-close="dateShow = false"></time-select>
@@ -531,15 +531,15 @@ export default {
       .btn
         display: inline-block
         width:100%
+        font-size: 0.3rem
         height:0.8rem
         line-height:0.8rem
         text-align:center
         border-radius:5px
         background-color:#cacaca
         color:#fff
-    .div_btn .sub_btn
-      background-color:#d3b580
-    .div_btn
+      .sub_btn
+        background-color:#d3b580
       p
         margin-top:0.16rem
         font-size:0.2rem

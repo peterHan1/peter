@@ -106,13 +106,13 @@ export default {
       .tops
         clear: both
         .til
+          font-family:PingFangSC-Medium
           font-size: .64rem
           text-align: center
-          font-weight: bold
           color:#FF780E
         .font
           font-size: .24rem
-          color: #666
+          color: #999999
           text-align: center
       .flex
         display: flex
@@ -123,11 +123,11 @@ export default {
         margin: .18rem 0 .09rem 0
         dt
           font-size: .4rem
-          font-weight: bold
+          font-family:PingFangSC-Medium
           color:#FF780E
         dd
           font-size: .24rem
-          color:#666
+          color:#999999
           position: relative
           i
             font-size: .24rem
@@ -151,7 +151,7 @@ export default {
           height:.9rem
           line-height: .9rem
           font-size: .28rem
-          color:#333333
+          color:#666
           text-align: center
           &.on
             color:#FF780E
@@ -185,8 +185,13 @@ export default {
             height:100%
             line-height: .79rem
             font-size: .24rem
-            color:#666666
+            color:#999999
             text-align: left
+            &:nth-child(2)
+              padding-right: 0.5rem
+              text-align: center
+            &:nth-child(3)
+              text-align: center
             &:last-child
               text-align: right
       .data_info ul
@@ -207,6 +212,11 @@ export default {
             width:25%
             height:100%
             line-height:.9rem
+            &:nth-child(2)
+              padding-right: 0.5rem
+              text-align: center
+            &:nth-child(3)
+              text-align: center
             &:last-child
               text-align: right
 </style>
