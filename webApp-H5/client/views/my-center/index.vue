@@ -60,11 +60,9 @@
               <p>债权转让</p>
             </router-link>
           </li>
-          <li>
-            <router-link to="/returnMoney" >
-              <div class="returnBg"></div>
-              <p>回款日历</p>
-            </router-link>
+          <li @click="downApp">
+            <div class="returnBg"></div>
+            <p>回款日历</p>
           </li>
           <li>
             <router-link to="/moneyRecord" >
@@ -118,6 +116,9 @@
     methods: {
       moneyHide () {
         this.moneyShow = !this.moneyShow
+      },
+      downApp () {
+        this.$App('请在电脑端登录官网或在APP端查看')
       }
     },
     components: {

@@ -3,29 +3,35 @@
     <div class="index_top">
       <Banner :banner-img="imgArr" class="banner"></Banner>
       <div class="oper_box">
-        <div class="oper_list">
+        <ul class="oper_list">
+          <li>
             <router-link to="">
               <div class="novice"></div>
               <p>新手专区</p>
             </router-link>
+          </li>
+          <li>
             <router-link to="">
               <div class="invite"></div>
               <p>邀请好友</p>
             </router-link>
-            <router-link to="">
+          </li>
+          <li>
+             <router-link to="">
               <div class="inform"></div>
               <p>信息披露</p>
             </router-link>
-            <router-link to="">
-              <div class="downApp"></div>
-              <p>下载APP</p>
-            </router-link>
-          </div>
-            <router-link to="" class="td_message">
-              <span class="message_bg"></span>
-              <span class="message_txt">扫尾送积分,最低200起送！</span>
-              <i class="iconfont">&#xe83d;</i>
-            </router-link>
+          </li>
+          <li @click="downApp">
+            <div class="downApp"></div>
+            <p>下载APP</p>
+          </li>
+        </ul>
+        <router-link to="" class="td_message">
+          <span class="message_bg"></span>
+          <span class="message_txt">扫尾送积分,最低200起送！</span>
+          <i class="iconfont">&#xe83d;</i>
+        </router-link>
         </div>
     </div>
     <div class="finance_list">
@@ -106,7 +112,7 @@
       </div>
       <div class="indexLink">
         <span>电脑版</span>|
-        <span>下载APP</span>|
+        <span @click="downApp">下载APP</span>|
         <span>帮助中心</span>
       </div>
       <div class="tdNum">
@@ -141,11 +147,8 @@
     mounted () {
     },
     methods: {
-      navLeftFn () {
-        console.log('自定义返回按钮')
-      },
-      navRightFn (attr) {
-        console.log(attr)
+      downApp () {
+        this.$App('<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>')
       }
     },
     components: {
@@ -184,10 +187,12 @@
           width: 100%
           height: 256px
           border-bottom: 1px solid #E8E8E8
-          a
+          li
             flex: 1
             text-align: center
             line-height: 0
+            a
+              display: block
             p
               font-size: 24px
               color: #333

@@ -2,7 +2,7 @@
   <div class="listBox">
     <p>请在电脑端登录官网或在APP端查看</p>
     <div class="appBtn">
-      <Button :btnClass="'downApp'">立即下载APP</Button>
+      <Button :btnClass="'downApp'" @btnFn="downApp()">立即下载APP</Button>
     </div>
   </div>
 </template>
@@ -16,6 +16,9 @@
     mounted () {
     },
     methods: {
+      downApp () {
+        this.$App('<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>')
+      }
     },
     components: {
     }

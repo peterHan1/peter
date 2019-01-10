@@ -42,7 +42,7 @@
       </div>
       <div class="inviteList">
         <ul>
-          <div>
+          <div class="listTop">
             <li>
               <span>奖励金额(元)</span>
               <span>奖励类型</span>
@@ -81,6 +81,10 @@
               <span>134****9086</span>
               <span>12月20日</span>
             </li>
+          </div>
+          <div class="data-null">
+            <div class="nullBg"></div>
+            <p>暂无待收返现明细</p>
           </div>
         </ul>
       </div>
@@ -151,7 +155,7 @@
             text-align: left
           span:last-child
             text-align: right 
-        div:nth-child(1)
+        .listTop
           border-bottom: 1px solid #e8e8e8
           li
             border: none
@@ -159,6 +163,8 @@
               line-height: 82px
               font-size: 24px
               color: #999
+        .data-null
+          padding-top: 60px      
 </style>
 
 

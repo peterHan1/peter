@@ -15,12 +15,12 @@
           <span>已认证 <i class="iconfont">&#xe83d;</i></span>
         </router-link>
       </li>
-      <li>
-        <router-link to="/bankCard">
+      <li @click="downApp">
+        <!-- <router-link to="/bankCard"> -->
           <span>我的银行卡号</span>
           <span>建设银行 尾号6666 <i class="iconfont">&#xe83d;</i></span>
           <!-- <span>未激活存管账户 <i class="iconfont">&#xe83d;</i></span> -->
-        </router-link>
+        <!-- </router-link> -->
       </li>
       <li>
         <span>绑定手机号</span>
@@ -83,6 +83,9 @@
     methods: {
       navLeftFn () {
         this.$router.push({path: '/myCenter'})
+      },
+      downApp () {
+        this.$App('请在电脑端登录官网或在APP端找更换银行卡', 'brow')
       }
     },
     components: {

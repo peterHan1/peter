@@ -2,6 +2,3 @@
 .idea
 .vscode
 node_modules
-public
-server-build
-mock

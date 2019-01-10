@@ -1,4 +1,5 @@
 import Msg from './msg/index'
+import App from './download-app/index'
 import Header from './header/index'
 import FooterNav from './footerNav/index'
 import Layer from './layer/index'
@@ -37,6 +38,7 @@ const install = function (Vue) {
   if (install.installed) return
   components.map(component => Vue.component(component.name, component))
   Vue.prototype.$Msg = Msg
+  Vue.prototype.$App = App
   Vue.prototype.$Loading = Loading
 }
 
