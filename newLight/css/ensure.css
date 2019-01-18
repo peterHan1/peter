@@ -1,0 +1,39 @@
+*{font-family: "PingFang SC";}
+.ensure .header{height: 2.89rem;margin-bottom: 0.9rem;background: url(../img/ensure/ensure_1.png)center no-repeat;background-size: 100%;}
+.ensure .one{overflow: hidden;margin-bottom: 0.4rem;position: relative;}
+.ensure .one .bg{position: absolute;left: 0;top: 0;width: 3.35rem;height: 4.07rem;}
+.ensure .one .right{float: right;width: 3.65rem;margin-right: 0.6rem;}
+.ensure .one .right img{vertical-align: top;width: 0.3rem;height: 1.1rem;margin-top: 0.06rem;}
+.ensure .one .right .title1{font-size: 0.5rem;color: #f86c0f;margin-top: 0.1rem;margin-left: 0.5rem; font-weight: bold;}
+.ensure .one .right .title2{margin: 0.1rem 0 0.5rem 0.55rem;width: 2.09rem;height: 0.16rem;}
+.ensure .one .right .title2 img{width: 100%;height: 100%;}
+.ensure .one .right li.session1,.ensure .one .right li.session2,.ensure .one .right li.session3{overflow: hidden;}
+.ensure .one .right li .le{float: left;margin-right: 0.2rem;height:1rem;}
+.ensure .one .right li .rg{float: left;width: 3.15rem;}
+.ensure .one .right .sty1{font-size: 0.34rem;color: #fe883a;margin-bottom: 0.1rem;}
+.ensure .one .right .sty2{font-size: 0.26rem;color: #ccc;line-height: 0.4rem;margin-bottom: 0.24rem;}
+.ensure .two{position: relative;overflow: hidden;margin-bottom: 0.6rem;}
+.ensure .two .left{padding-left: 0.43rem;}
+.ensure .two .left img{vertical-align: top;width: 0.3rem;height: 1.1rem;margin-top: 0.06rem;}
+.ensure .two .left li.session1,.ensure .two .left li.session2{overflow: hidden;}
+.ensure .two .left li.session1 .le,.ensure .two .left li.session2 .le{float: left;margin-right: 0.2rem;height:1rem;}
+.ensure .two .left li.session1 .rg{float: left;width: 3.2rem;}
+.ensure .two .left li.session2 .rg{float: left;width: 3.3rem;}
+.ensure .two .left .title1{font-size: 0.5rem;color: #f86c0f;margin-top: 0.2rem;font-weight: bold;}
+.ensure .two .left .title2{margin: 0.1rem 0 0.5rem 0rem;width: 1.56rem;height: 0.16rem;}
+.ensure .two .left .title2 img{width: 100%;height: 100%;}
+.ensure .two .left .sty1{font-size: 0.34rem;color: #fe883a;margin-bottom: 0.1rem;}
+.ensure .two .left .sty2{font-size: 0.26rem;color: #ccc;line-height: 0.4rem;margin-bottom: 0.22rem;}
+.ensure .two .bg{position: absolute;right: 0;top: 0;width: 4.3rem;height: 3.78rem;}
+.ensure .three{overflow: hidden;padding-bottom: 2rem;position: relative;}
+.ensure .three .bg{position: absolute;left: 0;top: 0;width: 3.56rem;height: 4.04rem;}
+.ensure .three .right{float: right;width: 3.65rem;margin-right: 0.6rem;}
+.ensure .three .right img{vertical-align: top;width: 0.3rem;height: 1.1rem;margin-top: 0.06rem;}
+.ensure .three .right .title1{font-size: 0.5rem;color: #f86c0f;margin-top: 0.1rem;margin-left: 0.5rem; font-weight: bold;}
+.ensure .three .right .title2{margin: 0.1rem 0 0.5rem 0.55rem;width: 1.99rem;height: 0.16rem;}
+.ensure .three .right .title2 img{width: 100%;height: 100%;}
+.ensure .three .right li.session1,.ensure .three .right li.session2{overflow: hidden;}
+.ensure .three .right li .le{float: left;margin-right: 0.2rem;height:1rem;}
+.ensure .three .right li .rg{float: left;width: 3.15rem;}
+.ensure .three .right .sty1{font-size: 0.34rem;color: #fe883a;margin-bottom: 0.1rem;}
+.ensure .three .right .sty2{font-size: 0.26rem;color: #ccc;line-height: 0.4rem;margin-bottom: 0.24rem;}

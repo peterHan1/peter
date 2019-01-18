@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<title>幸福账本</title>
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<script src="js/base.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/bill.css">
+</head>
+<body>
+  <div class="max_width bill bills">
+	<div class="bill-one bill_bg ">
+		<div class="title"></div>
+		<div class="progress">
+			<img class="gold" src="./img/bill/one_3.gif" alt="">
+			<div class="inside">
+				<p class="line"></p>
+			</div>
+			<p class="num"></p>
+		</div>
+		<div class="bottom"></div>
+	</div>
+	<div class="bill-two bill_bg hasData_hasfriends hasData_nofriends noData_hasFriends noData_noFriends dis_none">
+		<div class="bill-two-bg">
+			<img id="bill-two-home" class="dis_none" src="./img/bill/two_4.png" alt="">
+			<img id="bill-two-pages" class="dis_none" src="./img/bill/two_5.png" alt="">
+		</div>
+		<div class="content">
+			<ul class="title dis_none">
+				<li>亲爱的***</li>
+				<li>与你又走过了一年，直到现在，</li>
+				<li>我仍然记得那一天</li>
+				<li>2014年12月30日，我们相识。</li>
+				<li>相识是注定的缘分，庆幸我们没有错过。</li>
+			</ul>
+			<div class="openBtn dis_none"></div>
+		</div>
+		<div class="music"></div>
+		<div class="whiteMask dis_none"></div>
+		<div class="shade"></div>
+	</div>
+	<div class="bill-three bill_bg hasData_hasfriends hasData_nofriends noData_hasFriends noData_noFriends dis_none">
+		<div class="public_leavesOne"></div>
+		<!-- 有记录的状态 -->
+		<div class="public_book_shade public_book">
+			<div class="txt">
+				<img src="./img/bill/three_1.png" alt="">
+				<ul class="bill-three-ul">
+					<!-- 有充值有收益start -->
+					<li>
+						<span>2018年12月30日</span>&nbsp;你完成了第一笔充值，这是你玩信任的开始。
+					</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你通过我进行了第一笔出借，一切都交给我吧！
+					</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你获得了第一笔收益XX元，你沉醉于你的收益，我沉醉于你的笑靥如花。
+					</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你完成了第一笔提现，离开只是暂时的，不久你会回到我身边，对吧！
+					</li>
+					<!-- 有充值有收益end -->
+					
+					<!-- 有充值有出借无回款start
+					<li>
+						<span>2018年12月30日</span>&nbsp;你完成了第一笔充值，这是你玩信任的开始。
+					</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你通过我进行了第一笔出借，一切都交给我吧！
+					</li>
+					<li>
+						期待你看见收益到账时的笑颜！
+					</li>
+					有充值有出借无回款end -->
+
+					<!-- 有充值无收益start
+					<li>
+						<span>2018年12月30日</span>&nbsp;你完成了第一笔充值，这是你玩信任的开始。
+					</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你通过我进行了第一笔出借，一切都交给我吧！
+					</li>
+					<li>
+						期待你看见收益到账时的笑颜！
+					</li>
+					有充值无收益end -->
+				</ul>
+				<div class="three-move"></div>
+			</div>
+		</div>
+		<!-- 无记录的状态 -->
+		<div class="public_book_Noshade public_book dis_none">
+			<div class="noRecord">
+				<img src="./img/bill/three_3.png" alt="">
+				<img src="./img/bill/three_4.png" alt="">
+			</div>
+		</div>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_gold"></div>
+		<div class="public_pen"></div>
+		<div class="public_cup"></div>
+		<div class="public_page"></div>
+		<div class="public_nextPage dis_none">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-four bill_bg hasData_hasfriends hasData_nofriends dis_none">
+		<div class="public_leavesOne"></div>
+		<div class="public_book_Noshade public_book">
+			<div class="txt">
+				<img src="./img/bill/four_1.png" alt="">
+				<ul id="bill-four-ul">
+					<li>你完成了第X笔出借，共xxx元，共获得xxx元收益。</li>
+					<li>
+						<span>2018年12月30日</span>&nbsp;你在拓道金服出借了2018年金额最大的1笔钱，xxx元
+					</li>
+				</ul>
+				<div class="others"></div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<ol id="bill-four-ol">
+			<li><div>2018年&nbsp;&nbsp;Ta单笔出借金额最大10000000元<p class="p_1"></p></div></li>
+			<li><div>2018年&nbsp;&nbsp;Ta单笔出借金额最大10000000元<p class="p_2"></p></div></li>
+			<li><div>2018年&nbsp;&nbsp;Ta单笔出借金额最大10000000元<p class="p_3"></p></div></li>
+		</ol>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_gold"></div>
+		<div class="public_pen"></div>
+		<div class="public_cup"></div>
+		<div class="public_page"></div>
+		<div class="public_nextPage">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-five bill_bg hasData_hasfriends hasData_nofriends dis_none">
+		<div class="public_leavesOne"></div>
+		<div class="public_book_Noshade public_book">
+			<div class="txt">
+				<img class="title" src="./img/bill/five_1.png" alt="">
+				<ul>
+					<li><span>2018年</span>&nbsp;你获得的收益超过了<span>88%</span>的小伙伴</li>
+				</ul>
+				<div class="echarts">
+					<img class="tape" src="./img/bill/five_2.png" alt="">
+					<div id="my_echarts"></div>
+				</div>
+				<div class="my_bar"></div>
+			</div>
+		</div>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_gold"></div>
+		<div class="public_pen"></div>
+		<div class="public_cup"></div>
+		<div class="public_page"></div>
+		<div class="public_nextPage">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-six bill_bg hasData_hasfriends hasData_nofriends dis_none">
+		<div class="public_leavesOne"></div>
+		<div class="public_book public_book_Noshade">
+			<div class="txt">
+				<img src="./img/bill/six_1.png" alt="">
+				<ul id="bill-six-ul">
+					<li><span>2018年 </span>&nbsp; 你使用了<span>20</span>张加息券，<span>36</span>张抵用券</li>
+					<li><span>2018年 </span>&nbsp;2018年  通过加息券、抵用券、现金红包获得额外收益 <span>8780.5</span>元。</li>
+				</ul>
+			</div>
+			<div class="six-english"></div>
+			<ol class="bill-six-bot">
+				<li class="six-list1">
+					<p>加息券额外收益 </p>
+					<p>4000元</p>
+				</li>
+				<li class="six-list2">
+					<p>抵用券额外收益</p>
+					<p>4000元</p>
+				</li>
+				<li class="six-list3">
+					<p>现金红包</p>
+					<p>780.5元</p>
+				</li>
+			</ol>
+		</div>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_gold"></div>
+		<div class="public_pen"></div>
+		<div class="public_cup"></div>
+		<div class="public_page"></div>
+		<div class="public_nextPage">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-seven bill_bg hasData_hasfriends noData_hasFriends dis_none">
+		<div class="public_leavesOne"></div>
+		<div class="public_book public_book_Noshade">
+			<div class="txt">
+				<img src="./img/bill/seven_1.png">
+				<ul id="bill-six-ul">
+					<li>
+						<p><span>2018年，</span>你共邀请了<span>xxx</span>位好友，</p>
+						<p>获得了<span>xx</span>元理财师收益。</p>
+					</li>
+					<li>
+						<p>你予人玫瑰，我为你手留余香！</p>
+						<p>亲爱的你，</p>
+						<p>快叫上朋友有“富”同享！</p>
+					</li>
+				</ul>
+			</div>
+			<div class="seven_bot"></div>
+		</div>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_gold"></div>
+		<div class="public_pen"></div>
+		<div class="public_cup"></div>
+		<div class="public_page"></div>
+		<div class="public_nextPage">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-eight bill_bg hasData_hasfriends hasData_nofriends noData_hasFriends noData_noFriends dis_none">
+		<!--理财达人-->
+		<div class="dazzling">
+			<div class="txt">
+				<img src="./img/bill/eight_2.png">
+				<div class="person">
+					<div class="person1"></div>
+					<div class="person2"></div>
+					<span class="money1"></span>
+					<span class="money2"></span>
+					<span class="money3"></span>
+					<p class="label1"><b>稳中求胜</b></p>
+					<p class="label2"><b>神算手</b></p>
+					<p class="label3"><b>巴菲特二世</b><p>
+				</div>
+			</div>
+			<div class="dazzling_bot">
+				<img class="img1" src="img/bill/eight_3.png" />
+				<div class="sentence">
+					<span class="left"></span>
+					<p> 赚钱的念头+拓道金服=有钱人！</p>
+					<span class="right"></span>
+				</div>
+			</div>
+		</div>
+		<!--隐形富豪-->
+		<!-- <div class="dazzling">
+			<div class="txt">
+				<img src="./img/bill/eight_2.png">
+				<div class="person">
+					<div class="regal"></div>
+					<span class="gold1"></span>
+					<span class="gold2"></span>
+					<p class="label1"><b>坚持</b></p>
+					<p class="label2"><b>有钱有颜</b></p>
+					<p class="label3"><b>嘘~低调</b><p>
+				</div>
+			</div>
+			<div class="dazzling_bot">
+				<img class="img2" src="img/bill/eight_4.png" />
+				<div class="sentence">
+					<span class="left"></span>
+					<p> 你真是长得好看还有钱！</p>
+					<span class="right"></span>
+				</div>
+			</div>
+		</div> -->
+		<!--梦想行动派-->
+		<!-- <div class="dazzling">
+			<div class="txt">
+				<img src="./img/bill/eight_2.png">
+				<div class="person">
+					<div class="dream1"></div>
+					<div class="dream2"></div>
+					<span class="fish1"></span>
+					<span class="fish2"></span>
+					<p class="label1"><b>运来财来</b></p>
+					<p class="label2"><b>神算手</b></p>
+					<p class="label3"><b>生财有“道”</b><p>
+				</div>
+			</div>
+			<div class="dazzling_bot">
+				<img class="img3" src="img/bill/eight_5.png" />
+				<div class="sentence sentenceOther">
+					<span class="left"></span>
+					<p>与拓道金服携手，赚它一个亿，<br />真的是小目标！</p>
+					<span class="right"></span>
+				</div>
+			</div>
+		</div> -->
+		<!--两边装饰持续显示-->
+		<div class="music"></div>
+		<div class="public_logos"></div>
+		<div class="public_pens"></div>
+		<div class="public_pages"></div>
+		<div class="public_nextPage">
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<span class="iconfont">&#xe687;</span>
+			<img src="./img/bill/public_nextPage.png" alt="">
+		</div>
+	</div>
+	<div class="bill-nine bill_bg hasData_hasfriends hasData_nofriends noData dis_none">
+		<div class="logo"></div>
+		<div class="public_leavesOne"></div>
+		<div class="happ_book">
+			<ul>
+				<li>在过去的2018年里… </li>
+				
+				<!--未出借过 start-->
+				<!--<li>你还没有进行过出借，彼此都向前一步， 幸福就在前方！ </li>
+				<li>期待你看见收益到账时的笑颜！</li>-->
+				<!--未出借过 end-->
+				
+				<!--出借过 start-->
+				<li>你单笔出借金额最大 <span> 66666666元</span></li>
+				<li>共完成了<span>6666</span>笔出借</li>
+				<li>
+					<p>你获得的收益 <span> 6666666元</span></p>
+					<p>超过了<span>66%</span>的小伙伴</p>
+				</li>
+				<!--出借过 end-->
+				
+				<!--邀请过好友 start-->
+				<li>获得好友推荐理财师收益 <span> 888888元</span></li>
+				<!--邀请过好友 end-->
+				
+			</ul>
+			<div class="happ_list_bg"></div>
+		</div>
+		<div class="happ_bottom">截图分享你与拓道金服的小幸运</div>
+		<div class="music"></div>
+		<div class="public_logo"></div>
+		<div class="public_leavesTwo"></div>
+		<div class="public_pen"></div>
+		<div class="public_book2"></div>
+		<div class="public_gold2"></div>
+	</div>
+	<audio loop="loop" id="audio" hidden>
+		<source src="./img/bill/bill.mp3"/>
+	</audio>
+  </div>
+</body>
+</html>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/echarts.common.min.js"></script>
+<script src="./js/bill.js"></script>
