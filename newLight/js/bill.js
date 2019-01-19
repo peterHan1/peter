@@ -52,7 +52,6 @@ $(function(){
 			// 未登录则跳转到登录页
 			// 登录过了则执行以下代码
 
-			touchNextPage();// 当加载页消失才可执行翻页函数
 			// 加载页面消失后的回调，第二页面出现
 			pageTwo();
 		})
@@ -90,7 +89,7 @@ $(function(){
 				$('.bill-two').hide();
 				$('#bill-two-home').removeClass('turnPage');
 				$('.bill-three').show();
-				pageIndex++;
+				touchNextPage();// 当翻书页消失才可执行翻页函数
 				pageThree();
 			});
 		},800)
@@ -170,7 +169,7 @@ $(function(){
 				data: myIncome,
 				type: 'line',
 				smooth: true,// 折现弯曲平滑属性
-				symbol: 'none',// 折线拐点形状
+				symbol: 'circle',// 折线拐点形状
 				symbolSize: 3,// 折线拐点大小
 				// 折线区域颜色
 				areaStyle: {normal: {
@@ -185,10 +184,10 @@ $(function(){
 					normal: {
 						lineStyle:{
 							width:2,//折线宽度
-							color:"yellow"//折线颜色
+							color:"#feba00"//折线颜色
 						},
-						color: "red",// 折线图整体颜色
-						borderWidth: 1,// 拐点边框大小
+						color: "#fe8401",// 折线图整体颜色
+						borderWidth: 0,// 拐点边框大小
 						borderColor:'green',// 拐点边框颜色
 						label: {
 							show: false,// 控制标签数据的显示
@@ -223,11 +222,6 @@ $(function(){
 						$('.noData_noFriends').eq(pageIndex).fadeOut();
 						pageIndex--;
 						$('.noData_noFriends').eq(pageIndex).fadeIn();
-						pageTwo();
-					} else if (pageIndex === 2) {
-						$('.noData_noFriends').eq(pageIndex).fadeOut();
-						pageIndex--;
-						$('.noData_noFriends').eq(pageIndex).fadeIn();
 						pageThree();
 					}else{
 						$('.bill').removeClass('active');
@@ -243,11 +237,6 @@ $(function(){
 					if (pageIndex === 0) {
 						return false;
 					}else if(pageIndex === 1){
-						$('.noData_hasFriends').eq(pageIndex).fadeOut();
-						pageIndex--;
-						$('.noData_hasFriends').eq(pageIndex).fadeIn();
-						pageTwo();
-					} else if (pageIndex === 2) {
 						$('.noData_hasFriends').eq(pageIndex).fadeOut();
 						pageIndex--;
 						$('.noData_hasFriends').eq(pageIndex).fadeIn();
@@ -271,11 +260,6 @@ $(function(){
 						$('.hasData_hasfriends').eq(pageIndex).fadeOut();
 						pageIndex--;
 						$('.hasData_hasfriends').eq(pageIndex).fadeIn();
-						pageTwo();
-					} else if (pageIndex === 2) {
-						$('.hasData_hasfriends').eq(pageIndex).fadeOut();
-						pageIndex--;
-						$('.hasData_hasfriends').eq(pageIndex).fadeIn();
 						pageThree();
 					} else {
 						$('.bill').removeClass('active');
@@ -291,11 +275,6 @@ $(function(){
 					if (pageIndex === 0) {
 						return false;
 					}else if(pageIndex === 1){
-						$('.hasData_nofriends').eq(pageIndex).fadeOut();
-						pageIndex--;
-						$('.hasData_nofriends').eq(pageIndex).fadeIn();
-						pageTwo();
-					} else if (pageIndex === 2) {
 						$('.hasData_nofriends').eq(pageIndex).fadeOut();
 						pageIndex--;
 						$('.hasData_nofriends').eq(pageIndex).fadeIn();
@@ -324,8 +303,8 @@ $(function(){
 			},1000)
 			if (!isData) { // 没有记录的用户跳转
 				if (!isFriends) {
-					// 没有记录的用户并且没有邀请好友跳转$('.noData_noFriends')一共3个模块
-					if(pageIndex === 2){
+					// 没有记录的用户并且没有邀请好友跳转$('.noData_noFriends')一共2个模块
+					if(pageIndex === 1){
 						return false
 					}else{
 						if (pageIndex == 0) {
@@ -345,8 +324,8 @@ $(function(){
 						}
 					}
 				}else{
-					// 没有记录的用户但是有邀请好友跳转$('.noData_hasFriends')一共4个模块
-					if(pageIndex === 3){
+					// 没有记录的用户但是有邀请好友跳转$('.noData_hasFriends')一共3个模块
+					if(pageIndex === 2){
 						return false
 					}else{
 						if (pageIndex == 0) {
@@ -367,8 +346,8 @@ $(function(){
 				}
 			} else{
 				if (isFriends) {
-					//$('.hasData_hasfriends')有记录并且有邀请好友一共8个模块
-					if(pageIndex === 7){
+					//$('.hasData_hasfriends')有记录并且有邀请好友一共7个模块
+					if(pageIndex === 6){
 						return false
 					} else {
 						if (pageIndex == 0) {
@@ -387,8 +366,8 @@ $(function(){
 						}
 					}
 				}else{
-					//$('.hasData_nofriends')有记录但是没有邀请好友一共7个模块
-					if(pageIndex === 6){
+					//$('.hasData_nofriends')有记录但是没有邀请好友一共6个模块
+					if(pageIndex === 5){
 						return false
 					} else {
 						if (pageIndex == 0) {
