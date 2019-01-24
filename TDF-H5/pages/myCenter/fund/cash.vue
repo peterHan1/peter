@@ -1,6 +1,11 @@
 <template>
   <div class="cashBox">
-    <td-header title="提现"/>
+    <td-header 
+      title="提现" 
+      rightTxt="提现记录"
+      @navRightFn="navRightFn">
+      <span>充值记录</span>
+    </td-header>
     <div class="bankTop">
       <span>到账银行</span>
       <span>中国工商银行(尾号3720)</span>
@@ -141,9 +146,12 @@ export default {
     },
     maintainSub() {
       this.cashMaintain = false
+      this.speedAllow = false
+    },
+    navRightFn() {
+      this.$router.push({ path: '/myCenter/fund/cashRecord' })
     }
-  },
-  components: {}
+  }
 }
 </script>
 
@@ -158,12 +166,10 @@ export default {
       padding: 0 30px
       font-size: $fontsize-medium 
       background-color: $color-white
-      overflow: hidden
-      span:nth-child(1)
-        color: $color-gray1
-        float: left
+      color: $color-gray1
+      display: flex
+      justify-content: space-between
       span:nth-child(2)
-        float: right
         color: $color-gray3
     .inp_money
       background-color: $color-white

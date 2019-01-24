@@ -1,71 +1,36 @@
-// import { request } from "http";
+import TDUI from '~/components/src/index'
 
 const createError = (code, msg) => {
   const err = new Error(msg)
   err.code = code
   return err
 }
-
 export default function({ $axios, redirect }) {
   $axios.defaults.timeout = 10000
   $axios.onRequest(config => {
+    TDUI.load.Load()
+    // testFn('请求中')
+    // if (process.browser) {
+    //   vm.$loading()
+    // }
     console.log('Making request to ' + config.url)
+    // console.log(config.data)
   })
   $axios.onResponse(res => {
-    // return res
-    if (res.data.code === 100000) {
-      return res.data
-    }
-    if (res.data.code === 100001) {
-      return Promise.reject(createError(res.data.code, res.data.msg))
-    }
+    TDUI.load.Close()
     // return res
     // console.log(res)
+    // testFn('请求完')
+    // this.$Msg('这是错误信息', 2000)
+    if (res.data.code !== 100000) {
+      return Promise.reject(createError(res.data.code, res.data.msg))
+    }
+    return res
   })
-  $axios.onError(error => {
-    // console.log(error)
-    // if (error === 100001) {
-    //   alert('xxx')
-    // }
-    // if()
-    // const code = parseInt(error.response && error.response.status)
-    // // console.log(error.response.status)
-    // switch (code) {
-    //   case 400:
-    //     redirect('/errors/nofound')
-    //     break
-    //   case 500:
-    //     redirect('/errors/server')
-    //     break
-    //   case 333:
-    //     console.log('xxxx')
-    //   default:
-    //     console.log('未知错误')
-    // }
+  $axios.onError(err => {
+    TDUI.load.Close()
+    const errInfo = `错误号： ${err.code};错误信息：${err.message}`
+    TDUI.Msg(err.message)
+    console.log(errInfo)
   })
 }
-
-// export const xx = async function({ $axios }) {
-//   const ip = await $axios.get('http://icanhazip.com')
-//   console.log(11111)
-// }
-// 发送请求
-// export default function(app) {
-//   let axios = app.$axios
-//   // // 基本配置
-//   // axios.defaults.timeout = 10000
-//   // axios.defaults.headers.post['Content-Type'] =
-//   //   'application/x-www-form-urlencoded'
-//   // // 请求回调
-//   axios.onRequest(config => {
-//     console.log(config)
-//   })
-//   // // 返回回调
-//   // axios.onResponse(res => {
-//   //   console.log(res)
-//   // })
-//   // // 错误回调
-//   // axios.onError(error => {
-//   //   console.log(error)
-//   // })
-// }

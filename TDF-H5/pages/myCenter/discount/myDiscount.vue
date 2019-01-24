@@ -2,17 +2,30 @@
   <div class="discountBox">
     <td-header title="我的优惠券"/>
     <div class="listTab">
-      <span :class="tabCom === 'Interest'?'on':''" >
-        <b @click="tabFn('Interest')">加息券</b>
-      </span>
-      <span :class="tabCom === 'Voucher'?'on':''" >
-        <b @click="tabFn('Voucher')">抵用券</b>
-      </span>
-     
+      <cube-tab-bar
+        ref="tabNav"
+        v-model="selectedLabel"
+        :use-transition="disabled"
+        :data="tabLabels"
+        show-slider/>
     </div>
-    <div :is="tabCom"/>
-    <div class="discountBottom">
-      <span @click="downApp">查看已使用</span> | <span @click="downApp">已失效</span>
+    <div class="tab-slide-container">
+      <cube-slide
+        ref="slide"
+        :loop="loop"
+        :initial-index="initialIndex"
+        :auto-play="autoPlay"
+        :options="slideOptions"
+        @scroll="scroll"
+        @change="changePage"
+      >
+        <cube-slide-item>
+          <Interest/>
+        </cube-slide-item>
+        <cube-slide-item>
+          <Voucher/>
+        </cube-slide-item>
+      </cube-slide>
     </div>
   </div>
 </template>
@@ -20,14 +33,31 @@
 <script>
 import Interest from './src/interest-list.vue'
 import Voucher from './src/voucher-list.vue'
-
+import { findIndex } from '~/components/src/common/util.js'
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
-      tabCom: 'Interest'
+      selectedLabel: '加息券',
+      disabled: false,
+      tabLabels: [
+        {
+          label: '加息券'
+        },
+        {
+          label: '抵用券'
+        }
+      ],
+      loop: false,
+      autoPlay: false,
+      showDots: false,
+      slideOptions: {
+        listenScroll: true,
+        probeType: 3,
+        directionLockThreshold: 0
+      },
+      scrollOptions: {
+        directionLockThreshold: 0
+      }
     }
   },
   mounted() {},
@@ -35,8 +65,25 @@ export default {
     tabFn(com) {
       this.tabCom = com
     },
-    downApp() {
-      this.$App('请在电脑端登录官网或在APP端查看')
+    changePage(current) {
+      this.selectedLabel = this.tabLabels[current].label
+    },
+    scroll(pos) {
+      const x = Math.abs(pos.x)
+      const tabItemWidth = this.$refs.tabNav.$el.clientWidth
+      const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
+      const deltaX = (x / slideScrollerWidth) * tabItemWidth
+      this.$refs.tabNav.setSliderTransform(deltaX)
+    }
+  },
+  computed: {
+    initialIndex() {
+      let index = 0
+      index = findIndex(
+        this.tabLabels,
+        item => item.label === this.selectedLabel
+      )
+      return index
     }
   },
   components: {
@@ -48,39 +95,28 @@ export default {
 
 <style lang="stylus" scoped>
   .discountBox
-    width: 100%
-    padding: 88px 0 50px
-    .discountBottom
-      font-size: $fontsize-small-ss
-      color: $color-gray4
-      text-align: center
-      margin-top: 60px
-      span
-        color: $color-primary
-        margin: 0 40px
+    padding-top: 88px
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
     .listTab
-      display: flex
+      line-height: 88px
       background-color: $color-white
-      span
-        flex: 1
-        text-align: center
-        font-size: $fontsize-large-xx
-        color: $color-gray3
-        line-height: 88px
-        b
-          display: inline-block
-          position: relative
-      .on
-        color: $color-primary
-        b:after
-          content: ''
-          display: block
-          width: 60px
-          height: 6px
-          background-color: $color-primary
-          position: absolute
-          bottom: 0
-          left: 50%
-          transform: translateX(-50%)
-          border-radius: 10px    
+      position: absolute
+      top: 88px
+      left: 0
+      right: 0
+      /deep/ .cube-tab-bar-slider
+        width: 50px
+        margin-left: 22%
+        height: 6px
+        border-radius: 3px
+    .tab-slide-container
+      position: absolute
+      top: 176px
+      left: 0
+      right: 0
+      bottom: 0
 </style>

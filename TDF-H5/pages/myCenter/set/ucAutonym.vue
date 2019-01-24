@@ -55,18 +55,14 @@ export default {
       background-color: $color-white
       li
         border-bottom: 1px solid $color-gray5
-        overflow: hidden
-        height: 100px
+        line-height: 100px
+        display: flex
+        justify-content: space-between
         span
           font-size: $fontsize-medium
-          display: block
-          line-height: 100px
-        span:nth-child(1)
           color: $color-gray1
-          float: left
         span:nth-child(2)
           color: $color-gray3 
-          float: right
       li:last-child
         border: none
 </style>

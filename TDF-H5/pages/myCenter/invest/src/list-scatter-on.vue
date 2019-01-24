@@ -1,5 +1,8 @@
 <template>
-  <div class="bondList">
+  <cube-scroll
+    :options="options"
+    @pulling-down="onPullingDown"
+    @pulling-up="onPullingUp">
     <ul>
       <li>
         <router-link to="/myCenter/invest/scatterDetails" >
@@ -32,64 +35,82 @@
         </router-link>
       </li>
     </ul>
-  </div>
+  </cube-scroll>
+  <!-- <div class="data-status">
+    <data-status
+      status="null"
+      statusTxt="暂无内容"/>
+  </div> -->
 </template>
 
 <script>
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
-      tabCom: 'Scatter'
+      options: {
+        pullDownRefresh: {
+          threshold: 60,
+          stopTime: 1000,
+          txt: '更新成功'
+        },
+        pullUpLoad: true,
+        directionLockThreshold: 0,
+        beforePullDown: true
+      }
     }
   },
   mounted() {},
-  methods: {},
+  methods: {
+    onPullingDown() {
+      console.log(111)
+    },
+    onPullingUp() {
+      console.log(222)
+    }
+  },
   components: {}
 }
 </script>
 
 <style lang="stylus" scoped>
-.bondList
-  li
-    background-color: $color-white
-    margin-top: 20px
-    padding: 0 30px
-    p
-      font-size: $fontsize-medium
-      color: $color-gray1
-      overflow: hidden
-      line-height: 80px
-      i
-        color: $color-gray2
-      b
-        font-size: $fontsize-small-ss
-      span:nth-child(1)
-        float: left
-      span:nth-child(2)
-        float: right
-    p:nth-child(1)
-      span:nth-child(2)
-        color: $color-gray3
-    p:nth-child(3)
+li
+  background-color: $color-white
+  margin-top: 20px
+  padding: 0 30px
+  p
+    font-size: $fontsize-medium
+    color: $color-gray1
+    line-height: 80px
+    display: flex
+    justify-content: space-between
+    i
+      color: $color-gray2
+    b
       font-size: $fontsize-small-ss
+  p:nth-child(1)
+    span:nth-child(2)
       color: $color-gray3
-      border-top: 1px solid $color-gray5
-    div
-      padding-bottom: 20px
-      p:nth-child(1)
-        line-height: 50px
-        span:nth-child(1)
-          font-size: $fontsize-large-xxxxx
-          color: $color-primary
-        span:nth-child(2)
-          font-size: $fontsize-large-xxx
-          color: $color-gray1
-      p:nth-child(2)
-        margin-top: 5px
-        line-height: 33px
-        font-size: $fontsize-small-ss
-        color: $color-gray4
+  p:nth-child(3)
+    font-size: $fontsize-small-ss
+    color: $color-gray3
+    border-top: 1px solid $color-gray5
+  div
+    padding-bottom: 20px
+    p:nth-child(1)
+      line-height: 50px
+      span:nth-child(1)
+        font-size: $fontsize-large-xxxxx
+        color: $color-primary
+      span:nth-child(2)
+        font-size: $fontsize-large-xxx
+        color: $color-gray1
+    p:nth-child(2)
+      margin-top: 5px
+      line-height: 33px
+      font-size: $fontsize-small-ss
+      color: $color-gray4
+.data-status
+  position: absolute
+  left: 15%
+  top: 15%
 </style>

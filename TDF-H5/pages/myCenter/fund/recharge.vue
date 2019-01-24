@@ -1,6 +1,9 @@
 <template>
   <div class="recharge">
-    <td-header title="充值"/>
+    <td-header 
+      title="充值"
+      rightTxt="充值记录"
+      @navRightFn="navRightFn"/>
     <div>
       <ul>
         <li>
@@ -27,7 +30,7 @@
         <td-button
           :disabled="moneyVal >= 100 ?false:true"
           value="充值"
-          @click="subBth"
+          @btnFn="subBtn"
         />  
       </div>
       <div class="txt">
@@ -48,7 +51,10 @@ export default {
   mounted() {},
   methods: {
     navRightFn() {
-      this.$router.push({ path: '/rachargeRecord' })
+      this.$router.push({ path: '/myCenter/fund/rachargeRecord' })
+    },
+    subBtn() {
+      console.log('充值')
     }
   },
   components: {}
@@ -86,6 +92,8 @@ export default {
         padding: 0 30px
         height: 148px
         .inputMoney
+          display: flex
+          align-items: center
           border-bottom: 1px solid $color-gray5
           i
             font-size: $fontsize-large-xxxxxxxxx

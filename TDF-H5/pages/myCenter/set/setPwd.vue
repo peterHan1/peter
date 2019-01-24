@@ -40,16 +40,14 @@ export default {
       padding: 0 30px
       background-color: $color-white
       li
-        overflow: hidden
         border-bottom: 1px solid $color-gray5
         font-size: $fontsize-medium
+        display: flex
+        justify-content: space-between
+        line-height: 100px
         span
-          display: block
-          line-height: 100px
-          float: left
           color: $color-gray1
         span:nth-child(2)
-          float: right
           color: $color-gray3
       li:last-child
         border: none

@@ -15,11 +15,9 @@
         </router-link>
       </li>
       <li @click="downApp">
-        <!-- <router-link to="/bankCard"> -->
         <span>我的银行卡号</span>
         <span>建设银行 尾号6666 <i class="iconfont">&#xe6f2;</i></span>
         <!-- <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span> -->
-        <!-- </router-link> -->
       </li>
       <li>
         <span>绑定手机号</span>
@@ -64,25 +62,45 @@
         </router-link>
       </li>
     </ul>
-    <div class="getOut">安全退出</div>
+    <div 
+      class="getOut" 
+      @click="getOut">安全退出</div>
+    <Layer 
+      v-show="out" 
+      close="残忍退出" 
+      submit="留在这里" 
+      @on-close="outFn()" 
+      @on-sub="close()" >
+      <div class="out_txt">你确定要离开拓道金服吗？</div>
+    </Layer>
   </div>
 </template>
 
 <script>
+import { loginOut } from '~/plugins/api.js'
+
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
-    return {}
+    return {
+      out: false
+    }
   },
   mounted() {},
   methods: {
-    navLeftFn() {
-      this.$router.push({ path: '/myCenter' })
-    },
     downApp() {
-      this.$App('请在电脑端登录官网或在APP端找更换银行卡', 'brow')
+      this.$App('请在电脑端登录官网或在APP端找更换银行卡')
+    },
+    outFn() {
+      // let phone = JSON.parse(localStorage.getItem('phone'))
+      loginOut(this.$axios, '18539123455').then(res => {
+        console.log(res)
+      })
+    },
+    getOut() {
+      this.out = true
+    },
+    close() {
+      this.out = false
     }
   },
   components: {}
@@ -98,22 +116,20 @@ export default {
       margin-top: 20px
       li
         border-bottom: 1px solid $color-gray5
-        overflow: hidden
+        display: flex
+        justify-content: space-between
         a
-          display: block
           width: 100%
           height: 100%
-          overflow: hidden
+          display: flex
+          justify-content: space-between
         span
           font-size: $fontsize-medium
-          display: block
           line-height: 100px
         span:nth-child(1)
           color: $color-gray1
-          float: left
         span:nth-child(2)
           color: $color-gray3
-          float: right
         i
           font-size: $fontsize-large-xxx
           color: $color-gray3
@@ -129,4 +145,9 @@ export default {
       background-color: $color-white
       text-align: center
       margin-top: 20px
+    .out_txt
+      text-align: center
+      font-size: $fontsize-medium 
+      color: $color-gray1
+      padding: 48px 40px 21px
 </style>

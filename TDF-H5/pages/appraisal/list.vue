@@ -1,8 +1,10 @@
 <template>
   <div class="box">
     <header class="outHeader">
-      <span class="iconfont">&#xe6fe;</span>
-      <b>退出</b>
+      <div>
+        <span class="iconfont">&#xe6fe;</span>
+        <b>退出</b>
+      </div>
       <span>风险测评</span>
     </header>
     <div 
@@ -227,15 +229,16 @@ export default {
       font-size: $fontsize-large-xxx
       color: $color-gray1
       border-bottom: 0.01rem solid $color-gray5
-      .iconfont
-        font-size: $fontsize-large-xxxxxxxx
+      div
         position: absolute
         left: 15px
-      b
-        font-size: $fontsize-large-x 
-        color: $color-gray2
-        position: absolute
-        left: 65px
+        display: flex
+        .iconfont
+          font-size: $fontsize-large-xxxxxxxx
+        b
+          font-size: $fontsize-medium
+          color: $color-gray2
+          margin-left: -15px
     .dis_no
       display: none
     .tlt

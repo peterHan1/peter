@@ -60,26 +60,14 @@ export default {
         width: 100%
         border-bottom: 1px solid $color-gray5
         font-size: $fontsize-medium
-        overflow: hidden
         padding-right: 30px
-        span:nth-child(1)
-          display: block
-          float: left
-          color: $color-gray1
-          line-height: 100px
+        color: $color-gray1
+        display: flex
+        justify-content: space-between
+        line-height: 100px
         span:nth-child(2)
-          display: block
-          float: right
           color: $color-gray3
-          line-height: 100px
-        i
-          display: block
-          float: right
-          line-height: 100px
         a
-          display: block
-          float: right
-          line-height: 100px
           color: $color-primary
       li:nth-child(3)
         display: flex

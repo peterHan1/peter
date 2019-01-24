@@ -136,19 +136,17 @@
 </template>
 <script>
 export default {
-  data() {
-    return {}
-  },
-  mounted() {},
   methods: {
     returnLogin() {
-      this.$router.push({ path: '/login' })
+      this.$router.push({ path: '/user/login' })
     },
     returnRegister() {
-      this.$router.push({ path: '/user/register' })
+      this.$router.push({
+        name: 'user-register',
+        params: { phone: this.$route.params.phone }
+      })
     }
-  },
-  components: {}
+  }
 }
 </script>
 <style lang="stylus" scoped>

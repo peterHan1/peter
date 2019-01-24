@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <td-header title="登录/注册"/>
     <ul>
       <li>账号</li>
@@ -22,19 +22,17 @@
       :disabled="disabled"
       :class="{'btno':!disabled}"
       @click="submit">下一步</button>
+    <div class="ps">拓道金服承诺不会泄露您的个人信息</div>
   </div>
 </template>
 <script>
-import { orRegister } from '../../plugins/api.js'
-// import tt from '../../plugins/test.js'
-import md5 from 'md5'
+import { orRegister } from '~/plugins/api.js'
 export default {
   data() {
     return {
       isShow: false,
       iphone: '',
       disabled: true
-      // test: list
     }
   },
   methods: {
@@ -48,37 +46,43 @@ export default {
     submit() {
       const myreg = /^[1][3,4,5,7,8][0-9]{9}$/
       if (!myreg.test(this.iphone)) {
-        alert('手机号输入有误')
+        this.$Msg('请输入正确的手机号码', 2000)
         return
       }
       orRegister(this.$axios, this.iphone).then(res => {
-        if (res.content.type === 'register') {
-          console.log(res)
-          this.$router.replace('/user/registerAgreement')
+        if (res.data.content.type === 'register') {
+          this.$router.push({
+            name: 'user-registerAgreement',
+            params: { phone: this.iphone }
+          })
+        }
+        if (res.data.content.type === 'login') {
+          this.$router.push({
+            name: 'user-loginPwd',
+            params: {
+              phone: this.iphone
+            }
+          })
         }
       })
     },
     oninput(e) {
-      // this.isShow = true
-      // if (this.iphone == '') this.isShow = false
+      this.isShow = true
+      if (this.iphone == '') this.isShow = false
       this.iphone = e.target.value.replace(/[^\d]/g, '')
       if (this.iphone.length >= 11) {
-        this.isShow = false
         this.disabled = false
         this.iphone = this.iphone.slice(0, 11)
       }
     }
   },
-  created() {
-    // this.onload()
-    // const pwd = md5('123123')
-    // this.fetchSomething()
-    // mo.getxia(this.$axios, 13500000486, pwd)
-  }
+  created() {}
 }
 </script>
 <style lang="stylus" scoped>
 // input
+.login
+  padding-top: 88px
 ul
   display: flex
   width: 100%
@@ -136,4 +140,9 @@ button
   margin: 52px 30px 0 30px
   &.btno
     background: $color-primary
+.ps
+  font-size: $fontsize-small-ss
+  color: $color-gray3
+  text-align: center
+  margin-top: 30px
 </style>

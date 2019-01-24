@@ -10,11 +10,12 @@ html
   margin 0
   padding 0
   -webkit-text-size-adjust 100%
-  font-family: "PingFang SC","Helvetica Neue",-apple-system, Helvetica, STHeiTi, sans-serif;
-  -webkit-tap-highlight-color rgba(0, 0, 0, 0);
+  font-family: "PingFang SC",miui,Helvetica Neue,Helvetica,sans-serif
+  // "Helvetica Neue", sans-serif, "PingFang SC"
+  -webkit-tap-highlight-color rgba(0, 0, 0, 0)
   font-size 13.33vw
   background: $color-background
-  line-height: 1
+  // line-height: 1
 body
   width 100%
   height 100%
@@ -23,7 +24,9 @@ body
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, sumary, i, span
   margin 0
   padding 0
-//清除输入框内阴影
+input[checked]
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+// 清除输入框内阴影
 input, select, textarea, button
   border 0
   border-radius: 0
@@ -44,6 +47,14 @@ input:-ms-input-placeholder
   color: $color-gray4
   font-size: $fontsize-medium
 
+  // line-height: 1
+input
+  // width: 100%
+  // height:25px;
+  // font-size:26px;
+  display:block;
+  font-size: 28px
+  line-height: 1
 ol, ul
   list-style: none
 i, em
@@ -75,12 +86,12 @@ a,button,input,textarea
 
 @font-face {
   font-family: 'iconfont';  /* project id 985099 */
-  src: url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.eot');
-  src: url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.woff') format('woff'),
-  url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_985099_fzs0ni0sad6.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.eot');
+  src: url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.woff') format('woff'),
+  url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_985099_9lbwjhqwiu.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family:"iconfont" !important;

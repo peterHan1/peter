@@ -1,7 +1,7 @@
 <template>
   <div class="myCenter">
     <div class="my_nav">
-      <div><span/><span class="vip0"/></div>
+      <div><span/><span :class="'vip' + content.level"/></div>
     </div>
     <div class="my_box">
       <div class="myCenter_top">
@@ -14,7 +14,7 @@
           <div class="user_earnings">
             <div class="earnings">
               <p>待收本息(元)</p>
-              <p v-if="moneyShow">123,456,78.00</p>
+              <p v-if="moneyShow">{{ content.accountWait }}</p>
               <p v-else>******</p>
             </div>
             <div class="showIcon">
@@ -29,16 +29,16 @@
             </div>
           </div>
           <div class="user_asset">
-            <router-link to="totalMoney">
+            <div @click="downappFn">
               <p>总资产(元) <i class="iconfont">&#xe6ba;</i> </p>
-              <p v-if="moneyShow">331.00</p>
+              <p v-if="moneyShow">{{ content.total }}</p>
               <p v-else>****</p>
-            </router-link>
-            <router-link to="totalIncome">
+            </div>
+            <div @click="downappFn">
               <p>累计收益(元) <i class="iconfont">&#xe6ba;</i> </p>
-              <p v-if="moneyShow">123,45.00</p>
+              <p v-if="moneyShow">{{ content.tenderInterestYes }}</p>
               <p v-else>****</p>
-            </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
         <div class="money_bot">
           <div>
             <p>可用余额(元)</p>
-            <p>123,456,78.00</p>
+            <p>{{ content.cashBalance }}</p>
           </div>
           <div>
             <router-link to="/myCenter/fund/cash" >提现</router-link>
@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import { myBankAssets } from '../../plugins/api.js'
+
 export default {
   metaInfo: {
     title: '拓道金服'
@@ -116,16 +118,26 @@ export default {
   data() {
     return {
       moneyShow: true,
-      login: false
+      login: false,
+      id: '',
+      content: ''
     }
   },
-  mounted() {},
+  mounted() {
+    myBankAssets(this.$axios).then(res => {
+      this.content = res.data.content
+      console.log(this.content)
+    })
+  },
   methods: {
     moneyHide() {
       this.moneyShow = !this.moneyShow
     },
     downApp() {
       this.$App('请在电脑端登录官网或在APP端查看')
+    },
+    downappFn() {
+      this.$App('请在APP端查看')
     }
   },
   components: {}
@@ -222,7 +234,7 @@ export default {
               line-height: 33px
               letter-spacing: 1px
             p:nth-child(2)
-              font-size: $fontsize-large-xxxxxxx
+              font-size: $fontsize-large-xxxxxxxx
               color: $color-white
               line-height: 78px
           .showIcon
@@ -233,7 +245,7 @@ export default {
         .user_asset
           display: flex
           margin-top: 36px
-          a
+          div
             flex: 1
             p:nth-child(1)
               font-size: $fontsize-small-ss
@@ -246,7 +258,7 @@ export default {
                 color: $color-white
                 margin-left: 10px
             p:nth-child(2)
-              font-size: $fontsize-large-xxxxx
+              font-size: $fontsize-large-xxxxxx
               color: $color-white
               line-height: 48px
               margin-top: 20px

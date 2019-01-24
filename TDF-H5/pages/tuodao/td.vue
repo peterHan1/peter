@@ -1,7 +1,9 @@
 <template>
   <div class="index_box">
     <div class="index_top">
-      <!-- <Banner :banner-img="imgArr" class="banner"></Banner> -->
+      <div class="banner">
+        <cube-slide :data="imgArr"/>
+      </div>
       <div class="oper_box">
         <ul class="oper_list">
           <li>
@@ -138,14 +140,35 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      imgArr: [
+        {
+          url: 'www.51tuodao.com',
+          image:
+            'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/10/106102_scrollpic_new_1547083167912.png'
+        },
+        {
+          url: 'www.51tuodao.com',
+          image:
+            'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/02/161777_scrollpic_new_1546391852265.png'
+        },
+        {
+          url: 'www.51tuodao.com',
+          image:
+            'https://www.51tuodao.com/upload/data/upfiles/images/2018-12/22/106102_scrollpic_new_1545453442803.png'
+        }
+      ]
+    }
   },
   mounted() {},
   methods: {
     downApp() {
-      console.log(666)
+      this.$App(
+        '<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>'
+      )
     }
-  }
+  },
+  components: {}
 }
 </script>
 
@@ -165,6 +188,20 @@ export default {
       left: 0
       right: 0
       height: 54%
+      /deep/ img 
+        width: 100%
+        height: 100%
+      /deep/ .cube-slide-dots
+        bottom: 30px
+        span
+          width: 16px
+          height: 16px
+          background-color: #fff
+          opacity: 0.5
+          border-radius: 100%
+          margin-right: 13px
+        .active
+          opacity: 1  
     .oper_box
       position: absolute
       left: 0

@@ -21,9 +21,6 @@
 import Scatter from './src/list-scatter.vue'
 import Sift from './src/list-sift.vue'
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
       tabCom: 'Scatter'
@@ -47,7 +44,11 @@ export default {
 
 <style lang="stylus" scoped>
   .myInvest
-    width: 100%
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
     padding-top: 88px
     .tabHeader
       width: 100%
