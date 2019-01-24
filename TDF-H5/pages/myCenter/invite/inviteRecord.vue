@@ -101,13 +101,10 @@ export default {
     }
   },
   mounted() {
-    // this.$store.dispatch('myCenter/setuserFn')
-    // const params = {
-    //   accessId: this.$store.state.myCenter.accessId,
-    //   accessKey: this.$store.state.myCenter.accessKey
-    // }
     prizeRecord(this.$axios).then(res => {
-      this.content = res.data.content
+      if (res) {
+        this.content = res.data.content
+      }
     })
   },
   methods: {

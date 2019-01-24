@@ -79,7 +79,9 @@ export default {
       page: this.page
     }
     inviteFriendList(this.$axios, params).then(res => {
-      this.content = res.data.content
+      if (res) {
+        this.content = res.data.content
+      }
     })
   },
   methods: {

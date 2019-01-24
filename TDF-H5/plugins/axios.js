@@ -28,9 +28,9 @@ export default function({ $axios, redirect }) {
     return res
   })
   $axios.onError(err => {
-    TDUI.load.Close()
     const errInfo = `错误号： ${err.code};错误信息：${err.message}`
-    TDUI.Msg(err.message)
-    console.log(errInfo)
+    // TDUI.Msg(err.message)
+    TDUI.load.Close()
+    console.log(err.message)
   })
 }

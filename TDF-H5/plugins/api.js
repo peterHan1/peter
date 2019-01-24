@@ -1,18 +1,18 @@
-import Axios from './axios'
-import { reject } from 'q'
-// console.log(this)
-// console.log(Axios.$axios)
 const timestamp = Math.round(new Date() / 1000)
 const commenParams = {
   deviceType: 'iPhone 5',
   version: '1.0.0',
   type: 'h5',
-  accessId: '1058318748AC3E69B36DC57F62B4C10F',
   timestamp: timestamp,
-  accessKey: 'yzflzme2owm1oty1ogiwzwnjnmrhngvlndzhn2jimmm='
+  accessId: '',
+  accessKey: ''
 }
 const handleReq = reqst => {
-  return reqst.catch(err => {})
+  commenParams.accessId = JSON.parse(localStorage.getItem('user')).accessId
+  commenParams.accessKey = JSON.parse(localStorage.getItem('user')).accessKey
+  return reqst.catch(err => {
+    console.log('捕获到了错误: ' + err)
+  })
 }
 
 // 判断用户是否注册
