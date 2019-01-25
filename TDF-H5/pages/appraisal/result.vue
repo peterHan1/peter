@@ -1,18 +1,20 @@
 <template>
   <div class="resule">
     <header class="outHeader">
-      <span class="iconfont">&#xe6fe;</span>
-      <b>退出</b>
+      <div @click="outAppraisal">
+        <span class="iconfont">&#xe6fe;</span>
+        <b>退出</b>
+      </div>
       <span>风险测评</span>
     </header>
     <p class="resule_txt">您的评估结果为</p>
     <div class="resule_com">
-      <p>谨慎型</p>
+      <p>{{ txt }}</p>
     </div>
-    <p class="resule_time">测评结果有效期截止至2018年12月18日</p>
+    <p class="resule_time">测评结果有效期截止至{{ time }}</p>
     <div class="resule_accom">
       <router-link 
-        to="/ucSet" 
+        to="/myCenter/set/ucSet" 
         class="resule_btn">完成</router-link>
     </div>
     <router-link 
@@ -21,21 +23,57 @@
     <router-link 
       to="/appraisal/explain" 
       class="resule_rest">测评说明</router-link>
+    <Layer 
+      v-show="layerShow" 
+      close="确定" 
+      submit="继续评测" 
+      @on-close="codeClose()" 
+      @on-sub="codeSub()" >
+      <span class="quitHint">本次风险测评还未完成，退出后将不保存当前进度，确定退出吗？</span>
+    </Layer>
   </div>
 </template>
 
 <script>
+import { getEvaluationInfo } from '../../plugins/api.js'
+
 export default {
   data() {
-    return {}
+    return {
+      txt: '',
+      time: '',
+      layerShow: false
+    }
   },
-  mounted() {},
+  mounted() {
+    getEvaluationInfo(this.$axios).then(res => {
+      if (res) {
+        this.txt = res.data.content.evaluationScoreMsg
+        this.time = res.data.content.evaluationTime
+      }
+    })
+  },
   methods: {
+    outAppraisal() {
+      this.layerShow = true
+    },
+    codeClose() {
+      this.$router.push({
+        name: 'myCenter-set-ucSet'
+      })
+    },
+    codeSub() {
+      this.layerShow = false
+    },
     navLeftFn() {
-      this.$router.push({ path: '/ucSet' })
+      this.$router.push({
+        name: 'myCenter-set-ucSet'
+      })
     },
     navRightFn() {
-      this.$router.push({ path: '/appraisal/explain' })
+      this.$router.push({
+        name: 'appraisal-explain'
+      })
     }
   },
   components: {}
@@ -108,4 +146,10 @@ export default {
       background-size: 100% 100%
       p
         font-weight: bold
+    .quitHint
+      display: block
+      font-size: $fontsize-small-s
+      color: $color-gray2 
+      padding: 30px 30px 10px
+      line-height: 40px       
 </style>

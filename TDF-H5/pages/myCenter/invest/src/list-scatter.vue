@@ -26,7 +26,7 @@
         </cube-slide-item>
       </cube-slide>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>

@@ -26,13 +26,14 @@
         </cube-slide-item>
       </cube-slide>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
 import SiftOn from './list-sift-on.vue'
 import SiftYet from './list-sift-yet.vue'
 import { findIndex } from '~/components/src/common/util.js'
+
 export default {
   data() {
     return {

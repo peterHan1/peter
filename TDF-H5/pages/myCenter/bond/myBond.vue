@@ -20,6 +20,7 @@
 
 <script>
 import { findIndex } from '~/components/src/common/util.js'
+
 export default {
   data() {
     return {

@@ -140,7 +140,7 @@ export default {
         const params = {
           phone: this.$route.params.phone,
           newPassword: md5(this.pwdTwo),
-          codeId: this.phoneCodeId,
+          codeId: this.phoneCodeId.toString(),
           codeNumber: this.phoneCode,
           imgCode: this.imgCode
         }

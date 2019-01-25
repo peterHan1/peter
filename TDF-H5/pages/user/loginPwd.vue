@@ -60,15 +60,20 @@ export default {
         remember: this.remember
       }
       login(this.$axios, params).then(res => {
-        var obj = {
-          accessId: res.data.content.accessId,
-          accessKey: res.data.content.accessKey
+        if (res) {
+          var obj = {
+            accessId: res.data.content.accessId,
+            accessKey: res.data.content.accessKey
+          }
+          obj = JSON.stringify(obj)
+          localStorage.setItem('user', obj)
+          this.$store.commit('myCenter/setPhone', {
+            phone: this.$route.params.phone
+          })
+          this.$router.push({
+            name: 'tuodao-td'
+          })
         }
-        obj = JSON.stringify(obj)
-        localStorage.setItem('user', obj)
-        this.$router.push({
-          name: 'tuodao-td'
-        })
       })
     },
     oninput(e) {

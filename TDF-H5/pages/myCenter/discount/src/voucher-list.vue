@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { getVoucherList } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -68,11 +70,27 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      item: 12,
+      page: 1
     }
   },
-  mounted() {},
+  mounted() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      let params = {
+        item: this.item,
+        page: this.page
+      }
+      getVoucherList(this.$axios, params).then(res => {
+        if (res) {
+          this.content = res.data.content.dataRows
+          console.log(this.content)
+        }
+      })
+    },
     onPullingDown() {
       console.log(111)
     },

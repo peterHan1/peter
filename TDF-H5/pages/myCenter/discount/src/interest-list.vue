@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import { allVoucher } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -57,11 +59,27 @@ export default {
         directionLockThreshold: 0,
         beforePullDown: true
       },
-      clickBlooe: true
+      clickBlooe: true,
+      item: 12,
+      page: 1
     }
   },
-  mounted() {},
+  mounted() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      let params = {
+        item: this.item,
+        page: this.page
+      }
+      allVoucher(this.$axios, params).then(res => {
+        if (res) {
+          this.content = res.data.content.dataRows
+          console.log(this.content)
+        }
+      })
+    },
     onPullingDown() {
       console.log(111)
     },

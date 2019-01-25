@@ -4,18 +4,19 @@
     <ul>
       <li>
         <span>业务授权</span>
-        <!-- <span>已授权</span> -->
-        <span>已过期 <router-link to="" >重新授权</router-link></span>
+        <span v-if="authStatus === 1">已授权</span>
+        <span v-if="authStatus === 2">已过期 <router-link to="" >重新授权</router-link></span>
       </li>
       <li>
         <span>授权金额 <i 
           class="iconfont" 
           @click="openLayer()">&#xe6f7;</i></span>
-        <span>10,000,000.00元</span>
+        <span>{{ authAmount }}元</span>
       </li>
       <li>
         <span>授权期限</span>
-        <span>2028-11-30到期</span>
+        <span v-if="authStatus === 1">{{ authTime }}到期</span>
+        <span v-if="authStatus === 2">已于{{ authTime }}到期</span>
       </li>
     </ul>
     <Layer 
@@ -26,16 +27,26 @@
 </template>
 
 <script>
+import { information } from '~/plugins/api.js'
+
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
-      layerShow: false
+      layerShow: false,
+      authAmount: '',
+      authTime: '',
+      authStatus: ''
     }
   },
-  mounted() {},
+  mounted() {
+    information(this.$axios).then(res => {
+      if (res) {
+        this.authAmount = res.data.content.authAmount
+        this.authTime = res.data.content.authTime
+        this.authStatus = res.data.content.authStatus
+      }
+    })
+  },
   methods: {
     openLayer() {
       this.layerShow = true

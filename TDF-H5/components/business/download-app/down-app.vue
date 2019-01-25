@@ -1,14 +1,14 @@
 <template>
-  <div 
-    v-if="show" 
+  <div
+    v-if="show"
     class="appBox">
-    <div 
-      v-if="types === 'wx'" 
+    <div
+      v-if="types === 'wx'"
       class="wx"/>
-    <div 
-      v-else 
+    <div
+      v-else
       class="appTxt">
-      <div class="txt"> 
+      <div class="txt">
         <div v-html="appTxt.content"/>
       </div>
       <div class="appBtn">
@@ -81,7 +81,7 @@ export default {
       z-index: 999
       width: 418px
       height: 278px
-      background: url(../../../assets/images/index/download-app.png) no-repeat
+      background: url(/assets/images/index/download-app.png) no-repeat
       background-size: 100% 100%
     .appBtn
       display: flex

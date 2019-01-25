@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div 
+    <div
       v-if="status === 'ok'"
       class="result">
       <div class="icon ok"/>
       <div class="txt">{{ resultTxt }}</div>
     </div>
-    <div 
-      v-if="status === 'load'" 
+    <div
+      v-if="status === 'load'"
       class="result">
       <div class="icon load"/>
       <div class="txt">{{ resultTxt }}</div>
     </div>
-    <div 
-      v-if="status === 'no'" 
+    <div
+      v-if="status === 'no'"
       class="result">
       <div class="icon no"/>
       <div class="txt">{{ resultTxt }}</div>
@@ -69,12 +69,12 @@ export default {
       border-radius: 35px
       font-size: $fontsize-large-x
   .ok
-    background: url(../../../assets/images/xw-bank/xw-ok.png) no-repeat
+    background: url(/assets/images/xw-bank/xw-ok.png) no-repeat
     background-size: 100% 100%
   .no
-    background: url(../../../assets/images/xw-bank/xw-no.png) no-repeat
+    background: url('/assets/images/xw-bank/xw-no.png') no-repeat
     background-size: 100% 100%
   .load
-    background: url(../../../assets/images/xw-bank/xw-load.png) no-repeat
+    background: url(/assets/images/xw-bank/xw-load.png) no-repeat
     background-size: 100% 100%
 </style>

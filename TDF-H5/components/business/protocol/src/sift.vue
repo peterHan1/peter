@@ -109,6 +109,6 @@ export default {
       top: -160px
       width: 230px
       height: 230px
-      background: url(../../../../assets/images/invest-list/gsgz.png) no-repeat
+      background: url(../../../assets/images/invest-list/gsgz.png) no-repeat
       background-size: 100% 100%
 </style>

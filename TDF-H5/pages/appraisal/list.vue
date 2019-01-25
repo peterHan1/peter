@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <header class="outHeader">
-      <div>
+      <div @click="outAppraisal">
         <span class="iconfont">&#xe6fe;</span>
         <b>退出</b>
       </div>
@@ -10,16 +10,16 @@
     <div 
       v-for="(item,index) in listTxt" 
       v-show="index==next" 
-      :key="item.value" 
+      :key="index" 
       class="subject">
       <div class="tlt">{{ item.quiz }}</div>
       <div class="select">
         <ul>
           <li 
             v-for="(lists,i) in item.list" 
-            :key="lists.value" 
-            @click="selectList($event, index, i)">
-            {{ lists }}
+            :key="i" 
+            @click="selectList($event, index, i, lists.num)">
+            {{ lists.txt }}
           </li>
         </ul>
       </div>
@@ -67,10 +67,9 @@
 </template>
 
 <script>
+import { evaluationSave } from '../../plugins/api.js'
+
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
       num: 0,
@@ -81,99 +80,226 @@ export default {
       layerShow: false,
       listTxt: [
         {
-          quiz: '1.您的年龄在以下哪个范围内？',
+          quiz: '1.您的年龄是？',
           list: [
-            'A、18~29岁',
-            'B、30~39岁',
-            'C、40~49岁',
-            'D、50~59岁',
-            'E、60岁以上'
+            {
+              num: 30,
+              txt: 'A、18~29岁'
+            },
+            {
+              num: 70,
+              txt: 'B、30~39岁'
+            },
+            {
+              num: 90,
+              txt: 'C、40~49岁'
+            },
+            {
+              num: 50,
+              txt: 'D、50~59岁'
+            },
+            {
+              num: 10,
+              txt: 'E、60岁以上'
+            }
           ]
         },
         {
           quiz: '2.您的职业是？',
           list: [
-            'A、无固定职业',
-            'B、自由职业者',
-            'C、离退休人员',
-            'D、一般企业员工',
-            'E、党政机关或事业单位员工'
+            {
+              num: 10,
+              txt: 'A、无固定职业'
+            },
+            {
+              num: 30,
+              txt: 'B、自由职业者'
+            },
+            {
+              num: 50,
+              txt: 'C、离退休人员'
+            },
+            {
+              num: 70,
+              txt: 'D、一般企业员工'
+            },
+            {
+              num: 90,
+              txt: 'E、党政机关或事业单位员工'
+            }
           ]
         },
         {
           quiz: '3.您的家庭年收入或个人年收入是？',
           list: [
-            'A、10万元以下',
-            'B、10万元（含）以上，20万元以下',
-            'C、20万元（含）以上，30万元以下',
-            'D、30万元（含）以上，40万元以下',
-            'E、40万元（含）以上'
+            {
+              num: 10,
+              txt: 'A、10万元以下'
+            },
+            {
+              num: 30,
+              txt: 'B、10万元（含）以上，20万元以下'
+            },
+            {
+              num: 50,
+              txt: 'C、20万元（含）以上，30万元以下'
+            },
+            {
+              num: 70,
+              txt: 'D、30万元（含）以上，40万元以下'
+            },
+            {
+              num: 90,
+              txt: 'E、40万元（含）以上'
+            }
           ]
         },
         {
           quiz: '4.您每年的收入可用作于金融投资（储蓄存款除外）的比例是？',
           list: [
-            'A、小于8%',
-            'B、8%（含）以上，25%以下',
-            'C、25%（含）以上，50%以下',
-            'D、50%（含）以上，75%以下',
-            'E、75%（含）以上'
+            {
+              num: 90,
+              txt: 'A、小于8%'
+            },
+            {
+              num: 70,
+              txt: 'B、8%（含）以上，25%以下'
+            },
+            {
+              num: 50,
+              txt: 'C、25%（含）以上，50%以下'
+            },
+            {
+              num: 30,
+              txt: 'D、50%（含）以上，75%以下'
+            },
+            {
+              num: 10,
+              txt: 'E、75%（含）以上'
+            }
           ]
         },
         {
-          quiz: '5.您能接受的投资期限是？',
+          quiz: '5.您能接受的出借期限是？',
           list: [
-            'A、1个月以内',
-            'B、1~3个月',
-            'C、3~6个月',
-            'D、6~12个月',
-            'E、12个月以上'
+            {
+              num: 10,
+              txt: 'A、1个月以内'
+            },
+            {
+              num: 30,
+              txt: 'B、1~3个月'
+            },
+            {
+              num: 50,
+              txt: 'C、3~6个月'
+            },
+            {
+              num: 70,
+              txt: 'D、6~12个月'
+            },
+            {
+              num: 90,
+              txt: 'E、12个月以上'
+            }
           ]
         },
         {
           quiz: '6.您的投资经验是？',
           list: [
-            'A、不具备投资经验或非常有限的投资经验',
-            'B、我有1~3年的投资经验，有一些理财意识',
-            'C、我有3~5年的投资经验，但希望能获得专业人士咨询',
-            'D、我有5年以上的投资经验，有自主理财能力'
+            {
+              num: 10,
+              txt: 'A、不具备投资经验或非常有限的投资经验'
+            },
+            {
+              num: 30,
+              txt: 'B、我有1~3年的投资经验，有一些理财意识'
+            },
+            {
+              num: 70,
+              txt: 'C、我有3~5年的投资经验，但希望能获得专业人士咨询'
+            },
+            {
+              num: 90,
+              txt: 'D、我有5年以上的投资经验，有自主理财能力'
+            }
           ]
         },
         {
           quiz: '7.您的投资偏好是？',
           list: [
-            'A、厌恶风险，不希望本金损失，希望获得稳定的回报',
-            'B、尽可能保证本金安全，不在乎收益率比较低',
-            'C、产生较多收益，可承担一定的投资风险',
-            'D、实现资产大幅增加，愿意承担很大的投资风险'
+            {
+              num: 10,
+              txt: 'A、厌恶风险，不希望本金损失，希望获得稳定的回报'
+            },
+            {
+              num: 30,
+              txt: 'B、尽可能保证本金安全，不在乎收益率比较低'
+            },
+            {
+              num: 70,
+              txt: 'C、产生较多收益，可承担一定的投资风险'
+            },
+            {
+              num: 90,
+              txt: 'D、实现资产大幅增加，愿意承担很大的投资风险'
+            }
           ]
         },
         {
           quiz: '8.您能承受的本金损失是？',
-          list: ['A、5%以内', 'B、5%~20%', 'C、20%~50%', 'D、超过50%']
+          list: [
+            {
+              num: 10,
+              txt: 'A、5%以内'
+            },
+            {
+              num: 30,
+              txt: 'B、5%~20%'
+            },
+            {
+              num: 70,
+              txt: 'C、20%~50%'
+            },
+            {
+              num: 90,
+              txt: 'D、超过50%'
+            }
+          ]
         }
-      ]
+      ],
+      arrNum: []
     }
   },
   mounted() {},
   methods: {
     subSelect() {
       if (this.iconShow && this.selectShow) {
-        this.$router.push({ path: '/appraisal/result' })
+        let score = this.sum(this.arrNum)
+        evaluationSave(this.$axios, score).then(res => {
+          if (res) {
+            this.$router.push({
+              name: 'appraisal-result'
+            })
+          }
+        })
       } else {
         this.$Msg('请完成选项', 2000)
       }
     },
-    navLeftFn() {
+    outAppraisal() {
       this.layerShow = true
     },
     codeClose() {
-      this.$router.push({ path: '/ucSet' })
+      this.$router.push({
+        name: 'myCenter-set-ucSet'
+      })
     },
     codeSub() {
       this.layerShow = false
     },
-    selectList(event, index, i) {
+    selectList(event, index, i, num) {
+      this.arrNum[index] = num
       let lis = document
         .getElementsByClassName('select')
         [index].getElementsByTagName('li')
@@ -200,6 +326,13 @@ export default {
     },
     haveRead() {
       this.iconShow = !this.iconShow
+    },
+    sum(arr) {
+      var s = 0
+      for (var i = arr.length - 1; i >= 0; i--) {
+        s += arr[i]
+      }
+      return s
     }
   },
   components: {}

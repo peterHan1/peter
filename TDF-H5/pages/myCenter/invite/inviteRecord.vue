@@ -102,9 +102,7 @@ export default {
   },
   mounted() {
     prizeRecord(this.$axios).then(res => {
-      if (res) {
-        this.content = res.data.content
-      }
+      this.content = res.data.content
     })
   },
   methods: {
@@ -162,11 +160,13 @@ export default {
             font-size: $fontsize-large-xxxxx
             color: $color-primary
             line-height: 59px
+            height: 59px
             margin-top: 20px
           p:nth-child(2)
-            font-size: $fontsize-medium 
+            font-size: $fontsize-medium
             color: $color-gray3
             line-height: 40px
+            height: 40px
           p.pFont
             font-size: $fontsize-large-xxxxxxxx
             margin-top: 29px

@@ -40,8 +40,8 @@
 import { findIndex } from '~/components/src/common/util.js'
 import { freeBorrowList } from '~/plugins/api.js'
 import freeList from './free/list'
-import scatterList from './list/scatter'
-import transferList from './list/transfer'
+import scatterList from './free/list'
+import transferList from './transfer/transfer'
 export default {
   async fetch({ app, store }) {
     const params = {

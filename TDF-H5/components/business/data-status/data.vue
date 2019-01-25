@@ -1,25 +1,25 @@
 <template>
   <div class="statusBox">
-    <div 
-      v-if="status === 'null'" 
+    <div
+      v-if="status === 'null'"
       class="dataNull">
       <div class="statusIcon"/>
       <div class="statusTxt">{{ statusTxt }}</div>
     </div>
-    <div 
-      v-if="status === 'error'" 
+    <div
+      v-if="status === 'error'"
       class="error-loading">
       <div class="statusIcon"/>
       <div class="statusTxt">{{ statusTxt }}</div>
     </div>
-    <div 
-      v-if="status === 'maintain'" 
+    <div
+      v-if="status === 'maintain'"
       class="maintain">
       <div class="statusIcon"/>
       <div class="statusTxt">{{ statusTxt }}</div>
     </div>
-    <div 
-      v-if="status === 'network'" 
+    <div
+      v-if="status === 'network'"
       class="noNetwork">
       <div class="statusIcon"/>
       <div class="statusTxt">{{ statusTxt }}</div>

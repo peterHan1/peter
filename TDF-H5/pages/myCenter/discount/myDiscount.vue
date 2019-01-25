@@ -34,6 +34,7 @@
 import Interest from './src/interest-list.vue'
 import Voucher from './src/voucher-list.vue'
 import { findIndex } from '~/components/src/common/util.js'
+
 export default {
   data() {
     return {

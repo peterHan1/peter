@@ -7,7 +7,7 @@
       <div class="myCenter_top">
         <div v-if="login">
           <router-link 
-            to="" 
+            to="/user/login" 
             class="login">登录/注册</router-link>
         </div>
         <div v-else>
@@ -44,9 +44,14 @@
       </div>
       <div class="myCenter_money">
         <div class="money_bot">
-          <div>
+          <div v-if="login">
             <p>可用余额(元)</p>
-            <p>{{ content.cashBalance }}</p>
+            <p> - </p>
+          </div>
+          <div v-else>
+            <p>可用余额(元)</p>
+            <p v-if="moneyShow">{{ content.cashBalance }}</p>
+            <p v-else>****</p>
           </div>
           <div>
             <router-link to="/myCenter/fund/cash" >提现</router-link>
@@ -125,8 +130,11 @@ export default {
   },
   mounted() {
     myBankAssets(this.$axios).then(res => {
-      this.content = res.data.content
-      console.log(this.content)
+      if (res) {
+        this.content = res.data.content
+      } else {
+        this.login = true
+      }
     })
   },
   methods: {
@@ -216,7 +224,7 @@ export default {
           width: 284px
           height: 94px
           line-height: 94px
-          border: 1px solid $color-white
+          border: 2px solid $color-white
           border-radius: 20px
           color: $color-white
           font-size: $fontsize-large-xxx
@@ -237,6 +245,7 @@ export default {
               font-size: $fontsize-large-xxxxxxxx
               color: $color-white
               line-height: 78px
+              height: 78px
           .showIcon
             float: right
           i
@@ -273,6 +282,7 @@ export default {
           font-size: $fontsize-large-xxx
           color: $color-gray2
           line-height: 48px
+          height: 48px
           margin-top: 5px
         .money_bot
           display: flex

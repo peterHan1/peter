@@ -22,7 +22,7 @@
         <span>官方网址</span>
         <span>https://www.51tuodao.com</span>
       </li>
-      <li>
+      <li @click="downApp">
         <span>下载APP</span>
         <i class="iconfont">&#xe6f2;</i>
       </li>
@@ -39,7 +39,13 @@ export default {
     return {}
   },
   mounted() {},
-  methods: {},
+  methods: {
+    downApp() {
+      this.$App(
+        '<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>'
+      )
+    }
+  },
   components: {}
 }
 </script>

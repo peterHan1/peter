@@ -127,7 +127,6 @@ export default {
         phone: this.$route.params.phone,
         type: 'reg'
       }).then(res => {
-        console.log(res.data.content.code)
         this.phoneCodeId = res.data.content.code
       })
       let time = 60
@@ -169,7 +168,7 @@ export default {
       const params = {
         phone: this.$route.params.phone,
         password: md5(this.pwd),
-        codeId: this.phoneCodeId,
+        codeId: this.phoneCodeId.toString(),
         codeNumber: this.phoneCode,
         imgCode: this.imgCode,
         referrer: this.referrer

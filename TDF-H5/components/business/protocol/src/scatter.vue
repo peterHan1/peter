@@ -111,7 +111,7 @@ export default {
   padding: 30px 30px 20px
   color: $color-gray1
   h1
-    font-size: $fontsize-large-x 
+    font-size: $fontsize-large-x
     font-weight: bold
     text-align: center
     line-height: 65px

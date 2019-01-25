@@ -6,25 +6,13 @@
       <h3>恭喜您获得新人大礼包</h3>
     </div>
     <ul>
-      <li>
-        <div class="discountLeft"><span>10</span>元</div>
+      <li 
+        v-for="(item, index) in list" 
+        :key="index">
+        <div class="discountLeft"><span>{{ item.money }}</span>元</div>
         <div class="discountRight">
-          <p>有效期至：2016.9.21</p>
-          <p class="time">单笔金额满1000元且期限1个月及以上使用</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft"><span>30</span>元</div>
-        <div class="discountRight">
-          <p>有效期至：2016.9.21</p>
-          <p class="time">单笔金额满1000元且期限1个月及以上使用</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft"><span>60</span>元</div>
-        <div class="discountRight">
-          <p>有效期至：2016.9.21</p>
-          <p class="time">单笔金额满1000元且期限1个月及以上使用</p>
+          <p>有效期至：{{ item.invideTime }}1</p>
+          <p class="time">{{ item.conditonText }}</p>
         </div>
       </li>
     </ul>
@@ -36,11 +24,21 @@
 </template>
 
 <script>
+import { getRegResult } from '../../plugins/api.js'
+
 export default {
   data() {
-    return {}
+    return {
+      list: []
+    }
   },
-  mounted() {},
+  mounted() {
+    getRegResult(this.$axios).then(res => {
+      if (res) {
+        this.list = res.data.content
+      }
+    })
+  },
   methods: {
     linkIndex() {
       this.$router.push({

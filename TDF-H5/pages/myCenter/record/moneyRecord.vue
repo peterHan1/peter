@@ -6,72 +6,39 @@
       <span>金额(元)/状态</span>
     </div>
     <cube-scroll
+      v-if="content.length"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <ul>
-        <li>
+        <li 
+          v-for="(item,index) in content" 
+          :key="index">
           <p>
-            <span>充值</span>
-            <span>1.00</span>
+            <span>{{ item.type }}</span>
+            <span>{{ item.money }}</span>
           </p>
           <p>
-            <span>2017-01-10 15:29:00</span>
-            <span>成功</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>充值</span>
-            <span>1.00</span>
-          </p>
-          <p>
-            <span>2017-01-10 15:29:00</span>
-            <span>成功</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>充值</span>
-            <span>1.00</span>
-          </p>
-          <p>
-            <span>2017-01-10 15:29:00</span>
-            <span>成功</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>充值</span>
-            <span>1.00</span>
-          </p>
-          <p>
-            <span>2017-01-10 15:29:00</span>
-            <span>成功</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            <span>充值</span>
-            <span>1.00</span>
-          </p>
-          <p>
-            <span>2017-01-10 15:29:00</span>
+            <span>{{ item.addtime }}</span>
             <span>成功</span>
           </p>
         </li>
       </ul>
     </cube-scroll>
-    <!-- <div class="data-status">
+    <div 
+      v-else
+      class="data-status">
       <data-status
         status="null"
         statusTxt="暂无资金记录"/>
-    </div> -->
+    </div>
     
   </div>
 </template>
 
 <script>
+import { getAccountLogById } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -84,13 +51,29 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      content: [],
+      item: 12,
+      page: 1
     }
   },
-  mounted() {},
+  mounted() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      let params = {
+        item: this.item,
+        page: this.page
+      }
+      getAccountLogById(this.$axios, params).then(res => {
+        if (res) {
+          this.content = res.data.content.dataRows
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      this.getList()
     },
     onPullingUp() {
       console.log(222)

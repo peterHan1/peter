@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { inviteFriendList } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -54,10 +56,22 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      item: 12,
+      page: 1
     }
   },
-  mounted() {},
+  mounted() {
+    let params = {
+      item: this.item,
+      page: this.page
+    }
+    inviteFriendList(this.$axios, params).then(res => {
+      if (res) {
+        this.list = res.data.content
+      }
+    })
+  },
   methods: {
     onPullingDown() {
       console.log(111)

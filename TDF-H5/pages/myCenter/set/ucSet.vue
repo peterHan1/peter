@@ -3,36 +3,64 @@
     <td-header title="设置"/>
     <ul>
       <li>
-        <!--未激活存管-->
-        <!-- <router-link to="deposit">
-          <span>实名认证</span>
-          <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
-        </router-link> -->
-        <!--已实名-->
-        <router-link to="/myCenter/set/ucAutonym">
+        <router-link 
+          v-if="realNameStatus" 
+          to="/myCenter/set/ucAutonym">
           <span>实名认证</span>
           <span>已认证 <i class="iconfont">&#xe6f2;</i></span>
         </router-link>
-      </li>
-      <li @click="downApp">
-        <span>我的银行卡号</span>
-        <span>建设银行 尾号6666 <i class="iconfont">&#xe6f2;</i></span>
-        <!-- <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span> -->
-      </li>
-      <li>
-        <span>绑定手机号</span>
-        <span>188****2626</span>
+        <router-link 
+          v-else
+          to="/xwDeposit/deposit">
+          <span>实名认证</span>
+          <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
+        </router-link>
       </li>
       <li>
-        <span>存管账号</span>
-        <span>TD-2017-06-06123456789456123</span>
-        <!-- <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span> -->
+        <div 
+          v-if="authStatus" 
+          @click="downApp">
+          <span>我的银行卡号</span>
+          <span>{{ bankName }} 尾号{{ bankCode }} <i class="iconfont">&#xe6f2;</i></span>
+        </div>
+        <router-link 
+          v-else
+          to="/xwDeposit/deposit">
+          <span>我的银行卡号</span>
+          <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
+        </router-link>
       </li>
       <li>
-        <router-link to="/myCenter/set/xwAccredit">
+        <div>
+          <span>绑定手机号</span>
+          <span>{{ mobile }}</span>
+        </div>
+      </li>
+      <li>
+        <div v-if="authStatus">
+          <span>存管账号</span>
+          <span>{{ userNo }}</span>
+        </div>
+        <router-link 
+          v-else
+          to="/xwDeposit/deposit">
+          <span>存管账号</span>
+          <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
+        </router-link>
+      </li>
+      <li>
+        <router-link 
+          v-if="authStatus" 
+          to="/myCenter/set/xwAccredit">
           <span>业务授权</span>
-          <span>已授权 <i class="iconfont">&#xe6f2;</i></span>
-          <!-- <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span> -->
+          <span v-if="authStatus === 1">已授权 <i class="iconfont">&#xe6f2;</i></span>
+          <span v-if="authStatus === 2">已过期 <i class="iconfont">&#xe6f2;</i></span>
+        </router-link>
+        <router-link 
+          v-else 
+          to="/xwDeposit/deposit">
+          <span>业务授权</span>
+          <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
         </router-link>
       </li>
     </ul>
@@ -82,18 +110,39 @@ import { loginOut } from '~/plugins/api.js'
 export default {
   data() {
     return {
-      out: false
+      out: false,
+      phone: '',
+      mobile: '',
+      realNameStatus: 0,
+      bankName: '',
+      bankCode: '',
+      userNo: '',
+      authStatus: 0
     }
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch('myCenter/getPhone')
+    this.$store.dispatch('myCenter/getUser')
+    this.phone = this.$store.state.myCenter.phone
+    setTimeout(() => {
+      this.mobile = this.$store.state.myCenter.mobile
+      this.realNameStatus = this.$store.state.myCenter.realNameStatus
+      this.bankName = this.$store.state.myCenter.bankName
+      this.bankCode = this.$store.state.myCenter.bankNum
+      this.userNo = this.$store.state.myCenter.userNo
+      this.authStatus = this.$store.state.myCenter.authStatus
+    }, 200)
+  },
   methods: {
     downApp() {
       this.$App('请在电脑端登录官网或在APP端找更换银行卡')
     },
     outFn() {
-      // let phone = JSON.parse(localStorage.getItem('phone'))
-      loginOut(this.$axios, '18539123455').then(res => {
-        console.log(res)
+      loginOut(this.$axios, this.phone).then(res => {
+        window.localStorage.clear()
+        this.$router.push({
+          name: 'user-login'
+        })
       })
     },
     getOut() {
@@ -116,8 +165,9 @@ export default {
       margin-top: 20px
       li
         border-bottom: 1px solid $color-gray5
-        display: flex
-        justify-content: space-between
+        div
+          display: flex
+          justify-content: space-between
         a
           width: 100%
           height: 100%

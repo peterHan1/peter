@@ -12,7 +12,8 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'
+        content:
+          'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'
       },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
@@ -59,7 +60,7 @@ module.exports = {
   },
   proxy: {
     '/api/': {
-      target: 'http://72.127.2.140:9090',
+      target: 'http://72.127.2.116:8080',
       pathRewrite: {
         '^/api/': ''
       }
