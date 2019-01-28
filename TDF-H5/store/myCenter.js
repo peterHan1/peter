@@ -1,4 +1,4 @@
-import { accountDetail } from '../plugins/api'
+import { accountDetail, getAccountLogById } from '../plugins/api'
 export const state = () => ({
   phone: '',
   authStatus: '授权状态',
@@ -9,7 +9,8 @@ export const state = () => ({
   mobile: '绑定手机号',
   realNameStatus: '是否实名制',
   userNo: '存管号',
-  referrer: '推介码'
+  referrer: '推介码',
+  moneyList: []
 })
 export const mutations = {
   setPhone(state, value) {
@@ -26,6 +27,12 @@ export const mutations = {
     state.realNameStatus = value.realNameStatus
     state.userNo = value.userNo
     state.referrer = value.referrer
+  },
+  setMonetList(state, data) {
+    state.moneyList.push(data)
+  },
+  setMoneyNull(state) {
+    state.moneyList = []
   }
 }
 export const actions = {
@@ -36,5 +43,12 @@ export const actions = {
   async getUser({ commit }) {
     let { data } = await accountDetail(this.$axios)
     commit('setAccount', data.content)
+  },
+  async getMoneyRecord({ commit }, params) {
+    let { data } = await getAccountLogById(this.$axios, params)
+    let list = data.content.dataRows
+    for (let i = 0; i < list.length; i++) {
+      commit('setMonetList', list[i])
+    }
   }
 }

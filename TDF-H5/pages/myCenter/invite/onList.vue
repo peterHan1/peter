@@ -1,6 +1,7 @@
 <template>
   <cube-scroll
     v-if="contentList"
+    ref="contentScroll"
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
@@ -17,7 +18,7 @@
         <li 
           v-for="(item,index) in contentList" 
           :key="index">
-          <span><b v-if="item.awardstatus === 1">{{ item.cashAmount }}</b> <b v-else>{{ item.indirectCashAmount }}</b></span>
+          <span>{{ item.cashAmount }}</span>
           <span>{{ item.awardtype }}</span>
           <span>{{ item.inviteUserName }}</span>
           <span>{{ item.productTime }}</span>
@@ -36,6 +37,7 @@
 
 <script>
 import { recordList } from '~/plugins/api.js'
+let pageNum = 1
 
 export default {
   data() {
@@ -51,7 +53,7 @@ export default {
         beforePullDown: true
       },
       type: 1,
-      item: 12,
+      item: 6,
       page: 1,
       contentList: []
     }
@@ -73,7 +75,29 @@ export default {
       console.log(111)
     },
     onPullingUp() {
-      console.log(222)
+      pageNum++
+      // let pat = this.$store.state.project.freePages
+      console.log(pageNum)
+      console.log(this.page)
+      const params = {
+        item: this.$store.state.project.freeItem,
+        page: pageNum
+      }
+      // // 更新数据
+      setTimeout(() => {
+        // 如果有新数据
+        let params = {
+          type: this.type,
+          item: this.item,
+          page: this.page
+        }
+        recordList(this.$axios, params).then(res => {
+          if (res) {
+            console.log(res)
+          }
+        })
+        this.$refs.contentScroll0.forceUpdate()
+      }, 1000)
     }
   },
   components: {}

@@ -1,33 +1,40 @@
 <template>
   <cube-scroll
+    ref="contentScroll1"
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
-    <ul>
-      <li>
-        <router-link to="/myCenter/invest/siftDetails" >
+    <ul v-if="content.length" >
+      <li 
+        v-for="(item,index) in content"
+        :key="index">
+        <router-link :to="{path:'/myCenter/invest/siftDetails',query: {tenderId: item.tenderId, borrowNid: item.borrowNid}}">
           <p>
-            <span>省心投20190101</span>
+            <span>{{ item.name }}</span>
           </p>
           <div>
-            <p><span>8,888.88</span><span>66.66</span></p>
+            <p><span>{{ item.joinMoney }}</span><span>{{ item.interest }}</span></p>
             <p><span>加入金额(元)</span><span>参考收益(元)</span></p>            
           </div>
           <p>
-            <span>加入时间：<i>2018.12.12 12:12</i></span>
-            <span>预计退出时间：<i>2019-12-13</i></span>
+            <span>加入时间：<i>{{ item.addTime }}</i></span>
+            <span>预计退出时间：<i>{{ item.endTime }}</i></span>
           </p>
         </router-link>
       </li>
     </ul>
+    <div
+      v-else
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无内容"/>
+    </div>
   </cube-scroll>
-  <!-- <div class="data-status">
-    <data-status
-      status="null"
-      statusTxt="暂无内容"/>
-  </div> -->
 </template>
 <script>
+import { freeTenderList } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -40,19 +47,46 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      status: 1,
+      page: 1,
+      item: 12,
+      content: []
     }
   },
-  mounted() {},
+  mounted() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      const params = {
+        status: this.status,
+        page: this.page,
+        item: this.item
+      }
+      freeTenderList(this.$axios, params).then(res => {
+        let list = res.data.content.dataRows
+        for (let i in list) {
+          this.content.push(list[i])
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.content = []
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
     }
-  },
-  components: {}
+  }
 }
 </script>
 
@@ -92,6 +126,6 @@ li
       color: $color-gray4
 .data-status
   position: absolute
-  right: 14%
+  right: 25%
   top: 15%      
 </style>

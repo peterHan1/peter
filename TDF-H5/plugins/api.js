@@ -224,7 +224,47 @@ export const recordList = async ($axios, params) => {
     })
   )
 }
-
+// 	个人中心散标 出借中/已回款
+export const bankTenderNow = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/uc/bankTenderNow', {
+      status: params.status,
+      page: params.page,
+      item: params.item,
+      commenParams
+    })
+  )
+}
+// 	个人中心省心投 出借中/已回款
+export const freeTenderList = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/tender/free_tender_list', {
+      status: params.status,
+      page: params.page,
+      item: params.item,
+      commenParams
+    })
+  )
+}
+// 	个人中心 出借详情 还款计划
+export const getBankRecoverPlan = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/uc/getBankRecoverPlan', {
+      tenderId: params.tenderId,
+      borrowNid: params.borrowNid,
+      commenParams
+    })
+  )
+}
+// 	个人中心 省心投出借详情
+export const siftTenderDetail = async ($axios, tenderId) => {
+  return await handleReq(
+    $axios.post('/hanapp/product/h5TenderDetail', {
+      tenderId: tenderId,
+      commenParams
+    })
+  )
+}
 // 散标列表
 export const scatterList = async ($axios, params) => {
   return await handleReq(

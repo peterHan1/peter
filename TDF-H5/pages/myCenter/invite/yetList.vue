@@ -1,5 +1,6 @@
 <template>
-  <!-- <cube-scroll
+  <cube-scroll
+    v-if="contentList"
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
@@ -13,40 +14,20 @@
         </li>
       </div>
       <div>
-        <li>
-          <span>6.66</span>
-          <span>直接奖励</span>
-          <span>134****9086</span>
-          <span>12月20日</span>
-        </li>
-        <li>
-          <span>6.66</span>
-          <span>直接奖励</span>
-          <span>134****9086</span>
-          <span>12月20日</span>
-        </li>
-        <li>
-          <span>8.88</span>
-          <span>直接奖励</span>
-          <span>134****9086</span>
-          <span>12月20日</span>
-        </li>
-        <li>
-          <span>6.66</span>
-          <span>直接奖励</span>
-          <span>134****9086</span>
-          <span>12月20日</span>
-        </li>
-        <li>
-          <span>8.88</span>
-          <span>直接奖励</span>
-          <span>134****9086</span>
-          <span>12月20日</span>
+        <li 
+          v-for="(item,index) in contentList" 
+          :key="index">
+          <span>{{ item.cashAmount }}</span>
+          <span>{{ item.awardtype }}</span>
+          <span>{{ item.inviteUserName }}</span>
+          <span>{{ item.productTime }}</span>
         </li>
       </div>
     </ul>
-  </cube-scroll> -->
-  <div class="data-status">
+  </cube-scroll>
+  <div 
+    v-else 
+    class="data-status">
     <data-status
       status="null"
       statusTxt="暂无已收返现明细"/>
@@ -54,6 +35,8 @@
 </template>
 
 <script>
+import { recordList } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -66,10 +49,25 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      type: 1,
+      item: 3,
+      page: 1,
+      contentList: []
     }
   },
-  mounted() {},
+  mounted() {
+    let params = {
+      type: this.type,
+      item: this.item,
+      page: this.page
+    }
+    recordList(this.$axios, params).then(res => {
+      if (res) {
+        this.contentList = res.data.content.dataRows
+      }
+    })
+  },
   methods: {
     onPullingDown() {
       console.log(111)
@@ -111,6 +109,6 @@ ul
         color: $color-gray3
 .data-status
   position: absolute
-  left: 65%
+  left: 15%
   top: 10%
 </style>

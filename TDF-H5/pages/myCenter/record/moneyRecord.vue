@@ -6,13 +6,14 @@
       <span>金额(元)/状态</span>
     </div>
     <cube-scroll
-      v-if="content.length"
+      v-if="this.$store.state.myCenter.moneyList"
+      ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <ul>
         <li 
-          v-for="(item,index) in content" 
+          v-for="(item,index) in this.$store.state.myCenter.moneyList" 
           :key="index">
           <p>
             <span>{{ item.type }}</span>
@@ -53,30 +54,36 @@ export default {
         beforePullDown: true
       },
       content: [],
-      item: 12,
-      page: 1
+      page: 1,
+      item: 12
     }
   },
   mounted() {
-    this.getList()
+    const params = { item: this.item, page: this.page }
+    this.$store.dispatch('myCenter/getMoneyRecord', params)
+    console.log(this.$store.state.myCenter.moneyList)
   },
   methods: {
-    getList() {
-      let params = {
-        item: this.item,
-        page: this.page
-      }
-      getAccountLogById(this.$axios, params).then(res => {
-        if (res) {
-          this.content = res.data.content.dataRows
-        }
-      })
-    },
     onPullingDown() {
-      this.getList()
+      this.page = 1
+      setTimeout(async () => {
+        let params = { item: this.item, page: this.page }
+        let { data } = await getAccountLogById(this.$axios, params)
+        this.$store.commit('myCenter/setMoneyNull')
+        let list = data.content.dataRows
+        for (let i = 0; i < list.length; i++) {
+          this.$store.commit('myCenter/setMonetList', list[i])
+        }
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      let params = { item: this.item, page: this.page }
+      setTimeout(() => {
+        this.$store.dispatch('myCenter/getMoneyRecord', params)
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     }
   },
   components: {}

@@ -2,43 +2,42 @@
   <div class="invests">
     <td-header title="出借详情"/>
     <div class="investsTop">
-      <span>省心投201812018</span>
-      <b>额度已满</b>
-      <!-- 加入中 -->
+      <span>{{ content.name }}</span>
+      <b v-if="content.status === 1">额度已满</b>
+      <b v-else>加入中</b>
     </div>
     <ul>
       <li>
         <span>加入金额(元)</span>
-        <span>3000.00</span>
+        <span>{{ content.joinMoney }}</span>
       </li>
       <li>
         <span>冻结金额(元)</span>
-        <span>800.00</span>
+        <span>{{ content.tenderFrost }}</span>
       </li>
       <li>
         <span>优惠券</span>
-        <span>2%加息券</span>
-        <!-- 未使用、10元抵用券 -->
+        <span>{{ content.voucher }}</span>
       </li>
       <li>
         <span>约定利率</span>
-        <span>12%</span>
+        <span>{{ content.apr }}</span>
       </li>
       <li>
         <span>参考收益(元)</span>
-        <span>500.00</span>
+        <span>{{ content.interest }}</span>
       </li>
       <li>
         <span>加入时间</span>
-        <span>2018-12-11 18:00</span>
+        <span>{{ content.addTime }}</span>
       </li>
       <li>
         <span>预计退出时间</span>
-        <span>2019-01-23</span>
+        <span>{{ content.endTime }}</span>
       </li>
       <li>
         <span>还款方式</span>
-        <span>按月付息，到期还本</span>
+        <span>{{ content.repaymentType }}</span>
       </li>
       <li>
         <span>省心投授权委托书</span>
@@ -52,30 +51,33 @@
     <div>
       <p class="tableTxt">还款计划</p>
       <div class="tableBox">
-        <table>
+        <table v-if="list">
           <tr>
             <th>还款时间</th>
             <th>应还本金</th>
             <th>应还收益</th>
             <th>状态</th>
           </tr>
-          <tr>
-            <td>2018-12-16</td>
-            <td>0.00</td>
-            <td>100.00</td>
-            <td>已还款</td>
+          <tr 
+            v-for="(item,index) in list" 
+            :key="index">
+            <td>{{ item.recoverTime }}</td>
+            <td>{{ item.recoverAccount }}</td>
+            <td>{{ item.recoverInterest }}</td>
+            <td>{{ item.status }}</td>
           </tr>
           <tr>
-            <td>2019-01-16</td>
-            <td>0.00</td>
-            <td>100.00</td>
-            <td>待还款</td>
+            <td 
+              colspan="4" 
+              class="nullData">暂无数据</td>
           </tr>
+        </table>
+        <table v-else>
           <tr>
-            <td>2018-02-16</td>
-            <td>30000.00</td>
-            <td>100.00</td>
-            <td>待还款</td>
+            <th>还款时间</th>
+            <th>应还本金</th>
+            <th>应还收益</th>
+            <th>状态</th>
           </tr>
           <tr>
             <td 
@@ -92,16 +94,32 @@
 </template>
 
 <script>
+import { siftTenderDetail, getBankRecoverPlan } from '~/plugins/api.js'
+
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
-    return {}
+    return {
+      tenderId: '',
+      borrowNid: '',
+      list: '',
+      content: ''
+    }
   },
-  mounted() {},
-  methods: {},
-  components: {}
+  mounted() {
+    this.tenderId = this.$route.query.tenderId
+    this.borrowNid = this.$route.query.borrowNid
+    const params = {
+      tenderId: this.tenderId,
+      borrowNid: this.borrowNid
+    }
+    getBankRecoverPlan(this.$axios, params).then(res => {
+      this.list = res.data.content.dataRows
+    })
+    siftTenderDetail(this.$axios, this.tenderId).then(res => {
+      this.content = res.data.content
+      console.log(this.content)
+    })
+  }
 }
 </script>
 

@@ -48,30 +48,33 @@
     <div>
       <p class="tableTxt">还款计划</p>
       <div class="tableBox">
-        <table>
+        <table v-if="list">
           <tr>
             <th>还款时间</th>
             <th>应还本金</th>
             <th>应还收益</th>
             <th>状态</th>
           </tr>
-          <tr>
-            <td>2018-12-16</td>
-            <td>0.00</td>
-            <td>100.00</td>
-            <td>已还款</td>
+          <tr 
+            v-for="(item,index) in list" 
+            :key="index">
+            <td>{{ item.recoverTime }}</td>
+            <td>{{ item.recoverAccount }}</td>
+            <td>{{ item.recoverInterest }}</td>
+            <td>{{ item.status }}</td>
           </tr>
           <tr>
-            <td>2019-01-16</td>
-            <td>0.00</td>
-            <td>100.00</td>
-            <td>待还款</td>
+            <td 
+              colspan="4" 
+              class="nullData">暂无数据</td>
           </tr>
+        </table>
+        <table v-else>
           <tr>
-            <td>2018-02-16</td>
-            <td>30000.00</td>
-            <td>100.00</td>
-            <td>待还款</td>
+            <th>还款时间</th>
+            <th>应还本金</th>
+            <th>应还收益</th>
+            <th>状态</th>
           </tr>
           <tr>
             <td 
@@ -88,14 +91,27 @@
 </template>
 
 <script>
+import { getBankRecoverPlan } from '~/plugins/api.js'
+
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
-    return {}
+    return {
+      tenderId: '',
+      borrowNid: '',
+      list: ''
+    }
   },
-  mounted() {},
+  mounted() {
+    this.tenderId = this.$route.query.tenderId
+    this.borrowNid = this.$route.query.borrowNid
+    const params = {
+      tenderId: this.tenderId,
+      borrowNid: this.borrowNid
+    }
+    getBankRecoverPlan(this.$axios, params).then(res => {
+      this.list = res.data.content.dataRows
+    })
+  },
   methods: {},
   components: {}
 }
