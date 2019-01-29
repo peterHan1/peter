@@ -1,10 +1,6 @@
 <template>
   <div class="explain">
-    <header class="outHeader">
-      <span class="iconfont">&#xe6fe;</span>
-      <b>退出</b>
-      <span>风险测评</span>
-    </header>  
+    <td-header title="风险测评"/>
     <div class="explain_top">原则上，投资人风险承受能力与产品的项目风险评估结果一一对应，相互关联，即原则上：</div>
     <ul>
       <li>
@@ -34,18 +30,11 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {}
   },
   mounted() {},
-  methods: {
-    navLeftFn() {
-      this.$router.push({ path: '/ucSet' })
-    }
-  },
+  methods: {},
   components: {}
 }
 </script>
@@ -59,28 +48,6 @@ export default {
     left: 0
     background-color: $color-white
     padding: 88px 40px 0
-    .outHeader
-      height: 0.88rem
-      line-height: 0.88rem
-      width: 100%
-      background: $color-white
-      position: fixed
-      left: 0
-      top: 0
-      right: 0
-      text-align: center
-      font-size: $fontsize-large-xxx
-      color: $color-gray1
-      border-bottom: 0.01rem solid $color-gray5
-      .iconfont
-        font-size: $fontsize-large-xxxxxxxx
-        position: absolute
-        left: 15px
-      b
-        font-size: $fontsize-large-x 
-        color: $color-gray2
-        position: absolute
-        left: 65px
     .explain_top,.explain_bot
       color: $color-gray1
       font-size: $fontsize-medium
@@ -113,4 +80,10 @@ export default {
         color: $color-gray2
         font-size: $fontsize-small-ss
         line-height: 36px
+    .quitHint
+      display: block
+      font-size: $fontsize-small-s
+      color: $color-gray2 
+      padding: 30px 30px 10px
+      line-height: 40px
 </style>

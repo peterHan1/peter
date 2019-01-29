@@ -2,39 +2,38 @@
   <div class="invests">
     <td-header title="出借详情"/>
     <div class="investsTop">
-      <span>奥迪Q5抵押标</span>
-      <b>额度已满</b>
-      <!-- 加入中 -->
+      <span>{{ content.name }}</span>
+      <b>{{ content.status | statusTxt }}</b>
     </div>
     <ul>
       <li>
         <span>出借金额(元)</span>
-        <span>3000.00</span>
+        <span>{{ content.amount }}</span>
       </li>
       <li>
         <span>优惠券</span>
-        <span>2%加息券</span>
-        <!-- 未使用、10元抵用券 -->
+        <span v-if="content.voucherType">{{ content.voucher }}{{ content.voucherType | voucherTxt }}</span>
+        <span v-else>未使用</span>
       </li>
       <li>
         <span>约定利率</span>
-        <span>12%</span>
+        <span>{{ content.apr }}%</span>
       </li>
       <li>
         <span>参考收益(元)</span>
-        <span>500.00</span>
+        <span>{{ content.accountInterest }}</span>
       </li>
       <li>
         <span>出借时间</span>
-        <span>2018-12-11 18:00</span>
+        <span>{{ content.tenderTime }}</span>
       </li>
       <li>
         <span>到期时间</span>
-        <span>2019-01-23</span>
+        <span>{{ content.borrowEndTime }}</span>
       </li>
       <li>
         <span>还款方式</span>
-        <span>按月付息，到期还本</span>
+        <span>{{ content.borrowStyleText }}</span>
       </li>
       <li>
         <span>借款协议</span>
@@ -48,7 +47,7 @@
     <div>
       <p class="tableTxt">还款计划</p>
       <div class="tableBox">
-        <table v-if="list">
+        <table v-if="list.length > 0">
           <tr>
             <th>还款时间</th>
             <th>应还本金</th>
@@ -62,11 +61,6 @@
             <td>{{ item.recoverAccount }}</td>
             <td>{{ item.recoverInterest }}</td>
             <td>{{ item.status }}</td>
-          </tr>
-          <tr>
-            <td 
-              colspan="4" 
-              class="nullData">暂无数据</td>
           </tr>
         </table>
         <table v-else>
@@ -98,22 +92,55 @@ export default {
     return {
       tenderId: '',
       borrowNid: '',
-      list: ''
+      list: '',
+      content: ''
     }
   },
   mounted() {
     this.tenderId = this.$route.query.tenderId
-    this.borrowNid = this.$route.query.borrowNid
     const params = {
-      tenderId: this.tenderId,
-      borrowNid: this.borrowNid
+      tenderId: this.tenderId
     }
     getBankRecoverPlan(this.$axios, params).then(res => {
+      this.content = res.data.content
       this.list = res.data.content.dataRows
+      console.log(this.list.length)
     })
   },
   methods: {},
-  components: {}
+  components: {},
+  filters: {
+    statusTxt: function(value) {
+      switch (value) {
+        case 0:
+          return '等待初审'
+        case 1:
+          return '初审通过'
+        case 2:
+          return '募集中'
+        case 3:
+          return '初审失败'
+        case 4:
+          return '还款中 '
+        case 5:
+          return '还款成功'
+        case 6:
+          return '用户撤标'
+        case 7:
+          return '撤标'
+        case 8:
+          return '还款成功'
+      }
+    },
+    voucherTxt: function(value) {
+      switch (value) {
+        case 'jx':
+          return '%加息卷'
+        case 'dk':
+          return '元抵扣卷'
+      }
+    }
+  }
 }
 </script>
 

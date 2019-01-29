@@ -195,4 +195,6 @@ export default {
         right: 0
         top: 88px
         bottom: 0
+        /deep/ .cube-slide .cube-slide-group
+          width: 200%
 </style>

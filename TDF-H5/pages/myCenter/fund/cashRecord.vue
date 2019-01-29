@@ -1,56 +1,44 @@
 <template>
   <div class="recode">
     <td-header title="提现记录"/>
-    <!-- <div class="recodeTop">
+    <div class="recodeTop">
       <span>提现金额(元)/类型</span>
       <span>状态/时间</span>
     </div>
     <cube-scroll
+      ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul>
-        <li>
+      <ul v-if="content.length">
+        <li 
+          v-for="(item,index) in content" 
+          :key="index">
           <div>
-            <p>5000.00 <b>(含3元手续费)</b> </p>
-            <p>快速到账</p>
+            <p>{{ item.total }} <b v-if="item.fee">(含{{ item.fee }}元手续费)</b> </p>
+            <p v-if="item.withdrawType === 'URGENT'">快速到账</p>
+            <p v-else-if="item.withdrawType === 'NORMAL'">普通到账</p>
           </div>
           <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00 <b>(含3元手续费)</b> </p>
-            <p>快速到账</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00 <b>(含3元手续费)</b> </p>
-            <p>快速到账</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
+            <p>{{ item.status }}</p>
+            <p>{{ item.addtime }}</p>
           </div>
         </li>
       </ul>
-    </cube-scroll> -->
-    <div class="data-status">
-      <data-status
-        status="null"
-        statusTxt="暂无提现记录"/>
-    </div>
+      <div 
+        v-else 
+        class="data-status">
+        <data-status
+          status="null"
+          statusTxt="暂无提现记录"/>
+      </div>
+    </cube-scroll>
   </div>
 </template>
 
 <script>
+import { getCashById } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -63,16 +51,42 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      content: [],
+      page: 1,
+      item: 12
     }
   },
-  mounted() {},
+  mounted() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      const params = {
+        page: this.page,
+        item: this.item
+      }
+      getCashById(this.$axios, params).then(res => {
+        let list = res.data.content.dataRows
+        for (let i in list) {
+          this.content.push(list[i])
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.content = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     }
   },
   components: {}

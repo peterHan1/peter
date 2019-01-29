@@ -12,6 +12,7 @@ const commenParams = {
   accessKey: ''
 }
 const handleReq = reqst => {
+  // 暂时
   let accessId
   let accessKey
   if (JSON.parse(localStorage.getItem('user'))) {
@@ -23,9 +24,7 @@ const handleReq = reqst => {
   }
   commenParams.accessId = accessId
   commenParams.accessKey = accessKey
-  return reqst.catch(err => {
-    console.log('捕获到了错误: ' + err)
-  })
+  return reqst.catch(err => {})
 }
 
 // 判断用户是否注册
@@ -239,6 +238,7 @@ export const bankTenderNow = async ($axios, params) => {
 export const freeTenderList = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/tender/free_tender_list', {
+      // $axios.post('/hanapp/tender/freeTenderList', {
       status: params.status,
       page: params.page,
       item: params.item,
@@ -246,12 +246,11 @@ export const freeTenderList = async ($axios, params) => {
     })
   )
 }
-// 	个人中心 出借详情 还款计划
+// 	个人中心 散标出借详情 还款计划
 export const getBankRecoverPlan = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/uc/getBankRecoverPlan', {
       tenderId: params.tenderId,
-      borrowNid: params.borrowNid,
       commenParams
     })
   )
@@ -261,6 +260,97 @@ export const siftTenderDetail = async ($axios, tenderId) => {
   return await handleReq(
     $axios.post('/hanapp/product/h5TenderDetail', {
       tenderId: tenderId,
+      commenParams
+    })
+  )
+}
+// 	个人中心 省心投出借详情-债权明细
+export const joinTenderList = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/product/h5JoinTenderList', {
+      tenderId: params.tenderId,
+      item: params.item,
+      page: params.page,
+      commenParams
+    })
+  )
+}
+// 	个人中心 提现详情
+export const prepareDoCash = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/bank/prepareDoCash', {
+      commenParams
+    })
+  )
+}
+// 	个人中心 提现
+export const applyCash = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/withdraw/apply', {
+      account: params.account,
+      secretParam: params.secretParam,
+      withdrawType: params.withdrawType,
+      redirectUrl: params.redirectUrl,
+      commenParams
+    })
+  )
+}
+// 	个人中心 提现手续费
+export const getCashFee = async ($axios, moneys) => {
+  return await handleReq(
+    $axios.post('/hanapp/user/account/getCashFee', {
+      money: moneys,
+      commenParams
+    })
+  )
+}
+// 	个人中心 提现记录
+export const getCashById = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/acc/getCashById', {
+      item: params.item,
+      page: params.page,
+      commenParams
+    })
+  )
+}
+// 	个人中心 提现结果页
+export const getCashResult = async ($axios, orderIds) => {
+  return await handleReq(
+    $axios.post('/hanapp/withdraw/getResult', {
+      orderId: orderIds,
+      commenParams
+    })
+  )
+}
+// 	个人中心 充值
+export const rechargeInfo = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/user/h5RechargeInfo', {
+      commenParams
+    })
+  )
+}
+// 	个人中心 快捷充值
+export const quickPay = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/recharge/h5QuickPay', {
+      commenParams
+    })
+  )
+}
+// 	个人中心 快捷充值结果
+export const quickPayResult = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/recharge/h5QuickPayResult', {
+      commenParams
+    })
+  )
+}
+// 	个人中心 充值记录
+export const rechargeRecord = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/user/h5RechargeRecord', {
       commenParams
     })
   )

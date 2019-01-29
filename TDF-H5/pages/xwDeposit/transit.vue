@@ -5,6 +5,34 @@
     <div class="xwCount">{{ countTime }}s</div>
     <div class="xwBg"/>
     <span>网贷有风险，出借需谨慎</span>
+    <form 
+      id="form" 
+      role="form" 
+      method="post" 
+      action="" 
+      style="display: none">
+      <input 
+        name="serviceName" 
+        value="" >
+      <input 
+        name="platformNo" 
+        value="" >
+      <input 
+        name="userDevice" 
+        value="" >
+      <input 
+        name="reqData" 
+        value="">
+      <input 
+        name="keySerial" 
+        value="">  
+      <input 
+        name="sign" 
+        value=""> 
+      <button 
+        type="submit" 
+        class="btn">Submit</button>
+    </form>
   </div>
 </template>
 
@@ -16,6 +44,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$route.query.sign)
     // 倒计时
     let timer = setInterval(() => {
       this.countTime--

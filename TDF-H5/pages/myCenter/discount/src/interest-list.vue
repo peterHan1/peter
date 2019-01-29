@@ -1,40 +1,28 @@
 <template>
   <cube-scroll
     :options="options"
-    @pulling-down="onPullingDown"
-    @pulling-up="onPullingUp">
-    <ul>
-      <li>
-        <div class="discountLeft">3%</div>
+    @pulling-down="onPullingDown">
+    <ul v-if="contentList.length > 0">
+      <li 
+        v-for="(item,index) in contentList" 
+        :key="index">
+        <div class="discountLeft">{{ item.voucherApr }}%</div>
         <div class="discountRight">
           <p>
-            <span>邀友福利</span>
+            <span>{{ item.remark }}</span>
             <router-link to="" >去使用</router-link>
           </p>
-          <p class="time">有效期2018.7.6-2018.11.11</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft">2%</div>
-        <div class="discountRight">
-          <p>
-            <span>邀友福利</span>
-            <router-link to="" >去使用</router-link>
-          </p>
-          <p class="time">有效期2018.7.6-2018.11.11</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft">1%</div>
-        <div class="discountRight">
-          <p>
-            <span>邀友福利</span>
-            <router-link to="" >去使用</router-link>
-          </p>
-          <p class="time">有效期2018.7.6-2018.11.11</p>
+          <p class="time">{{ item.invalidTime }}</p>
         </div>
       </li>
     </ul>
+    <div 
+      v-else 
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无加息券"/>
+    </div>
     <div 
       class="discountBottom" 
       @click="downApp">
@@ -55,13 +43,14 @@ export default {
           stopTime: 1000,
           txt: '更新成功'
         },
-        pullUpLoad: true,
+        pullUpLoad: false,
         directionLockThreshold: 0,
         beforePullDown: true
       },
       clickBlooe: true,
       item: 12,
-      page: 1
+      page: 1,
+      contentList: ''
     }
   },
   mounted() {
@@ -75,16 +64,12 @@ export default {
       }
       allVoucher(this.$axios, params).then(res => {
         if (res) {
-          this.content = res.data.content.dataRows
-          console.log(this.content)
+          this.contentList = res.data.content.dataRows
         }
       })
     },
     onPullingDown() {
-      console.log(111)
-    },
-    onPullingUp() {
-      console.log(222)
+      this.getList()
     },
     downApp() {
       if (this.clickBlooe) {
@@ -117,7 +102,7 @@ ul
       font-size: 80px
       color: $color-white
       line-height: 200px
-      padding: 0 40px 0 50px
+      text-align: center
     .discountRight
       height: 200px
       width: 65%
@@ -149,4 +134,6 @@ ul
     span
       color: $color-primary
       margin: 0 40px
+.data-status
+  margin-top:100px    
 </style>

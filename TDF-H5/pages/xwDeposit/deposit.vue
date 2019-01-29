@@ -58,7 +58,7 @@ export default {
       openAccount(this.$axios, params).then(res => {
         if (res) {
           console.log(res.data.content.url)
-          window.location.href = res.data.content.url
+          // window.location.href = res.data.content.url
         }
       })
     }

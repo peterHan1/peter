@@ -32,11 +32,18 @@
 </template>
 
 <script>
+import { getCashResult } from '~/plugins/api.js'
+
 export default {
   data() {
     return {}
   },
-  mounted() {},
+  mounted() {
+    let orderId = this.$route.query.orderId
+    getCashResult(this.$axios, orderId).then(res => {
+      console.log(res)
+    })
+  },
   methods: {
     btnSub() {
       console.log('点击了')

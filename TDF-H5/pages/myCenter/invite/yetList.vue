@@ -1,6 +1,7 @@
 <template>
   <cube-scroll
-    v-if="contentList"
+    v-if="contentList.length > 0"
+    ref="contentScroll1"
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
@@ -51,29 +52,41 @@ export default {
         beforePullDown: true
       },
       type: 1,
-      item: 3,
+      item: 12,
       page: 1,
       contentList: []
     }
   },
   mounted() {
-    let params = {
-      type: this.type,
-      item: this.item,
-      page: this.page
-    }
-    recordList(this.$axios, params).then(res => {
-      if (res) {
-        this.contentList = res.data.content.dataRows
-      }
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      let params = {
+        type: this.type,
+        item: this.item,
+        page: this.page
+      }
+      recordList(this.$axios, params).then(res => {
+        if (res) {
+          this.contentList = res.data.content.dataRows
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.contentList = []
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
     }
   },
   components: {}
@@ -109,6 +122,6 @@ ul
         color: $color-gray3
 .data-status
   position: absolute
-  left: 15%
+  right: 15%
   top: 10%
 </style>

@@ -1,6 +1,6 @@
 <template>
   <cube-scroll
-    v-if="contentList"
+    v-if="contentList.length > 0"
     ref="contentScroll"
     :options="options"
     @pulling-down="onPullingDown"
@@ -52,51 +52,41 @@ export default {
         directionLockThreshold: 0,
         beforePullDown: true
       },
-      type: 1,
-      item: 6,
+      type: 2,
+      item: 12,
       page: 1,
       contentList: []
     }
   },
   mounted() {
-    let params = {
-      type: this.type,
-      item: this.item,
-      page: this.page
-    }
-    recordList(this.$axios, params).then(res => {
-      if (res) {
-        this.contentList = res.data.content.dataRows
-      }
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      let params = {
+        type: this.type,
+        item: this.item,
+        page: this.page
+      }
+      recordList(this.$axios, params).then(res => {
+        if (res) {
+          this.contentList = res.data.content.dataRows
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.contentList = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      pageNum++
-      // let pat = this.$store.state.project.freePages
-      console.log(pageNum)
-      console.log(this.page)
-      const params = {
-        item: this.$store.state.project.freeItem,
-        page: pageNum
-      }
-      // // 更新数据
+      this.page++
       setTimeout(() => {
-        // 如果有新数据
-        let params = {
-          type: this.type,
-          item: this.item,
-          page: this.page
-        }
-        recordList(this.$axios, params).then(res => {
-          if (res) {
-            console.log(res)
-          }
-        })
-        this.$refs.contentScroll0.forceUpdate()
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
       }, 1000)
     }
   },

@@ -1,21 +1,22 @@
 <template>
   <cube-scroll
     :options="options"
-    @pulling-down="onPullingDown"
-    @pulling-up="onPullingUp">
-    <ul>
-      <li>
+    @pulling-down="onPullingDown">
+    <ul v-if="contentList.length > 0">
+      <li 
+        v-for="(item,index) in contentList" 
+        :key="index">
         <div class="discountLeft">
-          <p><span>100</span>元</p>
-          <p>满10000元可用</p>
+          <p><span>{{ item.amount }}</span>元</p>
+          <p>满{{ item.investAmountCondition }}元可用</p>
         </div>
         <div class="discountRight">
           <p class="source">
-            <span>端午节福利</span>
+            <span>{{ item.remark }}</span>
             <router-link to="" >去使用</router-link>
           </p>
-          <p>有效期2018.7.6-2018.11.11</p>
-          <p>理财期限6个月及以上使用</p>
+          <p>{{ item.invalidDate }}</p>
+          <p>{{ item.message }}</p>
         </div>
       </li>
       <li>
@@ -48,6 +49,13 @@
       </li>
     </ul>
     <div 
+      v-else 
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无抵用券"/>
+    </div>
+    <div 
       class="discountBottom" 
       @click="downApp">
       <span >查看已使用</span> | <span>已失效</span>
@@ -67,12 +75,13 @@ export default {
           stopTime: 1000,
           txt: '更新成功'
         },
-        pullUpLoad: true,
+        pullUpLoad: false,
         directionLockThreshold: 0,
         beforePullDown: true
       },
       item: 12,
-      page: 1
+      page: 1,
+      contentList: ''
     }
   },
   mounted() {
@@ -86,16 +95,13 @@ export default {
       }
       getVoucherList(this.$axios, params).then(res => {
         if (res) {
-          this.content = res.data.content.dataRows
-          console.log(this.content)
+          this.contentList = res.data.content.dataRows
+          console.log(this.contentList)
         }
       })
     },
     onPullingDown() {
-      console.log(111)
-    },
-    onPullingUp() {
-      console.log(222)
+      this.getList()
     },
     downApp() {
       if (this.clickBlooe) {
@@ -166,5 +172,7 @@ ul
     margin-top: 60px
     span
       color: $color-primary
-      margin: 0 40px          
+      margin: 0 40px
+.data-status
+  margin-top:100px        
 </style>

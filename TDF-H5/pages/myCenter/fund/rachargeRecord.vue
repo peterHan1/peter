@@ -111,6 +111,8 @@
 </template>
 
 <script>
+import { rechargeRecord } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
@@ -126,7 +128,11 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() {
+    rechargeRecord(this.$axios).then(res => {
+      console.log(res)
+    })
+  },
   methods: {
     onPullingDown() {
       console.log(111)

@@ -8,11 +8,11 @@
     </td-header>
     <div class="bankTop">
       <span>到账银行</span>
-      <span>中国工商银行(尾号3720)</span>
+      <span>{{ content.bankNmae }}(尾号{{ bankVal }})</span>
     </div>
     <div class="inp_money">
       <ul>
-        <li>可提现金额 <span>{{ cashMoney }}</span>元<i 
+        <li>可提现金额 <span>{{ content.balance }}</span>元<i 
           class="iconfont" 
           @click="layerMoney=true">&#xe6f7;</i></li>
         <li>
@@ -26,8 +26,8 @@
             <span @click="allMoney()">全部</span>
           </div>
           <div class="cost_money">
-            <p>实际到账金额：<b>0.00</b>元</p>
-            <p>手续费：<b>0.00</b>元 <span>您本月还有<b>1</b>次免费提现次数</span></p>
+            <p>实际到账金额：<b>{{ fee }}</b>元</p>
+            <p>手续费：<b>{{ credited }}</b>元 <span>您本月还有<b>{{ content.freeTimes }}</b>次免费提现次数</span></p>
           </div>
         </li>
       </ul>
@@ -36,29 +36,29 @@
       <ul>
         <li 
           :class="speedAllow?'':'notAllow'" 
-          @click="selectCash('speed')">
+          @click="selectCash('urgent')">
           <p>
             <i 
-              v-if="inAccount == 'speed'" 
+              v-if="inAccount == 'urgent'" 
               class="iconfont">&#xe6f8;</i>
             <i 
               v-else 
               class="iconfont">&#xe6f9;</i>
             快速到账
           </p>
-          <div>预计当日到账，单日限额<span>50000</span>元，当日剩余额度<span>800</span>元，限<span>9:00-18:00</span>间操作。</div>
+          <div>预计当日到账，单日限额<span>{{ urgent.maxFloatAmount }}</span>元，当日剩余额度<span>{{ urgent.floatAmount }}</span>元，限<span>{{ urgent.time }}</span>间操作。</div>
         </li>
-        <li @click="selectCash('general')">
+        <li @click="selectCash('normal')">
           <p>
             <i 
-              v-if="inAccount == 'general'" 
+              v-if="inAccount == 'normal'" 
               class="iconfont">&#xe6f8;</i>
             <i 
               v-else 
               class="iconfont">&#xe6f9;</i>
             普通到账
           </p>
-          <div>预计下一个工作日到账，单笔限额100万，单日无限额。</div>
+          <div>预计下一个工作日到账，单笔限额{{ normal.maxAccount | setMoney }}万，单日无限额。</div>
         </li>
       </ul>
     </div>
@@ -66,7 +66,7 @@
       <td-button
         :disabled="moneyVal >= 100 && inAccount != ''?false:true"
         value="申请提现"
-        @click="subCash"
+        @btnFn="subCash"
       />
     </div>
     <div class="cashExplan">
@@ -77,8 +77,8 @@
       submit="我知道了" 
       @on-sub="layerNow()" >
       <div class="money_txt">
-        <p>已出借过可提现金额：<span>0.00</span>元</p>
-        <p>未出借过可提现金额：<span>0.00</span>元</p>
+        <p>已出借过可提现金额：<span>{{ content.balanceCashFree }}</span>元</p>
+        <p>未出借过可提现金额：<span>{{ content.balanceCashParaFee }}</span>元</p>
       </div>
     </Layer>
     <Layer 
@@ -99,6 +99,9 @@
 </template>
 
 <script>
+import { prepareDoCash, applyCash, getCashFee } from '~/plugins/api.js'
+import CryptoJS from 'crypto-js'
+
 export default {
   data() {
     return {
@@ -109,19 +112,42 @@ export default {
       layerMoney: false,
       cashHint: false,
       cashMaintain: false,
-      hint: '当前不在快速到账时间内，请选择普通到账提现',
-      max: '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
+      hint: '',
+      content: '',
+      bankVal: '',
+      balance: '',
+      normal: '',
+      urgent: '',
+      fee: '0.00',
+      credited: '0.00'
     }
   },
-  mounted() {},
+  mounted() {
+    prepareDoCash(this.$axios).then(res => {
+      this.content = res.data.content
+      this.normal = res.data.content.normal
+      this.urgent = res.data.content.urgent
+      this.speedAllow = res.data.content.urgent.open
+      this.bankVal = res.data.content.account.substr(-4)
+      this.balance = res.data.content.balance.replace(/\,/g, '')
+    })
+  },
   methods: {
     inputFn() {
-      if (this.cashMoney <= 0) {
+      if (this.balance <= 0) {
         this.moneyVal = '0.00'
+      } else if (this.moneyVal >= 100) {
+        getCashFee(this.$axios, this.moneyVal).then(res => {
+          this.fee = res.data.content.fee
+          this.credited = res.data.content.credited
+        })
+      } else if (this.moneyVal < 100) {
+        this.fee = '0.00'
+        this.credited = '0.00'
       }
     },
     selectCash(a) {
-      if (a === 'speed') {
+      if (a === 'urgent') {
         if (this.speedAllow) {
           this.inAccount = this.speedAllow ? a : ''
         }
@@ -130,10 +156,38 @@ export default {
       }
     },
     subCash() {
-      console.log(123)
+      if (this.inAccount && this.moneyVal >= 100) {
+        let money = this.moneyVal + '242628'
+        // money = this.encryptByDES(money, '201812243')
+        let params = {
+          account: this.moneyVal,
+          secretParam: money,
+          withdrawType: this.inAccount,
+          redirectUrl: '/myCenter/fund/cash'
+        }
+        applyCash(this.$axios, params).then(res => {
+          if (res.data.code === 800034) {
+            this.cashMaintain = true
+          } else if (res.data.code === 800035) {
+            this.cashHint = true
+            this.hint = '当前不在快速到账时间内，请选择普通到账提现'
+          } else if (res.data.code === 800036) {
+            this.cashHint = true
+            this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
+          }
+        })
+      }
+    },
+    encryptByDES(message, key) {
+      const keyHex = CryptoJS.enc.Utf8.parse(key)
+      const encrypted = CryptoJS.DES.encrypt(message, keyHex, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+      })
+      return encrypted.toString()
     },
     allMoney() {
-      this.moneyVal = this.cashMoney
+      this.moneyVal = this.balance
     },
     layerNow() {
       this.layerMoney = false
@@ -150,6 +204,11 @@ export default {
     },
     navRightFn() {
       this.$router.push({ path: '/myCenter/fund/cashRecord' })
+    }
+  },
+  filters: {
+    setMoney(value) {
+      return value / 10000
     }
   }
 }

@@ -7,10 +7,12 @@
     <div>
       <ul>
         <li>
-          <div class="bankImg ABOC "/>
+          <div 
+            :class="content.bankCode" 
+            class="bankImg"/>
           <div class="bankInfo">
-            <p>中国工商银行</p>
-            <p>************ 3720</p>
+            <p>{{ content.bank }}</p>
+            <p>{{ content.account }}</p>
           </div>
         </li>
         <li>
@@ -23,7 +25,7 @@
           </div>
         </li>
         <li>
-          <p>本次最多可充值 <b>5000</b>元</p>
+          <p>本次最多可充值 <b>{{ content.money }}</b>元</p>
         </li>
       </ul>
       <div class="sub_btn">
@@ -42,13 +44,21 @@
 </template>
 
 <script>
+import { rechargeInfo } from '~/plugins/api.js'
+
 export default {
   data() {
     return {
-      moneyVal: null
+      moneyVal: null,
+      content: ''
     }
   },
-  mounted() {},
+  mounted() {
+    rechargeInfo(this.$axios).then(res => {
+      this.content = res.data.content
+      console.log(this.content)
+    })
+  },
   methods: {
     navRightFn() {
       this.$router.push({ path: '/myCenter/fund/rachargeRecord' })

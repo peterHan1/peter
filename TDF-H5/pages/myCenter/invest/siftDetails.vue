@@ -21,7 +21,7 @@
       </li>
       <li>
         <span>约定利率</span>
-        <span>{{ content.apr }}</span>
+        <span>{{ content.apr }}%</span>
       </li>
       <li>
         <span>参考收益(元)</span>
@@ -45,7 +45,7 @@
       </li>
       <li>
         <span>债权明细</span>
-        <router-link to="/myCenter/invest/creditorList" >点击查看</router-link>
+        <router-link :to="{path:'/myCenter/invest/creditorList',query: {tenderId: tenderId,name: content.name,status: content.status}}">点击查看</router-link>
       </li>
     </ul>
     <div>
@@ -117,7 +117,6 @@ export default {
     })
     siftTenderDetail(this.$axios, this.tenderId).then(res => {
       this.content = res.data.content
-      console.log(this.content)
     })
   }
 }
