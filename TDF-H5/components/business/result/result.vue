@@ -69,12 +69,12 @@ export default {
       border-radius: 35px
       font-size: $fontsize-large-x
   .ok
-    background: url(/assets/images/xw-bank/xw-ok.png) no-repeat
+    background: url(../../../assets/images/xw-bank/xw-ok.png) no-repeat
     background-size: 100% 100%
   .no
-    background: url('/assets/images/xw-bank/xw-no.png') no-repeat
+    background: url(../../../assets/images/xw-bank/xw-no.png) no-repeat
     background-size: 100% 100%
   .load
-    background: url(/assets/images/xw-bank/xw-load.png) no-repeat
+    background: url(../../../assets/images/xw-bank/xw-load.png) no-repeat
     background-size: 100% 100%
 </style>

@@ -10,8 +10,12 @@ const Message = function(config = {}) {
       instance.$data[key] = config[key]
     }
   }
-  instance.$data.show = true
+  if (instance.$data.show) return
   document.body.appendChild(instance.$mount().$el)
+  Vue.nextTick(() => {
+    instance.$data.show = true
+    instance.$data.loadShow = true
+  })
 }
 
 const Msg = function(message, time, types) {

@@ -9,8 +9,7 @@ const createError = (code, msg) => {
 export default function({ $axios, redirect }) {
   $axios.defaults.timeout = 10000
   $axios.onRequest(config => {
-    // TDUI.load.Load()
-    console.log('请求中')
+    TDUI.load.Load()
     // testFn('请求中')
     // if (process.browser) {
     //   vm.$loading()
@@ -19,8 +18,7 @@ export default function({ $axios, redirect }) {
     // console.log(config.data)
   })
   $axios.onResponse(res => {
-    // TDUI.load.Close()
-    console.log('请求完')
+    TDUI.load.Close()
     // return res
     // console.log(res)
     // testFn('请求完')
@@ -32,13 +30,12 @@ export default function({ $axios, redirect }) {
     return res
   })
   $axios.onError(err => {
+    TDUI.load.Close()
     const errInfo = `错误号： ${err.code};错误信息：${err.message}`
     if (err.response.status == 504) {
-      console.log('服务器出错')
       TDUI.Msg('服务器出错')
     } else {
       TDUI.Msg(err.message)
-      console.log(errInfo)
     }
   })
 }

@@ -2,18 +2,19 @@
   <div class="myInvest">
     <td-header title="债权明细"/>
     <cube-scroll
+      v-if="content.length > 0"
       ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <div class="titleTxt">
-        <span>{{ name }}</span>
+        <span>{{ this.$route.query.name }}</span>
         <b v-if="status === 1">额度已满</b>
         <b v-else>加入中</b>
       </div>
       <ul>
         <li 
-          v-for="(item,index) in list" 
+          v-for="(item,index) in content" 
           :key="index">
           <p>
             <span>{{ item.productName }}</span>
@@ -28,36 +29,15 @@
             <router-link to="" >查看项目</router-link>
           </div>
         </li>
-        <li>
-          <p>
-            <span>宝马X6抵押续贷标</span>
-            <span>募集中</span>
-          </p>
-          <p>
-            <span>加入金额:<b>50000.00</b>元</span>
-            <span>加入时间:2018-12-22</span>
-          </p>
-          <div>
-            <router-link to="" >查看协议</router-link>
-            <router-link to="" >查看项目</router-link>
-          </div>
-        </li>
-        <li>
-          <p>
-            <span>宝马X6抵押续贷标</span>
-            <span>已还款</span>
-          </p>
-          <p>
-            <span>加入金额:<b>50000.00</b>元</span>
-            <span>加入时间:2018-12-22</span>
-          </p>
-          <div>
-            <router-link to="" >查看协议</router-link>
-            <router-link to="" >查看项目</router-link>
-          </div>
-        </li>
       </ul>
     </cube-scroll>
+    <div 
+      v-else
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无内容"/>
+    </div>
   </div>
 </template>
 
@@ -82,45 +62,44 @@ export default {
       name: '',
       tenderId: '',
       item: 12,
-      page: 1
+      page: 1,
+      content: []
     }
   },
   mounted() {
     this.tenderId = this.$route.query.tenderId
     this.name = this.$route.query.name
     this.status = this.$route.query.status
-    const params = {
-      tenderId: this.tenderId,
-      item: this.item,
-      page: this.page
-    }
-    joinTenderList(this.$axios, params).then(res => {
-      console.log(res)
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      const params = {
+        tenderId: this.tenderId,
+        item: this.item,
+        page: this.page
+      }
+      joinTenderList(this.$axios, params).then(res => {
+        let list = res.data.content.dataRows
+        for (let i in list) {
+          this.content.push(list[i])
+        }
+      })
+    },
     onPullingDown() {
-      console.log(1111111)
-      // this.page = 1
-      // setTimeout(async () => {
-      //   let params = { item: this.item, page: this.page }
-      //   let { data } = await getAccountLogById(this.$axios, params)
-      //   this.$store.commit('myCenter/setMoneyNull')
-      //   let list = data.content.dataRows
-      //   for (let i = 0; i < list.length; i++) {
-      //     this.$store.commit('myCenter/setMonetList', list[i])
-      //   }
-      //   this.$refs.contentScroll.forceUpdate()
-      // }, 1000)
+      setTimeout(() => {
+        this.page = 1
+        this.content = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(2222222222)
-      // this.page++
-      // let params = { item: this.item, page: this.page }
-      // setTimeout(() => {
-      //   this.$store.dispatch('myCenter/getMoneyRecord', params)
-      //   this.$refs.contentScroll.forceUpdate()
-      // }, 1000)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     }
   },
   components: {}
@@ -179,4 +158,9 @@ export default {
         font-size: $fontsize-small-ss
       a:nth-child(2)
         text-align: right
+  .data-status
+    position: absolute
+    left: 50%
+    top: 30%
+    transform: translateX(-50%)
 </style>

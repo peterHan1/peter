@@ -2,7 +2,7 @@
   <div class="footerNav">
     <router-link
       :class="{'on': navClass == 'td'}"
-      to="/tuodao/td" >
+      to="/" >
       <i
         class="iconfont">
         <b v-if="navClass === 'td'" >&#xe6d2;</b>

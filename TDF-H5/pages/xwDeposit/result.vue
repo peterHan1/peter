@@ -1,41 +1,68 @@
 <template>
   <div class="resultBox">
     <td-header title="激活存管处理结果"/>
-    <!-- <result 
-      status="ok" 
-      resultTxt="激活存管成功！"/> -->
-    <!-- <result 
-      status="load" 
-      resultTxt="激活存管处理中！"/> -->
     <result 
+      v-if="status === 1"
+      status="ok" 
+      resultTxt="激活存管成功！"/>
+    <result 
+      v-else-if="status === 2"
       status="no" 
       resultTxt="激活存管失败！"/>
+    <result 
+      v-else
+      status="load" 
+      resultTxt="激活存管处理中！"/>
     <div class="btn">
-      <div>
+      <div v-if="status === 1">
+        <td-button 
+          :border="true" 
+          value="完成"
+          @btnFn="returnFn"/>
+      </div>
+      <div v-else-if="status === 2">
         <td-button 
           :border="true" 
           value="请重新激活存管"
-          @btnFn="btnSub"/>
+          @btnFn="returnDeposit"/>
       </div>
-      <!-- <div>
+      <div v-else>
         <td-button 
           :border="true" 
           value="返回"
-          @btnFn="btnSub"/>
-      </div> -->
+          @btnFn="returnFn"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { OpenAccountResult } from '../../plugins/api.js'
+
 export default {
   data() {
-    return {}
+    return {
+      status: ''
+    }
   },
-  mounted() {},
+  mounted() {
+    OpenAccountResult(this.$axios).then(res => {
+      if (res) {
+        this.status = res.data.content.code
+        console.log(res)
+      }
+    })
+  },
   methods: {
-    btnSub() {
-      console.log('点击了')
+    returnFn() {
+      this.$router.push({
+        name: 'myCenter-center'
+      })
+    },
+    returnDeposit() {
+      this.$router.push({
+        name: 'xwDeposit-deposit'
+      })
     }
   },
   components: {}

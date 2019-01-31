@@ -1,28 +1,37 @@
 <template>
   <div class="deposit">
-    <td-header title="激活存管账户"/>
+    <td-header 
+      :returnUrl="false"
+      title="激活存管账户" 
+      url="myCenter-center"/>
     <div class="txt">为保障您的资金安全，请先激活银行存管账户，激活账户绑定的银 行卡作为提现、充值唯一银行卡。</div>
     <ul>
       <li>
-        <div v-if="name">{{ name }}</div>
-        <input 
+        <div v-if="nameVal">{{ nameVal }}</div>
+        <input
           v-else
-          v-model="nameVal" 
-          type="text" 
+          v-model="name"
+          type="text"
           placeholder="请输入真实姓名">
       </li>
       <li>
-        <div v-if="sfz">{{ sfz }}</div>
+        <div v-if="fszVal">{{ fszVal }}</div>
         <input 
           v-else
-          v-model="fszVal" 
+          v-model="sfz" 
           type="text" 
           placeholder="请输入身份证号码">
       </li>
     </ul>
     <div class="sub_btn">
       <td-button
-        :disabled="nameVal != '' && fszVal.length >= 18 ?false:true"
+        v-if="nameVal && fszVal"
+        value="确定"
+        @btnFn="sunBtn"
+      />
+      <td-button
+        v-else
+        :disabled="name != '' && sfz.length === 18 ?false:true"
         value="确定"
         @btnFn="sunBtn"
       />
@@ -42,25 +51,31 @@ export default {
       sfz: ''
     }
   },
-  mounted() {
-    this.$store.dispatch('myCenter/getUser')
-    setTimeout(() => {
-      this.name = this.$store.state.myCenter.realName
-      this.sfz = this.$store.state.myCenter.idCard
-    }, 200)
+  async beforeCreate() {
+    await this.$store.dispatch('myCenter/getUser')
+    this.nameVal = this.$store.state.myCenter.realName
+    this.fszVal = this.$store.state.myCenter.idCard
   },
   methods: {
     sunBtn() {
       const params = {
-        realName: this.nameVal,
-        idCard: this.fszVal
+        realName: this.nameVal ? this.nameVal : this.name,
+        idCard: this.fszVal ? this.fszVal : this.sfz,
+        returnUrl: 'http://72.127.2.104:3000/xwDeposit/result'
       }
-      openAccount(this.$axios, params).then(res => {
-        if (res) {
-          console.log(res.data.content.url)
-          // window.location.href = res.data.content.url
-        }
-      })
+      if (params.realName != '' && params.idCard != '') {
+        openAccount(this.$axios, params).then(res => {
+          if (res) {
+            let nonce = res.data.content.nonce
+            this.$router.push({
+              name: 'xwDeposit-transit',
+              params: {
+                sign: nonce
+              }
+            })
+          }
+        })
+      }
     }
   },
   components: {}
@@ -92,6 +107,7 @@ export default {
           caret-color: $color-primary
           font-size: $fontsize-medium
           color: $color-gray1
+          background-color: $color-white
       li:last-child
         border: none
     .sub_btn

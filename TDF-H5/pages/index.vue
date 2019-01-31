@@ -2,15 +2,7 @@
   <div class="index_box">
     <div class="index_top">
       <div class="banner">
-        <banner :auto="4000">
-          <banner-item
-            v-for="(item,index) in imgArr"
-            :key="index">
-            <router-link :to="item.bannerA">
-              <img :src="item.imgUrl">
-            </router-link>
-          </banner-item>
-        </banner>
+        <cube-slide :data="imgArr"/>
       </div>
       <div class="oper_box">
         <ul class="oper_list">
@@ -52,7 +44,7 @@
       <router-link to="/user/login">
         <div class="finance_tlt">
           <h3>省心投20170908</h3>
-          <img src="@/assets/images/index/finance_type.png" >
+          <img src="~/assets/images/index/finance_type.png" >
         </div>
         <div class="finance_mes">
           <div class="list">
@@ -85,7 +77,7 @@
       <router-link to="/user/login">
         <div class="finance_tlt">
           <h3>省心投20170908</h3>
-          <img src="@/assets/images/index/finance_type.png" >
+          <img src="~/assets/images/index/finance_type.png" >
         </div>
         <div class="finance_mes">
           <div class="list">
@@ -151,18 +143,18 @@ export default {
     return {
       imgArr: [
         {
-          bannerA: 'www.51tuodao.com',
-          imgUrl:
+          url: 'www.51tuodao.com',
+          image:
             'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/10/106102_scrollpic_new_1547083167912.png'
         },
         {
-          bannerA: 'www.51tuodao.com',
-          imgUrl:
+          url: 'www.51tuodao.com',
+          image:
             'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/02/161777_scrollpic_new_1546391852265.png'
         },
         {
-          bannerA: 'www.51tuodao.com',
-          imgUrl:
+          url: 'www.51tuodao.com',
+          image:
             'https://www.51tuodao.com/upload/data/upfiles/images/2018-12/22/106102_scrollpic_new_1545453442803.png'
         }
       ]
@@ -196,6 +188,20 @@ export default {
       left: 0
       right: 0
       height: 54%
+      /deep/ img
+        width: 100%
+        height: 100%
+      /deep/ .cube-slide-dots
+        bottom: 30px
+        span
+          width: 16px
+          height: 16px
+          background-color: #fff
+          opacity: 0.5
+          border-radius: 100%
+          margin-right: 13px
+        .active
+          opacity: 1
     .oper_box
       position: absolute
       left: 0

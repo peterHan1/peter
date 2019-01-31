@@ -1,112 +1,40 @@
 <template>
   <div class="recode">
     <td-header title="充值记录"/>
-    <div class="recodeTop">
+    <div 
+      v-if="list.length > 0" 
+      class="recodeTop">
       <span>充值金额(元)/时间</span>
       <span>状态</span>
     </div>
     <cube-scroll
+      ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul>
-        <li>
+      <ul v-if="list.length > 0">
+        <li 
+          v-for="(item,index) in list" 
+          :key="index">
           <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
+            <p>{{ item.money }}</p>
+            <p>{{ item.bank }} {{ item.bankCard }}</p>
           </div>
           <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <p>5000.00</p>
-            <p>工商银行 尾号0902</p>
-          </div>
-          <div>
-            <p>成功</p>
-            <p>2018-06-07 10:00</p>
+            <p>{{ item.status }}</p>
+            <p>{{ item.addtime }}</p>
           </div>
         </li>
       </ul>
+      <div 
+        v-else
+        class="data-status">
+        <data-status
+          status="null"
+          statusTxt="暂无充值记录"/>
+      </div>
     </cube-scroll>
-    <!-- <div class="data-status">
-      <data-status
-        status="null"
-        statusTxt="暂无提现记录"/>
-    </div> -->
+    
   </div>
 </template>
 
@@ -125,20 +53,42 @@ export default {
         pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
-      }
+      },
+      page: 1,
+      item: 12,
+      list: []
     }
   },
   mounted() {
-    rechargeRecord(this.$axios).then(res => {
-      console.log(res)
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      let params = {
+        page: this.page,
+        item: this.item
+      }
+      rechargeRecord(this.$axios, params).then(res => {
+        let list = res.data.content.dataRows
+        for (let i in list) {
+          this.list.push(list[i])
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.list = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     }
   },
   components: {}

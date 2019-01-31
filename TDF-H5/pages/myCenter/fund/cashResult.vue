@@ -1,26 +1,40 @@
 <template>
   <div class="resultBox">
-    <td-header title="提现结果"/>
-    <!-- <result 
-      status="ok" 
-      resultTxt="提现成功！"/> -->
-    <!-- <result 
-      status="load" 
-      resultTxt="提现处理中！"/> -->
+    <td-header 
+      :returnUrl="false" 
+      title="提现结果" 
+      url="myCenter-center"/>
     <result 
+      v-if="status===0"
+      status="ok" 
+      resultTxt="提现成功！"/>
+    <result 
+      v-else-if="status===2"
       status="no" 
-      resultTxt="提现处理中！"
+      resultTxt="提现失败！"
       failureTxt="返回提现失败原因"/>
-    <div class="btn">
-      <!-- <div>
+    <result 
+      v-else
+      status="load" 
+      resultTxt="提现处理中！"/>
+    <div 
+      v-if="status===0" 
+      class="btn">
+      <div>
         <td-button 
           :border="true" 
-          value="继续提现"/>
+          value="继续提现"
+          @btnFn="returnCah"/>
       </div>
       <div>
         <td-button 
-          value="查看提现记录"/>
-      </div>       -->
+          value="查看提现记录"
+          @btnFn="returnList"/>
+      </div>      
+    </div>
+    <div 
+      v-else 
+      class="btn">
       <div>
         <td-button 
           :border="true" 
@@ -36,17 +50,33 @@ import { getCashResult } from '~/plugins/api.js'
 
 export default {
   data() {
-    return {}
+    return {
+      status: ''
+    }
   },
   mounted() {
     let orderId = this.$route.query.orderId
     getCashResult(this.$axios, orderId).then(res => {
-      console.log(res)
+      if (res) {
+        this.status = res.data.content.status
+      }
     })
   },
   methods: {
+    returnCah() {
+      this.$router.push({
+        name: 'myCenter-fund-cash'
+      })
+    },
+    returnList() {
+      this.$router.push({
+        name: 'myCenter-fund-cashRecord'
+      })
+    },
     btnSub() {
-      console.log('点击了')
+      this.$router.push({
+        name: 'myCenter-center'
+      })
     }
   },
   components: {}

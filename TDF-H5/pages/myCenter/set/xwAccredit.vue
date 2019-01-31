@@ -5,7 +5,7 @@
       <li>
         <span>业务授权</span>
         <span v-if="authStatus === 1">已授权</span>
-        <span v-if="authStatus === 2">已过期 <router-link to="" >重新授权</router-link></span>
+        <span v-if="authStatus === 2">已过期 <b @click="appauth">重新授权</b></span>
       </li>
       <li>
         <span>授权金额 <i 
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { information } from '~/plugins/api.js'
+import { information, hanAppauth } from '~/plugins/api.js'
 
 export default {
   data() {
@@ -48,6 +48,19 @@ export default {
     })
   },
   methods: {
+    appauth() {
+      hanAppauth(this.$axios).then(res => {
+        if (res) {
+          let nonce = res.data.content.nonce
+          this.$router.push({
+            name: 'xwDeposit-transit',
+            params: {
+              sign: nonce
+            }
+          })
+        }
+      })
+    },
     openLayer() {
       this.layerShow = true
     },
@@ -73,8 +86,8 @@ export default {
           font-size: $fontsize-medium
           display: block
           line-height: 100px
-          a
-            color: $color-primary
+          b
+            color: #FF6866
           i
             display: inline-block
             padding: 0 10px

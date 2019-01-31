@@ -7,37 +7,28 @@
       <span>间接返现奖励(元)</span>
     </div>
     <cube-scroll
+      v-if="content.length > 0"
+      ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <ul>
-        <li>
-          <span>134****9086</span>
-          <span>6.66</span>
-          <span>10.00</span>
-        </li>
-        <li>
-          <span>134****9086</span>
-          <span>6.66</span>
-          <span>10.00</span>
-        </li>
-        <li>
-          <span>134****9086</span>
-          <span>6.66</span>
-          <span>10.00</span>
-        </li>
-        <li>
-          <span>134****9086</span>
-          <span>6.66</span>
-          <span>10.00</span>
-        </li>
-        <li>
-          <span>134****9086</span>
-          <span>6.66</span>
-          <span>-</span>
+        <li 
+          v-for="(item,index) in content" 
+          :key="index">
+          <span>{{ item.inviteUserName }}</span>
+          <span>{{ item.cashAmount }}</span>
+          <span>{{ item.indirectCashAmount }}</span>
         </li>
       </ul>
     </cube-scroll>
+    <div 
+      v-else
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无内容"/>
+    </div>
   </div>
 </template>
 
@@ -58,26 +49,42 @@ export default {
         beforePullDown: true
       },
       item: 12,
-      page: 1
+      page: 1,
+      content: []
     }
   },
   mounted() {
-    let params = {
-      item: this.item,
-      page: this.page
-    }
-    inviteFriendList(this.$axios, params).then(res => {
-      if (res) {
-        this.list = res.data.content
-      }
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      let params = {
+        item: this.item,
+        page: this.page
+      }
+      inviteFriendList(this.$axios, params).then(res => {
+        if (res) {
+          let list = res.data.content.dataRows
+          for (let i in list) {
+            this.content.push(list[i])
+          }
+        }
+      })
+    },
     onPullingDown() {
-      console.log(111)
+      setTimeout(() => {
+        this.page = 1
+        this.content = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     onPullingUp() {
-      console.log(222)
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     }
   },
   components: {}
@@ -85,45 +92,50 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .invite
+.invite
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  padding-top: 188px
+  .listHeader
     position: absolute
+    top: 88px
     left: 0
     right: 0
-    top: 0
-    bottom: 0
-    padding-top: 188px
-    .listHeader
-      position: absolute
-      top: 88px
-      left: 0
-      right: 0
+    display: flex
+    padding: 0 30px
+    border-bottom: 1px solid $color-gray5
+    background-color: $color-white
+    span
+      flex: 1
+      font-size: $fontsize-small-ss
+      color: $color-gray3
+      line-height: 82px
+    span:nth-child(2)
+      text-align: center
+    span:nth-child(3)
+      text-align: right
+  ul
+    padding: 0 30px
+    background-color: $color-white
+    li
       display: flex
-      padding: 0 30px
       border-bottom: 1px solid $color-gray5
-      background-color: $color-white
       span
         flex: 1
-        font-size: $fontsize-small-ss
-        color: $color-gray3
-        line-height: 82px
-      span:nth-child(2)
         text-align: center
-      span:nth-child(3)
-        text-align: right
-    ul
-      padding: 0 30px
-      background-color: $color-white
-      li
-        display: flex
-        border-bottom: 1px solid $color-gray5
-        span
-          flex: 1
-          text-align: center
-          line-height: 90px
-          font-size: $fontsize-medium
-          color: $color-gray1
-        span:first-child
-          text-align: left
-        span:last-child
-          text-align: right 
+        line-height: 90px
+        font-size: $fontsize-medium
+        color: $color-gray1
+      span:first-child
+        text-align: left
+      span:last-child
+        text-align: right 
+  .data-status
+    position: absolute
+    left: 50%
+    top: 30%
+    transform: translateX(-50%)        
 </style>

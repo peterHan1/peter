@@ -1,7 +1,9 @@
 <template>
   <cube-scroll
+    ref="contentScroll"
     :options="options"
-    @pulling-down="onPullingDown">
+    @pulling-down="onPullingDown"
+    @pulling-up="onPullingUp">
     <ul v-if="contentList.length > 0">
       <li 
         v-for="(item,index) in contentList" 
@@ -43,14 +45,14 @@ export default {
           stopTime: 1000,
           txt: '更新成功'
         },
-        pullUpLoad: false,
+        pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
       },
       clickBlooe: true,
       item: 12,
       page: 1,
-      contentList: ''
+      contentList: []
     }
   },
   mounted() {
@@ -64,12 +66,27 @@ export default {
       }
       allVoucher(this.$axios, params).then(res => {
         if (res) {
-          this.contentList = res.data.content.dataRows
+          let list = res.data.content.dataRows
+          for (let i in list) {
+            this.contentList.push(list[i])
+          }
         }
       })
     },
     onPullingDown() {
-      this.getList()
+      setTimeout(() => {
+        this.page = 1
+        this.contentList = []
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
+    },
+    onPullingUp() {
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll.forceUpdate()
+      }, 1000)
     },
     downApp() {
       if (this.clickBlooe) {

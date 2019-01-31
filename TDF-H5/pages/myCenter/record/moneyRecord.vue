@@ -6,7 +6,7 @@
       <span>金额(元)/状态</span>
     </div>
     <cube-scroll
-      v-if="this.$store.state.myCenter.moneyList"
+      v-if="this.$store.state.myCenter.moneyList.length > 0"
       ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
@@ -33,7 +33,6 @@
         status="null"
         statusTxt="暂无资金记录"/>
     </div>
-    
   </div>
 </template>
 
@@ -61,7 +60,6 @@ export default {
   mounted() {
     const params = { item: this.item, page: this.page }
     this.$store.dispatch('myCenter/getMoneyRecord', params)
-    console.log(this.$store.state.myCenter.moneyList)
   },
   methods: {
     onPullingDown() {

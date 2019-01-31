@@ -107,12 +107,37 @@ export const accountDetail = async $axios => {
     })
   )
 }
-// 开通存管 name sfz
+// 开通存管,授权,是否评测状态
+export const detailStatus = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/common/detail_status', {
+      commenParams
+    })
+  )
+}
+// 用户vip信息
+export const getVipDetail = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/common/getVipDetail', {
+      commenParams
+    })
+  )
+}
+// 开通存管
 export const openAccount = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/user/personOpenAccount', {
       realName: params.realName,
       idCard: params.idCard,
+      returnUrl: params.returnUrl,
+      commenParams
+    })
+  )
+}
+// 开通存管结果
+export const OpenAccountResult = async $axios => {
+  return await handleReq(
+    $axios.post('/hanapp/user/OpenAccountResult', {
       commenParams
     })
   )
@@ -121,6 +146,14 @@ export const openAccount = async ($axios, params) => {
 export const information = async $axios => {
   return await handleReq(
     $axios.post('/hanapp/user/information', {
+      commenParams
+    })
+  )
+}
+// 	重新授权
+export const hanAppauth = async $axios => {
+  return await handleReq(
+    $axios.post('hanapp/user/hanAppauth', {
       commenParams
     })
   )
@@ -237,8 +270,7 @@ export const bankTenderNow = async ($axios, params) => {
 // 	个人中心省心投 出借中/已回款
 export const freeTenderList = async ($axios, params) => {
   return await handleReq(
-    $axios.post('/hanapp/tender/free_tender_list', {
-      // $axios.post('/hanapp/tender/freeTenderList', {
+    $axios.post('/hanapp/tender/freeTenderList', {
       status: params.status,
       page: params.page,
       item: params.item,
@@ -260,6 +292,7 @@ export const siftTenderDetail = async ($axios, tenderId) => {
   return await handleReq(
     $axios.post('/hanapp/product/h5TenderDetail', {
       tenderId: tenderId,
+      page: 1,
       commenParams
     })
   )
@@ -332,25 +365,39 @@ export const rechargeInfo = async $axios => {
   )
 }
 // 	个人中心 快捷充值
-export const quickPay = async $axios => {
+export const quickPay = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/recharge/h5QuickPay', {
+      money: params.money,
+      returnUrl: params.returnUrl,
       commenParams
     })
   )
 }
 // 	个人中心 快捷充值结果
-export const quickPayResult = async $axios => {
+export const quickPayResult = async ($axios, orderNos) => {
   return await handleReq(
     $axios.post('/hanapp/recharge/h5QuickPayResult', {
+      orderNo: orderNos,
       commenParams
     })
   )
 }
 // 	个人中心 充值记录
-export const rechargeRecord = async $axios => {
+export const rechargeRecord = async ($axios, params) => {
   return await handleReq(
-    $axios.post('/hanapp/user/h5RechargeRecord', {
+    $axios.post('/hanapp/recharge/h5RechargeRecord', {
+      page: params.page,
+      item: params.item,
+      commenParams
+    })
+  )
+}
+// 	银行跳转参数
+export const getByNonce = async ($axios, nonces) => {
+  return await handleReq(
+    $axios.post('/hanapp/common/getByNonce', {
+      nonce: nonces,
       commenParams
     })
   )
@@ -363,5 +410,79 @@ export const scatterList = async ($axios, params) => {
       item: params.item,
       commenParams
     })
+  )
+}
+
+// 首页,置顶公告
+export const homeNotice = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/user/showNewGonggao', { commenParams })
+  )
+}
+// 首页,公告动态
+export const homeDynamic = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/noticeList', {
+      typeId: params.typeId,
+      page: params.page,
+      item: params.item,
+      commenParams
+    })
+  )
+}
+// 首页,banner
+export const homeBanner = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/home/getH5HomeScrollPic', { commenParams })
+  )
+}
+// 首页,标的
+export const homeInvest = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/home/homeBorrow', { commenParams })
+  )
+}
+// 首页,底部平台运营数据
+export const homeBottomData = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/user/getConpanyInfoOfHomePage', { commenParams })
+  )
+}
+// 信息披露-平台数据的数据汇总
+export const platfromData = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/platform/data', {
+      commenParams
+    })
+  )
+}
+// 信息披露-平台数据的今日投资风云榜
+export const platfromDayRank = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/platform/dayRank', { commenParams })
+  )
+}
+// 信息披露-平台数据的本月投资风云榜
+export const platfromMonthRank = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/platform/monthRank', { commenParams })
+  )
+}
+// 信息披露-平台数据的借款排行榜
+export const platfromBorrowRank = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/platform/borrowRank', { commenParams })
+  )
+}
+// 信息披露-平台数据的平台7日成交量数据
+export const weekVolumeChart = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/platform/weekVolumeChart', { commenParams })
+  )
+}
+// 信息披露-平台数据的平台月度成交量数据
+export const monthVolumeChart = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/platform/monthVolumeChart', { commenParams })
   )
 }

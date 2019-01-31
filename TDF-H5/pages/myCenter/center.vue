@@ -53,9 +53,13 @@
             <p v-if="moneyShow">{{ content.cashBalance }}</p>
             <p v-else>****</p>
           </div>
-          <div>
+          <div v-if="deposit === 1">
             <router-link to="/myCenter/fund/cash" >提现</router-link>
             <router-link to="/myCenter/fund/recharge" >充值 </router-link>
+          </div>
+          <div v-else>
+            <router-link to="/xwDeposit/deposit" >提现</router-link>
+            <router-link to="/xwDeposit/deposit" >充值 </router-link>
           </div>
         </div>
       </div>
@@ -125,8 +129,13 @@ export default {
       moneyShow: true,
       login: false,
       id: '',
-      content: ''
+      content: '',
+      deposit: ''
     }
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('myCenter/getOpenDepository')
+    this.deposit = this.$store.state.myCenter.openDepository
   },
   mounted() {
     myBankAssets(this.$axios).then(res => {

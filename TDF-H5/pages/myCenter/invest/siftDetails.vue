@@ -21,7 +21,7 @@
       </li>
       <li>
         <span>约定利率</span>
-        <span>{{ content.apr }}%</span>
+        <span>{{ content.apr }}% <b v-if="content.platformApr">+ {{ content.platformApr }}%</b> </span>
       </li>
       <li>
         <span>参考收益(元)</span>
@@ -45,45 +45,48 @@
       </li>
       <li>
         <span>债权明细</span>
-        <router-link :to="{path:'/myCenter/invest/creditorList',query: {tenderId: tenderId,name: content.name,status: content.status}}">点击查看</router-link>
+        <router-link :to="{path:'/myCenter/invest/creditorList',query: {tenderId: this.$route.query.tenderId,name: content.name,status: content.status}}">点击查看</router-link>
       </li>
     </ul>
     <div>
       <p class="tableTxt">还款计划</p>
       <div class="tableBox">
-        <table v-if="list">
-          <tr>
-            <th>还款时间</th>
-            <th>应还本金</th>
-            <th>应还收益</th>
-            <th>状态</th>
-          </tr>
-          <tr 
-            v-for="(item,index) in list" 
-            :key="index">
-            <td>{{ item.recoverTime }}</td>
-            <td>{{ item.recoverAccount }}</td>
-            <td>{{ item.recoverInterest }}</td>
-            <td>{{ item.status }}</td>
-          </tr>
-          <tr>
-            <td 
-              colspan="4" 
-              class="nullData">暂无数据</td>
-          </tr>
+        <table v-if="list.length > 0">
+          <thead> 
+            <tr>
+              <th>还款时间</th>
+              <th>应还本金</th>
+              <th>应还收益</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              v-for="(item,index) in list" 
+              :key="index">
+              <td>{{ item.recoverTime }}</td>
+              <td>{{ item.recoverAccount }}</td>
+              <td>{{ item.recoverInterest }}</td>
+              <td>{{ item.status }}</td>
+            </tr>
+          </tbody>
         </table>
         <table v-else>
-          <tr>
-            <th>还款时间</th>
-            <th>应还本金</th>
-            <th>应还收益</th>
-            <th>状态</th>
-          </tr>
-          <tr>
-            <td 
-              colspan="4" 
-              class="nullData">暂无数据</td>
-          </tr>
+          <thead> 
+            <tr>
+              <th>还款时间</th>
+              <th>应还本金</th>
+              <th>应还收益</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td 
+                colspan="4" 
+                class="nullData">暂无数据</td>
+            </tr>
+          </tbody>
         </table>
       </div>	
     </div>
@@ -94,29 +97,25 @@
 </template>
 
 <script>
-import { siftTenderDetail, getBankRecoverPlan } from '~/plugins/api.js'
+import { siftTenderDetail } from '~/plugins/api.js'
 
 export default {
   data() {
     return {
       tenderId: '',
       borrowNid: '',
-      list: '',
-      content: ''
+      content: '',
+      list: ''
     }
   },
   mounted() {
     this.tenderId = this.$route.query.tenderId
-    this.borrowNid = this.$route.query.borrowNid
     const params = {
-      tenderId: this.tenderId,
-      borrowNid: this.borrowNid
+      tenderId: this.tenderId
     }
-    getBankRecoverPlan(this.$axios, params).then(res => {
-      this.list = res.data.content.dataRows
-    })
     siftTenderDetail(this.$axios, this.tenderId).then(res => {
-      this.content = res.data.content
+      this.content = res.data.content.detail
+      this.list = res.data.content.dataRows
     })
   }
 }

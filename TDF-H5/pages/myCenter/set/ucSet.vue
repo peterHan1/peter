@@ -66,7 +66,7 @@
     </ul>
     <ul>
       <li>
-        <router-link to="/found/myLevel">
+        <router-link to="/myCenter/member/member">
           <span>拓道会员</span>
           <i class="iconfont">&#xe6f2;</i>
         </router-link>
@@ -120,18 +120,16 @@ export default {
       authStatus: 0
     }
   },
-  mounted() {
+  async beforeCreate() {
+    await this.$store.dispatch('myCenter/getUser')
     this.$store.dispatch('myCenter/getPhone')
-    this.$store.dispatch('myCenter/getUser')
     this.phone = this.$store.state.myCenter.phone
-    setTimeout(() => {
-      this.mobile = this.$store.state.myCenter.mobile
-      this.realNameStatus = this.$store.state.myCenter.realNameStatus
-      this.bankName = this.$store.state.myCenter.bankName
-      this.bankCode = this.$store.state.myCenter.bankNum
-      this.userNo = this.$store.state.myCenter.userNo
-      this.authStatus = this.$store.state.myCenter.authStatus
-    }, 200)
+    this.mobile = this.$store.state.myCenter.mobile
+    this.realNameStatus = this.$store.state.myCenter.realNameStatus
+    this.bankName = this.$store.state.myCenter.bankName
+    this.bankCode = this.$store.state.myCenter.bankNum
+    this.userNo = this.$store.state.myCenter.userNo
+    this.authStatus = this.$store.state.myCenter.authStatus
   },
   methods: {
     downApp() {

@@ -6,8 +6,11 @@ let instance
 
 const Load = function() {
   instance = new Tpl()
-  instance.$data.loadShow = true
+  if (instance.$data.loadShow) return
   document.body.appendChild(instance.$mount().$el)
+  Vue.nextTick(() => {
+    instance.$data.loadShow = true
+  })
 }
 const Close = function() {
   instance.$data.loadShow = false

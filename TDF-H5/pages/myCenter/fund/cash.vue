@@ -1,6 +1,8 @@
 <template>
   <div class="cashBox">
-    <td-header 
+    <td-header
+      :returnUrl="false" 
+      url="myCenter-center"
       title="提现" 
       rightTxt="提现记录"
       @navRightFn="navRightFn">
@@ -163,17 +165,27 @@ export default {
           account: this.moneyVal,
           secretParam: money,
           withdrawType: this.inAccount,
-          redirectUrl: '/myCenter/fund/cash'
+          redirectUrl: 'http://72.127.2.104:3000/myCenter/fund/cashResult'
         }
         applyCash(this.$axios, params).then(res => {
-          if (res.data.code === 800034) {
-            this.cashMaintain = true
-          } else if (res.data.code === 800035) {
-            this.cashHint = true
-            this.hint = '当前不在快速到账时间内，请选择普通到账提现'
-          } else if (res.data.code === 800036) {
-            this.cashHint = true
-            this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
+          if (res) {
+            let nonce = res.data.content.nonce
+            if (res.data.code === 800034) {
+              this.cashMaintain = true
+            } else if (res.data.code === 800035) {
+              this.cashHint = true
+              this.hint = '当前不在快速到账时间内，请选择普通到账提现'
+            } else if (res.data.code === 800036) {
+              this.cashHint = true
+              this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
+            } else {
+              this.$router.push({
+                name: 'xwDeposit-transit',
+                params: {
+                  sign: nonce
+                }
+              })
+            }
           }
         })
       }

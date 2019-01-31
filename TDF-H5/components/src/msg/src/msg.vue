@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       show: false,
-      time: 3000,
+      time: 2000,
       message: {
         content: ''
       },
@@ -80,7 +80,7 @@ export default {
       background: #fff
       z-index: 999
       overflow: hidden
-      background-color: rgba(0,0,0,0.6)
+      background-color: rgba(0,0,0,0.7)
       border-radius: 10px
     .msg
       font-size: 30px

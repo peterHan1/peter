@@ -1,7 +1,9 @@
 <template>
   <cube-scroll
+    ref="contentScroll1"
     :options="options"
-    @pulling-down="onPullingDown">
+    @pulling-down="onPullingDown"
+    @pulling-up="onPullingUp">
     <ul v-if="contentList.length > 0">
       <li 
         v-for="(item,index) in contentList" 
@@ -16,35 +18,7 @@
             <router-link to="" >去使用</router-link>
           </p>
           <p>{{ item.invalidDate }}</p>
-          <p>{{ item.message }}</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft">
-          <p><span>20</span>元</p>
-          <p>满10000元可用</p>
-        </div>
-        <div class="discountRight">
-          <p class="source">
-            <span>投资福利</span>
-            <router-link to="" >去使用</router-link>
-          </p>
-          <p>有效期2018.7.6-2018.11.11</p>
-          <p>理财期限6个月及以上使用</p>
-        </div>
-      </li>
-      <li>
-        <div class="discountLeft">
-          <p><span>10</span>元</p>
-          <p>满10000元可用</p>
-        </div>
-        <div class="discountRight">
-          <p class="source">
-            <span>邀友福利</span>
-            <router-link to="" >去使用</router-link>
-          </p>
-          <p>有效期2018.7.6-2018.11.11</p>
-          <p>理财期限6个月及以上使用</p>
+          <p>理财期限{{ item.borrowPeriodCondition }}个月及以上使用</p>
         </div>
       </li>
     </ul>
@@ -75,13 +49,13 @@ export default {
           stopTime: 1000,
           txt: '更新成功'
         },
-        pullUpLoad: false,
+        pullUpLoad: true,
         directionLockThreshold: 0,
         beforePullDown: true
       },
       item: 12,
       page: 1,
-      contentList: ''
+      contentList: []
     }
   },
   mounted() {
@@ -95,13 +69,27 @@ export default {
       }
       getVoucherList(this.$axios, params).then(res => {
         if (res) {
-          this.contentList = res.data.content.dataRows
-          console.log(this.contentList)
+          let list = res.data.content.dataRows
+          for (let i in list) {
+            this.contentList.push(list[i])
+          }
         }
       })
     },
     onPullingDown() {
-      this.getList()
+      setTimeout(() => {
+        this.page = 1
+        this.contentList = []
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
+    },
+    onPullingUp() {
+      this.page++
+      setTimeout(() => {
+        this.getList()
+        this.$refs.contentScroll1.forceUpdate()
+      }, 1000)
     },
     downApp() {
       if (this.clickBlooe) {

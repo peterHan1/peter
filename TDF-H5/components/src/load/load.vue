@@ -1,17 +1,20 @@
 <template>
   <div 
-    v-if="loadShow" 
-    class="cube-loading">
-    <span
-      :style="style"
-      class="cube-loading-spinners">
-      <i
-        v-for="item in balde"
-        :key="item"
-        class="cube-loading-spinner"/>
-    </span>
-    <p>加载中...</p>
-  </div>
+    v-if="loadShow"
+    class="loadBox">
+    <div 
+      class="cube-loading">
+      <span
+        :style="style"
+        class="cube-loading-spinners">
+        <i
+          v-for="item in balde"
+          :key="item"
+          class="cube-loading-spinner"/>
+      </span>
+      <p>加载中...</p>
+    </div>
+  </div>  
 </template>
 <script >
 export default {
@@ -42,6 +45,17 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.loadBox
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  -webkit-transition: opacity 0.3s ease
+  -moz-transition: opacity 0.3s ease
+  transition: opacity 0.3s ease
+  z-index: 9999
+  -webkit-user-select: none
   .cube-loading
     font-size: $fontsize-large-xxx
     position: fixed

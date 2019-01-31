@@ -1,15 +1,26 @@
-import { accountDetail, getAccountLogById } from '../plugins/api'
+import { accountDetail, getAccountLogById, detailStatus } from '../plugins/api'
 export const state = () => ({
   phone: '',
-  authStatus: '授权状态',
-  bankName: '银行名称',
-  bankNum: '银行卡后四位',
-  idCard: '身份证',
-  realName: '真实姓名',
-  mobile: '绑定手机号',
-  realNameStatus: '是否实名制',
-  userNo: '存管号',
-  referrer: '推介码',
+  //授权状态
+  authStatus: '',
+  //银行名称
+  bankName: '',
+  //银行卡后四位
+  bankNum: '',
+  //身份证
+  idCard: '',
+  //真实姓名
+  realName: '',
+  //绑定手机号
+  mobile: '',
+  //是否实名制
+  realNameStatus: '',
+  //存管号
+  userNo: '',
+  //推介码
+  referrer: '',
+  //开通存管状态
+  openDepository: '',
   moneyList: []
 })
 export const mutations = {
@@ -21,12 +32,15 @@ export const mutations = {
     state.authStatus = value.authStatus
     state.bankName = value.bankName
     state.bankNum = value.bankNum
-    state.idCard = value.idCard
-    state.realName = value.realName
+    state.idCard = value.idCard ? value.idCard : ''
+    state.realName = value.realName ? value.realName : ''
     state.mobile = value.mobile
     state.realNameStatus = value.realNameStatus
     state.userNo = value.userNo
     state.referrer = value.referrer
+  },
+  setOpenDepository(state, value) {
+    state.openDepository = value.openDepository
   },
   setMonetList(state, data) {
     state.moneyList.push(data)
@@ -43,6 +57,10 @@ export const actions = {
   async getUser({ commit }) {
     let { data } = await accountDetail(this.$axios)
     commit('setAccount', data.content)
+  },
+  async getOpenDepository({ commit }) {
+    let { data } = await detailStatus(this.$axios)
+    commit('setOpenDepository', data.content)
   },
   async getMoneyRecord({ commit }, params) {
     let { data } = await getAccountLogById(this.$axios, params)

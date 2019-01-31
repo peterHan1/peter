@@ -5,11 +5,13 @@
     <ul>
       <li>
         <span>真实姓名</span>
-        <span>**云 </span>
+        <span v-if="name">{{ name }}</span>
+        <span v-else>-</span>
       </li>
       <li>
         <span>身份证号</span>
-        <span>330***********001X</span>
+        <span v-if="idCard">{{ idCard }}</span>
+        <span v-else>-</span>
       </li>
     </ul>
   </div>
@@ -17,15 +19,17 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
-    return {}
+    return {
+      name: '',
+      idCard: ''
+    }
   },
-  mounted() {},
-  methods: {},
-  components: {}
+  async beforeCreate() {
+    await this.$store.dispatch('myCenter/getUser')
+    this.name = this.$store.state.myCenter.realName
+    this.idCard = this.$store.state.myCenter.idCard
+  }
 }
 </script>
 

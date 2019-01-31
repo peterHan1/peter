@@ -90,16 +90,14 @@ export default {
       phoneCode: '',
       countTime: 60,
       countNum: true,
-      phone: '',
+      phone: this.$route.params.phone,
       phoneCodeId: '',
       resetBox: true,
       pwdOne: '',
       pwdTwo: ''
     }
   },
-  mounted() {
-    this.phone = this.$route.params.phone
-  },
+  mounted() {},
   methods: {
     editCaptcha() {
       this.imgYzm = `/api/AuthImageForApp?phone=${this.phone}&${Math.random()}`

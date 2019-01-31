@@ -1,6 +1,8 @@
 <template>
   <div class="recharge">
     <td-header 
+      :returnUrl="false" 
+      url="myCenter-center"
       title="充值"
       rightTxt="充值记录"
       @navRightFn="navRightFn"/>
@@ -20,8 +22,8 @@
             <i class="iconfont">&#xe704;</i>
             <input 
               v-model="moneyVal"
-              type="number" 
-              placeholder="输入提现金额，100元起">
+              :placeholder="placeTxt" 
+              type="number">
           </div>
         </li>
         <li>
@@ -44,18 +46,20 @@
 </template>
 
 <script>
-import { rechargeInfo } from '~/plugins/api.js'
+import { rechargeInfo, quickPay } from '~/plugins/api.js'
 
 export default {
   data() {
     return {
       moneyVal: null,
-      content: ''
+      content: '',
+      placeTxt: ''
     }
   },
   mounted() {
     rechargeInfo(this.$axios).then(res => {
       this.content = res.data.content
+      this.placeTxt = '输入充值金额，' + this.content.minMoney + '元起投'
       console.log(this.content)
     })
   },
@@ -64,7 +68,22 @@ export default {
       this.$router.push({ path: '/myCenter/fund/rachargeRecord' })
     },
     subBtn() {
-      console.log('充值')
+      if (this.moneyVal >= 100) {
+        let params = {
+          money: this.moneyVal,
+          returnUrl: 'http://72.127.2.104:3000/myCenter/fund/rechargeResult'
+        }
+        quickPay(this.$axios, params).then(res => {
+          if (res) {
+            this.$router.push({
+              name: 'xwDeposit-transit',
+              params: {
+                sign: res.data.content.requestInfo
+              }
+            })
+          }
+        })
+      }
     }
   },
   components: {}

@@ -20,11 +20,23 @@ export default {
     rightTxt: {
       type: String,
       default: ''
+    },
+    returnUrl: {
+      type: Boolean,
+      default: true
+    },
+    url: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     back() {
-      this.$router.back()
+      if (this.returnUrl) {
+        this.$router.back()
+      } else {
+        this.$router.push({ name: this.url })
+      }
     },
     returnFn() {
       this.$emit('navRightFn')
