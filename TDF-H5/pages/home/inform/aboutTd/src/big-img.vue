@@ -15,21 +15,45 @@
   </div>
 </template>
 <script>
+import imgActive1 from '../../../../../assets/images/inform/certificate/certificate01.jpg'
+import imgActive2 from '../../../../../assets/images/inform/certificate/certificate02.jpg'
+import imgActive3 from '../../../../../assets/images/inform/certificate/certificate03.jpg'
+import imgActive4 from '../../../../../assets/images/inform/certificate/certificate04.jpg'
+import imgActive5 from '../../../../../assets/images/inform/certificate/certificate05.jpg'
+import imgActive6 from '../../../../../assets/images/inform/certificate/certificate06.jpg'
+import imgActive7 from '../../../../../assets/images/inform/certificate/certificate07.jpg'
+import imgActive8 from '../../../../../assets/images/inform/certificate/certificate08.jpg'
+import imgActive9 from '../../../../../assets/images/inform/certificate/certificate09.jpg'
 export default {
   data() {
     return {
       items: [
         {
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2017-09/18/11_attestations_attestation_1505699492057.jpg'
+          image: imgActive1
         },
         {
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2017-09/18/11_attestations_attestation_1505699492057.jpg'
+          image: imgActive2
         },
         {
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2017-09/18/11_attestations_attestation_1505699492057.jpg'
+          image: imgActive3
+        },
+        {
+          image: imgActive4
+        },
+        {
+          image: imgActive5
+        },
+        {
+          image: imgActive6
+        },
+        {
+          image: imgActive7
+        },
+        {
+          image: imgActive8
+        },
+        {
+          image: imgActive9
         }
       ]
     }

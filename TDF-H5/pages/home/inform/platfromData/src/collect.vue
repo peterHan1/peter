@@ -5,7 +5,7 @@
         <p class="data_time">数据统计日期：2018-06-06</p>
         <div class="flex">
           <dl class="flex-1">
-            <dt>{{ totalData.account }}</dt>
+            <dt>{{ totalData.account | toFixeds }}</dt>
             <dd>累计撮合金额（元）</dd>
           </dl>
           <dl class="flex-1">
@@ -27,7 +27,7 @@
       <div class="platform_a_com">
         <div class="flex">
           <dl class="flex-1">
-            <dt>{{ totalData.nowBorrowAmount }}</dt>
+            <dt>{{ totalData.nowBorrowAmount | toFixeds }}</dt>
             <dd>当前借款余额（元）</dd>
           </dl>
           <dl class="flex-1">
@@ -51,7 +51,7 @@
             <dd>今日已发标数量（个）</dd>
           </dl>
           <dl class="flex-1">
-            <dt>{{ totalData.todayBorrowAmount }}</dt>
+            <dt>{{ totalData.todayBorrowAmount | toFixeds }}</dt>
             <dd>今日已发标金额（元）</dd>
           </dl>
         </div>
@@ -64,7 +64,7 @@
             <dd>逾期率<br>(累计逾期金额/累计交易总额)</dd>
           </dl>
           <dl class="flex-1">
-            <dt>{{ totalData.overdueAmount }}</dt>
+            <dt>{{ totalData.overdueAmount | toFixeds }}</dt>
             <dd>累计逾期金额（元）</dd>
           </dl>
         </div>
@@ -74,7 +74,7 @@
             <dd>累计逾期90天（不含） <br>以上个数（个）</dd>
           </dl>
           <dl class="flex-1">
-            <dt>{{ totalData.overdueNinetyAmount }}</dt>
+            <dt>{{ totalData.overdueNinetyAmount | toFixeds }}</dt>
             <dd>累计逾期90天（不含） <br>以上金额（元）</dd>
           </dl>
         </div>
@@ -84,7 +84,7 @@
             <dd>累计逾期个数（个）</dd>
           </dl>
           <dl class="flex-1">
-            <dt>{{ totalData.compensationAmount }}</dt>
+            <dt>{{ totalData.compensationAmount | toFixeds }}</dt>
             <dd>累计代偿金额（元）</dd>
           </dl>
         </div>
@@ -94,7 +94,7 @@
             <dd>累计代偿个数（个）</dd>
           </dl>
           <dl class="flex-1">
-            <dt>{{ totalData.correlationBorrowAmount }}</dt>
+            <dt>{{ totalData.correlationBorrowAmount | toFixeds }}</dt>
             <dd>关联关系借款余额（元）</dd>
           </dl>
         </div>
@@ -121,12 +121,19 @@ export default {
       percent: ''
     }
   },
+  filters: {
+    toFixeds(val) {
+      return Number(val).toFixed(2)
+    }
+  },
   mounted() {
-    let _this = this
     platfromData(this.$axios).then(res => {
-      _this.totalData = res.data.content.platData
+      this.totalData = res.data.content.platData
+      this.percent =
+        ((this.totalData.overdueAmount / this.totalData.account) * 100).toFixed(
+          2
+        ) + '%'
     })
-    // _this.percent = (_this.totalData.overdueAmount / _this.totalData.account * 100).toFixed(2) + '%'
   }
 }
 </script>

@@ -13,21 +13,21 @@
         <div class="bot_icon">
           <div class="icon_top flex">
             <router-link
-              to="/home/inform/aboutTd/info"
+              to="/home/inform/aboutTd/children/info"
               class="flex-1">
               <i class="iconfont">&#xe69f;</i>
               <p class="mt">从业机构 </p>
               <p>平台信息</p>
             </router-link>
             <router-link
-              to="/home/inform/aboutTd/bank"
+              to="/home/inform/aboutTd/children/bank"
               class="flex-1">
               <i class="iconfont">&#xe6a2;</i>
               <p class="mt">资金存管 </p>
               <p>新网银行</p>
             </router-link>
             <router-link
-              to="/home/inform/aboutTd/board"
+              to="/home/inform/aboutTd/children/board"
               class="flex-1">
               <i class="iconfont">&#xe6a0;</i>
               <p class="mt">董事、监事</p>
@@ -36,20 +36,20 @@
           </div>
           <div class="icon_bot flex">
             <router-link
-              to="/home/inform/aboutTd/shareholder"
+              to="/home/inform/aboutTd/children/shareholder"
               class="flex-1">
               <i class="iconfont">&#xe69e;</i>
               <p class="mt">实际控制人与</p>
               <p>持股5%以上股东</p>
             </router-link>
             <router-link
-              to="/home/inform/aboutTd/record"
+              to="/home/inform/aboutTd/children/record"
               class="flex-1">
               <i class="iconfont">&#xe6cd;</i>
               <p class="mt">备案信息 </p>
             </router-link>
             <router-link
-              to="/home/inform/aboutTd/great"
+              to="/home/inform/aboutTd/children/great"
               class="flex-1">
               <i class="iconfont">&#xe6a1;</i>
               <p class="mt">从业机构</p>

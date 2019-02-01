@@ -7,21 +7,21 @@
       <div class="oper_box">
         <ul class="oper_list">
           <li>
-            <router-link to="/user/login">
+            <router-link to="/home/newComer">
               <div
                 class="novice"/>
               <p>新手专区</p>
             </router-link>
           </li>
           <li>
-            <router-link to="/user/login">
+            <router-link to="/home/inviteFriend">
               <div
                 class="invite"/>
               <p>邀请好友</p>
             </router-link>
           </li>
           <li>
-            <router-link to="/user/login">
+            <router-link to="/home/inform">
               <div class="inform"/>
               <p>信息披露</p>
             </router-link>
@@ -31,11 +31,11 @@
             <p>下载APP</p>
           </li>
         </ul>
-        <router-link 
-          to="/user/login" 
-          class="td_message" >
+        <router-link
+          to="/home/notice" 
+          class="td_message">
           <span class="message_bg"/>
-          <span class="message_txt">扫尾送积分,最低200起送！</span>
+          <span class="message_txt">{{ noticeName | limitLength }}</span>
           <i class="iconfont">&#xe6f2;</i>
         </router-link>
       </div>
@@ -43,82 +43,50 @@
     <div class="finance_list">
       <router-link to="/user/login">
         <div class="finance_tlt">
-          <h3>省心投20170908</h3>
-          <img src="../../assets/images/index/finance_type.png" >
+          <h3>{{ investList.name }}</h3>
+          <img :src="investList.markUrl">
         </div>
         <div class="finance_mes">
           <div class="list">
             <div>
-              <p class="rate">9.0<span>%+4.00%</span></p>
+              <p class="rate">{{ investList.borrowApr }}.0<span>%+{{ investList.awardPoint }}0%</span></p>
               <p>约定利率</p>
             </div>
           </div>
           <div class="list list_style">
             <div>
-              <p>1个月</p>
+              <p>{{ investList.borrowPeriod }}</p>
               <p>期限</p>
             </div>
           </div>
           <div class="list list_style">
             <div>
-              <p>1,870,020.00</p>
+              <p>{{ investList.surplusAmount }}</p>
               <p>剩余可投</p>
             </div>
           </div>
         </div>
         <div class="finance_btn">
           <td-button
-            value="立即加入"
-          />
-        </div>
-      </router-link>
-    </div>
-    <div class="finance_list">
-      <router-link to="/user/login">
-        <div class="finance_tlt">
-          <h3>省心投20170908</h3>
-          <img src="../../assets/images/index/finance_type.png" >
-        </div>
-        <div class="finance_mes">
-          <div class="list">
-            <div>
-              <p class="rate">9.0<span>%+4.00%</span></p>
-              <p>约定利率</p>
-            </div>
-          </div>
-          <div class="list list_style">
-            <div>
-              <p>1个月</p>
-              <p>期限</p>
-            </div>
-          </div>
-          <div class="list list_style">
-            <div>
-              <p>1,870,020.00</p>
-              <p>剩余可投</p>
-            </div>
-          </div>
-        </div>
-        <div class="finance_btn">
-          <td-button
-            value="立即加入"
+            :disabled="isOver"
+            :value="surplusAmount"
           />
         </div>
       </router-link>
     </div>
     <div class="td_box">
-      <div class="td_time">已合规运营 <span>4年6个月</span></div>
+      <div class="td_time">已合规运营 <span>{{ business.days }}</span></div>
       <div class="td_data">
         <div>
-          <p>92亿9909万</p>
+          <p>{{ business.account }}</p>
           <p>累计交易额(元)</p>
         </div>
         <div>
-          <p>16万7513</p>
+          <p>{{ business.regNum }}</p>
           <p>已加入用户(人)</p>
         </div>
         <div>
-          <p>3亿6666万</p>
+          <p>{{ business.interest }}</p>
           <p>已为用户赚取(元)</p>
         </div>
       </div>
@@ -136,31 +104,56 @@
     <td-footer :navClass="'td'"/>
   </div>
 </template>
-
 <script>
+import {
+  homeNotice,
+  homeBanner,
+  homeBottomData,
+  homeInvest
+} from '../../plugins/api.js'
 export default {
   data() {
     return {
-      imgArr: [
-        {
-          url: 'www.51tuodao.com',
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/10/106102_scrollpic_new_1547083167912.png'
-        },
-        {
-          url: 'www.51tuodao.com',
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2019-01/02/161777_scrollpic_new_1546391852265.png'
-        },
-        {
-          url: 'www.51tuodao.com',
-          image:
-            'https://www.51tuodao.com/upload/data/upfiles/images/2018-12/22/106102_scrollpic_new_1545453442803.png'
-        }
-      ]
+      noticeName: '',
+      imgArr: [],
+      business: {},
+      investList: {},
+      surplusAmount: '立即加入',
+      isOver: false
     }
   },
-  mounted() {},
+  filters: {
+    limitLength(value) {
+      if (value.toString().length > 15) {
+        return value.toString().substring(0, 15) + '...'
+      } else {
+        return value
+      }
+    }
+  },
+  mounted() {
+    homeNotice(this.$axios).then(res => {
+      this.noticeName = res.data.content.gonggaoList[0].name
+    })
+    homeBanner(this.$axios).then(res => {
+      this.imgArr = res.data.content.map(o => {
+        return {
+          image: o.picTarget,
+          url: o.url
+        }
+      })
+    })
+    homeBottomData(this.$axios).then(res => {
+      this.business = res.data.content
+    })
+    homeInvest(this.$axios).then(res => {
+      this.investList = res.data.content.borrow[0]
+      if (this.investList.surplusAmount <= 0) {
+        this.surplusAmount = '标的已抢完'
+        this.isOver = true
+      }
+    })
+  },
   methods: {
     downApp() {
       this.$App(

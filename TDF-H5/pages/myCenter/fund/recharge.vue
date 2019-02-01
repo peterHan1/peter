@@ -60,7 +60,6 @@ export default {
     rechargeInfo(this.$axios).then(res => {
       this.content = res.data.content
       this.placeTxt = '输入充值金额，' + this.content.minMoney + '元起投'
-      console.log(this.content)
     })
   },
   methods: {

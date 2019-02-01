@@ -1,7 +1,7 @@
 <template>
   <div class="myCenter">
     <div class="my_nav">
-      <div><span/><span :class="'vip' + content.level"/></div>
+      <div><span/><span :class="'vip' + this.$store.state.myCenter.assets.level"/></div>
     </div>
     <div class="my_box">
       <div class="myCenter_top">
@@ -14,7 +14,7 @@
           <div class="user_earnings">
             <div class="earnings">
               <p>待收本息(元)</p>
-              <p v-if="moneyShow">{{ content.accountWait }}</p>
+              <p v-if="moneyShow">{{ this.$store.state.myCenter.assets.accountWait }}</p>
               <p v-else>******</p>
             </div>
             <div class="showIcon">
@@ -31,12 +31,12 @@
           <div class="user_asset">
             <div @click="downappFn">
               <p>总资产(元) <i class="iconfont">&#xe6ba;</i> </p>
-              <p v-if="moneyShow">{{ content.total }}</p>
+              <p v-if="moneyShow">{{ this.$store.state.myCenter.assets.total }}</p>
               <p v-else>****</p>
             </div>
             <div @click="downappFn">
               <p>累计收益(元) <i class="iconfont">&#xe6ba;</i> </p>
-              <p v-if="moneyShow">{{ content.tenderInterestYes }}</p>
+              <p v-if="moneyShow">{{ this.$store.state.myCenter.assets.tenderInterestYes }}</p>
               <p v-else>****</p>
             </div>
           </div>
@@ -50,29 +50,50 @@
           </div>
           <div v-else>
             <p>可用余额(元)</p>
-            <p v-if="moneyShow">{{ content.cashBalance }}</p>
+            <p v-if="moneyShow">{{ this.$store.state.myCenter.assets.cashBalance }}</p>
             <p v-else>****</p>
           </div>
-          <div v-if="deposit === 1">
-            <router-link to="/myCenter/fund/cash" >提现</router-link>
-            <router-link to="/myCenter/fund/recharge" >充值 </router-link>
+          <div v-if="login">
+            <router-link to="/user/login" >提现</router-link>
+            <router-link to="/user/login" >充值 </router-link>
           </div>
-          <div v-else>
+          <div v-else-if="deposit === 0">
             <router-link to="/xwDeposit/deposit" >提现</router-link>
             <router-link to="/xwDeposit/deposit" >充值 </router-link>
           </div>
+          <div v-else>
+            <router-link to="/myCenter/fund/cash" >提现</router-link>
+            <router-link to="/myCenter/fund/recharge" >充值 </router-link>
+          </div>
+          
         </div>
       </div>
       <div class="myCenter_fund">
         <ul>
           <li>
-            <router-link to="/myCenter/invest/myInvest" >
+            <router-link 
+              v-if="login" 
+              to="/user/login">
+              <div class="loanBg"/>
+              <p>出借记录</p>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/invest/myInvest">
               <div class="loanBg"/>
               <p>出借记录</p>
             </router-link>
           </li>
           <li>
-            <router-link to="/myCenter/bond/myBond" >
+            <router-link 
+              v-if="login" 
+              to="/user/login">
+              <div class="bondBg"/>
+              <p>债权转让</p>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/bond/myBond">
               <div class="bondBg"/>
               <p>债权转让</p>
             </router-link>
@@ -82,7 +103,15 @@
             <p>回款日历</p>
           </li>
           <li>
-            <router-link to="/myCenter/record/moneyRecord" >
+            <router-link 
+              v-if="login" 
+              to="/user/login">
+              <div class="fundBg"/>
+              <p>资金流水</p>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/record/moneyRecord">
               <div class="fundBg"/>
               <p>资金流水</p>
             </router-link>
@@ -92,19 +121,43 @@
       <div class="myCenter_list">
         <ul>
           <li class="coupon_bg">
-            <router-link to="/myCenter/discount/myDiscount" >
+            <router-link 
+              v-if="login" 
+              to="/user/login" >
+              <span class="coupon">优惠券</span>
+              <i class="iconfont">&#xe6f2;</i>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/discount/myDiscount">
               <span class="coupon">优惠券</span>
               <i class="iconfont">&#xe6f2;</i>
             </router-link>
           </li>
           <li class="invite_bg">
-            <router-link to="/myCenter/invite/inviteRecord" >
+            <router-link 
+              v-if="login" 
+              to="/user/login" >
+              <span>邀请记录</span>
+              <i class="iconfont">&#xe6f2;</i>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/invite/inviteRecord">
               <span>邀请记录</span>
               <i class="iconfont">&#xe6f2;</i>
             </router-link>
           </li>
           <li class="set_bg">
-            <router-link to="/myCenter/set/ucSet" >
+            <router-link 
+              v-if="login" 
+              to="/user/login">
+              <span>账户设置</span>
+              <i class="iconfont">&#xe6f2;</i>
+            </router-link>
+            <router-link 
+              v-else 
+              to="/myCenter/set/ucSet">
               <span>账户设置</span>
               <i class="iconfont">&#xe6f2;</i>
             </router-link>
@@ -121,9 +174,6 @@
 import { myBankAssets } from '../../plugins/api.js'
 
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {
       moneyShow: true,
@@ -134,18 +184,18 @@ export default {
     }
   },
   async beforeCreate() {
-    await this.$store.dispatch('myCenter/getOpenDepository')
-    this.deposit = this.$store.state.myCenter.openDepository
-  },
-  mounted() {
-    myBankAssets(this.$axios).then(res => {
-      if (res) {
-        this.content = res.data.content
-      } else {
+    await this.$store.dispatch('myCenter/getBankAssets')
+    await this.$store.dispatch('myCenter/getUser')
+    this.$nextTick(() => {
+      this.deposit = this.$store.state.myCenter.authStatus
+      if (JSON.parse(localStorage.getItem('user')).accessId === '') {
         this.login = true
+      } else {
+        this.login = false
       }
     })
   },
+  mounted() {},
   methods: {
     moneyHide() {
       this.moneyShow = !this.moneyShow

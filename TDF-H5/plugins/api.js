@@ -1,5 +1,6 @@
 import Axios from './axios'
 import { reject } from 'q'
+import store from '../store'
 // console.log(this)
 // console.log(Axios.$axios)
 const timestamp = Math.round(new Date() / 1000)
@@ -12,18 +13,10 @@ const commenParams = {
   accessKey: ''
 }
 const handleReq = reqst => {
-  // 暂时
-  let accessId
-  let accessKey
-  if (JSON.parse(localStorage.getItem('user'))) {
-    accessId = JSON.parse(localStorage.getItem('user')).accessId
-    accessKey = JSON.parse(localStorage.getItem('user')).accessKey
-  } else {
-    accessId = ''
-    accessKey = ''
-  }
-  commenParams.accessId = accessId
-  commenParams.accessKey = accessKey
+  Promise.resolve(store.modules.myCenter.actions.getId()).then(function(a) {
+    commenParams.accessId = a.accessId
+    commenParams.accessKey = a.accessKey
+  })
   return reqst.catch(err => {})
 }
 
@@ -107,14 +100,6 @@ export const accountDetail = async $axios => {
     })
   )
 }
-// 开通存管,授权,是否评测状态
-export const detailStatus = async ($axios, params) => {
-  return await handleReq(
-    $axios.post('/hanapp/common/detail_status', {
-      commenParams
-    })
-  )
-}
 // 用户vip信息
 export const getVipDetail = async $axios => {
   return await handleReq(
@@ -151,9 +136,18 @@ export const information = async $axios => {
   )
 }
 // 	重新授权
-export const hanAppauth = async $axios => {
+export const hanAppauth = async ($axios, url) => {
   return await handleReq(
     $axios.post('hanapp/user/hanAppauth', {
+      returnUrl: url,
+      commenParams
+    })
+  )
+}
+// 	授权结果
+export const authStatus = async $axios => {
+  return await handleReq(
+    $axios.post('hanapp/user/auth_status', {
       commenParams
     })
   )
@@ -419,8 +413,9 @@ export const homeNotice = async ($axios, params) => {
     $axios.post('/hanapp/user/showNewGonggao', { commenParams })
   )
 }
+
 // 首页,公告动态
-export const homeDynamic = async ($axios, params) => {
+export const homeNoticeDynamic = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/noticeList', {
       typeId: params.typeId,
@@ -430,24 +425,42 @@ export const homeDynamic = async ($axios, params) => {
     })
   )
 }
+
 // 首页,banner
 export const homeBanner = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/home/getH5HomeScrollPic', { commenParams })
   )
 }
+
 // 首页,标的
 export const homeInvest = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/home/homeBorrow', { commenParams })
   )
 }
+
 // 首页,底部平台运营数据
 export const homeBottomData = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/user/getConpanyInfoOfHomePage', { commenParams })
   )
 }
+
+// 邀请好友
+export const inviteFriend = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/invest/getInviteConfigBean', { commenParams })
+  )
+}
+
+// 微信分享-签名信息
+export const wxSignature = async ($axios, params) => {
+  return await handleReq(
+    $axios.post('/hanapp/user/getConpanyInfoOfHomePage', { commenParams })
+  )
+}
+
 // 信息披露-平台数据的数据汇总
 export const platfromData = async ($axios, params) => {
   return await handleReq(
@@ -456,30 +469,35 @@ export const platfromData = async ($axios, params) => {
     })
   )
 }
+
 // 信息披露-平台数据的今日投资风云榜
 export const platfromDayRank = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/platform/dayRank', { commenParams })
   )
 }
+
 // 信息披露-平台数据的本月投资风云榜
 export const platfromMonthRank = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/platform/monthRank', { commenParams })
   )
 }
+
 // 信息披露-平台数据的借款排行榜
 export const platfromBorrowRank = async ($axios, params) => {
   return await handleReq(
     $axios.post('/hanapp/platform/borrowRank', { commenParams })
   )
 }
+
 // 信息披露-平台数据的平台7日成交量数据
 export const weekVolumeChart = async ($axios, params) => {
   return await handleReq(
-    $axios.post('/platform/weekVolumeChart', { commenParams })
+    $axios.post('/hanapp/platform/weekVolumeChart', { commenParams })
   )
 }
+
 // 信息披露-平台数据的平台月度成交量数据
 export const monthVolumeChart = async ($axios, params) => {
   return await handleReq(

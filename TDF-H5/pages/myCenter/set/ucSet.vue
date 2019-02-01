@@ -137,7 +137,11 @@ export default {
     },
     outFn() {
       loginOut(this.$axios, this.phone).then(res => {
-        window.localStorage.clear()
+        var obj = {
+          accessId: '',
+          accessKey: ''
+        }
+        localStorage.setItem('user', JSON.stringify(obj))
         this.$router.push({
           name: 'user-login'
         })

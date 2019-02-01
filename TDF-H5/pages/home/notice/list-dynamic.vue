@@ -1,49 +1,42 @@
 <template>
-  <cube-scroll
-    ref="contentScroll0"
-    :data="content"
-    :options="options"
-    @pulling-down="onPullingDown"
-    @pulling-up="onPullingUp">
-    <div class="right">
-      <router-link
-        v-for="item in items2"
-        :key="item"
-        to=""
-        class="item">
-        <img src="//www.51tuodao.com/upload/data/upfiles/images/2018-09/21/106102_article_new_1537493529289.png">
-        <div>
-          <p class="t">{{ item.title }}</p>
-          <p class="d">{{ item.time }}</p>
-          <p class="c">{{ item.explain }}</p>
-        </div>
-      </router-link>
+  <div>
+    <cube-scroll
+      v-if="this.$store.state.dynamicData.length > 0"
+      ref="contentScroll0"
+      :data="this.$store.state.dynamicData"
+      :options="options"
+      @pulling-down="onPullingDown"
+      @pulling-up="onPullingUp">
+      <div class="right">
+        <router-link
+          v-for="(item, index) in this.$store.state.dynamicData"
+          :key="index"
+          :to="item.url"
+          class="item">
+          <img :src="item.litpic">
+          <div>
+            <p class="t">{{ item.limitName }}</p>
+            <p class="d">{{ item.time }}</p>
+            <p class="c">{{ item.name }}</p>
+          </div>
+        </router-link>
+      </div>
+    </cube-scroll>
+    <div 
+      v-else 
+      class="data-status">
+      <data-status
+        status="null"
+        statusTxt="暂无动态数据"/>
     </div>
-  </cube-scroll>
+  </div>
 </template>
 <script>
-import { homeDynamic } from '../../../plugins/api.js'
+import { homeNoticeDynamic } from '../../../plugins/api.js'
 let pageNum = 1
 export default {
   data() {
     return {
-      items2: [
-        {
-          title: '蝉联第一！拓道金服8月合...',
-          explain: '蝉联第一！拓道金服8月合规排行再居榜首！',
-          time: '2018-09-21'
-        },
-        {
-          title: '蝉联第一！拓道金服8月合...',
-          explain: '蝉联第一！拓道金服8月合规排行再居榜首！',
-          time: '2018-09-21'
-        },
-        {
-          title: '蝉联第一！拓道金服8月合...',
-          explain: '蝉联第一！拓道金服8月合规排行再居榜首！',
-          time: '2018-09-21'
-        }
-      ],
       options: {
         pullDownRefresh: {
           threshold: 60,
@@ -60,70 +53,43 @@ export default {
         },
         scrollbar: true
       },
-      freeList: this.$store.state.project.freeList,
-      invalidList: this.$store.state.project.invalidFreeList,
-      pages: this.$store.state.project.pages,
-      content: [],
-      newArr: [3, 4, 5, 6, 7],
-      pageNum: this.$store.state.project.pageNum
+      pages: this.$store.state.dynamicPages
     }
   },
+  mounted() {
+    console.log(this.$store.state.dynamicData)
+  },
   methods: {
+    // 下拉刷新
     onPullingDown() {
-      console.log('下拉')
-      // this.$store.commit('project/setFreeList', img)
       setTimeout(async () => {
-        pageNum = 2
+        pageNum = 1
         const params = {
           typeId: 'media',
           page: 1,
-          item: 10
+          item: this.$store.state.dynamicItem
         }
-        let { data } = await homeDynamic(this.$axios, params)
-        console.log(data.content.dataRows)
-
-        this.freeList = []
-        this.freeList = data.content.dataRows
-        this.invalidList = []
-        this.invalidList = [1, 2]
-        this.content = []
-        this.content = this.freeList.concat(this.invalidList)
-        console.log(this.freeList)
-        console.log(this.invalidList)
-        // this.$refs.contentScroll0.forceUpdate()
-        // this.$store.commit('project/setFreeList', img)
-        // this.freeList.unshift(img[1])
-        // this.$refs.contentScroll.scrollTo(0, this.secondStop, 300)
+        let { data } = await homeNoticeDynamic(this.$axios, params)
+        this.$store.commit('setDynamicNull')
+        data.content.dataRows.map(o => {
+          this.$store.commit('setDynamicData', o)
+        })
+        this.$store.commit('setDynamicPages', data.content.pages)
       }, 1000)
-      // this.$refs.contentScroll0.forceUpdate()
     },
+    // 上拉加载
     onPullingUp() {
-      // this.$store.commit('project/setPage', 1)
       pageNum++
-      console.log(pageNum)
-      console.log(this.pages)
       const params = {
-        item: 10,
-        page: pageNum
+        typeId: 'media',
+        page: pageNum,
+        item: this.$store.state.dynamicItem
       }
       // // 更新数据
-      setTimeout(async () => {
-        let list = []
-        let invalLists = []
+      setTimeout(() => {
         if (pageNum <= this.pages) {
           // 如果有新数据
-          let { data } = await homeDynamic(this.$axios, params)
-          let rs = data.content.dataRows
-          for (let i = 0; i < rs.length; i++) {
-            if (rs[i].rate != 100) {
-              list.push(rs[i])
-            } else {
-              invalLists.push(rs[i])
-            }
-          }
-          this.freeList = this.freeList.concat(list)
-          this.invalidList = this.invalidList.concat(invalLists)
-          this.content = this.freeList.concat(this.invalidList)
+          this.$store.dispatch('getDynamicList', params)
         } else {
           // 如果没有新数据
           this.$refs.contentScroll0.forceUpdate()
@@ -167,4 +133,7 @@ export default {
           font-size: $fontsize-medium
           color: #a3a3a3
           line-height: 0.4rem
+          white-space: initial
+  .data-status
+    margin-top 100px
 </style>

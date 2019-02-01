@@ -1,6 +1,9 @@
 <template>
   <div class="accredit">
-    <td-header title="业务授权"/>
+    <td-header 
+      :returnUrl="false"
+      title="业务授权" 
+      url="myCenter-center"/>
     <ul>
       <li>
         <span>业务授权</span>
@@ -49,7 +52,8 @@ export default {
   },
   methods: {
     appauth() {
-      hanAppauth(this.$axios).then(res => {
+      let url = 'http://72.127.2.104:3000/myCenter/set/xwAccreditResult'
+      hanAppauth(this.$axios, url).then(res => {
         if (res) {
           let nonce = res.data.content.nonce
           this.$router.push({

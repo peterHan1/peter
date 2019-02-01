@@ -1,41 +1,63 @@
 <template>
   <div class="resultBox">
-    <td-header title="业务授权"/>
-    <!-- <result 
-      status="ok" 
-      resultTxt="业务授权成功！"/> -->
-    <!-- <result 
-      status="load" 
-      resultTxt="业务授权处理中！"/> -->
+    <td-header 
+      :returnUrl="false" 
+      title="业务授权" 
+      url="myCenter-set-xwAccredit"/>
     <result 
+      v-if="status === 1"
+      status="ok" 
+      resultTxt="业务授权成功！"/>
+    <result 
+      v-else-if="status === 2"
       status="no" 
       resultTxt="业务授权失败！"/>
+    <result 
+      v-else
+      status="load" 
+      resultTxt="业务授权处理中！"/>
     <div class="btn">
-      <div>
+      <div v-if="status === 1">
         <td-button 
           :border="true" 
           value="返回"
-          @btnFn="btnSub"/>
+          @btnFn="returnAccredit"/>
       </div>
-      <!-- <div>
+      <div v-else>
         <td-button 
           :border="true" 
           value="确定"
           @btnFn="btnSub"/>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { authStatus } from '~/plugins/api.js'
 export default {
   data() {
-    return {}
+    return {
+      status: ''
+    }
   },
-  mounted() {},
+  mounted() {
+    authStatus(this.$axios).then(res => {
+      if (res) {
+        this.status = res.data.content.status
+      }
+    })
+  },
   methods: {
+    returnAccredit() {
+      this.$router.push({
+        name: 'myCenter-set-xwAccredit'
+      })
+    },
     btnSub() {
-      console.log('点击了')
+      this.$router.push({
+        name: 'myCenter-center'
+      })
     }
   },
   components: {}

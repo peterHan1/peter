@@ -1,5 +1,7 @@
-import { accountDetail, getAccountLogById, detailStatus } from '../plugins/api'
+import { accountDetail, getAccountLogById, myBankAssets } from '../plugins/api'
 export const state = () => ({
+  bobo: '123456',
+  assets: '',
   phone: '',
   //授权状态
   authStatus: '',
@@ -21,9 +23,13 @@ export const state = () => ({
   referrer: '',
   //开通存管状态
   openDepository: '',
+  //资金记录
   moneyList: []
 })
 export const mutations = {
+  setAssets(state, value) {
+    state.assets = value
+  },
   setPhone(state, value) {
     state.phone = value.phone
     localStorage.setItem('phone', JSON.stringify(value))
@@ -50,6 +56,15 @@ export const mutations = {
   }
 }
 export const actions = {
+  async getId() {
+    return JSON.parse(localStorage.getItem('user'))
+  },
+  async getBankAssets({ commit }) {
+    let assets = await myBankAssets(this.$axios)
+    if (assets) {
+      commit('setAssets', assets.data.content)
+    }
+  },
   async getPhone({ commit }) {
     let phone = JSON.parse(localStorage.getItem('phone'))
     await commit('setPhone', phone)
@@ -57,10 +72,6 @@ export const actions = {
   async getUser({ commit }) {
     let { data } = await accountDetail(this.$axios)
     commit('setAccount', data.content)
-  },
-  async getOpenDepository({ commit }) {
-    let { data } = await detailStatus(this.$axios)
-    commit('setOpenDepository', data.content)
   },
   async getMoneyRecord({ commit }, params) {
     let { data } = await getAccountLogById(this.$axios, params)

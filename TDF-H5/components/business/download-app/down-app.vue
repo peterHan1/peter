@@ -16,7 +16,9 @@
         <div @click="downApp">下载APP</div>
       </div>
     </div>
-    <div class="shade"/>
+    <div
+      class="shade"
+      @click="show = !show"/>
   </div>
 </template>
 <script>
@@ -30,15 +32,45 @@ export default {
       types: ''
     }
   },
-  mounted() {
-    console.log('获取浏览器还是微信' + this.types)
-  },
   methods: {
+    isWx() {
+      return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+    },
     closeApp() {
       this.show = false
     },
     downApp() {
-      console.log('下载app')
+      let ua = navigator.userAgent.toLowerCase()
+      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        this.types = 'wx'
+      } else {
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          let loadDateTime = new Date()
+          window.setTimeout(() => {
+            let timeOutDateTime = new Date()
+            if (
+              45 <= timeOutDateTime - loadDateTime &&
+              timeOutDateTime - loadDateTime < 5000
+            ) {
+              return false
+            } else {
+              window.location.href =
+                'https://www.51tuodao.com/front/app/downLoadForPhone'
+            }
+          }, 25)
+          window.location.href = 'tuodao16TD://'
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+          let ifr = document.createElement('iframe')
+          ifr.src = 'tuodaoapp://td.app/openwith'
+          ifr.style.display = 'none'
+          document.body.appendChild(ifr)
+          window.setTimeout(() => {
+            window.location.href =
+              'https://www.51tuodao.com/front/app/downLoadForPhone'
+          }, 2000)
+          window.location.href = 'tuodaoapp://td.app/openwith'
+        }
+      }
     }
   }
 }
@@ -81,7 +113,7 @@ export default {
       z-index: 999
       width: 418px
       height: 278px
-      background: url(/assets/images/index/download-app.png) no-repeat
+      background: url(../../../assets/images/index/download-app.png) no-repeat
       background-size: 100% 100%
     .appBtn
       display: flex

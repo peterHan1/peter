@@ -7,7 +7,7 @@
         class="flex">
         <div
           class="div_fr div_img flex-1"
-          @click="show(index*2)">
+          @click="bigImg(index*2)">
           <img
             :src="item.src1"
             class="lazy">
@@ -17,7 +17,7 @@
         </div>
         <div
           class="div_img flex-1"
-          @click="show(index*2+1)">
+          @click="bigImg(index*2+1)">
           <img
             v-if="item.src2"
             :src="item.src2"
@@ -46,16 +46,6 @@ import img6 from '../../../../../assets/images/inform/certificate/cernew06.png'
 import img7 from '../../../../../assets/images/inform/certificate/cernew07.png'
 import img8 from '../../../../../assets/images/inform/certificate/cernew08.png'
 import img9 from '../../../../../assets/images/inform/certificate/cernew09.jpg'
-
-import imgActive1 from '../../../../../assets/images/inform/certificate/certificate01.jpg'
-import imgActive2 from '../../../../../assets/images/inform/certificate/certificate02.jpg'
-import imgActive3 from '../../../../../assets/images/inform/certificate/certificate03.jpg'
-import imgActive4 from '../../../../../assets/images/inform/certificate/certificate04.jpg'
-import imgActive5 from '../../../../../assets/images/inform/certificate/certificate05.jpg'
-import imgActive6 from '../../../../../assets/images/inform/certificate/certificate06.jpg'
-import imgActive7 from '../../../../../assets/images/inform/certificate/certificate07.jpg'
-import imgActive8 from '../../../../../assets/images/inform/certificate/certificate08.jpg'
-import imgActive9 from '../../../../../assets/images/inform/certificate/certificate09.jpg'
 export default {
   data() {
     return {
@@ -95,8 +85,8 @@ export default {
     }
   },
   methods: {
-    show() {
-      console.log(1)
+    bigImg() {
+      this.$emit('bigImg')
     }
   }
 }

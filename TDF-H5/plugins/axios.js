@@ -5,7 +5,6 @@ const createError = (code, msg) => {
   err.code = code
   return err
 }
-
 export default function({ $axios, redirect }) {
   $axios.defaults.timeout = 10000
   $axios.onRequest(config => {

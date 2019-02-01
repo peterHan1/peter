@@ -8,8 +8,8 @@
             v-for="(item, index) in items1"
             :key="index"
             :class="[index === 0?'one':'', index === 1?'two':'', index === 2?'three':'']">
-            <p>{{ item.phone }}</p>
-            <p>出借{{ item.money }}元</p>
+            <p>{{ item.usernameX }}</p>
+            <p>出借{{ item.amount | toFixeds }}元</p>
           </li>
         </ul>
       </div>
@@ -20,8 +20,8 @@
             v-for="(item, index) in items2"
             :key="index"
             :class="[index === 0?'one':'', index === 1?'two':'', index === 2?'three':'']">
-            <p>{{ item.phone }}</p>
-            <p>出借{{ item.money }}元</p>
+            <p>{{ item.usernameX }}</p>
+            <p>出借{{ item.amount | toFixeds }}元</p>
           </li>
         </ul>
         <p class="txt_p">备注：以上排行榜的数据仅展示普通出借人（不含机构资金数据）</p>
@@ -40,9 +40,9 @@
           <tr
             v-for="(item, index) in items3"
             :key="index">
-            <td>{{ index | chartBig }}</td>
-            <td>{{ item.money }}万元</td>
-            <td>{{ item.point }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.amount/10000 | toFixeds }}万元</td>
+            <td>{{ item.proportion }}</td>
           </tr>
         </table>
         <p class="txt_p">备注：借款本金超过20万的均为企业借款人</p>
@@ -94,107 +94,17 @@
   </cube-scroll>
 </template>
 <script>
+import {
+  platfromDayRank,
+  platfromMonthRank,
+  platfromBorrowRank
+} from '../../../../../plugins/api.js'
 export default {
   data() {
     return {
-      items1: [
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        },
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        },
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        },
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        },
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        },
-        {
-          phone: '133****4126',
-          money: '303198.24'
-        }
-      ],
-      items2: [
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        },
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        },
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        },
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        },
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        },
-        {
-          phone: '133****4126',
-          money: '585343.00'
-        }
-      ],
-      items3: [
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        },
-        {
-          money: '58.24',
-          point: '0.05%'
-        }
-      ]
+      items1: [],
+      items2: [],
+      items3: []
     }
   },
   filters: {
@@ -222,7 +132,21 @@ export default {
       } else {
         return '其他'
       }
+    },
+    toFixeds(val) {
+      return Number(val).toFixed(2)
     }
+  },
+  mounted() {
+    platfromDayRank(this.$axios).then(res => {
+      this.items1 = res.data.content.list
+    })
+    platfromMonthRank(this.$axios).then(res => {
+      this.items2 = res.data.content.list
+    })
+    platfromBorrowRank(this.$axios).then(res => {
+      this.items3 = res.data.content.list
+    })
   }
 }
 </script>

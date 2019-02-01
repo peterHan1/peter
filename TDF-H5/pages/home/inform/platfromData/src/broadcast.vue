@@ -3,11 +3,11 @@
     <div class="platform_c">
       <div class="echart_top">
         <h3>平台7日数据播报</h3>
-        <!-- <v-echarts :myChart="myChart1"></v-echarts> -->
+        <Echarts :myChart="myChart1"/>
       </div>
       <div class="echart_bot">
         <h3>平台月度数据播报</h3>
-        <!-- <v-echarts :myChart="myChart2"></v-echarts> -->
+        <Echarts :myChart="myChart2"/>
       </div>
     </div>
     <div class="inform_signature">
@@ -17,135 +17,25 @@
   </cube-scroll>
 </template>
 <script>
-// const echarts = require('echarts/lib/echarts')
-// require('echarts/lib/chart/bar')
-// require('echarts/lib/component/title')
+import Echarts from './echarts.vue'
 export default {
   data() {
     return {
       myChart1: {
         id: 'ranking',
-        dataX: `'08-30', '08-31', '09-01', '09-02', '09-03', '09-04', '09-05'`,
-        series: `1183.69, 1503.12, 1341.7, 952.63, 798.37, 1270.37, 1203.5`
+        key: this.$store.state.weekEChartKey,
+        val: this.$store.state.weekEChartVal
       },
       myChart2: {
         id: 'monthsData',
-        dataX: `'03月', '04月', '05月', '06月', '07月', '08月'`,
-        series: `20066.48, 24480.06, 32809.37, 38141.23, 31667.78, 40349.79`
+        key: this.$store.state.monthEChartKey,
+        val: this.$store.state.monthEChartVal
       }
     }
   },
-  methods: {
-    drawEcharts(id, dataX, series) {
-      let myChart = echarts.init(document.getElementById(id))
-      myChart.setOption({
-        title: {
-          text: '撮合融资额（万元）',
-          x: '-5px',
-          textStyle: {
-            fontSize: 12,
-            fontWeight: 'normal',
-            color: '$color-gray8',
-            fontFamily: 'Microsoft YaHei'
-          }
-        },
-        grid: {
-          left: '0',
-          right: '2%',
-          top: '17%',
-          bottom: '1%',
-          containLabel: true
-        },
-        xAxis: [
-          {
-            type: 'category',
-            data: dataX,
-            axisTick: {
-              show: false
-            },
-            axisLine: {
-              lineStyle: {
-                color: '$color-gray5'
-              }
-            },
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: '$color-gray8',
-                fontSize: 12,
-                fontStyle: 'normal'
-              }
-            }
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value',
-            axisTick: {
-              show: false
-            },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: ['$color-gray5'],
-                width: 0.5,
-                type: 'solid'
-              }
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#fff',
-                width: 1
-              }
-            },
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: '$color-gray8',
-                fontSize: 12,
-                fontStyle: 'normal'
-              }
-            }
-          }
-        ],
-        series: [
-          {
-            name: '成交量',
-            type: 'bar',
-            data: series,
-            barWidth: 12,
-            itemStyle: {
-              normal: {
-                barBorderRadius: [10, 10, 0, 0],
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: '#ff3501'
-                  },
-                  {
-                    offset: 0.2,
-                    color: '#ff9741'
-                  },
-                  {
-                    offset: 1,
-                    color: '#ffd6b3'
-                  }
-                ]),
-                label: {
-                  show: true,
-                  position: 'top',
-                  textStyle: {
-                    fontSize: 12,
-                    color: '$color-primary',
-                    fontStyle: 'normal'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      })
-    }
+  mounted() {},
+  components: {
+    Echarts
   }
 }
 </script>
