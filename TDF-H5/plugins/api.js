@@ -1,6 +1,5 @@
 import Axios from './axios'
 import { reject } from 'q'
-import store from '../store'
 // console.log(this)
 // console.log(Axios.$axios)
 const timestamp = Math.round(new Date() / 1000)
@@ -13,10 +12,18 @@ const commenParams = {
   accessKey: ''
 }
 const handleReq = reqst => {
-  Promise.resolve(store.modules.myCenter.actions.getId()).then(function(a) {
-    commenParams.accessId = a.accessId
-    commenParams.accessKey = a.accessKey
-  })
+  // 暂时
+  let accessId
+  let accessKey
+  if (JSON.parse(localStorage.getItem('user'))) {
+    accessId = JSON.parse(localStorage.getItem('user')).accessId
+    accessKey = JSON.parse(localStorage.getItem('user')).accessKey
+  } else {
+    accessId = ''
+    accessKey = ''
+  }
+  commenParams.accessId = accessId
+  commenParams.accessKey = accessKey
   return reqst.catch(err => {})
 }
 
