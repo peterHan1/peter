@@ -1,10 +1,8 @@
-import { accountDetail, getAccountLogById, myBankAssets } from '../plugins/api'
+import { accountDetail, myBankAssets, detailStatus } from '~/api/user.js'
+import { commenParams } from '../api/config'
+
 export const state = () => ({
-  bobo: '123456',
   assets: '',
-  phone: '',
-  //授权状态
-  authStatus: '',
   //银行名称
   bankName: '',
   //银行卡后四位
@@ -23,19 +21,16 @@ export const state = () => ({
   referrer: '',
   //开通存管状态
   openDepository: '',
-  //资金记录
-  moneyList: []
+  //授权状态 1:已授权,2:已过期 ,0:表明未开户
+  authStatus: '',
+  // 评测状态 1.有效 -1.未测评 0.测评过期 3.其他
+  evaluationStatus: ''
 })
 export const mutations = {
   setAssets(state, value) {
     state.assets = value
   },
-  setPhone(state, value) {
-    state.phone = value.phone
-    localStorage.setItem('phone', JSON.stringify(value))
-  },
   setAccount(state, value) {
-    state.authStatus = value.authStatus
     state.bankName = value.bankName
     state.bankNum = value.bankNum
     state.idCard = value.idCard ? value.idCard : ''
@@ -45,39 +40,37 @@ export const mutations = {
     state.userNo = value.userNo
     state.referrer = value.referrer
   },
+  setDetails(state, value) {
+    state.authStatus = value.authStatus
+    state.evaluationStatus = value.evaluationStatus
+  },
   setOpenDepository(state, value) {
     state.openDepository = value.openDepository
-  },
-  setMonetList(state, data) {
-    state.moneyList.push(data)
-  },
-  setMoneyNull(state) {
-    state.moneyList = []
   }
 }
 export const actions = {
-  async getId() {
-    return JSON.parse(localStorage.getItem('user'))
-  },
+  //我的资产
   async getBankAssets({ commit }) {
-    let assets = await myBankAssets(this.$axios)
-    if (assets) {
-      commit('setAssets', assets.data.content)
+    commenParams.accessId = this.state.accessId
+    commenParams.accessKey = this.state.accessKey
+    let assets = await myBankAssets(this.$axios, commenParams)
+    if (assets.code === 100000) {
+      commit('setAssets', assets.content)
     }
   },
-  async getPhone({ commit }) {
-    let phone = JSON.parse(localStorage.getItem('phone'))
-    await commit('setPhone', phone)
+  //评测状态
+  async getDetailStatus({ commit }) {
+    commenParams.accessId = this.state.accessId
+    commenParams.accessKey = this.state.accessKey
+    let assets = await detailStatus(this.$axios, commenParams)
+    if (assets.code === 100000) {
+      commit('setDetails', assets.content)
+    }
   },
   async getUser({ commit }) {
-    let { data } = await accountDetail(this.$axios)
+    commenParams.accessId = this.state.accessId
+    commenParams.accessKey = this.state.accessKey
+    let data = await accountDetail(this.$axios, commenParams)
     commit('setAccount', data.content)
-  },
-  async getMoneyRecord({ commit }, params) {
-    let { data } = await getAccountLogById(this.$axios, params)
-    let list = data.content.dataRows
-    for (let i = 0; i < list.length; i++) {
-      commit('setMonetList', list[i])
-    }
   }
 }

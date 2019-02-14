@@ -17,7 +17,28 @@ function findIndex(ary, fn) {
   /* istanbul ignore next */
   return index
 }
-
+function Cookie2Json(cookie) {
+  console.log(cookie)
+  if (cookie) {
+    let result = ''
+    let reg = /=/i
+    let cookieArr = cookie.split(';')
+    for (let i = 0; i < cookieArr.length; i++) {
+      let key = cookieArr[i]
+        .replace(reg, '|')
+        .split('|')[0]
+        .trim()
+      let val = cookieArr[i].replace(reg, '|').split('|')[1]
+      // result += `${key}:${val}`
+      result += ',"' + key + '":"' + val + '"'
+      // console.log(`${key}:${val}`)
+    }
+    // console.log(result)
+    cookie = JSON.parse('{' + result.substr(1).replace('\\', '') + '}')
+    result = cookie
+    return result
+  }
+}
 // const isFunc = judgeTypeFnCreator('Function')
 // const isUndef = judgeTypeFnCreator('Undefined')
 // const isArray = judgeTypeFnCreator('Array')
@@ -25,4 +46,4 @@ function findIndex(ary, fn) {
 // const isObject = judgeTypeFnCreator('Object')
 // const isNumber = judgeTypeFnCreator('Number')
 
-export { findIndex }
+export { findIndex, Cookie2Json }

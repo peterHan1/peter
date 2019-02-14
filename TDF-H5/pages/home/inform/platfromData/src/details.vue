@@ -42,7 +42,7 @@
             :key="index">
             <td>{{ item.username }}</td>
             <td>{{ item.amount/10000 | toFixeds }}万元</td>
-            <td>{{ item.proportion }}</td>
+            <td>{{ item.proportion + '%' }}</td>
           </tr>
         </table>
         <p class="txt_p">备注：借款本金超过20万的均为企业借款人</p>
@@ -139,13 +139,13 @@ export default {
   },
   mounted() {
     platfromDayRank(this.$axios).then(res => {
-      this.items1 = res.data.content.list
+      this.items1 = res.content.list
     })
     platfromMonthRank(this.$axios).then(res => {
-      this.items2 = res.data.content.list
+      this.items2 = res.content.list
     })
     platfromBorrowRank(this.$axios).then(res => {
-      this.items3 = res.data.content.list
+      this.items3 = res.content.list
     })
   }
 }

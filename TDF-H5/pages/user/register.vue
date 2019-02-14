@@ -72,8 +72,10 @@
 </template>
 
 <script>
-import { vregister, getPhoneCode } from '../../plugins/api.js'
+import { vregister, getPhoneCode } from '~/api/user.js'
 import md5 from 'md5'
+import Cookie from 'js-cookie'
+
 export default {
   head() {
     return {
@@ -127,20 +129,24 @@ export default {
         phone: this.$route.params.phone,
         type: 'reg'
       }).then(res => {
-        this.phoneCodeId = res.data.content.code
-      })
-      let time = 60
-      const clock = setInterval(() => {
-        if (time > 0) {
-          this.disabled = true
-          this.showInfo = time < 10 ? `0${time}s` : time
+        if (res.code === 100000) {
+          this.phoneCodeId = res.content.code
+          let time = 60
+          const clock = setInterval(() => {
+            if (time > 0) {
+              this.disabled = true
+              this.showInfo = time < 10 ? `0${time}s` : time
+            } else {
+              clearInterval(clock)
+              this.disabled = false
+              this.showInfo = '获取验证码'
+            }
+            time--
+          }, 1000)
         } else {
-          clearInterval(clock)
-          this.disabled = false
-          this.showInfo = '获取验证码'
+          this.$Msg(res, 2000)
         }
-        time--
-      }, 1000)
+      })
     },
     onSub() {
       if (!this.imgCode) {
@@ -177,12 +183,8 @@ export default {
         if (!res) {
           this.editCaptcha()
         } else {
-          var obj = {
-            accessId: res.data.content.accessId,
-            accessKey: res.data.content.accessKey
-          }
-          obj = JSON.stringify(obj)
-          localStorage.setItem('user', obj)
+          Cookie.set('accessId', res.content.accessId)
+          Cookie.set('accessKey', res.content.accessKey)
           // 跳注册结果页面
           this.$router.push({
             name: 'user-registerResult',

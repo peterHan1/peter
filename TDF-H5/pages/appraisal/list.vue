@@ -67,7 +67,8 @@
 </template>
 
 <script>
-import { evaluationSave } from '../../plugins/api.js'
+import { evaluationSave } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -276,7 +277,9 @@ export default {
     subSelect() {
       if (this.iconShow && this.selectShow) {
         let score = this.sum(this.arrNum)
-        evaluationSave(this.$axios, score).then(res => {
+        commenParams.accessId = this.$store.state.accessId
+        commenParams.accessKey = this.$store.state.accessKey
+        evaluationSave(this.$axios, score, commenParams).then(res => {
           if (res) {
             this.$router.push({
               name: 'appraisal-result'

@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import { openAccount } from '../../plugins/api.js'
+import { openAccount } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -61,12 +62,14 @@ export default {
       const params = {
         realName: this.nameVal ? this.nameVal : this.name,
         idCard: this.fszVal ? this.fszVal : this.sfz,
-        returnUrl: 'http://72.127.2.104:3000/xwDeposit/result'
+        returnUrl: this.returnPath + 'xwDeposit/result'
       }
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
       if (params.realName != '' && params.idCard != '') {
-        openAccount(this.$axios, params).then(res => {
+        openAccount(this.$axios, params, commenParams).then(res => {
           if (res) {
-            let nonce = res.data.content.nonce
+            let nonce = res.content.nonce
             this.$router.push({
               name: 'xwDeposit-transit',
               params: {

@@ -24,34 +24,44 @@
       v-show="!active"
       class="hongbao">
       <div class="top">
-        <!-- <div><span>{{ vipData.config.firstVoucher.amount }}</span>元</div> -->
-        <!-- <div><span>{{ vipData.config.firstScale*100 }}</span>%</div> -->
+        <div><span>{{ firstVoucher1 }}</span>元</div>
+        <div><span>{{ firstScale1 }}</span>%</div>
       </div>
-      <div class="middle"><div>直接好友每笔出借收益5%，间接好友每笔出借收益2%</div></div>
-      <div class="bottom">15位好友达到V1等级且好友总待收达400万</div>
+      <div v-if="vipData.level === 1">
+        <div class="middle"><div>直接好友每笔出借收益{{ directScale1 }}%</div></div>
+        <div class="bottom">好友出借即可</div>
+      </div>
+      <div v-else-if="vipData.level === 2">
+        <div class="middle"><div>直接好友每笔出借收益{{ directScale1 }}%，间接好友每笔出借收益{{ indirectScale1 }}%</div></div>
+        <div class="bottom">{{ inviteMember1 }}位好友达到v1等级且好友总待收达{{ recoverTotal1 }}万</div>
+      </div>
+      <div v-else-if="vipData.level === 3">
+        <div class="middle"><div>直接好友每笔出借收益{{ directScale1 }}"%，间接好友每笔出借收益{{ indirectScale1 }}%</div></div>
+        <div class="bottom">{{ inviteMember1 }}位好友达到v1等级且好友总待收达{{ recoverTotal1 }}万</div>
+      </div>
     </div>
-    <div 
+    <div
       v-show="!active"
       class="rights">
       <img src="../../../assets/images/activity/inviteFriend/invite3.png">
     </div>
     <div class="first">
       <dt>好友首次出借，您将获得</dt>
-      <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+      <dd class="margin">{{ firstVoucher2 }}元抵用券，好友首次出借金额{{ firstScale2 }}%返现</dd>
       <dt>好友第二次出借起，您将获得</dt>
-      <dd>直接好友每笔出借收益2%</dd>
+      <dd>直接好友每笔出借收益{{ directScale2 }}%</dd>
     </div>
     <div class="second">
       <dt>好友首次出借，您将获得</dt>
-      <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+      <dd class="margin">{{ firstVoucher3 }}元抵用券，好友首次出借金额{{ firstScale3 }}%返现</dd>
       <dt>好友第二次出借起，您将获得</dt>
-      <dd>直接好友每笔出借收益3%，间接好友每笔出借收益1%<br>(6位好友达到v1且好友总待收达200万)</dd>
+      <dd>直接好友每笔出借收益{{ directScale3 }}%，间接好友每笔出借收益{{ indirectScale2 }}%<br>({{ inviteMember2 }}位好友达到v1且好友总待收达{{ recoverTotal2 }}万)</dd>
     </div>
     <div class="third">
       <dt>好友首次出借，您将获得</dt>
-      <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+      <dd class="margin">{{ firstVoucher4 }}元抵用券，好友首次出借金额{{ firstScale4 }}%返现</dd>
       <dt>好友第二次出借起，您将获得</dt>
-      <dd>直接好友每笔出借收益5%，间接好友每笔出借收益2%<br>(15位好友达到v1且好友总待收达400万)</dd>
+      <dd>直接好友每笔出借收益{{ directScale4 }}%，间接好友每笔出借收益{{ indirectScale3 }}%<br>({{ inviteMember3 }}位好友达到v1且好友总待收达{{ recoverTotal3 }}万)</dd>
     </div>
     <div
       :class="{on:active}"
@@ -86,7 +96,9 @@
       <div
         v-else
         class="layerNoWx">
-        <div class="layerHb">
+        <div
+          ref="layerHb"
+          class="layerHb">
           <span
             class="iconfont"
             @click="shadeShow = false">&#xe9ba;</span>
@@ -97,10 +109,13 @@
             <img src="../../../assets/images/activity/inviteFriend/wx.png">
             <p>分享好友</p>
           </div>
-          <div class="downLoad">
+          <a
+            :href="dataURL"
+            class="downLoad"
+            download="img">
             <img src="../../../assets/images/activity/inviteFriend/downLoad.png">
             <p>保存到相册</p>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -121,6 +136,8 @@
   </div>
 </template>
 <script>
+import Axios from 'axios'
+import html2canvas from 'html2canvas'
 import lev1 from '../../../assets/images/activity/inviteFriend/lev1.png'
 import lev2 from '../../../assets/images/activity/inviteFriend/lev2.png'
 import lev3 from '../../../assets/images/activity/inviteFriend/lev3.png'
@@ -134,18 +151,40 @@ export default {
   },
   data() {
     return {
-      // false为已登录，true为未登录
       lev: [lev1, lev2, lev3],
       levImg: '',
+      // false为已登录，true为未登录
       active: false,
       text: '邀请',
-      inviteCode: 'D6895',
+      inviteCode: '',
       shadeShow: false,
       isWx: false,
       time: '',
       clipboard: '',
       layerCode: false,
-      vipData: {}
+      vipData: {},
+      firstVoucher1: '',
+      firstVoucher2: '',
+      firstVoucher3: '',
+      firstVoucher4: '',
+      firstScale1: '',
+      firstScale2: '',
+      firstScale3: '',
+      firstScale4: '',
+      directScale1: '',
+      directScale2: '',
+      directScale3: '',
+      directScale4: '',
+      indirectScale1: '',
+      indirectScale2: '',
+      indirectScale3: '',
+      recoverTotal1: '',
+      recoverTotal2: '',
+      recoverTotal3: '',
+      inviteMember1: '',
+      inviteMember2: '',
+      inviteMember3: '',
+      dataURL: ''
     }
   },
   methods: {
@@ -156,6 +195,57 @@ export default {
       //   this.active = true
       //   this.text = '登录'
       // }
+    },
+    toImg() {
+      const _this = this
+      setTimeout(() => {
+        // 创建一个新的canvas
+        // 此处用于解决截图不清晰问题，将生成的canvas放大，然后再填充到原有的容器中就会清晰
+        const width = this.$refs.layerHb.offsetWidth
+        const height = this.$refs.layerHb.offsetHeight
+        const canvas2 = document.createElement('canvas')
+        const scale = 2
+        canvas2.width = width * scale
+        canvas2.height = height * scale
+        canvas2.style.width = width + 'px'
+        canvas2.style.height = height + 'px'
+        const context1 = canvas2.getContext('2d')
+        if (!context1) {
+          context1.scale(scale, scale)
+        } else {
+          _this.$Msg('您的浏览器不支持截图功能，请手动截图', 2000)
+        }
+        const opts = {
+          scale,
+          canvas: canvas2,
+          // logging: true, //日志开关，便于查看html2canvas的内部执行流程
+          width,
+          height,
+          background: null,
+          // 允许加载跨域的图片
+          allowTaint: true,
+          // 【重要】开启跨域配置
+          useCORS: true
+        }
+        html2canvas(this.$refs.layerHb, opts).then(canvas => {
+          const context = canvas2.getContext('2d')
+          if (context) {
+            context.scale(scale, scale)
+            context.mozImageSmoothingEnabled = false
+            context.webkitImageSmoothingEnabled = false
+            context.imageSmoothingEnabled = false
+          }
+          // canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
+          _this.dataURL = canvas.toDataURL()
+        })
+      }, 1000)
+      // html2canvas(this.$refs.layerHb, {
+      //   backgroundColor: null
+      // }).then(canvas => {
+      //   let dataURL = canvas.toDataURL('image/png')
+      //   this.dataURL = dataURL
+      //   console.log(this.dataURL)
+      // })
     },
     links() {
       this.shadeShow = true
@@ -168,6 +258,7 @@ export default {
         this.zoom('http://baidu.com')
         this.shadeShow = true
         this.isWx = false
+        this.toImg()
       }
       // if (this.active) {
       //   this.$router.push('/login')
@@ -206,16 +297,94 @@ export default {
           _this.layerCode = true
         }, 1500)
       })
+    },
+    wxShare() {
+      const options = {
+        title: '劵拿多少你说了算',
+        desc: '拓道金服5年合规运营，优惠券回馈各位道友，快来参加活动吧！',
+        link: location.href,
+        // link:'${baseUrl}/html5/voucher?user=${recommendCode}&returnUrl=/html5/voucher',
+        imgUrl: 'https://www.51tuodao.com/static_pro/wap/img/voucher/share.png'
+      }
+      // Axios({
+      //   method: 'get',
+      //   url: '/json/h5/getWxConfig?t=' + new Date().getTime(),
+      //   params: {url: location.href},
+      //   timeout: 6000
+      Axios.get(
+        'http://72.127.2.116:8080/json/h5/getWxConfig?t=' +
+          new Date().getTime(),
+        {
+          //params参数必写 , 如果没有参数传{}也可以
+          params: { url: location.href }
+        }
+      )
+        .then(data => {
+          if (data.flag && typeof wx !== 'undefined') {
+            wx.config({
+              debug: false, // 开启调试模式
+              appId: data.appId, // 必填，公众号的唯一标识
+              timestamp: data.timestamp, // 必填，生成签名的时间戳
+              nonceStr: data.noncestr, // 必填，生成签名的随机串
+              signature: data.signature, // 必填，签名
+              jsApiList: ['updateAppMessageShareData'] // 必填，需要使用的JS接口列表
+            })
+            wx.ready(() => {
+              // 分享给朋友
+              wx.onMenuShareAppMessage({
+                title: options.title, // 分享标题
+                desc: options.desc, // 分享描述
+                link: options.link, // 分享链接
+                imgUrl: options.imgUrl, // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function() {
+                  // 用户确认分享后执行的回调函数
+                },
+                cancel: function() {
+                  // 用户取消分享后执行的回调函数
+                }
+              })
+            })
+          }
+          console.log(data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   mounted() {
-    inviteFriend(this.$axios).then(res => {
-      this.vipData = res.data.content
-      console.log(res.data.content.config)
-    })
     this.$nextTick(() => {
       let copyCode = document.getElementById('copyCode')
       this.clipboard = new Clipboard(copyCode)
+    })
+    // this.wxShare()
+    inviteFriend(this.$axios).then(res => {
+      this.vipData = res.content
+      this.firstVoucher1 = res.content.config.firstVoucher.amount
+      this.firstVoucher2 = res.content.primary.firstVoucher.amount
+      this.firstVoucher3 = res.content.intermediate.firstVoucher.amount
+      this.firstVoucher4 = res.content.trump.firstVoucher.amount
+      this.firstScale1 = res.content.config.firstScale * 100
+      this.firstScale2 = res.content.primary.firstScale * 100
+      this.firstScale3 = res.content.intermediate.firstScale * 100
+      this.firstScale4 = res.content.trump.firstScale * 100
+      this.directScale1 = res.content.config.directScale * 100
+      this.directScale2 = res.content.primary.directScale * 100
+      this.directScale3 = res.content.intermediate.directScale * 100
+      this.directScale4 = res.content.trump.directScale * 100
+      this.indirectScale1 = res.content.config.indirectScale * 100
+      this.indirectScale2 = res.content.intermediate.indirectScale * 100
+      this.indirectScale3 = res.content.trump.indirectScale * 100
+      this.recoverTotal1 = res.content.config.recoverTotal
+      this.recoverTotal2 = res.content.intermediate.recoverTotal
+      this.recoverTotal3 = res.content.trump.recoverTotal
+      this.inviteMember1 = res.content.config.inviteMember
+      this.inviteMember2 = res.content.intermediate.inviteMember
+      this.inviteMember3 = res.content.trump.inviteMember
+      this.inviteCode = res.content.inviteCode
+      // console.log(window.location.href)
     })
     // wxSignature(this.$axios, params).then(res => {
     //   let { data } = res.data.content
@@ -477,13 +646,13 @@ input,.myCode .code
           height 100px
       .bottom
         padding-top: 40px
-        div
+        div,a
           display inline-block
           width 160px
           font-size $fontsize-large-x
           color $color-white
-          &:first-child
-            margin-right 20px
+        div
+          margin-right 20px
         img
           width 102px
           height 102px

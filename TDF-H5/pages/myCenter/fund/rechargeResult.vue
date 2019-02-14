@@ -60,7 +60,8 @@
 </template>
 
 <script>
-import { quickPayResult } from '~/plugins/api.js'
+import { quickPayResult } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -69,13 +70,21 @@ export default {
     }
   },
   mounted() {
-    let orderNo = this.$route.query.orderNo
-    console.log(orderNo)
-    quickPayResult(this.$axios, orderNo).then(res => {
-      if (res) {
-        this.status = res.data.content.status
-      }
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      let orderNo = this.$route.query.orderNo
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      quickPayResult(this.$axios, orderNo, commenParams).then(res => {
+        if (res) {
+          this.status = res.content.status
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     returnRecharge() {

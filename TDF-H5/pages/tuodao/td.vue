@@ -133,10 +133,11 @@ export default {
   },
   mounted() {
     homeNotice(this.$axios).then(res => {
-      this.noticeName = res.data.content.gonggaoList[0].name
+      this.noticeName = res.content.gonggaoList[0].name
     })
     homeBanner(this.$axios).then(res => {
-      this.imgArr = res.data.content.map(o => {
+      console.log(res)
+      this.imgArr = res.content.map(o => {
         return {
           image: o.picTarget,
           url: o.url
@@ -144,10 +145,10 @@ export default {
       })
     })
     homeBottomData(this.$axios).then(res => {
-      this.business = res.data.content
+      this.business = res.content
     })
     homeInvest(this.$axios).then(res => {
-      this.investList = res.data.content.borrow[0]
+      this.investList = res.content.borrow[0]
       if (this.investList.surplusAmount <= 0) {
         this.surplusAmount = '标的已抢完'
         this.isOver = true

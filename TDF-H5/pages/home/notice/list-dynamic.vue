@@ -1,37 +1,36 @@
 <template>
-  <div>
-    <cube-scroll
-      v-if="this.$store.state.dynamicData.length > 0"
-      ref="contentScroll0"
-      :data="this.$store.state.dynamicData"
-      :options="options"
-      @pulling-down="onPullingDown"
-      @pulling-up="onPullingUp">
-      <div class="right">
-        <router-link
-          v-for="(item, index) in this.$store.state.dynamicData"
-          :key="index"
-          :to="item.url"
-          class="item">
-          <img :src="item.litpic">
-          <div>
-            <p class="t">{{ item.limitName }}</p>
-            <p class="d">{{ item.time }}</p>
-            <p class="c">{{ item.name }}</p>
-          </div>
-        </router-link>
-      </div>
-    </cube-scroll>
-    <div 
-      v-else 
-      class="data-status">
-      <data-status
-        status="null"
-        statusTxt="暂无动态数据"/>
+  <cube-scroll
+    v-if="data.length > 0"
+    ref="contentScroll0"
+    :data="data"
+    :options="options"
+    @pulling-down="onPullingDown"
+    @pulling-up="onPullingUp">
+    <div class="right">
+      <a
+        v-for="(item, index) in data"
+        :key="index"
+        :href="item.url"
+        class="item">
+        <img :src="item.litpic">
+        <div>
+          <p class="t">{{ item.limitName }}</p>
+          <p class="d">{{ item.time }}</p>
+          <p class="c">{{ item.name }}</p>
+        </div>
+      </a>
     </div>
+  </cube-scroll>
+  <div 
+    v-else 
+    class="data-status">
+    <data-status
+      status="null"
+      statusTxt="暂无动态数据"/>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { homeNoticeDynamic } from '../../../plugins/api.js'
 let pageNum = 1
 export default {
@@ -52,12 +51,15 @@ export default {
           }
         },
         scrollbar: true
-      },
-      pages: this.$store.state.dynamicPages
+      }
     }
   },
-  mounted() {
-    console.log(this.$store.state.dynamicData)
+  computed: {
+    ...mapState({
+      data: state => state.home.dynamicData,
+      pages: state => state.home.dynamicPages,
+      item: state => state.home.dynamicItem
+    })
   },
   methods: {
     // 下拉刷新
@@ -67,14 +69,18 @@ export default {
         const params = {
           typeId: 'media',
           page: 1,
-          item: this.$store.state.dynamicItem
+          item: this.item
         }
-        let { data } = await homeNoticeDynamic(this.$axios, params)
-        this.$store.commit('setDynamicNull')
+        let data = await homeNoticeDynamic(this.$axios, params)
+        for (let i = 0; i < data.content.dataRows.length; i++) {
+          data.content.dataRows[i].url =
+            'http://72.127.2.140:9090' + data.content.dataRows[i].url
+        }
+        this.$store.commit('home/setDynamicNull')
         data.content.dataRows.map(o => {
-          this.$store.commit('setDynamicData', o)
+          this.$store.commit('home/setDynamicData', o)
         })
-        this.$store.commit('setDynamicPages', data.content.pages)
+        this.$store.commit('home/setDynamicPages', data.content.pages)
       }, 1000)
     },
     // 上拉加载
@@ -83,13 +89,20 @@ export default {
       const params = {
         typeId: 'media',
         page: pageNum,
-        item: this.$store.state.dynamicItem
+        item: this.item
       }
       // // 更新数据
-      setTimeout(() => {
+      setTimeout(async () => {
         if (pageNum <= this.pages) {
           // 如果有新数据
-          this.$store.dispatch('getDynamicList', params)
+          let data = await homeNoticeDynamic(this.$axios, params)
+          for (let i = 0; i < data.content.dataRows.length; i++) {
+            data.content.dataRows[i].url =
+              'http://72.127.2.140:9090' + data.content.dataRows[i].url
+          }
+          data.content.dataRows.map(o => {
+            this.$store.commit('home/setDynamicData', o)
+          })
         } else {
           // 如果没有新数据
           this.$refs.contentScroll0.forceUpdate()

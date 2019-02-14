@@ -1,6 +1,9 @@
 <template>
   <div class="main">
-    <td-header title="我的等级"/>
+    <td-header 
+      :returnUrl="false"
+      title="我的等级" 
+      url="myCenter-set-ucSet"/>
     <div class="header">
       <div class="head"/>
       <div class="myLev">
@@ -97,7 +100,8 @@
   </div>
 </template>
 <script>
-import { getVipDetail } from '~/plugins/api.js'
+import { getVipDetail } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -109,16 +113,25 @@ export default {
     }
   },
   mounted() {
-    getVipDetail(this.$axios).then(res => {
-      if (res) {
-        this.lev = res.data.content.vipLevel
-        this.content = res.data.content
-        this.list = res.data.content.dataRows
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getVipDetail(this.$axios, commenParams).then(res => {
+        if (res) {
+          this.lev = res.content.vipLevel
+          this.content = res.content
+          this.list = res.content.dataRows
+        }
+      })
+      this.progressHeight = 1.1 + this.lev * 1.29
+      if (this.lev === 7) {
+        this.progressHeight = this.lev * 1.29
       }
-    })
-    this.progressHeight = 1.1 + this.lev * 1.29
-    if (this.lev === 7) {
-      this.progressHeight = this.lev * 1.29
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   }
 }

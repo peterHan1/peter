@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { OpenAccountResult } from '../../plugins/api.js'
+import { OpenAccountResult } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -46,9 +47,11 @@ export default {
     }
   },
   mounted() {
-    OpenAccountResult(this.$axios).then(res => {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    OpenAccountResult(this.$axios, commenParams).then(res => {
       if (res) {
-        this.status = res.data.content.code
+        this.status = res.content.code
         console.log(res)
       }
     })

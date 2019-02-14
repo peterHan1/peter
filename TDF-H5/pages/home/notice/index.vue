@@ -37,19 +37,8 @@ export default {
   metaInfo: {
     title: '公告动态'
   },
-  async fetch({ app, store }) {
-    const notice = {
-      typeId: 'gonggao',
-      page: 1,
-      item: 10
-    }
-    const dynamic = {
-      typeId: 'media',
-      page: 1,
-      item: 10
-    }
-    await store.dispatch('getNoticeList', notice)
-    await store.dispatch('getDynamicList', dynamic)
+  created() {
+    this.getData()
   },
   data() {
     return {
@@ -76,9 +65,41 @@ export default {
     }
   },
   methods: {
+    async getData() {
+      const notice = {
+        typeId: 'gonggao',
+        page: 1,
+        item: this.$store.state.home.noticeItem
+      }
+      const dynamic = {
+        typeId: 'media',
+        page: 1,
+        item: this.$store.state.home.dynamicItem
+      }
+      let noticeList = await homeNoticeDynamic(this.$axios, notice)
+      // this.$store.commit('home/setNoticePages', noticeList.content.pages)
+      for (let i = 0; i < noticeList.content.dataRows.length; i++) {
+        noticeList.content.dataRows[i].url =
+          'http://72.127.2.140:9090' + noticeList.content.dataRows[i].url
+      }
+      noticeList.content.dataRows.map(o => {
+        this.$store.commit('home/setNoticeData', o)
+      })
+      console.log(noticeList)
+      this.$store.commit('home/setNoticePages', noticeList.content.pages)
+      console.log(this.$store.state.home.noticePages)
+      let dynamicList = await homeNoticeDynamic(this.$axios, dynamic)
+      for (let i = 0; i < noticeList.content.dataRows.length; i++) {
+        dynamicList.content.dataRows[i].url =
+          'http://72.127.2.140:9090' + dynamicList.content.dataRows[i].url
+      }
+      dynamicList.content.dataRows.map(o => {
+        this.$store.commit('home/setDynamicData', o)
+      })
+      this.$store.commit('home/setDynamicPages', dynamicList.content.pages)
+    },
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
-      console.log(this.$store.state.noticeData)
     },
     scroll(pos) {
       const x = Math.abs(pos.x)
@@ -86,12 +107,6 @@ export default {
       const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
       const deltaX = (x / slideScrollerWidth) * tabItemWidth
       this.$refs.tabNav.setSliderTransform(deltaX)
-    },
-    loadTop(done) {
-      done() // call done
-    },
-    loadBottom(done) {
-      done()
     }
   },
   computed: {

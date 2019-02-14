@@ -1,6 +1,10 @@
-<v-count @Index="Index"></v-count>
-出借标的详情页的收益计算器组件
-@Index="Index"输出滑动刻度的下标，在父组件声明该方法，参数value即是刻度下标
-Index (value) {
-	this.showIndex = value
+<v-count :types="types"/>
+出借标的详情页的收益计算器组件，传入types对象参数，
+types: {
+	// 利息计算方式（按天计息,按月付息 到期还本,按月付息）
+	type: '按月付息', 
+	// 基本利息，例如10%利率就传10
+	interest: 10,
+	// 出借期限，月就传月数，天数就传天数，例如出借2个月，传2，出借30天，传30
+	time: 2
 }

@@ -4,6 +4,7 @@
       <div class="echart_top">
         <h3>平台7日数据播报</h3>
         <Echarts :myChart="myChart1"/>
+        <!-- <div id="ranking"/> -->
       </div>
       <div class="echart_bot">
         <h3>平台月度数据播报</h3>
@@ -18,22 +19,163 @@
 </template>
 <script>
 import Echarts from './echarts.vue'
+const echarts = require('echarts/lib/echarts')
+require('echarts/lib/chart/bar')
+require('echarts/lib/component/title')
+import {
+  weekVolumeChart,
+  monthVolumeChart
+} from '../../../../../plugins/api.js'
 export default {
   data() {
     return {
       myChart1: {
         id: 'ranking',
-        key: this.$store.state.weekEChartKey,
-        val: this.$store.state.weekEChartVal
+        // key: [1, 2, 3],
+        // val: [10, 50, 100]
+        key: this.$store.state.home.weekEChartKey,
+        val: this.$store.state.home.weekEChartVal
       },
       myChart2: {
         id: 'monthsData',
-        key: this.$store.state.monthEChartKey,
-        val: this.$store.state.monthEChartVal
+        // key: [],
+        // val: []
+        key: this.$store.state.home.monthEChartKey,
+        val: this.$store.state.home.monthEChartVal
       }
     }
   },
-  mounted() {},
+  // async fetch({ app, store }) {
+  //   await store.dispatch('home/getWeekEchart')
+  //   await store.dispatch('home/getMonthEchart')
+  // },
+  mounted() {
+    // this.getData()
+    // this.draw(this.myChart1)
+    // this.draw(this.myChart2)
+  },
+  methods: {
+    async getData() {
+      const weekData = await weekVolumeChart(this.$axios)
+      this.myChart1.key = weekData.content.eChart.key
+      this.myChart1.val = weekData.content.eChart.val
+      console.log(this.myChart1.key)
+      // this.$store.commit('home/setWeekEchart', weekData.content.eChart)
+      const monthData = await monthVolumeChart(this.$axios)
+      this.$store.commit('home/setMonthEchart', monthData.content.eChart)
+      console.log(this.$store.state.home.weekEChartKey)
+    },
+    draw(myCharts) {
+      let myChart = echarts.init(document.getElementById(myCharts.id))
+      myChart.setOption({
+        title: {
+          text: '撮合融资额（万元）',
+          x: '-5px',
+          textStyle: {
+            fontSize: 12,
+            fontWeight: 'normal',
+            color: '#626262',
+            fontFamily: 'Microsoft YaHei'
+          }
+        },
+        grid: {
+          left: '0',
+          right: '2%',
+          top: '17%',
+          bottom: '1%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: myCharts.key,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#e8e8e8'
+              }
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#626262',
+                fontSize: 12,
+                fontStyle: 'normal'
+              }
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ['#e8e8e8'],
+                width: 0.5,
+                type: 'solid'
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#fff',
+                width: 1
+              }
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#626262',
+                fontSize: 12,
+                fontStyle: 'normal'
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: '成交量',
+            type: 'bar',
+            data: myCharts.val,
+            barWidth: 12,
+            itemStyle: {
+              normal: {
+                barBorderRadius: [10, 10, 0, 0],
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: '#ff3501'
+                  },
+                  {
+                    offset: 0.2,
+                    color: '#ff9741'
+                  },
+                  {
+                    offset: 1,
+                    color: '#ffd6b3'
+                  }
+                ]),
+                label: {
+                  show: true,
+                  position: 'top',
+                  textStyle: {
+                    fontSize: 12,
+                    color: '#FF7102',
+                    fontStyle: 'normal'
+                  }
+                }
+              }
+            }
+          }
+        ]
+      })
+    }
+  },
   components: {
     Echarts
   }

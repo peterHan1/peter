@@ -33,10 +33,13 @@ export default {
   methods: {
     back() {
       if (this.returnUrl) {
+        this.$store.commit('project/setTransition', 'turn-off')
         this.$router.back()
       } else {
         this.$router.push({ name: this.url })
       }
+      // this.$store.commit('project/setTransition', 'turn-off')
+      // this.$router.back()
     },
     returnFn() {
       this.$emit('navRightFn')
@@ -65,7 +68,7 @@ header
     left: 0
     font-size: 60px
     margin-left: 15px
-  b  
+  b
     position: absolute
     top: 0
     right: 0

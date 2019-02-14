@@ -26,7 +26,8 @@
   </div>
 </template>
 <script>
-import { orRegister } from '~/plugins/api.js'
+import { orRegister } from '~/api/user.js'
+
 export default {
   data() {
     return {
@@ -50,13 +51,13 @@ export default {
         return
       }
       orRegister(this.$axios, this.iphone).then(res => {
-        if (res.data.content.type === 'register') {
+        if (res.content.type === 'register') {
           this.$router.push({
             name: 'user-registerAgreement',
             params: { phone: this.iphone }
           })
         }
-        if (res.data.content.type === 'login') {
+        if (res.content.type === 'login') {
           this.$router.push({
             name: 'user-loginPwd',
             params: {

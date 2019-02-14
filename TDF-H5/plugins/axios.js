@@ -6,35 +6,43 @@ const createError = (code, msg) => {
   return err
 }
 export default function({ $axios, redirect }) {
-  $axios.defaults.timeout = 10000
+  $axios.defaults.timeout = 5000
   $axios.onRequest(config => {
-    TDUI.load.Load()
-    // testFn('请求中')
-    // if (process.browser) {
-    //   vm.$loading()
-    // }
-    console.log('Making request to ' + config.url)
+    // console.log(config.headers.common.cookie)
     // console.log(config.data)
+    console.log('Making request to ' + config.url)
   })
   $axios.onResponse(res => {
-    TDUI.load.Close()
-    // return res
-    // console.log(res)
-    // testFn('请求完')
-    // this.$Msg('这是错误信息', 2000)
     if (res.data.code !== 100000) {
-      TDUI.Msg(res.data.msg)
+      // TDUI.Msg(res.data.msg)
       return Promise.reject(createError(res.data.code, res.data.msg))
     }
-    return res
+    // console.log(res)
+    return res.data
+  })
+  $axios.onResponseError(err => {
+    if (err.code == 'ECONNABORTED') {
+      return Promise.reject(createError(err.code, '链接超市'))
+    }
   })
   $axios.onError(err => {
-    TDUI.load.Close()
-    const errInfo = `错误号： ${err.code};错误信息：${err.message}`
-    if (err.response.status == 504) {
-      TDUI.Msg('服务器出错')
-    } else {
-      TDUI.Msg(err.message)
-    }
+    const errShow = `错误号：${err.code};错误信息：${err.message}`
+    console.log(errShow)
+    return err
+    // 链接超时
+    // const code = parseInt(error.response && error.response.status)
+    // console.log(err.code + 'eeeee')
+    // console.log(err.message + 'yyyy')
+    // return err
+    // return Promise.reject(err)
+    // console.log(error)
+    // if (isNaN(code)) {
+    //   console.log('链接失败')
+    // }
+    // if (err.response.status == 504) {
+    //   console.log('服务器出错')
+    // } else {
+    //   console.log(errInfo)
+    // }
   })
 }

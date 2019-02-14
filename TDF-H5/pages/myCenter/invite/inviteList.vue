@@ -1,6 +1,9 @@
 <template>
   <div class="invite">
-    <td-header title="邀请人记录"/>
+    <td-header 
+      :returnUrl="false"
+      title="邀请人记录" 
+      url="myCenter-invite-inviteRecord"/>
     <div class="listHeader">
       <span>直接被邀请人</span>
       <span>直接返现奖励(元)</span>
@@ -33,7 +36,8 @@
 </template>
 
 <script>
-import { inviteFriendList } from '~/plugins/api.js'
+import { inviteFriendList } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -54,7 +58,14 @@ export default {
     }
   },
   mounted() {
-    this.getList()
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      this.getList()
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     getList() {
@@ -62,9 +73,11 @@ export default {
         item: this.item,
         page: this.page
       }
-      inviteFriendList(this.$axios, params).then(res => {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      inviteFriendList(this.$axios, params, commenParams).then(res => {
         if (res) {
-          let list = res.data.content.dataRows
+          let list = res.content.dataRows
           for (let i in list) {
             this.content.push(list[i])
           }

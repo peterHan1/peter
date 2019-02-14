@@ -1,10 +1,10 @@
 <template>
   <div class="myCenter">
-    <div class="my_nav">
-      <div><span/><span :class="'vip' + this.$store.state.myCenter.assets.level"/></div>
-    </div>
     <div class="my_box">
       <div class="myCenter_top">
+        <div class="my_nav">
+          <div><span/><span :class="'vip' + this.$store.state.myCenter.assets.level"/></div>
+        </div>
         <div v-if="login">
           <router-link 
             to="/user/login" 
@@ -171,8 +171,6 @@
 </template>
 
 <script>
-import { myBankAssets } from '../../plugins/api.js'
-
 export default {
   data() {
     return {
@@ -185,17 +183,19 @@ export default {
   },
   async beforeCreate() {
     await this.$store.dispatch('myCenter/getBankAssets')
-    await this.$store.dispatch('myCenter/getUser')
+    await this.$store.dispatch('myCenter/getDetailStatus')
     this.$nextTick(() => {
       this.deposit = this.$store.state.myCenter.authStatus
-      if (JSON.parse(localStorage.getItem('user')).accessId === '') {
-        this.login = true
-      } else {
+      if (this.$store.state.accessId && this.$store.state.accessKey) {
         this.login = false
+      } else {
+        this.login = true
       }
     })
   },
-  mounted() {},
+  mounted() {
+    this.$store.commit('srcPath', this.$route.path)
+  },
   methods: {
     moneyHide() {
       this.moneyShow = !this.moneyShow
@@ -214,15 +214,9 @@ export default {
 <style lang="stylus" scoped>
   .myCenter
     .my_nav
-      position: fixed
-      left: 0
-      top: 0
-      right: 0
       height: 88px
-      background: url(../../assets/images/my-center/my_nav.png) no-repeat
-      background-size: 100% 100%
       z-index: 99
-      padding: 0 30px
+      margin-bottom: 38px
       div:nth-child(1)
         height: 100%
         width: 50%
@@ -270,14 +264,13 @@ export default {
           background-size: 100% 100%
     .my_box
       background-color: $color-background
-      padding: 88px 0 130px
+      padding-bottom: 130px
       .myCenter_top
-        padding-top: 100px
         width:100%
-        height: 332px
+        height: 420px
         background: url(../../assets/images/my-center/my_moneyBg.png) no-repeat
         background-size: 100% 100%
-        padding: 32px 30px 0
+        padding: 10px 30px 0
         .login
           display: block
           width: 284px
@@ -288,7 +281,7 @@ export default {
           color: $color-white
           font-size: $fontsize-large-xxx
           text-align: center
-          margin: 50px auto
+          margin: 100px auto 0
         .user_earnings
           overflow: hidden
           font-size: 0

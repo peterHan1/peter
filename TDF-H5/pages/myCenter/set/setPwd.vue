@@ -20,9 +20,6 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: '拓道金服'
-  },
   data() {
     return {}
   },

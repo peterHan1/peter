@@ -1,4 +1,5 @@
-import { login } from '../plugins/api'
+import { login } from '~/api/user.js'
+
 import Cookie from 'js-cookie'
 // console.log(this)
 export const state = () => ({

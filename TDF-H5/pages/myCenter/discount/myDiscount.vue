@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import Interest from './src/interest-list.vue'
-import Voucher from './src/voucher-list.vue'
+import Interest from '~/components/business/discount-list/interest-list'
+import Voucher from '~/components/business/discount-list/voucher-list'
 import { findIndex } from '~/components/src/common/util.js'
 
 export default {
@@ -61,7 +61,14 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {
     tabFn(com) {
       this.tabCom = com

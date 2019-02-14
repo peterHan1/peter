@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="业务授权" 
-      url="myCenter-center"/>
+      url="myCenter-set-ucSet"/>
     <ul>
       <li>
         <span>业务授权</span>
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import { information, hanAppauth } from '~/plugins/api.js'
+import { information, hanAppauth } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -42,20 +43,31 @@ export default {
     }
   },
   mounted() {
-    information(this.$axios).then(res => {
-      if (res) {
-        this.authAmount = res.data.content.authAmount
-        this.authTime = res.data.content.authTime
-        this.authStatus = res.data.content.authStatus
-      }
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      information(this.$axios, commenParams).then(res => {
+        if (res) {
+          this.authAmount = res.content.authAmount
+          this.authTime = res.content.authTime
+          this.authStatus = res.content.authStatus
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     appauth() {
-      let url = 'http://72.127.2.104:3000/myCenter/set/xwAccreditResult'
-      hanAppauth(this.$axios, url).then(res => {
+      let url = this.returnPath + 'myCenter/set/xwAccreditResult'
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      hanAppauth(this.$axios, url, commenParams).then(res => {
         if (res) {
-          let nonce = res.data.content.nonce
+          let nonce = res.content.nonce
           this.$router.push({
             name: 'xwDeposit-transit',
             params: {

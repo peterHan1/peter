@@ -10,11 +10,11 @@
     </td-header>
     <div class="bankTop">
       <span>到账银行</span>
-      <span>{{ content.bankNmae }}(尾号{{ bankVal }})</span>
+      <span v-if="content">{{ content.bankNmae }}(尾号{{ bankVal }})</span>
     </div>
     <div class="inp_money">
       <ul>
-        <li>可提现金额 <span>{{ content.balance }}</span>元<i 
+        <li>可提现金额 <span v-if="content">{{ content.balance }}</span> <span v-else>-</span>元<i 
           class="iconfont" 
           @click="layerMoney=true">&#xe6f7;</i></li>
         <li>
@@ -24,12 +24,12 @@
               v-model="moneyVal" 
               type="number" 
               placeholder="输入提现金额，100元起" 
-              @input="inputFn()">
+              @input="inputFn">
             <span @click="allMoney()">全部</span>
           </div>
           <div class="cost_money">
             <p>实际到账金额：<b>{{ fee }}</b>元</p>
-            <p>手续费：<b>{{ credited }}</b>元 <span>您本月还有<b>{{ content.freeTimes }}</b>次免费提现次数</span></p>
+            <p>手续费：<b>{{ credited }}</b>元 <span>您本月还有<b v-if="content">{{ content.freeTimes }}</b>次免费提现次数</span></p>
           </div>
         </li>
       </ul>
@@ -101,7 +101,8 @@
 </template>
 
 <script>
-import { prepareDoCash, applyCash, getCashFee } from '~/plugins/api.js'
+import { prepareDoCash, applyCash, getCashFee } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 import CryptoJS from 'crypto-js'
 
 export default {
@@ -125,24 +126,37 @@ export default {
     }
   },
   mounted() {
-    prepareDoCash(this.$axios).then(res => {
-      this.content = res.data.content
-      this.normal = res.data.content.normal
-      this.urgent = res.data.content.urgent
-      this.speedAllow = res.data.content.urgent.open
-      this.bankVal = res.data.content.account.substr(-4)
-      this.balance = res.data.content.balance.replace(/\,/g, '')
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      prepareDoCash(this.$axios, commenParams).then(res => {
+        this.content = res.content
+        this.normal = res.content.normal
+        this.urgent = res.content.urgent
+        this.speedAllow = res.content.urgent.open
+        this.bankVal = res.content.account.substr(-4)
+        this.balance = res.content.balance.replace(/\,/g, '')
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
-    inputFn() {
+    oninput(e) {
+      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
+      this.importMoney = e.target.value
+      this.moneyForm = this.numFilter(this.importMoney)
+    },
+    inputFn(e) {
+      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
+      this.moneyVal = e.target.value
       if (this.balance <= 0) {
         this.moneyVal = '0.00'
       } else if (this.moneyVal >= 100) {
-        getCashFee(this.$axios, this.moneyVal).then(res => {
-          this.fee = res.data.content.fee
-          this.credited = res.data.content.credited
-        })
+        this.setMoney(this.moneyVal)
       } else if (this.moneyVal < 100) {
         this.fee = '0.00'
         this.credited = '0.00'
@@ -157,6 +171,14 @@ export default {
         this.inAccount = a
       }
     },
+    setMoney(money) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getCashFee(this.$axios, money, commenParams).then(res => {
+        this.fee = res.content.fee
+        this.credited = res.content.credited
+      })
+    },
     subCash() {
       if (this.inAccount && this.moneyVal >= 100) {
         let money = this.moneyVal + '242628'
@@ -165,17 +187,19 @@ export default {
           account: this.moneyVal,
           secretParam: money,
           withdrawType: this.inAccount,
-          redirectUrl: 'http://72.127.2.104:3000/myCenter/fund/cashResult'
+          redirectUrl: this.returnPath + 'myCenter/fund/cashResult'
         }
-        applyCash(this.$axios, params).then(res => {
+        commenParams.accessId = this.$store.state.accessId
+        commenParams.accessKey = this.$store.state.accessKey
+        applyCash(this.$axios, params, commenParams).then(res => {
           if (res) {
-            let nonce = res.data.content.nonce
-            if (res.data.code === 800034) {
+            let nonce = res.content.nonce
+            if (res.code === 800034) {
               this.cashMaintain = true
-            } else if (res.data.code === 800035) {
+            } else if (res.code === 800035) {
               this.cashHint = true
               this.hint = '当前不在快速到账时间内，请选择普通到账提现'
-            } else if (res.data.code === 800036) {
+            } else if (res.code === 800036) {
               this.cashHint = true
               this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
             } else {
@@ -200,6 +224,7 @@ export default {
     },
     allMoney() {
       this.moneyVal = this.balance
+      this.setMoney(this.moneyVal)
     },
     layerNow() {
       this.layerMoney = false

@@ -56,3 +56,9 @@ export function createRouter() {
     ]
   })
 }
+
+
+
+if (process.client) {
+  window.history.scrollRestoration = 'manual'
+}

@@ -46,7 +46,8 @@
 </template>
 
 <script>
-import { getCashResult } from '~/plugins/api.js'
+import { getCashResult } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -55,12 +56,21 @@ export default {
     }
   },
   mounted() {
-    let orderId = this.$route.query.orderId
-    getCashResult(this.$axios, orderId).then(res => {
-      if (res) {
-        this.status = res.data.content.status
-      }
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      let orderId = this.$route.query.orderId
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getCashResult(this.$axios, orderId, commenParams).then(res => {
+        if (res) {
+          this.status = res.content.status
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     returnCah() {

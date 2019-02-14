@@ -19,64 +19,51 @@
           @change="changePage"
         >
           <cube-slide-item>
-            <free-list />
+            <p-list/>
           </cube-slide-item>
           <cube-slide-item>
-            2
-            <!-- <scatter-list/> -->
+            <scatter-list/>
           </cube-slide-item>
           <cube-slide-item>
-            3
-            <!-- <transfer-list/> -->
+            <div class="listBox">
+              <p>请在电脑端登录官网或在APP端查看</p>
+              <div class="appBtn">
+                <td-button
+                  value="立即下载APP"
+                  @btnFn="downApp"
+                />
+              </div>
+            </div>
           </cube-slide-item>
         </cube-slide>
       </div>
     </div>
     <td-footer :navClass="'project'"/>
+    <transition :name="$store.state.project.trName">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import { findIndex } from '~/components/src/common/util.js'
-import { freeBorrowList } from '~/plugins/api.js'
-import freeList from './free/list'
-import scatterList from './free/list'
-import transferList from './transfer/transfer'
+import { commenParams } from '~/api/config.js'
+import { freeBorrowList, scatterList } from '~/api/project.js'
+import { myBankAssets } from '~/api/user'
+import PList from '~/components/business/project-list/list'
+import ScatterList from '~/components/business/project-list/scatter'
 export default {
-  async fetch({ app, store }) {
-    const params = {
-      item: 10,
-      page: 1
-    }
-    await store.dispatch('project/asyTest', params)
-    await store.dispatch('project/getScatterList', params)
-    //   // const params = {
-    //   //   item: 10,
-    //   //   page: 1
-    //   // }
-    //   // store.dispatch('project/getFreeList')
-    //   // let { data } = await freeBorrowList(app.$axios, params)
-    //   // console.log(data)
-    //   // store.commit('project/items', data.content.items)
-    //   // store.commit('project/pages', data.content.pages)
-    //   // let result = data.content.dataRows
-    //   // let list = []
-    //   // let invalList = []
-    //   // for (let i = 0; i < result.length; i++) {
-    //   //   store.commit('project/setContentDate', result[i])
-    //   //   if (result[i].rate != 100) {
-    //   //     // list.push(result[i])
-    //   //     store.commit('project/setFreeList', result[i])
-    //   //   } else {
-    //   //     // invalList.push(result[i])
-    //   //     store.commit('project/setInvalidFreeList', result[i])
-    //   //   }
-    //   // }
+  name: 'keep',
+  created() {
+    // console.log(this.$store.state.accessKey)
+    this._getFreeList()
+    // this._getSatterList()
   },
   data() {
     return {
       selectedLabel: '省心投',
       disabled: false,
+      tttt: '',
       tabLabels: [
         {
           label: '省心投'
@@ -100,16 +87,57 @@ export default {
       scrollOptions: {
         /* lock x-direction when scrolling horizontally and  vertically at the same time */
         directionLockThreshold: 0
-      },
-      followersData: [1, 2, 3, 4],
-      recommendData: [5, 6, 7, 8],
-      hotData: [10, 11, 12, 13]
+      }
     }
   },
+  // watch: {
+  //   $route(to, from) {
+  //     if (to.meta.index > from.meta.index) {
+  //       // console.log(to.meta.index)
+  //       this.$store.commit('project/setTransition', 'slide-right')
+  //     } else {
+  //       this.$store.commit('project/setTransition', 'slide-left')
+  //     }
+  //   }
+  // },
   methods: {
+    async _getFreeList() {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      const freeList = await freeBorrowList(
+        this.$axios,
+        {
+          page: 1,
+          item: 10
+        },
+        commenParams
+      )
+      // // const params = Object.assign({}, content, { dataName: 'Free' })
+      // console.log(freeList.content)
+      // console.log('省心投')
+      if (freeList.content !== undefined) {
+        this.$store.commit('project/handleData', freeList.content)
+      } else {
+        console.log('重新获取')
+      }
+      const scatterData = await scatterList(
+        this.$axios,
+        {
+          page: 1,
+          item: 10
+        },
+        commenParams
+      )
+      // console.log(scatterData.content)
+      if (scatterData.content !== undefined) {
+        this.$store.commit('project/scatterHandleData', scatterData.content)
+      } else {
+        console.log('重新获取')
+      }
+    },
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
-      console.log(current)
+      // console.log(current)
     },
     scroll(pos) {
       const x = Math.abs(pos.x)
@@ -119,11 +147,10 @@ export default {
       const deltaX = (x / slideScrollerWidth) * tabItemWidth
       this.$refs.tabNav.setSliderTransform(deltaX)
     },
-    resolveTitle(item) {
-      return `${item.name}关注了问题 · ${item.postTime} 小时前`
-    },
-    resolveQuestionFollowers(item) {
-      return `${item.answers} 赞同 · ${item.followers} 评论`
+    downApp() {
+      this.$App(
+        '<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>'
+      )
     }
   },
   computed: {
@@ -137,9 +164,8 @@ export default {
     }
   },
   components: {
-    freeList,
-    scatterList,
-    transferList
+    PList,
+    ScatterList
   }
 }
 </script>
@@ -164,4 +190,14 @@ export default {
       left: 0
       right: 0
       bottom: 93px
+.listBox
+  text-align: center
+  p
+    font-size: $fontsize-large-x
+    color: $color-gray3
+    margin-top: 320px
+  .appBtn
+   margin: 52px auto 0
+   text-align: center
+   width: 440px
 </style>

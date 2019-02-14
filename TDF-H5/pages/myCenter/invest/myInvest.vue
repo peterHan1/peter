@@ -18,21 +18,30 @@
 </template>
 
 <script>
-import Scatter from './src/list-scatter.vue'
-import Sift from './src/list-sift.vue'
+import Scatter from '~/components/business/invest-list/list-scatter'
+import Sift from '~/components/business/invest-list/list-sift'
 export default {
   data() {
     return {
       tabCom: 'Scatter'
     }
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {
     tabFn(txt) {
       this.tabCom = txt
     },
     returnFn() {
-      window.history.go(-1)
+      this.$router.push({
+        name: 'myCenter-center'
+      })
     }
   },
   components: {

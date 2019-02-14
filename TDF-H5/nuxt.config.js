@@ -32,7 +32,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~/plugins/tdui', '~/plugins/axios'],
+  plugins: ['~/plugins/tdui', '~/plugins/axios', '~/plugins/Global'],
 
   /*
   ** Nuxt.js modules
@@ -83,6 +83,7 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.resolve.alias['api'] = path.resolve(__dirname, 'api')
     },
     postcss: [
       require('postcss-px2rem')({

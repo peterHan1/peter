@@ -46,7 +46,8 @@
 </template>
 
 <script>
-import { rechargeInfo, quickPay } from '~/plugins/api.js'
+import { rechargeInfo, quickPay } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -57,10 +58,19 @@ export default {
     }
   },
   mounted() {
-    rechargeInfo(this.$axios).then(res => {
-      this.content = res.data.content
-      this.placeTxt = '输入充值金额，' + this.content.minMoney + '元起投'
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      rechargeInfo(this.$axios, commenParams).then(res => {
+        this.content = res.content
+        this.placeTxt = '输入充值金额，' + this.content.minMoney + '元起投'
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     navRightFn() {
@@ -70,14 +80,16 @@ export default {
       if (this.moneyVal >= 100) {
         let params = {
           money: this.moneyVal,
-          returnUrl: 'http://72.127.2.104:3000/myCenter/fund/rechargeResult'
+          returnUrl: this.returnPath + 'myCenter/fund/rechargeResult'
         }
-        quickPay(this.$axios, params).then(res => {
+        commenParams.accessId = this.$store.state.accessId
+        commenParams.accessKey = this.$store.state.accessKey
+        quickPay(this.$axios, params, commenParams).then(res => {
           if (res) {
             this.$router.push({
               name: 'xwDeposit-transit',
               params: {
-                sign: res.data.content.requestInfo
+                sign: res.content.requestInfo
               }
             })
           }

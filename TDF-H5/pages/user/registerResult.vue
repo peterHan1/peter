@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import { getRegResult } from '../../plugins/api.js'
+import { getRegResult } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -33,9 +34,11 @@ export default {
     }
   },
   mounted() {
-    getRegResult(this.$axios).then(res => {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    getRegResult(this.$axios, commenParams).then(res => {
       if (res) {
-        this.list = res.data.content
+        this.list = res.content
       }
     })
   },

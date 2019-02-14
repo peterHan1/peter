@@ -1,6 +1,9 @@
 <template>
   <div class="bondBox">
-    <td-header title="债权转让"/>
+    <td-header 
+      :returnUrl="false"
+      title="债权转让" 
+      url="myCenter-center"/>
     <div class="listTab">
       <cube-tab-bar
         ref="tabNav"
@@ -19,8 +22,6 @@
 </template>
 
 <script>
-import { findIndex } from '~/components/src/common/util.js'
-
 export default {
   data() {
     return {
@@ -39,7 +40,14 @@ export default {
       ]
     }
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {
     downApp() {
       this.$App(

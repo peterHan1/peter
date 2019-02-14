@@ -1,6 +1,9 @@
 <template>
   <div class="invite">
-    <td-header title="邀请奖励记录"/>
+    <td-header 
+      :returnUrl="false"
+      title="邀请奖励记录" 
+      url="myCenter-center"/>
     <div class="inviteTop">
       <ul>
         <li>
@@ -68,10 +71,11 @@
 </template>
 
 <script>
-import Onlist from './onList.vue'
-import Yetlist from './yetList.vue'
+import Onlist from '~/components/business/invite-list/onList'
+import Yetlist from '~/components/business/invite-list/yetList'
 import { findIndex } from '~/components/src/common/util.js'
-import { prizeRecord } from '~/plugins/api.js'
+import { prizeRecord } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -101,9 +105,18 @@ export default {
     }
   },
   mounted() {
-    prizeRecord(this.$axios).then(res => {
-      this.content = res.data.content
-    })
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      prizeRecord(this.$axios, commenParams).then(res => {
+        this.content = res.content
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     changePage(current) {

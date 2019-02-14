@@ -36,7 +36,8 @@
 </template>
 
 <script>
-import { getByNonce } from '~/plugins/api.js'
+import { getByNonce } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -47,9 +48,11 @@ export default {
   },
   mounted() {
     let nonces = this.$route.params.sign
-    getByNonce(this.$axios, nonces).then(res => {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    getByNonce(this.$axios, nonces, commenParams).then(res => {
       if (res) {
-        this.content = res.data.content
+        this.content = res.content
         let timer = setInterval(() => {
           this.countTime--
           if (this.countTime <= 0) {

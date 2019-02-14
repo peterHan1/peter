@@ -128,11 +128,8 @@ export default {
   },
   mounted() {
     platfromData(this.$axios).then(res => {
-      this.totalData = res.data.content.platData
-      this.percent =
-        ((this.totalData.overdueAmount / this.totalData.account) * 100).toFixed(
-          2
-        ) + '%'
+      this.totalData = res.content.platData
+      this.percent = this.totalData.overdueRate + '%'
     })
   }
 }

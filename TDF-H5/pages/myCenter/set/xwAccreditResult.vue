@@ -34,7 +34,9 @@
 </template>
 
 <script>
-import { authStatus } from '~/plugins/api.js'
+import { authStatus } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
+
 export default {
   data() {
     return {
@@ -42,9 +44,11 @@ export default {
     }
   },
   mounted() {
-    authStatus(this.$axios).then(res => {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    authStatus(this.$axios, commenParams).then(res => {
       if (res) {
-        this.status = res.data.content.status
+        this.status = res.content.status
       }
     })
   },

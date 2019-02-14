@@ -36,13 +36,14 @@ import Collect from './src/collect.vue'
 import Details from './src/details.vue'
 import Broadcast from './src/broadcast.vue'
 import { findIndex } from '../../../../components/src/common/util.js'
+import { weekVolumeChart, monthVolumeChart } from '../../../../plugins/api.js'
 export default {
   metaInfo: {
     title: '平台数据'
   },
   async fetch({ app, store }) {
-    await store.dispatch('getWeekEchart')
-    await store.dispatch('getMonthEchart')
+    await store.dispatch('home/getWeekEchart')
+    await store.dispatch('home/getMonthEchart')
   },
   data() {
     return {
@@ -81,7 +82,25 @@ export default {
       return index
     }
   },
+  created() {
+    // this.getData()
+    // setTimeout(() => {
+    //   weekVolumeChart(this.$axios).then(res => {
+    //     this.$store.commit('home/setWeekEchart', res.content.eChart)
+    //   })
+    //   monthVolumeChart(this.$axios).then(res => {
+    //     this.$store.commit('home/setMonthEchart', res.content.eChart)
+    //   })
+    // }, 500)
+  },
   methods: {
+    // async getData() {
+    //   const weekData = await weekVolumeChart(this.$axios)
+    //   this.$store.commit('home/setWeekEchart', weekData.content.eChart)
+    //   const monthData = await monthVolumeChart(this.$axios)
+    //   this.$store.commit('home/setMonthEchart', monthData.content.eChart)
+    //   console.log(this.$store.state.home.weekEChartKey)
+    // },
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
     },
@@ -110,7 +129,7 @@ export default {
       /deep/ .cube-tab-bar-slider
         width: 70px
         height: 6px
-        margin-left: 84px
+        margin-left: 88px
         border-radius: 3px
     .tab-slide-container
       position absolute

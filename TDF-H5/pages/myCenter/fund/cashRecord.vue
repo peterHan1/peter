@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import { getCashById } from '~/plugins/api.js'
-
+import { getCashById } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 export default {
   data() {
     return {
@@ -58,7 +58,14 @@ export default {
     }
   },
   mounted() {
-    this.getList()
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      this.getList()
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     getList() {
@@ -66,8 +73,10 @@ export default {
         page: this.page,
         item: this.item
       }
-      getCashById(this.$axios, params).then(res => {
-        let list = res.data.content.dataRows
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getCashById(this.$axios, params, commenParams).then(res => {
+        let list = res.content.dataRows
         for (let i in list) {
           this.content.push(list[i])
         }

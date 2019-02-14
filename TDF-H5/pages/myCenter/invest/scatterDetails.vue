@@ -1,6 +1,9 @@
 <template>
   <div class="invests">
-    <td-header title="出借详情"/>
+    <td-header 
+      :returnUrl="false"
+      title="出借详情" 
+      url="myCenter-invest-myInvest"/>
     <div class="investsTop">
       <span>{{ content.name }}</span>
       <b>{{ content.status | statusTxt }}</b>
@@ -85,7 +88,8 @@
 </template>
 
 <script>
-import { getBankRecoverPlan } from '~/plugins/api.js'
+import { getBankRecoverPlan } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -97,15 +101,23 @@ export default {
     }
   },
   mounted() {
-    this.tenderId = this.$route.query.tenderId
-    const params = {
-      tenderId: this.tenderId
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      this.tenderId = this.$route.query.tenderId
+      const params = {
+        tenderId: this.tenderId
+      }
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getBankRecoverPlan(this.$axios, params, commenParams).then(res => {
+        this.content = res.content
+        this.list = res.content.dataRows
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
     }
-    getBankRecoverPlan(this.$axios, params).then(res => {
-      this.content = res.data.content
-      this.list = res.data.content.dataRows
-      console.log(this.list.length)
-    })
   },
   methods: {},
   components: {},

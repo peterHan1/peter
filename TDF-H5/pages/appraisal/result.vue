@@ -35,7 +35,8 @@
 </template>
 
 <script>
-import { getEvaluationInfo } from '../../plugins/api.js'
+import { getEvaluationInfo } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -46,10 +47,12 @@ export default {
     }
   },
   mounted() {
-    getEvaluationInfo(this.$axios).then(res => {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    getEvaluationInfo(this.$axios, commenParams).then(res => {
       if (res) {
-        this.txt = res.data.content.evaluationScoreMsg
-        this.time = res.data.content.evaluationTime
+        this.txt = res.content.evaluationScoreMsg
+        this.time = res.content.evaluationTime
       }
     })
   },

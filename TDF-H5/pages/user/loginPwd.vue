@@ -15,15 +15,15 @@
     </ul>
     <div class="pwd_operate">
       <p @click="rememberFn()">
-        <i 
-          v-if="remember" 
+        <i
+          v-if="remember"
           class="iconfont on">&#xe6dd;</i>
-        <i 
-          v-else 
+        <i
+          v-else
           class="iconfont">&#xe6de;</i>
         记住我
       </p>
-      <router-link 
+      <router-link
         :to="{name:'user-forgetPwd',params:{phone:this.$route.params.phone}}"
         class="forgetPwd">忘记登录密码? {{ phone }}</router-link>
     </div>
@@ -35,8 +35,10 @@
   </div>
 </template>
 <script>
-import { login } from '~/plugins/api.js'
+import { login } from '~/api/user.js'
 import md5 from 'md5'
+import Cookie from 'js-cookie'
+
 export default {
   data() {
     return {
@@ -46,6 +48,11 @@ export default {
       showIcon: true,
       remember: 0,
       phone: ''
+    }
+  },
+  computed: {
+    srcPath() {
+      return this.$store.state.srcPath || '/'
     }
   },
   methods: {
@@ -59,20 +66,15 @@ export default {
         password: md5(this.pwd),
         remember: this.remember
       }
+      console.log('原路返回路径：' + this.srcPath)
       login(this.$axios, params).then(res => {
-        if (res) {
-          var obj = {
-            accessId: res.data.content.accessId,
-            accessKey: res.data.content.accessKey
-          }
-          obj = JSON.stringify(obj)
-          localStorage.setItem('user', obj)
-          this.$store.commit('myCenter/setPhone', {
-            phone: this.$route.params.phone
-          })
-          this.$router.push({
-            name: 'tuodao-td'
-          })
+        if (res.code === 100000) {
+          Cookie.set('accessId', res.content.accessId)
+          Cookie.set('accessKey', res.content.accessKey)
+          Cookie.set('phone', this.$route.params.phone)
+          this.$router.push(this.srcPath)
+        } else {
+          this.$Msg(res.msg, 2000)
         }
       })
     },

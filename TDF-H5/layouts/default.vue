@@ -1,9 +1,9 @@
 <template>
   <div>
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"/>
+    <keep-alive include="keep">
+      <router-view/>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"/>
+    <!-- <router-view/> -->
     <!-- <nuxt /> -->
   </div>
 </template>

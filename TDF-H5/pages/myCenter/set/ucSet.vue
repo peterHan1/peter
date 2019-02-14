@@ -1,15 +1,18 @@
 <template>
   <div class="ucSet">
-    <td-header title="设置"/>
+    <td-header 
+      :returnUrl="false"
+      title="设置" 
+      url="myCenter-center"/>
     <ul>
       <li>
-        <router-link 
-          v-if="realNameStatus" 
+        <router-link
+          v-if="realNameStatus"
           to="/myCenter/set/ucAutonym">
           <span>实名认证</span>
           <span>已认证 <i class="iconfont">&#xe6f2;</i></span>
         </router-link>
-        <router-link 
+        <router-link
           v-else
           to="/xwDeposit/deposit">
           <span>实名认证</span>
@@ -17,13 +20,13 @@
         </router-link>
       </li>
       <li>
-        <div 
-          v-if="authStatus" 
+        <div
+          v-if="authStatus"
           @click="downApp">
           <span>我的银行卡号</span>
           <span>{{ bankName }} 尾号{{ bankCode }} <i class="iconfont">&#xe6f2;</i></span>
         </div>
-        <router-link 
+        <router-link
           v-else
           to="/xwDeposit/deposit">
           <span>我的银行卡号</span>
@@ -41,7 +44,7 @@
           <span>存管账号</span>
           <span>{{ userNo }}</span>
         </div>
-        <router-link 
+        <router-link
           v-else
           to="/xwDeposit/deposit">
           <span>存管账号</span>
@@ -49,15 +52,15 @@
         </router-link>
       </li>
       <li>
-        <router-link 
-          v-if="authStatus" 
+        <router-link
+          v-if="authStatus"
           to="/myCenter/set/xwAccredit">
           <span>业务授权</span>
           <span v-if="authStatus === 1">已授权 <i class="iconfont">&#xe6f2;</i></span>
           <span v-if="authStatus === 2">已过期 <i class="iconfont">&#xe6f2;</i></span>
         </router-link>
-        <router-link 
-          v-else 
+        <router-link
+          v-else
           to="/xwDeposit/deposit">
           <span>业务授权</span>
           <span>未激活存管账户 <i class="iconfont">&#xe6f2;</i></span>
@@ -90,14 +93,14 @@
         </router-link>
       </li>
     </ul>
-    <div 
-      class="getOut" 
+    <div
+      class="getOut"
       @click="getOut">安全退出</div>
-    <Layer 
-      v-show="out" 
-      close="残忍退出" 
-      submit="留在这里" 
-      @on-close="outFn()" 
+    <Layer
+      v-show="out"
+      close="残忍退出"
+      submit="留在这里"
+      @on-close="outFn()"
       @on-sub="close()" >
       <div class="out_txt">你确定要离开拓道金服吗？</div>
     </Layer>
@@ -105,13 +108,14 @@
 </template>
 
 <script>
-import { loginOut } from '~/plugins/api.js'
-
+import { loginOut } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
+import Cookie from 'js-cookie'
 export default {
   data() {
     return {
       out: false,
-      phone: '',
+      phone: this.$store.state.phone,
       mobile: '',
       realNameStatus: 0,
       bankName: '',
@@ -122,8 +126,7 @@ export default {
   },
   async beforeCreate() {
     await this.$store.dispatch('myCenter/getUser')
-    this.$store.dispatch('myCenter/getPhone')
-    this.phone = this.$store.state.myCenter.phone
+    await this.$store.dispatch('myCenter/getDetailStatus')
     this.mobile = this.$store.state.myCenter.mobile
     this.realNameStatus = this.$store.state.myCenter.realNameStatus
     this.bankName = this.$store.state.myCenter.bankName
@@ -131,17 +134,25 @@ export default {
     this.userNo = this.$store.state.myCenter.userNo
     this.authStatus = this.$store.state.myCenter.authStatus
   },
+  mounted() {
+    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {
     downApp() {
       this.$App('请在电脑端登录官网或在APP端找更换银行卡')
     },
     outFn() {
-      loginOut(this.$axios, this.phone).then(res => {
-        var obj = {
-          accessId: '',
-          accessKey: ''
-        }
-        localStorage.setItem('user', JSON.stringify(obj))
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      loginOut(this.$axios, this.phone, commenParams).then(res => {
+        Cookie.set('accessId', '')
+        Cookie.set('accessKey', '')
+        Cookie.set('phone', '')
         this.$router.push({
           name: 'user-login'
         })
@@ -199,7 +210,7 @@ export default {
       margin-top: 20px
     .out_txt
       text-align: center
-      font-size: $fontsize-medium 
+      font-size: $fontsize-medium
       color: $color-gray1
       padding: 48px 40px 21px
 </style>

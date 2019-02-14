@@ -1,19 +1,21 @@
 <template>
   <div class="recode">
-    <td-header title="资金记录"/>
+    <td-header 
+      :returnUrl="false"
+      title="资金记录" 
+      url="myCenter-center"/>
     <div class="recodeTop">
       <span>类型/时间</span>
       <span>金额(元)/状态</span>
     </div>
     <cube-scroll
-      v-if="this.$store.state.myCenter.moneyList.length > 0"
       ref="contentScroll"
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul>
+      <ul v-if="content.length > 0">
         <li 
-          v-for="(item,index) in this.$store.state.myCenter.moneyList" 
+          v-for="(item,index) in content" 
           :key="index">
           <p>
             <span>{{ item.type }}</span>
@@ -25,19 +27,20 @@
           </p>
         </li>
       </ul>
+      <div 
+        v-else
+        class="data-status">
+        <data-status
+          status="null"
+          statusTxt="暂无资金记录"/>
+      </div>
     </cube-scroll>
-    <div 
-      v-else
-      class="data-status">
-      <data-status
-        status="null"
-        statusTxt="暂无资金记录"/>
-    </div>
   </div>
 </template>
 
 <script>
-import { getAccountLogById } from '~/plugins/api.js'
+import { getAccountLogById } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
@@ -58,28 +61,39 @@ export default {
     }
   },
   mounted() {
-    const params = { item: this.item, page: this.page }
-    this.$store.dispatch('myCenter/getMoneyRecord', params)
+    if (this.$store.state.accessId && this.$store.state.accessKey) {
+      this.getList()
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
-    onPullingDown() {
-      this.page = 1
-      setTimeout(async () => {
-        let params = { item: this.item, page: this.page }
-        let { data } = await getAccountLogById(this.$axios, params)
-        this.$store.commit('myCenter/setMoneyNull')
-        let list = data.content.dataRows
-        for (let i = 0; i < list.length; i++) {
-          this.$store.commit('myCenter/setMonetList', list[i])
+    getList() {
+      const params = { item: this.item, page: this.page }
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getAccountLogById(this.$axios, params, commenParams).then(res => {
+        let list = res.content.dataRows
+        for (let i in list) {
+          this.content.push(list[i])
         }
+      })
+    },
+    onPullingDown() {
+      setTimeout(() => {
+        this.page = 1
+        this.content = []
+        this.getList()
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     },
     onPullingUp() {
       this.page++
-      let params = { item: this.item, page: this.page }
       setTimeout(() => {
-        this.$store.dispatch('myCenter/getMoneyRecord', params)
+        this.getList()
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     }

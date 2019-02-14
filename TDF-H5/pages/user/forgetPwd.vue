@@ -79,7 +79,8 @@
 </template>
 
 <script>
-import { getPhoneCode, newResetUserPsw } from '../../plugins/api.js'
+import { newResetUserPsw, getPhoneCode } from '~/api/user.js'
+
 import md5 from 'md5'
 
 export default {
@@ -110,7 +111,7 @@ export default {
           phone: this.$route.params.phone,
           type: 'reset'
         }).then(res => {
-          this.phoneCodeId = res.data.content.code
+          this.phoneCodeId = res.content.code
         })
         // 倒计时
         this.countNum = false
