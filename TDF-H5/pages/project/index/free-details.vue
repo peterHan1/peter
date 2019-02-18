@@ -2,9 +2,7 @@
   <div class="detail">
     <div class="sift-center">
       <td-header
-        :returnUrl="false"
         :title="projectInfo.title"
-        url="/project"
         class="header"/>
       <transition :name="transitionName">
         <div
