@@ -1,9 +1,6 @@
 <template>
   <div class="myInvest">
-    <td-header 
-      :returnUrl="false"
-      title="债权明细" 
-      url="myCenter-invest-siftDetails"/>
+    <td-header title="债权明细" />
     <cube-scroll
       v-if="content.length > 0"
       ref="contentScroll"
@@ -34,7 +31,7 @@
         </li>
       </ul>
     </cube-scroll>
-    <div 
+    <div
       v-else
       class="data-status">
       <data-status
@@ -47,8 +44,22 @@
 <script>
 import { joinTenderList } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
-
+let pageNum = 1
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      const params = {
+        tenderId: route.query.tenderId,
+        item: 12,
+        page: 1
+      }
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const tenderList = await joinTenderList(app.$axios, params)
+      app.store.commit('myCenter/setTenderListNull')
+      app.store.commit('myCenter/setTenderList', tenderList.content.dataRows)
+    }
+  },
   data() {
     return {
       options: {
@@ -61,22 +72,15 @@ export default {
         directionLockThreshold: 0,
         beforePullDown: true
       },
-      status: '',
-      list: '',
-      name: '',
-      tenderId: '',
+      status: this.$route.query.status,
+      name: this.$route.query.name,
+      tenderId: this.$route.query.tenderId,
       item: 12,
-      page: 1,
-      content: []
+      content: this.$store.state.myCenter.tenderList
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      this.tenderId = this.$route.query.tenderId
-      this.name = this.$route.query.name
-      this.status = this.$route.query.status
-      this.getList()
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -84,38 +88,40 @@ export default {
     }
   },
   methods: {
-    getList() {
-      const params = {
-        tenderId: this.tenderId,
-        item: this.item,
-        page: this.page
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      joinTenderList(this.$axios, params, commenParams).then(res => {
-        let list = res.content.dataRows
-        for (let i in list) {
-          this.content.push(list[i])
-        }
-      })
-    },
     onPullingDown() {
-      setTimeout(() => {
-        this.page = 1
-        this.content = []
-        this.getList()
+      setTimeout(async () => {
+        pageNum = 1
+        const params = { tenderId: this.tenderId, item: this.item, page: 1 }
+        commenParams.accessId = this.$store.state.accessId
+        commenParams.accessKey = this.$store.state.accessKey
+        const tenderList = await joinTenderList(this.$axios, params)
+        this.$store.commit('myCenter/setTenderListNull')
+        this.$store.commit(
+          'myCenter/setTenderList',
+          tenderList.content.dataRows
+        )
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     },
     onPullingUp() {
-      this.page++
-      setTimeout(() => {
-        this.getList()
+      setTimeout(async () => {
+        pageNum++
+        const params = {
+          tenderId: this.tenderId,
+          item: this.item,
+          page: pageNum
+        }
+        commenParams.accessId = this.$store.state.accessId
+        commenParams.accessKey = this.$store.state.accessKey
+        const tenderList = await joinTenderList(this.$axios, params)
+        this.$store.commit(
+          'myCenter/setTenderList',
+          tenderList.content.dataRows
+        )
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     }
-  },
-  components: {}
+  }
 }
 </script>
 

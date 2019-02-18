@@ -47,14 +47,20 @@ export default {
     }
   },
   mounted() {
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    OpenAccountResult(this.$axios, commenParams).then(res => {
-      if (res) {
-        this.status = res.content.code
-        console.log(res)
-      }
-    })
+    if (this.$store.state.isLogin) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      OpenAccountResult(this.$axios).then(res => {
+        if (res) {
+          this.status = res.content.code
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     returnFn() {

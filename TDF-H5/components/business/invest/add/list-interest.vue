@@ -1,5 +1,7 @@
 <template>
-  <div class="list">
+  <div
+    v-if="interestArr.length > 0"
+    class="list">
     <ul>
       <li 
         v-for="(item,index) in interestArr" 
@@ -7,7 +9,7 @@
         @click="selectFn(index)">
         <div>
           <p><b>{{ item.value }}%</b></p>
-          <p>有效期：{{ item.time }}</p>
+          <p>{{ item.time }}</p>
         </div>
         <span 
           v-if="intereIndex == index" 
@@ -18,11 +20,18 @@
       </li>
     </ul>
   </div>
+  <div 
+    v-else 
+    class="data-status">
+    <data-status
+      status="null"
+      statusTxt="暂无加息券"/>
+  </div>
 </template>
 
 <script>
-import { allVoucher } from '~/api/myCenter.js'
-
+import { commenParams } from '~/api/config.js'
+import { investCoupon } from '~/api/home.js'
 export default {
   props: {
     disId: {
@@ -32,80 +41,86 @@ export default {
     disType: {
       type: String,
       default: ''
+    },
+    money: {
+      type: String,
+      default: ''
+    },
+    period: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       intereIndex: null,
-      // interestArr: [
-      //   {
-      //     value: '1',
-      //     txt: '1%加息券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '1'
-      //   },
-      //   {
-      //     value: '2',
-      //     txt: '2%加息券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '2'
-      //   },
-      //   {
-      //     value: '3',
-      //     txt: '3%加息券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '3'
-      //   },
-      //   {
-      //     value: '1',
-      //     txt: '1%加息券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '4'
-      //   },
-      //   {
-      //     value: '2',
-      //     txt: '2%加息券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '5'
-      //   }
-      // ],
       interestArr: [],
-      intereTxt: null,
-      intereId: null
+      intereNumber: null,
+      voucherId: null
+    }
+  },
+  computed: {
+    parmas() {
+      return {
+        money: this.money,
+        type: 'pt',
+        period: this.period
+      }
+    },
+    isLogin() {
+      return this.$store.state.isLogin
     }
   },
   mounted() {
-    allVoucher(this.$axios, { item: 50, page: 1 }).then(res => {
-      this.interestArr = res.content.dataRows.map(o => {
-        return {
-          value: o.amount,
-          txt: o.amount + '%加息券',
-          time: o.invalidDate,
-          id: ''
+    if (this.isLogin) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      investCoupon(this.$axios, this.parmas).then(res => {
+        console.log(res)
+        let arrData = []
+        for (let i = 0; i < res.content.dataRows.length; i++) {
+          if (res.content.dataRows[i].type === 'jx') {
+            arrData.push(res.content.dataRows[i])
+          }
+        }
+        this.interestArr = arrData.map(o => {
+          return {
+            value: o.couponVoucherApr,
+            txt: o.couponVoucherApr + '%加息券',
+            time: o.invalidDate,
+            voucherId: o.voucherId,
+            id: ''
+          }
+        })
+        for (let i = 0; i < this.interestArr.length; i++) {
+          this.interestArr[i].id = String(i + 1)
+        }
+        let vm = this
+        if (vm.disType === 'Interest') {
+          const index = vm.interestArr.findIndex(
+            interes => interes.id === vm.disId
+          )
+          vm.intereIndex = index
+          vm.intereNumber = vm.interestArr[index].value
+          vm.voucherId = vm.interestArr[index].voucherId
+          vm.id = vm.interestArr[index].id
         }
       })
-      for (let i = 0; i < this.interestArr.length; i++) {
-        this.interestArr[i].id = String(i + 1)
-      }
-      console.log(res.content)
-      let vm = this
-      if (vm.disType === 'Interest') {
-        const index = vm.interestArr.findIndex(
-          interes => interes.id === vm.disId
-        )
-        vm.intereIndex = index
-        vm.intereTxt = vm.interestArr[index].txt
-        vm.intereId = vm.interestArr[index].id
-      }
-    })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     selectFn(i) {
       let vm = this
-      vm.intereTxt = vm.interestArr[i].txt
-      vm.intereId = vm.interestArr[i].id
+      vm.intereNumber = vm.interestArr[i].value
+      vm.voucherId = vm.interestArr[i].voucherId
+      vm.id = vm.interestArr[i].id
       vm.intereIndex = i
-      vm.$emit('listFn', vm.intereTxt, vm.intereId, 'Interest')
+      vm.$emit('listFn', vm.intereNumber, vm.id, vm.voucherId, 'jx')
     }
   },
   components: {}
@@ -149,4 +164,6 @@ export default {
         color: $color-primary
     li:last-child
       border: none
+.data-status
+  margin-top 200px
 </style>

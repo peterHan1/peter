@@ -13,7 +13,7 @@ $ npm run dev
 
 # build for production and launch server
 $ npm run build
-$ npm start
+$ npm start this is v1.0
 
 # generate static project
 $ npm run generate

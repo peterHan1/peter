@@ -1,13 +1,13 @@
 <template>
   <div class="ucSet">
-    <td-header 
+    <td-header
       :returnUrl="false"
-      title="设置" 
-      url="myCenter-center"/>
+      title="设置"
+      url="/myCenter/center"/>
     <ul>
       <li>
         <router-link
-          v-if="realNameStatus"
+          v-if="this.$store.state.myCenter.realNameStatus"
           to="/myCenter/set/ucAutonym">
           <span>实名认证</span>
           <span>已认证 <i class="iconfont">&#xe6f2;</i></span>
@@ -21,10 +21,10 @@
       </li>
       <li>
         <div
-          v-if="authStatus"
+          v-if="this.$store.state.authStatus"
           @click="downApp">
           <span>我的银行卡号</span>
-          <span>{{ bankName }} 尾号{{ bankCode }} <i class="iconfont">&#xe6f2;</i></span>
+          <span>{{ this.$store.state.myCenter.bankName }} 尾号{{ this.$store.state.myCenter.bankCode }} <i class="iconfont">&#xe6f2;</i></span>
         </div>
         <router-link
           v-else
@@ -36,13 +36,13 @@
       <li>
         <div>
           <span>绑定手机号</span>
-          <span>{{ mobile }}</span>
+          <span>{{ this.$store.state.myCenter.mobile }}</span>
         </div>
       </li>
       <li>
-        <div v-if="authStatus">
+        <div v-if="this.$store.state.authStatus">
           <span>存管账号</span>
-          <span>{{ userNo }}</span>
+          <span>{{ this.$store.state.myCenter.userNo }}</span>
         </div>
         <router-link
           v-else
@@ -53,11 +53,11 @@
       </li>
       <li>
         <router-link
-          v-if="authStatus"
+          v-if="this.$store.state.authStatus"
           to="/myCenter/set/xwAccredit">
           <span>业务授权</span>
-          <span v-if="authStatus === 1">已授权 <i class="iconfont">&#xe6f2;</i></span>
-          <span v-if="authStatus === 2">已过期 <i class="iconfont">&#xe6f2;</i></span>
+          <span v-if="this.$store.state.authStatus === 1">已授权 <i class="iconfont">&#xe6f2;</i></span>
+          <span v-if="this.$store.state.authStatus === 2">已过期 <i class="iconfont">&#xe6f2;</i></span>
         </router-link>
         <router-link
           v-else
@@ -112,10 +112,14 @@ import { loginOut } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 import Cookie from 'js-cookie'
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      await app.store.dispatch('myCenter/getUser')
+    }
+  },
   data() {
     return {
       out: false,
-      phone: this.$store.state.phone,
       mobile: '',
       realNameStatus: 0,
       bankName: '',
@@ -124,18 +128,8 @@ export default {
       authStatus: 0
     }
   },
-  async beforeCreate() {
-    await this.$store.dispatch('myCenter/getUser')
-    await this.$store.dispatch('myCenter/getDetailStatus')
-    this.mobile = this.$store.state.myCenter.mobile
-    this.realNameStatus = this.$store.state.myCenter.realNameStatus
-    this.bankName = this.$store.state.myCenter.bankName
-    this.bankCode = this.$store.state.myCenter.bankNum
-    this.userNo = this.$store.state.myCenter.userNo
-    this.authStatus = this.$store.state.myCenter.authStatus
-  },
   mounted() {
-    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -149,10 +143,10 @@ export default {
     outFn() {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      loginOut(this.$axios, this.phone, commenParams).then(res => {
+      loginOut(this.$axios).then(res => {
         Cookie.set('accessId', '')
         Cookie.set('accessKey', '')
-        Cookie.set('phone', '')
+        this.$store.commit('setToken', { isLogin: false })
         this.$router.push({
           name: 'user-login'
         })

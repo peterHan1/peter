@@ -57,9 +57,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { commenParams } from '~/api/config.js'
 import { freeBorrowList } from '~/api/project.js'
-// import { }
 import Tags from '~/components/business/tags/tags'
 let pageNum = 1
 export default {
@@ -104,11 +102,7 @@ export default {
       setTimeout(async () => {
         pageNum = 1
         const params = { item: 10, page: 1 }
-        let { content } = await freeBorrowList(
-          this.$axios,
-          params,
-          commenParams
-        )
+        let { content } = await freeBorrowList(this.$axios, params)
         this.$store.commit('project/setFreeNull')
         this.$store.commit('project/handleData', content)
       }, 1000)
@@ -123,14 +117,10 @@ export default {
       setTimeout(async () => {
         if (pageNum <= this.pages) {
           // 如果有新数据
-          const { content } = await freeBorrowList(
-            this.$axios,
-            {
-              page: pageNum,
-              item: this.item
-            },
-            commenParams
-          )
+          const { content } = await freeBorrowList(this.$axios, {
+            page: pageNum,
+            item: this.item
+          })
           this.$store.commit('project/handleData', content)
         } else {
           // 如果没有新数据

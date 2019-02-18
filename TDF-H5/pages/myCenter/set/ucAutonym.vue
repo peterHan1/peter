@@ -5,12 +5,12 @@
     <ul>
       <li>
         <span>真实姓名</span>
-        <span v-if="name">{{ name }}</span>
+        <span v-if="this.$store.state.myCenter.realName">{{ this.$store.state.myCenter.realName }}</span>
         <span v-else>-</span>
       </li>
       <li>
         <span>身份证号</span>
-        <span v-if="idCard">{{ idCard }}</span>
+        <span v-if="this.$store.state.myCenter.idCard">{{ this.$store.state.myCenter.idCard }}</span>
         <span v-else>-</span>
       </li>
     </ul>
@@ -19,16 +19,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: '',
-      idCard: ''
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      await app.store.dispatch('myCenter/getUser')
     }
   },
-  async beforeCreate() {
-    await this.$store.dispatch('myCenter/getUser')
-    this.name = this.$store.state.myCenter.realName
-    this.idCard = this.$store.state.myCenter.idCard
+  mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   }
 }
 </script>

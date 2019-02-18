@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false" 
       title="提现结果" 
-      url="myCenter-center"/>
+      url="/myCenter/center"/>
     <result 
       v-if="status===0"
       status="ok" 
@@ -56,11 +56,11 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
+    if (this.$store.state.isLogin) {
       let orderId = this.$route.query.orderId
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      getCashResult(this.$axios, orderId, commenParams).then(res => {
+      getCashResult(this.$axios, orderId).then(res => {
         if (res) {
           this.status = res.content.status
         }

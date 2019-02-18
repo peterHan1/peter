@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="激活存管账户" 
-      url="myCenter-center"/>
+      url="/myCenter/center"/>
     <div class="txt">为保障您的资金安全，请先激活银行存管账户，激活账户绑定的银 行卡作为提现、充值唯一银行卡。</div>
     <ul>
       <li>
@@ -23,7 +23,9 @@
           placeholder="请输入身份证号码">
       </li>
     </ul>
-    <div class="sub_btn">
+    <div 
+      v-if="openDeposit != 1" 
+      class="sub_btn">
       <td-button
         v-if="nameVal && fszVal"
         value="确定"
@@ -36,6 +38,14 @@
         @btnFn="sunBtn"
       />
     </div>
+    <div 
+      v-else
+      class="sub_btn">
+      <td-button
+        :disabled="true"
+        value="确定"
+      />
+    </div>
   </div>
 </template>
 
@@ -44,30 +54,41 @@ import { openAccount } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
-  data() {
-    return {
-      nameVal: '',
-      fszVal: '',
-      name: '',
-      sfz: ''
+  async fetch({ app, store }) {
+    if (app.store.state.isLogin) {
+      await app.store.dispatch('myCenter/getUser')
+      this.nameVal = app.store.state.myCenter.realName
+      this.fszVal = app.store.state.myCenter.idCard
     }
   },
-  async beforeCreate() {
-    await this.$store.dispatch('myCenter/getUser')
-    this.nameVal = this.$store.state.myCenter.realName
-    this.fszVal = this.$store.state.myCenter.idCard
+  data() {
+    return {
+      nameVal: this.$store.state.myCenter.realName,
+      fszVal: this.$store.state.myCenter.idCard,
+      name: '',
+      sfz: '',
+      openDeposit: this.$store.state.openDepository
+    }
+  },
+  mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     sunBtn() {
       const params = {
         realName: this.nameVal ? this.nameVal : this.name,
         idCard: this.fszVal ? this.fszVal : this.sfz,
-        returnUrl: this.returnPath + 'xwDeposit/result'
+        returnUrl: this.$store.state.returnPath + 'xwDeposit/result'
       }
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       if (params.realName != '' && params.idCard != '') {
-        openAccount(this.$axios, params, commenParams).then(res => {
+        openAccount(this.$axios, params).then(res => {
           if (res) {
             let nonce = res.content.nonce
             this.$router.push({

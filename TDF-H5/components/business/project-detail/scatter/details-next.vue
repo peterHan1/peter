@@ -21,8 +21,7 @@
           <cube-slide-item>
             <Details1
               @downFn="returnFn"
-              @stopHor="stopHor"
-              @bigImg="imgFn"/>
+              @stopHor="stopHor"/>
           </cube-slide-item>
           <cube-slide-item>
             <Details2 @downFn="returnFn"/>
@@ -48,7 +47,7 @@ export default {
       disabled: true,
       tabLabels: [
         {
-          label: '项目介绍2'
+          label: '项目介绍'
         },
         {
           label: '透明合规'
@@ -73,12 +72,9 @@ export default {
     returnFn() {
       this.$emit('pullFn')
     },
-    imgFn() {
-      this.$emit('bigImgs')
-    },
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
-      console.log(current)
+      // console.log(current)
     },
     scroll(pos) {
       const x = Math.abs(pos.x)

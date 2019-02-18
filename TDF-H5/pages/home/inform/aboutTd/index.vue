@@ -41,13 +41,13 @@
   </div>
 </template>
 <script>
-import BigImg from './src/big-img.vue'
-import Certificate from './src/certificate.vue'
-import Framework from './src/framework.vue'
-import Signature from './src/signature.vue'
-import Personnel from './src/personnel.vue'
-import Terraces from './src/terraces.vue'
-import { findIndex } from '../../../../components/src/common/util.js'
+import BigImg from '~/components/business/about-tab/big-img.vue'
+import Certificate from '~/components/business/about-tab/certificate.vue'
+import Framework from '~/components/business/about-tab/framework.vue'
+import Signature from '~/components/business/about-tab/signature.vue'
+import Personnel from '~/components/business/about-tab/personnel.vue'
+import Terraces from '~/components/business/about-tab/terraces.vue'
+import { findIndex } from '~/components/src/common/util.js'
 export default {
   metaInfo: {
     title: '关于拓道'
@@ -100,18 +100,18 @@ export default {
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
     },
+    imgFn() {
+      this.imgBig = true
+    },
+    imgMin() {
+      this.imgBig = false
+    },
     scroll(pos) {
       const x = Math.abs(pos.x)
       const tabItemWidth = this.$refs.tabNav.$el.clientWidth
       const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
       const deltaX = (x / slideScrollerWidth) * tabItemWidth
       this.$refs.tabNav.setSliderTransform(deltaX)
-    },
-    imgFn() {
-      this.imgBig = true
-    },
-    imgMin() {
-      this.imgBig = false
     }
   },
   components: {

@@ -47,25 +47,30 @@ export default {
     }
   },
   mounted() {
-    let nonces = this.$route.params.sign
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    getByNonce(this.$axios, nonces, commenParams).then(res => {
-      if (res) {
-        this.content = res.content
-        let timer = setInterval(() => {
-          this.countTime--
-          if (this.countTime <= 0) {
-            this.countTime = 0
-            clearInterval(timer)
-            document.getElementById('form').submit()
-          }
-        }, 1000)
-      }
-    })
-  },
-  methods: {},
-  components: {}
+    if (this.$store.state.isLogin) {
+      let nonces = this.$route.params.sign
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      getByNonce(this.$axios, nonces).then(res => {
+        if (res) {
+          this.content = res.content
+          let timer = setInterval(() => {
+            this.countTime--
+            if (this.countTime <= 0) {
+              this.countTime = 0
+              clearInterval(timer)
+              document.getElementById('form').submit()
+            }
+          }, 1000)
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  }
 }
 </script>
 

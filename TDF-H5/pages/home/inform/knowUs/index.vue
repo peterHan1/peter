@@ -89,7 +89,6 @@
   </div>
 </template>
 <script>
-import Carousel from './carousel.vue'
 import img1 from '../../../../assets/images/inform/know-us/ll.png'
 import img2 from '../../../../assets/images/inform/know-us/zlj.png'
 import img3 from '../../../../assets/images/inform/know-us/fxy.png'
@@ -111,9 +110,6 @@ export default {
     itemIndex(index) {
       this.show = index
     }
-  },
-  components: {
-    Carousel
   }
 }
 </script>

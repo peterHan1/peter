@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="我的等级" 
-      url="myCenter-set-ucSet"/>
+      url="/myCenter/set/ucSet"/>
     <div class="header">
       <div class="head"/>
       <div class="myLev">
@@ -34,6 +34,7 @@
           src="~/assets/images/my-center/V7.png">
       </div>
     </div>
+    <!-- <p>{{ this.$store.state.myCenter.vipContent }}</p> -->
     <ul class="title">
       <li><p>等级</p></li>
       <li><p>条件</p></li>
@@ -52,7 +53,7 @@
           class="circle"/>
       </div>
       <div 
-        v-for="(item,index) in list"
+        v-for="(item,index) in this.$store.state.myCenter.vipContent.dataRows"
         :key="index" >
         <div 
           class="lev lev0">
@@ -65,13 +66,14 @@
             :class="{active: lev >= index ? true:false}"
             class="right">
             <div class="fl">
-              <p>待收金额 {{ lev }}</p>
+              <p>待收金额</p>
               <p>{{ item.await }}元</p>
             </div>
-            <div class="fl middle">0</div>
+            <div class="fl middle">0元</div>
             <div class="fl">
               <p>{{ item.cashTimes }}</p>
-              <p>--</p>
+              <p v-if="lev === index">--</p>
+              <p>有神秘生日礼物</p>
             </div>
           </div>
         </div>
@@ -81,21 +83,21 @@
           <div class="lev_info">
             <div class="top">
               <div class="fl">
-                <p>截止 {{ content.commitTime }}</p>
-                <p>累计待收金额{{ content.await }}元</p>
+                <p>截止 {{ commitTime }}</p>
+                <p>累计待收金额{{ awaits }}元</p>
               </div>
               <div class="fr">
                 <p>在V{{ index }}等级剩余时间</p>
-                <p>{{ content.days }}</p>
+                <p>{{ days }}</p>
               </div>
             </div>
-            <div class="bottom">距离下一级VIP还差{{ content.remindMoney }}元</div>
+            <div class="bottom">距离下一级VIP还差{{ remindMoney }}元</div>
           </div>
         </div>
       </div>
     </div>
     <router-link
-      to=""
+      to="/project"
       class="btn">继续出借，享受更多收益</router-link>
   </div>
 </template>
@@ -104,25 +106,27 @@ import { getVipDetail } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const { content } = await getVipDetail(app.$axios)
+      console.log(content)
+      store.commit('myCenter/setVip', content)
+    }
+  },
   data() {
     return {
-      lev: 0,
+      lev: this.$store.state.myCenter.vipContent.vipLevel,
       progressHeight: 0,
-      content: '',
-      list: ''
+      commitTime: this.$store.state.myCenter.vipContent.commitTime,
+      awaits: this.$store.state.myCenter.vipContent.await,
+      days: this.$store.state.myCenter.vipContent.days,
+      remindMoney: this.$store.state.myCenter.vipContent.remindMoney
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      getVipDetail(this.$axios, commenParams).then(res => {
-        if (res) {
-          this.lev = res.content.vipLevel
-          this.content = res.content
-          this.list = res.content.dataRows
-        }
-      })
+    if (this.$store.state.isLogin) {
       this.progressHeight = 1.1 + this.lev * 1.29
       if (this.lev === 7) {
         this.progressHeight = this.lev * 1.29

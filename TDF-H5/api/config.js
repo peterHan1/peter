@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 const timestamp = Math.round(new Date() / 1000)
 const commenParams = {
   deviceType: '',
@@ -7,6 +8,8 @@ const commenParams = {
   timestamp: timestamp,
   accessKey: ''
 }
-import Cookie from 'js-cookie'
-
+commenParams.accessId = Cookie.get('accessId')
+commenParams.accessKey = Cookie.get('accessKey')
+console.log('/api-配置文件/')
+console.log(commenParams.accessKey)
 export { commenParams }

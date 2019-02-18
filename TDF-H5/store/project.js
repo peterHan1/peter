@@ -1,7 +1,4 @@
-import { joinList } from '../api/project'
-// import { scatterList } from '../plugins/api'
-import { freeBorrowList } from '../api/project'
-import { commenParams } from '../api/config'
+// import { commenParams } from '../api/config'
 export const state = () => ({
   trName: 'turn-on',
   initPage: 1,
@@ -15,6 +12,7 @@ export const state = () => ({
   scatterList: [],
   scatterListOut: [],
   scatterPages: [],
+  scatterDetail: {},
   joinList: [],
   joinListPages: 1,
   joinListPageNum: 0
@@ -47,6 +45,9 @@ export const mutations = {
   freeDetailData(state, id) {
     state.freeDetail = id
   },
+  scatterDetailData(state, data) {
+    state.scatterDetail = data
+  },
   // 省心投加入记录
   joinList(state, { joinList, pages }) {
     // console.log(data)
@@ -77,5 +78,18 @@ export const mutations = {
     state.scatterList = []
     state.scatterListOut = []
     state.scatterData = []
+  }
+}
+
+export const actions = {
+  nuxtServerInit({ commit }, { req }) {
+    let cookieJosn = Cookie2Json(req.headers.cookie)
+    console.log(cookieJosn)
+    // let testCookie = { accessId: 'xxx', accessKey: 'yyy' }
+    // if (req.headers.cookie) {
+    //   commit('setToken', cookieJosn)
+    // }
+    // commenParams.accessId = 123
+    // commenParams.accessKey = 456
   }
 }

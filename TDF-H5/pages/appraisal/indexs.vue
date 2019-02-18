@@ -12,7 +12,14 @@ export default {
   data() {
     return {}
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {},
   components: {}
 }

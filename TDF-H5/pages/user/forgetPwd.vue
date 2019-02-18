@@ -86,12 +86,12 @@ import md5 from 'md5'
 export default {
   data() {
     return {
-      imgYzm: '/api/AuthImageForApp?phone=' + this.$route.params.phone,
+      imgYzm: '/api/AuthImageForApp?phone=' + this.$route.query.phone,
       imgCode: '',
       phoneCode: '',
       countTime: 60,
       countNum: true,
-      phone: this.$route.params.phone,
+      phone: this.$route.query.phone,
       phoneCodeId: '',
       resetBox: true,
       pwdOne: '',
@@ -107,22 +107,29 @@ export default {
       if (this.imgCode.length < 4) {
         this.$Msg('请输入正确的图形验证码', 2000)
       } else {
+        this.$load.Load()
         getPhoneCode(this.$axios, {
-          phone: this.$route.params.phone,
-          type: 'reset'
+          phone: this.$route.query.phone,
+          type: 'reset',
+          imgCode: this.imgCode
         }).then(res => {
-          this.phoneCodeId = res.content.code
-        })
-        // 倒计时
-        this.countNum = false
-        let timer = setInterval(() => {
-          this.countTime--
-          if (this.countTime <= 0) {
-            this.countTime = 60
-            this.countNum = true
-            clearInterval(timer)
+          this.$load.Close()
+          if (res.code === 100000) {
+            this.phoneCodeId = res.content.code
+            // 倒计时
+            this.countNum = false
+            let timer = setInterval(() => {
+              this.countTime--
+              if (this.countTime <= 0) {
+                this.countTime = 60
+                this.countNum = true
+                clearInterval(timer)
+              }
+            }, 1000)
+          } else {
+            this.$Msg(res.message, 2000)
           }
-        }, 1000)
+        })
       }
     },
     returnFn() {
@@ -137,20 +144,22 @@ export default {
     resetFn() {
       if (this.pwdOne === this.pwdTwo) {
         const params = {
-          phone: this.$route.params.phone,
+          phone: this.$route.query.phone,
           newPassword: md5(this.pwdTwo),
           codeId: this.phoneCodeId.toString(),
           codeNumber: this.phoneCode,
           imgCode: this.imgCode
         }
         newResetUserPsw(this.$axios, params).then(res => {
-          if (res) {
+          if (res.code === 100000) {
             this.$router.push({
               name: 'user-loginPwd',
-              params: {
+              query: {
                 phone: this.phone
               }
             })
+          } else {
+            this.$Msg(res.message, 2000)
           }
         })
       } else {

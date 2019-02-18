@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="出借详情" 
-      url="myCenter-invest-myInvest"/>
+      url="/myCenter/invest/myInvest"/>
     <div class="investsTop">
       <span>{{ content.name }}</span>
       <b>{{ content.status | statusTxt }}</b>
@@ -40,49 +40,57 @@
       </li>
       <li>
         <span>借款协议</span>
-        <router-link to="" >点击查看</router-link>
+        <router-link :to="{path:'/myCenter/invest/scatterProtocol',query: {tenderId: this.$route.query.tenderId}}">点击查看</router-link>
       </li>
       <li>
         <span>安存保全</span>
-        <router-link to="/creditorList" >点击查看</router-link>
+        <router-link :to="{path:'/myCenter/invest/ancun',query: {tenderId: this.$route.query.tenderId}}">点击查看</router-link>
       </li>
     </ul>
     <div>
       <p class="tableTxt">还款计划</p>
       <div class="tableBox">
         <table v-if="list.length > 0">
-          <tr>
-            <th>还款时间</th>
-            <th>应还本金</th>
-            <th>应还收益</th>
-            <th>状态</th>
-          </tr>
-          <tr 
-            v-for="(item,index) in list" 
-            :key="index">
-            <td>{{ item.recoverTime }}</td>
-            <td>{{ item.recoverAccount }}</td>
-            <td>{{ item.recoverInterest }}</td>
-            <td>{{ item.status }}</td>
-          </tr>
+          <thead> 
+            <tr>
+              <th>还款时间</th>
+              <th>应还本金</th>
+              <th>应还收益</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              v-for="(item,index) in list" 
+              :key="index">
+              <td>{{ item.recoverTime }}</td>
+              <td>{{ item.recoverAccount }}</td>
+              <td>{{ item.recoverInterest }}</td>
+              <td>{{ item.status }}</td>
+            </tr>
+          </tbody>
         </table>
         <table v-else>
-          <tr>
-            <th>还款时间</th>
-            <th>应还本金</th>
-            <th>应还收益</th>
-            <th>状态</th>
-          </tr>
-          <tr>
-            <td 
-              colspan="4" 
-              class="nullData">暂无数据</td>
-          </tr>
+          <thead> 
+            <tr>
+              <th>还款时间</th>
+              <th>应还本金</th>
+              <th>应还收益</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td 
+                colspan="4" 
+                class="nullData">暂无数据</td>
+            </tr>
+          </tbody>
         </table>
       </div>	
     </div>
     <router-link 
-      to="" 
+      :to="{path:'/project/scatter-details/' + content.desId}"
       class="linkA">查看原项目</router-link>
   </div>
 </template>
@@ -90,37 +98,36 @@
 <script>
 import { getBankRecoverPlan } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
-
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      let tenderId = route.query.tenderId
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const contentTxt = await getBankRecoverPlan(app.$axios, tenderId)
+      app.store.commit('myCenter/setScatterDetails', contentTxt.content)
+    } else {
+      app.router.push({
+        name: 'user-login'
+      })
+    }
+  },
   data() {
     return {
       tenderId: '',
       borrowNid: '',
-      list: '',
-      content: ''
+      list: this.$store.state.myCenter.scatterDetails.dataRows,
+      content: this.$store.state.myCenter.scatterDetails
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      this.tenderId = this.$route.query.tenderId
-      const params = {
-        tenderId: this.tenderId
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      getBankRecoverPlan(this.$axios, params, commenParams).then(res => {
-        this.content = res.content
-        this.list = res.content.dataRows
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
       })
     }
   },
-  methods: {},
-  components: {},
   filters: {
     statusTxt: function(value) {
       switch (value) {

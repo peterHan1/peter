@@ -12,10 +12,10 @@
           <span/> 借款人信息
         </div>
         <div class="info_details">
-          <p><span><i>姓名</i><b>张**</b></span><span><i>年龄</i><b>46</b></span></p>
-          <p><span><i>性别</i><b>男</b></span><span><i>籍贯</i><b>河南</b></span></p>
-          <p><span><i>职业</i><b>个体</b></span><span><i>学历</i><b>大专</b></span></p>
-          <p><span><i>婚姻状况</i><b>已婚</b></span></p>
+          <p><span><i>姓名</i><b>{{ data.realname }}</b></span><span><i>年龄</i><b>{{ data.age }}</b></span></p>
+          <p><span><i>性别</i><b>{{ data.sex }}</b></span><span><i>籍贯</i><b>{{ data.census }}</b></span></p>
+          <p><span><i>职业</i><b>{{ data.job }}</b></span><span><i>学历</i><b>{{ data.education }}</b></span></p>
+          <p><span><i>婚姻状况</i><b>{{ data.marriage }}</b></span></p>
         </div>
       </div>
       <div class="item_overview">
@@ -34,15 +34,15 @@
             </li>
             <li>
               <div>基本状况：</div>
-              <p>主要从事个体行业，借款期间无重大支出，信誉状况良好，无不良记录</p>
+              <p>主要从事{{ data.repaySource }}，借款期间无重大支出，信誉状况良好，无不良记录</p>
             </li>
             <li>
               <div>生产经营状况：</div>
-              <p>借款人从事个体行业，现业务运转正常</p>
+              <p>借款人从事{{ data.repaySource }}，现业务运转正常</p>
             </li>
             <li>
               <div>借款用途及还款来源：</div>
-              <p>借款人因经营需要，申请借款2000000元，用于经营流动。还款来源为经营收入</p>
+              <p>借款人因经营需要，申请借款{{ data.account }}元，用于经营流动。还款来源为{{ data.repaySource }}</p>
             </li>
           </ul>
         </div>
@@ -52,8 +52,8 @@
           <span/> 车辆信息
         </div>
         <div class="info_details">
-          <p><span><i>车辆品牌</i><em>宝马X3</em></span><span><i>车辆估价</i><em>200000</em></span></p>
-          <p><span><i>购买价格</i><em>300000</em></span><span><i>行驶公里</i><em>31217公里</em></span></p>
+          <p><span><i>车辆品牌</i><em>{{ data.carBrand }}</em></span><span><i>车辆估价</i><em>{{ data.secondCarPrice }}</em></span></p>
+          <p><span><i>购买价格</i><em>{{ data.buyPrice }}</em></span><span><i>行驶公里</i><em>{{ data.driveKilometers }}公里</em></span></p>
         </div>
       </div>
       <div class="check_information">
@@ -68,26 +68,15 @@
             direction="horizontal"
             class="horizontal-scroll-list-wrap "
             @scroll="stopHor">
-            <ul class="list-wrapper">
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-              <li><img
-                src="http://upload-images.jianshu.io/upload_images/1455933-e9e2967f4988eb7f.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-                @click="bigImg"></li>
-            </ul>
+            <div class="view-wrapper">
+              <div class="imgs-container">
+                <img
+                  v-for="(img, index) in imgs"
+                  :src="img"
+                  :key="img"
+                  @click="showHello(index)">
+              </div>
+            </div>
           </cube-scroll>
         </div>
       </div>
@@ -97,21 +86,27 @@
         </div>
         <div class="img_area">
           <img
-            src="~/assets/images/invest/store.png"
+            :src="data.imgUrlStr"
             alt="" >
         </div>
-        <p class="name"><i class="iconfont">&#xe839;</i>门店名称: <span>嘉兴桐乡店</span></p>
-        <p class="addr"><i class="iconfont">&#xe838;</i>地址: <span>浙江省嘉兴市桐乡市银菊路6-10号</span></p>
-        <p class="call"><i class="iconfont">&#xe837;</i>联系电话: <a href="tel:400-85-666-85">400-85-666-85</a></p>
+        <p class="name"><i class="iconfont">&#xe839;</i>门店名称: <span>{{ data.storeName }}</span></p>
+        <p class="addr"><i class="iconfont">&#xe838;</i>地址: <span>{{ data.storeRemark }}</span></p>
+        <p class="call"><i class="iconfont">&#xe837;</i>联系电话: <a href="tel:400-85-666-85">{{ data.storePhone }}</a></p>
       </div>
     </div>
   </cube-scroll>
-
 </template>
 <script>
 export default {
   data() {
     return {
+      initialIndex: 0,
+      // imgs: [
+      //   'https://www.51tuodao.com/upload/data/upfiles/images/2017-09/18/11_attestations_attestation_1505699492057.jpg',
+      //   'https://wx1.sinaimg.cn/mw1024/686d7361ly1fpha0ncnnej21hc0zetxo.jpg',
+      //   'https://wx1.sinaimg.cn/mw1024/686d7361ly1fpha0mpd5uj21hc0tyws2.jpg',
+      //   'https://wx1.sinaimg.cn/mw1024/686d7361ly1fpha0mqvu5j21hc0zkgzz.jpg'
+      // ],
       options: {
         pullDownRefresh: {
           threshold: 20,
@@ -126,9 +121,35 @@ export default {
       pullY: ''
     }
   },
+  computed: {
+    data() {
+      return this.$store.state.project.scatterDetail
+    },
+    imgs() {
+      let imgs = this.data.imgUrlStr.split('|')
+      return imgs
+    }
+  },
+  created() {
+    console.log(this.imgs1)
+  },
   methods: {
-    bigImg() {
-      this.$emit('bigImg')
+    showHello(index) {
+      this.initialIndex = index
+      const params = {
+        $props: {
+          imgs: this.imgs,
+          initialIndex: 'initialIndex', // 响应式数据的key名
+          loop: false
+        },
+        $events: {
+          change: i => {
+            // 必须更新 initialIndex
+            this.initialIndex = i
+          }
+        }
+      }
+      this.$createImagePreview({ ...params }).show()
     },
     stopHor() {
       this.$emit('stopHor')
@@ -151,6 +172,19 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.view-wrapper
+  width: 100%
+  .imgs-container
+    > img
+      width: 200px
+      height: 100px
+      margin: 0 10px 16px 10px
+      border-radius: 4px
+  .tips
+    margin-top 50px
+    text-align center
+    font-size 30px
+    color #222
 .title
   width:100%
   height: 70px

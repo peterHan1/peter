@@ -27,7 +27,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'

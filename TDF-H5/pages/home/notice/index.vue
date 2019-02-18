@@ -29,10 +29,10 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import Notice from './list-notice.vue'
-import Dynamic from './list-dynamic.vue'
-import { homeNoticeDynamic } from '../../../plugins/api.js'
-import { findIndex } from '../../../components/src/common/util.js'
+import Notice from '~/components/business/notice-list/list-notice.vue'
+import Dynamic from '~/components/business/notice-list/list-dynamic.vue'
+import { homeNoticeDynamic } from '~/api/home.js'
+import { findIndex } from '~/components/src/common/util.js'
 export default {
   metaInfo: {
     title: '公告动态'
@@ -64,6 +64,16 @@ export default {
       }
     }
   },
+  computed: {
+    initialIndex() {
+      let index = 0
+      index = findIndex(
+        this.tabLabels,
+        item => item.label === this.selectedLabel
+      )
+      return index
+    }
+  },
   methods: {
     async getData() {
       const notice = {
@@ -78,21 +88,19 @@ export default {
       }
       let noticeList = await homeNoticeDynamic(this.$axios, notice)
       // this.$store.commit('home/setNoticePages', noticeList.content.pages)
-      for (let i = 0; i < noticeList.content.dataRows.length; i++) {
-        noticeList.content.dataRows[i].url =
-          'http://72.127.2.140:9090' + noticeList.content.dataRows[i].url
-      }
+      // for (let i = 0; i < noticeList.content.dataRows.length; i++) {
+      //   noticeList.content.dataRows[i].url =
+      //     'http://72.127.2.140:9090' + noticeList.content.dataRows[i].url
+      // }
       noticeList.content.dataRows.map(o => {
         this.$store.commit('home/setNoticeData', o)
       })
-      console.log(noticeList)
       this.$store.commit('home/setNoticePages', noticeList.content.pages)
-      console.log(this.$store.state.home.noticePages)
       let dynamicList = await homeNoticeDynamic(this.$axios, dynamic)
-      for (let i = 0; i < noticeList.content.dataRows.length; i++) {
-        dynamicList.content.dataRows[i].url =
-          'http://72.127.2.140:9090' + dynamicList.content.dataRows[i].url
-      }
+      // for (let i = 0; i < noticeList.content.dataRows.length; i++) {
+      //   dynamicList.content.dataRows[i].url =
+      //     'http://72.127.2.140:9090' + dynamicList.content.dataRows[i].url
+      // }
       dynamicList.content.dataRows.map(o => {
         this.$store.commit('home/setDynamicData', o)
       })
@@ -107,16 +115,6 @@ export default {
       const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
       const deltaX = (x / slideScrollerWidth) * tabItemWidth
       this.$refs.tabNav.setSliderTransform(deltaX)
-    }
-  },
-  computed: {
-    initialIndex() {
-      let index = 0
-      index = findIndex(
-        this.tabLabels,
-        item => item.label === this.selectedLabel
-      )
-      return index
     }
   },
   components: {

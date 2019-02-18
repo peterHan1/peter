@@ -1,24 +1,29 @@
 <template>
   <div class="loan_agree">
-    <h1>《四方保证借款协议》</h1>
+    <h1>《五方保证借款协议》</h1>
     <div class="importTxt">
-      <p>合同签订地：杭州市西湖区</p>
       <div>
-        <p>甲方（借款人）：</p>
-        <p>在拓道金服平台用户名为：</p>
-        <p>身份证号码/营业执照号：</p>
+        <p>甲方（借款人）： {{ contentTxt.realname2 }}</p>
+        <p>在拓道金服平台用户名为：{{ contentTxt.username2 }}</p>
+        <p>身份证号码/营业执照号：{{ contentTxt.idcard2 }}</p>
         <span/>
-        <p>乙方（出借人）:</p>
-        <p>在拓道金服平台用户名为：</p>
-        <p>身份证号：</p>
+        <p>乙方（出借人）: {{ contentTxt.realname1 }}</p>
+        <p>在拓道金服平台用户名为：{{ contentTxt.username1 }}</p>
+        <p>身份证号：{{ contentTxt.idcard1 }}</p>
         <span/>
         <p>丙方（居间方/拓道金服）：杭州拓道互联网金融服务有限公司</p>
         <p>地址：杭州市西湖区中节能西溪首座B2裙楼</p>
         <span/>
-        <p>丁方（保证人）：永航融资租赁（上海）有限公司</p>
+        <p>丁方一（保证人）：永航融资租赁（上海）有限公司</p>
         <p>地址: 上海市普陀区真北路915号1106B室</p>
-        <div class="td"/>
-        <div class="yh"/>
+        <span/>
+        <p>丁方二（保证人）：杭州转塘担保有限公司</p>
+        <p>地址: 浙江省杭州市西湖区转塘街道美院南路99号1301室</p>
+        <span/>
+        <p>（丁方一、丁方二以下合称“丁方”或“保证人”）</p>
+        <div class="cachet td"/>
+        <div class="cachet yh"/>
+        <div class="cachet zt"/>
       </div>
     </div>
     <h2>鉴于：</h2>
@@ -28,12 +33,12 @@
     <p>4.就借款人向出借人借款，保证人同意为借款人的借款提供担保等相关事宜达成一致。现根据《中华人民共和国担保法》、《中华人民共和国合同法》以及</p>
     <p>其他有关法律法规，为明确三方的权利与义务，特订立本协议，以资共同遵守。</p>
     <h2>第一条 借款金额、用途、期限、利率及还款方式</h2>
-    <p>1.出借人向借款人出借人民币  元（以下统称“借款”），各出借人信息及实际出借金额详见附件一。</p>
-    <p>2.借款用途：  。</p>
+    <p>1.出借人向借款人出借人民币 <b>{{ contentTxt.userAccount }}</b> 元（以下统称“借款”），各出借人信息及实际出借金额详见附件一。</p>
+    <p>2.借款用途：<b>{{ contentTxt.borrowUse }}</b> 。</p>
     <p>借款人承诺:所借款项按规定用途使用，不用于出借房地产和股票、债券、期货等的炒作，不进行高风险出借，不挪作他用，不进行违法活动，否则由此产生的后果均由借款人承担。</p>
-    <p>3.借款期限为   ，自借款实际达到借款人存管账户之日起计算。</p>
-    <p>4.借款年利率为  ，月利率=年利率/12，日利率=年利率/365。</p>
-    <p>5.还款方式： 。</p>
+    <p>3.借款期限为 <b>{{ contentTxt.borrowPeriod }}</b> ，自借款实际达到借款人存管账户之日起计算。</p>
+    <p>4.借款年利率为 <b v-if="contentTxt.borrowApr">{{ contentTxt.borrowApr }} %</b>，月利率=年利率/12，日利率=年利率/365。</p>
+    <p>5.还款方式：<b>{{ contentTxt.borrowStyle }}</b>。</p>
     <p>6.放款方式：本协议生效后，出借人即不可撤销地授权拓道金服委托的资金存管机构（以下简称“存管银行”），将本协议项下借款自出借人在存管银行开立的存管账户（以下简称“出借人存管账户”）划转至借款人在存管银行开立的存管账户（以下简称“借款人存管账户”）；借款到达借款人存款账户即视为借款发放完成。</p>
     <h2>第二条 协议的生效</h2>
     <p>1.协议签署：</p>
@@ -97,21 +102,32 @@
   </div>
 </template>
 <script>
+import { contractByTenderId } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 export default {
   data() {
-    return {}
+    return {
+      contentTxt: ''
+    }
   },
-  mounted() {},
+  mounted() {
+    let tenderId = this.$route.query.tenderId
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    contractByTenderId(this.$axios, tenderId).then(res => {
+      this.contentTxt = res.content
+    })
+  },
   methods: {},
   components: {}
 }
 </script>
 <style lang="stylus" scoped>
 .loan_agree
-  padding: 30px 30px 20px
+  padding: 0 30px 20px
   color: $color-gray1
   h1
-    font-size: $fontsize-large-x
+    font-size: $fontsize-large-xxx
     font-weight: bold
     text-align: center
     line-height: 65px
@@ -121,29 +137,35 @@ export default {
     padding: 30px 0 20px
   p
     font-size: $fontsize-small-ss
-    line-height: 48px
+    line-height: 46px
     text-align: justify
+    b
+      border-bottom: 1px solid $color-gray1
+      padding: 0 5px
   .importTxt
     padding: 10px 20px
     border: 1px solid #ccc
     position: relative
     span
       display: block
-      height: 30px
+      height: 20px
+    .cachet
+      width: 200px
+      height: 200px
+      position: absolute
     .td
-      position: absolute
-      width: 200px
-      height: 200px
       background: url(../../../../assets/images/invest-list/gsgz.png) no-repeat
       background-size: 100% 100%
-      bottom: 130px
-      right: 200px
+      bottom: 37%
+      right: 40%
     .yh
-      position: absolute
-      width: 200px
-      height: 200px
-      background: url(../../../../assets/images/invest-list/gsgz.png) no-repeat
+      background: url(../../../../assets/images/invest-list/yhgz.png) no-repeat
       background-size: 100% 100%
-      bottom: -40px
-      right: 80px
+      bottom: 18%
+      right: 15%
+    .zt
+      background: url(../../../../assets/images/invest-list/ztgz.png) no-repeat
+      background-size: 100% 100%
+      bottom: 2%
+      right: 45%  
 </style>

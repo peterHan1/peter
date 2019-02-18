@@ -47,15 +47,12 @@
 
 <script type="text/ecmascript-6">
 import { findIndex } from '~/components/src/common/util.js'
-import { commenParams } from '~/api/config.js'
 import { freeBorrowList, scatterList } from '~/api/project.js'
-import { myBankAssets } from '~/api/user'
 import PList from '~/components/business/project-list/list'
 import ScatterList from '~/components/business/project-list/scatter'
 export default {
   name: 'keep',
   created() {
-    // console.log(this.$store.state.accessKey)
     this._getFreeList()
     // this._getSatterList()
   },
@@ -102,16 +99,10 @@ export default {
   // },
   methods: {
     async _getFreeList() {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      const freeList = await freeBorrowList(
-        this.$axios,
-        {
-          page: 1,
-          item: 10
-        },
-        commenParams
-      )
+      const freeList = await freeBorrowList(this.$axios, {
+        page: 1,
+        item: 10
+      })
       // // const params = Object.assign({}, content, { dataName: 'Free' })
       // console.log(freeList.content)
       // console.log('省心投')
@@ -120,14 +111,10 @@ export default {
       } else {
         console.log('重新获取')
       }
-      const scatterData = await scatterList(
-        this.$axios,
-        {
-          page: 1,
-          item: 10
-        },
-        commenParams
-      )
+      const scatterData = await scatterList(this.$axios, {
+        page: 1,
+        item: 10
+      })
       // console.log(scatterData.content)
       if (scatterData.content !== undefined) {
         this.$store.commit('project/scatterHandleData', scatterData.content)

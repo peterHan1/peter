@@ -1,6 +1,9 @@
 <template>
   <div class="login">
-    <td-header title="登录/注册"/>
+    <td-header 
+      :returnUrl="false"
+      url="/user/login" 
+      title="登录/注册"/>
     <ul>
       <li>密码</li>
       <li>
@@ -24,7 +27,7 @@
         记住我
       </p>
       <router-link
-        :to="{name:'user-forgetPwd',params:{phone:this.$route.params.phone}}"
+        :to="{name:'user-forgetPwd',query:{phone:this.$route.query.phone}}"
         class="forgetPwd">忘记登录密码? {{ phone }}</router-link>
     </div>
     <button
@@ -38,7 +41,9 @@
 import { login } from '~/api/user.js'
 import md5 from 'md5'
 import Cookie from 'js-cookie'
-
+import { commenParams } from '~/api/config.js'
+import { detailStatus } from '~/api/user.js'
+import { testU } from '~/api/project'
 export default {
   data() {
     return {
@@ -60,27 +65,37 @@ export default {
       this.type = this.type === 'password' ? 'text' : 'password'
       this.showIcon = !this.showIcon
     },
-    submit() {
+    async submit() {
       const params = {
-        phone: this.$route.params.phone,
+        phone: this.$route.query.phone,
         password: md5(this.pwd),
         remember: this.remember
       }
-      console.log('原路返回路径：' + this.srcPath)
-      login(this.$axios, params).then(res => {
-        if (res.code === 100000) {
-          Cookie.set('accessId', res.content.accessId)
-          Cookie.set('accessKey', res.content.accessKey)
-          Cookie.set('phone', this.$route.params.phone)
-          this.$router.push(this.srcPath)
-        } else {
-          this.$Msg(res.msg, 2000)
+      // console.log('原路返回路径：' + this.srcPath)
+      let res = await login(this.$axios, params)
+      if (res.code === 100000) {
+        const token = {
+          accessId: res.content.accessId,
+          accessKey: res.content.accessKey
         }
-      })
+        Cookie.set('accessId', token.accessId)
+        Cookie.set('accessKey', token.accessKey)
+        commenParams.accessId = token.accessId
+        commenParams.accessKey = token.accessKey
+        const { content } = await detailStatus(this.$axios, commenParams)
+        const userInfo = Object.assign({}, token, content, { isLogin: true })
+        this.$store.commit('setToken', userInfo)
+        this.$router.push(this.srcPath)
+      } else {
+        this.$store.commit('setToken', { isLogin: false })
+        this.$Msg(res.message, 2000)
+      }
     },
     oninput(e) {
       if (this.pwd.length >= 6) {
         this.disabled = false
+      } else {
+        this.disabled = true
       }
     },
     rememberFn() {

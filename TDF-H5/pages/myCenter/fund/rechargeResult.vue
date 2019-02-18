@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false" 
       title="充值结果"
-      url="myCenter-center"/>
+      url="/myCenter/center"/>
     <result 
       v-if="status===2"
       status="ok" 
@@ -70,11 +70,11 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
+    if (this.$store.state.isLogin) {
       let orderNo = this.$route.query.orderNo
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      quickPayResult(this.$axios, orderNo, commenParams).then(res => {
+      quickPayResult(this.$axios, orderNo).then(res => {
         if (res) {
           this.status = res.content.status
         }

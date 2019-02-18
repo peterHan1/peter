@@ -4,9 +4,9 @@
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
-    <ul v-if="content.length" >
+    <ul v-if="this.$store.state.myCenter.siftOn.length" >
       <li 
-        v-for="(item,index) in content"
+        v-for="(item,index) in this.$store.state.myCenter.siftOn"
         :key="index">
         <router-link :to="{path:'/myCenter/invest/siftDetails',query: {tenderId: item.tenderId, borrowNid: item.borrowNid}}">
           <p>
@@ -34,7 +34,6 @@
 <script>
 import { freeTenderList } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
-
 export default {
   data() {
     return {
@@ -49,42 +48,44 @@ export default {
         beforePullDown: true
       },
       status: 0,
-      page: 1,
       item: 12,
-      content: []
+      pageNum: 1
     }
   },
-  mounted() {
+  created() {
     this.getList()
   },
+  mounted() {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+  },
   methods: {
-    getList() {
-      const params = {
-        status: this.status,
-        page: this.page,
-        item: this.item
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      freeTenderList(this.$axios, params, commenParams).then(res => {
-        let list = res.content.dataRows
-        for (let i in list) {
-          this.content.push(list[i])
-        }
-      })
+    async getList() {
+      const params = { item: this.item, page: 1, status: this.status }
+      const tenderOn = await freeTenderList(this.$axios, params)
+      this.$store.commit('myCenter/setSiftOnNull')
+      this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
     },
     onPullingDown() {
-      setTimeout(() => {
-        this.page = 1
-        this.content = []
-        this.getList()
+      setTimeout(async () => {
+        this.pageNum = 1
+        const params = { item: this.item, page: 1, status: this.status }
+        const tenderOn = await freeTenderList(this.$axios, params)
+        this.$store.commit('myCenter/setSiftOnNull')
+        this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     },
     onPullingUp() {
-      this.page++
-      setTimeout(() => {
-        this.getList()
+      setTimeout(async () => {
+        this.pageNum++
+        const params = {
+          item: this.item,
+          page: this.pageNum,
+          status: this.status
+        }
+        const tenderOn = await freeTenderList(this.$axios, params)
+        this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     }

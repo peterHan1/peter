@@ -1,6 +1,6 @@
 
 打开加载
-this.$Loading.Load()
+this.$load.Load()
 
 关闭加载
-this.$Loading.Close()
+this.$load.Close()

@@ -36,10 +36,8 @@ export default {
         this.$store.commit('project/setTransition', 'turn-off')
         this.$router.back()
       } else {
-        this.$router.push({ name: this.url })
+        this.$router.push(this.url)
       }
-      // this.$store.commit('project/setTransition', 'turn-off')
-      // this.$router.back()
     },
     returnFn() {
       this.$emit('navRightFn')

@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="债权转让" 
-      url="myCenter-center"/>
+      url="/myCenter/center"/>
     <div class="listTab">
       <cube-tab-bar
         ref="tabNav"
@@ -16,6 +16,7 @@
     <div class="btn">
       <td-button
         value="下载APP"
+        @btnFn="downApp"
       />
     </div>
   </div>

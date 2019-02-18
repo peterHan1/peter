@@ -15,6 +15,7 @@
         :loop="loop"
         :initial-index="initialIndex"
         :auto-play="autoPlay"
+        :showDots="false"
         :options="slideOptions"
         @scroll="scroll"
         @change="changePage"
@@ -50,7 +51,6 @@ export default {
       ],
       loop: false,
       autoPlay: false,
-      showDots: false,
       slideOptions: {
         listenScroll: true,
         probeType: 3,
@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$store.state.accessId && !this.$store.state.accessKey) {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'

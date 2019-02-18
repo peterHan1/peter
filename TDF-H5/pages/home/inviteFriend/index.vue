@@ -2,15 +2,15 @@
   <div class="invite">
     <td-header title="邀请好友"/>
     <div
-      :class="{loginNo: active}"
+      :class="{loginNo: !isLogin}"
       class="header">
-      <router-link to="/invite-prize-record">
+      <a @click="toRecord">
         <img
           class="record"
           src="../../../assets/images/activity/inviteFriend/invite8.png">
-      </router-link>
+      </a>
       <div
-        v-show="!active"
+        v-show="isLogin"
         class="content">
         <p class="lev">
           <img :src="lev[vipData.level-1]">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div
-      v-show="!active"
+      v-show="isLogin"
       class="hongbao">
       <div class="top">
         <div><span>{{ firstVoucher1 }}</span>元</div>
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div
-      v-show="!active"
+      v-show="isLogin"
       class="rights">
       <img src="../../../assets/images/activity/inviteFriend/invite3.png">
     </div>
@@ -64,12 +64,12 @@
       <dd>直接好友每笔出借收益{{ directScale4 }}%，间接好友每笔出借收益{{ indirectScale3 }}%<br>({{ inviteMember3 }}位好友达到v1且好友总待收达{{ recoverTotal3 }}万)</dd>
     </div>
     <div
-      :class="{on:active}"
+      :class="{on: !isLogin}"
       class="rule">
       <router-link to="/home/inviteFriend/inviteRule">查看邀请规则></router-link>
     </div>
     <div
-      v-show="!active"
+      v-show="isLogin"
       class="inviteCode">
       <div class="myCode"/>
       <p
@@ -81,8 +81,13 @@
     </div>
     <div class="footer">
       <a
+        v-if="isLogin"
         class="btn"
-        @click="links">立即{{ text }}</a>
+        @click="toInvite">立即邀请</a>
+      <a
+        v-else
+        class="btn"
+        @click="toLogin">立即登录</a>
     </div>
     <div
       v-show="shadeShow"
@@ -104,7 +109,7 @@
             @click="shadeShow = false">&#xe9ba;</span>
           <div id="container"/>
         </div>
-        <div class="bottom">
+        <!-- <div class="bottom">
           <div class="wx">
             <img src="../../../assets/images/activity/inviteFriend/wx.png">
             <p>分享好友</p>
@@ -116,7 +121,7 @@
             <img src="../../../assets/images/activity/inviteFriend/downLoad.png">
             <p>保存到相册</p>
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
     <div
@@ -143,7 +148,8 @@ import lev2 from '../../../assets/images/activity/inviteFriend/lev2.png'
 import lev3 from '../../../assets/images/activity/inviteFriend/lev3.png'
 import QRCode from 'qrcode'
 import Clipboard from 'clipboard'
-import { inviteFriend, wxSignature } from '../../../plugins/api.js'
+import { commenParams } from '~/api/config.js'
+import { inviteFriend, wxSignature } from '~/api/home.js'
 // import wx from 'weixin-js-sdk'
 export default {
   metaInfo: {
@@ -153,9 +159,6 @@ export default {
     return {
       lev: [lev1, lev2, lev3],
       levImg: '',
-      // false为已登录，true为未登录
-      active: false,
-      text: '邀请',
       inviteCode: '',
       shadeShow: false,
       isWx: false,
@@ -184,17 +187,63 @@ export default {
       inviteMember1: '',
       inviteMember2: '',
       inviteMember3: '',
-      dataURL: ''
+      dataURL: '',
+      weixinReady: false
     }
   },
-  methods: {
+  computed: {
     isLogin() {
-      // if (true) {
-      //   return false
-      // } else {
-      //   this.active = true
-      //   this.text = '登录'
-      // }
+      return this.$store.state.isLogin
+    }
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    toLogin() {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    },
+    toRecord() {
+      if (this.isLogin) {
+        this.$router.push({
+          name: 'myCenter-invite-inviteRecord'
+        })
+      } else {
+        this.toLogin()
+      }
+    },
+    getData() {
+      inviteFriend(this.$axios).then(res => {
+        this.firstVoucher2 = res.content.primary.firstVoucher.amount
+        this.firstVoucher3 = res.content.intermediate.firstVoucher.amount
+        this.firstVoucher4 = res.content.trump.firstVoucher.amount
+        this.firstScale2 = res.content.primary.firstScale * 100
+        this.firstScale3 = res.content.intermediate.firstScale * 100
+        this.firstScale4 = res.content.trump.firstScale * 100
+        this.directScale2 = res.content.primary.directScale * 100
+        this.directScale3 = res.content.intermediate.directScale * 100
+        this.directScale4 = res.content.trump.directScale * 100
+        this.indirectScale2 = res.content.intermediate.indirectScale * 100
+        this.indirectScale3 = res.content.trump.indirectScale * 100
+        this.recoverTotal2 = res.content.intermediate.recoverTotal
+        this.recoverTotal3 = res.content.trump.recoverTotal
+        this.inviteMember2 = res.content.intermediate.inviteMember
+        this.inviteMember3 = res.content.trump.inviteMember
+        if (this.isLogin) {
+          this.vipData = res.content
+          this.inviteCode = res.content.inviteCode
+          this.firstVoucher1 = res.content.config.firstVoucher.amount
+          this.firstScale1 = res.content.config.firstScale * 100
+          this.directScale1 = res.content.config.directScale * 100
+          this.indirectScale1 = res.content.config.indirectScale * 100
+          this.recoverTotal1 = res.content.config.recoverTotal
+          this.inviteMember1 = res.content.config.inviteMember
+        }
+        // console.log(window.location.href)
+      })
     },
     toImg() {
       const _this = this
@@ -247,7 +296,7 @@ export default {
       //   console.log(this.dataURL)
       // })
     },
-    links() {
+    toInvite() {
       this.shadeShow = true
       this.isWx = false
       let ua = navigator.userAgent.toLowerCase()
@@ -258,12 +307,8 @@ export default {
         this.zoom('http://baidu.com')
         this.shadeShow = true
         this.isWx = false
-        this.toImg()
+        // this.toImg()
       }
-      // if (this.active) {
-      //   this.$router.push('/login')
-      // } else {
-      // }
     },
     zoom(qrCode) {
       if (qrCode === null) {
@@ -275,7 +320,7 @@ export default {
       container.innerHTML = ''
       QRCode.toCanvas(
         qrCode,
-        { errorCorrectionLevel: 'H', width: 115 },
+        { errorCorrectionLevel: 'H', width: 130 },
         function(err, canvas) {
           if (err) throw err
           container.appendChild(canvas)
@@ -300,11 +345,11 @@ export default {
     },
     wxShare() {
       const options = {
-        title: '劵拿多少你说了算',
-        desc: '拓道金服5年合规运营，优惠券回馈各位道友，快来参加活动吧！',
+        title: '推荐你用拓道出借，送388元红包，快来注册吧',
+        desc:
+          '互联网金融百强企业，合规运营5年，新网银行存管，新人可享专属福利！',
         link: location.href,
-        // link:'${baseUrl}/html5/voucher?user=${recommendCode}&returnUrl=/html5/voucher',
-        imgUrl: 'https://www.51tuodao.com/static_pro/wap/img/voucher/share.png'
+        imgUrl: 'https://www.51tuodao.com/h5/img/share.png'
       }
       // Axios({
       //   method: 'get',
@@ -312,7 +357,7 @@ export default {
       //   params: {url: location.href},
       //   timeout: 6000
       Axios.get(
-        'http://72.127.2.116:8080/json/h5/getWxConfig?t=' +
+        'http://72.127.2.140:9090/json/h5/getWxConfig?t=' +
           new Date().getTime(),
         {
           //params参数必写 , 如果没有参数传{}也可以
@@ -330,7 +375,18 @@ export default {
               jsApiList: ['updateAppMessageShareData'] // 必填，需要使用的JS接口列表
             })
             wx.ready(() => {
-              // 分享给朋友
+              // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+              wx.updateAppMessageShareData(
+                {
+                  title: options.title, // 分享标题
+                  desc: options.desc, // 分享描述
+                  link: options.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: options.imgUrl // 分享图标
+                },
+                function(res) {
+                  //这里是回调函数
+                }
+              )
               wx.onMenuShareAppMessage({
                 title: options.title, // 分享标题
                 desc: options.desc, // 分享描述
@@ -346,6 +402,9 @@ export default {
                 }
               })
             })
+            wx.error(function(res) {
+              console.log(res)
+            })
           }
           console.log(data)
         })
@@ -355,65 +414,13 @@ export default {
     }
   },
   mounted() {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
     this.$nextTick(() => {
       let copyCode = document.getElementById('copyCode')
       this.clipboard = new Clipboard(copyCode)
     })
     // this.wxShare()
-    inviteFriend(this.$axios).then(res => {
-      this.vipData = res.content
-      this.firstVoucher1 = res.content.config.firstVoucher.amount
-      this.firstVoucher2 = res.content.primary.firstVoucher.amount
-      this.firstVoucher3 = res.content.intermediate.firstVoucher.amount
-      this.firstVoucher4 = res.content.trump.firstVoucher.amount
-      this.firstScale1 = res.content.config.firstScale * 100
-      this.firstScale2 = res.content.primary.firstScale * 100
-      this.firstScale3 = res.content.intermediate.firstScale * 100
-      this.firstScale4 = res.content.trump.firstScale * 100
-      this.directScale1 = res.content.config.directScale * 100
-      this.directScale2 = res.content.primary.directScale * 100
-      this.directScale3 = res.content.intermediate.directScale * 100
-      this.directScale4 = res.content.trump.directScale * 100
-      this.indirectScale1 = res.content.config.indirectScale * 100
-      this.indirectScale2 = res.content.intermediate.indirectScale * 100
-      this.indirectScale3 = res.content.trump.indirectScale * 100
-      this.recoverTotal1 = res.content.config.recoverTotal
-      this.recoverTotal2 = res.content.intermediate.recoverTotal
-      this.recoverTotal3 = res.content.trump.recoverTotal
-      this.inviteMember1 = res.content.config.inviteMember
-      this.inviteMember2 = res.content.intermediate.inviteMember
-      this.inviteMember3 = res.content.trump.inviteMember
-      this.inviteCode = res.content.inviteCode
-      // console.log(window.location.href)
-    })
-    // wxSignature(this.$axios, params).then(res => {
-    //   let { data } = res.data.content
-    //   wx.config({
-    //     debug: false, // 开启调试模式
-    //     appId: data.appId, // 必填，公众号的唯一标识
-    //     timestamp: data.timestamp, // 必填，生成签名的时间戳
-    //     nonceStr: data.noncestr, // 必填，生成签名的随机串
-    //     signature: data.signature, // 必填，签名
-    //     jsApiList: data.jsApiList // 必填，需要使用的JS接口列表
-    //   })
-    // })
-    // wx.ready(() => {
-    //   // 分享给朋友
-    //   wx.onMenuShareAppMessage({
-    //     title: '这里是标题', // 分享标题
-    //     desc: 'This is a test!', // 分享描述
-    //     link: '链接', // 分享链接
-    //     imgUrl: '图片', // 分享图标
-    //     type: '', // 分享类型,music、video或link，不填默认为link
-    //     dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    //     success: function() {
-    //       // 用户确认分享后执行的回调函数
-    //     },
-    //     cancel: function() {
-    //       // 用户取消分享后执行的回调函数
-    //     }
-    //   })
-    // })
   }
 }
 </script>
@@ -624,12 +631,12 @@ input,.myCode .code
       left 0
       top 0
       z-index 20
-      padding-top: 40px
+      padding-top: 141px
       text-align center
       .layerHb
         position relative
-        width 545px
-        height 800px
+        width 630px
+        height 924px
         margin auto
         overflow hidden
         background url(../../../assets/images/activity/inviteFriend/layer.png)no-repeat
@@ -642,8 +649,7 @@ input,.myCode .code
           color $color-white
         #container
           text-align center
-          margin-top 484px
-          height 100px
+          margin-top 560px
       .bottom
         padding-top: 40px
         div,a

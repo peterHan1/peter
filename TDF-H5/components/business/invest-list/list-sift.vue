@@ -14,6 +14,7 @@
         :loop="loop"
         :initial-index="initialIndex"
         :auto-play="autoPlay"
+        :showDots= "false"
         :options="slideOptions"
         @scroll="scroll"
         @change="changePage"
@@ -49,7 +50,6 @@ export default {
       ],
       loop: false,
       autoPlay: false,
-      showDots: false,
       slideOptions: {
         listenScroll: true,
         probeType: 3,

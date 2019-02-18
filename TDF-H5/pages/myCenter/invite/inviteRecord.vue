@@ -1,37 +1,35 @@
 <template>
   <div class="invite">
     <td-header 
-      :returnUrl="false"
-      title="邀请奖励记录" 
-      url="myCenter-center"/>
+      title="邀请奖励记录"/>
     <div class="inviteTop">
       <ul>
         <li>
           <div>
-            <p class="pFont">{{ content.totalAward }}</p>
-            <p>{{ content.date }}待收返现总奖励(元)</p>
+            <p class="pFont">{{ this.$store.state.myCenter.inviteContent.totalAward }}</p>
+            <p>{{ this.$store.state.myCenter.inviteContent.date }}待收返现总奖励(元)</p>
           </div>
         </li>
         <li>
           <div>
-            <p>{{ content.totalProfit }}</p>
+            <p>{{ this.$store.state.myCenter.inviteContent.totalProfit }}</p>
             <p>已收返现奖励(元)</p>
           </div>
           <div>
-            <p>{{ content.totalVoucher }}</p>
+            <p>{{ this.$store.state.myCenter.inviteContent.totalVoucher }}</p>
             <p>抵用券奖励(元)</p>
           </div>
         </li>
         <li>
           <div>
             <router-link to="/myCenter/invite/inviteList" >
-              <p>{{ content.totalDirect }}</p>
+              <p>{{ this.$store.state.myCenter.inviteContent.totalDirect }}</p>
               <p>直接邀请人数 <i class="iconfont">&#xe6f2;</i></p>
             </router-link>
           </div>
           <div>
             <router-link to="/myCenter/invite/inviteList" >
-              <p>{{ content.totalIndirect }}</p>
+              <p>{{ this.$store.state.myCenter.inviteContent.totalIndirect }}</p>
               <p>间接邀请人数 <i class="iconfont">&#xe6f2;</i></p>
             </router-link>
           </div>
@@ -54,6 +52,7 @@
           :loop="loop"
           :initial-index="initialIndex"
           :auto-play="autoPlay"
+          :showDots= "false"
           :options="slideOptions"
           @scroll="scroll"
           @change="changePage"
@@ -78,6 +77,14 @@ import { prizeRecord } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const { content } = await prizeRecord(app.$axios)
+      store.commit('myCenter/setInvite', content)
+    }
+  },
   data() {
     return {
       selectedLabel: '待收返现明细',
@@ -92,7 +99,6 @@ export default {
       ],
       loop: false,
       autoPlay: false,
-      showDots: false,
       slideOptions: {
         listenScroll: true,
         probeType: 3,
@@ -105,13 +111,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      prizeRecord(this.$axios, commenParams).then(res => {
-        this.content = res.content
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -181,7 +181,7 @@ export default {
             line-height: 40px
             height: 40px
           p.pFont
-            font-size: $fontsize-large-xxxxxxxx
+            font-size: 64px
             margin-top: 29px
           a
             display: block

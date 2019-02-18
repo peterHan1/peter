@@ -2,7 +2,7 @@
   <div class="recharge">
     <td-header 
       :returnUrl="false" 
-      url="myCenter-center"
+      url="/myCenter/center"
       title="充值"
       rightTxt="充值记录"
       @navRightFn="navRightFn"/>
@@ -50,22 +50,26 @@ import { rechargeInfo, quickPay } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const { content } = await rechargeInfo(app.$axios)
+      store.commit('myCenter/setRecharge', content)
+    }
+  },
   data() {
     return {
       moneyVal: null,
-      content: '',
-      placeTxt: ''
+      content: this.$store.state.myCenter.rechargeContent,
+      placeTxt:
+        '输入充值金额，' +
+        this.$store.state.myCenter.rechargeContent.minMoney +
+        '元起投'
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      rechargeInfo(this.$axios, commenParams).then(res => {
-        this.content = res.content
-        this.placeTxt = '输入充值金额，' + this.content.minMoney + '元起投'
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -80,11 +84,12 @@ export default {
       if (this.moneyVal >= 100) {
         let params = {
           money: this.moneyVal,
-          returnUrl: this.returnPath + 'myCenter/fund/rechargeResult'
+          returnUrl:
+            this.$store.state.returnPath + 'myCenter/fund/rechargeResult'
         }
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
-        quickPay(this.$axios, params, commenParams).then(res => {
+        quickPay(this.$axios, params).then(res => {
           if (res) {
             this.$router.push({
               name: 'xwDeposit-transit',
@@ -136,7 +141,7 @@ export default {
           align-items: center
           border-bottom: 1px solid $color-gray5
           i
-            font-size: $fontsize-large-xxxxxxxxx
+            font-size: 68px
             color: $color-gray1
           input
             width: 60%

@@ -2,18 +2,40 @@
   <div class="detail">
     <div class="sift-center">
       <td-header
-        :title="title"
+        :returnUrl="false"
+        :title="projectInfo.title"
+        url="/project"
         class="header"/>
       <transition :name="transitionName">
         <div
           :is="conTxt"
           @pullFn="cutFn"/>
       </transition>
-      <footer>
-        <!-- <div>{{ isLogin }}</div> -->
+      <footer :class="{over:projectInfo.rate==100}">
+        <!-- {{ isShowTime }} -->
+        <div v-if="projectInfo.rate==100">
+          已抢完
+        </div>
         <div
-          v-if="!isLogin"
+          v-else-if="!userInfo.isLogin"
           @click="toLogin">请登录</div>
+        <div
+          v-else-if="userInfo.isOpen!=1"
+          @click="toCg">
+          激活银行存管即可加入
+        </div>
+        <div v-else-if="userInfo.authStatus!=1">
+          请重新进行业务授权
+        </div>
+        <div
+          v-else-if="userInfo.CisShowTime ">
+          <count-down :dateTimes="projectInfo.dateTimes"/>
+        </div>
+        <div
+          v-else-if="userInfo.evaluationStatus != 1"
+          @click="toCp">
+          风险评测
+        </div>
         <div
           v-else
           @click="toJoin">立即加入</div>
@@ -22,51 +44,75 @@
   </div>
 </template>
 <script>
-// import Cookie from 'js-cookie'
 import Sift from '~/components/business/project-detail/siftDetails/sift-details'
 import Sifts from '~/components/business/project-detail/siftDetails/sift-details-next'
-import { commenParams } from '~/api/config.js'
 import { freeBorrowDetail } from '~/api/project.js'
-console.log('fdfsafsa')
+import CountDown from '~/components/business/count-down/count-down'
 export default {
   // name: 'keep',
   async fetch({ app, params, store }) {
     const desId = encodeURIComponent(params.id)
     // console.log(commenParams.accessKey)
-    const { content } = await freeBorrowDetail(app.$axios, desId, commenParams)
+    const { content } = await freeBorrowDetail(app.$axios, desId)
     store.commit('project/freeDetailData', content)
+    // console.log(this.$refs.countDown.str)
   },
   data() {
     return {
       transitionName: '',
-      conTxt: 'Sift'
+      conTxt: 'Sift',
+      heights: {
+        headerH: 0,
+        footerH: 0
+      },
+      btnName: '立即加入',
+      isShowTime: true
     }
   },
-  // watch: {
-  //   $route(to, from) {
-  //     console.log(to.meta.index)
-  //     // if (to.meta.index > from.meta.index) {
-  //     //   // console.log(to.meta.index)
-  //     //   this.$store.commit('project/setTransition', 'slide-right')
-  //     // } else {
-  //     //   this.$store.commit('project/setTransition', 'slide-left')
-  //     // }
-  //   }
-  // },
   computed: {
-    title() {
-      return this.$store.state.project.freeDetail.name
+    projectInfo() {
+      return {
+        title: this.$store.state.project.freeDetail.name,
+        rate: this.$store.state.project.freeDetail.rate,
+        desId: this.$store.state.project.freeDetail.desId,
+        dateTimes: '2019/2/15 22:00:00' // 接口缺少字段
+      }
     },
-    isLogin() {
-      if (this.$store.state.accessId && this.$store.state.accessKey) {
-        return true
-      } else {
-        return false
+    userInfo() {
+      const end = Date.parse(new Date(this.projectInfo.dateTimes))
+      const now = Date.parse(new Date())
+      const msec = end - now
+      // let CisShowTimeX = msec <= 0 ? false : true
+      return {
+        isLogin: this.$store.state.isLogin,
+        accessId: this.$store.state.accessId,
+        accessKey: this.$store.state.accessKey,
+        isOpen: this.$store.state.openDepository,
+        authStatus: this.$store.state.authStatus,
+        evaluationStatus: this.$store.state.evaluationStatus,
+        CisShowTime: msec <= 0 ? false : true
       }
     }
   },
+  created() {
+    // this.isSS()
+    // console.log(this.userInfo.CisShowTime)
+    // console.log(this.isShowTime)
+  },
+  // mounted() {
+  //   this.isSS()
+  // },
   // created() {},
   methods: {
+    isSS() {
+      const end = Date.parse(new Date(this.userInfo.dateTimes))
+      const now = Date.parse(new Date())
+      const msec = end - now
+      this.userInfo.CisShowTime = msec <= 0 ? false : true
+      // if (msec <= 0) {
+      //   this.userInfo.CisShowTime = false
+      // }
+    },
     cutFn() {
       if (
         this.transitionName === '' ||
@@ -86,15 +132,25 @@ export default {
         name: 'user-login'
       })
     },
+    toCg() {
+      this.$router.push({ path: '/xwDeposit/deposit' })
+    },
+    toCp() {
+      this.$router.push({ path: '/appraisal/indexs' })
+    },
     toJoin() {
       this.$store.commit('project/setTransition', 'turn-on')
-      this.$router.push('/project/investAdd')
+      this.$router.push({
+        name: 'project-index-investAdd',
+        query: { desId: this.projectInfo.desId }
+      })
     }
   },
   // mounted() {},
   components: {
     Sift,
-    Sifts
+    Sifts,
+    CountDown
   }
 }
 </script>
@@ -115,6 +171,13 @@ export default {
   top: 0
   width: 100%
   height: 100%
+  .headers
+    height 0.88rem
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    z-index 99
   .header
     /deep/ header
       background: linear-gradient(to right, #F66F4A , #FC8D26)
@@ -134,6 +197,8 @@ export default {
     left:0
     bottom: 0
     z-index: 999
+    &.over
+      background: $color-gray6
 .slide-bottom-enter-active,.slide-bottom-leave-active,.slide-top-enter-active,.slide-top-leave-active
   will-change: transform
   transition: all 500ms ease

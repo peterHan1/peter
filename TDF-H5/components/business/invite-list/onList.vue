@@ -38,9 +38,6 @@
 <script>
 import { recordList } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
-
-let pageNum = 1
-
 export default {
   data() {
     return {
@@ -72,7 +69,7 @@ export default {
       }
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      recordList(this.$axios, params, commenParams).then(res => {
+      recordList(this.$axios, params).then(res => {
         if (res) {
           this.contentList = res.content.dataRows
         }
@@ -87,8 +84,8 @@ export default {
       }, 1000)
     },
     onPullingUp() {
-      this.page++
       setTimeout(() => {
+        this.page++
         this.getList()
         this.$refs.contentScroll.forceUpdate()
       }, 1000)

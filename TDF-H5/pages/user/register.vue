@@ -1,6 +1,9 @@
 <template>
   <div>
-    <td-header title="注册"/>
+    <td-header 
+      :returnUrl="false"
+      url="/user/login" 
+      title="注册"/>
     <div class="register">
       <div class="input-box">
         <span>图形验证码</span>
@@ -29,10 +32,12 @@
         <span>设置密码</span>
         <input
           v-model.trim="pwd"
-          type="password"
+          :type="type"
           placeholder="设置6-16位字母或数字登录密码"
           @input="inputPwd">
-        <em class="iconfont">&#xe6e6;</em>
+        <em 
+          class="iconfont" 
+          @click="showPwd"><i v-if="showIcon">&#xe6e6;</i><i v-else>&#xe6e7;</i></em>
       </div>
     </div>
     <div class="inviter">
@@ -52,21 +57,15 @@
     </div>
     <div class="btn">
       <button
-        :disabled="!imgCode||!phoneCode||!pwd"
+        :disabled="imgCode&&phoneCode&&pwd.length<6"
         @click="onSub">下一步</button>
     </div>
-    <!-- <div class="ck1">
-      <input
-        id="ag"
-        type="checkbox">
-      <label for="ag"><em/><div>已阅读并同意<router-link to="">《网络借贷禁止性行为说明》</router-link><router-link to="">《网络借贷风险告知书》</router-link>及<router-link to="">《拓道金服用户注册协议》</router-link></div></label>
-    </div> -->
     <div class="clause">
       <i 
         :class="[clauses?'on':'']" 
         class="iconfont" 
         @click="clauseFn">&#xe6ef;</i>
-      <span>已阅读并同意<router-link to="" >《网贷禁止性行为说明》</router-link><router-link to="" >《网络借贷风险告知书》</router-link>及<router-link to="" >《拓道金服用户注册协议》</router-link></span>
+      <span>已阅读并同意<router-link to="/user/banExplain" >《网贷禁止性行为说明》</router-link><router-link to="/user/banDisclosure" >《网络借贷风险告知书》</router-link>及<router-link to="/user/registrPro" >《拓道金服用户注册协议》</router-link></span>
     </div>
   </div>
 </template>
@@ -84,7 +83,7 @@ export default {
   },
   data() {
     return {
-      imgYzm: '/api/AuthImageForApp?phone=' + this.$route.params.phone,
+      imgYzm: '/api/AuthImageForApp?phone=' + this.$route.query.phone,
       disabled: false,
       showInfo: '获取验证码',
       phoneCodeId: '',
@@ -94,7 +93,9 @@ export default {
       referrer: '',
       inviter_phone: false,
       rotate: false,
-      clauses: false
+      clauses: false,
+      type: 'password',
+      showIcon: true
     }
   },
   methods: {
@@ -112,10 +113,13 @@ export default {
     },
     editCaptcha() {
       this.imgYzm = `/api/AuthImageForApp?phone=${
-        this.$route.params.phone
+        this.$route.query.phone
       }&${Math.random()}`
     },
-
+    showPwd(e) {
+      this.type = this.type === 'password' ? 'text' : 'password'
+      this.showIcon = !this.showIcon
+    },
     doCountDown() {
       this.time--
       if (this.time > 0) {
@@ -125,28 +129,35 @@ export default {
       }
     },
     phoneYzm() {
-      getPhoneCode(this.$axios, {
-        phone: this.$route.params.phone,
-        type: 'reg'
-      }).then(res => {
-        if (res.code === 100000) {
-          this.phoneCodeId = res.content.code
-          let time = 60
-          const clock = setInterval(() => {
-            if (time > 0) {
-              this.disabled = true
-              this.showInfo = time < 10 ? `0${time}s` : time
-            } else {
-              clearInterval(clock)
-              this.disabled = false
-              this.showInfo = '获取验证码'
-            }
-            time--
-          }, 1000)
-        } else {
-          this.$Msg(res, 2000)
-        }
-      })
+      if (this.imgCode.length < 4) {
+        this.$Msg('请输入正确的图形验证码', 2000)
+      } else {
+        this.$load.Load()
+        getPhoneCode(this.$axios, {
+          phone: this.$route.query.phone,
+          type: 'reg',
+          imgCode: this.imgCode
+        }).then(res => {
+          this.$load.Close()
+          if (res.code === 100000) {
+            this.phoneCodeId = res.content.code
+            let time = 60
+            const clock = setInterval(() => {
+              if (time > 0) {
+                this.disabled = true
+                this.showInfo = time < 10 ? `0${time}s` : time
+              } else {
+                clearInterval(clock)
+                this.disabled = false
+                this.showInfo = '获取验证码'
+              }
+              time--
+            }, 1000)
+          } else {
+            this.$Msg(res.message, 2000)
+          }
+        })
+      }
     },
     onSub() {
       if (!this.imgCode) {
@@ -172,7 +183,7 @@ export default {
         return
       }
       const params = {
-        phone: this.$route.params.phone,
+        phone: this.$route.query.phone,
         password: md5(this.pwd),
         codeId: this.phoneCodeId.toString(),
         codeNumber: this.phoneCode,
@@ -180,16 +191,16 @@ export default {
         referrer: this.referrer
       }
       vregister(this.$axios, params).then(res => {
-        if (!res) {
-          this.editCaptcha()
-        } else {
+        if (res.code === 100000) {
           Cookie.set('accessId', res.content.accessId)
           Cookie.set('accessKey', res.content.accessKey)
           // 跳注册结果页面
           this.$router.push({
-            name: 'user-registerResult',
-            params: { phone: this.iphone }
+            name: 'user-registerResult'
           })
+        } else {
+          this.editCaptcha()
+          this.$Msg(res.message, 2000)
         }
       })
     },

@@ -1,5 +1,7 @@
 <template>
-  <div class="list">
+  <div
+    v-if="voucherArr.length > 0"
+    class="list">
     <ul>
       <li 
         v-for="(item,index) in voucherArr" 
@@ -7,7 +9,7 @@
         @click="selectFn(index)">
         <div>
           <p> <b>{{ item.value }}</b> 元</p>
-          <p>有效期：{{ item.time }}</p>
+          <p>{{ item.time }}</p>
         </div>
         <span 
           v-if="voucherIndex == index" 
@@ -18,11 +20,18 @@
       </li>
     </ul>
   </div>
+  <div 
+    v-else 
+    class="data-status">
+    <data-status
+      status="null"
+      statusTxt="暂无抵用券"/>
+  </div>
 </template>
 
 <script>
-import { getVoucherList } from '~/api/myCenter.js'
-
+import { commenParams } from '~/api/config.js'
+import { investCoupon } from '~/api/home.js'
 export default {
   props: {
     disId: {
@@ -32,79 +41,87 @@ export default {
     disType: {
       type: String,
       default: ''
+    },
+    money: {
+      type: String,
+      default: ''
+    },
+    period: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       voucherIndex: null,
-      // voucherArr: [
-      //   {
-      //     value: '100',
-      //     txt: '100元抵用券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '1'
-      //   },
-      //   {
-      //     value: '200',
-      //     txt: '200元抵用券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '2'
-      //   },
-      //   {
-      //     value: '300',
-      //     txt: '300元抵用券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '3'
-      //   },
-      //   {
-      //     value: '400',
-      //     txt: '400元抵用券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '4'
-      //   },
-      //   {
-      //     value: '500',
-      //     txt: '500元抵用券',
-      //     time: '2016.6.6-2016.6.12',
-      //     id: '5'
-      //   }
-      // ],
       voucherArr: [],
-      voucherTxt: null,
+      intereNumber: null,
       voucherId: null
     }
   },
+  computed: {
+    parmas() {
+      return {
+        money: this.money,
+        // money: '100000',
+        type: 'pt',
+        period: this.period
+      }
+    },
+    isLogin() {
+      return this.$store.state.isLogin
+    }
+  },
   mounted() {
-    getVoucherList(this.$axios, { item: 50, page: 1 }).then(res => {
-      this.voucherArr = res.content.dataRows.map(o => {
-        return {
-          value: o.amount,
-          txt: o.amount + '元抵用券',
-          time: o.invalidDate,
-          id: ''
+    if (this.isLogin) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      investCoupon(this.$axios).then(res => {
+        console.log(res)
+        let arrData = []
+        for (let i = 0; i < res.content.dataRows.length; i++) {
+          if (res.content.dataRows[i].type === 'dk') {
+            arrData.push(res.content.dataRows[i])
+          }
+        }
+        this.voucherArr = arrData.map(o => {
+          return {
+            value: o.amount,
+            txt: o.amount + '元抵用券',
+            time: o.invalidDate,
+            voucherId: o.voucherId,
+            id: ''
+          }
+        })
+        for (let i = 0; i < this.voucherArr.length; i++) {
+          this.voucherArr[i].id = String(i + 1)
+        }
+        let vm = this
+        if (vm.disType === 'Voucher') {
+          const index = vm.voucherArr.findIndex(
+            voucher => voucher.id === vm.disId
+          )
+          vm.voucherIndex = index
+          vm.intereNumber = vm.voucherArr[index].value
+          vm.voucherId = vm.voucherArr[index].voucherId
+          vm.id = vm.voucherArr[index].id
         }
       })
-      for (let i = 0; i < this.voucherArr.length; i++) {
-        this.voucherArr[i].id = String(i + 1)
-      }
-      let vm = this
-      if (vm.disType === 'Voucher') {
-        const index = vm.voucherArr.findIndex(
-          voucher => voucher.id === vm.disId
-        )
-        vm.voucherIndex = index
-        vm.voucherTxt = vm.voucherArr[index].txt
-        vm.voucherId = vm.voucherArr[index].id
-      }
-    })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     selectFn(i) {
       let vm = this
-      vm.voucherTxt = vm.voucherArr[i].txt
-      vm.voucherId = vm.voucherArr[i].id
+      vm.intereNumber = vm.voucherArr[i].value
+      vm.voucherId = vm.voucherArr[i].voucherId
+      vm.id = vm.voucherArr[i].id
       vm.voucherIndex = i
-      vm.$emit('listFn', vm.voucherTxt, vm.voucherId, 'Voucher')
+      vm.$emit('listFn', vm.intereNumber, vm.id, vm.voucherId, 'dk')
     }
   },
   components: {}
@@ -148,4 +165,6 @@ export default {
         color: $color-primary
     li:last-child
       border: none
+.data-status
+  margin-top 200px
 </style>

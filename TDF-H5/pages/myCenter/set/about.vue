@@ -38,9 +38,7 @@ export default {
   mounted() {},
   methods: {
     downApp() {
-      this.$App(
-        '<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>'
-      )
+      this.$App('<p>确定下载《拓道金服》手机端吗？</p>')
     }
   },
   components: {}

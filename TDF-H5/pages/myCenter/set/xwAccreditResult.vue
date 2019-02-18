@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false" 
       title="业务授权" 
-      url="myCenter-set-xwAccredit"/>
+      url="/myCenter/set/xwAccredit"/>
     <result 
       v-if="status === 1"
       status="ok" 
@@ -44,13 +44,20 @@ export default {
     }
   },
   mounted() {
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    authStatus(this.$axios, commenParams).then(res => {
-      if (res) {
-        this.status = res.content.status
-      }
-    })
+    if (this.$store.state.isLogin) {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      authStatus(this.$axios).then(res => {
+        if (res) {
+          this.status = res.content.status
+        }
+      })
+    } else {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
   },
   methods: {
     returnAccredit() {

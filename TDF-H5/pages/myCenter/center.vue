@@ -3,9 +3,17 @@
     <div class="my_box">
       <div class="myCenter_top">
         <div class="my_nav">
-          <div><span/><span :class="'vip' + this.$store.state.myCenter.assets.level"/></div>
+          <div>
+            <router-link 
+              v-if="this.$store.state.isLogin" 
+              to="/myCenter/set/ucSet"/>
+            <router-link 
+              v-else
+              to="/user/login"/>
+            <span :class="'vip' + this.$store.state.myCenter.assets.level"/>
+          </div>
         </div>
-        <div v-if="login">
+        <div v-if="!this.$store.state.isLogin">
           <router-link 
             to="/user/login" 
             class="login">登录/注册</router-link>
@@ -44,7 +52,7 @@
       </div>
       <div class="myCenter_money">
         <div class="money_bot">
-          <div v-if="login">
+          <div v-if="!this.$store.state.isLogin">
             <p>可用余额(元)</p>
             <p> - </p>
           </div>
@@ -53,11 +61,11 @@
             <p v-if="moneyShow">{{ this.$store.state.myCenter.assets.cashBalance }}</p>
             <p v-else>****</p>
           </div>
-          <div v-if="login">
+          <div v-if="!this.$store.state.isLogin">
             <router-link to="/user/login" >提现</router-link>
             <router-link to="/user/login" >充值 </router-link>
           </div>
-          <div v-else-if="deposit === 0">
+          <div v-else-if="this.$store.state.openDepository !== 1">
             <router-link to="/xwDeposit/deposit" >提现</router-link>
             <router-link to="/xwDeposit/deposit" >充值 </router-link>
           </div>
@@ -72,7 +80,7 @@
         <ul>
           <li>
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login">
               <div class="loanBg"/>
               <p>出借记录</p>
@@ -86,7 +94,7 @@
           </li>
           <li>
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login">
               <div class="bondBg"/>
               <p>债权转让</p>
@@ -104,7 +112,7 @@
           </li>
           <li>
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login">
               <div class="fundBg"/>
               <p>资金流水</p>
@@ -122,7 +130,7 @@
         <ul>
           <li class="coupon_bg">
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login" >
               <span class="coupon">优惠券</span>
               <i class="iconfont">&#xe6f2;</i>
@@ -136,7 +144,7 @@
           </li>
           <li class="invite_bg">
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login" >
               <span>邀请记录</span>
               <i class="iconfont">&#xe6f2;</i>
@@ -150,7 +158,7 @@
           </li>
           <li class="set_bg">
             <router-link 
-              v-if="login" 
+              v-if="!this.$store.state.isLogin" 
               to="/user/login">
               <span>账户设置</span>
               <i class="iconfont">&#xe6f2;</i>
@@ -172,26 +180,16 @@
 
 <script>
 export default {
+  async fetch({ app, store }) {
+    await app.store.dispatch('myCenter/getBankAssets')
+  },
   data() {
     return {
       moneyShow: true,
       login: false,
       id: '',
-      content: '',
-      deposit: ''
+      content: ''
     }
-  },
-  async beforeCreate() {
-    await this.$store.dispatch('myCenter/getBankAssets')
-    await this.$store.dispatch('myCenter/getDetailStatus')
-    this.$nextTick(() => {
-      this.deposit = this.$store.state.myCenter.authStatus
-      if (this.$store.state.accessId && this.$store.state.accessKey) {
-        this.login = false
-      } else {
-        this.login = true
-      }
-    })
   },
   mounted() {
     this.$store.commit('srcPath', this.$route.path)
@@ -223,7 +221,7 @@ export default {
         line-height: 0
         float: left
         position: relative
-        span:nth-child(1)
+        a
           display: inline-block
           width: 64px
           height: 64px
@@ -233,7 +231,7 @@ export default {
           left: 0
           top: 50%
           margin-top: -32px
-        span:nth-child(2)
+        span
           display: inline-block
           width: 140px
           height: 40px
@@ -294,7 +292,7 @@ export default {
               line-height: 33px
               letter-spacing: 1px
             p:nth-child(2)
-              font-size: $fontsize-large-xxxxxxxx
+              font-size: 64px
               color: $color-white
               line-height: 78px
               height: 78px

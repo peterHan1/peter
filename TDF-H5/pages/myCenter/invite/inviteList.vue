@@ -1,9 +1,7 @@
 <template>
   <div class="invite">
     <td-header 
-      :returnUrl="false"
-      title="邀请人记录" 
-      url="myCenter-invite-inviteRecord"/>
+      title="邀请人记录" />
     <div class="listHeader">
       <span>直接被邀请人</span>
       <span>直接返现奖励(元)</span>
@@ -58,7 +56,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
+    if (this.$store.state.isLogin) {
       this.getList()
     } else {
       this.$store.commit('srcPath', this.$route.path)
@@ -75,7 +73,7 @@ export default {
       }
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      inviteFriendList(this.$axios, params, commenParams).then(res => {
+      inviteFriendList(this.$axios, params).then(res => {
         if (res) {
           let list = res.content.dataRows
           for (let i in list) {
@@ -93,8 +91,8 @@ export default {
       }, 1000)
     },
     onPullingUp() {
-      this.page++
       setTimeout(() => {
+        this.page++
         this.getList()
         this.$refs.contentScroll.forceUpdate()
       }, 1000)

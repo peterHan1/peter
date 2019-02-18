@@ -1,6 +1,14 @@
 <template>
-  <div class="scatterDetails">
+  <div
+    class="scatterDetails"
+    @touchend="touchEnd">
     <div class="detailsBg"/>
+    <div
+      ref="headers"
+      class="headers"/>
+    <div
+      ref="footers"
+      class="footers"/>
     <cube-scroll
       :scrollEvents="['scroll','scroll-end']"
       :options="options"
@@ -8,16 +16,18 @@
       @scroll-end="onScrollEnd"
       @pulling-up="onPullingUp"
     >
-      <div class="details">
+      <div
+        ref="cubeScrolls"
+        class="details">
         <div class="money">
           <div class="flex message">
             <div class="flex-1">
               <p>约定利率</p>
-              <p><span>{{ data.apr }}</span>%<b v-show="data.platformApr!=0">+{{ data.platformApr }}%</b></p>
+              <p><span>{{ data.borrowApr }}</span>%<b v-show="data.awardScale!=0">+{{ data.awardScale }}%</b></p>
             </div>
             <div class="flex-1">
               <p>出借期限</p>
-              <p><span>{{ data.period }}</span>个月</p>
+              <p><span>{{ data.borrowPeriod }}</span>个月</p>
             </div>
           </div>
           <div class="progress">
@@ -31,49 +41,24 @@
           <div class="flex bottom">
             <div class="flex-1">
               <p>项目总额</p>
-              <p>{{ data.amount }}</p>
+              <p>{{ data.account }}</p>
             </div>
             <div class="flex-1">
               <p>剩余可投</p>
-              <p>{{ data.surplus }}</p>
+              <p>{{ data.borrowAccountWait }}</p>
             </div>
           </div>
         </div>
         <div class="content">
           <ul class="explain">
-            <li><span>起投金额</span><span>{{ data.minTenderFormat }}元</span></li>
-            <li><span>还款方式</span><span>{{ data.repaymentType }}</span></li>
-            <li><span>计息方式</span><span>{{ data.interestAate }}</span></li>
-            <li><span>募集期限</span><span>以底层标的为准</span></li>
+            <li><span>起投金额</span><span>{{ data.tenderAccountMin }}元</span></li>
+            <li><span>还款方式</span><span>{{ data.borrowStyle }}</span></li>
+            <li><span>计息方式</span><span>{{ data.jxType }}</span></li>
+            <li><span>募集期限</span><span>{{ data.raiseDay }}</span></li>
           </ul>
           <div class="count">
             <div class="top"><span/>&nbsp;收益计算器</div>
-            <v-count @Index="Index"/>
-            <!-- <div class="con">
-              <div class="title">
-                <p>出借&nbsp;(元)</p>
-                <p>{{ corpus }}</p>
-              </div>
-              <v-count @Index="Index"/>
-            </div>
-            <div class="bottom">
-              <p class="title">预期收益 <span>{{ income }}</span>（元）</p>
-              <ul>
-                <li
-                  v-for="item in raiseList"
-                  :key="item.raise"
-                  :class="item.raise === raise?'on':''"
-                  @click="select(item.raise)">
-                  <i
-                    v-if="item.raise === raise"
-                    class="iconfont">&#xe61e;</i>
-                  <i
-                    v-else
-                    class="iconfont">&#xe622;</i>
-                  {{ item.txt }}
-                </li>
-              </ul>
-            </div> -->
+            <v-count :types="types"/>
           </div>
         </div>
         <div class="down">{{ pullTxt }}</div>
@@ -88,29 +73,6 @@ export default {
       raise: 0,
       progress: 0,
       iii: 0,
-      time: '',
-      showIndex: 0,
-      corpus: 0,
-      income: 0,
-      type: 0,
-      raiseList: [
-        {
-          raise: 0,
-          txt: '无加息'
-        },
-        {
-          raise: 1,
-          txt: '1%加息'
-        },
-        {
-          raise: 2,
-          txt: '2%加息'
-        },
-        {
-          raise: 3,
-          txt: '3%加息'
-        }
-      ],
       pullTxt: '向上滑动，查看更多详情',
       options: {
         pullUpLoad: {
@@ -119,68 +81,70 @@ export default {
         closePullUp: false
       },
       pullY: 0,
-      pullFlag: false
+      bottomflg: false,
+      bottomDis: 0
     }
   },
   computed: {
     data() {
-      return this.$store.state.project.freeDetail
+      return this.$store.state.project.scatterDetail
+    },
+    types() {
+      return {
+        type: this.$store.state.project.scatterDetail.repaymentType,
+        interest: this.$store.state.project.scatterDetail.apr,
+        time: this.$store.state.project.scatterDetail.period
+      }
     }
   },
   created() {
-    // this.loadProgress()
+    this.loadProgress()
   },
   mounted() {
-    this.loadProgress()
+    let bodyH =
+      document.documentElement.clientHeight ||
+      document.document.body.clientHeight
+    this.bottomDis =
+      this.$refs.cubeScrolls.clientHeight -
+      (bodyH -
+        this.$refs.headers.clientHeight -
+        this.$refs.footers.clientHeight)
+    // this.loadProgress()
   },
   methods: {
     onScroll(pos) {
-      if (pos.y < -60) {
+      this.pullY = pos.y
+      if (pos.y < -50) {
         this.pullTxt = '松手，查看项目详情'
-        this.pullFlag = true
       } else {
         this.pullTxt = '向上滑动，查看更多详情'
-        this.pullFlag = false
+      }
+    },
+    touchEnd() {
+      if (this.pullY < -(this.bottomDis + 25) && this.bottomflg) {
+        this.$emit('pullFn')
       }
     },
     onPullingUp() {
-      this.$emit('pullFn')
+      console.log('上拉了。。。')
     },
     onScrollEnd(pos) {
-      // this.$emit('pullFn')
-      if (this.pullFlag) {
-        this.$emit('pullFn')
+      if (pos.y > -this.bottomDis) {
+        this.bottomflg = false
+      } else {
+        this.bottomflg = true
       }
     },
     select(txt) {
       this.raise = txt
     },
-    loadBottom() {
-      this.$router.push('/project/details/scatter-details/scatter-details')
-    },
-    // beforeAppear(el) {
-    //   el.style.width = '0%'
+    // loadBottom() {
+    //   this.$router.push('/project/details/scatter-details/scatter-details')
     // },
-    // appear(el) {
-    //   let that = this
-    //   // 动画开始之前要触发重排重绘，触发浏览器重排和重绘
-    //   let elOH = el.offsetHeight
-    //   el.style.width = '60.85%'
-    //   let outWidth =
-    //     document.documentElement.clientWidth || document.body.clientWidth
-    //   this.time = setInterval(() => {
-    //     that.progress = ((el.clientWidth / outWidth) * 100).toFixed(2)
-    //   }, 1)
-    // },
-    // afterAppear(el) {
-    //   if (this.progress !== 60.85) {
-    //     this.progress = 60.85
-    //     clearInterval(this.time)
-    //   }
-    // },
+
     loadProgress(el) {
       let i = 0
-      let data = this.data.rate
+      let data = this.data.borrowAccountScale
       setInterval(() => {
         i++
         if (i > data) {
@@ -188,11 +152,6 @@ export default {
         }
         this.iii = i
       }, 1)
-    },
-    Index(value) {
-      this.showIndex = value
-      this.corpus = value * 100
-      this.income = value * 100 * this.type
     }
   }
 }
@@ -230,7 +189,7 @@ export default {
             padding-top: 10px
             span
               font-family: DIN Medium
-              font-size: $fontsize-large-xxxxxxxxxx
+              font-size: 82px
       .bottom
         width: 100%
         // height: 120px
@@ -269,7 +228,7 @@ export default {
       .explain
         background: $color-white
         padding: 0 30px
-        margin-bottom: 20px
+        border-bottom: 20px solid $color-background
         li
           display: flex
           justify-content: space-between
@@ -338,7 +297,16 @@ export default {
       color: #ccc
       text-align: center
       line-height: 90px
-      padding-bottom: 40px
   /deep/ .cube-pullup-wrapper
     display: none
+.headers,.footers
+  height 0.88rem
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  z-index -1
+  background none
+.footers
+  height 1rem
 </style>

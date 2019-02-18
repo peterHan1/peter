@@ -47,9 +47,17 @@ export default {
     }
   },
   mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
+  mounted() {
     commenParams.accessId = this.$store.state.accessId
     commenParams.accessKey = this.$store.state.accessKey
-    getEvaluationInfo(this.$axios, commenParams).then(res => {
+    getEvaluationInfo(this.$axios).then(res => {
       if (res) {
         this.txt = res.content.evaluationScoreMsg
         this.time = res.content.evaluationTime
@@ -106,7 +114,7 @@ export default {
       color: $color-gray1
       border-bottom: 0.01rem solid $color-gray5
       .iconfont
-        font-size: $fontsize-large-xxxxxxxx
+        font-size: 64px
         position: absolute
         left: 15px
       b
@@ -143,7 +151,7 @@ export default {
       width: 415px
       margin: 50px auto 0
       color: $color-gray1
-      font-size: $fontsize-large-xxxxxxxx
+      font-size: 64px
       text-align: center
       background: url(../../assets/images/my-center/result_com.png) no-repeat
       background-size: 100% 100%

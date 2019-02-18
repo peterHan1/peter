@@ -13,10 +13,10 @@
         <li
           v-for="(item,index) in items"
           :key="index">
-          <div>{{ item.phone }}&nbsp;<span :class="[index === 0?'most':'', index === 1?'less':'', index === 2?'first':'']"/></div>
+          <div>{{ item.username }}</div>
           <div>
-            <p>{{ item.money }}</p>
-            <p>{{ item.time }}</p>
+            <p>{{ item.accountTender }}</p>
+            <p>{{ item.addtime }}</p>
           </div>
         </li>
       </ul>
@@ -36,19 +36,15 @@ export default {
         pullUpLoad: true
       },
       pullTxt: '下拉释放，返回标的信息',
-      pullY: '',
-      items: [
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' },
-        { phone: '188*****3626', money: '12340.00', time: '2018-06-12 09:32' }
-      ]
+      pullY: ''
+    }
+  },
+  created() {
+    console.log(this.items)
+  },
+  computed: {
+    items() {
+      return this.$store.state.project.scatterDetail.dataRows
     }
   },
   methods: {
@@ -122,12 +118,12 @@ export default {
         width: 60px
         height: 30px
         zoom: 0.5
-      .most
-        background: url(/assets/images/invest/most.png) no-repeat center
-      .first
-        background: url(/assets/images/invest/first.png) no-repeat
-      .less
-        background: url(/assets/images/invest/less.png) no-repeat
+      // .most
+      //   background: url(~/assets/images/invest/most.png) no-repeat center
+      // .first
+      //   background: url(~/assets/images/invest/first.png) no-repeat
+      // .less
+      //   background: url(~/assets/images/invest/less.png) no-repeat
 /deep/ .cube-pullup-wrapper
   display: none
 /deep/ .cube-pulldown-wrapper

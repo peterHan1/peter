@@ -12,6 +12,7 @@ import Count from './business/count/index'
 import Result from './business/result/index'
 import DataStatus from './business/data-status/index'
 import load from './src/load/index'
+import Carousel from './src/carousel/index'
 
 const TdTab = TdTabBar.Tab
 const SlideItem = Slide.item
@@ -28,7 +29,8 @@ const components = [
   Layer,
   Count,
   Result,
-  DataStatus
+  DataStatus,
+  Carousel
 ]
 const install = function(Vue) {
   components.map(component => Vue.component(component.name, component))

@@ -3,23 +3,23 @@
     <td-header 
       :returnUrl="false"
       title="业务授权" 
-      url="myCenter-set-ucSet"/>
+      url="/myCenter/set/ucSet"/>
     <ul>
       <li>
         <span>业务授权</span>
-        <span v-if="authStatus === 1">已授权</span>
-        <span v-if="authStatus === 2">已过期 <b @click="appauth">重新授权</b></span>
+        <span v-if="this.$store.state.myCenter.auths === 1">已授权</span>
+        <span v-if="this.$store.state.myCenter.auths === 2">已过期 <b @click="appauth">重新授权</b></span>
       </li>
       <li>
         <span>授权金额 <i 
           class="iconfont" 
           @click="openLayer()">&#xe6f7;</i></span>
-        <span>{{ authAmount }}元</span>
+        <span>{{ this.$store.state.myCenter.authAmount }}元</span>
       </li>
       <li>
         <span>授权期限</span>
-        <span v-if="authStatus === 1">{{ authTime }}到期</span>
-        <span v-if="authStatus === 2">已于{{ authTime }}到期</span>
+        <span v-if="this.$store.state.myCenter.auths === 1">{{ this.$store.state.myCenter.authTime }}到期</span>
+        <span v-if="this.$store.state.myCenter.auths === 2">已于{{ this.$store.state.myCenter.authTime }}到期</span>
       </li>
     </ul>
     <Layer 
@@ -34,26 +34,21 @@ import { information, hanAppauth } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const { content } = await information(app.$axios)
+      store.commit('myCenter/setAuths', content)
+    }
+  },
   data() {
     return {
-      layerShow: false,
-      authAmount: '',
-      authTime: '',
-      authStatus: ''
+      layerShow: false
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      information(this.$axios, commenParams).then(res => {
-        if (res) {
-          this.authAmount = res.content.authAmount
-          this.authTime = res.content.authTime
-          this.authStatus = res.content.authStatus
-        }
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -62,10 +57,10 @@ export default {
   },
   methods: {
     appauth() {
-      let url = this.returnPath + 'myCenter/set/xwAccreditResult'
+      let url = this.$store.state.returnPath + 'myCenter/set/xwAccreditResult'
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      hanAppauth(this.$axios, url, commenParams).then(res => {
+      hanAppauth(this.$axios, url).then(res => {
         if (res) {
           let nonce = res.content.nonce
           this.$router.push({

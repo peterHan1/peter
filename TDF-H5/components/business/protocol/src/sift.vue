@@ -5,12 +5,12 @@
       <h1>授权委托书</h1>
     </div>
     <div>
-      <p>省心投编号：<span class="num"/></p>
+      <p>省心投编号：<span class="num">{{ contentTxt.dfb_borrow_code }}</span></p>
     </div>
     <div>
-      <p>委托人：</p>
-      <p>身份证号：</p>
-      <p>联系方式：</p>
+      <p>委托人：{{ contentTxt.ui_real_name }}</p>
+      <p>身份证号：{{ contentTxt.ar_card_id }}</p>
+      <p>联系方式：{{ contentTxt.ui_phone }}</p>
     </div>
     <div class="td_stamp">
       <b class="stamp"/>
@@ -26,12 +26,12 @@
     <div>
       <h3>一、出借省心投</h3>
       <p>1.出借人自愿加入“省心投”，并不可撤销地委托及授权“拓道金服”依其专业技术和判断，将其加入“省心投”部分的资金在匹配标的成功后自动投向“拓道金服”网络借贷平台上的标的。</p>
-      <p>2.加入及授权出借金额：共计人民币<span class="money"/>元 &nbsp;（大写:<span class="moneys"/>）。</p>
+      <p>2.加入及授权出借金额：共计人民币<span class="money">{{ contentTxt.dfb_join_money }}</span>元 &nbsp;（大写:<span class="moneys">{{ contentTxt.dfb_join_money_word }}</span>）。</p>
       <p>3.本人知晓并确认通过该工具预计匹配到的标的期限为 <span 
         id="fb_period" 
-        class="pre"/>月，同类型项目历史参考约定利率为<span 
+        class="pre">{{ contentTxt.dfb_borrow_period }}</span>月，同类型项目历史参考约定利率为<span 
           id="fb_apr" 
-          class="pre"/>%，出借标的类型为抵押或质押标（以最终匹配到的标的为准）。</p>
+          class="pre">{{ contentTxt.dfb_borrow_apr }}</span>%，出借标的类型为抵押或质押标（以最终匹配到的标的为准）。</p>
       <p>4.省心投的募集期限是1-15个工作日，逾期未匹配成功的，本计划自动终止。</p>
     </div>
     <div>
@@ -55,11 +55,23 @@
   </div>
 </template>
 <script>
+import { freeBorrowAuthorization } from '~/api/myCenter.js'
+import { commenParams } from '~/api/config.js'
 export default {
   data() {
-    return {}
+    return {
+      contentTxt: ''
+    }
   },
-  mounted() {},
+  mounted() {
+    let freeBorrowIdS = this.$route.query.freeBorrowId
+    let jionIdS = this.$route.query.jionId
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
+    freeBorrowAuthorization(this.$axios, freeBorrowIdS, jionIdS).then(res => {
+      this.contentTxt = res.content
+    })
+  },
   methods: {},
   components: {}
 }
@@ -109,6 +121,6 @@ export default {
       top: -160px
       width: 230px
       height: 230px
-      background: url(../../../assets/images/invest-list/gsgz.png) no-repeat
+      background: url(../../../../assets/images/invest-list/gsgz.png) no-repeat
       background-size: 100% 100%
 </style>

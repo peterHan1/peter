@@ -12,7 +12,8 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'
+        content:
+          'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'
       },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
@@ -32,7 +33,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~/plugins/tdui', '~/plugins/axios', '~/plugins/Global'],
+  plugins: ['~/plugins/tdui', '~/plugins/axios', '~/plugins/hello'],
 
   /*
   ** Nuxt.js modules
@@ -57,6 +58,7 @@ module.exports = {
     prefix: '/api/',
     proxy: true
   },
+  // http://72.127.2.140:9090
   proxy: {
     '/api/': {
       target: 'http://72.127.2.140:9090',

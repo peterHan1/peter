@@ -10,7 +10,7 @@
         v-for="(item, index) in data"
         v-if="item.rate!=100"
         :key="index"
-        @click="selected(desId)">
+        @click="selected(item.desId)">
         <div>
           <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
           <dl class="pro-con">
@@ -38,7 +38,7 @@
         v-for="(item, index) in data"
         v-if="item.rate==100"
         :key="index"
-        @click="selected(desId)">
+        @click="selected(item.desId)">
         <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
         <dl class="pro-con">
           <dd>{{ item.apr }}<i>%</i><i v-if="item.platformApr!=0">+{{ item.platformApr }}%</i></dd>
@@ -56,7 +56,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-// import { scatterList } from '~/model/project-api.js'
+import { scatterList } from '~/api/project.js'
 import Tags from '~/components/business/tags/tags'
 let pageNum = 1
 export default {
@@ -97,35 +97,35 @@ export default {
       })
     },
     onPullingDown() {
-      // console.log('下拉')
-      // setTimeout(async () => {
-      //   pageNum = 1
-      //   const params = { item: 10, page: 1 }
-      //   let { content } = await scatterList(this.$axios, params)
-      //   this.$store.commit('project/setScatterNull')
-      //   this.$store.commit('project/scatterHandleData', content)
-      // }, 1000)
+      console.log('下拉')
+      setTimeout(async () => {
+        pageNum = 1
+        const params = { item: 10, page: 1 }
+        let { content } = await scatterList(this.$axios, params)
+        this.$store.commit('project/setScatterNull')
+        this.$store.commit('project/scatterHandleData', content)
+      }, 1000)
       // this.$refs.contentScroll0.forceUpdate()
     },
     onPullingUp() {
-      // pageNum++
-      // console.log(pageNum + 'xxxxxxx')
-      // console.log(this.pages)
-      // console.log('\\\\\\\\\\\\')
-      // // // 更新数据
-      // setTimeout(async () => {
-      //   if (pageNum <= this.pages) {
-      //     // 如果有新数据
-      //     const { content } = await scatterList(this.$axios, {
-      //       page: pageNum,
-      //       item: this.item
-      //     })
-      //     this.$store.commit('project/scatterHandleData', content)
-      //   } else {
-      //     // 如果没有新数据
-      //     this.$refs.contentScroll0.forceUpdate()
-      //   }
-      // }, 1000)
+      pageNum++
+      console.log(pageNum + 'xxxxxxx')
+      console.log(this.pages)
+      console.log('\\\\\\\\\\\\')
+      // // 更新数据
+      setTimeout(async () => {
+        if (pageNum <= this.pages) {
+          // 如果有新数据
+          const { content } = await scatterList(this.$axios, {
+            page: pageNum,
+            item: this.item
+          })
+          this.$store.commit('project/scatterHandleData', content)
+        } else {
+          // 如果没有新数据
+          this.$refs.contentScroll0.forceUpdate()
+        }
+      }, 1000)
     }
   },
   components: {

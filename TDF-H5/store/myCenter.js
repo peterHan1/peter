@@ -3,6 +3,7 @@ import { commenParams } from '../api/config'
 
 export const state = () => ({
   assets: '',
+  loginBlooe: true,
   //银行名称
   bankName: '',
   //银行卡后四位
@@ -19,12 +20,24 @@ export const state = () => ({
   userNo: '',
   //推介码
   referrer: '',
-  //开通存管状态
-  openDepository: '',
-  //授权状态 1:已授权,2:已过期 ,0:表明未开户
-  authStatus: '',
-  // 评测状态 1.有效 -1.未测评 0.测评过期 3.其他
-  evaluationStatus: ''
+  // 会员等级字段
+  authAmount: '',
+  authTime: '',
+  auths: '',
+  vipContent: '',
+  inviteContent: '',
+  cashContent: '',
+  rechargeContent: '',
+  moneyRecord: [],
+  rechargeRecord: [],
+  cashRecord: [],
+  scatterDetails: '',
+  siftDetails: '',
+  tenderList: [],
+  scatterOn: [],
+  scatterYet: [],
+  siftOn: [],
+  siftYet: []
 })
 export const mutations = {
   setAssets(state, value) {
@@ -40,12 +53,103 @@ export const mutations = {
     state.userNo = value.userNo
     state.referrer = value.referrer
   },
-  setDetails(state, value) {
-    state.authStatus = value.authStatus
-    state.evaluationStatus = value.evaluationStatus
+  setLogin(state, value) {
+    state.loginBlooe = value
   },
-  setOpenDepository(state, value) {
-    state.openDepository = value.openDepository
+  setAuths(state, value) {
+    state.authAmount = value.authAmount
+    state.authTime = value.authTime
+    state.auths = value.authStatus
+  },
+  setVip(state, value) {
+    state.vipContent = value
+  },
+  setInvite(state, value) {
+    state.inviteContent = value
+  },
+  setCash(state, value) {
+    state.cashContent = value
+  },
+  setRecharge(state, value) {
+    state.rechargeContent = value
+  },
+  // 资金记录
+  setMoneyRecord(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.moneyRecord.push(dataRows[i])
+    }
+  },
+  setMoneyRecordNull(state) {
+    state.moneyRecord = []
+  },
+  // 充值记录
+  setRegRecord(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.rechargeRecord.push(dataRows[i])
+    }
+  },
+  setRegRecordNull(state) {
+    state.rechargeRecord = []
+  },
+  // 提现记录
+  setCashRecord(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.cashRecord.push(dataRows[i])
+    }
+  },
+  setCashRecordNull(state) {
+    state.cashRecord = []
+  },
+  // 散标出借详情
+  setScatterDetails(state, date) {
+    state.scatterDetails = date
+  },
+  // 省心投出借详情
+  setSiftDetails(state, date) {
+    state.siftDetails = date
+  },
+  // 债权明细
+  setTenderList(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.tenderList.push(dataRows[i])
+    }
+  },
+  setTenderListNull(state) {
+    state.tenderList = []
+  },
+  // 出借记录 散标
+  setScatterOn(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.scatterOn.push(dataRows[i])
+    }
+  },
+  setScatterOnNull(state) {
+    state.scatterOn = []
+  },
+  setScatterYet(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.scatterYet.push(dataRows[i])
+    }
+  },
+  setScatterYetNull(state) {
+    state.scatterYet = []
+  },
+  // 出借记录 省心投
+  setSiftOn(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.siftOn.push(dataRows[i])
+    }
+  },
+  setSiftOnNull(state) {
+    state.siftOn = []
+  },
+  setSiftYet(state, dataRows) {
+    for (let i = 0; i < dataRows.length; i++) {
+      state.siftYet.push(dataRows[i])
+    }
+  },
+  setSiftYetNull(state) {
+    state.siftYet = []
   }
 }
 export const actions = {
@@ -56,15 +160,9 @@ export const actions = {
     let assets = await myBankAssets(this.$axios, commenParams)
     if (assets.code === 100000) {
       commit('setAssets', assets.content)
-    }
-  },
-  //评测状态
-  async getDetailStatus({ commit }) {
-    commenParams.accessId = this.state.accessId
-    commenParams.accessKey = this.state.accessKey
-    let assets = await detailStatus(this.$axios, commenParams)
-    if (assets.code === 100000) {
-      commit('setDetails', assets.content)
+      commit('setLogin', false)
+    } else {
+      commit('setLogin', true)
     }
   },
   async getUser({ commit }) {

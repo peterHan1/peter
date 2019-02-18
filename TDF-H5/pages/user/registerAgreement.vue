@@ -143,7 +143,7 @@ export default {
     returnRegister() {
       this.$router.push({
         name: 'user-register',
-        params: { phone: this.$route.params.phone }
+        query: { phone: this.$route.query.phone }
       })
     }
   }

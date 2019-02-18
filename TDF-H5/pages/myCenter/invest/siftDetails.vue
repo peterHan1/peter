@@ -3,7 +3,7 @@
     <td-header 
       :returnUrl="false"
       title="出借详情" 
-      url="myCenter-invest-myInvest"/>
+      url="/myCenter/invest/myInvest"/>
     <div class="investsTop">
       <span>{{ content.name }}</span>
       <b v-if="content.status === 1">额度已满</b>
@@ -44,7 +44,8 @@
       </li>
       <li>
         <span>省心投授权委托书</span>
-        <router-link to="" >点击查看</router-link>
+        <router-link :to="{path:'/myCenter/invest/siftProtocol',query: {freeBorrowId: content.desId,jionId: content.joinId}}">点击查看</router-link>
+
       </li>
       <li>
         <span>债权明细</span>
@@ -94,7 +95,7 @@
       </div>	
     </div>
     <router-link 
-      to="" 
+      :to="{path:'/project/free-details/'+content.desId}" 
       class="linkA">查看原项目</router-link>
   </div>
 </template>
@@ -104,27 +105,29 @@ import { siftTenderDetail } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      let tenderId = route.query.tenderId
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const contentTxt = await siftTenderDetail(app.$axios, tenderId)
+      app.store.commit('myCenter/setSiftDetails', contentTxt.content)
+    } else {
+      app.router.push({
+        name: 'user-login'
+      })
+    }
+  },
   data() {
     return {
       tenderId: '',
       borrowNid: '',
-      content: '',
-      list: ''
+      content: this.$store.state.myCenter.siftDetails.detail,
+      list: this.$store.state.myCenter.siftDetails.dataRows
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      this.tenderId = this.$route.query.tenderId
-      const params = {
-        tenderId: this.tenderId
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      siftTenderDetail(this.$axios, this.tenderId, commenParams).then(res => {
-        this.content = res.content.detail
-        this.list = res.content.dataRows
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'

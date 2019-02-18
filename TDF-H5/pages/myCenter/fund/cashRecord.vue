@@ -1,6 +1,9 @@
 <template>
   <div class="recode">
-    <td-header title="提现记录"/>
+    <td-header 
+      :returnUrl="false" 
+      title="提现记录" 
+      url="/myCenter/fund/cash"/>
     <div class="recodeTop">
       <span>提现金额(元)/类型</span>
       <span>状态/时间</span>
@@ -10,9 +13,9 @@
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul v-if="content.length">
+      <ul v-if="this.$store.state.myCenter.cashRecord.length">
         <li 
-          v-for="(item,index) in content" 
+          v-for="(item,index) in this.$store.state.myCenter.cashRecord" 
           :key="index">
           <div>
             <p>{{ item.total }} <b v-if="item.fee">(含{{ item.fee }}元手续费)</b> </p>
@@ -40,6 +43,16 @@
 import { getCashById } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      const params = { item: 12, page: 1 }
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const rechargeList = await getCashById(app.$axios, params)
+      app.store.commit('myCenter/setCashRecordNull')
+      app.store.commit('myCenter/setCashRecord', rechargeList.content.dataRows)
+    }
+  },
   data() {
     return {
       options: {
@@ -52,15 +65,12 @@ export default {
         directionLockThreshold: 0,
         beforePullDown: true
       },
-      content: [],
-      page: 1,
-      item: 12
+      item: 12,
+      pageNum: 1
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      this.getList()
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -68,32 +78,28 @@ export default {
     }
   },
   methods: {
-    getList() {
-      const params = {
-        page: this.page,
-        item: this.item
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      getCashById(this.$axios, params, commenParams).then(res => {
-        let list = res.content.dataRows
-        for (let i in list) {
-          this.content.push(list[i])
-        }
-      })
-    },
     onPullingDown() {
-      setTimeout(() => {
-        this.page = 1
-        this.content = []
-        this.getList()
+      setTimeout(async () => {
+        this.pageNum = 1
+        const params = { item: this.item, page: 1 }
+        const accountLog = await getCashById(this.$axios, params)
+        this.$store.commit('myCenter/setCashRecordNull')
+        this.$store.commit(
+          'myCenter/setCashRecord',
+          accountLog.content.dataRows
+        )
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     },
     onPullingUp() {
-      this.page++
-      setTimeout(() => {
-        this.getList()
+      setTimeout(async () => {
+        this.pageNum++
+        const params = { item: this.item, page: this.pageNum }
+        const accountLog = await getCashById(this.$axios, params)
+        this.$store.commit(
+          'myCenter/setCashRecord',
+          accountLog.content.dataRows
+        )
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     }

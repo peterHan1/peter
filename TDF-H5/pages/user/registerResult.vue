@@ -11,7 +11,7 @@
         :key="index">
         <div class="discountLeft"><span>{{ item.money }}</span>元</div>
         <div class="discountRight">
-          <p>有效期至：{{ item.invideTime }}1</p>
+          <p>有效期至：{{ item.invideTime }}</p>
           <p class="time">{{ item.conditonText }}</p>
         </div>
       </li>

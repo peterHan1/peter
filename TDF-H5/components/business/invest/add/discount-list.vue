@@ -22,6 +22,8 @@
         :is="tabCom" 
         :disType="type" 
         :disId="selectId" 
+        :money="moneys"
+        :period="periods"
         @listFn="selectFn"/>
     </div>
     <div class="shade"/>
@@ -44,6 +46,14 @@ export default {
     disTxt: {
       type: String,
       default: ''
+    },
+    moneys: {
+      type: String,
+      default: ''
+    },
+    periods: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -51,6 +61,7 @@ export default {
       tabCom: 'Voucher',
       selectVal: null,
       selectId: null,
+      voucherId: null,
       type: null
     }
   },
@@ -71,10 +82,17 @@ export default {
     selectFn(...data) {
       this.selectVal = data[0]
       this.selectId = data[1]
-      this.type = data[2]
+      this.voucherId = data[2]
+      this.type = data[3]
     },
     closeList() {
-      this.$emit('colseFn', this.selectVal, this.selectId, this.type)
+      this.$emit(
+        'colseFn',
+        this.selectVal,
+        this.selectId,
+        this.voucherId,
+        this.type
+      )
     }
   },
   components: {

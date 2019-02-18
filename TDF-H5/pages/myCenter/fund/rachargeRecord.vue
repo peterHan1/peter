@@ -1,8 +1,11 @@
 <template>
   <div class="recode">
-    <td-header title="充值记录"/>
+    <td-header 
+      :returnUrl="false" 
+      title="充值记录" 
+      url="/myCenter/fund/recharge"/>
     <div 
-      v-if="list.length > 0" 
+      v-if="this.$store.state.myCenter.rechargeRecord.length > 0" 
       class="recodeTop">
       <span>充值金额(元)/时间</span>
       <span>状态</span>
@@ -12,9 +15,9 @@
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul v-if="list.length > 0">
+      <ul v-if="this.$store.state.myCenter.rechargeRecord.length > 0">
         <li 
-          v-for="(item,index) in list" 
+          v-for="(item,index) in this.$store.state.myCenter.rechargeRecord" 
           :key="index">
           <div>
             <p>{{ item.money }}</p>
@@ -41,8 +44,17 @@
 <script>
 import { rechargeRecord } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
-
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      const params = { item: 12, page: 1 }
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const rechargeList = await rechargeRecord(app.$axios, params)
+      app.store.commit('myCenter/setRegRecordNull')
+      app.store.commit('myCenter/setRegRecord', rechargeList.content.dataRows)
+    }
+  },
   data() {
     return {
       options: {
@@ -55,15 +67,12 @@ export default {
         directionLockThreshold: 0,
         beforePullDown: true
       },
-      page: 1,
       item: 12,
-      list: []
+      pageNum: 1
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      this.getList()
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -71,33 +80,29 @@ export default {
     }
   },
   methods: {
-    getList() {
-      let params = {
-        page: this.page,
-        item: this.item
-      }
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      rechargeRecord(this.$axios, params, commenParams).then(res => {
-        let list = res.content.dataRows
-        for (let i in list) {
-          this.list.push(list[i])
-        }
-      })
-    },
     onPullingDown() {
-      setTimeout(() => {
-        this.page = 1
-        this.list = []
-        this.getList()
+      setTimeout(async () => {
+        this.pageNum = 1
+        const params = { item: this.item, page: 1 }
+        const accountLog = await rechargeRecord(this.$axios, params)
+        this.$store.commit('myCenter/setRegRecordNull')
+        this.$store.commit('myCenter/setRegRecord', accountLog.content.dataRows)
         this.$refs.contentScroll.forceUpdate()
       }, 1000)
     },
     onPullingUp() {
-      this.page++
-      setTimeout(() => {
-        this.getList()
-        this.$refs.contentScroll.forceUpdate()
+      setTimeout(async () => {
+        this.pageNum++
+        const params = { item: this.item, page: this.pageNum }
+        const accountLog = await rechargeRecord(this.$axios, params)
+        if (accountLog.dataRows) {
+          this.$store.commit(
+            'myCenter/setRegRecord',
+            accountLog.content.dataRows
+          )
+        } else {
+          this.$refs.contentScroll.forceUpdate()
+        }
       }, 1000)
     }
   },

@@ -1,8 +1,10 @@
 <template>
-  <div class="cashBox">
+  <div 
+    v-if="this.$store.state.isLogin" 
+    class="cashBox">
     <td-header
       :returnUrl="false" 
-      url="myCenter-center"
+      url="/myCenter/center"
       title="提现" 
       rightTxt="提现记录"
       @navRightFn="navRightFn">
@@ -28,8 +30,8 @@
             <span @click="allMoney()">全部</span>
           </div>
           <div class="cost_money">
-            <p>实际到账金额：<b>{{ fee }}</b>元</p>
-            <p>手续费：<b>{{ credited }}</b>元 <span>您本月还有<b v-if="content">{{ content.freeTimes }}</b>次免费提现次数</span></p>
+            <p>实际到账金额：<b>{{ credited }}</b>元</p>
+            <p>手续费：<b>{{ fee }}</b>元 <span>您本月还有<b v-if="content">{{ content.freeTimes }}</b>次免费提现次数</span></p>
           </div>
         </li>
       </ul>
@@ -106,38 +108,42 @@ import { commenParams } from '~/api/config.js'
 import CryptoJS from 'crypto-js'
 
 export default {
+  async fetch({ app, store, route }) {
+    if (app.store.state.isLogin) {
+      commenParams.accessId = app.store.state.accessId
+      commenParams.accessKey = app.store.state.accessKey
+      const { content } = await prepareDoCash(app.$axios)
+      store.commit('myCenter/setCash', content)
+    } else {
+      app.router.push({
+        name: 'user-login'
+      })
+    }
+  },
   data() {
     return {
       moneyVal: null,
       inAccount: '',
-      speedAllow: true,
+      speedAllow: this.$store.state.myCenter.cashContent.urgent.open,
       cashMoney: '0.00',
       layerMoney: false,
       cashHint: false,
       cashMaintain: false,
       hint: '',
-      content: '',
-      bankVal: '',
-      balance: '',
-      normal: '',
-      urgent: '',
+      content: this.$store.state.myCenter.cashContent,
+      bankVal: this.$store.state.myCenter.cashContent.account.substr(-4),
+      balance: this.$store.state.myCenter.cashContent.balance.replace(
+        /\,/g,
+        ''
+      ),
+      normal: this.$store.state.myCenter.cashContent.normal,
+      urgent: this.$store.state.myCenter.cashContent.urgent,
       fee: '0.00',
       credited: '0.00'
     }
   },
   mounted() {
-    if (this.$store.state.accessId && this.$store.state.accessKey) {
-      commenParams.accessId = this.$store.state.accessId
-      commenParams.accessKey = this.$store.state.accessKey
-      prepareDoCash(this.$axios, commenParams).then(res => {
-        this.content = res.content
-        this.normal = res.content.normal
-        this.urgent = res.content.urgent
-        this.speedAllow = res.content.urgent.open
-        this.bankVal = res.content.account.substr(-4)
-        this.balance = res.content.balance.replace(/\,/g, '')
-      })
-    } else {
+    if (!this.$store.state.isLogin) {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
         name: 'user-login'
@@ -145,16 +151,13 @@ export default {
     }
   },
   methods: {
-    oninput(e) {
-      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
-      this.importMoney = e.target.value
-      this.moneyForm = this.numFilter(this.importMoney)
-    },
     inputFn(e) {
       e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
       this.moneyVal = e.target.value
       if (this.balance <= 0) {
         this.moneyVal = '0.00'
+      } else if (Number(this.moneyVal) > Number(this.balance)) {
+        this.moneyVal = this.moneyVal.substr(0, this.moneyVal.length - 1)
       } else if (this.moneyVal >= 100) {
         this.setMoney(this.moneyVal)
       } else if (this.moneyVal < 100) {
@@ -174,7 +177,7 @@ export default {
     setMoney(money) {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      getCashFee(this.$axios, money, commenParams).then(res => {
+      getCashFee(this.$axios, money).then(res => {
         this.fee = res.content.fee
         this.credited = res.content.credited
       })
@@ -187,11 +190,11 @@ export default {
           account: this.moneyVal,
           secretParam: money,
           withdrawType: this.inAccount,
-          redirectUrl: this.returnPath + 'myCenter/fund/cashResult'
+          redirectUrl: this.$store.state.returnPath + 'myCenter/fund/cashResult'
         }
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
-        applyCash(this.$axios, params, commenParams).then(res => {
+        applyCash(this.$axios, params).then(res => {
           if (res) {
             let nonce = res.content.nonce
             if (res.code === 800034) {
@@ -291,13 +294,13 @@ export default {
             display: flex
             align-items: center
             i
-              font-size: $fontsize-large-xxxxxxxxx
+              font-size: 68px
               line-height: 110px
             input
               flex: 1
               width: 50%
               caret-color: $color-primary
-              font-size: $fontsize-large-xxxxxxxx
+              font-size: 64px
               color: $color-gray1
               background-color: transparent
               line-height: normal

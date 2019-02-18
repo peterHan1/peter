@@ -12,7 +12,7 @@
         <div class="discountRight">
           <p>
             <span>{{ item.remark }}</span>
-            <router-link to="" >去使用</router-link>
+            <router-link to="/project" >去使用</router-link>
           </p>
           <p class="time">{{ item.invalidTime }}</p>
         </div>

@@ -1,12 +1,12 @@
 import { commenParams } from './config'
 // 我的资产
-export const myBankAssets = async ($axios, commenParams) => {
+export const myBankAssets = async $axios => {
   return await $axios.post('/hanapp/common/myBankAssets', {
     commenParams
   })
 }
 // 用户信息
-export const accountDetail = async ($axios, commenParams) => {
+export const accountDetail = async $axios => {
   return await $axios.post('/hanapp/common/account_detail', {
     commenParams
   })
@@ -18,7 +18,7 @@ export const detailStatus = async ($axios, commenParams) => {
   })
 }
 // 用户vip信息
-export const getVipDetail = async ($axios, commenParams) => {
+export const getVipDetail = async $axios => {
   return await $axios.post('/hanapp/common/getVipDetail', {
     commenParams
   })
@@ -57,6 +57,7 @@ export const getPhoneCode = async ($axios, params) => {
   return await $axios.post('/hanapp/user/getNewIdentifyingCode', {
     phone: params.phone,
     type: params.type,
+    imgCode: params.imgCode,
     commenParams
   })
 }
@@ -72,20 +73,19 @@ export const newResetUserPsw = async ($axios, params) => {
   })
 }
 // 退出
-export const loginOut = async ($axios, phone, commenParams) => {
+export const loginOut = async $axios => {
   return await $axios.post('/hanapp/login/outlogin', {
-    phone: phone,
     commenParams
   })
 }
 // 注册结果页
-export const getRegResult = async ($axios, commenParams) => {
+export const getRegResult = async $axios => {
   return await $axios.post('/hanapp/user/getRegResult', {
     commenParams
   })
 }
 // 开通存管
-export const openAccount = async ($axios, params, commenParams) => {
+export const openAccount = async ($axios, params) => {
   return await $axios.post('/hanapp/user/personOpenAccount', {
     realName: params.realName,
     idCard: params.idCard,
@@ -94,46 +94,46 @@ export const openAccount = async ($axios, params, commenParams) => {
   })
 }
 // 开通存管结果
-export const OpenAccountResult = async ($axios, commenParams) => {
+export const OpenAccountResult = async $axios => {
   return await $axios.post('/hanapp/user/OpenAccountResult', {
     commenParams
   })
 }
 // 	银行跳转参数
-export const getByNonce = async ($axios, nonces, commenParams) => {
+export const getByNonce = async ($axios, nonces) => {
   return await $axios.post('/hanapp/common/getByNonce', {
     nonce: nonces,
     commenParams
   })
 }
 // 	用户授权信息
-export const information = async ($axios, commenParams) => {
+export const information = async $axios => {
   return await $axios.post('/hanapp/user/information', {
     commenParams
   })
 }
 // 	重新授权
-export const hanAppauth = async ($axios, url, commenParams) => {
+export const hanAppauth = async ($axios, url) => {
   return await $axios.post('hanapp/user/hanAppauth', {
     returnUrl: url,
     commenParams
   })
 }
 // 	授权结果
-export const authStatus = async ($axios, commenParams) => {
+export const authStatus = async $axios => {
   return await $axios.post('hanapp/user/auth_status', {
     commenParams
   })
 }
 // 	测评
-export const evaluationSave = async ($axios, scores, commenParams) => {
+export const evaluationSave = async ($axios, scores) => {
   return await $axios.post('/hanapp/user/evaluationSave', {
     score: scores,
     commenParams
   })
 }
 // 	测评结果
-export const getEvaluationInfo = async ($axios, commenParams) => {
+export const getEvaluationInfo = async $axios => {
   return await $axios.post('/hanapp/user/getEvaluationInfo', {
     commenParams
   })

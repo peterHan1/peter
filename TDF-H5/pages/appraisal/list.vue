@@ -272,14 +272,21 @@ export default {
       arrNum: []
     }
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
+  },
   methods: {
     subSelect() {
       if (this.iconShow && this.selectShow) {
         let score = this.sum(this.arrNum)
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
-        evaluationSave(this.$axios, score, commenParams).then(res => {
+        evaluationSave(this.$axios, score).then(res => {
           if (res) {
             this.$router.push({
               name: 'appraisal-result'
@@ -370,7 +377,7 @@ export default {
         left: 15px
         display: flex
         .iconfont
-          font-size: $fontsize-large-xxxxxxxx
+          font-size: 64px
         b
           font-size: $fontsize-medium
           color: $color-gray2

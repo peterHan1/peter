@@ -1,6 +1,9 @@
 <template>
   <div class="login">
-    <td-header title="登录/注册"/>
+    <td-header 
+      :returnUrl="false"
+      :url="url" 
+      title="登录/注册"/>
     <ul>
       <li>账号</li>
       <li>
@@ -33,7 +36,8 @@ export default {
     return {
       isShow: false,
       iphone: '',
-      disabled: true
+      disabled: true,
+      url: this.$store.state.srcPath ? this.$store.state.srcPath : '/'
     }
   },
   methods: {
@@ -51,19 +55,23 @@ export default {
         return
       }
       orRegister(this.$axios, this.iphone).then(res => {
-        if (res.content.type === 'register') {
-          this.$router.push({
-            name: 'user-registerAgreement',
-            params: { phone: this.iphone }
-          })
-        }
-        if (res.content.type === 'login') {
-          this.$router.push({
-            name: 'user-loginPwd',
-            params: {
-              phone: this.iphone
-            }
-          })
+        if (res.code === 100000) {
+          if (res.content.type === 'register') {
+            this.$router.push({
+              name: 'user-registerAgreement',
+              query: { phone: this.iphone }
+            })
+          }
+          if (res.content.type === 'login') {
+            this.$router.push({
+              name: 'user-loginPwd',
+              query: {
+                phone: this.iphone
+              }
+            })
+          }
+        } else {
+          this.$Msg(res.message, 2000)
         }
       })
     },
@@ -74,6 +82,8 @@ export default {
       if (this.iphone.length >= 11) {
         this.disabled = false
         this.iphone = this.iphone.slice(0, 11)
+      } else {
+        this.disabled = true
       }
     }
   },

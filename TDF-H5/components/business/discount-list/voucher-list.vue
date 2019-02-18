@@ -15,7 +15,7 @@
         <div class="discountRight">
           <p class="source">
             <span>{{ item.remark }}</span>
-            <router-link to="" >去使用</router-link>
+            <router-link to="/project" >去使用</router-link>
           </p>
           <p>{{ item.invalidDate }}</p>
           <p>理财期限{{ item.borrowPeriodCondition }}个月及以上使用</p>

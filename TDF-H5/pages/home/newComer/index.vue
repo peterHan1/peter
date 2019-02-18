@@ -5,11 +5,11 @@
     <div class="title">新手抵用券</div>
     <div class="dyq" />
     <div class="btns">
-      <router-link
-        to="/found/my-coupon"
-        class="btn">
+      <a
+        class="btn"
+        @click="getCoupon">
         点击领取
-      </router-link>
+      </a>
     </div>
     <div class="titles1">
       <img src="../../../assets/images/activity/newcomer/newcomer3.png">
@@ -67,6 +67,31 @@
 export default {
   data() {
     return {}
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin
+    }
+  },
+  mounted() {
+    this.isLogin
+  },
+  methods: {
+    toLogin() {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({
+        name: 'user-login'
+      })
+    },
+    getCoupon() {
+      if (this.isLogin) {
+        this.$router.push({
+          name: 'myCenter-discount-myDiscount'
+        })
+      } else {
+        this.toLogin()
+      }
+    }
   }
 }
 </script>

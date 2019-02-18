@@ -70,7 +70,7 @@ export default {
       }
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      recordList(this.$axios, params, commenParams).then(res => {
+      recordList(this.$axios, params).then(res => {
         if (res) {
           this.contentList = res.content.dataRows
         }

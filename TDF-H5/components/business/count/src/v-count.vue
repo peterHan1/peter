@@ -265,7 +265,7 @@ export default {
         }
         //总利息
         this.income = Number(Number(allAward) + Number(profit)).toFixed(2)
-      } else if (projectStyle === '按月付息 到期还本') {
+      } else if (projectStyle === '到期还本，按月付息') {
         let profit = Number(
           (account * (award + apr) * 0.01 * period) / val
         ).toFixed(2)

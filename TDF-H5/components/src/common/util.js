@@ -18,7 +18,7 @@ function findIndex(ary, fn) {
   return index
 }
 function Cookie2Json(cookie) {
-  console.log(cookie)
+  // console.log(cookie)
   if (cookie) {
     let result = ''
     let reg = /=/i
@@ -37,6 +37,8 @@ function Cookie2Json(cookie) {
     cookie = JSON.parse('{' + result.substr(1).replace('\\', '') + '}')
     result = cookie
     return result
+  } else {
+    console.log('没有cookie')
   }
 }
 // const isFunc = judgeTypeFnCreator('Function')

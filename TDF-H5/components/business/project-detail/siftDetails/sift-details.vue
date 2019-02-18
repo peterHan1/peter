@@ -1,6 +1,14 @@
 <template>
-  <div class="siftDetails">
+  <div
+    class="siftDetails"
+    @touchend="touchEnd">
     <div class="detailsBg"/>
+    <div
+      ref="headers"
+      class="headers"/>
+    <div
+      ref="footers"
+      class="footers"/>
     <cube-scroll
       :scrollEvents="['scroll','scroll-end']"
       :options="options"
@@ -8,7 +16,9 @@
       @scroll-end="onScrollEnd"
       @pulling-up="onPullingUp"
     >
-      <div class="details">
+      <div
+        ref="cubeScrolls"
+        class="details">
         <div class="money">
           <div class="flex message">
             <div class="flex-1">
@@ -42,9 +52,9 @@
         <div class="content">
           <ul class="explain">
             <li><span>起投金额</span><span>{{ data.minTenderFormat }}元</span></li>
-            <li><span>还款方式</span><span @click="modeShowFn">{{ data.repaymentType }}<b
-              class="iconfont" >&#xe6f7;</b></span></li>
-            <li><span>计息方式</span><span>{{ data.interestAate }}</span></li>
+            <li><span>还款方式</span><span>{{ data.repaymentType }}</span></li>
+            <li><span>计息方式</span><span @click="modeShowFn">{{ data.interestAate }}&nbsp;<b
+              class="iconfont">&#xe6f7;</b></span></li>
             <li><span>募集期限</span><span> 以底层散标为准</span></li>
           </ul>
           <div class="count">
@@ -92,7 +102,9 @@ export default {
           threshold: 0
         }
       },
-      pullY: 0
+      pullY: 0,
+      bottomflg: false,
+      bottomDis: 0
     }
   },
   computed: {
@@ -109,24 +121,41 @@ export default {
     }
   },
   mounted() {
-    // this.loadProgress()
+    let bodyH =
+      document.documentElement.clientHeight ||
+      document.document.body.clientHeight
+    this.bottomDis =
+      this.$refs.cubeScrolls.clientHeight -
+      (bodyH -
+        this.$refs.headers.clientHeight -
+        this.$refs.footers.clientHeight)
+    this.loadProgress()
   },
+  // created() {
+  //   this.loadProgress()
+  // },
   methods: {
     onScroll(pos) {
-      if (pos.y < -50) {
+      this.pullY = pos.y
+      if (pos.y < -(this.bottomDis + 25)) {
         this.pullTxt = '松手，查看项目详情'
-        this.pullY = pos.y
       } else {
         this.pullTxt = '向上滑动，查看更多详情'
-        this.pullY = pos.y
+      }
+    },
+    touchEnd() {
+      if (this.pullY < -(this.bottomDis + 25) && this.bottomflg) {
+        this.$emit('pullFn')
       }
     },
     onPullingUp() {
       console.log('上拉了。。。')
     },
     onScrollEnd(pos) {
-      if (this.pullY < -45) {
-        this.$emit('pullFn')
+      if (pos.y > -this.bottomDis) {
+        this.bottomflg = false
+      } else {
+        this.bottomflg = true
       }
     },
     // select(txt) {
@@ -194,7 +223,7 @@ export default {
             padding-top: 10px
             span
               font-family: DIN Medium
-              font-size: $fontsize-large-xxxxxxxxxx
+              font-size: 82px
       .bottom
         width: 100%
         height: 120px
@@ -233,7 +262,7 @@ export default {
       .explain
         background: $color-white
         padding: 0 30px
-        margin-bottom: 20px
+        border-bottom: 20px solid $color-background
         li
           display: flex
           justify-content: space-between
@@ -302,7 +331,6 @@ export default {
       color: #ccc
       text-align: center
       line-height: 90px
-      padding-bottom: 40px
   /deep/ .cube-pullup-wrapper
     display: none
 .modeShowTxt
@@ -311,4 +339,14 @@ export default {
   line-height: 60px
   text-align: center
   padding-top: 20px
+.headers,.footers
+  height 0.88rem
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  z-index -1
+  background none
+.footers
+  height 1rem
 </style>
