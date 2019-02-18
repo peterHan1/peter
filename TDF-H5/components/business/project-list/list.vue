@@ -25,7 +25,7 @@
               class="bar-in"/>
           </div>
           <p class="pro-btm">
-            <span>{{ item.interestAate }}</span>
+            <span>{{ resolveType(item.amountType) }}</span>
             <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
           </p>
         </div>
@@ -47,7 +47,7 @@
           <dd><button>已抢完</button></dd>
         </dl>
         <p class="pro-btm">
-          <span>{{ item.interestAate }}</span>
+          <span>{{ resolveType(item.amountType) }}</span>
           <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
         </p>
       </li>
@@ -89,6 +89,18 @@ export default {
     })
   },
   methods: {
+    resolveType(amountType) {
+      switch (amountType) {
+        case 0:
+          return '按月付息 到期还本'
+          break
+        case 1:
+          return '等额本息'
+          break
+        default:
+          return 'null'
+      }
+    },
     selected(desId) {
       this.$store.commit('project/setTransition', 'turn-on')
       // console.log(desId)

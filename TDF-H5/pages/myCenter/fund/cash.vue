@@ -194,25 +194,27 @@ export default {
         }
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
+        this.$load.Load()
         applyCash(this.$axios, params).then(res => {
-          if (res) {
+          this.$load.Close()
+          if (res.code === 800034) {
+            this.cashMaintain = true
+          } else if (res.code === 800035) {
+            this.cashHint = true
+            this.hint = '当前不在快速到账时间内，请选择普通到账提现'
+          } else if (res.code === 800036) {
+            this.cashHint = true
+            this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
+          } else if (res.code === 100000) {
             let nonce = res.content.nonce
-            if (res.code === 800034) {
-              this.cashMaintain = true
-            } else if (res.code === 800035) {
-              this.cashHint = true
-              this.hint = '当前不在快速到账时间内，请选择普通到账提现'
-            } else if (res.code === 800036) {
-              this.cashHint = true
-              this.hint = '提现金额大于快速到账当日剩余额度，请选择普通到账提现'
-            } else {
-              this.$router.push({
-                name: 'xwDeposit-transit',
-                params: {
-                  sign: nonce
-                }
-              })
-            }
+            this.$router.push({
+              name: 'xwDeposit-transit',
+              params: {
+                sign: nonce
+              }
+            })
+          } else {
+            this.$Msg(res.message, 2000)
           }
         })
       }

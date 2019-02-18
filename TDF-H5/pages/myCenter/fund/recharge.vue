@@ -23,7 +23,8 @@
             <input 
               v-model="moneyVal"
               :placeholder="placeTxt" 
-              type="number">
+              type="number"
+              @input="inputFn">
           </div>
         </li>
         <li>
@@ -77,6 +78,10 @@ export default {
     }
   },
   methods: {
+    inputFn(e) {
+      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
+      this.moneyVal = e.target.value
+    },
     navRightFn() {
       this.$router.push({ path: '/myCenter/fund/rachargeRecord' })
     },
@@ -89,14 +94,18 @@ export default {
         }
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
+        this.$load.Load()
         quickPay(this.$axios, params).then(res => {
-          if (res) {
+          this.$load.Close()
+          if (res.code === 100000) {
             this.$router.push({
               name: 'xwDeposit-transit',
               params: {
                 sign: res.content.requestInfo
               }
             })
+          } else {
+            this.$Msg(res.message, 2000)
           }
         })
       }

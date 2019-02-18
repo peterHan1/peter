@@ -61,7 +61,7 @@ module.exports = {
   // http://72.127.2.140:9090
   proxy: {
     '/api/': {
-      target: 'http://72.127.2.140:9090',
+      target: 'http://72.127.2.140:8090',
       pathRewrite: {
         '^/api/': ''
       }

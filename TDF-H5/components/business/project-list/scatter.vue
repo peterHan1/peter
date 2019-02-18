@@ -24,7 +24,7 @@
               class="bar-in"/>
           </div>
           <p class="pro-btm">
-            <span>{{ item.interestAate }}</span>
+            <span>{{ resolveType(item.amountType) }}</span>
             <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
           </p>
         </div>
@@ -46,7 +46,7 @@
           <dd><button>已抢完</button></dd>
         </dl>
         <p class="pro-btm">
-          <span>{{ item.interestAate }}</span>
+          <span>{{ resolveType(item.amountType) }}</span>
           <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
         </p>
       </li>
@@ -88,6 +88,32 @@ export default {
     })
   },
   methods: {
+    resolveType(amountType) {
+      let typeStr = ''
+      switch (amountType) {
+        case 'month':
+          typeStr = '等额本息'
+          break
+        case 'season':
+          typeStr = '按季还款'
+          break
+        case 'end':
+          typeStr = '到期还本还息'
+          break
+        case 'endmonth':
+          typeStr = '到期还本，按月付息'
+          break
+        case 'endday':
+          typeStr = '到期还本息，按天计息'
+          break
+        case 'endmonths':
+          typeStr = '到期还本，按月付息，且当月还息 '
+          break
+        default:
+          typeStr = 'null'
+      }
+      return typeStr
+    },
     selected(desId) {
       this.$store.commit('project/setTransition', 'turn-on')
       // console.log(desId)
