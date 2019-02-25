@@ -1,28 +1,30 @@
 <template>
-  <div class="statusBox">
-    <div
-      v-if="status === 'null'"
-      class="dataNull">
-      <div class="statusIcon"/>
-      <div class="statusTxt">{{ statusTxt }}</div>
-    </div>
-    <div
-      v-if="status === 'error'"
-      class="error-loading">
-      <div class="statusIcon"/>
-      <div class="statusTxt">{{ statusTxt }}</div>
-    </div>
-    <div
-      v-if="status === 'maintain'"
-      class="maintain">
-      <div class="statusIcon"/>
-      <div class="statusTxt">{{ statusTxt }}</div>
-    </div>
-    <div
-      v-if="status === 'network'"
-      class="noNetwork">
-      <div class="statusIcon"/>
-      <div class="statusTxt">{{ statusTxt }}</div>
+  <div class="test">
+    <div class="statusBox">
+      <div
+        v-if="status === 'null'"
+        class="dataNull">
+        <div class="statusIcon"/>
+        <div class="statusTxt">{{ statusTxt }}</div>
+      </div>
+      <div
+        v-if="status === 'error'"
+        class="error-loading">
+        <div class="statusIcon"/>
+        <div class="statusTxt">{{ statusTxt }}</div>
+      </div>
+      <div
+        v-if="status === 'maintain'"
+        class="maintain">
+        <div class="statusIcon"/>
+        <div class="statusTxt">{{ statusTxt }}</div>
+      </div>
+      <div
+        v-if="status === 'network'"
+        class="noNetwork">
+        <div class="statusIcon"/>
+        <div class="statusTxt">{{ statusTxt }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +46,8 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .statusBox
+  margin-top: calc(50% - 160px)
+  // margin-top: 50%
   text-align: center
   .statusIcon
     display: inline-block

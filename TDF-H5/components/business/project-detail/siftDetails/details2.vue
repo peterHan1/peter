@@ -5,7 +5,7 @@
     @scroll="onScroll"
     @pulling-down="onPullingDown">
     <p class="topTxt">{{ pullTxt }}</p>
-    <div 
+    <div
       class="free_comp">
       <div class="deatils_title"><span/>保障措施</div>
       <div class="summary_list">
@@ -52,6 +52,7 @@ export default {
       }
     },
     onPullingDown() {
+      pageNum = 1
       setTimeout(() => {
         this.$emit('downFn')
       }, 100)
@@ -121,5 +122,5 @@ export default {
 /deep/ .cube-pullup-wrapper
   display: none
 /deep/ .cube-pulldown-wrapper
-  display: none      
+  display: none
 </style>

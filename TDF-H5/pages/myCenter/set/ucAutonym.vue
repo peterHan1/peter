@@ -18,15 +18,25 @@
 </template>
 
 <script>
+import { accountDetail } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
+
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      await app.store.dispatch('myCenter/getUser')
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      let res = await accountDetail(app.$axios, commenParams)
+      if (res.code === 100000) {
+        store.commit('myCenter/setAccount', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })

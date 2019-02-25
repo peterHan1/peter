@@ -3,13 +3,13 @@
     <h1>《五方保证借款协议》</h1>
     <div class="importTxt">
       <div>
-        <p>甲方（借款人）： {{ contentTxt.realname2 }}</p>
-        <p>在拓道金服平台用户名为：{{ contentTxt.username2 }}</p>
-        <p>身份证号码/营业执照号：{{ contentTxt.idcard2 }}</p>
+        <p>甲方（借款人）： <i v-if="contentTxt.realname2">{{ contentTxt.realname2 }}</i></p>
+        <p>在拓道金服平台用户名为：<i v-if="contentTxt.username2">{{ contentTxt.username2 }}</i></p>
+        <p>身份证号码/营业执照号：<i v-if="contentTxt.idcard2">{{ contentTxt.idcard2 }}</i></p>
         <span/>
-        <p>乙方（出借人）: {{ contentTxt.realname1 }}</p>
-        <p>在拓道金服平台用户名为：{{ contentTxt.username1 }}</p>
-        <p>身份证号：{{ contentTxt.idcard1 }}</p>
+        <p>乙方（出借人）: <i v-if="contentTxt.realname1">{{ contentTxt.realname1 }}</i></p>
+        <p>在拓道金服平台用户名为：<i v-if="contentTxt.username1">{{ contentTxt.username1 }}</i></p>
+        <p>身份证号：<i v-if="contentTxt.idcard1">{{ contentTxt.idcard1 }}</i></p>
         <span/>
         <p>丙方（居间方/拓道金服）：杭州拓道互联网金融服务有限公司</p>
         <p>地址：杭州市西湖区中节能西溪首座B2裙楼</p>
@@ -33,12 +33,12 @@
     <p>4.就借款人向出借人借款，保证人同意为借款人的借款提供担保等相关事宜达成一致。现根据《中华人民共和国担保法》、《中华人民共和国合同法》以及</p>
     <p>其他有关法律法规，为明确三方的权利与义务，特订立本协议，以资共同遵守。</p>
     <h2>第一条 借款金额、用途、期限、利率及还款方式</h2>
-    <p>1.出借人向借款人出借人民币 <b>{{ contentTxt.userAccount }}</b> 元（以下统称“借款”），各出借人信息及实际出借金额详见附件一。</p>
-    <p>2.借款用途：<b>{{ contentTxt.borrowUse }}</b> 。</p>
+    <p>1.出借人向借款人出借人民币 <b v-if="contentTxt.userAccount">{{ contentTxt.userAccount }}</b> 元（以下统称“借款”），各出借人信息及实际出借金额详见附件一。</p>
+    <p>2.借款用途：<b v-if="contentTxt.borrowUse">{{ contentTxt.borrowUse }}</b> 。</p>
     <p>借款人承诺:所借款项按规定用途使用，不用于出借房地产和股票、债券、期货等的炒作，不进行高风险出借，不挪作他用，不进行违法活动，否则由此产生的后果均由借款人承担。</p>
-    <p>3.借款期限为 <b>{{ contentTxt.borrowPeriod }}</b> ，自借款实际达到借款人存管账户之日起计算。</p>
+    <p>3.借款期限为 <b v-if="contentTxt.borrowPeriod">{{ contentTxt.borrowPeriod }}</b> ，自借款实际达到借款人存管账户之日起计算。</p>
     <p>4.借款年利率为 <b v-if="contentTxt.borrowApr">{{ contentTxt.borrowApr }} %</b>，月利率=年利率/12，日利率=年利率/365。</p>
-    <p>5.还款方式：<b>{{ contentTxt.borrowStyle }}</b>。</p>
+    <p>5.还款方式：<b v-if="contentTxt.borrowStyle">{{ contentTxt.borrowStyle }}</b>。</p>
     <p>6.放款方式：本协议生效后，出借人即不可撤销地授权拓道金服委托的资金存管机构（以下简称“存管银行”），将本协议项下借款自出借人在存管银行开立的存管账户（以下简称“出借人存管账户”）划转至借款人在存管银行开立的存管账户（以下简称“借款人存管账户”）；借款到达借款人存款账户即视为借款发放完成。</p>
     <h2>第二条 协议的生效</h2>
     <p>1.协议签署：</p>
@@ -111,12 +111,14 @@ export default {
     }
   },
   mounted() {
-    let tenderId = this.$route.query.tenderId
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    contractByTenderId(this.$axios, tenderId).then(res => {
-      this.contentTxt = res.content
-    })
+    if (this.$route.query.tenderId) {
+      let tenderId = this.$route.query.tenderId
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      contractByTenderId(this.$axios, tenderId).then(res => {
+        this.contentTxt = res.content
+      })
+    }
   },
   methods: {},
   components: {}

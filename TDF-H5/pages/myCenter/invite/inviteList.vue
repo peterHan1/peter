@@ -1,6 +1,6 @@
 <template>
   <div class="invite">
-    <td-header 
+    <td-header
       title="邀请人记录" />
     <div class="listHeader">
       <span>直接被邀请人</span>
@@ -14,8 +14,8 @@
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
       <ul>
-        <li 
-          v-for="(item,index) in content" 
+        <li
+          v-for="(item,index) in content"
           :key="index">
           <span>{{ item.inviteUserName }}</span>
           <span>{{ item.cashAmount }}</span>
@@ -23,9 +23,8 @@
         </li>
       </ul>
     </cube-scroll>
-    <div 
-      v-else
-      class="data-status">
+    <div
+      v-else>
       <data-status
         status="null"
         statusTxt="暂无内容"/>
@@ -56,14 +55,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.isLogin) {
-      this.getList()
-    } else {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
-    }
+    this.getList()
   },
   methods: {
     getList() {
@@ -74,11 +66,16 @@ export default {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       inviteFriendList(this.$axios, params).then(res => {
-        if (res) {
+        if (res.code === 100000) {
           let list = res.content.dataRows
           for (let i in list) {
             this.content.push(list[i])
           }
+        } else {
+          this.$store.commit('srcPath', '/myCenter/center')
+          this.$router.push({
+            name: 'user-login'
+          })
         }
       })
     },
@@ -143,10 +140,5 @@ export default {
       span:first-child
         text-align: left
       span:last-child
-        text-align: right 
-  .data-status
-    position: absolute
-    left: 50%
-    top: 30%
-    transform: translateX(-50%)        
+        text-align: right
 </style>

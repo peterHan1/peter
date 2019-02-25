@@ -73,16 +73,27 @@ export default {
     table
       text-align: center
       border-collapse: collapse
-      border: 1px solid $color-gray2
+      // border: 1px solid $color-gray2; /*no*/
+      border-1px($color-gray2, 0)
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 340px
+      // height: 340px
       width: 600px
       margin: 20px auto
       tr
         th
-          border: 1px solid $color-gray2
+          // border: 1px solid $color-gray2; /*no*/
+          padding: 10px 0
+          border-1px($color-gray2, 0)
           background: $color-gray6
+          &::after
+            border-top: 0
+            border-right: 0
         td
-          border: 1px solid $color-gray2
+          // border: 1px solid $color-gray2; /*no*/
+          padding: 8px 0
+          border-1px($color-gray2, 0)
+          &::after
+            border-top: 0
+            border-right: 0
 </style>

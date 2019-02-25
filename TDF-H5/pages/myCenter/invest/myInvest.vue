@@ -34,14 +34,17 @@ export default {
       })
     }
   },
+  computed: {
+    srcPath() {
+      return this.$store.state.srcPath || '/myCenter/center'
+    }
+  },
   methods: {
     tabFn(txt) {
       this.tabCom = txt
     },
     returnFn() {
-      this.$router.push({
-        name: 'myCenter-center'
-      })
+      this.$router.push(this.srcPath)
     }
   },
   components: {

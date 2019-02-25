@@ -89,7 +89,7 @@ export default {
       commenParams.accessKey = this.$store.state.accessKey
       if (params.realName != '' && params.idCard != '') {
         openAccount(this.$axios, params).then(res => {
-          if (res) {
+          if (res.code === 100000) {
             let nonce = res.content.nonce
             this.$router.push({
               name: 'xwDeposit-transit',
@@ -97,6 +97,8 @@ export default {
                 sign: nonce
               }
             })
+          } else {
+            this.$Msg(res.message, 2000)
           }
         })
       }
@@ -127,7 +129,7 @@ export default {
           color: $color-gray3
         input
           flex: 1
-          line-height: 99px
+          height: 98px
           caret-color: $color-primary
           font-size: $fontsize-medium
           color: $color-gray1

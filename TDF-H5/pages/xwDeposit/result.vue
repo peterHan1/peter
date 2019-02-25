@@ -37,24 +37,35 @@
 </template>
 
 <script>
-import { OpenAccountResult } from '~/api/user.js'
+import { OpenAccountResult, detailStatus } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
   data() {
     return {
-      status: ''
+      status: 0
     }
   },
-  mounted() {
+  computed: {
+    srcPath() {
+      return this.$store.state.srcPath || '/myCenter/center'
+    }
+  },
+  async mounted() {
     if (this.$store.state.isLogin) {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      OpenAccountResult(this.$axios).then(res => {
-        if (res) {
-          this.status = res.content.code
-        }
-      })
+      let deposit = await OpenAccountResult(this.$axios)
+      const token = {
+        accessId: commenParams.accessId,
+        accessKey: commenParams.accessKey
+      }
+      if (deposit.code === 100000) {
+        this.status = deposit.content.code
+        const { content } = await detailStatus(this.$axios, commenParams)
+        const userInfo = Object.assign({}, token, content, { isLogin: true })
+        this.$store.commit('setToken', userInfo)
+      }
     } else {
       this.$store.commit('srcPath', this.$route.path)
       this.$router.push({
@@ -64,9 +75,7 @@ export default {
   },
   methods: {
     returnFn() {
-      this.$router.push({
-        name: 'myCenter-center'
-      })
+      this.$router.push(this.srcPath)
     },
     returnDeposit() {
       this.$router.push({

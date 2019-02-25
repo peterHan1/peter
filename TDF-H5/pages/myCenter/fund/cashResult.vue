@@ -11,8 +11,7 @@
     <result 
       v-else-if="status===2"
       status="no" 
-      resultTxt="提现失败！"
-      failureTxt="返回提现失败原因"/>
+      resultTxt="提现失败！"/>
     <result 
       v-else
       status="load" 
@@ -61,12 +60,14 @@ export default {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       getCashResult(this.$axios, orderId).then(res => {
-        if (res) {
+        if (res.code === 100000) {
           this.status = res.content.status
+        } else {
+          this.$Msg(res.message, 2000)
         }
       })
     } else {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })

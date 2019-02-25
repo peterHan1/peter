@@ -5,17 +5,18 @@
         <p class="listTlt">
           <b>提醒：单笔出借仅限使用1张优惠券</b>
           <span @click="closeList">
-            <i v-if="selectVal != null">确认</i>
-            <i v-else>关闭</i>
+            <i v-if="change">确认</i>
+            <i v-else>取消</i>
+            <!-- <i v-else-if="selectId == null">关闭</i> -->
           </span>
         </p>
         <p class="listTab">
           <span 
-            :class="tabCom==='Voucher' ? 'on':''" 
-            @click="showFn('Voucher')">抵用券</span>
+            :class="tabCom==='dk' ? 'on':''" 
+            @click="showFn('dk')">抵用券</span>
           <span 
-            :class="tabCom==='Interest' ? 'on':''" 
-            @click="showFn('Interest')">加息券</span>
+            :class="tabCom==='jx' ? 'on':''" 
+            @click="showFn('jx')">加息券</span>
         </p>
       </div>
       <div 
@@ -52,17 +53,18 @@ export default {
       default: ''
     },
     periods: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
-      tabCom: 'Voucher',
+      tabCom: 'dk',
       selectVal: null,
       selectId: null,
       voucherId: null,
-      type: null
+      type: null,
+      change: false
     }
   },
   created() {
@@ -84,6 +86,7 @@ export default {
       this.selectId = data[1]
       this.voucherId = data[2]
       this.type = data[3]
+      this.change = true
     },
     closeList() {
       this.$emit(
@@ -96,8 +99,8 @@ export default {
     }
   },
   components: {
-    Voucher,
-    Interest
+    dk: Voucher,
+    jx: Interest
   }
 }
 </script>

@@ -34,6 +34,14 @@
           status="null"
           statusTxt="暂无资金记录"/>
       </div>
+      <div class="loadBox">
+        <canvas 
+          ref="bubble" 
+          width="22" 
+          height="22"
+          style="height: 30px; width:30px;"/>
+        <div class="loadBg"/>  
+      </div>
     </cube-scroll>
   </div>
 </template>
@@ -49,8 +57,12 @@ export default {
       commenParams.accessId = app.store.state.accessId
       commenParams.accessKey = app.store.state.accessKey
       const accountLog = await getAccountLogById(app.$axios, params)
-      app.store.commit('myCenter/setMoneyRecordNull')
-      app.store.commit('myCenter/setMoneyRecord', accountLog.content.dataRows)
+      // if (accountLog.code === 100000) {
+      //   app.store.commit('myCenter/setMoneyRecordNull')
+      //   app.store.commit('myCenter/setMoneyRecord', accountLog.content.dataRows)
+      // } else {
+      //   store.commit('setToken', { isLogin: false })
+      // }
     }
   },
   data() {
@@ -67,42 +79,77 @@ export default {
       },
       content: [],
       item: 12,
-      pageNum: 1
+      pageNum: 1,
+      bscroll: true
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
+      this.returnLogin()
+    } else {
+      let index = 0
+      setInterval(() => {
+        index++
+        this._draw(index)
+      }, 20)
     }
   },
   methods: {
+    _draw(i) {
+      // console.log(i)
+      const bubble = this.$refs.bubble
+      let ctx = bubble.getContext('2d')
+      this.index = i
+      ctx.clearRect(0, 0, bubble.width, bubble.height)
+      ctx.beginPath()
+      ctx.arc(11, 11, 15, (Math.PI / 180) * 270, (Math.PI / 180) * (i + 270))
+      ctx.strokeStyle = 'red'
+      ctx.lineWidth = 1
+      ctx.stroke()
+    },
     onPullingDown() {
       setTimeout(async () => {
         this.pageNum = 1
         const params = { item: this.item, page: 1 }
         const accountLog = await getAccountLogById(this.$axios, params)
-        this.$store.commit('myCenter/setMoneyRecordNull')
-        this.$store.commit(
-          'myCenter/setMoneyRecord',
-          accountLog.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
+        if (accountLog.code === 100000) {
+          this.$store.commit('myCenter/setMoneyRecordNull')
+          this.$store.commit(
+            'myCenter/setMoneyRecord',
+            accountLog.content.dataRows
+          )
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
-      setTimeout(async () => {
-        this.pageNum++
-        const params = { item: this.item, page: this.pageNum }
-        const accountLog = await getAccountLogById(this.$axios, params)
-        this.$store.commit(
-          'myCenter/setMoneyRecord',
-          accountLog.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
-      }, 1000)
+      if (this.bscroll) {
+        setTimeout(async () => {
+          this.pageNum++
+          const params = { item: this.item, page: this.pageNum }
+          const accountLog = await getAccountLogById(this.$axios, params)
+          if (accountLog.code === 100000) {
+            this.$store.commit(
+              'myCenter/setMoneyRecord',
+              accountLog.content.dataRows
+            )
+            this.$refs.contentScroll.forceUpdate()
+            this.bscroll = true
+          } else {
+            this.returnLogin()
+          }
+        }, 1000)
+      }
+      this.bscroll = false
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   },
   components: {}
@@ -152,10 +199,16 @@ export default {
         padding: 10px 0 20px
     li:last-child
       border: none
-  .data-status
-    position: fixed
-    left: 0
-    right: 0
-    top: 40%
-    transform: translateY(-50%)    
+  .loadBox
+    width: 50px
+    height: 50px
+    position: relative
+    .loadBg
+      position: absolute
+      left: 0
+      top: 0
+      width: 42px
+      height: 42px
+      background: url(../../../assets/images/common/load.png) no-repeat
+      background-size: 100% 100%    
 </style>

@@ -71,11 +71,17 @@ export default {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       getVoucherList(this.$axios, params, commenParams).then(res => {
-        if (res) {
+        if (res.code === 100000) {
           let list = res.content.dataRows
           for (let i in list) {
             this.contentList.push(list[i])
           }
+        } else {
+          this.$store.commit('setToken', { isLogin: false })
+          this.$store.commit('srcPath', '/myCenter/center')
+          this.$router.push({
+            name: 'user-login'
+          })
         }
       })
     },
@@ -163,7 +169,5 @@ ul
     margin-top: 60px
     span
       color: $color-primary
-      margin: 0 40px
-.data-status
-  margin-top:100px        
+      margin: 0 40px    
 </style>

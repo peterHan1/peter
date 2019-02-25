@@ -18,7 +18,7 @@
           </div>
           <p>
             <span>加入时间：<i>{{ item.addTime }}</i></span>
-            <span>预计退出时间：<i>{{ item.endTime }}</i></span>
+            <span v-if="item.endTime">预计退出时间：<i>{{ item.endTime }}</i></span>
           </p>
         </router-link>
       </li>
@@ -63,18 +63,26 @@ export default {
   methods: {
     async getList() {
       const params = { item: this.item, page: 1, status: this.status }
-      const tenderOn = await freeTenderList(this.$axios, params)
-      this.$store.commit('myCenter/setSiftYetNull')
-      this.$store.commit('myCenter/setSiftYet', tenderOn.content.dataRows)
+      const tenderYet = await freeTenderList(this.$axios, params)
+      if (tenderYet.code === 100000) {
+        this.$store.commit('myCenter/setSiftYetNull')
+        this.$store.commit('myCenter/setSiftYet', tenderYet.content.dataRows)
+      } else {
+        this.returnLogin()
+      }
     },
     onPullingDown() {
       setTimeout(async () => {
         this.pageNum = 1
         const params = { item: this.item, page: 1, status: this.status }
-        const tenderOn = await freeTenderList(this.$axios, params)
-        this.$store.commit('myCenter/setSiftYetNull')
-        this.$store.commit('myCenter/setSiftYet', tenderOn.content.dataRows)
-        this.$refs.contentScroll1.forceUpdate()
+        const tenderYet = await freeTenderList(this.$axios, params)
+        if (tenderYet.code === 100000) {
+          this.$store.commit('myCenter/setSiftYetNull')
+          this.$store.commit('myCenter/setSiftYet', tenderYet.content.dataRows)
+          this.$refs.contentScroll1.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
@@ -85,10 +93,21 @@ export default {
           page: this.pageNum,
           status: this.status
         }
-        const tenderOn = await freeTenderList(this.$axios, params)
-        this.$store.commit('myCenter/setSiftYet', tenderOn.content.dataRows)
-        this.$refs.contentScroll1.forceUpdate()
+        const tenderYet = await freeTenderList(this.$axios, params)
+        if (tenderYet.code === 100000) {
+          this.$store.commit('myCenter/setSiftYet', tenderYet.content.dataRows)
+          this.$refs.contentScroll1.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   }
 }
@@ -128,8 +147,4 @@ li
       line-height: 33px
       font-size: $fontsize-small-ss
       color: $color-gray4
-.data-status
-  position: absolute
-  right: 25%
-  top: 15%      
 </style>

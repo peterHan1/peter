@@ -456,7 +456,7 @@ export default {
         font-size: $fontsize-large-xx 
         text-align: center
         color: $color-primary
-        border: 2px solid $color-primary
+        border-1px($color-primary, 35px)
         border-radius: 35px
         line-height: 74px
       .submitBtn

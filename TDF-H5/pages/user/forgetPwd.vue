@@ -34,7 +34,7 @@
       </ul>
       <div class="sub_btn">
         <td-button
-          :disabled="!imgCode || !phoneCode"
+          :disabled="imgCode.length >= 4 && phoneCode.length >= 4 ? false : true"
           value="下一步"
           @btnFn="returnFn"
         />
@@ -56,6 +56,7 @@
             v-model="pwdOne" 
             type="password" 
             placeholder="请输入6～16位密码" 
+            maxlength="16"
             class="codeInp" >
         </li>
         <li>
@@ -64,6 +65,7 @@
             v-model="pwdTwo" 
             type="password" 
             placeholder="请确认新密码" 
+            maxlength="16"
             class="codeInp" >
         </li>
       </ul>
@@ -86,7 +88,7 @@ import md5 from 'md5'
 export default {
   data() {
     return {
-      imgYzm: '/api/AuthImageForApp?phone=' + this.$route.query.phone,
+      imgYzm: `/api/AuthImageForApp?phone=${this.phone}&${Math.random()}`,
       imgCode: '',
       phoneCode: '',
       countTime: 60,
@@ -98,7 +100,9 @@ export default {
       pwdTwo: ''
     }
   },
-  mounted() {},
+  mounted() {
+    this.editCaptcha()
+  },
   methods: {
     editCaptcha() {
       this.imgYzm = `/api/AuthImageForApp?phone=${this.phone}&${Math.random()}`
@@ -133,37 +137,44 @@ export default {
       }
     },
     returnFn() {
-      if (this.imgCode === '') {
-        this.$Msg('请输入图形验证码', 2000)
-      } else if (this.phoneCode === '') {
-        this.$Msg('请输入手机验证码', 2000)
+      if (this.imgCode.length < 4) {
+        this.$Msg('请输入正确的图形验证码', 2000)
+      } else if (this.phoneCode.length < 4) {
+        this.$Msg('请输入正确的手机验证码', 2000)
+      } else if (this.phoneCodeId.length < 1) {
+        this.$Msg('请获取手机验证码', 2000)
       } else {
         this.resetBox = false
       }
     },
     resetFn() {
-      if (this.pwdOne === this.pwdTwo) {
-        const params = {
-          phone: this.$route.query.phone,
-          newPassword: md5(this.pwdTwo),
-          codeId: this.phoneCodeId.toString(),
-          codeNumber: this.phoneCode,
-          imgCode: this.imgCode
-        }
-        newResetUserPsw(this.$axios, params).then(res => {
-          if (res.code === 100000) {
-            this.$router.push({
-              name: 'user-loginPwd',
-              query: {
-                phone: this.phone
-              }
-            })
-          } else {
-            this.$Msg(res.message, 2000)
+      if (this.pwdOne.length >= 6 && this.pwdTwo.length >= 6) {
+        if (this.pwdOne === this.pwdTwo) {
+          const params = {
+            phone: this.$route.query.phone,
+            newPassword: md5(this.pwdTwo),
+            codeId: this.phoneCodeId.toString(),
+            codeNumber: this.phoneCode,
+            imgCode: this.imgCode
           }
-        })
+          newResetUserPsw(this.$axios, params).then(res => {
+            if (res.code === 100000) {
+              this.$router.push({
+                name: 'user-loginPwd',
+                query: {
+                  phone: this.phone
+                }
+              })
+            } else {
+              this.$Msg(res.message, 2000)
+              this.editCaptcha()
+            }
+          })
+        } else {
+          this.$Msg('两次密码输入不一致', 2000)
+        }
       } else {
-        this.$Msg('两次密码输入不一致', 2000)
+        this.$Msg('请输入6-16位密码', 2000)
       }
     },
     back() {

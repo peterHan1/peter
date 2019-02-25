@@ -44,13 +44,17 @@ import { getCashById } from '~/api/myCenter.js'
 import { commenParams } from '~/api/config.js'
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
+    if (store.state.isLogin) {
       const params = { item: 12, page: 1 }
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
       const rechargeList = await getCashById(app.$axios, params)
-      app.store.commit('myCenter/setCashRecordNull')
-      app.store.commit('myCenter/setCashRecord', rechargeList.content.dataRows)
+      if (rechargeList.code === 100000) {
+        store.commit('myCenter/setCashRecordNull')
+        store.commit('myCenter/setCashRecord', rechargeList.content.dataRows)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -66,15 +70,13 @@ export default {
         beforePullDown: true
       },
       item: 12,
-      pageNum: 1
+      pageNum: 1,
+      bscroll: true
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
+      this.returnLogin()
     }
   },
   methods: {
@@ -83,25 +85,44 @@ export default {
         this.pageNum = 1
         const params = { item: this.item, page: 1 }
         const accountLog = await getCashById(this.$axios, params)
-        this.$store.commit('myCenter/setCashRecordNull')
-        this.$store.commit(
-          'myCenter/setCashRecord',
-          accountLog.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
+        if (accountLog.code === 100000) {
+          this.$store.commit('myCenter/setCashRecordNull')
+          this.$store.commit(
+            'myCenter/setCashRecord',
+            accountLog.content.dataRows
+          )
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
-      setTimeout(async () => {
-        this.pageNum++
-        const params = { item: this.item, page: this.pageNum }
-        const accountLog = await getCashById(this.$axios, params)
-        this.$store.commit(
-          'myCenter/setCashRecord',
-          accountLog.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
-      }, 1000)
+      if (this.bscroll) {
+        setTimeout(async () => {
+          this.pageNum++
+          const params = { item: this.item, page: this.pageNum }
+          const accountLog = await getCashById(this.$axios, params)
+          if (accountLog.code === 100000) {
+            this.$store.commit(
+              'myCenter/setCashRecord',
+              accountLog.content.dataRows
+            )
+            this.$refs.contentScroll.forceUpdate()
+            this.bscroll = true
+          } else {
+            this.returnLogin()
+          }
+        }, 1000)
+      }
+      this.bscroll = false
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   },
   components: {}
@@ -159,10 +180,4 @@ export default {
           font-size: $fontsize-large-x
     li:last-child
       border: none
-  .data-status
-    position: fixed
-    left: 0
-    right: 0
-    top: 40%
-    transform: translateY(-50%)  
 </style>

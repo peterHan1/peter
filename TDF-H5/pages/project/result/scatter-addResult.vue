@@ -1,9 +1,9 @@
 <template>
   <div class="investResult">
     <td-header
-      :returnUrl="false"
-      title="出借结果"
-      url="project"/>
+      :returnUrl="false" 
+      :url="projectDetialUrl"
+      title="出借结果" />
     <result
       v-if="status===0"
       status="ok"
@@ -18,7 +18,7 @@
       resultTxt="出借处理中！"/>
     <div v-if="status===0">
       <div class="btnDiv success">
-        <button @click="add">继续出借</button>
+        <button @click="goBack">继续出借</button>
         <button @click="record">查看出借记录</button>
       </div>
       <div class="content">
@@ -26,7 +26,8 @@
           <li class="title">{{ scatterName }}</li>
           <li>加入金额<span>{{ money }}元</span></li>
           <li>参考收益<span>{{ income }}元</span></li>
-          <li>{{ type }}<span>{{ jx }}%</span></li>
+          <li v-if="type === 'jx'">已使用加息券<span>{{ interest }}%</span></li>
+          <li v-if="type === 'dk'">已使用抵用券<span>{{ voucherAmount }}元</span></li>
         </ul>
       </div>
     </div>
@@ -48,47 +49,45 @@ import { investScatterResult } from '~/api/project.js'
 export default {
   data() {
     return {
-      status: 2,
-      type: '加息券',
+      status: null,
+      type: '',
       desId: '',
-      scatterName: '宝马标451515',
+      scatterName: null,
       money: null,
-      jx: '',
-      income: null
-    }
-  },
-  computed: {
-    isLogin() {
-      return this.$store.state.isLogin
+      voucherAmount: null,
+      interest: null,
+      income: null,
+      projectDetialUrl: '/project'
     }
   },
   mounted() {
-    if (this.isLogin) {
-      investScatterResult(this.$axios, this.$route.query.orderId).then(res => {
-        this.status = res.content.status
-        this.type = res.content.type
-        this.desId = res.content.desId
-        this.ScatterName = res.content.borrowName
-        this.money = res.content.account
-        this.jx = res.content.interest
-        this.income = res.content.accountInterest
-      })
-    } else {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
-    }
+    investScatterResult(this.$axios, this.$route.query.orderNo).then(res => {
+      console.log(res)
+      this.status = res.content.status
+      this.type = res.content.voucherType
+      this.desId = res.content.desId
+      this.scatterName = res.content.borrowName
+      this.money = res.content.account
+      this.interest = res.content.interest
+      this.voucherAmount = res.content.voucherAmount
+      this.income = res.content.accountInterest
+      if (this.status == 2) {
+        this.projectDetialUrl = `/project/scatter-details/${this.desId}`
+      } else {
+        this.projectDetialUrl = '/project?name=散标区'
+      }
+    })
   },
   methods: {
-    add() {
-      this.$router.push({ name: 'project' })
-    },
     record() {
-      this.$router.push({ name: 'project' })
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({ name: 'myCenter-invest-myInvest' })
     },
     goBack() {
-      this.$router.push({ name: 'project' })
+      this.$router.push({
+        name: 'project',
+        query: { name: '散标区' }
+      })
     },
     goDetails() {
       this.$router.push({
@@ -111,7 +110,7 @@ export default {
   background $color-white
   .btnDiv
     text-align center
-    overflow height
+    overflow hidden
     width 100%
     padding 60px 0 120px
     button
@@ -120,7 +119,7 @@ export default {
       font-size $fontsize-large-x
       line-height 74px
       border-radius 37px
-      border 1px solid rgba(255,113,2,1)
+      border-1px($color-primary, 37px)
       color #FF7102
       text-align center
       background $color-white
@@ -131,6 +130,7 @@ export default {
           background linear-gradient(140deg,rgba(252,141,38,1) 0%,rgba(248,123,60,1) 100%)
           color $color-white
           margin-right 40px
+          border: none
   .content
     border-top 20px solid $color-background
     ul li

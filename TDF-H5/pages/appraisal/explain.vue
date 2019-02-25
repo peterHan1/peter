@@ -1,6 +1,6 @@
 <template>
   <div class="explain">
-    <td-header title="风险测评"/>
+    <td-header title="风险承受能力说明"/>
     <div class="explain_top">原则上，投资人风险承受能力与产品的项目风险评估结果一一对应，相互关联，即原则上：</div>
     <ul>
       <li>

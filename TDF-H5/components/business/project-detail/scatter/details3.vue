@@ -1,12 +1,12 @@
 <template>
   <cube-scroll
-    :scrollEvents="['scroll','scroll-end']"
+    v-if="items.length>0"
+    :scrollEvents="['scroll']"
     :options="options"
     @scroll="onScroll"
     @pulling-down="onPullingDown">
     <p class="topTxt">{{ pullTxt }}</p>
-    <div
-      class="scatter_item">
+    <div class="scatter_item">
       <ul
         id="borrow_record"
         class="borrow_record">
@@ -22,6 +22,10 @@
       </ul>
     </div>
   </cube-scroll>
+  <data-status
+    v-else
+    status="null"
+    statusTxt="暂无内容"/>
 </template>
 <script>
 export default {
@@ -38,9 +42,6 @@ export default {
       pullTxt: '下拉释放，返回标的信息',
       pullY: ''
     }
-  },
-  created() {
-    console.log(this.items)
   },
   computed: {
     items() {
@@ -118,12 +119,6 @@ export default {
         width: 60px
         height: 30px
         zoom: 0.5
-      // .most
-      //   background: url(~/assets/images/invest/most.png) no-repeat center
-      // .first
-      //   background: url(~/assets/images/invest/first.png) no-repeat
-      // .less
-      //   background: url(~/assets/images/invest/less.png) no-repeat
 /deep/ .cube-pullup-wrapper
   display: none
 /deep/ .cube-pulldown-wrapper

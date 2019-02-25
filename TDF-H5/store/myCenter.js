@@ -1,9 +1,8 @@
-import { accountDetail, myBankAssets, detailStatus } from '~/api/user.js'
+import { accountDetail, myBankAssets } from '~/api/user.js'
 import { commenParams } from '../api/config'
 
 export const state = () => ({
   assets: '',
-  loginBlooe: true,
   //银行名称
   bankName: '',
   //银行卡后四位
@@ -52,9 +51,6 @@ export const mutations = {
     state.realNameStatus = value.realNameStatus
     state.userNo = value.userNo
     state.referrer = value.referrer
-  },
-  setLogin(state, value) {
-    state.loginBlooe = value
   },
   setAuths(state, value) {
     state.authAmount = value.authAmount
@@ -160,9 +156,6 @@ export const actions = {
     let assets = await myBankAssets(this.$axios, commenParams)
     if (assets.code === 100000) {
       commit('setAssets', assets.content)
-      commit('setLogin', false)
-    } else {
-      commit('setLogin', true)
     }
   },
   async getUser({ commit }) {

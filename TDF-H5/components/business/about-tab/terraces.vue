@@ -79,6 +79,7 @@
       font-size: $fontsize-small-ss
       color: $color-gray8
       line-height: 0.4rem
+      white-space: normal
       margin-top: 0.14rem
   .terrace_bot
     border-top: 0.2rem solid $color-background

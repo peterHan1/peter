@@ -8,9 +8,8 @@ const createError = (code, msg) => {
 export default function({ $axios, redirect }) {
   $axios.defaults.timeout = 10000
   $axios.onRequest(config => {
-    // console.log(config.headers.common.cookie)
-    console.log(config.data)
-    console.log('Making request to ' + config.url)
+    // console.log(config.data)
+    // console.log('Making request to ' + config.url)
   })
   $axios.onResponse(res => {
     if (res.data.code !== 100000) {
@@ -31,7 +30,7 @@ export default function({ $axios, redirect }) {
     //   redirect('/504')
     // }
     const errShow = `错误号：${err.code};错误信息：${err.message}`
-    console.log(errShow)
+    // console.log(errShow)
     return err
   })
 }

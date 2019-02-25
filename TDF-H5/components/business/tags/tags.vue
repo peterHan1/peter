@@ -1,11 +1,14 @@
 <template>
-  <div class="tags-img">
+  <div>
     <!-- {{ type }} -->
     <img
-      v-if="type==13"
-      src="~/assets/images/tags/new.png">
-    <img
       v-if="type==3"
+      src="~/assets/images/tags/act.png">
+    <img
+      v-if="type==12"
+      src="~/assets/images/tags/yb.png">
+    <img
+      v-if="type==13"
       src="~/assets/images/tags/new.png">
     <img
       v-if="type==11473"
@@ -23,11 +26,11 @@ export default {
 }
 </script>
 <style lang="stylus">
-.tags-img
-  width: 105px
-  height: 36px
-  margin-left: 17px
-  overflow: hidden
-  img
-    width: 100%
+// .tags-img
+//   width: 105px
+//   height: 36px
+//   margin-left: 17px
+//   overflow: hidden
+//   img
+//     width: 100%
 </style>

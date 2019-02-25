@@ -71,7 +71,8 @@
 </template>
 
 <script>
-import { vregister, getPhoneCode } from '~/api/user.js'
+import { vregister, getPhoneCode, detailStatus } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
 import md5 from 'md5'
 import Cookie from 'js-cookie'
 
@@ -159,7 +160,7 @@ export default {
         })
       }
     },
-    onSub() {
+    async onSub() {
       if (!this.imgCode) {
         this.$Msg('请输入图形验证码', 2000)
         return
@@ -170,6 +171,10 @@ export default {
       }
       if (!this.pwd) {
         this.$Msg('请设置密码', 2000)
+        return
+      }
+      if (!this.phoneCodeId) {
+        this.$Msg('请获取手机验证码', 2000)
         return
       }
       if (!this.clauses) {
@@ -190,19 +195,29 @@ export default {
         imgCode: this.imgCode,
         referrer: this.referrer
       }
-      vregister(this.$axios, params).then(res => {
-        if (res.code === 100000) {
-          Cookie.set('accessId', res.content.accessId)
-          Cookie.set('accessKey', res.content.accessKey)
-          // 跳注册结果页面
-          this.$router.push({
-            name: 'user-registerResult'
-          })
-        } else {
-          this.editCaptcha()
-          this.$Msg(res.message, 2000)
+      this.$load.Load()
+      let res = await vregister(this.$axios, params)
+      if (res.code === 100000) {
+        this.$load.Close()
+        const token = {
+          accessId: res.content.accessId,
+          accessKey: res.content.accessKey
         }
-      })
+        Cookie.set('accessId', token.accessId)
+        Cookie.set('accessKey', token.accessKey)
+        commenParams.accessId = token.accessId
+        commenParams.accessKey = token.accessKey
+        const { content } = await detailStatus(this.$axios, commenParams)
+        const userInfo = Object.assign({}, token, content, { isLogin: true })
+        this.$store.commit('setToken', userInfo)
+        this.$router.push({
+          name: 'user-registerResult'
+        })
+      } else {
+        this.$load.Close()
+        this.editCaptcha()
+        this.$Msg(res.message, 2000)
+      }
     },
     inviterFn() {
       this.inviter_phone = !this.inviter_phone

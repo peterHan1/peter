@@ -37,16 +37,14 @@ export default {
     commenParams.accessId = this.$store.state.accessId
     commenParams.accessKey = this.$store.state.accessKey
     getRegResult(this.$axios, commenParams).then(res => {
-      if (res) {
+      if (res.code === 100000) {
         this.list = res.content
       }
     })
   },
   methods: {
     linkIndex() {
-      this.$router.push({
-        name: 'tuodao-td'
-      })
+      this.$router.push('/')
     }
   },
   components: {}

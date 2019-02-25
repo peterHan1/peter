@@ -3,22 +3,20 @@
     <td-header title="安存保全" />
     <div class="ancun">
       <iframe 
-        src="https://www.51cunzheng.com/searchResult?r=1365950621049499648412" 
+        :src="ancunurl" 
         height="100%"
         width="100%"
         frameborder="0" 
         scrolling="auto"/>
     </div>
-    
   </div> 
 </template>
 <script>
 export default {
   data() {
-    return {}
-  },
-  mounted() {
-    console.log(this.$route.query.tenderId)
+    return {
+      ancunurl: this.$route.query.ancunUrl
+    }
   }
 }
 </script>

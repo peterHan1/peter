@@ -35,11 +35,15 @@ import { commenParams } from '~/api/config.js'
 
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
-      const { content } = await information(app.$axios)
-      store.commit('myCenter/setAuths', content)
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const res = await information(app.$axios)
+      if (res.code === 100000) {
+        store.commit('myCenter/setAuths', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -49,7 +53,7 @@ export default {
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })

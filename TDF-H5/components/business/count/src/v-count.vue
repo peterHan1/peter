@@ -5,6 +5,7 @@
         <p>出借&nbsp;(元)</p>
         <p>
           <input
+            ref="inputs"
             v-model="corpus"
             type="text"
             @focus="focus"
@@ -81,7 +82,7 @@ export default {
       distanceStart: 0,
       startX: 0,
       ulWidth: 0,
-      index: 0,
+      index: 1,
       corpus: 0,
       income: 0,
       raise: 0,
@@ -135,6 +136,9 @@ export default {
       } else {
         this.closeShow = true
       }
+    },
+    blurs() {
+      this.$refs.inputs.blur()
     },
     blur() {
       this.closeShow = false
@@ -212,15 +216,15 @@ export default {
     },
     incomes() {
       let projectStyle = this.types.type
-      //endday 按天计息,等额本息,按月付息 到期还本
+      //endday 按天计息,等额本息,到期还本，按月付息
       //投资金额
-      let account = this.corpus
+      let account = Number(this.corpus)
       //基本利息
-      let apr = this.types.interest
+      let apr = Number(this.types.interest)
       //期限  月/天
-      let period = this.types.time
+      let period = Number(this.types.time)
       //平台加息
-      let award = this.raise
+      let award = Number(this.raise)
       // 期限的计算方式（按天还是按月）
       let val = null
       let preMonth = null
@@ -266,8 +270,8 @@ export default {
         //总利息
         this.income = Number(Number(allAward) + Number(profit)).toFixed(2)
       } else if (projectStyle === '到期还本，按月付息') {
-        let profit = Number(
-          (account * (award + apr) * 0.01 * period) / val
+        let profit = (
+          ((account * (award + apr) * 0.01) / val).toFixed(2) * period
         ).toFixed(2)
         this.income = profit
       } else if (projectStyle === 'endday') {
@@ -320,14 +324,14 @@ export default {
       overflow: hidden
       position: relative
       ul
-        height: 100%
+        height: 89px
         display: flex
         align-items: flex-end
         -webkit-overflow-scrolling: touch
-        border-bottom: 1px solid #E8E8E8
         position: absolute
         left: 0
         top: 0
+        border-bottom: 1px solid #E8E8E8
         &.active
           transition: all 0.3s ease
         li

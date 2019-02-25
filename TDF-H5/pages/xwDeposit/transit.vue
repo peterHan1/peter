@@ -105,11 +105,8 @@ export default {
     text-align: center
     margin-top: 50px
   .xwBg
-    position: absolute
-    left: 0
-    right: 0
-    bottom: 0
-    height: 670px
+    margin-top: 20px
+    height: 58%
     background: url(../../assets/images/xw-bank/wx_bg.png) no-repeat
     background-size: 100% 100%
   span

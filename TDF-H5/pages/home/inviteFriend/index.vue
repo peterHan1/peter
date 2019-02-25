@@ -1,6 +1,9 @@
 <template>
   <div class="invite">
-    <td-header title="邀请好友"/>
+    <td-header
+      :returnUrl="false"
+      url="/"
+      title="邀请好友"/>
     <div
       :class="{loginNo: !isLogin}"
       class="header">
@@ -188,7 +191,7 @@ export default {
       inviteMember2: '',
       inviteMember3: '',
       dataURL: '',
-      weixinReady: false
+      inviteUser: ''
     }
   },
   computed: {
@@ -197,6 +200,8 @@ export default {
     }
   },
   created() {
+    commenParams.accessId = this.$store.state.accessId
+    commenParams.accessKey = this.$store.state.accessKey
     this.getData()
   },
   methods: {
@@ -241,8 +246,12 @@ export default {
           this.indirectScale1 = res.content.config.indirectScale * 100
           this.recoverTotal1 = res.content.config.recoverTotal
           this.inviteMember1 = res.content.config.inviteMember
+          this.inviteUser = res.content.inviteUser
+          let ua = navigator.userAgent.toLowerCase()
+          if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            this.wxShare()
+          }
         }
-        // console.log(window.location.href)
       })
     },
     toImg() {
@@ -304,7 +313,10 @@ export default {
         this.shadeShow = true
         this.isWx = true
       } else {
-        this.zoom('http://baidu.com')
+        let hrefs =
+          'https://www.51tuodao.com/html5/ex_register_frist?type=invite&user=' +
+          this.inviteUser
+        this.zoom(hrefs)
         this.shadeShow = true
         this.isWx = false
         // this.toImg()
@@ -344,11 +356,13 @@ export default {
       })
     },
     wxShare() {
-      const options = {
+      let options = {
         title: '推荐你用拓道出借，送388元红包，快来注册吧',
         desc:
           '互联网金融百强企业，合规运营5年，新网银行存管，新人可享专属福利！',
-        link: location.href,
+        link:
+          'https://www.51tuodao.com/html5/ex_register_frist?type=invite&user=' +
+          this.inviteUser,
         imgUrl: 'https://www.51tuodao.com/h5/img/share.png'
       }
       // Axios({
@@ -357,11 +371,11 @@ export default {
       //   params: {url: location.href},
       //   timeout: 6000
       Axios.get(
-        'http://72.127.2.140:9090/json/h5/getWxConfig?t=' +
+        'http://72.127.2.140:8090/json/h5/getWxConfig?t=' +
           new Date().getTime(),
         {
           //params参数必写 , 如果没有参数传{}也可以
-          params: { url: location.href }
+          params: { url: location.href.split('#')[0] }
         }
       )
         .then(data => {
@@ -414,13 +428,10 @@ export default {
     }
   },
   mounted() {
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
     this.$nextTick(() => {
       let copyCode = document.getElementById('copyCode')
       this.clipboard = new Clipboard(copyCode)
     })
-    // this.wxShare()
   }
 }
 </script>

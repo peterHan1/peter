@@ -39,10 +39,10 @@ export const inviteFriend = async $axios => {
   })
 }
 
-// 微信分享-签名信息
+// 邀请好友，微信分享-签名信息
 export const wxSignature = async $axios => {
-  return await $axios.post('/hanapp/user/getConpanyInfoOfHomePage', {
-    commenParams
+  return await $axios.get('/json/h5/getWxConfig?t=' + new Date().getTime(), {
+    url: location.href
   })
 }
 
@@ -76,16 +76,6 @@ export const weekVolumeChart = async $axios => {
 // 信息披露-平台数据的平台月度成交量数据
 export const monthVolumeChart = async $axios => {
   return await $axios.post('/hanapp/platform/monthVolumeChart', {
-    commenParams
-  })
-}
-
-// 省心投确定加入内部优惠券
-export const investCoupon = async ($axios, params) => {
-  return await $axios.post('/hanapp/user/getUselbVoucherList', {
-    period: params.period,
-    money: params.money,
-    type: params.type,
     commenParams
   })
 }

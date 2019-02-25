@@ -1,11 +1,5 @@
 import { commenParams } from './config'
 
-// 我的资产
-export const myBankAssets = async $axios => {
-  return await $axios.post('/hanapp/common/myBankAssets', {
-    commenParams
-  })
-}
 // 	加息券列表
 export const allVoucher = async ($axios, params) => {
   return await $axios.post('/hanapp/voucher/allVoucher', {

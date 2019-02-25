@@ -24,7 +24,7 @@
             <i class="iconfont">&#xe704;</i>
             <input 
               v-model="moneyVal" 
-              type="number" 
+              :type="inputType" 
               placeholder="输入提现金额，100元起" 
               @input="inputFn">
             <span @click="allMoney()">全部</span>
@@ -50,7 +50,7 @@
               class="iconfont">&#xe6f9;</i>
             快速到账
           </p>
-          <div>预计当日到账，单日限额<span>{{ urgent.maxFloatAmount }}</span>元，当日剩余额度<span>{{ urgent.floatAmount }}</span>元，限<span>{{ urgent.time }}</span>间操作。</div>
+          <div>预计当日到账，单日限额<span>{{ urgent.maxFloatAmount }}</span>元，当日剩余额度<span>{{ floatAmount }}</span>元，限<span>{{ urgent.time }}</span>间操作。</div>
         </li>
         <li @click="selectCash('normal')">
           <p>
@@ -68,7 +68,7 @@
     </div>
     <div class="sub_btn">
       <td-button
-        :disabled="moneyVal >= 100 && inAccount != ''?false:true"
+        :disabled="moneyVal > 0 && inAccount != '' ? false : true"
         value="申请提现"
         @btnFn="subCash"
       />
@@ -109,15 +109,15 @@ import CryptoJS from 'crypto-js'
 
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
-      const { content } = await prepareDoCash(app.$axios)
-      store.commit('myCenter/setCash', content)
-    } else {
-      app.router.push({
-        name: 'user-login'
-      })
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const res = await prepareDoCash(app.$axios)
+      if (res.code === 100000) {
+        store.commit('myCenter/setCash', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -138,31 +138,42 @@ export default {
       ),
       normal: this.$store.state.myCenter.cashContent.normal,
       urgent: this.$store.state.myCenter.cashContent.urgent,
-      fee: '0.00',
-      credited: '0.00'
+      floatAmount: this.$store.state.myCenter.cashContent.urgent.floatAmount,
+      fee: '-',
+      credited: '-',
+      inputType: ''
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
+    } else {
+      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        this.inputType = 'number'
+      } else {
+        this.inputType = 'tel'
+      }
     }
   },
   methods: {
     inputFn(e) {
-      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
+      e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0]
       this.moneyVal = e.target.value
-      if (this.balance <= 0) {
-        this.moneyVal = '0.00'
-      } else if (Number(this.moneyVal) > Number(this.balance)) {
+      this.speedAllow = true
+      if (Number(this.moneyVal) > Number(this.balance)) {
         this.moneyVal = this.moneyVal.substr(0, this.moneyVal.length - 1)
-      } else if (this.moneyVal >= 100) {
-        this.setMoney(this.moneyVal)
+      } else if (this.moneyVal >= 100 && this.balance >= 100) {
+        this.cashFee(this.moneyVal)
       } else if (this.moneyVal < 100) {
-        this.fee = '0.00'
-        this.credited = '0.00'
+        this.fee = '-'
+        this.credited = '-'
+      }
+      if (Number(this.moneyVal) > Number(this.floatAmount)) {
+        this.speedAllow = false
+        this.inAccount = ''
       }
     },
     selectCash(a) {
@@ -174,16 +185,22 @@ export default {
         this.inAccount = a
       }
     },
-    setMoney(money) {
+    cashFee(money) {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      getCashFee(this.$axios, money).then(res => {
-        this.fee = res.content.fee
-        this.credited = res.content.credited
-      })
+      if (money >= 100) {
+        getCashFee(this.$axios, money).then(res => {
+          this.fee = res.content.fee
+          this.credited = res.content.credited
+        })
+      }
     },
     subCash() {
-      if (this.inAccount && this.moneyVal >= 100) {
+      if (Number(this.moneyVal) > Number(this.balance)) {
+        this.$Msg('提现金额大于可提现金额', 2000)
+      } else if (this.moneyVal < 100 && this.moneyVal > 0) {
+        this.$Msg('提现金额不能低于100元', 2000)
+      } else if (this.inAccount && this.moneyVal >= 100) {
         let money = this.moneyVal + '242628'
         // money = this.encryptByDES(money, '201812243')
         let params = {
@@ -219,6 +236,13 @@ export default {
         })
       }
     },
+    canHigh() {
+      return (
+        this.moneyVal >= 100 &&
+        this.inAccount != '' &&
+        Number(this.moneyVal) <= Number(this.balance)
+      )
+    },
     encryptByDES(message, key) {
       const keyHex = CryptoJS.enc.Utf8.parse(key)
       const encrypted = CryptoJS.DES.encrypt(message, keyHex, {
@@ -229,20 +253,25 @@ export default {
     },
     allMoney() {
       this.moneyVal = this.balance
-      this.setMoney(this.moneyVal)
+      this.cashFee(this.moneyVal)
     },
     layerNow() {
       this.layerMoney = false
     },
     layerClose() {
       this.cashHint = false
+      this.speedAllow = false
+      this.inAccount = 'normal'
     },
     maintainClose() {
       this.cashMaintain = false
+      this.speedAllow = false
+      this.inAccount = ''
     },
     maintainSub() {
       this.cashMaintain = false
       this.speedAllow = false
+      this.inAccount = 'normal'
     },
     navRightFn() {
       this.$router.push({ path: '/myCenter/fund/cashRecord' })
@@ -292,7 +321,6 @@ export default {
           .input_money
             border-bottom: 1px solid $color-gray5
             overflow: hidden
-            height: 128px
             display: flex
             align-items: center
             i
@@ -300,15 +328,29 @@ export default {
               line-height: 110px
             input
               flex: 1
+              height: 100%
               width: 50%
               caret-color: $color-primary
               font-size: 64px
               color: $color-gray1
               background-color: transparent
               line-height: normal
+            input::-webkit-input-placeholder
+              transform: translate(0, -8px)
+              line-height: 100px
+            input:-moz-placeholder
+              transform: translate(0, -8px)
+              line-height: 100px
+            input::-moz-placeholder
+              transform: translate(0, -8px)
+              line-height: 100px
+            input:-ms-input-placeholder
+              transform: translate(0, -8px)
+              line-height: 100px
             span
               color: $color-primary
-              font-size: $fontsize-medium 
+              font-size: $fontsize-medium
+              line-height: 110px
           .cost_money
             padding: 22px 0 15px
             p

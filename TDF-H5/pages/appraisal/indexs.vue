@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })

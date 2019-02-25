@@ -23,7 +23,8 @@
         <span>{{ content.apr }}%</span>
       </li>
       <li>
-        <span>参考收益(元)</span>
+        <span v-if="detailStatus === 'yet'">到期收益(元)</span>
+        <span v-else>参考收益(元)</span>
         <span>{{ content.accountInterest }}</span>
       </li>
       <li>
@@ -40,11 +41,17 @@
       </li>
       <li>
         <span>借款协议</span>
-        <router-link :to="{path:'/myCenter/invest/scatterProtocol',query: {tenderId: this.$route.query.tenderId}}">点击查看</router-link>
+        <span v-if="content.status < 3">满标复审后生成</span>
+        <router-link 
+          v-else 
+          :to="{path:'/myCenter/invest/scatterProtocol',query: {tenderId: this.$route.query.tenderId}}">点击查看</router-link>
       </li>
       <li>
         <span>安存保全</span>
-        <router-link :to="{path:'/myCenter/invest/ancun',query: {tenderId: this.$route.query.tenderId}}">点击查看</router-link>
+        <span v-if="content.status < 3">满标复审后生成</span>
+        <router-link 
+          v-else
+          :to="{path:'/myCenter/invest/ancun',query: {ancunUrl: content.acunUrl}}">点击查看</router-link>
       </li>
     </ul>
     <div>
@@ -105,24 +112,29 @@ export default {
       commenParams.accessId = app.store.state.accessId
       commenParams.accessKey = app.store.state.accessKey
       const contentTxt = await getBankRecoverPlan(app.$axios, tenderId)
-      app.store.commit('myCenter/setScatterDetails', contentTxt.content)
-    } else {
-      app.router.push({
-        name: 'user-login'
-      })
+      if (contentTxt.code === 100000) {
+        app.store.commit('myCenter/setScatterDetails', contentTxt.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
     return {
       tenderId: '',
       borrowNid: '',
-      list: this.$store.state.myCenter.scatterDetails.dataRows,
+      list: this.$store.state.myCenter.scatterDetails.dataRows
+        ? this.$store.state.myCenter.scatterDetails.dataRows
+        : [],
       content: this.$store.state.myCenter.scatterDetails
+        ? this.$store.state.myCenter.scatterDetails
+        : '',
+      detailStatus: this.$route.query.status
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
@@ -132,31 +144,40 @@ export default {
     statusTxt: function(value) {
       switch (value) {
         case 0:
-          return '等待初审'
+          return '待审核'
+          break
         case 1:
-          return '初审通过'
-        case 2:
           return '募集中'
-        case 3:
+          break
+        case 2:
           return '初审失败'
-        case 4:
-          return '还款中 '
+          break
+        case 3:
+          return '还款中'
+          break
         case 5:
-          return '还款成功'
-        case 6:
           return '用户撤标'
-        case 7:
+          break
+        case 6:
           return '撤标'
+          break
         case 8:
           return '还款成功'
+          break
+        default:
+          return 'null'
       }
     },
     voucherTxt: function(value) {
       switch (value) {
         case 'jx':
           return '%加息卷'
+          break
         case 'dk':
           return '元抵扣卷'
+          break
+        default:
+          return 'null'
       }
     }
   }
@@ -168,75 +189,79 @@ export default {
     width: 100%
     padding-top: 88px
     box-sizing: border-box
-		.investsTop
-			line-height: 99px
-			background-color: #fff
-			font-size: 32px
-			padding: 0 45px 0 30px
-			overflow: hidden
-			span
-				color: #333
-				float: left
-			b
-				color: #999
-				float: right
-		ul
-			padding: 0 30px
-			background-color: #fff
-			margin-top: 20px
-			li
-				line-height: 90px
-				border-bottom: 1px solid #E8E8E8
-				overflow: hidden
-				font-size: 28px
-				span:nth-child(1)
-					float: left
-					color: #666
-				span:nth-child(2)
-					float: right
-					color: #333
-				a
-					float: right
-					color: #FF7102
-		.tableTxt
-			font-size: 32px
-			color: #333
-			line-height: 100px
-			padding: 0 30px
-			border-bottom: 1px solid #E8E8E8
-			background-color: #fff
-			margin-top: 20px
-		.tableBox
-			padding: 0 30px
-			background-color: #fff
-			table
-				width: 100%
-				border-collapse: collapse
-				tr
-					border-bottom: 1px solid #E8E8E8
-					line-height: 80px
-					font-size: 28px
-					th
-						text-align: center
-						color: #999
-						font-weight: normal
-					td
-						text-align: center
-						color: #333
-					th:first-child,td:first-child
-						text-align: left
-					th:last-child,td:last-child
-						text-align: right
-					td.nullData
-						text-align: center	
-						color: #666
-		.linkA
-			display: block
-			width: 100%
-			text-align: center
-			line-height: 98px
-			background-color: #fff
-			color: #FF7102
-			font-size: 32px
-			margin-top: 20px
+    .investsTop
+      height: 99px
+      line-height: 99px
+      background-color: #fff
+      font-size: 32px
+      padding: 0 45px 0 30px
+      overflow: hidden
+      span
+        color: #333
+        float: left
+        width: 75%
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+      b
+        color: #999
+        float: right
+    ul
+      padding: 0 30px
+      background-color: #fff
+      margin-top: 20px
+      li
+        line-height: 90px
+        border-bottom: 1px solid #E8E8E8
+        overflow: hidden
+        font-size: 28px
+        display: flex
+        justify-content: space-between
+        span:nth-child(1)
+          color: #666
+        span:nth-child(2)
+          color: #333
+        a
+          color: #FF7102
+    .tableTxt
+      font-size: 32px
+      color: #333
+      line-height: 100px
+      padding: 0 30px
+      border-bottom: 1px solid #E8E8E8
+      background-color: #fff
+      margin-top: 20px
+    .tableBox
+      padding: 0 30px
+      background-color: #fff
+      table
+        width: 100%
+        border-collapse: collapse
+        tr
+          border-bottom: 1px solid #E8E8E8
+          line-height: 80px
+          font-size: 28px
+          th
+            text-align: center
+            color: #999
+            font-weight: normal
+          td
+            text-align: center
+            color: #333
+          th:first-child,td:first-child
+            text-align: left
+          th:last-child,td:last-child
+            text-align: right
+          td.nullData
+            text-align: center	
+            color: #666
+    .linkA
+      display: block
+      width: 100%
+      text-align: center
+      line-height: 98px
+      background-color: #fff
+      color: #FF7102
+      font-size: 32px
+      margin-top: 20px
 </style>

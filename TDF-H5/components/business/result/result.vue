@@ -65,7 +65,7 @@ export default {
       display: inline-block
       line-height: 74px
       text-align: center
-      border: 2px solid #FF7102
+      border-1px($color-primary, 35px)
       border-radius: 35px
       font-size: $fontsize-large-x
   .ok

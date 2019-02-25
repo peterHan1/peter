@@ -1,7 +1,4 @@
 import { commenParams } from './config'
-console.log('/api-接口/')
-console.log(commenParams)
-
 // 省心投列表
 export const freeBorrowList = async ($axios, params) => {
   // console.log($axios)
@@ -44,6 +41,16 @@ export const joinList = async ($axios, { desId, item, page }) => {
   })
 }
 
+// 省心投,散标确定出借内部优惠券筛选
+export const investCoupon = async ($axios, params) => {
+  return await $axios.post('/hanapp/user/getUselbVoucherList', {
+    period: params.period,
+    money: params.money,
+    type: params.type,
+    commenParams
+  })
+}
+
 // 省心投确定加入
 export const investFreeAdd = async ($axios, params) => {
   return await $axios.post('/hanapp/product/planJoin', {
@@ -76,15 +83,24 @@ export const investScatterAdd = async ($axios, params) => {
     imgCode: params.imgCode,
     secretParam: params.secretParam,
     accountInterest: params.accountInterest,
-    redirectUrl: params.params,
+    redirectUrl: params.redirectUrl,
     commenParams
   })
 }
 
 // 散标出借结果
-export const investScatterResult = async ($axios, orderId) => {
-  return await $axios.post('/hanapp/product/planJoin', {
-    orderId: orderId,
+export const investScatterResult = async ($axios, orderNo) => {
+  return await $axios.post('/hanapp/tender/getResult', {
+    orderNo: orderNo,
+    commenParams
+  })
+}
+
+// 约标
+export const yb = async ($axios, { borrowPassword, desId }) => {
+  return await $axios.post('/hanapp/borrow/checkBookingPwd', {
+    borrowPassword,
+    desId,
     commenParams
   })
 }

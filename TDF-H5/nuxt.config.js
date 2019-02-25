@@ -58,7 +58,7 @@ module.exports = {
     prefix: '/api/',
     proxy: true
   },
-  // http://72.127.2.140:9090
+  // 'http://72.127.2.140:8090'
   proxy: {
     '/api/': {
       target: 'http://72.127.2.140:8090',
@@ -90,6 +90,9 @@ module.exports = {
     postcss: [
       require('postcss-px2rem')({
         remUnit: 100
+      }),
+      require('autoprefixer')({
+        browsers: ['Android >= 4.0', 'iOS >= 7']
       })
     ]
   }

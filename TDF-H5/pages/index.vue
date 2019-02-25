@@ -41,10 +41,33 @@
       </div>
     </div>
     <div class="finance_list">
-      <router-link to="/project">
+      <a @click="invest">
         <div class="finance_tlt">
           <h3>{{ investList.name }}</h3>
-          <img :src="investList.markUrl">
+          <img
+            v-show="investList.planType==13"
+            src="~/assets/images/tags/new.png">
+          <img
+            v-show="investList.planType==3"
+            src="~/assets/images/tags/act.png">
+          <img
+            v-show="investList.planType==12"
+            src="~/assets/images/tags/act.png">
+          <img
+            v-show="investList.planType==11473"
+            src="~/assets/images/tags/act.png">
+          <img
+            v-show="investList.multiple==2"
+            src="~/assets/images/tags/jifen2.png">
+          <img
+            v-show="investList.multiple==3"
+            src="~/assets/images/tags/jifen3.png">
+          <img
+            v-show="investList.type==1"
+            src="~/assets/images/tags/transfer.png">
+          <img
+            v-show="investList.enjoyType==1"
+            src="~/assets/images/tags/app.png">
         </div>
         <div class="finance_mes">
           <div class="list">
@@ -61,7 +84,7 @@
           </div>
           <div class="list list_style">
             <div>
-              <p>{{ investList.surplusAmount }}</p>
+              <p>{{ investList.surplusAmountFormat }}</p>
               <p>剩余可投</p>
             </div>
           </div>
@@ -69,11 +92,9 @@
         <div class="finance_btn">
           <td-button
             :disabled="isOver"
-            :value="surplusAmount"
-            @btnFn="invest"
-          />
+            :value="surplusAmount"/>
         </div>
-      </router-link>
+      </a>
     </div>
     <div class="td_box">
       <div class="td_time">已合规运营 <span>{{ business.days }}</span></div>
@@ -92,9 +113,9 @@
         </div>
       </div>
       <div class="indexLink">
-        <span>电脑版</span>|
+        <a href="https://www.51tuodao.com/"><span>电脑版</span></a>|
         <span @click="downApp">下载APP</span>|
-        <span>帮助中心</span>
+        <a href="https://www.51tuodao.com/html5/app/help"><span>帮助中心</span></a>
       </div>
       <div class="tdNum">
         <p>Copyright Reserved 2013-2018</p>
@@ -120,7 +141,9 @@ export default {
       business: {},
       investList: {},
       surplusAmount: '立即加入',
-      isOver: false
+      isOver: false,
+      proType: null,
+      joinId: ''
     }
   },
   filters: {
@@ -137,7 +160,6 @@ export default {
       this.noticeName = res.content.gonggaoList[0].name
     })
     homeBanner(this.$axios).then(res => {
-      console.log(res)
       this.imgArr = res.content.map(o => {
         return {
           image: o.picTarget,
@@ -149,7 +171,10 @@ export default {
       this.business = res.content
     })
     homeInvest(this.$axios).then(res => {
+      console.log(res)
       this.investList = res.content.borrow[0]
+      this.proType = res.content.proType
+      this.joinId = res.content.borrow[0].desId
       if (res.content.proType === 0) {
         this.surplusAmount = '立即出借'
       } else if (res.content.proType === 1) {
@@ -163,13 +188,17 @@ export default {
   },
   methods: {
     downApp() {
-      this.$App(
-        '<p>您确定下载以下内容吗？</p><p>拓道金服V3.9.2 54MB &nbsp;</p>'
-      )
+      this.$App('<p>确定下载《拓道金服》手机端吗？</p>')
     },
     invest() {
-      if (!this.isOver) {
-        this.$router.push({ name: 'project' })
+      if (this.proType === 0) {
+        this.$router.push({
+          path: `/project/scatter-details/${this.joinId}`
+        })
+      } else if (this.proType === 1) {
+        this.$router.push({
+          path: `/project/free-details/${this.joinId}`
+        })
       }
     }
   },

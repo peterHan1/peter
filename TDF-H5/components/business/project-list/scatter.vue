@@ -12,11 +12,25 @@
         :key="index"
         @click="selected(item.desId)">
         <div>
-          <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
+          <div class="pro-name">{{ item.name }}
+            <tags :type="item.typeId" />
+            <img
+              v-show="item.doubleBonus==2"
+              src="~/assets/images/tags/jifen2.png">
+            <img
+              v-show="item.doubleBonus==3"
+              src="~/assets/images/tags/jifen3.png">
+            <img
+              v-show="item.orZhuan==1"
+              src="~/assets/images/tags/transfer.png">
+            <img
+              v-show="item.isApp==0"
+              src="~/assets/images/tags/app.png">
+          </div>
           <dl class="pro-con">
             <dd>{{ item.apr }}<i>%</i><i v-if="item.platformApr!=0">+{{ item.platformApr }}%</i></dd>
             <dd>{{ item.period }}个月</dd>
-            <dd><button>立即加入</button></dd>
+            <dd><button>立即出借</button></dd>
           </dl>
           <div class="bar">
             <div
@@ -39,7 +53,18 @@
         v-if="item.rate==100"
         :key="index"
         @click="selected(item.desId)">
-        <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
+        <div class="pro-name">{{ item.name }}
+          <tags :type="item.typeId" />
+          <img
+            v-show="item.doubleBonus==2"
+            src="~/assets/images/tags/jifen2.png">
+          <img
+            v-show="item.doubleBonus==3"
+            src="~/assets/images/tags/jifen3.png">
+          <img
+            v-show="item.orZhuan==1"
+            src="~/assets/images/tags/transfer.png">
+        </div>
         <dl class="pro-con">
           <dd>{{ item.apr }}<i>%</i><i v-if="item.platformApr!=0">+{{ item.platformApr }}%</i></dd>
           <dd>{{ item.period }}个月</dd>

@@ -6,7 +6,9 @@ export const state = () => ({
   dynamicPages: 1, // 动态总页数
   dynamicItem: 10, // 每页显示条数
   dynamicData: [],
-  wxSDKData: {}
+  siftDetails: {}, // 省心投详情数据
+  scatterDetails: {}, // 散标详情数据
+  cashBalance: null // 剩余可用余额
 })
 export const mutations = {
   // 公告总页数
@@ -29,9 +31,21 @@ export const mutations = {
   setDynamicData(state, data) {
     state.dynamicData.push(data)
   },
-  // 动态告清空
+  // 动态清空
   setDynamicNull(state) {
     state.dynamicData = []
+  },
+  // 省心投数据
+  setSiftDetails(state, data) {
+    state.siftDetails = data
+  },
+  // 散标数据
+  setScatterDetails(state, data) {
+    state.scatterDetails = data
+  },
+  // 可用余额
+  setCashBalance(state, data) {
+    state.cashBalance = data
   },
   // 微信签名等信息
   setWxSDKData(state, data) {

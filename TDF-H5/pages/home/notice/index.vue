@@ -87,6 +87,7 @@ export default {
         item: this.$store.state.home.dynamicItem
       }
       let noticeList = await homeNoticeDynamic(this.$axios, notice)
+      console.log(noticeList)
       // this.$store.commit('home/setNoticePages', noticeList.content.pages)
       // for (let i = 0; i < noticeList.content.dataRows.length; i++) {
       //   noticeList.content.dataRows[i].url =

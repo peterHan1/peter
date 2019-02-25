@@ -6,7 +6,7 @@
       url="/myCenter/invest/myInvest"/>
     <div class="investsTop">
       <span>{{ content.name }}</span>
-      <b v-if="content.status === 1">额度已满</b>
+      <b v-if="content.status === 1 || content.status === '1'">额度已满</b>
       <b v-else>加入中</b>
     </div>
     <ul>
@@ -24,7 +24,7 @@
       </li>
       <li>
         <span>约定利率</span>
-        <span>{{ content.apr }}% <b v-if="content.platformApr">+ {{ content.platformApr }}%</b> </span>
+        <span>{{ content.apr }}% <b v-if="content.platformApr > 0">+ {{ content.platformApr }}%</b> </span>
       </li>
       <li>
         <span>参考收益(元)</span>
@@ -68,10 +68,10 @@
             <tr 
               v-for="(item,index) in list" 
               :key="index">
-              <td>{{ item.recoverTime }}</td>
-              <td>{{ item.recoverAccount }}</td>
-              <td>{{ item.recoverInterest }}</td>
-              <td>{{ item.status }}</td>
+              <td>{{ item.repaymentTime }}</td>
+              <td>{{ item.capital }}</td>
+              <td>{{ item.interest }}</td>
+              <td>{{ item.status | statusTxt }}</td>
             </tr>
           </tbody>
         </table>
@@ -108,14 +108,14 @@ export default {
   async fetch({ app, store, route }) {
     if (app.store.state.isLogin) {
       let tenderId = route.query.tenderId
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
       const contentTxt = await siftTenderDetail(app.$axios, tenderId)
-      app.store.commit('myCenter/setSiftDetails', contentTxt.content)
-    } else {
-      app.router.push({
-        name: 'user-login'
-      })
+      if (contentTxt.code === 100000) {
+        app.store.commit('myCenter/setSiftDetails', contentTxt.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -128,10 +128,24 @@ export default {
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
+    }
+  },
+  filters: {
+    statusTxt: function(value) {
+      switch (value) {
+        case 0:
+          return '待回款'
+          break
+        case 1:
+          return '已回款'
+          break
+        default:
+          return 'null'
+      }
     }
   }
 }

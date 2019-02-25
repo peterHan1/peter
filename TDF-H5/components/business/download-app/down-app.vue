@@ -55,7 +55,7 @@ export default {
               return false
             } else {
               window.location.href =
-                'https://www.51tuodao.com/front/app/downLoadForPhone'
+                'https://itunes.apple.com/cn/app/id1030238074?mt=8'
             }
           }, 25)
           window.location.href = 'tuodao16TD://'
@@ -66,7 +66,7 @@ export default {
           document.body.appendChild(ifr)
           window.setTimeout(() => {
             window.location.href =
-              'https://www.51tuodao.com/front/app/downLoadForPhone'
+              'https://www.51tuodao.com/static_pro/apk/tdjf.apk'
           }, 2000)
           window.location.href = 'tuodaoapp://td.app/openwith'
         }

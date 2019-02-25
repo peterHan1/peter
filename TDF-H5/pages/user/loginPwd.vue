@@ -1,8 +1,8 @@
 <template>
   <div class="login">
-    <td-header 
+    <td-header
       :returnUrl="false"
-      url="/user/login" 
+      url="/user/login"
       title="登录/注册"/>
     <ul>
       <li>密码</li>
@@ -55,6 +55,12 @@ export default {
       phone: ''
     }
   },
+  beforeRouteEnter(to, from, next) {
+    console.log(to)
+    console.log(from)
+    console.log(next)
+    next()
+  },
   computed: {
     srcPath() {
       return this.$store.state.srcPath || '/'
@@ -71,7 +77,7 @@ export default {
         password: md5(this.pwd),
         remember: this.remember
       }
-      // console.log('原路返回路径：' + this.srcPath)
+      this.$load.Load()
       let res = await login(this.$axios, params)
       if (res.code === 100000) {
         const token = {
@@ -85,8 +91,10 @@ export default {
         const { content } = await detailStatus(this.$axios, commenParams)
         const userInfo = Object.assign({}, token, content, { isLogin: true })
         this.$store.commit('setToken', userInfo)
+        this.$load.Close()
         this.$router.push(this.srcPath)
       } else {
+        this.$load.Close()
         this.$store.commit('setToken', { isLogin: false })
         this.$Msg(res.message, 2000)
       }

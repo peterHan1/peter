@@ -9,7 +9,7 @@
       @pulling-up="onPullingUp">
       <div class="titleTxt">
         <span>{{ this.$route.query.name }}</span>
-        <b v-if="status === 1">额度已满</b>
+        <b v-if="status === 1 || status === '1'">额度已满</b>
         <b v-else>加入中</b>
       </div>
       <ul>
@@ -25,8 +25,10 @@
             <span>加入时间:{{ item.addTime }}</span>
           </p>
           <div>
-            <router-link to="" >查看协议</router-link>
-            <router-link to="" >查看项目</router-link>
+            <router-link :to="{path:'/myCenter/invest/scatterProtocol',query: {tenderId: item.tenderId}}">查看协议</router-link>
+            <router-link 
+              :to="{path:'/project/scatter-details/' + item.desId}"
+              class="linkA">查看项目</router-link>
           </div>
         </li>
       </ul>
@@ -56,8 +58,12 @@ export default {
       commenParams.accessId = app.store.state.accessId
       commenParams.accessKey = app.store.state.accessKey
       const tenderList = await joinTenderList(app.$axios, params)
-      app.store.commit('myCenter/setTenderListNull')
-      app.store.commit('myCenter/setTenderList', tenderList.content.dataRows)
+      if (tenderList.code === 100000) {
+        app.store.commit('myCenter/setTenderListNull')
+        app.store.commit('myCenter/setTenderList', tenderList.content.dataRows)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -81,10 +87,7 @@ export default {
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
+      this.returnLogin()
     }
   },
   methods: {
@@ -95,12 +98,16 @@ export default {
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
         const tenderList = await joinTenderList(this.$axios, params)
-        this.$store.commit('myCenter/setTenderListNull')
-        this.$store.commit(
-          'myCenter/setTenderList',
-          tenderList.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderList.code === 100000) {
+          this.$store.commit('myCenter/setTenderListNull')
+          this.$store.commit(
+            'myCenter/setTenderList',
+            tenderList.content.dataRows
+          )
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
@@ -114,12 +121,23 @@ export default {
         commenParams.accessId = this.$store.state.accessId
         commenParams.accessKey = this.$store.state.accessKey
         const tenderList = await joinTenderList(this.$axios, params)
-        this.$store.commit(
-          'myCenter/setTenderList',
-          tenderList.content.dataRows
-        )
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderList.code === 100000) {
+          this.$store.commit(
+            'myCenter/setTenderList',
+            tenderList.content.dataRows
+          )
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   }
 }
@@ -177,9 +195,4 @@ export default {
         font-size: $fontsize-small-ss
       a:nth-child(2)
         text-align: right
-  .data-status
-    position: absolute
-    left: 50%
-    top: 30%
-    transform: translateX(-50%)
 </style>

@@ -3,6 +3,8 @@
     <div class="sift-center">
       <td-header
         :title="projectInfo.title"
+        :returnUrl="false"
+        url="/project"
         class="header"/>
       <transition :name="transitionName">
         <div
@@ -10,50 +12,51 @@
           @pullFn="cutFn"/>
       </transition>
       <footer :class="{over:projectInfo.rate==100}">
-        <!-- {{ isShowTime }} -->
         <div v-if="projectInfo.rate==100">
           已抢完
         </div>
         <div
           v-else-if="!userInfo.isLogin"
-          @click="toLogin">请登录</div>
+          @click="toLogin">请先登录</div>
         <div
           v-else-if="userInfo.isOpen!=1"
           @click="toCg">
           激活银行存管即可加入
         </div>
-        <div v-else-if="userInfo.authStatus!=1">
+        <div
+          v-else-if="userInfo.authStatus!=1"
+          @click="toAccredit">
           请重新进行业务授权
         </div>
         <div
-          v-else-if="userInfo.CisShowTime ">
-          <count-down :dateTimes="projectInfo.dateTimes"/>
-        </div>
-        <div
-          v-else-if="userInfo.evaluationStatus != 1"
-          @click="toCp">
-          风险评测
+          v-else-if="userInfo.isShowTime">
+          {{ str }}
         </div>
         <div
           v-else
           @click="toJoin">立即加入</div>
       </footer>
     </div>
+    <Layer
+      v-show="showDialog"
+      close="取消"
+      submit="立即评测"
+      @on-close="onClose"
+      @on-sub="onSub">
+      <div class="out_txt">{{ showInfo }}</div>
+    </Layer>
   </div>
 </template>
 <script>
 import Sift from '~/components/business/project-detail/siftDetails/sift-details'
 import Sifts from '~/components/business/project-detail/siftDetails/sift-details-next'
 import { freeBorrowDetail } from '~/api/project.js'
-import CountDown from '~/components/business/count-down/count-down'
 export default {
   // name: 'keep',
   async fetch({ app, params, store }) {
     const desId = encodeURIComponent(params.id)
-    // console.log(commenParams.accessKey)
     const { content } = await freeBorrowDetail(app.$axios, desId)
     store.commit('project/freeDetailData', content)
-    // console.log(this.$refs.countDown.str)
   },
   data() {
     return {
@@ -63,8 +66,10 @@ export default {
         headerH: 0,
         footerH: 0
       },
-      btnName: '立即加入',
-      isShowTime: true
+      showDialog: false,
+      showInfo: '',
+      str: '',
+      timer: ''
     }
   },
   computed: {
@@ -73,14 +78,14 @@ export default {
         title: this.$store.state.project.freeDetail.name,
         rate: this.$store.state.project.freeDetail.rate,
         desId: this.$store.state.project.freeDetail.desId,
-        dateTimes: '2019/2/15 22:00:00' // 接口缺少字段
+        isApp: this.$store.state.project.freeDetail.enjoyType,
+        dateTimes: this.$store.state.project.freeDetail.publishTime || ''
       }
     },
     userInfo() {
-      const end = Date.parse(new Date(this.projectInfo.dateTimes))
-      const now = Date.parse(new Date())
+      const end = this.projectInfo.dateTimes
+      const now = Date.parse(new Date()) / 1000
       const msec = end - now
-      // let CisShowTimeX = msec <= 0 ? false : true
       return {
         isLogin: this.$store.state.isLogin,
         accessId: this.$store.state.accessId,
@@ -88,28 +93,36 @@ export default {
         isOpen: this.$store.state.openDepository,
         authStatus: this.$store.state.authStatus,
         evaluationStatus: this.$store.state.evaluationStatus,
-        CisShowTime: msec <= 0 ? false : true
+        isShowTime: msec <= 0 ? false : true
       }
     }
   },
   created() {
-    // this.isSS()
-    // console.log(this.userInfo.CisShowTime)
-    // console.log(this.isShowTime)
+    this.timer = setInterval(this.countdown, 1000)
   },
-  // mounted() {
-  //   this.isSS()
-  // },
-  // created() {},
   methods: {
-    isSS() {
-      const end = Date.parse(new Date(this.userInfo.dateTimes))
-      const now = Date.parse(new Date())
+    countdown() {
+      const end = this.projectInfo.dateTimes // 秒
+      const now = Date.parse(new Date()) / 1000
       const msec = end - now
-      this.userInfo.CisShowTime = msec <= 0 ? false : true
-      // if (msec <= 0) {
-      //   this.userInfo.CisShowTime = false
-      // }
+      if (msec < 0) {
+        this.str = 0
+        this.userInfo.isShowTime = false
+      } else {
+        let day = parseInt(msec / 60 / 60 / 24)
+        let hr = parseInt((msec / 60 / 60) % 24)
+        let min = parseInt((msec / 60) % 60)
+        let sec = parseInt(msec % 60)
+        // day = day
+        hr = hr > 9 ? hr : '0' + hr
+        min = min > 9 ? min : '0' + min
+        sec = sec > 9 ? sec : '0' + sec
+        this.str = `${hr}:${min}:${sec}后开抢`
+      }
+      // this = setInterval(this.countdown, 1000)
+      if (msec < 0) {
+        clearInterval(this.timer)
+      }
     },
     cutFn() {
       if (
@@ -130,25 +143,45 @@ export default {
         name: 'user-login'
       })
     },
-    toCg() {
-      this.$router.push({ path: '/xwDeposit/deposit' })
+    toAccredit() {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({ path: '/myCenter/set/xwAccredit' })
     },
     toCp() {
+      this.$store.commit('srcPath', this.$route.path)
       this.$router.push({ path: '/appraisal/indexs' })
     },
     toJoin() {
-      this.$store.commit('project/setTransition', 'turn-on')
-      this.$router.push({
-        name: 'project-index-investAdd',
-        query: { desId: this.projectInfo.desId }
-      })
+      if (this.userInfo.evaluationStatus != 1) {
+        this.showDialog = true
+        this.showInfo = '为了保障您的切身利益，请在出借前进行“风险承受能力测评”'
+        if (this.userInfo.evaluationStatus == 0)
+          this.showInfo = '您的“风险承受能力测评”结果已过期，请在出借前重新测评'
+      } else if (this.projectInfo.isApp == 1) {
+        this.$App('<p>该项目属于“APP专享”项目，请在APP端操作出借</p>')
+      } else {
+        this.$store.commit('project/setTransition', 'turn-on')
+        this.$router.push({
+          name: 'project-index-invest-free',
+          query: { desId: this.projectInfo.desId }
+        })
+      }
+    },
+    onSub() {
+      this.$store.commit('srcPath', this.$route.path)
+      this.$router.push({ path: '/appraisal/indexs' })
+    },
+    onClose() {
+      this.showDialog = false
     }
   },
   // mounted() {},
   components: {
     Sift,
-    Sifts,
-    CountDown
+    Sifts
+  },
+  destroyed() {
+    clearInterval(this.timer)
   }
 }
 </script>
@@ -206,4 +239,9 @@ export default {
   transform: translate3d(0, -100%, 0)
 .slide-bottom-leave-active,.slide-top-enter
   transform: translate3d(0, 100%, 0)
+.out_txt
+  text-align: center
+  font-size: $fontsize-medium
+  color: $color-gray1
+  padding: 48px 40px 21px
 </style>

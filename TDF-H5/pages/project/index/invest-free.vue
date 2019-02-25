@@ -1,7 +1,10 @@
 <template>
   <div class="fix">
     <div class="addBox">
-      <td-header title="确定加入"/>
+      <td-header
+        :returnUrl="false" 
+        :url="lastUrl"
+        title="确定加入"/>
       <div class="addTop">
         <span>可加项目余额(元)</span>
         <span>{{ surplus }}</span>
@@ -11,7 +14,7 @@
         <div class="inputs">
           <input
             v-model="importMoney"
-            :disabled="Cutsurplus<100"
+            :disabled="cutSurplus<100"
             type="number"
             placeholder="100元起投"
             @input="oninput"
@@ -19,8 +22,8 @@
           <span @click="lastInvest">余额全投</span>
         </div>
         <div class="showMoney">
-          <p>可用余额<b> {{ cashBalance }}</b>元</p>
-          <router-link to="/myCenter/fund/recharge">充值</router-link>
+          <p>可用余额<b> {{ cutCashBalance }}</b>元</p>
+          <a @click="balanceSub">充值</a>
         </div>
       </div>
       <div
@@ -34,16 +37,16 @@
       <div class="earnings">预计收益<span>{{ income }}元</span></div>
       <div class="sub_btn">
         <button
-          v-if="Cutsurplus < 100"
+          v-if="cutSurplus < 100"
           :disabled="deal == true?false:true"
           :class="{tdButton: deal == true?false:true}"
-          @click="subInvest">实付：{{ moneyForm }}元，确认出借
+          @click="subInvest">实付：{{ moneyForm }}元，确认加入
         </button>
         <button
           v-else
           :disabled="importMoney >= 100 && deal == true?false:true"
           :class="{tdButton: importMoney >= 100 && deal == true?false:true}"
-          @click="subInvest">实付：{{ moneyForm }}元，确认出借
+          @click="subInvest">实付：{{ moneyForm }}元，确认加入
         </button>
       </div>
       <div class="clause">
@@ -55,42 +58,50 @@
             v-else
             class="iconfont">&#xe6f9;</b>
         </i>
-        <span>已阅读并同意<router-link to="" >《网络借贷禁止性行为说明》</router-link> <router-link to="" >《借款协议》</router-link> <router-link to="" >《网络借贷风险提示书》</router-link></span>
+        <span>已阅读并同意<router-link to="/project/protocol/banExplain">《网络借贷禁止性行为说明》</router-link> <router-link to="/project/protocol/riskTip">《网络借贷风险提示书》</router-link> <router-link to="/project/protocol/siftProtocol">《省心投授权委托书》</router-link></span>
       </div>
       <div
         :is="listTxt"
         :disId="disId"
         :disType="disType"
-        :disTxt="disTxt"
-        :moneys="importMoney"
+        :disTxt="disVal"
+        :moneys="StringMoney"
         :periods="periods"
         @colseFn="colseFn"/>
       <Layer
         v-show="balanceShow"
         close="取消"
         submit="充值"
-        @on-close="balanceClose()"
-        @on-sub="balanceSub()" >
+        @on-close="balanceClose"
+        @on-sub="balanceSub" >
         <div class="balance_txt">账户余额不足，请先充值</div>
+      </Layer>
+      <Layer
+        v-show="showDialog"
+        close="取消"
+        submit="立即评测"
+        @on-close="onClose"
+        @on-sub="appraisalSub">
+        <div class="out_txt">{{ showInfo }}</div>
       </Layer>
       <Layer
         v-show="appraisalShow"
         close="不同意"
         submit="同意"
-        @on-close="appraisalClose()"
-        @on-sub="appraisalSub()" >
-        <div class="appraisal_txt">您当前的风险测评结果为<span>[{{ evaluationType }}]</span>，可投本金总额不超过40万元，您剩余可投本金<span>[{{ cashBalance }}元]</span>。请重新测评以便更好地了解自身风险承受能力。</div>
+        @on-close="appraisalClose"
+        @on-sub="appraisalSub" >
+        <div class="appraisal_txt">您当前的风险测评结果为<span>[{{ evaluationType }}]</span>，可投本金总额不超过{{ quota }}万元，您剩余可投本金<span>[{{ limitQuota }}元]</span>。请重新测评以便更好地了解自身风险承受能力。</div>
       </Layer>
       <Layer
         v-show="dealShow"
         close="不同意"
         submit="同意"
-        @on-close="dealClose()"
-        @on-sub="dealSub()" >
+        @on-close="dealClose"
+        @on-sub="dealSub" >
         <div class="protocol_txt">
           <div class="protocol_box">
             <Ban/>
-            <Scatter/>
+            <SiftAdd/>
           </div>
         </div>
       </Layer>
@@ -101,12 +112,33 @@
 <script>
 import List from '~/components/business/invest/add/discount-list.vue'
 import Ban from '~/components/business/protocol/src/ban.vue'
-import Scatter from '~/components/business/protocol/src/scatter.vue'
+import SiftAdd from '~/components/business/protocol/src/siftAdd.vue'
 import { commenParams } from '~/api/config.js'
-import { myBankAssets, getEvaluationInfo } from '~/api/user.js'
+import { myBankAssets, detailStatus } from '~/api/user.js'
 import { freeBorrowDetail, investFreeAdd } from '~/api/project.js'
 import CryptoJS from 'crypto-js'
 export default {
+  async fetch({ app, store, route }) {
+    if (store.state.isLogin) {
+      let desId = route.query.desId
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const data = await freeBorrowDetail(app.$axios, desId)
+      store.commit('home/setSiftDetails', data.content)
+      const datas = await myBankAssets(app.$axios, commenParams)
+      if (datas.code == 100000) {
+        store.commit('home/setCashBalance', datas.content.cashBalance)
+      } else {
+        app.router.push({
+          name: 'user-login'
+        })
+      }
+    } else {
+      app.router.push({
+        name: 'user-login'
+      })
+    }
+  },
   data() {
     return {
       importMoney: '',
@@ -114,73 +146,62 @@ export default {
       deal: false,
       listTxt: '',
       disTxt: null,
+      disVal: null,
       disId: null,
       disType: null,
       balanceShow: false,
       appraisalShow: false,
+      showDialog: false,
+      showInfo: '',
       dealShow: false,
-      cashBalance: 0,
-      income: 0,
+      cashBalance: this.$store.state.home.cashBalance,
+      income: '0.00',
       award: null, // 加息券5%加息即为5
       disVoucherId: null, // 优惠券编码
-      evaluationScoreMsg: '',
-      joinId: null,
-      surplus: null,
-      types: {},
-      periods: ''
+      joinId: this.$store.state.home.siftDetails.desId,
+      surplus: this.$store.state.home.siftDetails.surplus,
+      periods: this.$store.state.home.siftDetails.period,
+      evaluationType: '',
+      limitQuota: null,
+      quota: null,
+      lastUrl: `/project/free-details/${this.$route.query.desId}`
     }
   },
   computed: {
-    isLogin() {
+    cutSurplus() {
+      if (RegExp(/,/).test(this.surplus)) {
+        return this.surplus.replace(',', '')
+      } else {
+        return this.surplus
+      }
+    },
+    StringMoney() {
+      return String(this.importMoney)
+    },
+    cutCashBalance() {
+      if (RegExp(/,/).test(this.cashBalance)) {
+        return this.numFilter(this.cashBalance).replace(',', '')
+      } else {
+        return this.numFilter(this.cashBalance)
+      }
+    },
+    types() {
       return {
-        isLogin: this.$store.state.isLogin
+        type: this.$store.state.home.siftDetails.repaymentType,
+        interest:
+          Number(this.$store.state.home.siftDetails.apr) +
+          Number(this.$store.state.home.siftDetails.platformApr),
+        time: this.$store.state.home.siftDetails.period
       }
-    },
-    Cutsurplus() {
-      return this.surplus.replace(',', '')
-    },
-    evaluationStatus() {
-      return this.$store.state.evaluationStatus
-    },
-    evaluationType() {
-      return this.$store.state.evaluationType
     }
-  },
-  created() {
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    freeBorrowDetail(this.$axios, this.$route.query.desId).then(res => {
-      this.surplus = res.content.surplus
-      this.periods = res.content.period
-      this.joinId = res.content.desId
-      this.types = {
-        type: res.content.repaymentType,
-        interest: res.content.apr,
-        time: res.content.period
-      }
-      this.lastWork()
-    })
-    myBankAssets(this.$axios).then(res => {
-      // this.cashBalance = res.content.cashBalance
-      this.cashBalance = '100000'
-    })
-    // getEvaluationInfo(this.$axios).then(res => {
-    //   console.log(res)
-    //   // this.evaluationScoreMsg = res.content.evaluationScoreMsg
-    // })
   },
   mounted() {
-    if (!this.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
-      this.$router.push({
-        name: 'user-login'
-      })
-    }
+    this.lastWork()
   },
   methods: {
     // 扫尾
     lastWork() {
-      if (Number(this.surplus.replace(',', '')) < 100) {
+      if (Number(this.cutSurplus) < 100) {
         this.importMoney = this.surplus
         this.incomes()
       }
@@ -198,13 +219,31 @@ export default {
       let psw = this.joinId + String(this.importMoney) + '242628'
       console.log(psw)
       console.log(this.encryptByDES(psw, '20181224'))
-      if (
-        Number(this.importMoney) > Number(this.cashBalance.replace(',', ''))
-      ) {
+      if (Number(this.importMoney) > Number(this.cutCashBalance)) {
         this.balanceShow = true
-        return false
       } else {
-        this.dealShow = true
+        detailStatus(this.$axios, commenParams).then(res => {
+          console.log(res)
+          this.evaluationType = res.content.evaluationType
+          this.limitQuota = res.content.limitQuota
+          this.quota = res.content.quota
+          if (res.content.evaluationStatus != 1) {
+            this.showDialog = true
+            this.showInfo =
+              '为了保障您的切身利益，请在出借前进行“风险承受能力测评”'
+            if (res.content.evaluationStatus == 0) {
+              this.showInfo =
+                '您的“风险承受能力测评”结果已过期，请在出借前重新测评'
+            }
+          } else if (
+            Number(this.importMoney) > Number(this.limitQuota) &&
+            res.content.evaluationStatus == 1
+          ) {
+            this.appraisalShow = true
+          } else {
+            this.dealShow = true
+          }
+        })
       }
     },
     consentFn() {
@@ -219,8 +258,8 @@ export default {
       this.incomes()
     },
     oninput(e) {
-      if (e.target.value > Number(this.surplus.replace(',', ''))) {
-        e.target.value = Number(this.surplus.replace(',', ''))
+      if (e.target.value > Number(this.cutSurplus)) {
+        e.target.value = Number(this.cutSurplus)
       }
       e.target.value = e.target.value.match(/^\d*(\.?\d{0,2})/g)[0] || null
       this.importMoney = e.target.value
@@ -228,13 +267,10 @@ export default {
       this.change()
     },
     lastInvest() {
-      if (Number(this.surplus.replace(',', '')) < 100) {
+      if (Number(this.cutSurplus) < 100) {
         return false
-      } else if (
-        Number(this.cashBalance.replace(',', '')) >
-        Number(this.surplus.replace(',', ''))
-      ) {
-        this.importMoney = Number(this.surplus.replace(',', ''))
+      } else if (Number(this.cutCashBalance) > Number(this.cutSurplus)) {
+        this.importMoney = Number(this.cutSurplus)
         return false
       } else {
         this.importMoney = this.cashBalance
@@ -248,34 +284,59 @@ export default {
       this.disType = data[3]
       this.listTxt = ''
       if (this.disType === 'jx') {
+        this.disVal = String(data[0])
         this.award = data[0]
-        this.disTxt = data[0] + '%加息券'
+        if (data[0] == null) {
+          this.disTxt = null
+        } else {
+          this.disTxt = data[0] + '%加息券'
+        }
       } else if (this.disType === 'dk') {
         this.award = 0
-        this.disTxt = data[0] + '元抵用券'
-        this.moneyForm = this.numFilter(
-          this.importMoney - data[0].replace(',', '')
-        )
+        this.disVal = String(data[0])
+        if (data[0] == null) {
+          this.disTxt = null
+        } else {
+          this.disTxt = data[0] + '元抵用券'
+        }
+        if (this.importMoney - data[0] < 0) {
+          this.moneyForm = '0.00'
+        } else {
+          this.moneyForm = this.numFilter(this.importMoney - data[0])
+        }
       } else {
         this.award = 0
       }
       this.incomes()
     },
     disList() {
+      if (this.importMoney == '') {
+        this.$Msg('请输入加入金额', 2000)
+        return false
+      }
       this.listTxt = 'List'
     },
     balanceClose() {
       this.balanceShow = false
     },
     balanceSub() {
+      this.$store.commit(
+        'srcPath',
+        this.$route.path + '?desId=' + this.$route.query.desId
+      )
       this.$router.push({
         name: 'myCenter-fund-recharge'
       })
     },
+    onClose() {
+      this.showDialog = false
+    },
     appraisalSub() {
-      this.$router.push({
-        name: 'appraisal-indexs'
-      })
+      this.$store.commit(
+        'srcPath',
+        this.$route.path + '?desId=' + this.$route.query.desId
+      )
+      this.$router.push({ path: '/appraisal/indexs' })
     },
     appraisalClose() {
       this.appraisalShow = false
@@ -286,16 +347,18 @@ export default {
     dealSub() {
       // let psw = this.joinId + String(this.importMoney)
       let psw = this.joinId + String(this.importMoney) + '242628'
-      investFreeAdd(this.$axios, {
+      let params = {
         joinId: this.joinId,
         account: this.importMoney,
         voucherId: this.disVoucherId,
         voucherType: this.disType,
         sycnReturnUrl:
+          // 'http://72.127.2.102:3000/' + 'project/result/free-addResult',
           this.$store.state.returnPath + 'project/result/free-addResult',
         accountInterest: this.income,
         secretParam: this.encryptByDES(psw, '20181224')
-      }).then(res => {
+      }
+      investFreeAdd(this.$axios, params).then(res => {
         let nonce = res.content.nonce
         this.$router.push({
           name: 'xwDeposit-transit',
@@ -304,7 +367,6 @@ export default {
           }
         })
       })
-      // this.dealShow = false
     },
     numFilter(value) {
       if (value != '') {
@@ -320,18 +382,13 @@ export default {
       let projectStyle = this.types.type
       //endday 按天计息,等额本息,按月付息 到期还本
       //投资金额
-      let account = 0
-      if (this.importMoney < 100) {
-        account = 0
-      } else {
-        account = this.importMoney
-      }
+      let account = Number(this.importMoney)
       //基本利息
-      let apr = this.types.interest
+      let apr = Number(this.types.interest)
       //期限  月/天
-      let period = this.types.time
+      let period = Number(this.types.time)
       //平台加息
-      let award = this.award
+      let award = Number(this.award)
       // 期限的计算方式（按天还是按月）
       let val = null
       let preMonth = null
@@ -377,8 +434,8 @@ export default {
         //总利息
         this.income = Number(Number(allAward) + Number(profit)).toFixed(2)
       } else if (projectStyle === '到期还本，按月付息') {
-        let profit = Number(
-          (account * (award + apr) * 0.01 * period) / val
+        let profit = (
+          ((account * (award + apr) * 0.01) / val).toFixed(2) * period
         ).toFixed(2)
         this.income = profit
       } else if (projectStyle === 'endday') {
@@ -391,8 +448,8 @@ export default {
   },
   components: {
     List,
-    Scatter,
-    Ban
+    Ban,
+    SiftAdd
   }
 }
 </script>
@@ -545,4 +602,9 @@ export default {
       height: 100%
       overflow: scroll
       -webkit-overflow-scrolling: touch
+  .out_txt
+    text-align: center
+    font-size: $fontsize-medium
+    color: $color-gray1
+    padding: 48px 40px 21px
 </style>

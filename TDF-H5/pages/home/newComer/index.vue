@@ -1,6 +1,9 @@
 <template>
   <div class="newcomer">
-    <td-header title="新手专区"/>
+    <td-header
+      :returnUrl="false"
+      url="/"
+      title="新手专区"/>
     <div class="header" />
     <div class="title">新手抵用券</div>
     <div class="dyq" />
@@ -19,7 +22,7 @@
     <div class="btns">
       <!-- 跳转到省心投列表页 -->
       <router-link
-        to=""
+        to="/project"
         class="btn">
         查看详情
       </router-link>
@@ -58,9 +61,9 @@
     </ul>
     <div class="footer" />
     <!-- 跳转到新用户出借需知，公告详情页 -->
-    <router-link
-      to=""
-      class="footers" />
+    <a
+      href="https://www.51tuodao.com/html5/app/nt_detail?id=15244&amp;typeId=gonggao"
+      class="footers"/>
   </div>
 </template>
 <script>
@@ -156,7 +159,6 @@ export default {
       height: 3.5rem
       overflow: hidden
       position: relative
-      z-index: 10
       margin: auto
       background: url(../../../assets/images/activity/newcomer/newcomer11.png)center no-repeat
       background-size: 100%

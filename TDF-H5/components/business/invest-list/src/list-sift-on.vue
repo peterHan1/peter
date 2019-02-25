@@ -63,17 +63,25 @@ export default {
     async getList() {
       const params = { item: this.item, page: 1, status: this.status }
       const tenderOn = await freeTenderList(this.$axios, params)
-      this.$store.commit('myCenter/setSiftOnNull')
-      this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
+      if (tenderOn.code === 100000) {
+        this.$store.commit('myCenter/setSiftOnNull')
+        this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
+      } else {
+        this.returnLogin()
+      }
     },
     onPullingDown() {
       setTimeout(async () => {
         this.pageNum = 1
         const params = { item: this.item, page: 1, status: this.status }
         const tenderOn = await freeTenderList(this.$axios, params)
-        this.$store.commit('myCenter/setSiftOnNull')
-        this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderOn.code === 100000) {
+          this.$store.commit('myCenter/setSiftOnNull')
+          this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
@@ -85,9 +93,20 @@ export default {
           status: this.status
         }
         const tenderOn = await freeTenderList(this.$axios, params)
-        this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderOn.code === 100000) {
+          this.$store.commit('myCenter/setSiftOn', tenderOn.content.dataRows)
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   }
 }
@@ -130,8 +149,4 @@ li
       line-height: 33px
       font-size: $fontsize-small-ss
       color: $color-gray4
-.data-status
-  position: absolute
-  left: 30%
-  top: 15%      
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="invite">
     <td-header 
+      :returnUrl="false"
+      :url="url" 
       title="邀请奖励记录"/>
     <div class="inviteTop">
       <ul>
@@ -78,11 +80,15 @@ import { commenParams } from '~/api/config.js'
 
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
-      const { content } = await prizeRecord(app.$axios)
-      store.commit('myCenter/setInvite', content)
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const res = await prizeRecord(app.$axios)
+      if (res.code === 100000) {
+        store.commit('myCenter/setInvite', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -107,12 +113,15 @@ export default {
       scrollOptions: {
         directionLockThreshold: 0
       },
-      content: ''
+      content: '',
+      url: this.$store.state.srcPath
+        ? this.$store.state.srcPath
+        : '/myCenter/center'
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
@@ -159,11 +168,6 @@ export default {
     .inviteTop
       background-color: $color-white
       padding-bottom: 30px
-      height: 29%
-      position: absolute
-      left: 0
-      right: 0
-      top: 88px
       li
         display: flex
         div
@@ -186,11 +190,8 @@ export default {
           a
             display: block
     .listBox
-      position: absolute
-      top: 36%
-      left: 0
-      right: 0
-      bottom: 0
+      position: relative
+      height: 70%
       border-top: 20px solid $color-background
       .tabList
         background-color: $color-white

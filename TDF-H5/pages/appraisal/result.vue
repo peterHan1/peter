@@ -1,9 +1,16 @@
 <template>
   <div class="resule">
     <header class="outHeader">
-      <div @click="outAppraisal">
+      <div 
+        v-if="evaluationStatus != 1" 
+        @click="outAppraisal">
         <span class="iconfont">&#xe6fe;</span>
         <b>退出</b>
+      </div>
+      <div 
+        v-else 
+        @click="returnUrl">
+        <span class="iconfont">&#xe6fe;</span>
       </div>
       <span>风险测评</span>
     </header>
@@ -13,9 +20,9 @@
     </div>
     <p class="resule_time">测评结果有效期截止至{{ time }}</p>
     <div class="resule_accom">
-      <router-link 
-        to="/myCenter/set/ucSet" 
-        class="resule_btn">完成</router-link>
+      <div 
+        class="resule_btn" 
+        @click="returnUrl">完成</div>
     </div>
     <router-link 
       to="/appraisal/list" 
@@ -35,7 +42,7 @@
 </template>
 
 <script>
-import { getEvaluationInfo } from '~/api/user.js'
+import { getEvaluationInfo, detailStatus } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 
 export default {
@@ -43,26 +50,51 @@ export default {
     return {
       txt: '',
       time: '',
-      layerShow: false
+      layerShow: false,
+      evaluationStatus: this.$store.state.evaluationStatus
     }
   },
-  mounted() {
+  computed: {
+    srcPath() {
+      return this.$store.state.srcPath || '/myCenter/center'
+    }
+  },
+  async mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
-    }
-  },
-  mounted() {
-    commenParams.accessId = this.$store.state.accessId
-    commenParams.accessKey = this.$store.state.accessKey
-    getEvaluationInfo(this.$axios).then(res => {
-      if (res) {
+    } else {
+      commenParams.accessId = this.$store.state.accessId
+      commenParams.accessKey = this.$store.state.accessKey
+      let res = await getEvaluationInfo(this.$axios)
+      if (res.code === 100000) {
         this.txt = res.content.evaluationScoreMsg
         this.time = res.content.evaluationTime
+        const token = {
+          accessId: commenParams.accessId,
+          accessKey: commenParams.accessKey
+        }
+        const details = await detailStatus(this.$axios, commenParams)
+        if (details.code === 100000) {
+          const userInfo = Object.assign({}, token, details.content, {
+            isLogin: true
+          })
+          this.$store.commit('setToken', userInfo)
+        } else {
+          this.$store.commit('srcPath', '/myCenter/center')
+          this.$router.push({
+            name: 'user-login'
+          })
+        }
+      } else {
+        this.$store.commit('srcPath', '/myCenter/center')
+        this.$router.push({
+          name: 'user-login'
+        })
       }
-    })
+    }
   },
   methods: {
     outAppraisal() {
@@ -85,6 +117,9 @@ export default {
       this.$router.push({
         name: 'appraisal-explain'
       })
+    },
+    returnUrl() {
+      this.$router.push(this.srcPath)
     }
   },
   components: {}

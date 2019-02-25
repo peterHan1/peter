@@ -30,7 +30,7 @@
           v-else-if="lev === 6"
           src="~/assets/images/my-center/V6.png">
         <img
-          v-else
+          v-else-if="lev === 7"
           src="~/assets/images/my-center/V7.png">
       </div>
     </div>
@@ -42,28 +42,27 @@
       <li>免费提现次数</li>
     </ul>
     <div class="con">
-      <div
-        :class="{maxLev: lev == 7?true:false}"
-        class="progress">
-        <div
-          :style="{height: progressHeight + 'rem'}"
-          class="lev_num"/>
-        <div
-          :style="{top: progressHeight + 'rem'}"
-          class="circle"/>
-      </div>
       <div 
         v-for="(item,index) in this.$store.state.myCenter.vipContent.dataRows"
         :key="index" >
         <div 
           class="lev lev0">
           <div
-            :class="{border: lev >= index ? true:false}"
+            :class="{border: lev == index ? true:false}"
             class="left" >
             {{ item.level }}<span class="left_span"/>
+            <div
+              :class="{maxProgress: index == 7 ? true:false,levProgress: lev == index ? true:false}"
+              class="progress">
+              <div
+                v-if="lev == index ? true:false"
+                class="line">
+                <div class="circle"/>
+              </div>
+            </div>
           </div>
           <div
-            :class="{active: lev >= index ? true:false}"
+            :class="{active: lev == index ? true:false}"
             class="right">
             <div class="fl">
               <p>待收金额</p>
@@ -72,26 +71,30 @@
             <div class="fl middle">0元</div>
             <div class="fl">
               <p>{{ item.cashTimes }}</p>
-              <p v-if="lev === index">--</p>
-              <p>有神秘生日礼物</p>
+              <p v-if="index === 0">--</p>
+              <p v-else>有神秘生日礼物</p>
             </div>
           </div>
         </div>
         <div
-          v-if="lev === index && lev != 7"
+          v-if="lev === index"
           class="clear">
-          <div class="lev_info">
+          <div
+            :class="{maxLev: lev == 7}"
+            class="lev_info">
             <div class="top">
               <div class="fl">
                 <p>截止 {{ commitTime }}</p>
-                <p>累计待收金额{{ awaits }}元</p>
+                <p>待收金额{{ awaits }}元</p>
               </div>
               <div class="fr">
                 <p>在V{{ index }}等级剩余时间</p>
                 <p>{{ days }}</p>
               </div>
             </div>
-            <div class="bottom">距离下一级VIP还差{{ remindMoney }}元</div>
+            <div
+              v-if="lev != 7"
+              class="bottom">距离下一级VIP还差{{ remindMoney }}元</div>
           </div>
         </div>
       </div>
@@ -108,17 +111,19 @@ import { commenParams } from '~/api/config.js'
 export default {
   async fetch({ app, store, route }) {
     if (app.store.state.isLogin) {
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
-      const { content } = await getVipDetail(app.$axios)
-      console.log(content)
-      store.commit('myCenter/setVip', content)
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const res = await getVipDetail(app.$axios)
+      if (res.code === 100000) {
+        store.commit('myCenter/setVip', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
     return {
       lev: this.$store.state.myCenter.vipContent.vipLevel,
-      progressHeight: 0,
       commitTime: this.$store.state.myCenter.vipContent.commitTime,
       awaits: this.$store.state.myCenter.vipContent.await,
       days: this.$store.state.myCenter.vipContent.days,
@@ -126,13 +131,8 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.isLogin) {
-      this.progressHeight = 1.1 + this.lev * 1.29
-      if (this.lev === 7) {
-        this.progressHeight = this.lev * 1.29
-      }
-    } else {
-      this.$store.commit('srcPath', this.$route.path)
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
@@ -196,62 +196,71 @@ export default {
       position: relative
       .progress
         width: 0.02rem
-        height: 11.64rem
+        height: 1.3rem
         position: absolute
-        top: 0.8rem
-        z-index: 10
+        top: 0
+        z-index: -2
         background: #AFAFAF0
-        left: 0.55rem
-        &.maxLev
-          height: 9.52rem
-        .lev_num
-          width: 100%
+        left: 0.24rem
+        .line
+          width: 0.02rem
+          height: 1.43rem
+          position: absolute
+          left 0
+          top: 0
+          z-index: -1
           background: $color-primary
-          height: 5.4rem
         .circle
           width: 0.1rem
           height: 0.1rem
           background: $color-primary
           border-radius: 0.1rem
           position: absolute
-          top: 5.4rem
+          bottom: 0
           left: -0.04rem
+      .levProgress
+        height 3.55rem
+      .maxProgress
+        height: 0.8rem
       .lev
-        overflow: hidden
+        height 0.99rem
         margin-bottom: 0.3rem
         padding-left: 0.3rem
         position: relative
         z-index: 50
         .left
+          display: flex
+          align-items: center
+          justify-content: center
           width: 0.5rem
           height: 0.5rem
-          line-height: 0.52rem
           margin-top: 0.245rem
           position: relative
           font-size: $fontsize-small-ss
           float: left
           border-radius: 100%
-          border: 1px solid #999
-          text-align: center
           background-color: $color-gray5
+          border-1px($color-gray3, 100%)
           span
             display: block
             width: 15px
             height: 15px
             border-radius: 100%
-            border: 1px solid #999
+            border-1px($color-gray3, 100%)
             background-color: $color-gray5
             position: absolute
-            left: -10px
+            left: -6px
             top: 50%
             margin-top: -7.5px
+            z-index: 99
           &.border
-            border: 1px solid $color-primary
+            border-1px($color-primary, 100%)
             background: $color-white
             color: $color-primary
             span.left_span
-              border: 1px solid $color-primary
+              border-1px($color-primary, 100%)
               background: $color-white
+              position: absolute
         .right
           width: 6.51rem
           box-sizing: border-box
@@ -296,7 +305,7 @@ export default {
           height: 1.62rem
           position: relative
           clear:both
-          background: url(../../../assets/images/my-center/member_4.png)center no-repeat
+          background: url(../../../assets/images/my-center/member_4.png) no-repeat
           background-size: 100%
           .top
             height: 1rem
@@ -322,6 +331,10 @@ export default {
           .bottom
             line-height: 0.62rem
             border-top:1px solid $color-gray5
+        .maxLev
+          height 1rem
+          background: url(../../../assets/images/my-center/member_5.png) no-repeat
+          background-size: 100%
     .btn
       display: block
       width: 90%

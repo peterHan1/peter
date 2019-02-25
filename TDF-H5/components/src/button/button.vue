@@ -49,7 +49,7 @@ export default {
 .td-btn-disabled
   background: $color-gray6
 .td-btn-border
-  border: 2px solid $color-primary
+  border-1px($color-primary, 34px)
   background-color: $color-white
   color: $color-primary
 </style>

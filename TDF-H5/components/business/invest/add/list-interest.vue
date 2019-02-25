@@ -25,13 +25,13 @@
     class="data-status">
     <data-status
       status="null"
-      statusTxt="暂无加息券"/>
+      statusTxt="暂无可用加息券"/>
   </div>
 </template>
 
 <script>
 import { commenParams } from '~/api/config.js'
-import { investCoupon } from '~/api/home.js'
+import { investCoupon } from '~/api/project.js'
 export default {
   props: {
     disId: {
@@ -47,8 +47,8 @@ export default {
       default: ''
     },
     period: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -56,7 +56,8 @@ export default {
       intereIndex: null,
       interestArr: [],
       intereNumber: null,
-      voucherId: null
+      voucherId: null,
+      id: null
     }
   },
   computed: {
@@ -96,14 +97,16 @@ export default {
           this.interestArr[i].id = String(i + 1)
         }
         let vm = this
-        if (vm.disType === 'Interest') {
+        if (vm.disType === 'jx') {
           const index = vm.interestArr.findIndex(
             interes => interes.id === vm.disId
           )
+          if (index != -1) {
+            vm.intereNumber = vm.interestArr[index].value
+            vm.voucherId = vm.interestArr[index].voucherId
+            vm.id = vm.interestArr[index].id
+          }
           vm.intereIndex = index
-          vm.intereNumber = vm.interestArr[index].value
-          vm.voucherId = vm.interestArr[index].voucherId
-          vm.id = vm.interestArr[index].id
         }
       })
     } else {
@@ -116,10 +119,17 @@ export default {
   methods: {
     selectFn(i) {
       let vm = this
-      vm.intereNumber = vm.interestArr[i].value
-      vm.voucherId = vm.interestArr[i].voucherId
-      vm.id = vm.interestArr[i].id
-      vm.intereIndex = i
+      if (vm.intereIndex == i) {
+        vm.intereNumber = null
+        vm.id = null
+        vm.intereIndex = null
+        vm.voucherId = ''
+      } else {
+        vm.intereNumber = vm.interestArr[i].value
+        vm.voucherId = vm.interestArr[i].voucherId
+        vm.id = vm.interestArr[i].id
+        vm.intereIndex = i
+      }
       vm.$emit('listFn', vm.intereNumber, vm.id, vm.voucherId, 'jx')
     }
   },
@@ -154,6 +164,8 @@ export default {
           line-height: 58px
           b
             font-size: $fontsize-large-xxxxxx
+        p:last-child
+          white-space nowrap
       span
         display: inline-block
         color: $color-gray3
@@ -164,6 +176,4 @@ export default {
         color: $color-primary
     li:last-child
       border: none
-.data-status
-  margin-top 200px
 </style>

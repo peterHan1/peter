@@ -24,7 +24,7 @@
           v-if="this.$store.state.authStatus"
           @click="downApp">
           <span>我的银行卡号</span>
-          <span>{{ this.$store.state.myCenter.bankName }} 尾号{{ this.$store.state.myCenter.bankCode }} <i class="iconfont">&#xe6f2;</i></span>
+          <span>{{ this.$store.state.myCenter.bankName }} 尾号{{ this.$store.state.myCenter.bankNum }} <i class="iconfont">&#xe6f2;</i></span>
         </div>
         <router-link
           v-else
@@ -75,7 +75,15 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/appraisal/indexs">
+        <router-link 
+          v-if="evaluationStatus != 1" 
+          to="/appraisal/indexs">
+          <span>风险承受能力测评</span>
+          <i class="iconfont">&#xe6f2;</i>
+        </router-link>
+        <router-link 
+          v-else 
+          to="/appraisal/result">
           <span>风险承受能力测评</span>
           <i class="iconfont">&#xe6f2;</i>
         </router-link>
@@ -108,13 +116,20 @@
 </template>
 
 <script>
-import { loginOut } from '~/api/user.js'
+import { loginOut, accountDetail } from '~/api/user.js'
 import { commenParams } from '~/api/config.js'
 import Cookie from 'js-cookie'
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      await app.store.dispatch('myCenter/getUser')
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      let res = await accountDetail(app.$axios, commenParams)
+      if (res.code === 100000) {
+        store.commit('myCenter/setAccount', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -125,12 +140,13 @@ export default {
       bankName: '',
       bankCode: '',
       userNo: '',
-      authStatus: 0
+      authStatus: 0,
+      evaluationStatus: this.$store.state.evaluationStatus
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
@@ -138,9 +154,10 @@ export default {
   },
   methods: {
     downApp() {
-      this.$App('请在电脑端登录官网或在APP端找更换银行卡')
+      this.$App('请在电脑端登录官网或在APP端更换银行卡')
     },
     outFn() {
+      this.$store.commit('srcPath', '/myCenter/center')
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       loginOut(this.$axios).then(res => {

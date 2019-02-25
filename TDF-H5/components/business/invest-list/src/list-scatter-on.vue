@@ -8,7 +8,7 @@
       <li 
         v-for="(item,index) in this.$store.state.myCenter.scatterOn"
         :key="index">
-        <router-link :to="{path:'/myCenter/invest/scatterDetails',query: {tenderId: item.tenderId, borrowNid: item.borrowNid}}">
+        <router-link :to="{path:'/myCenter/invest/scatterDetails',query: {status:'on',tenderId: item.tenderId}}">
           <p>
             <span>{{ item.name }} <b>No.{{ item.borrowNid }}</b> </span>
             <span>{{ item.statusText }}</span>
@@ -66,17 +66,25 @@ export default {
     async getList() {
       const params = { item: this.item, page: 1, status: this.status }
       const tenderOn = await bankTenderNow(this.$axios, params)
-      this.$store.commit('myCenter/setScatterOnNull')
-      this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
+      if (tenderOn.code === 100000) {
+        this.$store.commit('myCenter/setScatterOnNull')
+        this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
+      } else {
+        this.returnLogin()
+      }
     },
     onPullingDown() {
       setTimeout(async () => {
         this.pageNum = 1
         const params = { item: this.item, page: 1, status: this.status }
         const tenderOn = await bankTenderNow(this.$axios, params)
-        this.$store.commit('myCenter/setScatterOnNull')
-        this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderOn.code === 100000) {
+          this.$store.commit('myCenter/setScatterOnNull')
+          this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
     },
     onPullingUp() {
@@ -88,9 +96,20 @@ export default {
           status: this.status
         }
         const tenderOn = await bankTenderNow(this.$axios, params)
-        this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
-        this.$refs.contentScroll.forceUpdate()
+        if (tenderOn.code === 100000) {
+          this.$store.commit('myCenter/setScatterOn', tenderOn.content.dataRows)
+          this.$refs.contentScroll.forceUpdate()
+        } else {
+          this.returnLogin()
+        }
       }, 1000)
+    },
+    returnLogin() {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit('srcPath', '/myCenter/center')
+      this.$router.push({
+        name: 'user-login'
+      })
     }
   }
 }
@@ -107,6 +126,11 @@ li
     line-height: 80px
     display: flex
     justify-content: space-between
+    span:nth-child(1)
+      width: 85%
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
     i
       color: $color-gray2
     b
@@ -133,8 +157,4 @@ li
       line-height: 33px
       font-size: $fontsize-small-ss
       color: $color-gray4
-.data-status
-  position: absolute
-  left: 30%
-  top: 15%
 </style>

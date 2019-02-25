@@ -25,13 +25,13 @@
     class="data-status">
     <data-status
       status="null"
-      statusTxt="暂无抵用券"/>
+      statusTxt="暂无可用抵用券"/>
   </div>
 </template>
 
 <script>
 import { commenParams } from '~/api/config.js'
-import { investCoupon } from '~/api/home.js'
+import { investCoupon } from '~/api/project.js'
 export default {
   props: {
     disId: {
@@ -47,8 +47,8 @@ export default {
       default: ''
     },
     period: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -56,14 +56,14 @@ export default {
       voucherIndex: null,
       voucherArr: [],
       intereNumber: null,
-      voucherId: null
+      voucherId: null,
+      id: null
     }
   },
   computed: {
     parmas() {
       return {
         money: this.money,
-        // money: '100000',
         type: 'pt',
         period: this.period
       }
@@ -76,8 +76,7 @@ export default {
     if (this.isLogin) {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
-      investCoupon(this.$axios).then(res => {
-        console.log(res)
+      investCoupon(this.$axios, this.parmas).then(res => {
         let arrData = []
         for (let i = 0; i < res.content.dataRows.length; i++) {
           if (res.content.dataRows[i].type === 'dk') {
@@ -87,7 +86,6 @@ export default {
         this.voucherArr = arrData.map(o => {
           return {
             value: o.amount,
-            txt: o.amount + '元抵用券',
             time: o.invalidDate,
             voucherId: o.voucherId,
             id: ''
@@ -97,14 +95,16 @@ export default {
           this.voucherArr[i].id = String(i + 1)
         }
         let vm = this
-        if (vm.disType === 'Voucher') {
+        if (vm.disType === 'dk') {
           const index = vm.voucherArr.findIndex(
             voucher => voucher.id === vm.disId
           )
+          if (index != -1) {
+            vm.intereNumber = vm.voucherArr[index].value
+            vm.voucherId = vm.voucherArr[index].voucherId
+            vm.id = vm.voucherArr[index].id
+          }
           vm.voucherIndex = index
-          vm.intereNumber = vm.voucherArr[index].value
-          vm.voucherId = vm.voucherArr[index].voucherId
-          vm.id = vm.voucherArr[index].id
         }
       })
     } else {
@@ -117,10 +117,17 @@ export default {
   methods: {
     selectFn(i) {
       let vm = this
-      vm.intereNumber = vm.voucherArr[i].value
-      vm.voucherId = vm.voucherArr[i].voucherId
-      vm.id = vm.voucherArr[i].id
-      vm.voucherIndex = i
+      if (vm.voucherIndex == i) {
+        vm.intereNumber = null
+        vm.id = null
+        vm.voucherIndex = null
+        vm.voucherId = ''
+      } else {
+        vm.intereNumber = vm.voucherArr[i].value
+        vm.voucherId = vm.voucherArr[i].voucherId
+        vm.id = vm.voucherArr[i].id
+        vm.voucherIndex = i
+      }
       vm.$emit('listFn', vm.intereNumber, vm.id, vm.voucherId, 'dk')
     }
   },
@@ -155,6 +162,8 @@ export default {
           b
             font-size: $fontsize-large-xxxxxx
             line-height: 58px
+        p:last-child
+          white-space nowrap
       span
         display: inline-block
         color: $color-gray3
@@ -165,6 +174,4 @@ export default {
         color: $color-primary
     li:last-child
       border: none
-.data-status
-  margin-top 200px
 </style>

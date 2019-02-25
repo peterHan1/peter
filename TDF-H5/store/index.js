@@ -41,15 +41,11 @@ export const actions = {
   async nuxtServerInit({ commit }, { req, app }) {
     commit('changePath', req.headers.host)
     if (req.headers.cookie) {
-      console.log('存在cookie')
-      console.log(req.headers.cookie)
       let cookieJosn = Cookie2Json(req.headers.cookie)
       if (cookieJosn.accessId != '' || cookieJosn.accessKey != '') {
         commenParams.accessId = cookieJosn.accessId
         commenParams.accessKey = cookieJosn.accessKey
         const { content } = await detailStatus(app.$axios, commenParams)
-        // console.log(content)
-        // console.log('/////////nuxtServerInit////////')
         if (content != undefined) {
           const data = Object.assign({}, cookieJosn, content, { isLogin: true })
           commit('setToken', data)
@@ -60,9 +56,7 @@ export const actions = {
         commit('setToken', { isLogin: false })
       }
     } else {
-      // userInfo.isLogin
       commit('setToken', { isLogin: false })
-      console.log('不存在cookie')
     }
   }
 }

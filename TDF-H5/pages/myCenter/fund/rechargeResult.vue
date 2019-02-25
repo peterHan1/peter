@@ -21,12 +21,12 @@
       class="btn">
       <div>
         <td-button 
-          :border="true" 
           value="继续充值"
           @btnFn="returnRecharge"/>
       </div>
       <div>
         <td-button 
+          :border="true" 
           value="查看充值记录"
           @btnFn="returnList"/>
       </div>
@@ -35,13 +35,8 @@
       v-else-if="status===3"
       class="btn">
       <div>
-        <td-button 
+        <td-button
           :border="true" 
-          value="更换银行卡"
-          @btnFn="returnBank"/>
-      </div>
-      <div>
-        <td-button 
           value="重试"
           @btnFn="returnRecharge"/>
       </div>      
@@ -75,8 +70,10 @@ export default {
       commenParams.accessId = this.$store.state.accessId
       commenParams.accessKey = this.$store.state.accessKey
       quickPayResult(this.$axios, orderNo).then(res => {
-        if (res) {
+        if (res.code === 100000) {
           this.status = res.content.status
+        } else {
+          this.$Msg(res.message, 2000)
         }
       })
     } else {
@@ -101,9 +98,6 @@ export default {
       this.$router.push({
         name: 'myCenter-center'
       })
-    },
-    returnBank() {
-      this.$App('请在电脑端登录官网或在APP端找更换银行卡')
     }
   },
   components: {}

@@ -10,6 +10,7 @@
       ref="footers"
       class="footers"/>
     <cube-scroll
+      ref="contentScroll0"
       :scrollEvents="['scroll','scroll-end']"
       :options="options"
       @scroll="onScroll"
@@ -58,7 +59,9 @@
           </ul>
           <div class="count">
             <div class="top"><span/>&nbsp;收益计算器</div>
-            <v-count :types="types"/>
+            <v-count
+              ref="inputs"
+              :types="types"/>
           </div>
         </div>
         <div class="down">{{ pullTxt }}</div>
@@ -77,12 +80,14 @@ export default {
       options: {
         pullUpLoad: {
           threshold: 0
-        },
-        closePullUp: false
+        }
+        // closePullUp: false
       },
       pullY: 0,
       bottomflg: false,
-      bottomDis: 0
+      bottomDis: 0,
+      bottomSize: null,
+      isResize: false
     }
   },
   computed: {
@@ -91,9 +96,11 @@ export default {
     },
     types() {
       return {
-        type: this.$store.state.project.scatterDetail.repaymentType,
-        interest: this.$store.state.project.scatterDetail.apr,
-        time: this.$store.state.project.scatterDetail.period
+        type: this.$store.state.project.scatterDetail.borrowStyle,
+        interest:
+          this.$store.state.project.scatterDetail.borrowApr +
+          this.$store.state.project.scatterDetail.awardScale,
+        time: this.$store.state.project.scatterDetail.borrowPeriod
       }
     }
   },
@@ -109,19 +116,45 @@ export default {
       (bodyH -
         this.$refs.headers.clientHeight -
         this.$refs.footers.clientHeight)
+    let vm = this
+    window.onresize = function() {
+      let bodyH2 =
+        document.documentElement.clientHeight ||
+        document.document.body.clientHeight
+      if (bodyH2 - bodyH < 0) {
+        vm.isResize = true
+        vm.bottomSize = bodyH2 - bodyH
+        vm.scrollTop()
+      } else {
+        vm.$refs.inputs.blurs()
+        vm.isResize = false
+        vm.bottomSize = 30
+        vm.scrollTop()
+      }
+    }
     // this.loadProgress()
   },
   methods: {
+    scrollTop() {
+      let dis = this.bottomSize - 30
+      this.$refs.contentScroll0.scrollTo(0, dis, 500, 'ease')
+    },
     onScroll(pos) {
-      this.pullY = pos.y
-      if (pos.y < -50) {
-        this.pullTxt = '松手，查看项目详情'
-      } else {
-        this.pullTxt = '向上滑动，查看更多详情'
+      if (!this.isResize) {
+        this.pullY = pos.y
+        if (pos.y < -(this.bottomDis + 25)) {
+          this.pullTxt = '松手，查看项目详情'
+        } else {
+          this.pullTxt = '向上滑动，查看更多详情'
+        }
       }
     },
     touchEnd() {
-      if (this.pullY < -(this.bottomDis + 25) && this.bottomflg) {
+      if (
+        this.pullY < -(this.bottomDis + 25) &&
+        this.bottomflg &&
+        !this.isResize
+      ) {
         this.$emit('pullFn')
       }
     },

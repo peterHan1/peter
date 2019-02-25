@@ -122,8 +122,4 @@ ul
         line-height: 82px
         font-size: $fontsize-small-ss
         color: $color-gray3
-.data-status
-  position: absolute
-  left: 15%
-  top: 10%
 </style>

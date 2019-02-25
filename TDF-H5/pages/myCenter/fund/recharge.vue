@@ -2,7 +2,7 @@
   <div class="recharge">
     <td-header 
       :returnUrl="false" 
-      url="/myCenter/center"
+      :url="returnUrl"
       title="充值"
       rightTxt="充值记录"
       @navRightFn="navRightFn"/>
@@ -23,7 +23,7 @@
             <input 
               v-model="moneyVal"
               :placeholder="placeTxt" 
-              type="number"
+              :type="inputType" 
               @input="inputFn">
           </div>
         </li>
@@ -52,29 +52,43 @@ import { commenParams } from '~/api/config.js'
 
 export default {
   async fetch({ app, store, route }) {
-    if (app.store.state.isLogin) {
-      commenParams.accessId = app.store.state.accessId
-      commenParams.accessKey = app.store.state.accessKey
-      const { content } = await rechargeInfo(app.$axios)
-      store.commit('myCenter/setRecharge', content)
+    if (store.state.isLogin) {
+      commenParams.accessId = store.state.accessId
+      commenParams.accessKey = store.state.accessKey
+      const res = await rechargeInfo(app.$axios)
+      if (res.code === 100000) {
+        store.commit('myCenter/setRecharge', res.content)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
     return {
+      returnUrl: this.$store.state.srcPath
+        ? this.$store.state.srcPath
+        : '/myCenter/center',
       moneyVal: null,
       content: this.$store.state.myCenter.rechargeContent,
       placeTxt:
         '输入充值金额，' +
         this.$store.state.myCenter.rechargeContent.minMoney +
-        '元起投'
+        '元起投',
+      inputType: ''
     }
   },
   mounted() {
     if (!this.$store.state.isLogin) {
-      this.$store.commit('srcPath', this.$route.path)
+      this.$store.commit('srcPath', '/myCenter/center')
       this.$router.push({
         name: 'user-login'
       })
+    } else {
+      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        this.inputType = 'number'
+      } else {
+        this.inputType = 'tel'
+      }
     }
   },
   methods: {
@@ -144,22 +158,35 @@ export default {
             color: $color-gray2
       li:nth-child(2)
         padding: 0 30px
-        height: 148px
         .inputMoney
+          height: 128px
           display: flex
           align-items: center
           border-bottom: 1px solid $color-gray5
           i
             font-size: 68px
             color: $color-gray1
+            margin-top: -10px
           input
             width: 60%
-            line-height: 146px
+            line-height: normal
             caret-color: $color-primary
             font-size: $fontsize-large-xxxxxxx
             color: $color-gray1
             background-color: transparent
             margin-left: 10px
+          input::-webkit-input-placeholder
+            transform: translate(0, -5px)
+            line-height: 80px
+          input:-moz-placeholder
+            transform: translate(0, -5px)
+            line-height: 80px
+          input::-moz-placeholder
+            transform: translate(0, -5px)
+            line-height: 80px
+          input:-ms-input-placeholder
+            transform: translate(0, -5px)
+            line-height: 80px
       li:nth-child(3)
         padding: 0 30px
         height: 100px

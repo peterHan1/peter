@@ -66,14 +66,13 @@
             <router-link to="/user/login" >充值 </router-link>
           </div>
           <div v-else-if="this.$store.state.openDepository !== 1">
-            <router-link to="/xwDeposit/deposit" >提现</router-link>
-            <router-link to="/xwDeposit/deposit" >充值 </router-link>
+            <b @click="openDepositFn">提现</b>
+            <b @click="openDepositFn">充值</b>
           </div>
           <div v-else>
             <router-link to="/myCenter/fund/cash" >提现</router-link>
             <router-link to="/myCenter/fund/recharge" >充值 </router-link>
           </div>
-          
         </div>
       </div>
       <div class="myCenter_fund">
@@ -106,9 +105,21 @@
               <p>债权转让</p>
             </router-link>
           </li>
-          <li @click="downApp">
-            <div class="returnBg"/>
-            <p>回款日历</p>
+          <li>
+            <router-link
+              v-if="!this.$store.state.isLogin"
+              to="/user/login">
+              <div class="returnBg"/>
+              <p>回款日历</p>
+            </router-link>
+            <div
+              v-else
+              class="dowapp" 
+              @click="downApp">
+              <div class="returnBg"/>
+              <p>回款日历</p>
+            </div>
+            
           </li>
           <li>
             <router-link 
@@ -173,22 +184,40 @@
         </ul>
       </div>
       <div class="td_deposit"><span>您的资金由银行资金存管系统进行存管</span></div>
-    </div>
+      <Layer
+        v-show="depositShow"
+        close="取消"
+        submit="立即激活"
+        @on-close="closeFn()"
+        @on-sub="returnDeposit()" >
+        <div class="deposit_txt">新网银行存管系统已全新升级，为保障您的资金安全请先激活存管账户！</div>
+    </layer></div>
     <td-footer :navClass="'myCenter'"/>
   </div>
 </template>
 
 <script>
+import { myBankAssets } from '~/api/user.js'
+import { commenParams } from '~/api/config.js'
+
 export default {
   async fetch({ app, store }) {
-    await app.store.dispatch('myCenter/getBankAssets')
+    commenParams.accessId = store.state.accessId
+    commenParams.accessKey = store.state.accessKey
+    let assets = await myBankAssets(app.$axios, commenParams)
+    if (assets.code === 100000) {
+      store.commit('myCenter/setAssets', assets.content)
+    } else {
+      store.commit('setToken', { isLogin: false })
+    }
   },
   data() {
     return {
       moneyShow: true,
       login: false,
       id: '',
-      content: ''
+      content: '',
+      depositShow: false
     }
   },
   mounted() {
@@ -198,11 +227,20 @@ export default {
     moneyHide() {
       this.moneyShow = !this.moneyShow
     },
+    openDepositFn() {
+      this.depositShow = true
+    },
     downApp() {
       this.$App('请在电脑端登录官网或在APP端查看')
     },
     downappFn() {
       this.$App('请在APP端查看')
+    },
+    closeFn() {
+      this.depositShow = false
+    },
+    returnDeposit() {
+      this.$router.push('/xwDeposit/deposit')
     }
   },
   components: {}
@@ -260,6 +298,9 @@ export default {
         .vip6
           background: url(../../assets/images/my-center/vip6.png) no-repeat
           background-size: 100% 100%
+        .vip7
+          background: url(../../assets/images/my-center/vip7.png) no-repeat
+          background-size: 100% 100%  
     .my_box
       background-color: $color-background
       padding-bottom: 130px
@@ -274,8 +315,7 @@ export default {
           width: 284px
           height: 94px
           line-height: 94px
-          border: 2px solid $color-white
-          border-radius: 20px
+          border-1px($color-white, 20px)
           color: $color-white
           font-size: $fontsize-large-xxx
           text-align: center
@@ -340,7 +380,7 @@ export default {
           div
             flex: 1
             overflow: hidden
-          a
+          a,b
             display: inline-block
             width: 160px
             line-height: 68px
@@ -351,7 +391,7 @@ export default {
             text-align: center
             float: left
             margin-top: 10px
-          a:nth-child(1)
+          a:nth-child(1),b:nth-child(1)
             margin-right: 20px
       .myCenter_fund
         width: 100%
@@ -365,14 +405,19 @@ export default {
             text-align: center
             a
               display: block
+              div
+                width: 64px
+                height: 64px
+                margin: 0 auto
+            .dowapp
+              div
+                width: 64px
+                height: 64px
+                margin: 0 auto   
             p
               font-size: $fontsize-small-ss
               color: $color-gray1
               line-height: 33px
-            div
-              width: 64px
-              height: 64px
-              margin: 0 auto
             .loanBg
               background: url(../../assets/images/my-center/loanBg.png) no-repeat
               background-size: 100% 100%
@@ -454,5 +499,9 @@ export default {
           height: 26px
           margin-top: -13px
           background: url(../../assets/images/index/td_deposit.png)
-          background-size: 100% 100%      
+          background-size: 100% 100%  
+    .deposit_txt
+      padding: 53px 30px 26px
+      font-size: $fontsize-medium
+      color: $color-gray1           
 </style>

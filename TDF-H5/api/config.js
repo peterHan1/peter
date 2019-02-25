@@ -10,6 +10,4 @@ const commenParams = {
 }
 commenParams.accessId = Cookie.get('accessId')
 commenParams.accessKey = Cookie.get('accessKey')
-console.log('/api-配置文件/')
-console.log(commenParams.accessKey)
 export { commenParams }

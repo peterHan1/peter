@@ -5,7 +5,6 @@
     :options="options"
     @pulling-down="onPullingDown"
     @pulling-up="onPullingUp">
-    <!-- <div>{{ this.$store.state.project.invalidFreeList }}</div> -->
     <ul class="pro-ul">
       <li
         v-for="(item, index) in data"
@@ -13,7 +12,21 @@
         :key="index"
         @click="selected(item.desId)">
         <div>
-          <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
+          <div class="pro-name">{{ item.name }}
+            <tags :type="item.typeId" />
+            <img
+              v-show="item.doubleBonus==2"
+              src="~/assets/images/tags/jifen2.png">
+            <img
+              v-show="item.doubleBonus==3"
+              src="~/assets/images/tags/jifen3.png">
+            <img
+              v-show="item.amountType==1"
+              src="~/assets/images/tags/transfer.png">
+            <img
+              v-show="item.enjoyType==1"
+              src="~/assets/images/tags/app.png">
+          </div>
           <dl class="pro-con">
             <dd>{{ item.apr }}<i>%</i><i v-if="item.platformApr!=0">+{{ item.platformApr }}%</i></dd>
             <dd>{{ item.period }}个月</dd>
@@ -25,7 +38,7 @@
               class="bar-in"/>
           </div>
           <p class="pro-btm">
-            <span>{{ resolveType(item.amountType) }}</span>
+            <span>{{ resolveAmType(item.amountType) }}</span>
             <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
           </p>
         </div>
@@ -40,14 +53,25 @@
         v-if="item.rate==100"
         :key="index"
         @click="selected(item.desId)">
-        <div class="pro-name">{{ item.name }}<tags :type="item.typeId" /></div>
+        <div class="pro-name">{{ item.name }}
+          <tags :type="item.typeId" />
+          <img
+            v-show="item.doubleBonus==2"
+            src="~/assets/images/tags/jifen2.png">
+          <img
+            v-show="item.doubleBonus==3"
+            src="~/assets/images/tags/jifen3.png">
+          <img
+            v-show="item.amountType==1"
+            src="~/assets/images/tags/transfer.png">
+        </div>
         <dl class="pro-con">
           <dd>{{ item.apr }}<i>%</i><i v-if="item.platformApr!=0">+{{ item.platformApr }}%</i></dd>
           <dd>{{ item.period }}个月</dd>
           <dd><button>已抢完</button></dd>
         </dl>
         <p class="pro-btm">
-          <span>{{ resolveType(item.amountType) }}</span>
+          <span>{{ resolveAmType(item.amountType) }}</span>
           <span>剩余可投:{{ item.surplusAmountFormat }}元</span>
         </p>
       </li>
@@ -89,10 +113,10 @@ export default {
     })
   },
   methods: {
-    resolveType(amountType) {
+    resolveAmType(amountType) {
       switch (amountType) {
         case 0:
-          return '按月付息 到期还本'
+          return '到期还本，按月付息'
           break
         case 1:
           return '等额本息'
@@ -103,14 +127,12 @@ export default {
     },
     selected(desId) {
       this.$store.commit('project/setTransition', 'turn-on')
-      // console.log(desId)
-      // this.$emit('selected')
       this.$router.push({
         path: `/project/free-details/${desId}`
       })
     },
     onPullingDown() {
-      console.log('下拉')
+      // console.log('下拉')
       setTimeout(async () => {
         pageNum = 1
         const params = { item: 10, page: 1 }
@@ -122,9 +144,9 @@ export default {
     },
     onPullingUp() {
       pageNum++
-      // console.log(pageNum + 'xxxxxxx')
-      // console.log(this.pages)
-      // console.log('\\\\\\\\\\\\')
+      console.log(pageNum + 'xxxxxxx')
+      console.log(this.pages)
+      console.log('\\\\\\\\\\\\')
       // // 更新数据
       setTimeout(async () => {
         if (pageNum <= this.pages) {
@@ -168,6 +190,12 @@ export default {
       color: $color-gray1
       display: flex
       align-items: center
+      img
+        width: 105px
+        height: 36px
+        margin-left: 17px
+        overflow: hidden
+        vertical-align: middle
     .pro-con
       display: flex
       height: 68px

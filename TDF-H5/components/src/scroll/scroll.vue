@@ -78,7 +78,7 @@
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll'
 import Loading from '../loading/loading.vue'
-import Bubble from '../bubble/bubble.vue'
+import Bubble from '../yuan/yuan.vue'
 import scrollMixin from '../common/scroll.js'
 import deprecatedMixin from '../common/deprecated'
 import { getRect } from '../common/dom'
