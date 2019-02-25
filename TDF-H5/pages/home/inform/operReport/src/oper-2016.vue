@@ -25,7 +25,7 @@ export default {
 <style lang="stylus" scoped>
   .year-2016
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color:$color-white
     span
       color: $color-gray1
@@ -34,39 +34,39 @@ export default {
       width:100%
       overflow: hidden
     .year-2016-bg1
-      height:2.88rem
+      height:288px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-1.png) no-repeat
       background-size:100% 100%
     .year-2016-bg2
-      height:6.02rem
+      height:602px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-2.png) no-repeat
       background-size:100% 100%
     .year-2016-bg3
-      height:15.07rem
+      height:1507px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-3.png) no-repeat
       background-size:100% 100%
     .year-2016-bg4
-      height:7.61rem
+      height:761px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-4.png) no-repeat
       background-size:100% 100%
     .year-2016-bg5
-      height:10.91rem
+      height:1091px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-5.png) no-repeat
       background-size:100% 100%
     .year-2016-bg6
-      height:9.49rem
+      height:949px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-6.png) no-repeat
       background-size:100% 100%
     .year-2016-bg7
-      height:10.53rem
+      height:1053px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-7.png) no-repeat
       background-size:100% 100%
     .year-2016-bg8
-      height:7.08rem
+      height:708px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-8.png) no-repeat
       background-size:100% 100%
     .year-2016-bg9
-      height:3.95rem
+      height:395px
       background:url(../../../../../assets/images/oper/oper-2016year/2016year-9.png) no-repeat
       background-size:100% 100%
 </style>

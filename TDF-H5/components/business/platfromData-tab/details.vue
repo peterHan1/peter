@@ -127,14 +127,14 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .platform_b
-    margin-top 0.2rem
+    margin-top 20px
     li
-      height:0.8rem
-      line-height:0.8rem
+      height:80px
+      line-height:80px
       font-size: $fontsize-small-ss
       color:$color-gray8
       border-bottom: 1px solid $color-gray5
-      padding:0 0.1rem 0 0.58rem
+      padding:0 10px 0 58px
       &.one
         background:url(../../../assets/images/inform/one.png) no-repeat
         background-size:5% 40%
@@ -154,22 +154,22 @@ export default {
       & p:nth-child(2)
         float: right
   .ranking_top
-    padding:0 0.3rem
+    padding:0 30px
     background-color:white
   .ranking_com
-    padding:0 0.3rem
+    padding:0 30px
     background-color:white
-    margin-top:0.2rem
+    margin-top:20px
     .txt_p
-      line-height: 0.8rem
-      font-size: 0.2rem
+      line-height: 80px
+      font-size: 20px
       color: #7e7e7e
-      margin-top: 0.1rem
-      padding-left: 0.25rem
+      margin-top: 10px
+      padding-left: 25px
   .ranking_bot
-    padding:0 0.3rem
+    padding:0 30px
     background-color:$color-white
-    margin-top:0.2rem
+    margin-top:20px
     .tr_color
       background-color:$color-gray5
     .tr_colors
@@ -178,8 +178,8 @@ export default {
       width:100%
       border-collapse:collapse
       tr
-        height:0.8rem
-        line-height:0.8rem
+        height:80px
+        line-height:80px
       th
         color:$color-gray1
         font-size: $fontsize-small-s
@@ -190,7 +190,7 @@ export default {
         border-bottom: 1px solid $color-gray5
       .th_l
         width:40%
-        padding-left:0.25rem
+        padding-left:25px
         text-align:left
       .th_c
         width:45%
@@ -198,10 +198,10 @@ export default {
       .th_r
         width:15%
         text-align:right
-        padding-right:0.25rem
+        padding-right:25px
       td:nth-child(1)
         width:40%
-        padding-left:0.25rem
+        padding-left:25px
         text-align:left
       td:nth-child(2)
         width:45%
@@ -209,20 +209,20 @@ export default {
       td:nth-child(3)
         width:15%
         text-align:right
-        padding-right:0.25rem
+        padding-right:25px
     .txt_p
-      line-height:0.8rem
+      line-height:80px
       font-size: $fontsize-small-ssss
       color:#7e7e7e
-      margin-top:0.1rem
-      padding-left:0.25rem
+      margin-top:10px
+      padding-left:25px
   .inform_charge
     background-color: #fff
-    margin-top: 0.2rem
+    margin-top: 20px
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     .div_table
-      padding: 0.2rem 0.3rem 0
+      padding: 20px 30px 0
     table
       width: 100%
       border-collapse: collapse
@@ -236,13 +236,13 @@ export default {
           width: 30%
           text-align: center
           background-color: #f8f8f8
-          padding: 0.17rem 0.1rem
+          padding: 17px 10px
           font-weight: normal
           vertical-align: middle
         td
           text-align: center
           background-color: $color-white
-          padding: 0.17rem
+          padding: 17px
           vertical-align: middle
         .td_left
           text-align: justify
@@ -254,10 +254,10 @@ export default {
     .p_txt
       font-size: $fontsize-small-s
       color: $color-gray2
-      line-height: 0.9rem
-      padding-bottom: 0.1rem
+      line-height: 90px
+      padding-bottom: 10px
   h3
-    line-height:0.8rem
+    line-height:80px
     font-size: $fontsize-small-s
     color:$color-gray1
     font-weight: normal
@@ -265,11 +265,11 @@ export default {
     border-bottom: 1px solid $color-gray5
   .inform_signature
     background-color: #fff
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
 </style>

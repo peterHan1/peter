@@ -27,7 +27,7 @@ export default {
 <style lang="stylus" scoped>
   .month-12
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -36,43 +36,43 @@ export default {
       width:100%
       overflow: hidden
     .month-12-banner
-      height:2.87rem
+      height:287px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img1.png) no-repeat
       background-size:100% 100%
     .month-12-bg1
-      height:6.04rem
+      height:604px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img2.png) no-repeat
       background-size:100% 100%
     .month-12-bg2
-      height:15.08rem
+      height:1508px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img3.png) no-repeat
       background-size:100% 100%
     .month-12-bg3
-      height:15.24rem
+      height:1524px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img4.png) no-repeat
       background-size:100% 100%
     .month-12-bg4
-      height:10.93rem
+      height:1093px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img5.png) no-repeat
       background-size:100% 100%
     .month-12-bg5
-      height:9.5rem
+      height:950px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img6.png) no-repeat
       background-size:100% 100%
     .month-12-bg6
-      height:10.52rem
+      height:1052px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img7.png) no-repeat
       background-size:100% 100%
     .month-12-bg7
-      height:7.09rem
+      height:709px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img8.png) no-repeat
       background-size:100% 100%
     .month-12-bg8
-      height:3.98rem
+      height:398px
       background:url(../../../../../assets/images/oper/oper-2018-m12/img9.png) no-repeat
       background-size:100% 100%
     .inform-charge
-      height: 12.58rem
+      height: 1258px
       background: url(../../../../../assets/images/inform/inform-charge.jpg) no-repeat
       background-size: 100% 100%
 </style>

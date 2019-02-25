@@ -129,14 +129,8 @@ export default {
       if (datas.code == 100000) {
         store.commit('home/setCashBalance', datas.content.cashBalance)
       } else {
-        app.router.push({
-          name: 'user-login'
-        })
+        store.commit('setToken', { isLogin: false })
       }
-    } else {
-      app.router.push({
-        name: 'user-login'
-      })
     }
   },
   data() {
@@ -196,6 +190,16 @@ export default {
     }
   },
   mounted() {
+    if (!this.$store.state.isLogin) {
+      this.$store.commit('setToken', { isLogin: false })
+      this.$store.commit(
+        'srcPath',
+        this.$route.path + '?desId=' + this.$route.query.desId
+      )
+      this.$router.push({
+        name: 'user-login'
+      })
+    }
     this.lastWork()
   },
   methods: {
@@ -223,25 +227,34 @@ export default {
         this.balanceShow = true
       } else {
         detailStatus(this.$axios, commenParams).then(res => {
-          console.log(res)
-          this.evaluationType = res.content.evaluationType
-          this.limitQuota = res.content.limitQuota
-          this.quota = res.content.quota
-          if (res.content.evaluationStatus != 1) {
-            this.showDialog = true
-            this.showInfo =
-              '为了保障您的切身利益，请在出借前进行“风险承受能力测评”'
-            if (res.content.evaluationStatus == 0) {
+          if (res.code == 100000) {
+            this.evaluationType = res.content.evaluationType
+            this.limitQuota = res.content.limitQuota
+            this.quota = res.content.quota
+            if (res.content.evaluationStatus != 1) {
+              this.showDialog = true
               this.showInfo =
-                '您的“风险承受能力测评”结果已过期，请在出借前重新测评'
+                '为了保障您的切身利益，请在出借前进行“风险承受能力测评”'
+              if (res.content.evaluationStatus == 0) {
+                this.showInfo =
+                  '您的“风险承受能力测评”结果已过期，请在出借前重新测评'
+              }
+            } else if (
+              Number(this.importMoney) > Number(this.limitQuota) &&
+              res.content.evaluationStatus == 1
+            ) {
+              this.appraisalShow = true
+            } else {
+              this.dealShow = true
             }
-          } else if (
-            Number(this.importMoney) > Number(this.limitQuota) &&
-            res.content.evaluationStatus == 1
-          ) {
-            this.appraisalShow = true
           } else {
-            this.dealShow = true
+            this.$store.commit(
+              'srcPath',
+              this.$route.path + '?desId=' + this.$route.query.desId
+            )
+            this.$router.push({
+              name: 'user-login'
+            })
           }
         })
       }
@@ -358,14 +371,23 @@ export default {
         secretParam: this.encryptByDES(psw, '20181224')
       }
       investScatterAdd(this.$axios, params).then(res => {
-        console.log(res)
-        let nonce = res.content.nonce
-        this.$router.push({
-          name: 'xwDeposit-transit',
-          params: {
-            sign: nonce
-          }
-        })
+        if (res.code == 100000) {
+          let nonce = res.content.nonce
+          this.$router.push({
+            name: 'xwDeposit-transit',
+            params: {
+              sign: nonce
+            }
+          })
+        } else {
+          this.$store.commit(
+            'srcPath',
+            this.$route.path + '?desId=' + this.$route.query.desId
+          )
+          this.$router.push({
+            name: 'user-login'
+          })
+        }
       })
     },
     numFilter(value) {

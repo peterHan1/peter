@@ -28,7 +28,7 @@ export default {
 <style lang="stylus" scoped>
   .month-1
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -39,65 +39,65 @@ export default {
     .oper-title
       width:100%
       margin:0
-      height:3.29rem
+      height:329px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img1.png) no-repeat
       background-size:100% 100%
     .abos
       margin:-0.85rem 0 0 0
     .abos-bg
-      height:4.53rem
+      height:453px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img2.png) no-repeat
       background-size:100% 100%
     .trends-bg
-      width:6.38rem
-      height:1.97rem
+      width:638px
+      height:197px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img3.png) no-repeat
       background-size:100% 100%
     .stands-out
-      width:7.05rem
-      height:6.03rem
-      margin-top:0.5rem
+      width:705px
+      height:603px
+      margin-top:50px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img4.png) no-repeat
       background-size:100% 100%
     .datass-bg
-      width:7.01rem
-      height:6.94rem
-      margin-top:0.46rem
+      width:701px
+      height:694px
+      margin-top:46px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img5.png) no-repeat
       background-size:100% 100%
     .invests-bg
-      height:4.26rem
-      margin-top:0.43rem
+      height:426px
+      margin-top:43px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img6.png) no-repeat
       background-size:100% 100%
     .deadlines-bg
-      height:3.13rem
-      margin-top:0.4rem
+      height:313px
+      margin-top:40px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img7.png) no-repeat
       background-size:100% 100%
     .statisticss-bg
-      height: 7.61rem
-      margin-top:0.97rem
+      height: 761px
+      margin-top:97px
       background: url(../../../../../assets/images/oper/oper-2018-m1/img8.png) no-repeat
       background-size: 100% 100%
     .rankings-city
-      height:4.26rem
-      margin-top:0.5rem
+      height:426px
+      margin-top:50px
       background:url(../../../../../assets/images/oper/oper-2018-m1/img9.png) no-repeat
       background-size: 100% 100%
     .ratios-bg
-      height: 2.42rem
-      margin-top:0.5rem
+      height: 242px
+      margin-top:50px
       background: url(../../../../../assets/images/oper/oper-2018-m1/img10.png) no-repeat
       background-size: 100% 100%
     .conss-bg
-      height: 2.06rem
-      margin-top:0.45rem
+      height: 206px
+      margin-top:45px
       background: url(../../../../../assets/images/oper/oper-2018-m1/img11.png) no-repeat
       background-size: 100% 100%
     .footer
-      height:2.5rem
-      margin-top:0.57rem
+      height:250px
+      margin-top:57px
       background: url(../../../../../assets/images/oper/oper-2018-m1/img12.png) no-repeat
       background-size: 100% 100%
 </style>

@@ -22,7 +22,7 @@ export default {
 <style lang="stylus" scoped>
   .month-2
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -31,27 +31,27 @@ export default {
       width:100%
       overflow: hidden
     .abos-bg
-      height:7.53rem
+      height:753px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img1.png) no-repeat
       background-size:100% 100%
     .trends-bg
-      height:9.34rem
+      height:934px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img2.png) no-repeat
       background-size:100% 100%
     .stands-out
-      height:12.35rem
+      height:1235px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img3.png) no-repeat
       background-size:100% 100%
     .datass-bg
-      height:11.23rem
+      height:1123px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img4.png) no-repeat
       background-size:100% 100%
     .invests-bg
-      height:8rem
+      height:800px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img5.png) no-repeat
       background-size:100% 100%
     .deadlines-bg
-      height:11.01rem
+      height:1101px
       background:url(../../../../../assets/images/oper/oper-2018-m2/img6.png) no-repeat
       background-size:100% 100%
 </style>

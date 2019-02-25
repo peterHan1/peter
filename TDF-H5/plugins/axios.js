@@ -21,7 +21,7 @@ export default function({ $axios, redirect }) {
   })
   $axios.onResponseError(err => {
     if (err.code == 'ECONNABORTED') {
-      return Promise.reject(createError(err.code, '链接超市'))
+      return Promise.reject(createError(err.code, '超时'))
     }
   })
   $axios.onError(err => {

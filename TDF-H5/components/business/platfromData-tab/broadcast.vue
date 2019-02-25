@@ -32,16 +32,16 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .platform_c
-    margin-top 0.2rem
+    margin-top 20px
   .echart_top
     background-color:$color-white
-    padding:0 0.3rem
+    padding:0 30px
   .echart_bot
     background-color:$color-white
-    margin-top:0.2rem
-    padding:0 0.3rem
+    margin-top:20px
+    padding:0 30px
   h3
-    line-height:0.8rem
+    line-height:80px
     font-size: $fontsize-small-s
     color:$color-gray1
     font-weight: normal
@@ -49,11 +49,11 @@ export default {
     border-bottom: 1px solid $color-gray5
   .inform_signature
     background-color: #fff
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
 </style>

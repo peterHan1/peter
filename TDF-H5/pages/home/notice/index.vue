@@ -144,7 +144,7 @@ export default {
     .tab-slide-container
       position absolute
       left: 0
-      top: 1.68rem
+      top: 168px
       bottom: 0
       right: 0
 </style>

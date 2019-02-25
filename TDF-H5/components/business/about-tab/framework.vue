@@ -13,27 +13,27 @@
   .framework
     background-color: $color-white
     overflow: hidden
-    border-top: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
   .framework .framework_bg
-    width: 6.06rem
-    height: 9.26rem
+    width: 606px
+    height: 926px
     background: url(../../../assets/images/inform/framework-bg.png) no-repeat
     background-size: 100% 100%
-    margin: 0.75rem auto
+    margin: 75px auto
   .inform_signature
     background-color: $color-white
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
     h3
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 0.8rem
-      line-height: 0.8rem
+      height: 80px
+      line-height: 80px
       border-bottom: 1px solid $color-gray5
       font-weight: normal
 </style>

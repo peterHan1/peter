@@ -2,9 +2,9 @@
   <div class="loadBox">
     <canvas 
       ref="bubble" 
-      width="22" 
-      height="22"
-      style="height: 22px; width:22px;"/>
+      width="30" 
+      height="30"
+      style="height: 30px; width:30px;"/>
     <div class="loadBg"/>  
   </div>
 </template>
@@ -36,14 +36,14 @@ export default {
       ctx.clearRect(0, 0, bubble.width, bubble.height)
       ctx.beginPath()
       ctx.arc(
-        11,
-        11,
-        10,
+        15,
+        15,
+        13,
         (Math.PI / 180) * 270,
         (Math.PI / 180) * (i * 10 + 270)
       )
-      ctx.strokeStyle = 'red'
-      ctx.lineWidth = 1
+      ctx.strokeStyle = '#FF7102'
+      ctx.lineWidth = 2
       ctx.stroke()
     }
   },
@@ -56,7 +56,14 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .loadBox
+  width: 30px; /*no*/
+  height: 30px; /*no*/
+  position: relative
   .loadBg
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
     width: 42px
     height: 42px
     background: url(../../../assets/images/common/load.png) no-repeat

@@ -98,7 +98,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .platform
-    padding-top: 0.88rem
+    padding-top: 88px
     .nav
       background-color: $color-white
       /deep/ .cube-tab-bar
@@ -111,7 +111,7 @@ export default {
     .tab-slide-container
       position absolute
       left: 0
-      top: 1.68rem
+      top: 168px
       bottom: 0
       right: 0
 </style>

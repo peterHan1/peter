@@ -136,71 +136,71 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .platform_a
-    margin-top 0.2rem
+    margin-top 20px
   .platform_a_top
-    padding-bottom:0.58rem
+    padding-bottom:58px
     background-color:$color-white
     .data_time
       font-size: $fontsize-small-ssss
       color:$color-gray8
       text-align:center
-      line-height:0.84rem
+      line-height:84px
     dl
       text-align:center
     dt
       font-size: $fontsize-large-xxx
       color:$color-primary
       font-weight: bold
-      margin-bottom:0.1rem
+      margin-bottom:10px
     dd
       font-size: $fontsize-small-sss
       color:#7e7e7e
   .platform_num
-    margin-top:0.55rem
+    margin-top:55px
     .boundary
       display: inline-block
-      height:0.8rem
+      height:80px
       width:1px
       background-color:$color-gray5
-      margin:0.05rem 0
+      margin:5px 0
   .platform_a_com
-    padding-top:0.6rem
-    margin-top:0.2rem
+    padding-top:60px
+    margin-top:20px
     background-color:$color-white
     overflow: hidden
     &>div
       width:100%
-      margin-bottom:0.5rem
+      margin-bottom:50px
     dl
       width:50%
       text-align:center
     dt
       font-size: $fontsize-large-x
       color:$color-primary
-      margin-bottom:0.12rem
+      margin-bottom:12px
     dd
       font-size: $fontsize-small-ssss
       color:$color-gray8
   .platform_a_bot
-    margin-top:0.2rem
+    margin-top:20px
     background-color:$color-white
     overflow: hidden
     .data_tlt
       font-size: $fontsize-small-sss
       color:$color-gray2
       text-align: center
-      line-height:0.62rem
-      padding-bottom:0.16rem
+      line-height:62px
+      padding-bottom:16px
     &>div
       width:100%
-      margin-bottom:0.6rem
+      margin-bottom:60px
     dl
       width:50%
       text-align:center
     dt
       font-size: $fontsize-large-x
       color:$color-gray1
-      margin-bottom:0.12rem
+      margin-bottom:12px
     dd
       font-size: $fontsize-small-ssss
       color:$color-gray8
@@ -210,7 +210,7 @@ export default {
     .flex-1
       flex: 1
   h3
-    line-height:0.8rem
+    line-height:80px
     font-size: $fontsize-small-s
     color:$color-gray1
     font-weight: normal
@@ -218,11 +218,11 @@ export default {
     border-bottom: 1px solid $color-gray5
   .inform_signature
     background-color: #fff
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
 </style>

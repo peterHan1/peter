@@ -38,41 +38,41 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .risk
-    padding-top: 0.88rem
+    padding-top: 88px
   .risk_top,.risk_com,.risk_bot
     background-color: $color-white
     overflow: hidden
-    padding:0 0.3rem
-    margin-top:0.2rem
+    padding:0 30px
+    margin-top:20px
   .risk_topbg
-    width:6.64rem
-    height:3.63rem
+    width:664px
+    height:363px
     background:url(../../../../assets/images/inform/risk-top.png) no-repeat
     background-size:100% 100%
-    margin:0.4rem auto
+    margin:40px auto
   .risk_combg
-    width:6.89rem
-    height:3.61rem
+    width:689px
+    height:361px
     background:url(../../../../assets/images/inform/risk-combg.png) no-repeat
     background-size:100% 100%
-    margin:0.4rem auto
+    margin:40px auto
   .risk_botbg
-    width:6.92rem
-    height:3.31rem
+    width:692px
+    height:331px
     background:url(../../../../assets/images/inform/risk-botbg.png) no-repeat
     background-size:100% 100%
-    margin:0.4rem auto
+    margin:40px auto
   .risk_topbg1
-    width:7.50rem
-    height:9.63rem
+    width:750px
+    height:963px
     background:url(../../../../assets/images/inform/risk-top1.png) no-repeat
     background-size:100% 100%
   .risk_topbg3
-    width:6.37rem
-    height:6.58rem
+    width:637px
+    height:658px
     background:url(../../../../assets/images/inform/risk-top3.png) no-repeat
     background-size:100% 100%
-    margin:0.4rem auto
+    margin:40px auto
   .risk_new
     padding:0
     margin:0
@@ -80,18 +80,18 @@ export default {
     margin:0
   .inform_signature
     background-color: $color-white
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
   h3
     font-size: $fontsize-medium
     color: $color-gray1
-    height: 0.8rem
-    line-height: 0.8rem
+    height: 80px
+    line-height: 80px
     border-bottom: 1px solid $color-gray5
     font-weight: normal
 </style>

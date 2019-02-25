@@ -56,7 +56,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .m-10
-    padding-top: 0.88rem
+    padding-top: 88px
     i
       color: $color-gray1
       font-weight: bold
@@ -70,64 +70,64 @@ export default {
         width:100%
         float: left
     .oper-title
-      height:3.83rem
+      height:383px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-banner.png) no-repeat
       background-size:100% 100%
     .abos-bg
-      height:7.51rem
+      height:751px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general1.png) no-repeat
       background-size:100% 100%
     .trends-bg
-      height:5.53rem
+      height:553px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general2.png) no-repeat
       background-size:100% 100%
     .stands-out
-      height:9.33rem
+      height:933px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general3.png) no-repeat
       background-size:100% 100%
     .datass-bg
-      height:11.44rem
+      height:1144px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general4.png) no-repeat
       background-size:100% 100%
     .invests-bg
-      height:6.16rem
+      height:616px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general5.png) no-repeat
       background-size:100% 100%
     .deadlines-bg
-      height:5.31rem
+      height:531px
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general6.png) no-repeat
       background-size:100% 100%
     .statisticss-bg
-      height: 5.31rem
+      height: 531px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general7.png) no-repeat
       background-size: 100% 100%
     .rankings-city
-      height:5.28rem
+      height:528px
       margin-top:0
       background:url(../../../../../assets/images/oper/oper-2017-m10/m-10-general8.png) no-repeat
       background-size: 100% 100%
     .ratios-bg
-      height: 11.42rem
+      height: 1142px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general9.png) no-repeat
       background-size: 100% 100%
     .conss-bg
-      height: 8.48rem
+      height: 848px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general10.png) no-repeat
       background-size: 100% 100%
     .incidents-bg
-      height:7.72rem
+      height:772px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general11.png) no-repeat
       background-size: 100% 100%
     .welfare-bg
-      height:8.06rem
+      height:806px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general12.png) no-repeat
       background-size: 100% 100%
     .news-bg
-      height:5.25rem
+      height:525px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-general13.png) no-repeat
       background-size: 100% 100%
     .footer
-      height:6.07rem
+      height:607px
       background: url(../../../../../assets/images/oper/oper-2017-m10/m-10-footer.png) no-repeat
       background-size: 100% 100%
 </style>

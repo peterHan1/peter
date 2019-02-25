@@ -51,18 +51,18 @@ export default {
     right: 0
     bottom: 0
     z-index: 999999
-    padding:1.68rem 0 0.8rem
+    padding:168px 0 80px
     .title
       width: 100%
-      height: 0.8rem
-      line-height: 0.8rem
+      height: 80px
+      line-height: 80px
       color: #fff
       font-size: $fontsize-large-x
       text-align: center
       background-color: transparent
       position: absolute
       left: 0
-      top:0.88rem
+      top:88px
     .slide
       height: 100%
       width: 100%

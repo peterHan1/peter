@@ -34,14 +34,6 @@
           status="null"
           statusTxt="暂无资金记录"/>
       </div>
-      <div class="loadBox">
-        <canvas 
-          ref="bubble" 
-          width="22" 
-          height="22"
-          style="height: 30px; width:30px;"/>
-        <div class="loadBg"/>  
-      </div>
     </cube-scroll>
   </div>
 </template>
@@ -57,12 +49,12 @@ export default {
       commenParams.accessId = app.store.state.accessId
       commenParams.accessKey = app.store.state.accessKey
       const accountLog = await getAccountLogById(app.$axios, params)
-      // if (accountLog.code === 100000) {
-      //   app.store.commit('myCenter/setMoneyRecordNull')
-      //   app.store.commit('myCenter/setMoneyRecord', accountLog.content.dataRows)
-      // } else {
-      //   store.commit('setToken', { isLogin: false })
-      // }
+      if (accountLog.code === 100000) {
+        app.store.commit('myCenter/setMoneyRecordNull')
+        app.store.commit('myCenter/setMoneyRecord', accountLog.content.dataRows)
+      } else {
+        store.commit('setToken', { isLogin: false })
+      }
     }
   },
   data() {
@@ -86,27 +78,9 @@ export default {
   mounted() {
     if (!this.$store.state.isLogin) {
       this.returnLogin()
-    } else {
-      let index = 0
-      setInterval(() => {
-        index++
-        this._draw(index)
-      }, 20)
     }
   },
   methods: {
-    _draw(i) {
-      // console.log(i)
-      const bubble = this.$refs.bubble
-      let ctx = bubble.getContext('2d')
-      this.index = i
-      ctx.clearRect(0, 0, bubble.width, bubble.height)
-      ctx.beginPath()
-      ctx.arc(11, 11, 15, (Math.PI / 180) * 270, (Math.PI / 180) * (i + 270))
-      ctx.strokeStyle = 'red'
-      ctx.lineWidth = 1
-      ctx.stroke()
-    },
     onPullingDown() {
       setTimeout(async () => {
         this.pageNum = 1
@@ -199,16 +173,4 @@ export default {
         padding: 10px 0 20px
     li:last-child
       border: none
-  .loadBox
-    width: 50px
-    height: 50px
-    position: relative
-    .loadBg
-      position: absolute
-      left: 0
-      top: 0
-      width: 42px
-      height: 42px
-      background: url(../../../assets/images/common/load.png) no-repeat
-      background-size: 100% 100%    
 </style>

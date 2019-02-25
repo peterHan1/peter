@@ -131,12 +131,12 @@ export default {
 </script>
 <style lang="stylus" scoped>
   img
-    width:6.9rem
-    height:2.5rem
+    width:690px
+    height:250px
   .oper
     position:relative
     width:100%
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     .fr
       float: right
@@ -146,22 +146,22 @@ export default {
       z-index: 99
       position:relative
       .oper_date
-        padding:0 0.3rem
-        line-height:0.6rem
+        padding:0 30px
+        line-height:60px
         background-color:$color-background
         font-size:$fontsize-small-s
         color:$color-gray1
         overflow: hidden
     .oper_year
       width:100%
-      padding:0 0.3rem
+      padding:0 30px
       position:absolute
       background-color: $color-white
       box-sizing: border-box
       li
         width:100%
-        height:0.8rem
-        line-height:0.8rem
+        height:80px
+        line-height:80px
         border-bottom: 1px solid $color-gray5
         &.li_on span
           color:$color-primary
@@ -173,12 +173,12 @@ export default {
         font-size:$fontsize-small-ss
         color:$color-gray1
     .oper_list
-      padding:0 0.3rem
+      padding:0 30px
       overflow: hidden
-      padding-bottom:0.4rem
+      padding-bottom:40px
       a
         display:block
-        margin-top:0.4rem
+        margin-top:40px
   .dasahe
     position:absolute
     left:0
@@ -190,17 +190,17 @@ export default {
     z-index: 9
   .inform_signature
     background-color: $color-white
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     h3
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 0.8rem
-      line-height: 0.8rem
+      height: 80px
+      line-height: 80px
       border-bottom: 1px solid $color-gray5
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
 </style>

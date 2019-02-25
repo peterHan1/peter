@@ -115,7 +115,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .knowUs
-    padding-top: 0.88rem
+    padding-top: 88px
     background: #45aeff
     font-family:"微软雅黑"
     -webkit-text-size-adjust:none
@@ -123,9 +123,9 @@ export default {
     .team
       background:url(../../../../assets/images/inform/know-us/team.png) no-repeat
       background-size: 100%
-      margin-bottom: 0.3rem
-      height: 6.43rem
-      padding: 0.9rem 5% 0
+      margin-bottom: 30px
+      height: 643px
+      padding:90px 5% 0
       h2
         color: $color-gray1
         font-size: $fontsize-large-x
@@ -136,19 +136,19 @@ export default {
           display: block
           font-size: $fontsize-large-x
           font-weight: normal
-          margin-top: 0.1rem
+          margin-top: 10px
   div img
-    margin-bottom: 0.3rem
+    margin-bottom: 30px
   div.data
     background:url(../../../../assets/images/inform/know-us/know-us3.png) no-repeat
     background-size: 100%
-    margin-bottom: 0.3rem
-    height:4rem
+    margin-bottom: 30px
+    height:400px
     li
       display: flex
     li:first-child
-      padding-top:1.2rem
-      margin-bottom:0.2rem
+      padding-top:120px
+      margin-bottom:20px
     section
       width:50%
       text-align:center
@@ -157,7 +157,7 @@ export default {
         padding:0
         margin:0
       p
-        line-height:0.4rem
+        line-height:40px
         padding:0
         margin:0
         font-size:$fontsize-medium
@@ -167,28 +167,28 @@ export default {
     color: $color-gray1
     font-size: $fontsize-small-ss
     text-align:left
-    padding: 0 0.1rem
-    margin-top: 0.1rem
-    line-height:0.36rem
+    padding: 0 10px
+    margin-top: 10px
+    line-height:36px
     h2
       font-weight: bold
       text-align: center
     p
-      margin-top: 0.1rem
+      margin-top: 10px
   div.contact
     font-size: $fontsize-large-xxxx
     color: $color-white
-    padding: 0 0.1rem
+    padding: 0 10px
     text-align: center
-    margin-bottom:0.1rem
+    margin-bottom:10px
   ol li
     font-size: $fontsize-small-s
     color: $color-white
     padding: 0 5%
-    line-height: 0.4rem
-    margin-bottom: 0.05rem
+    line-height: 40px
+    margin-bottom: 5px
   .ol_bot
-    padding-bottom: 0.4rem
+    padding-bottom: 40px
   .max_img
     width: 100%
 </style>

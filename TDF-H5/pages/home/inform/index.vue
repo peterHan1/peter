@@ -23,10 +23,10 @@ export default {
 <style lang="stylus" scoped>
   .inform
     margin: 0 4%
-    padding-top:1.1rem
+    padding-top:110px
     a
       display: block
       img
-        height:1.2rem
-        margin-top: 0.2rem
+        height:120px
+        margin-top: 20px
 </style>

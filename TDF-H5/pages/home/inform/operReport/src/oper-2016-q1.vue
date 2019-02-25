@@ -27,7 +27,7 @@ export default {
 <style lang="stylus" scoped>
   .jd-1-16
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color:$color-white
     i
       color: $color-gray1
@@ -35,57 +35,57 @@ export default {
     div
       width:100%
     .jd-1-bg1
-      height:5.23rem
+      height:523px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-1.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg2
-      height:6.74rem
+      height:674px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-2.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg3
-      height:7.33rem
+      height:733px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-3.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg4
-      height:7.66rem
+      height:766px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-4.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg5
-      height:7.41rem
+      height:741px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-5.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg6
-      height:7.41rem
+      height:741px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-6.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg7
-      height:7.63rem
+      height:763px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-7.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg8
-      height:4.88rem
+      height:488px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-8.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg9
-      height:4.27rem
+      height:427px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-9.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg10
-      height:4.25rem
+      height:425px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-10.jpg) no-repeat
       background-position: center
       background-size: 100% 100%
     .jd-1-bg11
-      height:4.46rem
+      height:446px
       background:url(../../../../../assets/images/oper/oper-2016/2016-1-11.jpg) no-repeat
       background-position: center
       background-size: 100% 100%

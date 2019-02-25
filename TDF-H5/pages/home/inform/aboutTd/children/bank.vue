@@ -34,20 +34,20 @@ export default {
   h3
     font-size:$fontsize-medium
     color:$color-gray1
-    height:0.8rem
-    line-height:0.8rem
+    height:80px
+    line-height:80px
     font-weight: normal
     border-bottom: 1px solid $color-gray5
   .bank
-    padding: 1.08rem 0.3rem 0.2rem
+    padding: 108px 30px 20px
     background-color: white
     h4
       font-size: $fontsize-small-ss
       color: $color-gray1
-      line-height: 1rem
+      line-height: 100px
 
     p
       font-size: $fontsize-small-ss
       color: $color-gray8
-      line-height: 0.42rem
+      line-height: 42px
 </style>

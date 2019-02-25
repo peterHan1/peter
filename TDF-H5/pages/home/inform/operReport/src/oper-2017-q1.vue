@@ -63,7 +63,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .jd-2-17
-    padding-top: 0.88rem
+    padding-top: 88px
     i
       color: $color-gray1
       font-weight: bold
@@ -75,157 +75,156 @@ export default {
       text-align:center
       span
         display:inline-block
-        margin-top:0.85rem
+        margin-top:85px
     .oper-title
-      height:3.7rem
+      height:370px
       background:url(../../../../../assets/images/oper/oper-2017-jd2/img1.png) no-repeat
       background-size:100% 100%
       border:none
     .abo
-      height:4.73rem
+      height:473px
       .abo-bg
-        width:6.5rem
-        height:2.98rem
+        width:650px
+        height:298px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img2.png) no-repeat
         background-size:100% 100%
     .trend
-      height:5.55rem
+      height:555px
       .trend-bg
-        width:6.86rem
-        height:3.75rem
+        width:686px
+        height:375px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img3.png) no-repeat
         background-size:100% 100%
     .datas
-      height:7.03rem
+      height:703px
       .datas-bg
-        width:6.62rem
-        height:5.36rem
+        width:662px
+        height:536px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img4.png) no-repeat
         background-size:100% 100%
     .invest
-      height:4.96rem
+      height:496px
       .invest-bg
-        width:6.49rem
-        height:3.32rem
+        width:649px
+        height:332px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img5.png) no-repeat
         background-size:100% 100%
     .deadline
-      height:5.53rem
+      height:553px
       .deadline-bg
-        width:6.69rem
-        height:3.89rem
+        width:669px
+        height:389px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img6.png) no-repeat
         background-size:100% 100%
     .statistics
-      height:8.23rem
+      height:823px
       .statistics-bg
-        width:6.12rem
-        height:6.57rem
+        width:612px
+        height:657px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img7.png) no-repeat
         background-size:100% 100%
     .ranking
-      height:11.9rem
+      height:1190px
       .ranking-people
-        width:6.5rem
-        height:5.31rem
-        margin-top:0.82rem
+        width:650px
+        height:531px
+        margin-top:82px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img8.png) no-repeat
         background-size:100% 100%
       .ranking-city
-        width:6.49rem
-        height:4.22rem
-        margin-top:0.55rem
+        width:649px
+        height:422px
+        margin-top:55px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img9.png) no-repeat
         background-size:100% 100%
     .invest-way
-      height:4.96rem
+      height:496px
       .way-bg
-        width:6.47rem
-        height:3.35rem
-        margin-top:0.8rem
+        width:647px
+        height:335px
+        margin-top:80px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img10.png) no-repeat
         background-size:100% 100%
     .ratio
-      height:8.79rem
+      height:879px
       .ratio-bg
-        width:6.59rem
-        height:7.15rem
+        width:659px
+        height:715px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img11.png) no-repeat
         background-size:100% 100%
     .constellation
-      height:7.2rem
+      height:720px
       .cons-bg
-        width:4.41rem
-        height:5.57rem
-        margin-top:0.8rem
+        width:441px
+        height:557px
+        margin-top:80px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img12.png) no-repeat
         background-size:100% 100%
     .welfare
-      height:25.18rem
+      height:2518px
       width:78%
       padding:0 11%
       overflow: hidden
       span
-        margin-top:0.3rem
+        margin-top:30px
         float:left
       .welfare-title
-        width:2.55rem
-        height:0.52rem
-        margin:0.83rem 27% 0 28%
+        width:255px
+        height:52px
+        margin:83px 27% 0 28%
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-title.png) no-repeat
         background-size:100% 100%
       .w-1
-        width:5.79rem
-        height:2.95rem
-        margin-top:0.6rem
+        width:579px
+        height:295px
+        margin-top:60px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-1.png) no-repeat
         background-size:100% 100%
       .w-2
-        width:5.78rem
-        height:2.95rem
+        width:578px
+        height:295px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-2.png) no-repeat
         background-size:100% 100%
       .w-3
-        width:5.78rem
-        height:2.95rem
+        width:578px
+        height:295px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-3.png) no-repeat
         background-size:100% 100%
       .w-4
-        width:5.78rem
-        height:2.95rem
+        width:578px
+        height:295px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-4.png) no-repeat
         background-size:100% 100%
       .w-5
-        width:5.78rem
-        height:2.94rem
+        width:578px
+        height:294px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-5.png) no-repeat
         background-size:100% 100%
       .w-6
-        width:5.78rem
-        height:2.94rem
+        width:578px
+        height:294px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-6.png) no-repeat
         background-size:100% 100%
       .w-7
-        width:5.78rem
-        height:2.94rem
+        width:578px
+        height:294px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/w-7.png) no-repeat
         background-size:100% 100%
     .incident
-      height:7.81rem
+      height:781px
       border:none
       .incident-bg
-        width:6.49rem
-        height:6.18rem
-        margin-top:0.82rem
+        width:649px
+        height:618px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/img13.png) no-repeat
         background-size:100% 100%
     .footer
-      height:4.55rem
+      height:455px
       background-color:#2257bf
       .footer-bg
-        width:4.13rem
-        height:2.54rem
-        margin-top:0.82rem
+        width:413px
+        height:254px
+        margin-top:82px
         background:url(../../../../../assets/images/oper/oper-2017-jd2/footer.png) no-repeat
         background-size:100% 100%
 </style>

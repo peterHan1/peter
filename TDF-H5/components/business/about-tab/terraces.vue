@@ -67,25 +67,25 @@
 </template>
 <style lang="stylus" scoped>
   .terraces
-    border-top: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
   .terrace_top,.terrace_bot
     background-color: $color-white
-    padding: 0 0.3rem
+    padding: 0 30px
   .terrace_top
     div
       overflow: hidden
-      padding-bottom: 0.32rem
+      padding-bottom: 32px
      p
       font-size: $fontsize-small-ss
       color: $color-gray8
-      line-height: 0.4rem
+      line-height: 40px
       white-space: normal
-      margin-top: 0.14rem
+      margin-top: 14px
   .terrace_bot
-    border-top: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
     .flex
       display: flex
-      padding-top: 0.5rem
+      padding-top: 50px
       overflow: hidden
       .flex-1
         flex: 1
@@ -94,34 +94,34 @@
     p
       font-size: $fontsize-small-ss
       color: $color-gray8
-      height: 0.3rem
-      line-height: 0.3rem
-      margin-bottom: 0.1rem
+      height: 30px
+      line-height: 30px
+      margin-bottom: 10px
       &.mt
-        margin-top: 0.1rem
+        margin-top: 10px
     a
       text-align: center
     .iconfont
       color: $color-primary
-      font-size: 0.6rem
+      font-size: 60px
     .icon_top
-      margin-top: 0.2rem
+      margin-top: 20px
     .icon_bot
-      margin: 0.3rem 0 0.8rem 0
+      margin: 30px 0 80px 0
   .inform_signature
     background-color: $color-white
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
   h3
     font-size: $fontsize-medium
     color: $color-gray1
-    height: 0.8rem
-    line-height: 0.8rem
+    height: 80px
+    line-height: 80px
     border-bottom: 1px solid $color-gray5
     font-weight: normal
 </style>

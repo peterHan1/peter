@@ -47,15 +47,15 @@ export default {
   h3
     font-size:$fontsize-medium
     color:$color-gray1
-    height:0.8rem
-    line-height:0.8rem
+    height:80px
+    line-height:80px
     border-bottom: 1px solid $color-gray5
     font-weight: normal
   .board>div
-    margin-top: 0.6rem
+    margin-top: 60px
   .board
     background-color: $color-white
-    padding: 1.08rem 0.3rem 0.2rem
+    padding: 108px 30px 20px
     height: 100%
     position: absolute
     left: 0
@@ -65,12 +65,12 @@ export default {
     .position
       font-size: $fontsize-small-s
       color: $color-gray1
-      margin-top: 0.2rem
+      margin-top: 20px
     p
-      line-height: 0.42rem
+      line-height: 42px
     dt
-      width: 2.6rem
-      height: 2.6rem
+      width: 260px
+      height: 260px
       margin: 0 auto
     .zlj dt
       background: url(../../../../../assets/images/inform/zlj.png) no-repeat

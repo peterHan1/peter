@@ -126,7 +126,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .about
-    padding-top: 0.88rem
+    padding-top: 88px
     position: absolute
     left: 0
     top: 0
@@ -147,7 +147,7 @@ export default {
     .tab-slide-container
       position absolute
       left: 0
-      top: 1.68rem
+      top: 168px
       bottom: 0
       right: 0
   .img_show
@@ -155,7 +155,7 @@ export default {
     z-index: 90
     width: 100%
     height: 100%
-    padding: 1.68rem 0 0.8rem
+    padding: 168px 0 80px
     box-sizing: border-box
     background-color: #000
     overflow: hidden
@@ -191,8 +191,8 @@ export default {
   h3
     font-size: $fontsize-medium
     color: $color-gray1
-    height: 0.8rem
-    line-height: 0.8rem
+    height: 80px
+    line-height: 80px
     border-bottom: 1px solid $color-gray5
     font-weight: normal
 </style>

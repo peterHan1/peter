@@ -44,11 +44,11 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .auditReport
-    padding:1.08rem 0 0.4rem
+    padding:108px 0 40px
     background-color:$color-background
     .div_img
-      height:3.66rem
-      margin-top:0.2rem
+      height:366px
+      margin-top:20px
       a
         display:block
         width: 100%
@@ -57,22 +57,22 @@ export default {
           width: 100%
           vertical-align: middle
     .div_box
-      padding:0 0.3rem
+      padding:0 30px
     .sign
       padding:0
     .inform_signature
       background-color: $color-white
-      border-top: 0.2rem solid $color-background
-      border-bottom: 0.2rem solid $color-background
+      border-top: 20px solid $color-background
+      border-bottom: 20px solid $color-background
       h3
         font-size: $fontsize-medium
         color: $color-gray1
-        height: 0.8rem
-        line-height: 0.8rem
+        height: 80px
+        line-height: 80px
         border-bottom: 1px solid #e4e4e4
       div
-        padding: 0 0.3rem
+        padding: 0 30px
       img
         width: 100%
-        height: 3.8rem
+        height: 380px
 </style>

@@ -25,7 +25,7 @@ export default {
 <style lang="stylus" scoped>
   .month-7
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -34,39 +34,39 @@ export default {
       width:100%
       overflow: hidden
     .month-7-bg1
-      height:2.88rem
+      height:288px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img1.png) no-repeat
       background-size:100% 100%
     .month-7-bg2
-      height:4.94rem
+      height:494px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img2.png) no-repeat
       background-size:100% 100%
     .month-7-bg3
-      height:8.92rem
+      height:892px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img3.png) no-repeat
       background-size:100% 100%
     .month-7-bg4
-      height:7.89rem
+      height:789px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img4.png) no-repeat
       background-size:100% 100%
     .month-7-bg5
-      height:8.01rem
+      height:801px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img5.png) no-repeat
       background-size:100% 100%
     .month-7-bg6
-      height:13.11rem
+      height:1311px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img6.png) no-repeat
       background-size:100% 100%
     .month-7-bg7
-      height:10.23rem
+      height:1023px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img7.png) no-repeat
       background-size:100% 100%
     .month-7-bg8
-      height:3.56rem
+      height:356px
       background:url(../../../../../assets/images/oper/oper-2018-m7/img8.png) no-repeat
       background-size:100% 100%
     .inform-charge
-      height: 12.58rem
+      height: 1258px
       background: url(../../../../../assets/images/inform/inform-charge.jpg) no-repeat
       background-size: 100% 100%
 </style>

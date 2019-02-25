@@ -123,12 +123,12 @@ export default {
 <style lang="stylus" scoped>
   .info
     background-color: white
-    padding: 1.08rem 0.3rem 0.2rem
+    padding: 108px 30px 20px
     h3
       font-size: $fontsize-medium
       color:$color-gray1
-      height:0.8rem
-      line-height:0.8rem
+      height:80px
+      line-height:80px
       font-weight: normal
       border-bottom: 1px solid $color-gray5
   table
@@ -140,17 +140,17 @@ export default {
       th
         border: 1px solid $color-gray5
         width:30%
-        padding:0.28rem 0.1rem
+        padding:28px 10px
         text-align:left
         font-weight: normal
       td
         border: 1px solid $color-gray5
         width:70%
-        padding:0.28rem 0.1rem
+        padding:28px 10px
         text-align:right
         a
           color:$color-gray8
       .tdStyle
         text-align: left
-        padding:0.2rem 0.1rem
+        padding:20px 10px
 </style>

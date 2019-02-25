@@ -121,7 +121,7 @@ export default {
       display: block
       padding: 3.125%
       box-sizing: border-box
-      margin-top: 0.3rem
+      margin-top: 30px
       div
         span
           width: 68%
@@ -141,7 +141,7 @@ export default {
         font-size: $fontsize-small-ss
         color: #a3a3a3
         color: #a3a3a3
-        margin-top: 0.3rem
+        margin-top: 30px
   .data-status
     margin-top 200px
 </style>

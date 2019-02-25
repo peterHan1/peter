@@ -83,7 +83,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .invite_rule
-  padding-top: 0.88rem
+  padding-top: 88px
   height:100%
   position:absolute
   left: 0
@@ -92,33 +92,32 @@ export default {
   bottom: 0
   .rules
     background: $color-white
-    padding: .31rem .27rem .49rem .27rem
+    padding: 31px 27px 49px 27px
     p
       font-size: $fontsize-medium
       color:#666
-      line-height:.4rem
-      margin-bottom:.16rem
+      line-height:40px
+      margin-bottom:16px
       text-align:justify
       &.title
         font-size: $fontsize-medium
         color:#333
-        margin-top:.3rem
+        margin-top:30px
         margin-bottom:0
     table
       width:100%
       text-align: center
       border-collapse:collapse
-      border-spacing:1
       border-spacing:0
       border:1px solid $color-gray4
-      margin-bottom:.16rem
+      margin-bottom:16px
       tr
         border:1px solid $color-gray4
         th
           font-size: $fontsize-small-ss
           color:$color-gray1
           background-color: $color-background
-          height:.52rem
+          height:52px
           font-weight: 100
           border-right:1px solid $color-gray4
           vertical-align: middle
@@ -126,11 +125,11 @@ export default {
           font-size: $fontsize-small-sss
           color:$color-gray2
           border-right:1px solid $color-gray4
-          height:.89rem
+          height:89px
           padding: 0
           vertical-align: middle
   .invite_txt
-    margin-bottom: .16rem
+    margin-bottom: 16px
     p
       font-size:$fontsize-small-ss
       margin:0

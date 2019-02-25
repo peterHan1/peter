@@ -12,6 +12,7 @@
       <cube-slide
         ref="slide"
         :loop="loop"
+        :showDots="showDots"
         :initial-index="initialIndex"
         :auto-play="autoPlay"
         :options="slideOptions"
@@ -124,7 +125,6 @@
         </cube-slide-item>
         <cube-slide-item>
           <cube-scroll
-            v-if="items.length>0"
             ref="joinScroll"
             :scrollEvents="['scroll']"
             :options="options"
@@ -134,7 +134,9 @@
             @pulling-down="onPullingDown"
             @pulling-up="onPullingUp">
             <p class="topTxt">{{ pullTxt }}</p>
-            <div class="scatter_item">
+            <div
+              v-if="items.length>0"
+              class="scatter_item">
               <ul
                 id="borrow_record"
                 class="borrow_record">
@@ -149,12 +151,11 @@
                 </li>
               </ul>
             </div>
+            <data-status
+              v-else
+              status="null"
+              statusTxt="暂无内容"/>
           </cube-scroll>
-
-          <data-status
-            v-else
-            status="null"
-            statusTxt="暂无内容"/>
         </cube-slide-item>
       </cube-slide>
     </div>
@@ -162,7 +163,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { findIndex } from '../../../src/common/util.js'
+import { findIndex } from '~/components/src/common/util.js'
 import { commenParams } from '~/api/config.js'
 import { joinList } from '~/api/project.js'
 let pageNum = 1
@@ -203,7 +204,14 @@ export default {
           stop: 0,
           txt: ''
         },
-        pullUpLoad: true
+        pullUpLoad: {
+          threshold: 0,
+          txt: {
+            more: '加载中',
+            noMore: '没有更多数据了'
+          }
+        }
+        // pullUpLoad: true
       },
       pullTxt: '下拉释放，返回标的信息',
       pullY: ''
@@ -227,9 +235,9 @@ export default {
     },
     onPullingUp() {
       pageNum++
-      console.log(this.pages)
-      console.log(`当前：${pageNum}`)
-      console.log('\\\\\\\\\\\\')
+      // console.log(this.pages)
+      // console.log(`当前：${pageNum}`)
+      // console.log('\\\\\\\\\\\\')
       // yccVXW3ncug%3D
       // console.log(encodeURIComponent(this.$route.params.id))
       // // 更新数据
@@ -267,6 +275,9 @@ export default {
     },
     changePage(current) {
       this.selectedLabel = this.tabLabels[current].label
+      if (current == 2) {
+        this.getJoinList()
+      }
     },
     scroll(pos) {
       const x = Math.abs(pos.x)
@@ -291,13 +302,12 @@ export default {
       items: state => state.project.joinList,
       pages: state => state.project.joinListPages
     })
-  },
-  components: {}
+  }
 }
 </script>
 <style lang="stylus" scoped>
 .sift
-  padding: 88px 0 100px
+  padding: 88px 0 10px
   overflow-x: hidden
   overflow-y: auto
   height: 100%
@@ -307,9 +317,10 @@ export default {
     background-color: $color-white
     text-align: center
     font-size: $fontsize-medium
-    border-bottom: 1px solid $color-gray5
+    borderBottom-1px($color-gray5)
+    // border-bottom: 1px solid $color-gray5
     /deep/ .cube-tab-bar
-      height: 0.88rem
+      height: 88px
       .cube-tab-bar-slider
         width: 50px
         margin-left: 95px
@@ -330,61 +341,60 @@ export default {
     .deatils_title
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 0.7rem
-      line-height: 0.7rem
-      border-bottom: 1px solid #E0E0E0
-      padding-left: 0.3rem
-      -webkit-box-sizing: border-box
-      -moz-box-sizing: border-box
+      height: 70px
+      line-height: 70px
+      // border-bottom: 1px solid #E0E0E0
+      borderBottom-1px(#E0E0E0)
+      padding-left: 30px
       box-sizing: border-box
       span
         display: inline-block
-        width: 0.06rem
-        height: 0.24rem
+        width: 6px
+        height: 24px
         background-color: $color-primary
         border-radius: 20px
-        margin-right: 0.14rem
+        margin-right: 14px
     .summary_list div
-      padding: 0 0.3rem
+      padding: 0 30px
       p span
         display: inline-block
-        width: 0.08rem
-        height: 0.08rem
+        width: 8px
+        height: 8px
         background-color: $color-primary
-        border-radius: 0.08rem
-        margin-right: 0.15rem
+        border-radius: 8px
+        margin-right: 15px
         position: absolute
         left: 0
         top: 45%
       &:nth-child(1)
-        padding-top: 0.07rem
+        padding-top: 7px
       &:nth-child(2)
-        padding-bottom: 0.25rem
+        padding-bottom: 25px
       p:nth-child(1)
         font-size: $fontsize-small-s
         color: $color-gray3
-        margin-top: 0.17rem
-        line-height: 0.37rem
-        padding-left: 0.23rem
+        margin-top: 17px
+        line-height: 37px
+        padding-left: 23px
         position: relative
       p:nth-child(2)
         font-size: $fontsize-small-s
         color: $color-gray1
-        line-height: 0.37rem
-        margin-top: 0.07rem
-        padding-left: 0.23rem
+        line-height: 37px
+        margin-top: 7px
+        padding-left: 23px
     .moudle1
       .free_list
         background-color: $color-white
       .carDeta
-        margin-top: 0.2rem
+        margin-top: 20px
         .carDeta_money
-          padding: 0.07rem 0 0.26rem
+          padding: 7px 0 26px
           div
             overflow: hidden
-            padding: 0 0.3rem
-            line-height: 0.37rem
-            margin-top: 0.17rem
+            padding: 0 30px
+            line-height: 37px
+            margin-top: 17px
             p
               font-size: $fontsize-small-s
               &:nth-child(1)
@@ -394,24 +404,24 @@ export default {
                 color: $color-gray1
                 float: right
       .issue
-        margin-top: 0.2rem
+        margin-top: 20px
         ul
           margin-bottom: 30px
           li
-            padding: 0 0.3rem
+            padding: 0 30px
             overflow: hidden
             &:last-child
-              padding-bottom: 0.35rem
-              border-bottom: 0.2rem solid $color-background
+              padding-bottom: 35px
+              border-bottom: 20px solid $color-background
           p
             font-size: $fontsize-small-s
-            line-height: 0.4rem
+            line-height: 40px
             &:nth-child(1)
               color: $color-gray1
-              margin-top: 0.27rem
+              margin-top: 27px
             &:nth-child(2)
               color: $color-gray3
-              margin-top: 0.16rem
+              margin-top: 16px
       /deep/ .cube-pullup-wrapper
         display: none
       /deep/ .cube-pulldown-wrapper
@@ -419,7 +429,7 @@ export default {
     .moudle2
       .free_comp
         background-color: $color-white
-        padding-bottom: 0.35rem
+        padding-bottom: 35px
         .summary_list div:nth-child(2)
           padding-bottom: 0
       /deep/ .cube-pullup-wrapper
@@ -430,30 +440,14 @@ export default {
       .scatter_item
         width: 100%
         background-color: $color-white
-        .info_details
-          width: 100%
-          border-bottom: 20px solid $color-background
-          padding: 24px 0 15px
-          p
-            line-height: 37px
-            font-size: $fontsize-small-s
-            padding: 0 30px
-            margin-bottom: 12px
-            display: flex
-          span
-            flex: 1
-            i
-              margin-right: 47px
-              color: $color-gray3
-            b
-              color: $color-gray1
         .borrow_record
-          margin-bottom: 100px
-          border-bottom: 20px solid $color-background
+          // margin-bottom: 10px
+          // border-bottom: 20px solid red
           li
             margin: 0 30px
             height: 137px
-            border-bottom: 1px solid $color-gray7
+            borderBottom-1px($color-gray7)
+            // border-bottom: 1px solid $color-gray7; /*no*/
             font-size: $fontsize-medium
             color: $color-gray1
             display: flex

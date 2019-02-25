@@ -184,7 +184,13 @@ export default {
         borrowPassword: this.pwd,
         desId: this.projectInfo.desId
       })
-      if (code !== 100000) {
+      if (code === 100000) {
+        this.$store.commit('project/setTransition', 'turn-on')
+        this.$router.push({
+          name: 'project-index-invest-scatter',
+          query: { desId: this.projectInfo.desId }
+        })
+      } else {
         this.errInfo = message
       }
     },

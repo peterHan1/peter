@@ -960,10 +960,10 @@ export default {
 <style lang="stylus" scoped>
   .law_pl
     font-size: $fontsize-small-ss
-    padding: 1.02rem 5% 0.2rem
+    padding: 102px 5% 20px
     background-color: #fff
     p
-      line-height: 0.36rem
+      line-height: 36px
       span
         font-family:'Arial Normal', 'Arial'
         font-weight:400

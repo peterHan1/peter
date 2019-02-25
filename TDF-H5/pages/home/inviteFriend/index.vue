@@ -441,44 +441,44 @@ input,.myCode .code
   -webkit-user-select text
 .invite
   position: relative
-  padding: 0.88rem 0 1.5rem
+  padding: 88px 0 150px
   background: -webkit-linear-gradient(#FF4211, #FE2428)
   background: -o-linear-gradient(#FF4211, #FE2428)
   background: -moz-linear-gradient(#FF4211, #FE2428)
   background: linear-gradient(#FF4211, #FE2428)
   .header
-    height: 8.04rem
+    height: 804px
     background: url(../../../assets/images/activity/inviteFriend/invite1.png)center no-repeat
     background-size: 100%
     overflow: hidden
     &.loginNo
       background: url(../../../assets/images/activity/inviteFriend/invite1-1.png)top no-repeat
       background-size: 100%
-      margin-bottom: 0.1rem
-      height: 6.02rem
+      margin-bottom: 10px
+      height: 602px
     .record
-      width: 1.87rem
-      height: 0.54rem
+      width: 187px
+      height: 54px
       position: absolute
-      top: 0.88rem
-      right: 0.2rem
+      top: 88px
+      right: 20px
     .content
-      width: 4rem
-      height: 2.7rem
+      width: 400px
+      height: 270px
       margin: auto
-      margin-top:3.1rem
+      margin-top:310px
       text-align: center
     .lev img
-      width: 2rem
-      height: 2rem
+      width: 200px
+      height: 200px
     .messages
       font-size: $fontsize-small-ss
       color: #b4b4b4
       font-style: italic
-      margin-top: 0.1rem
+      margin-top: 10px
   .hongbao
-      width: 6.58rem
-      height: 4.66rem
+      width: 658px
+      height: 466px
       text-align: center
       margin: auto
       overflow: hidden
@@ -487,27 +487,27 @@ input,.myCode .code
       .top
         font-size: $fontsize-small-ssss
         color: #ff5339
-        margin-left: 1.5rem
-        margin-top: 1.2rem
+        margin-left: 150px
+        margin-top: 120px
         overflow: hidden
         div
           float: left
           &:first-child
-            width: 1.5rem
-            margin-right: 2.3rem
+            width: 150px
+            margin-right: 230px
         span
-          font-size: 0.37rem
+          font-size: 37px
           font-weight: bolder
           letter-spacing:-1px
           font-family: "Arial"
       .middle
-        width: 6.2rem
+        width: 620px
         overflow: hidden
-        padding: 0.05rem 0.05rem
-        border-radius: 0.5rem
+        padding: 5px 5px
+        border-radius: 50px
         font-size: $fontsize-small-ss
         color: #ff2d22
-        margin: 1.3rem auto 0.1rem
+        margin: 130px auto 10px
         font-weight: bold
         text-align: center
         background: -webkit-linear-gradient(left, #efc277 , #fadca8)
@@ -516,8 +516,8 @@ input,.myCode .code
         background: linear-gradient(to right, #efc277 , #fadca8)
         div
           width: 100%
-          padding: 0.05rem 0 0.05rem
-          border-radius: 0.3rem
+          padding: 5px 0 5px
+          border-radius: 30px
           background: -webkit-linear-gradient(left, #fadca8 , #efc277)
           background: -o-linear-gradient(right, #fadca8, #efc277)
           background: -moz-linear-gradient(right, #fadca8, #efc277)
@@ -529,29 +529,29 @@ input,.myCode .code
         color: $color-white
         opacity: 0.7
   .rights
-    margin:0.65rem 0 0.1rem
+    margin:65px 0 10px
     text-align: center
-    height: 1rem
+    height: 100px
     img
-      width: 2.75rem
-      height: 1rem
+      width: 275px
+      height: 100px
       vertical-align: top
   .first,.second,.third
-    margin:0 auto 0.43rem
-    padding: 0.2rem 0.1rem 0.3rem 1.8rem
+    margin:0 auto 43px
+    padding: 20px 10px 30px 180px
   .first
-    width: 6.74rem
-    height: 1.9rem
+    width: 674px
+    height: 190px
     background: url(../../../assets/images/activity/inviteFriend/invite4.png)top no-repeat
     background-size: 100%
   .second
-    width: 6.74rem
-    height: 2.42rem
+    width: 674px
+    height: 242px
     background: url(../../../assets/images/activity/inviteFriend/invite5.png)top no-repeat
     background-size: 100%
   .third
-    width: 6.74rem
-    height: 2.42rem
+    width: 674px
+    height: 242px
     background: url(../../../assets/images/activity/inviteFriend/invite6.png)top no-repeat
     background-size: 100%
   dt
@@ -563,37 +563,37 @@ input,.myCode .code
     font-weight: bold
     color: $color-white
   .margin
-    margin-bottom:0.2rem
+    margin-bottom:20px
   .rule
     text-align: center
     font-size: $fontsize-small-ss
-    margin-bottom:0.9rem
+    margin-bottom:90px
     &.on
-      padding-top: 0.6rem
+      padding-top: 60px
     a
       color: $color-white
       text-decoration: none
   .inviteCode
     .myCode
-      width: 2.57rem
-      height: 0.5rem
+      width: 257px
+      height: 50px
       margin: auto
       background: url(../../../assets/images/activity/inviteFriend/invite7.png)top no-repeat
       background-size: 100%
     .code
       text-align: center
-      font-size: 0.7rem
+      font-size: 70px
       color: $color-white
       font-weight: bold
     .title
       color: #ffa19b
       font-size: $fontsize-small-ss
       text-align: center
-      margin-top: 0.15rem
+      margin-top: 15px
   .footer
     width: 100%
-    height: 0.9rem
-    padding-top: 0.12rem
+    height: 90px
+    padding-top: 12px
     text-align: center
     position: fixed
     bottom: 0
@@ -603,13 +603,13 @@ input,.myCode .code
       display: block
       text-decoration: none
       margin: auto
-      width: 5.28rem
-      height: 0.67rem
-      line-height: 0.67rem
+      width: 528px
+      height: 67px
+      line-height: 67px
       font-size: $fontsize-large-x
       color: #e82b27
-      border-bottom: 0.08rem solid #E8A039
-      border-radius: 0.4rem
+      border-bottom: 8px solid #E8A039
+      border-radius: 40px
       background: #FFDB69
   .shade
     position fixed
@@ -627,8 +627,8 @@ input,.myCode .code
       background rgba(0,0,0,0.7)
       z-index 10
     .txt
-      width 5rem
-      height 1.46rem
+      width 500px
+      height 146px
       position:absolute
       right: 60px
       top: 40px
@@ -673,7 +673,7 @@ input,.myCode .code
         img
           width 102px
           height 102px
-          margin-bottom 0.1rem
+          margin-bottom 10px
   .layerCode
     width 100%
     height 100%

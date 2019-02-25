@@ -371,7 +371,7 @@ export default {
 <style lang="stylus" scoped>
   .law_sl
     font-size: $fontsize-small-ss
-    padding: 1.02rem 5% 0.2rem
+    padding: 102px 5% 20px
     background-color: #fff
     b
       font-weight: bold

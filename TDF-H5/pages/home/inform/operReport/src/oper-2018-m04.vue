@@ -24,7 +24,7 @@ export default {
 <style lang="stylus" scoped>
   .month-4
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -33,35 +33,35 @@ export default {
       width:100%
       overflow: hidden
     .abos-bg
-      height:2.86rem
+      height:286px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img1.png) no-repeat
       background-size:100% 100%
     .trends-bg
-      height:4.94rem
+      height:494px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img2.png) no-repeat
       background-size:100% 100%
     .stands-out
-      height:8.92rem
+      height:892px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img3.png) no-repeat
       background-size:100% 100%
     .datass-bg
-      height:7.89rem
+      height:789px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img4.png) no-repeat
       background-size:100% 100%
     .invests-bg
-      height:8rem
+      height:800px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img5.png) no-repeat
       background-size:100% 100%
     .deadlines-bg
-      height:13.1rem
+      height:1310px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img6.png) no-repeat
       background-size:100% 100%
     .constellation-bg
-      height:2.92rem
+      height:292px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img7.png) no-repeat
       background-size:100% 100%
     .footer-bg
-      height:2.87rem
+      height:287px
       background:url(../../../../../assets/images/oper/oper-2018-m4/img8.png) no-repeat
       background-size:100% 100%
 </style>

@@ -100,78 +100,78 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .newcomer
-    padding: 0.88rem 0 1.24rem
+    padding: 88px 0 124px
     overflow: hidden
-    height: 24.3rem
+    height: 2430px
     position: relative
-    background: url(../../../assets/images/activity/newcomer/newcomer1.png)0 0.88rem no-repeat
+    background: url(../../../assets/images/activity/newcomer/newcomer1.png)0 88px no-repeat
     background-size: 100%
     .header
       width: 100%
-      height: 4.25rem
+      height: 425px
     .title
       text-align: center
       color: #000
       font-size: $fontsize-large-xxx
       font-weight: bold
-      margin:0.15rem 0 0rem
+      margin:15px 0 0
     .dyq
-      width: 6.85rem
-      height: 3.27rem
+      width: 685px
+      height: 327px
       margin: auto
       font-size: $fontsize-small-ss
       color: $color-white
       overflow:hidden
-      padding-left: .38rem
-      line-height: .35rem
+      padding-left: 38px
+      line-height: 35px
       background: url(../../../assets/images/activity/newcomer/newcomer2.png)center no-repeat
       background-size: 100%
       .top
-        font-size: 0.38rem
+        font-size: 38px
         color: #fffb65
-        margin: .44rem 0 0.17rem
+        margin: 44px 0 17px
         line-height: normal
         font-weight: 900
     .btns
       position: relative
-      height: .425rem
-      margin-bottom: 1.0rem
+      height: 42.5px
+      margin-bottom: 100px
     .btn
       display: block
-      width: 2.65rem
-      height: .85rem
+      width: 265px
+      height: 85px
       position: absolute
       left: 50%
-      margin-left: -1.325rem
-      top: -0.425rem
+      margin-left: -132.5px
+      top: -42.5px
       color: $color-white
       text-align: center
-      line-height: .85rem
+      line-height: 85px
       font-size: $fontsize-large-xx
-      border-radius: .5rem
+      border-radius: 50px
       background: -webkit-linear-gradient(#F0B20F, #EA4D25)
       background: -o-linear-gradient(#F0B20F, #EA4D25)
       background: -moz-linear-gradient(#F0B20F, #EA4D25)
       background: linear-gradient(#F0B20F, #EA4D25)
       box-shadow: 0 5px 20px rgba(234,80,36,.8)
     .jx
-      width: 5.84rem
-      height: 3.5rem
+      width: 584px
+      height: 350px
       overflow: hidden
       position: relative
       margin: auto
       background: url(../../../assets/images/activity/newcomer/newcomer11.png)center no-repeat
       background-size: 100%
     .titles1
-      width: 5.66rem
-      height: 0.19rem
+      width: 566px
+      height: 19px
       margin: auto
       img
         vertical-align: top
         height: 100%
     .titles2
-      width: 5.26rem
-      height: 0.2rem
+      width: 526px
+      height: 20px
       margin: auto
       img
         vertical-align: top
@@ -179,7 +179,7 @@ export default {
     ul
       width: 90%
       padding: 0 5%
-      margin: .6rem auto .37rem
+      margin: 60px auto 37px
       overflow: hidden
       font-size: $fontsize-small-ss
       color: $color-gray3
@@ -188,11 +188,11 @@ export default {
         width: 50%
         text-align: center
         &.margin
-          margin-bottom: 1.05rem
+          margin-bottom: 105px
     .footers
       display: block
       width: 100%
-      height: 1.24rem
+      height: 124px
       position: fixed
       bottom: 0
       z-index: 100

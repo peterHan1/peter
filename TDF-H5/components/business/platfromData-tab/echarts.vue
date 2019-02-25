@@ -168,12 +168,12 @@ export default {
 <style lang="stylus" scoped>
   #ranking
     width:100%
-    height:5.1rem
-    padding:0.4rem 0
+    height:510px
+    padding:40px 0
     box-sizing: border-box
   #monthsData
     width:100%
-    height:5.1rem
-    padding:0.4rem 0
+    height:510px
+    padding:40px 0
     box-sizing: border-box
 </style>

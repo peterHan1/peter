@@ -319,14 +319,14 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .law_zjdj
-    padding: 1.02rem 5% 0.2rem
+    padding: 102px 5% 20px
     background-color: #fff
     font-size: $fontsize-small-ss
     overflow: hidden
     p
       color:#333
-      font-size:0.26rem
-      line-height:0.36rem
+      font-size:26px
+      line-height:36px
       span
         font-family:'Arial Normal', 'Arial'
         font-weight:400

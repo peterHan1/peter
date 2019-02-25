@@ -115,21 +115,21 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .law
-    padding-top: 0.88rem
+    padding-top: 88px
     overflow: hidden
     h3
       background-color:$color-white
-      margin-top: 0.2rem
-      padding:0 0.3rem
+      margin-top: 20px
+      padding:0 30px
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 0.8rem
-      line-height: 0.8rem
+      height: 80px
+      line-height: 80px
       font-weight: normal
       border-bottom: 1px solid $color-gray5
     li
       width:100%
-      padding:0.28rem 0.3rem
+      padding:28px 30px
       border-bottom:1px solid $color-gray5
       background-color:$color-white
       box-sizing: border-box
@@ -141,21 +141,21 @@ export default {
         .iconfont
           font-size:$fontsize-small-ss
           position:absolute
-          right:0.3rem
+          right:30px
           top:35%
       span:nth-child(1)
         width:90%
         display: inline-block
     .inform_signature
       background-color: $color-white
-      border-top: 0.2rem solid $color-background
-      border-bottom: 0.2rem solid $color-background
+      border-top: 20px solid $color-background
+      border-bottom: 20px solid $color-background
       h3
         padding: 0
         margin-top: 0
       div
-        padding: 0 0.3rem
+        padding: 0 30px
       img
         width: 100%
-        height: 3.8rem
+        height: 380px
 </style>

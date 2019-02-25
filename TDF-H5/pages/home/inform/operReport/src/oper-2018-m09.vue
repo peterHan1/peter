@@ -29,7 +29,7 @@ export default {
 <style lang="stylus" scoped>
   .month-9
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -38,55 +38,55 @@ export default {
       width:100%
       overflow: hidden
     .month-9-banner
-      height:2.86rem
+      height:286px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img1.png) no-repeat
       background-size:100% 100%
     .month-9-bg1
-      height:5.85rem
+      height:585px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img2.png) no-repeat
       background-size:100% 100%
     .month-9-bg2
-      height:5.78rem
+      height:578px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img3.png) no-repeat
       background-size:100% 100%
     .month-9-bg3
-      height:7.89rem
+      height:789px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img4.png) no-repeat
       background-size:100% 100%
     .month-9-bg4
-      height:9.06rem
+      height:906px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img5.png) no-repeat
       background-size:100% 100%
     .month-9-bg5
-      height:6.46rem
+      height:646px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img6.png) no-repeat
       background-size:100% 100%
     .month-9-bg6
-      height:4.71rem
+      height:471px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img7.png) no-repeat
       background-size:100% 100%
     .month-9-bg7
-      height:8.47rem
+      height:847px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img8.png) no-repeat
       background-size:100% 100%
     .month-9-bg8
-      height:7.23rem
+      height:723px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img9.png) no-repeat
       background-size:100% 100%
     .month-9-bg9
-      height:4.25rem
+      height:425px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img10.png) no-repeat
       background-size:100% 100%
     .month-9-bg10
-      height:10.97rem
+      height:1097px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img11.png) no-repeat
       background-size:100% 100%
     .month-9-bg11
-      height:3.59rem
+      height:359px
       background:url(../../../../../assets/images/oper/oper-2018-m9/img12.png) no-repeat
       background-size:100% 100%
     .inform-charge
-      height: 12.58rem
+      height: 1258px
       background: url(../../../../../assets/images/inform/inform-charge.jpg) no-repeat
       background-size: 100% 100%
 </style>

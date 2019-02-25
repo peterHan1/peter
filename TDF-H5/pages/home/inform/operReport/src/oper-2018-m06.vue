@@ -26,7 +26,7 @@ export default {
 <style lang="stylus" scoped>
   .month-6
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -35,43 +35,43 @@ export default {
       width:100%
       overflow: hidden
     .abos-bg
-      height:2.8rem
+      height:280px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img1.png) no-repeat
       background-size:100% 100%
     .trends-bg
-      height:5rem
+      height:500px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img2.jpg) no-repeat
       background-size:100% 100%
     .stands-out
-      height:8.88rem
+      height:888px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img3.jpg) no-repeat
       background-size:100% 100%
     .datass-bg
-      height:7.92rem
+      height:792px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img4.jpg) no-repeat
       background-size:100% 100%
     .invests-bg
-      height:8.01rem
+      height:801px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img5.jpg) no-repeat
       background-size:100% 100%
     .deadlines-bg
-      height:13.09rem
+      height:1309px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img6.jpg) no-repeat
       background-size:100% 100%
     .constellation-bg
-      height:2.79rem
+      height:279px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img7.jpg) no-repeat
       background-size:100% 100%
     .incidents-bg
-      height:8.56rem
+      height:856px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img8.jpg) no-repeat
       background-size:100% 100%
     .footer-bg
-      height:3.71rem
+      height:371px
       background:url(../../../../../assets/images/oper/oper-2018-m6/img9.png) no-repeat
       background-size:100% 100%
     .inform-charge
-      height: 12.58rem
+      height: 1258px
       background: url(../../../../../assets/images/inform/inform-charge.jpg) no-repeat
       background-size: 100% 100%
 </style>

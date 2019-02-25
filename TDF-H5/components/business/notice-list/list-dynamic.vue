@@ -123,29 +123,29 @@ export default {
       overflow: hidden
       padding: 3.125%
       box-sizing: border-box
-      margin-top: 0.3rem
+      margin-top: 30px
       img
-        width: 2rem
-        height: 2rem
+        width: 200px
+        height: 200px
         vertical-align: middle
         display: inline-block
-        margin-right: 0.5rem
+        margin-right: 50px
         float: left
       div
         width: 64%
         float: left
         .t
           font-size: $fontsize-large-x
-          padding-top: 0.1rem
+          padding-top: 1px
           color: $color-gray1
         .d
           font-size: $fontsize-small-sss
           color: #777
-          margin: .15rem 0 .25rem 0
+          margin: 15px 0 25px 0
         .c
           font-size: $fontsize-medium
           color: #a3a3a3
-          line-height: 0.4rem
+          line-height: 40px
           white-space: initial
   .data-status
     margin-top 200px

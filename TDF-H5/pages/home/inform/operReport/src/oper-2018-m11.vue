@@ -28,7 +28,7 @@ export default {
 <style lang="stylus" scoped>
   .month-11
     overflow:hidden
-    padding-top: 0.88rem
+    padding-top: 88px
     background-color: $color-white
     span
       color: $color-gray1
@@ -37,47 +37,47 @@ export default {
       width:100%
       overflow: hidden
     .month-11-banner
-      height:2.88rem
+      height:288px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img1.png) no-repeat
       background-size:100% 100%
     .month-11-bg1
-      height:6.04rem
+      height:604px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img2.png) no-repeat
       background-size:100% 100%
     .month-11-bg2
-      height:5.82rem
+      height:582px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img3.png) no-repeat
       background-size:100% 100%
     .month-11-bg3
-      height:9.22rem
+      height:922px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img4.png) no-repeat
       background-size:100% 100%
     .month-11-bg4
-      height:15.25rem
+      height:1525px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img5.png) no-repeat
       background-size:100% 100%
     .month-11-bg5
-      height:10.91rem
+      height:1091px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img6.png) no-repeat
       background-size:100% 100%
     .month-11-bg6
-      height:9.51rem
+      height:951px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img7.png) no-repeat
       background-size:100% 100%
     .month-11-bg7
-      height:10.52rem
+      height:1052px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img8.png) no-repeat
       background-size:100% 100%
     .month-11-bg8
-      height:7.04rem
+      height:704px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img9.png) no-repeat
       background-size:100% 100%
     .month-11-bg9
-      height:3.97rem
+      height:397px
       background:url(../../../../../assets/images/oper/oper-2018-m11/img10.png) no-repeat
       background-size:100% 100%
     .inform-charge
-      height: 12.58rem
+      height: 1258px
       background: url(../../../../../assets/images/inform/inform-charge.jpg) no-repeat
       background-size: 100% 100%
 </style>

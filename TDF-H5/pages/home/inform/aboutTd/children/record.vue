@@ -60,7 +60,7 @@ export default {
 <style lang="stylus" scoped>
   .record_box
     background-color: $color-white
-    padding: 1.08rem 0.3rem 0.2rem
+    padding: 108px 30px 20px
     height: 100%
     position: absolute
     left: 0
@@ -71,9 +71,9 @@ export default {
       overflow: hidden
       font-size: $fontsize-small-ss
       background-color: $color-white
-      line-height:0.8rem
+      line-height:80px
       border-bottom:1px solid $color-gray5
-      padding:0 0.3rem
+      padding:0 30px
       span
         float:left
         color:#626262
@@ -81,8 +81,8 @@ export default {
         float:right
         color:#212a36
         img
-          width:0.32rem
-          height:0.36rem
-          margin-right:0.1rem
+          width:32px
+          height:36px
+          margin-right:10px
           vertical-align: middle
 </style>

@@ -11,40 +11,40 @@
 </template>
 <style lang="stylus" scoped>
   .personnel
-    padding: 0.46rem 0rem 0
-    border-top: 0.2rem solid $color-background
+    padding: 46px 0rem 0
+    border-top: 20px solid $color-background
   .personnel_bg
-    width: 6.8rem
-    height: 7.96rem
+    width: 680px
+    height: 796px
     background: url(../../../assets/images/inform/personnel-bg.png) no-repeat
     background-size: 100% 100%
     margin: 0 auto
   .certificate
-    padding: 0 0.3rem
+    padding: 0 30px
     background-color: $color-white
-    padding-top: 0.2rem
-    padding-bottom: 0.65rem
+    padding-top: 20px
+    padding-bottom: 65px
     .flex
       display: flex
       overflow: hidden
     .flex-1
       flex: 1
     .div_fr
-      margin-right: 0.3rem
+      margin-right: 30px
     .div_img
-      width: 3.28rem
-      height: 4.6rem
-      margin-top: 0.18rem
+      width: 328px
+      height: 460px
+      margin-top: 18px
       position: relative
       img
-        width: 3.28rem
-        height: 4.6rem
+        width: 328px
+        height: 460px
       a
         display: block
       .txt_p
         width: 100%
-        height: 0.48rem
-        line-height: 0.48rem
+        height: 48px
+        line-height: 48px
         text-align: center
         position: absolute
         left: 0
@@ -55,18 +55,18 @@
           color: $color-white
   .inform_signature
     background-color: $color-white
-    border-top: 0.2rem solid $color-background
-    border-bottom: 0.2rem solid $color-background
+    border-top: 20px solid $color-background
+    border-bottom: 20px solid $color-background
     div
-      padding: 0 0.3rem
+      padding: 0 30px
     img
       width: 100%
-      height: 3.8rem
+      height: 380px
     h3
       font-size: $fontsize-medium
       color: $color-gray1
-      height: 0.8rem
-      line-height: 0.8rem
+      height: 80px
+      line-height: 80px
       border-bottom: 1px solid $color-gray5
       font-weight: normal
 </style>
