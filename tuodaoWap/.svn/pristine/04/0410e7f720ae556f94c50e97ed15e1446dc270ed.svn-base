@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>风险测评</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/appraisal.css">
+		<script src="js/base.js"></script>
+		<script src="js/jquery-1.11.2.min.js"></script>
+	</head>
+	<body>
+		<div class="appraisal max_width">
+			<div class="subject">
+				<div class="tlt">1.您的年龄在以下哪个范围内？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan"></p></div>
+					<p class="getBack"></p>
+					<p class="barTxt">1/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">2.您的职业是？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、无固定职业</span>
+						</li>
+						<li>
+							<span>B、自由职业者</span>
+						</li>
+						<li>
+							<span>C、离退休人员</span>
+						</li>
+						<li>
+							<span>D、一般企业员工</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 25%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">2/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">3.您的职业是？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、无固定职业</span>
+						</li>
+						<li>
+							<span>B、自由职业者</span>
+						</li>
+						<li>
+							<span>C、离退休人员</span>
+						</li>
+						<li>
+							<span>D、一般企业员工</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 37.5%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">3/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">4.您的年龄在以下哪个范围内？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 50%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">4/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">5.您的年龄在以下哪个范围内？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 62.5%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">5/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">6.您的年龄在以下哪个范围内？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 75%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">6/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">7.您的年龄在以下哪个范围内？</div>
+				<div class="select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 87.5%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">7/8</p>
+				</div>
+			</div>
+			<div class="subject dis_no">
+				<div class="tlt">8.您投资产品的价值出现何种程度的波动 时，您可以承受的风险损失是多少？</div>
+				<!--最后一道题添加class名 last_select-->
+				<div class="select last_select">
+					<ul>
+						<li>
+							<span>A、18~29岁</span>
+						</li>
+						<li>
+							<span>B、30~39岁</span>
+						</li>
+						<li>
+							<span>C、40~49岁</span>
+						</li>
+						<li>
+							<span>D、50~59岁</span>
+						</li>
+						<li>
+							<span>E、60岁以上</span>
+						</li>
+					</ul>
+				</div>
+				<div class="bars">
+					<div class="bar"><p class="plan" style="width: 100%;"></p></div>
+					<p class="getBack">上一题</p>
+					<p class="barTxt">8/8</p>
+				</div>
+				<div class="subBtn">
+					<div class="checkTxt">
+						<i class="iconfont">&#xe9b8;</i>
+						<span>我已明确投资风险并愿意接受风险带来的损失</span>
+					</div>
+					<div class="btn">
+						<p>提交</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	$(function(){
+		$(".select li").on("click",function(){
+			var _this = $(this);
+			var len = $(".subject").length-1;
+			var ins = _this.parents(".subject").index()
+			var icon = '<i class="iconfont">&#xe842;</i>';
+			_this.addClass("on").siblings("li").removeClass("on");
+			$(".btn").removeClass("submitBtn");
+			$(".checkTxt").removeClass("on").find("i").html("&#xe9b8;");
+			if($(this).find("i").length<=0){
+				_this.append(icon).siblings("li").find("i").remove();
+			};
+			if(ins == len){
+				return false;
+			}else{
+				setTimeout(function(){
+					if(ins == 0){
+						_this.parents(".subject").find($(".plan")).width("12.5%");
+					}
+					_this.parents(".subject").hide();
+					_this.parents(".subject").next(".subject").show();
+				},500)
+			}
+		});
+		$(".getBack").on("click",function(){
+			$(this).parents(".subject").hide();
+			$(this).parents(".subject").prev(".subject").show();
+		});
+		$(".checkTxt").on("click",function(){
+			if($(this).hasClass("on")){
+				$(this).removeClass("on").find("i").html("&#xe9b8;");
+				$(".btn").removeClass("submitBtn");
+			}else{
+				$(this).addClass("on").find("i").html("&#xe844;");	
+				if($(".last_select").find("li").hasClass("on")){
+					$(".btn").addClass("submitBtn");
+				}else{
+					$(".btn").removeClass("submitBtn");
+				}
+			}
+		})
+		$(document).on("click", ".submitBtn", function() {
+			//提交
+			
+		});
+		
+	})
+</script>

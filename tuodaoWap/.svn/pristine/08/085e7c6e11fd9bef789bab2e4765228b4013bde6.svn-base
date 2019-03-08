@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true"> 
+	<title>任性抢五周年专享5%加息券</title>
+	<script type="text/javascript" src="js/base.js"></script>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/coupon.css">
+</head>
+<body>
+	<div class="max_width coupon">
+		<div class="count_down dis_none">
+			<b>开抢倒计时 </b>
+			<div class="count_txt"></div>
+		</div>
+		<div class="btn_box">
+			<div class="get_btn ">
+				<div class="btn_no" id="get_coupo"></div>
+				<p class="coupon_num">下一场次剩余加息券张数：<span>5</span> 张</p>
+			</div>
+			<div class="get_yet dis_none">
+				<p>您已经领取过啦！把机会留给别人吧！</p>
+				<p>您还可以：</p>
+				<div class="three_btn">继续领3%加息券</div>
+			</div>
+		</div>
+		<div class="explain_list">
+			<ul>
+				<li>活动开始时间11月1日。</li>
+				<li>活动期间，每天11点和16点准点开抢，每个时间点共5张5%加息券。</li>
+				<li>同一拓道账户中仅可有一张5%加息券，多次获取无效。</li>
+				<li>5%加息券仅限11月11日当天可用。</li>
+				<li>由于同一时间段抢券人数较多，请您务必确认登录状态。最终抢券结果以账户中加息券到账与否为准。</li>
+				<li>最终解释权归拓道金服所有。 </li>
+			</ul>
+		</div>
+		<!--领取成功弹窗-->
+		<div class="layer_ok layer_box dis_none">
+			<div class="layer_con layerOk">
+				<div class="layer_btn check">去查看</div>
+				<div class="close"></div>
+			</div>
+			<div class="shada"></div>
+		</div>
+		<!--本时段已抢完-->
+		<div class="layer_over layer_box dis_none">
+			<div class="layer_con layerEnd">
+				<div class="close"></div>
+			</div>
+			<div class="shada"></div>
+		</div>
+		<!--未登录-->
+		<div class="layer_login layer_box dis_none">
+			<div class="layer_con layerLogin">
+				<div class="layer_btn login">立即登录</div>
+				<div class="close"></div>
+			</div>
+			<div class="shada"></div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/layer/layer.js"></script>
+ <script type="text/javascript">
+ 	$(function(){
+ 		startSell();
+ 		$(".close").on("click",function(){
+ 			$(".layer_box").hide();
+ 		});
+ 		// 领取3%加息券
+ 		$(".three_btn").on("click",function(){
+ 			
+ 		});
+ 		// 去查看
+ 		$(".check").on("click",function(){
+ 			
+ 		});
+ 		// 立即登录
+ 		$(".login").on("click",function(){
+ 			
+ 		});
+ 		$(document).on("click",".btn_ok",function(){
+			// 请求接口遮罩
+ 			var index = layer.load(1, {
+				shade: [0.5,'#000']
+			});
+		    layer.close(index);
+			// 领取3%加息券显示,‘抢’按钮隐藏
+			$(".get_yet").show();
+			$(".get_btn").hide();
+		    //领取成功弹窗
+//			  $(".layer_ok").show();
+			//本时段已抢完弹窗
+				$(".layer_over").show();
+			//为登录
+//			$(".layer_login").show();
+			
+ 		});
+		// 获取加息券剩余张数
+		function getCoupon(){
+			//ajax请求
+			var couponHtml = '当前剩余加息券张数：<span>'+ 3 +'</span> 张'
+			$(".coupon_num").html(couponHtml)
+		};
+		function startSell(){
+	        var nowTime = new Date(); //当前时间
+	        var endTime = new Date(nowTime.getFullYear(),nowTime.getMonth(),nowTime.getDate(),18,00,00);
+	        var resultTime = Math.floor(endTime-nowTime)/1000;
+	        var count_down = '';
+	        countDown();
+	        clearInterval(count_down);
+	        function countDown(){
+	        	if (resultTime > 1) {
+	                resultTime = resultTime - 1; 
+	                var second = Math.floor(resultTime % 60);     
+	                var minite = Math.floor((resultTime / 60) % 60); 
+	                var hour = Math.floor((resultTime / 3600) % 24); 
+	                second = second < 10 ? ("0"+second) : second.toString();
+	                minite = minite < 10 ? ("0"+minite) : minite.toString();
+	                hour = hour < 10 ? ("0"+hour) : hour.toString();
+	                var hours = hour.split("");
+	                var minites = minite.split("");
+	                var seconds = second.split("");
+	                var times = '<span>'+ hours[0] +'</span><span>'+ hours[1] +'</span> : <span>'+ minites[0] +'</span><span>'+ minites[1] +'</span> : <span>'+ seconds[0] +'</span><span>'+ seconds[1] +'</span>';
+	                $(".count_txt").html(times)
+	            	$(".count_down").show();
+	            } else if(resultTime < 1){
+	            	$(".count_down").hide();
+	            	$("#get_coupo").removeClass("btn_no").addClass("btn_ok");
+	            	getCoupon();
+	                clearInterval(count_down);
+	            }
+	        }
+	        count_down = setInterval(function(){ //倒计时
+	            countDown();
+	        },1000);
+	    }
+ 	})
+
+</script>

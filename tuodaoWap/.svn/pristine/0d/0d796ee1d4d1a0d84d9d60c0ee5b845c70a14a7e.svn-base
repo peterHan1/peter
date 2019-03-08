@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>拓道金服</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="cash_yet max_width">
+			<div class="tilte">
+				<a href="myCenter.html?item=2" class="iconfont fl">&#xe687;</a>
+				已缴费
+			</div>
+			<div class="cash_yet_list" id="wrapper">
+				<ul>
+					<li  v-for="item in cashList">
+						<div class="list">
+							<div class="list_top">
+								<p><span>车辆型号：</span>比亚迪</p>
+							</div>
+							<div class="list_bottom">
+								<div class="bot_left">
+									<p>200,000.00</p>
+									<p>缴费总金额</p>
+									<p>缴费时间：2018-01-12 13:00:00</p>
+								</div>
+								<div class="bot_right">
+									<a href="payFessRecord.html">查看</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  v-for="item in cashList">
+						<div class="list">
+							<div class="list_top">
+								<p><span>车辆型号：</span>比亚迪</p>
+							</div>
+							<div class="list_bottom">
+								<div class="bot_left">
+									<p>200,000.00</p>
+									<p>缴费总金额</p>
+									<p>缴费时间：2018-01-12 13:00:00</p>
+								</div>
+								<div class="bot_right">
+									<a href="payFessRecord.html">查看</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  v-for="item in cashList">
+						<div class="list">
+							<div class="list_top">
+								<p><span>车辆型号：</span>比亚迪</p>
+							</div>
+							<div class="list_bottom">
+								<div class="bot_left">
+									<p>200,000.00</p>
+									<p>缴费总金额</p>
+									<p>缴费时间：2018-01-12 13:00:00</p>
+								</div>
+								<div class="bot_right">
+									<a href="payFessRecord.html">查看</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  v-for="item in cashList">
+						<div class="list">
+							<div class="list_top">
+								<p><span>车辆型号：</span>比亚迪</p>
+							</div>
+							<div class="list_bottom">
+								<div class="bot_left">
+									<p>200,000.00</p>
+									<p>缴费总金额</p>
+									<p>缴费时间：2018-01-12 13:00:00</p>
+								</div>
+								<div class="bot_right">
+									<a href="payFessRecord.html">查看</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  v-for="item in cashList">
+						<div class="list">
+							<div class="list_top">
+								<p><span>车辆型号：</span>比亚迪</p>
+							</div>
+							<div class="list_bottom">
+								<div class="bot_left">
+									<p>200,000.00</p>
+									<p>缴费总金额</p>
+									<p>缴费时间：2018-01-12 13:00:00</p>
+								</div>
+								<div class="bot_right">
+									<a href="payFessRecord.html">查看</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/plug/iscroll.js"></script>
+<script>
+	$(function(){
+		var myScroll = new IScroll('#wrapper',{  
+		    scrollY : true,
+		    click : true,
+		});
+	})
+</script>

@@ -1,0 +1,33 @@
+html,body{height:100%;overflow-x: hidden;background-color:#f2f3f7;font-family: PingFangSC-Regular;}
+*{padding: 0;margin: 0;-webkit-tap-highlight-color: transparent;}
+ul,li{list-style:none;}
+i{font-style:normal}
+img{width: 100%;vertical-align: middle;}
+a{text-decoration: none;outline:none;-webkit-tap-highlight-color: transparent;}
+@font-face {font-family: "iconfont";
+ src:
+  url('iconfont/iconfont.ttf?t=1485053008706') format('truetype'),
+  url('iconfont/iconfont.svg?t=1485053008706#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fl{float:left;}
+.fr{float:right;}
+.max_width{max-width: 414px;margin: 0 auto;}
+.flex{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;}
+.flex-v{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+.flex-1{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+.flex_align_center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.flex_pack_center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+.flex_pack_justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+
+.tilte{width:100%;height:.9rem;line-height:0.9rem;font-size:0.32rem;color:#626262;text-align:center;background-color:#fff;position:relative;}
+.tilte .oper{font-size:0.28rem;color:#7e7e7e;right:0.3rem;}
+.tilte .iconfont{left:0.3rem;color: #626262;}
+.tilte span{position:absolute;}
+.tilte a{position:absolute;}

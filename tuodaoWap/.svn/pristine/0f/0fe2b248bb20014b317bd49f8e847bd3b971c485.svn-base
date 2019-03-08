@@ -1,0 +1,63 @@
+html,body{font-family:"Microsoft YaHei";-webkit-tap-highlight-color: transparent;}
+a{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color: transparent;outline:none;background: none;text-decoration: none;}
+h3,b,th{font-weight: normal;}
+.dis_none{display:none;}
+.about{background-color:#f2f3f7;}
+.about .nav{width:100%;height:0.8rem;line-height:0.8rem;background-color:white;}
+.about .nav li{height:0.8rem;float:left;width:25%;text-align:center;}
+.about .nav li a{display:block;width:60%;height:0.8rem;font-size:0.28rem;color:#626262;box-sizing: border-box;margin:0 auto;}
+.about .nav li a.on{color:#FF7400;border-bottom:2px solid #FF7a00;}
+.about_com{margin-top:0.18rem;}
+h3{font-size:0.28rem;color:#212a36;height:0.8rem;line-height:0.8rem;border-bottom: 1px solid #e4e4e4;}
+.terrace_top,.terrace_bot{background-color: white;padding:0 0.3rem;}
+.terrace_top div{overflow: hidden;padding-bottom: 0.32rem;}
+.terrace_top p{font-size:0.24rem;color:#626262;line-height:0.4rem;margin-top:0.14rem;}
+.terrace_bot{margin-top:0.2rem;}
+.terrace_bot .bot_icon{overflow: hidden;}
+.terrace_bot p{font-size:0.24rem;color:#626262;margin-bottom:0.1rem;}
+.terrace_bot a{text-align:center;}
+.terrace_bot .iconfont{color:#FF7400;font-size:0.6rem;}
+.terrace_bot .icon_top{margin-top:0.2rem;}
+.terrace_bot .icon_bot{margin:0.3rem 0 0.8rem 0;}
+.framework,.personnel{background-color:white;overflow: hidden;}
+.framework .framework_bg{width:6.06rem;height:9.23rem;background:url(../img/infrom/framework_bg.png) no-repeat;background-size:100% 100%;margin:0.75rem auto;}
+.personnel{padding:0.46rem 0.3rem 0;}
+.personnel_bg{width:6.5rem;height:7.96rem;background:url(../img/infrom/personnel_bg.png) no-repeat;background-size:100% 100%;margin:0 auto;}
+.certificate{padding:0 0.3rem;background-color:white;padding-top:0.2rem;}
+.certificate .div_fr{margin-right:0.3rem;}
+.certificate .div_img{width:3.28rem;height:4.6rem;margin-top:0.18rem;position: relative;}
+.certificate .div_img img{width:3.28rem;height:4.6rem;}
+.certificate .div_img a{display: block;}
+.certificate .div_img .txt_p{width:100%;height:0.48rem;line-height:0.48rem;text-align:center;position: absolute;left:0;bottom:0;background-color:rgba(57,59,63,0.5)}
+.certificate .div_img .txt_p p{font-size:0.22rem;color:#fff;}
+.img_show{width:100%;height:100%;padding:0.8rem 0;box-sizing:border-box;background-color:#000;position:absolute;top:0;left:0;}
+.swipslider {height:100%;position: relative;overflow: hidden;display: block;padding-top: 0!important;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none; }
+.swipslider .sw-slides {display: block;padding: 0;list-style: none;width: 100%;height: 100%;white-space: nowrap;font-size: 0;-webkit-transform: translateX(0);transform: translateX(0);position: absolute;bottom: 0; }
+.swipslider .sw-slide {width: 100%;height: 100%;display: inline-block;position: relative; }
+.swipslider .sw-slide > img {position: absolute;display: block;height:100%;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);max-height: 100%;max-width: 100%;margin-left: auto;margin-right: auto;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none; }
+.swipslider .sw-slide .sw-content {width: 100%;height: 100%;margin-left: 0;margin-right: 0;font-size: 14px; }
+.box{height:100%;overflow: hidden;background-color:#F2F3F7;}
+.Div{height:100%;margin-top:0.2rem;}
+.Div h4{font-size:0.24rem;color:#212a36;line-height:1rem;}
+.Div p{font-size:0.24rem;color:#626262;line-height: 0.42rem;}
+.Div>div{margin-top:0.6rem;}
+.Div dl{text-align:center;}
+.Div dt{width:2.6rem;height:2.6rem;margin:0 auto;}
+.zlj dt{background:url(../img/infrom/zlj.png) no-repeat;background-size: 100% 100%;}
+.fxy dt{background:url(../img/infrom/fxy.png) no-repeat;background-size: 100% 100%;}
+.ll dt{background:url(../img/infrom/ll.png) no-repeat;background-size: 100% 100%;}
+.Div .position{font-size:0.26rem;color:#212a36;margin-top:0.2rem;}
+.Div .name{font-size:0.24rem;color:#626262;margin-top:0.1rem;}
+.Div .board_div{margin-top:0.9rem;}
+.Div .share_div{margin-top:0.45rem;}
+.board,.share,.terrace,.great,.bank{background-color:white;padding:0 0.3rem;}
+.share .share_top{margin-top:0;}
+.share .share_bot{margin-top:0.2rem;}
+.Div table{width:100%;font-size:0.24rem;color:#626262;border-collapse:collapse;margin-top:0.4rem;}
+.Div table th{text-align: left;padding:0.3rem 0.2rem;border:1px solid #e4e4e4;border-right:none;}
+.Div table td{text-align: right;border:1px solid #e4e4e4;}
+.share table td{padding-right:0.2rem;width:58%;}
+.great table td{padding-right:0.2rem;width:30%;}
+.terrace table td{padding:0.2rem 0.2rem 0.2rem 0;width:69%;}
+.terrace .td_l{text-align:left;padding-left:0.2rem;}
+.terrace .td_ls{text-align:left;padding:0.3rem 0.1rem 0.3rem 0.2rem;}

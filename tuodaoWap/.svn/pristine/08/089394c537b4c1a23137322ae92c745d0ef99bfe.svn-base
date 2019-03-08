@@ -1,0 +1,167 @@
+$(function(){
+	var code = '123'; // 图形验证码初始值
+	var message = '短信验证码';// 短信验证码内容，赋值的话，只需要更改message = '456';的，message = '短信验证码';不需要更改
+	var isSuccess = 1;// 短信验证码是否成功发送 1:发送成功 0：失败
+	var tel = '18812342520';// 用户手机号,从后端获取
+
+	$('.tel').html(tel.substring(0,3)+'****'+tel.substring(8,11));// 赋值用户手机号码
+
+	// 点击获取短信验证码，并验证图形验证码是否正确
+	var num = 60;// 倒计时60秒
+	var timer = '';// 用来清除计时器的赋值变量
+	$('.code').on('click',function(){
+		if (num != 60) {
+			return false;
+		}
+		clearInterval(timer);
+		if ($('.checkIpt').val() == code) {
+			// 开始发送手机短信验证码
+			if (isSuccess == 1) {
+				layer.msg('验证码已发送到您的手机');
+				message = 456;// 短信验证码的内容
+				timer = setInterval(function() {
+					$('.code').css({'color':'#626262','font-size':'0.28rem'});
+					num--;
+					$('.code').html(num+'S');
+					if (num < 0) {
+						clearInterval(timer);
+						num = 60;
+						message = '短信验证码';// 60秒时间完结后返回短信验证码的初始值,需要重新点击获取新值
+						$('.code').html('重新获取验证码');
+						$('.code').css({'color':'#ff7400','font-size':'0.24rem'});
+					}
+				}, 1000);
+			} else {
+				layer.msg('验证码发送失败，请重新获取');
+			}
+		} else if ($('.checkIpt').val() == ''){
+			layer.msg('请输入图片验证码');
+		} else {
+			layer.msg('图片验证码错误，请重新输入');
+			code = '234';// 更新图形验证码
+		}
+	})
+	// 图形验证码，验证
+	$('.checkIpt').on('input',function(){
+		if ($(this).val() == code && $('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val())) {
+			$('._next').css('background','#ff7400');
+			// 请求成功
+		} else {
+			$('._next').css('background','#cacaca');
+		}
+	})
+	// 短信验证码，验证
+	$('.codeIpt').on('input',function(){
+		if ($(this).val().length > 8) {
+			$(this).val($(this).val().substring(0,8));
+		}
+		if ($(this).val() == message && $('.checkIpt').val() == code && /^[0-9]*$/g.test($(this).val())) {
+			$('._next').css('background','#ff7400');
+			// 请求成功
+		} else {
+			$('._next').css('background','#cacaca');
+		}
+	})
+	// 下一步
+	$('._next').on('click',function(){
+		if ($('.checkIpt').val() == code) {
+			if($('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val())) {
+				$('.findPsw').hide().siblings().show();
+				clearInterval(timer);
+				document.title = '重置密码';
+			} else {
+				layer.msg('请输入正确的短信验证码');
+			}
+		} else {
+			layer.msg('请输入正确的图形验证码');
+			return false;
+		}
+	})
+
+	// 密码可见性转换
+	$('.iconHide1').on('click',function(){
+		$('.show1').find('input').val($(this).siblings().val());
+		$(this).parent().hide();
+		$('.show1').show();
+		$('.ipt2').focus();
+	})
+	$('.iconShow1').on('click',function(){
+		$('.hide1').find('input').val($(this).siblings().val());
+		if ($(this).siblings().val() != '') {
+			$('.ipt1').css({'color':'#000'});
+		} else {
+			$('.ipt1').css('font-size','0.28rem');
+		}
+		$(this).parent().hide();
+		$('.hide1').show();
+		$('.ipt1').focus();
+	})
+
+	// 密码可见性转换
+	$('.iconHide2').on('click',function(){
+		$('.show2').find('input').val($(this).siblings().val());
+		$(this).parent().hide();
+		$('.show2').show();
+		$('.ipt4').focus();
+	})
+	$('.iconShow2').on('click',function(){
+		$('.hide2').find('input').val($(this).siblings().val());
+		if ($(this).siblings().val() != '') {
+			$('.ipt3').css({'color':'#000'});
+		} else {
+			$('.ipt3').css('font-size','0.28rem');
+		}
+		$(this).parent().hide();
+		$('.hide2').show();
+		$('.ipt3').focus();
+	})
+	$('.ipts1').on('keyup',function(){
+		$(this).val($(this).val().replace(/[^\w]/g, ""));
+	})
+	$('.ipts2').on('keyup',function(){
+		$(this).val($(this).val().replace(/[^\w]/g, ""));
+	})
+	// 新密码验证
+	$('.ipts1').on('input',function(){
+		$('.ipt1').val($(this).val());
+		$('.ipt2').val($(this).val());
+		if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/g.test($(this).val())) {
+			if($(this).val() == $('.ipt3').val()){
+				$('.submit').css('background','#ff7400');
+			} else {
+				$('.submit').css('background','#cacaca');
+			}
+		} else {
+			$('.submit').css('background','#cacaca');
+		}
+	})
+	// 确认密码验证
+	$('.ipts2').on('input',function(){
+		$('.ipt3').val($(this).val());
+		$('.ipt4').val($(this).val());
+		if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/g.test($(this).val())) {
+			if($(this).val() == $('.ipt1').val()){
+				$('.submit').css('background','#ff7400');
+			} else {
+				$('.submit').css('background','#cacaca');
+			}
+		} else {
+			$('.submit').css('background','#cacaca');
+		}
+	})
+	// 提交
+	$('.submit').on('click',function(){
+		var ipt1 =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/g.test($('.ipt1').val());
+		var ipt2 =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/g.test($('.ipt3').val());
+		if (ipt1 == true && ipt2 == true) {
+			if($('.ipt1').val() == $('.ipt3').val()) {
+				// 提交成功
+				window.location.href = './login.html';
+			} else {
+				layer.msg('密码不一致，请重新输入');
+			}
+		} else {
+			layer.msg('请设置6-16位的登录密码');
+		}
+	})
+})

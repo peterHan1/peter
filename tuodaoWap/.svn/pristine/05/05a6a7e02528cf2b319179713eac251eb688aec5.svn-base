@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>拓道金服</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="repayment max_width repay_form">
+			<div class="tilte">
+				<a href="repayment.html" class="iconfont fl">&#xe687;</a>
+				立即还款
+				<a href="backRecord.html" class="fr oper">还款记录</a>
+			</div>
+			<div class="repayment_com" id="repayment">
+				<div class="repayment_scroll">
+					<div class="repayForm_top">
+						<p>当期待还</p>
+						<p class="money">600.00</p>
+					</div>
+					<div class="repayForm_com">
+						<ul class="ul_Ebank">
+							<li>
+								<div>银行卡</div>
+								<div>
+									<span>中国银行(6221****5587)</span>
+								</div>
+							</li>
+							<li>
+								<div>还款金额(元)</div>
+								<div class="money_inp">
+									<input type="number" name="shortprice" class="inp_money input_focus" placeholder="请输入还款金额，最低金额为0.01元" onfocus="this.placeholder=''" onblur="this.placeholder='请输入还款金额，最低金额为0.01元'"/>
+									<div class="dis_none empty"></div>
+								</div>
+							</li>
+							<li class="li_discount" money="0">
+								<div>优惠券</div>
+								<div class="discountTxt">
+									<!--默认显示-->
+									<span class="listSelect">
+										<b class="selectTxt">请选择</b>
+										<i class="iconfont">&#xe83d;</i>
+									</span>
+								</div>
+							</li>
+							<p class="money_quota">本次还款最多可还50000元</p>
+							<div class="repayForm_btn">
+								<a href="javascript:;" class="sub">立即还款</a>
+							</div>
+						</ul>
+					</div>
+					<div class="repay_explain">
+						<p>还款说明：</p>
+						<p>为保障您的资金安全，想进行提前结清、申请续贷、逾期结清、取消逾期可联系门店客服。</p>
+					</div>
+				</div>
+			</div>
+			<!--短信验证-->
+			<div class="payFessLay dis_none">
+				<div class="lay_mess max_width">
+					<div class="pay_fess_con">
+						<div class="pay_fess_title">还款提示</div>
+						<div class="pay_fess_phone">由于您此次交易金额过大，需要进行短信验证！</div>
+						<div class="pay_fess_code">
+							<input type="number" placeholder="请输入验证码" class="codeInp"/>
+							<span class="phoneCode">59s</span>
+						</div>
+					</div>
+					<div class="pay_fess_btn">
+						<span class="cancel">取消</span>
+						<span class="sub_payFess">确定</span>
+					</div>
+				</div>
+				<div class="shade"></div>
+			</div>
+			<!--优惠券-->
+			<div class="discount dis_none"></div>
+		</div>
+	</body>
+</html>
+<script src="js/plug/iscroll.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/repay_form.js"></script>
+<script src="js/discount.js"></script>

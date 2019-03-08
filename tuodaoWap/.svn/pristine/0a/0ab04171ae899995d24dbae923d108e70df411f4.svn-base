@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <!-- -->
+    <link rel="stylesheet" href="css/case-style.css" />
+    <link rel="stylesheet" href="css/default_skin.css" />
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.sky.carousel-1.0.2.min.js"></script>
+  
+    <script type="text/javascript">
+        $(function () {
+
+           // buildSideNav();
+
+            skyCarousel = $('#character-slider').carousel({
+                itemWidth: 165,
+                itemHeight: 165,
+                enableMouseWheel: false,
+                gradientOverlayVisible: false,
+                gradientOverlayColor: '#FFF',
+                gradientOverlaySize: 300,
+                distance: 30,
+                selectedItemDistance: 30,
+                selectByClick: false,
+                selectedItemZoomFactor: 0.6,
+                unselectedItemZoomFactor: 0.4,
+                navigationButtonsVisible: false,
+                showPreloader: false,
+                autoSlideshow: true,
+                loop:true
+            })
+
+console.log($('#character-slider').width())
+
+
+
+        })
+
+
+
+    </script>
+
+     <style type="text/css">
+	    html,body{overflow-x: hidden;}
+		*{padding: 0;margin: 0; -webkit-overflow-scrolling: touch;}
+		ul,li{list-style:none;}
+		.max_width{max-width: 414px;margin: 0 auto;}
+		a{text-decoration: none;}
+     	html{font-size: 10px;}
+        body{background: #45aeff; font-family:"微软雅黑";font-size: 1.8rem;-webkit-text-size-adjust:none;}
+        div img{margin-bottom: 20px}
+        div.data{background:url(images/know_us/know_us3.png) no-repeat;background-size: 100%;margin-bottom: 20px;height:200px;}
+        div.data li {display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+        div.data li:first-child{padding-top:60px;margin-bottom:20px;}
+        div.data section{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;width:50%;text-align:center;}
+        
+        div.data section  div img{width:25%;padding:0;margin:0;}
+        div.data section  p{line-height:20px;padding:0;margin:0;font-size:1.4rem;}
+        div.data section  p:last-child{color:#ff411c;}
+        div.contact{font-size: 2rem;color: #fff;text-align: center;margin-bottom:10px;}
+        ol li{font-size: 1.4rem;color: #fff;padding: 0 5%;line-height: 20px;margin-bottom: 5px;}
+		.ol_bot{margin-bottom:2rem;}
+		.max_img{width: 100%} 
+       /* @media screen and (max-width: 414px) {
+         div.data section:first-child{padding-top:50px;margin-bottom:10px;}
+        }*/
+        
+
+    </style>
+</head>
+<body>
+    
+
+<div class="max_width">
+    
+        <div><img src="images/know_us/know_us1.png" class="max_img"></div>
+
+        <div style="background:url(images/know_us/team.png) no-repeat;background-size: 100%;margin-bottom:20px;">
+            <div class="shell">
+                <div class="second-row">
+
+                    <article>
+                        <div id="character-slider" class="sky-carousel sc-no-select" style="visibility: visible;height:350px;">
+                            <div class="sky-carousel-wrapper" style="visibility: visible; opacity: 1;">
+                                <ul class="sky-carousel-container" style="margin-top: -21.2px; left: -1552.4px; transition: left 0.45s ease-out; -webkit-transition: left 0.45s ease-out;">                     
+                                    <li >
+                                        <img src="images/know_us/ll.png" alt="" class="sc-image">
+                                        <div class="sc-content">
+                                            <h2>刘磊<b>COO</b></h2>
+                                        	<p>近10年互联网行业推广运营整合经验，历任多家互联网平台运营负责人，积累了丰富的互联网运营、客服团队打造和管理经验。具有高度的责任心和敏锐的商业头脑，擅长于优化产品用户体验，互金平台合规运营建设，从而推动公司业务发展，提升客户满意度，建立完整的互联网金融运营生态。</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img src="images/know_us/zlj.png" alt="" class="sc-image">
+                                        <div class="sc-content">
+                                            <h2>张罗军<b>创始人  CEO</b></h2>
+                                        	<p>互联网金融科技领域持续创业者，具备丰富的金融科技企业管理经验，以及深厚的风控体系管理水平。2013年创立拓道金服，以整合优质资产和把控风险为出发点，通过互联网运营，深耕汽车金融市场，以拓宇开疆之势，带领拓道金服跻身“中国汽车金融十强企业”、“互联网金融百强企业”，2017年被评为"浙商新领军者"。</p>
+                                        </div>
+                                    </li>
+                                    <li >
+                                        <img src="images/know_us/fxy.png" alt="" class="sc-image">
+                                        <div class="sc-content">
+                                            <h2>范爔云<b>联合创始人</b></h2>
+                                            <p>拥有10年以上企业金融和管理经验，在财务管理、资本管理等金融领域积累了丰富的经验，具有极高专业度，深谙互联网金融行业资金、投融资以及流动性风险管理。现任浙江省区域经济合作企业发展促进会副会长，同时是浙江省女企业家协会、浙商财智女人会会员，获浙江省女企协三十周年优秀创业奖。</p>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                    </article>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div><img src="images/know_us/know_us2.png" class="max_img"></div>
+        <div class="data">
+            <ul>
+                <li>
+                    <section>
+                        <div style="margin-top: 21.1px;"><img src="images/know_us/know_us3_1.png" class="max_img"></div>
+                        <p>经撮合交易总额</p>
+                        <p>1,263,258,915元</p>
+                    </section>
+                    <section>
+                        <div><img src="images/know_us/know_us3_3.png" class="max_img"></div>
+                        <p>注册用户</p>
+                        <p>74,237人</p>
+                    </section>
+                </li>
+                <!--<li>
+                     <section>
+                        <div><img src="images/know_us/know_us3_2.png" class="max_img"></div>
+                        <p>为用户赚取</p>
+                        <p>24,367,642元</p>
+                    </section>
+                    <section>
+                        <div><img src="images/know_us/know_us3_4.png" class="max_img"></div>
+                        <p>平台运营时间</p>
+                        <p>993天</p>
+                    </section>
+                </li>-->
+            </ul>
+            
+        </div> 
+        
+        <div><img src="images/know_us/know_us4.png" class="max_img"></div>
+        <div><img src="images/know_us/know_us5_001.png" class="max_img"></div>
+		<div><img src="images/signature_now.png" class="max_img"/></div>
+        <div class="contact">联系我们</div>
+        <ol>
+	        <li>服务热线：400-85-666-85</li>
+	        <li>服务时间：9:00–18:00</li>
+	        <li>微信公众号：拓道金服</li>
+	        <li>公司地址：杭州市西湖区中节能西溪首座B2裙楼</li>
+	    </ol>
+    </div>
+  </div>  
+</body>
+</html>

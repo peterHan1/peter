@@ -1,0 +1,129 @@
+$(function(){
+	var code = '123'; // 图形验证码初始值
+	var tel = '18812342520' // 用户手机号,从后端获取
+	var message = '短信验证码';// 短信验证码内容，赋值的话，只需要更改message = '456';的，message = '短信验证码';不需要更改
+	var isSuccess = 1;// 短信验证码是否成功发送 1:发送成功 0：失败
+	var userName = '';// 用户的姓名
+	var userIdcode = '';// 用户的身份证号
+	var status = false;// 当前用户的手机号，姓名，身份证号对应一致为true，否则为false，且必须在下方个函数里判断
+
+	$('.tel').html(tel.substring(0,3)+'****'+tel.substring(8,11));// 用户手机号赋值
+
+	// 点击获取短信验证码，并验证图形验证码是否正确
+	var num = 60;// 倒计时
+	var timer = '';
+	$('.code').on('click',function(){
+		if (num != 60) {
+			return false;
+		}
+		clearInterval(timer);
+		if ($('.checkIpt').val() == code) {
+			// 开始发送手机短信验证码
+			if (isSuccess == 1) {
+				layer.msg('验证码已发送到您的手机');
+				message = 456;// 短信验证码的内容
+				timer = setInterval(function() {
+					$('.code').css({'color':'#626262','font-size':'0.28rem'});
+					num--;
+					$('.code').html(num+'S');
+					if (num < 0) {
+						clearInterval(timer);
+						num = 60;
+						message = '短信验证码';// 60秒时间完结后返回短信验证码的初始值,需要重新点击获取新值
+						$('.code').html('重新获取验证码');
+						$('.code').css({'color':'#ff7400','font-size':'0.24rem'});
+					}
+				}, 1000);
+			} else {
+				layer.msg('验证码发送失败，请重新获取');
+			}
+		} else if ($('.checkIpt').val() == ''){
+			layer.msg('请输入图片验证码');
+		} else {
+			layer.msg('图片验证码错误，请重新输入');
+			code = '234';// 更新图形验证码
+		}
+	})
+	// 图形验证码，验证
+	$('.checkIpt').on('input',function(){
+		userName = $('.user').val();// 从前端获取的用户姓名
+		userIdcode = $('.idCard').val();// 从前端获取的用户身份证号
+		// 根据userName，userIdcode，tel（手机号）判断status
+		status = true;
+		var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($('.idCard').val());
+		if (idCard == true && $(this).val() == code && $('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val()) && status == true) {
+			$('.next').css('background','#ff7400');
+			// 请求成功
+		} else {
+			$('.next').css('background','#cacaca');
+		}
+	})
+	// 短信验证码，验证
+	$('.codeIpt').on('input',function(){
+		if ($(this).val().length > 8) {
+			$(this).val($(this).val().substring(0,8));
+		}
+		userName = $('.user').val();// 从前端获取的用户姓名
+		userIdcode = $('.idCard').val();// 从前端获取的用户身份证号
+		// 根据userName，userIdcode，tel（手机号）判断status
+		status = true;
+		var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($('.idCard').val());
+		if (idCard == true && $(this).val() == message && /^[0-9]*$/g.test($(this).val()) && $('.checkIpt').val() == code && status == true) {
+			$('.next').css('background','#ff7400');
+			// 请求成功
+		} else {
+			$('.next').css('background','#cacaca');
+		}
+	})
+	// 姓名验证
+	$('.User').on('input',function(){
+		userName = $('.user').val();// 从前端获取的用户姓名
+		userIdcode = $('.idCard').val();// 从前端获取的用户身份证号
+		// 根据userName，userIdcode，tel（手机号）判断status
+		status = true;
+		var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($('.idCard').val());
+		if (idCard == true && $('.checkIpt').val() == code && $('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val()) && status == true) {
+			$('.next').css('background','#ff7400');
+		} else {
+			$('.next').css('background','#cacaca');
+		}
+	})
+	// 身份证号码验证
+	$('.idCard').on('input',function(){
+		userName = $('.user').val();// 从前端获取的用户姓名
+		userIdcode = $('.idCard').val();// 从前端获取的用户身份证号
+		// 根据userName，userIdcode，tel（手机号）判断status
+		status = true;
+		var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($(this).val());
+		if (idCard == true && $('.checkIpt').val() == code && $('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val()) && status == true) {
+			$('.next').css('background','#ff7400');
+		} else {
+			$('.next').css('background','#cacaca');
+		}
+	})
+	// 下一步
+	$('.next').on('click',function(){
+		userName = $('.user').val();// 从前端获取的用户姓名
+		userIdcode = $('.idCard').val();// 从前端获取的用户身份证号
+		// 根据userName，userIdcode，tel（手机号）判断status
+		status = true;
+		if ($('.checkIpt').val() == code) {
+			if ($('.codeIpt').val() == message && /^[0-9]*$/g.test($('.codeIpt').val())) {
+				if (/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($('.idCard').val())) {
+					if (status) {
+						window.location.href = './forgetDealPsw2.html';
+					} else {
+						layer.msg('请输入正确的身份信息');
+					}
+				} else {
+					layer.msg('请输入正确的身份证号');
+				}
+			} else {
+				layer.msg('请输入正确的短信验证码');
+			}
+		} else {
+			layer.msg('请输入正确的图形验证码');
+			return false;
+		}
+	})
+})

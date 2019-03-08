@@ -1,0 +1,49 @@
+
+.cash{position: relative;height:100%;}
+.cash .cash_list p{line-height:0.8rem;padding:0 0.3rem;font-size:0.24rem;color:#7e7e7e;}
+.cash .cash_list li{overflow:hidden;padding:0 0.3rem;line-height:0.9rem;font-size:0.28rem;border-bottom: 1px solid #e4e4e4;background-color:#fff;}
+.cash .cash_list li div:nth-child(1){float:left;color:#212a36;}
+.cash .cash_list li div:nth-child(2){float:right;color:#7e7e7e;}
+.cash .btn{padding:0 0.3rem;margin-top:0.6rem;font-size:0.3rem;}
+.cash .btn a{width:100%;color:#fff;text-align:center;border-radius:3px;line-height:0.8rem;display: inline-block;}
+.cash .btn .no_btn{background-color:#cacaca;}
+.cash .btn .subBtn{background-color:#ff711c;}
+.cash .btn p{text-align:center;font-size:0.22rem;color:#ff1c1c;line-height:0.6rem;}
+.cash .keywords{width:100%;position:absolute;bottom:0;z-index: 999;display:none;}
+.cash .keywords .psw{width:100%;height:3.75rem;background-color:#fff;}
+.cash .keywords .psw p{font-size:0.32rem;color:#626262;padding:0 0.3rem;line-height:1rem;text-align:center;border-bottom:1px solid #e4e4e4;}
+.cash .keywords .psw p .iconfont{color:#b2b5b6;font-size:0.4rem;}
+.cash .keywords .psw a{line-height:0.8rem;font-size:0.24rem;color:#ff7400;margin-right:0.3rem;}
+.cash .keywords .psw .inputPsw{padding:0 0.3rem;margin-top:0.5rem;}
+.cash .keywords .psw .inpPsw{border:1px solid #cacaca;border-radius: 3px;overflow: hidden;}
+.cash .keywords .psw .inpPsw span{display:inline-block;float:left;width:16.6%;height:1.1rem;text-align:center;border-right:1px solid #cacaca;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.cash .keywords .psw .inpPsw span b{width:0.2rem;height:0.2rem;display:block;margin:38% auto;border-radius:50%;background-color:#212a36;display:none;}
+.cash .keywords .psw .inpPsw span:last-child{border:none;}
+.cash .keywords .keyNumber{width:100%;}
+.cash .keywords .keyNumber li{border-top:1px solid #8c8c8c;overflow: hidden;}
+.cash .keywords .keyNumber li div{width:33.3%;height:1.1rem;float: left;text-align: center;color:#000;background-color:#fff;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.cash .keywords .keyNumber li div:nth-child(2){border-left:1px solid #8c8c8c;border-right:1px solid #8c8c8c;}
+.cash .keywords .keyNumber li div p:nth-child(1){font-size:0.48rem;margin-top:0.08rem;}
+.cash .keywords .keyNumber li div p:nth-child(2){font-size:0.22rem;margin-top:-0.08rem;}
+.cash .keywords .keyNumber li div.on{background-color:#d1d5db;}
+.cash .keywords .keyNumber .keyBottom div p:nth-child(1){line-height:1.1rem;margin:0;}
+.cash .keywords .keyNumber li .bg_color{background-color:#d1d5db;}
+.cash .keywords .keyNumber li .bg_color .iconfont{font-size:0.6rem;}
+.cash .shade{position:absolute;left:0;top:0;bottom:0;right:0;width:100%;height:100%; background-color: #000;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;z-index: 99;display:none;}
+.cash .loading{width:100%;height:6.4rem;background-color:#fff;position: absolute;bottom: 0;z-index: 999;text-align:center;display: none;padding-top:1.8rem}
+.cash .loading div{width:1.3rem;height:1.3rem;box-sizing: border-box;display: inline-block;}
+.cash .loading p{font-size:0.28rem;color:#212a36;line-height:0.88rem;}
+.cash .loading .cash_ok{background: url(../image/cash_ok.png) no-repeat;background-size:100% 100%;}
+.cash .loading .cash_no{background: url(../image/cash_no.png) no-repeat;background-size:100% 100%;}
+.cash .loading .cash_loading{background: url(../image/cash_loading.png) no-repeat;background-size:100% 100%;}
+.cash .loading .applying{width:1.3rem;height:1.3rem;border:0.1rem solid #ff7400;border-right-color:#fff;border-radius:50%;-webkit-animation:circle 1s infinite linear;}
+@-webkit-keyframes circle{
+	0%{ transform:rotate(0deg); }
+	100%{ transform:rotate(-360deg);}
+}
+.cash .explain{height:100%;background-color:#fff;}
+.cash .explain .tilte{border-bottom: 1px solid #e4e4e4;}
+.cash .explain .explain_box{padding:0 0.3rem;}
+.cash .explain h1{font-size:0.32rem;color:#212a36;font-weight:normal;line-height:0.8rem;}
+.cash .explain p{font-size:0.26rem;color:#626262;line-height:0.5rem;margin-bottom: 0.1rem;}
+

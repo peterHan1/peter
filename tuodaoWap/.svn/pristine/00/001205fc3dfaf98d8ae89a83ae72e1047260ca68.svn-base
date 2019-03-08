@@ -1,0 +1,177 @@
+$(function(){
+		//快捷还款 立即还款点击
+		$(document).on("click",".repay_sub",function(){
+			var money = $(".money").html()*1;
+			var inp_m = $(".inp_money").val()*1;
+			if(inp_m > money){
+				layer.msg('<i class="iconfont" style="font-size:0.36rem;">&#xe68d; &nbsp;</i>请输入当期待还总金额数值');
+			}else{
+				if($(".inp_code").val() == ""){
+					layer.msg('<i class="iconfont" style="font-size:0.36rem;">&#xe68d; &nbsp;</i>请输入短信验证码');
+				}else{
+					//可还款执行
+					//遮罩层加载
+					var index = layer.load(1, {
+						shade: [0.3,'#000']
+					});
+					//关闭加载层
+					layer.close(index)
+
+				}
+			}
+		});
+		//网银还款 立即还款点击
+		$(document).on("click",".bank_sub",function(){
+			var money = $(".money").html()*1;
+			var inp_m = $(".inp_moneys").val()*1;
+			$(".inp_moneys").blur();
+			if(inp_m > money){
+				layer.msg('<i class="iconfont" style="font-size:0.36rem;">&#xe68d; &nbsp;</i>请输入当期待还总金额数值');
+			}else{
+				if($(".bankName").attr("name") == ""){
+					layer.msg('<i class="iconfont" style="font-size:0.36rem;">&#xe68d; &nbsp;</i>请选择银行');
+				}else{
+					//可还款执行
+					//遮罩层加载
+					var index = layer.load(1, {
+						shade: [0.3,'#000']
+					});
+					//关闭加载层
+					layer.close(index)
+
+				}
+				//可还款执行
+			}
+		});
+		//选择网银
+		var iscro = true;
+		$(".e_bank_select").on("click",function(){
+			$(".inp_moneys").blur();
+			$(".select_bank").show();
+			$(".repay_form").hide();
+			if(iscro == true){
+				var myScroll = new IScroll('#wrapper',{  
+				    scrollY : true,
+				    click : true,
+				});
+			}
+			iscro = false;
+		});
+		//选择网银返回按钮
+		$(".Ebank_return").on("click",function(){
+			$(".select_bank").hide();
+			$(".repay_form").show();
+		});
+		//选择银行
+		$(".select_bank #bank_ul li").on("click",function(){
+			$(this).addClass("on");
+			$(this).siblings().removeClass("on");
+			$(".repay_form").show();
+			$(".select_bank").hide();
+			var bankName=$(this).find("h4").html();
+			$(".e_bank_select .bankName").html(bankName);
+			$(".e_bank_select .bankName").attr("name",bankName);
+		})
+		//获取短信验证码
+		var num = 60;// 倒计时60秒
+		var times = "";// 初始化 
+		$(".get_code").on("click",function(){
+			if (num != 60) {
+				return false;
+			};
+			clearInterval(times);
+			times = setInterval(function() {
+				$('.get_code').css({'color':'#626262'});
+				num--;
+				$('.get_code').html(num+'S');
+				if (num < 0) {
+					clearInterval(times);
+					num = 60;
+					$('.get_code').css({'color':'#ff7400'});
+				}
+			}, 1000);
+		});
+		var myScroll = new IScroll('#repayment',{  
+		    scrollY : true,
+		    click : true,
+		});
+		//还款tab切换
+		$(".repayForm_tab a").on("click",function(){
+			$(this).parent("div").addClass("on").siblings("div").removeClass("on");
+			var indexs = $(this).parent("div").index();
+			$(".ul_Ebank").eq(indexs).show().siblings(".ul_Ebank").hide();
+		})
+		$(".close_a").on("click",function(){
+			layer.closeAll();
+		});
+		//快捷还款 输入金额
+		$(".inp_money").keyup(function(){
+			var money = $(this).val();
+			if(money != ""){
+				$(".sub").addClass("repay_sub");
+			}else{
+				$(".sub").removeClass("repay_sub");
+			}
+		});
+		//网银还款 输入金额
+		$(".inp_moneys").keyup(function(){
+			var moneys = $(this).val();
+			if(moneys != ""){
+				$(".e_bank").addClass("bank_sub");
+			}else{
+				$(".e_bank").removeClass("bank_sub");
+			}
+		});
+		$(".money_inp input").keyup(function(){
+			$(this).val($(this).val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
+		});
+		//输入金额失去焦点
+		$(".money_inp input").blur(function(){
+			var vals = $(this).val();
+			if(vals == ""){
+				$(".money_inp").width("65%");
+			}else if(vals <= 0){
+				$(this).val(0.01);
+			}else{
+				overFormat($(this));
+			}
+		});
+		// 输入金额得到焦点
+		$(".money_inp input").focus(function(){
+			$(this).val($(this).val().replace(/\.00/, '').replace(/(\.\d)0/, '$1'));
+			$(".money_inp").width("45%");
+		});
+		//input验证
+		function overFormat(th){
+		    var v = th.val();  
+		   	if(v === '0'){ 
+		        v = '0.00';  
+		    }else if(v === '0.'){  
+		        v = '0.00';  
+		    }else if(/^0+\d+\.?\d*.*$/.test(v)){  
+		        v = v.replace(/^0+(\d+\.?\d*).*$/, '$1');  
+		        v = inp.getRightPriceFormat(v).val;  
+		    }else if(/^0\.\d$/.test(v)){  
+		        v = v + '0';  
+		    }else if(!/^\d+\.\d{2}$/.test(v)){  
+		        if(/^\d+\.\d{2}.+/.test(v)){  
+		            v = v.replace(/^(\d+\.\d{2}).*$/, '$1');  
+		        }else if(/^\d+$/.test(v)){  
+		            v = v + '.00';  
+		        }else if(/^\d+\.$/.test(v)){  
+		            v = v + '00';  
+		        }else if(/^\d+\.\d$/.test(v)){  
+		            v = v + '0';  
+		        }else if(/^[^\d]+\d+\.?\d*$/.test(v)){  
+		            v = v.replace(/^[^\d]+(\d+\.?\d*)$/, '$1');  
+		        }else if(/\d+/.test(v)){  
+		            v = v.replace(/^[^\d]*(\d+\.?\d*).*$/, '$1');  
+		            ty = false;  
+		        }else if(/^0+\d+\.?\d*$/.test(v)){  
+		            v = v.replace(/^0+(\d+\.?\d*)$/, '$1');  
+		            ty = false;  
+		        }
+		    }  
+		    th.val(v);   
+		} 
+});

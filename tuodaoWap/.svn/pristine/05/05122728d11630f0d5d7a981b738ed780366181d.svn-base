@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>审计报告</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/infrom.css" />
+		<link rel="stylesheet" href="js/swiper/css/swiper.css" />
+		<script src='js/jquery-2.1.0.min.js'></script>
+		<script src="js/base.js"></script>
+		<style>
+			html,body{width:100%;height:100%;}
+			.img_big{height:100%;background-color:#000;}
+			.swiper-container{height:100%;padding:0.8rem 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+			.swiper-container li img{height:100%;}
+			.swiper-pagination-fraction{font-size:0.3rem;color:#fff;top:0.2rem;bottom:95%;}
+		</style>
+	</head>
+	<body>
+		<div class="img_big">
+			<div class="swiper-container">
+				<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<img src="img/infrom/auditReport_bg1.jpg">
+						</li>
+						<li class="swiper-slide">
+							<img src="img/infrom/auditReport_bg2.jpg">
+						</li>
+						<li class="swiper-slide">
+							<img src="img/infrom/auditReport_bg3.jpg">
+						</li>
+						<li class="swiper-slide">
+							<img src="img/infrom/auditReport_bg4.jpg">
+						</li>
+					</ul>
+			    <div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/swiper/js/swiper.min.js"></script>
+<script>
+$(function(){
+	var mySwiper = new Swiper('.swiper-container',{
+		pagination : '.swiper-pagination',
+		paginationType : 'fraction'
+	});
+
+})
+</script>
+
+

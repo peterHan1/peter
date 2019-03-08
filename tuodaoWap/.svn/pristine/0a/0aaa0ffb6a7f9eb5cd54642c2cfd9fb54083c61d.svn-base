@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="full-screen" content="yes">
+    	<meta name="x5-fullscreen" content="true">
+		<title>拓道金服</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/base.js"></script>
+	</head>
+	<body>
+		<div class="repayments max_width">
+			<div class="tilte">
+				<a href="myCenter.html?type=3" class="iconfont fl">&#xe687;</a>已还款
+				<a href="backRecord.html" class="fr oper">还款记录</a>
+			</div>
+			<div class="repayment_list" id="wrapper">
+				<div class="main_box">
+					<ul>
+						<li>
+							<div>车辆品牌</div>
+							<div>奥迪</div>
+						</li>
+						<li>
+							<div>车辆型号</div>
+							<div>A6</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div>借款总金额(元)</div>
+							<div>10,000.00</div>
+						</li>
+						<li>
+							<div>借款开始日期</div>
+							<div>2017-10-01</div>
+						</li>
+						<li>
+							<div>借款期限</div>
+							<div>6个月</div>
+						</li>
+						<li>
+							<div>当前期数</div>
+							<div>第1/6期</div>
+						</li>
+						<li>
+							<div>还款方式</div>
+							<div>等额本息</div>
+						</li>
+						<li>
+							<div>还款类型</div>
+							<div>一般还款</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div>还款日期</div>
+							<div>2017-12-23</div>
+						</li>
+						<li>
+							<div>实际还款日期</div>
+							<div>2017-12-23</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div>当期应还总金额(元)</div>
+							<div>1000.00</div>
+						</li>
+						<li>
+							<div>实际还款金额(元)</div>
+							<div>1000.00</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div>档案编号</div>
+							<div>cq2017111501</div>
+						</li>
+						<li>
+							<div>还款银行卡</div>
+							<div>中国银行(6221****5587)</div>
+						</li>
+					</ul>
+					<ul>
+						<li class="btn"><a href="">查看还款计划</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="js/plug/iscroll.js"></script>
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var myScroll = new IScroll('#wrapper',{  
+				    scrollY : true,         //滚动方向（垂直）  
+				    click : true,           //IScroll默认禁止了点击事件，如需绑定点击事件，请将该参数值设为true  
+				});
+			});
+		</script>
+	</body>
+</html>

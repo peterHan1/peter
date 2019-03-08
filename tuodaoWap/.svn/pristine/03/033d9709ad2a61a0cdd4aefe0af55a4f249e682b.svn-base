@@ -1,0 +1,33 @@
+$(function(){
+	// ajax请求，获取数据数组赋值给list
+	var list=['a','b','c'];
+	var content='';// 生成的html元素
+	for(var i=0;i<list.length;i++){
+		var data = list[i];// 每个单独的数据对象
+		// 为待还款类型时，部分字体颜色会变成橘黄色（加个change类），其他无变化，请直接套入数据即可
+		if(list[i].type == '待还款'){
+			content+='<div class="child">';
+			content+='<div class="top">';
+			content+='<span>第1/6期</span>';
+			content+='<span class="tip">一般还款</span>';
+			content+='<span class="last change">已还款</span>';
+			content+='</div>';
+			content+='<ul class="content">';
+			content+='<li>应还总金额（元）<span class="change">10000.00</span></li>';
+			content+='<li>还款日期<span>2017-11-13</span></li>';
+			content+='<li>实际还款日期<span>2017-11-13</span></li>';
+			content+='</ul>';
+			content+='</div>';
+		} else {
+			content+='<div class="child">';
+			content+='<div class="top"><span>第1/6期</span><span class="tip">一般还款</span><span class="last">已还款</span></div>';
+			content+='<ul class="content">';
+			content+='<li>应还总金额（元）<span>10000.00</span></li>';
+			content+='<li>还款日期<span>2017-11-13</span></li>';
+			content+='<li>实际还款日期<span>2017-11-13</span></li>';
+			content+='</ul>';
+			content+='</div>';
+		}
+	}
+	$('.backPlan').append(content);
+})

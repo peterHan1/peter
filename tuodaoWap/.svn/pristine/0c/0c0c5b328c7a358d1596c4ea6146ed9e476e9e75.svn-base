@@ -1,0 +1,147 @@
+html,body,.car_box{font-family: PingFangSC-Regular, sans-serif;}
+.car_box{width: 100%;padding:0 0.4rem;height:39.27rem;background: url(../image/catch_car/car_loadBg.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.car_box{position: relative;}
+.car_box .car_rule{position: absolute;right: 0;top:0.35rem;font-size: 0.24rem;color: #fff;width:1.38rem;line-height: 0.48rem;text-align: center;border-radius:50px 0 0 50px;background: -webkit-linear-gradient(to right,#de5a51, #fa724a);background: -o-linear-gradient(to right,#de5a51, #fa724a);background: -moz-linear-gradient(to right,#de5a51, #fa724a);background: linear-gradient(to right,#de5a51, #fa724a);}
+.car_box .car_award{padding: 3.25rem 0.2rem 0;}
+.car_box .car_award .car_award_top{font-size: 0.3rem;line-height: 0.9rem;padding:0 0.25rem;}
+.car_box .car_award .car_award_top div{border-bottom: 1px dashed #333;}
+.car_box .car_award .car_award_top div span{font-weight: bold;}
+.car_box .car_award .car_award_top div span:nth-child(1){margin-left: 0.55rem;}
+.car_box .car_award .car_award_top div span:nth-child(2){margin-left: 2.65rem;}
+.car_box .car_award ul {font-size: 0.2rem;}
+.car_box .car_award ul li {line-height: 0;padding-top: 0.03rem;}
+.car_box .car_award ul li:nth-child(1) div{vertical-align: middle;}
+.car_box .car_award ul li:nth-child(1) div p{line-height: 0.38rem;}
+.car_box .car_award ul li:nth-child(even){background-color: #f9efda;}
+.car_box .car_award ul li div{display: inline-block;font-size: 0.28rem;color:#333;line-height: 0.6rem;}
+.car_box .car_award ul li div span{color:#333;}
+.car_box .car_award ul li div:nth-child(1){width:40%;text-align: center;font-weight: bold;}
+.car_box .car_award ul li div:nth-child(2){width:56%;color:#cf4b4a;text-align: center;}
+.car_box .car_award ul li div.div_style{padding: 0.05rem 0 0.15rem;text-align: left;}
+.car_box .car_award ul li div.div_style p{margin-top:0.15rem;}
+.car_box .car_gain{height:4.4rem;font-size: 0.2rem;margin-top: 0.6rem;padding-top: 1.35rem;text-align: center;}
+.car_box .car_gain .car_sub{display: inline-block;width: 90%;line-height: 0.88rem;text-align: center;border-radius: 5px;font-size: 0.34rem;color: #fff;background: -webkit-linear-gradient(to right,#f57753, #f69a61);background: -o-linear-gradient(to right,#f57753, #f69a61);background: -moz-linear-gradient(to right,#f57753, #f69a61);background: linear-gradient(to right,#f57753, #f69a61);}
+.car_box .car_gain p{line-height: 1rem;font-size: 0.24rem;color: #333;}
+.car_box .car_gain .yet_login,.no_login{height:2.2rem;}
+.car_box .car_gain .yet_login div:nth-child(1){font-size: 0.28rem;color:#333;padding-top: 0.35rem;}
+.car_box .car_gain .yet_login div:nth-child(2){font-size: 0.32rem;color:#333;line-height: 1.5rem;}
+.car_box .car_gain .yet_login div span{font-size: 0.82rem;color:#cf4b4a;vertical-align: bottom;}
+.car_box .car_gain .no_login div:nth-child(1){font-size: 0.24rem;color: #333;line-height: 1.1rem;}
+.car_box .car_gain .no_login div:nth-child(2){font-size: 0.34rem;color: #333;}
+.car_box .car_gain .no_login div span{font-size: 0.4rem;color: #cf4b4a;}
+.car_box .car_gain .no_login div a{font-size: 0.42rem;color: #cf4b4a;}
+.car_box .car_way{padding: 1.6rem 0.2rem 0;}
+.car_box .car_way .way_list{text-align: center;overflow: hidden;}
+.car_box .car_way .way_con{margin-top: 0.7rem;background-color:#f9efda;border-radius: 5px;position: relative;padding-bottom: 0.35rem;}
+.car_box .car_way .way_con .way_title{display: inline-block;width:2.7rem;text-align: center;background-color: #d95854;border-radius: 5px;padding:0.06rem;position: absolute;top: -16%;left:50%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}
+.car_box .car_way .way_con .way_title h3{color: #fff;font-size: 0.32rem;line-height:0.5rem;border:1px solid #b8433e;border-radius: 5px;letter-spacing:2px}
+.car_box .car_way .way_con .way_txt{font-size: 0.3rem;color: #333;padding: 0.4rem 0.55rem 0;text-align: justify;line-height: 0.6rem;}
+.car_box .car_way .way_con .way_txt span{font-size: 0.52rem;color: #cf4b4a;font-weight: bold;}
+.car_box .car_way .way_list a{display: block;margin:0.3rem auto 0.52rem;width:97%;line-height: 0.88rem;text-align: center;font-size: 0.34rem;color:#fff;border-radius:5px;background: -webkit-linear-gradient(to right,#f57753, #f69a61);background: -o-linear-gradient(to right,#f57753, #f69a61);background: -moz-linear-gradient(to right,#f57753, #f69a61);background: linear-gradient(to right,#f57753, #f69a61);}
+.car_box .car_way .way_two .way_noLogin,.way_yetLogin{color:#333;padding: 0.4rem 0.55rem 0;}
+.car_box .car_way .way_two .way_login{font-size: 0.32rem;}
+.car_box .car_way .way_two .way_login b{font-size: 0.38rem;color:#cf4b4a;font-weight: normal;}
+.car_box .car_way .way_two .way_integral{font-size: 0.32rem;color:#333;line-height: 0.6rem;}
+.car_box .car_way .way_two .way_integral span{font-size: 0.5rem;color:#cf4b4a;font-weight: bold;}
+.car_box .car_way .way_two p{font-size: 0.24rem;line-height: 0.7rem;}
+.car_box .car_way .way_two h6{font-weight: normal;line-height:0.5rem;font-size: 0.3rem;text-align: justify;}
+.car_box .car_way .way_three .way_txt{padding-top: 0.56rem;}
+.car_box .car_bottom{text-align: center;padding-top: 0.45rem;}
+.car_box .car_bottom p{font-size: 0.24rem;color: #a4531b;line-height: 0.36rem;}
+
+.layui-layer{border-radius: 10px!important;}
+#rule_window{padding:0.3rem;}
+#rule_window p{font-size: 0.36rem;color: #333;text-align: center;line-height: 0.6rem;}
+#rule_window ul{padding-top: 0.2rem;}
+#rule_window ul li{font-size: 0.26rem;color: #333;line-height: 0.4rem;text-align: justify;}
+
+
+
+.now_get_window.layui-layer {background: none;box-shadow:none;}
+#now_get_window div:nth-child(2){position: absolute;top: 70%;left:50%;text-align: center;width: 80%;color: #ff7901;font-size: 0.34rem;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}
+#now_get_window div:nth-child(2) b{color: #ff4800;font-size: 0.5rem;font-weight: normal;}
+
+/*抓车页*/
+.game_car{height: 100%;width: 100%;background: url(../image/game_carBg.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;position: relative;}
+.game_car .game_num{position: absolute;top: 0.4rem;right: 0.3rem;width: 2.5rem;height:0.51rem;background: url(../image/game_num.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;font-size: 0.24rem;color:#fff;overflow: hidden;}
+.game_car .game_num span{display: inline-block;float: left;width: 0.65rem;text-align: center;margin-left:1.25rem;line-height: 0.51rem;}
+.game_car .game_tool{position: absolute;top: 0;left:50%;width:1.11rem;z-index: 999;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}
+.game_car .game_tool .game_line{margin:0 auto;width:0.05rem;height:0.7rem;background-color: #512c19;}
+.game_car .game_tool .game_grab{position: relative;height: 1.22rem;}
+.game_car .game_tool .game_grab .claws{width:1.11rem;height:1.22rem;position: absolute;left: 0;top: 0;}
+.game_car .game_tool .game_grab .claw{width:0.08rem;height:0.41rem;z-index:1;position: absolute;left: 50%;top: 0.5rem;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}
+
+.game_bottom .game_btn{text-align: center;position: absolute;bottom: 11%;left: 0;right: 0;}
+.game_bottom .game_btn div{display: inline-block;}
+.game_bottom .game_btn div:nth-child(1){width: 1.3rem;height: 0.82rem;vertical-align: super;background: url(../image/btnBgs.png) no-repeat;background-position: -2.5rem 0;background-size: 5rem 0.82rem;}
+.game_bottom .game_btn div:nth-child(2){width: 1.89rem;height: 1.44rem;margin:0 0.75rem;background: url(../image/btnBg.png) no-repeat;background-position: 0rem 0;background-size: 5.8rem 1.45rem;}
+.game_bottom .game_btn div:nth-child(3){width: 1.3rem;height: 0.82rem;vertical-align: super;background: url(../image/btnBgs.png) no-repeat;background-position: 0.1rem 0;background-size: 5rem 0.82rem;}
+.game_bottom .game_btn div.btn_rule{background: url(../image/btnBgs.png) no-repeat;background-position: -3.8rem 0.03rem;background-size: 5rem 0.82rem}
+.game_bottom .game_btn div.btn_go{background: url(../image/btnBg.png) no-repeat;background-position: -3.95rem 0;background-size: 5.8rem 1.45rem;}
+.game_bottom .game_btn div.btn_goNo{background: url(../image/btnBg.png) no-repeat;background-position: -1.97rem -0.02rem;background-size: 5.8rem 1.45rem;}
+.game_bottom .game_btn div.btn_music{background: url(../image/btnBgs.png) no-repeat;background-position: -1.2rem 0.08rem;background-size: 5rem 0.82rem}
+
+.game_bottom .car_list{width: 100%;padding-bottom: 0.3rem;overflow: hidden;position: absolute;bottom: 26%;left: 0;right: 0;}
+.game_bottom #car{width: 1000%;overflow: hidden;}
+.game_bottom .car_list ul{float: left;}
+.game_bottom .car_list li{width: 1.9rem;height:1.1rem;float: left;margin-right: 1.2rem;position: relative;}
+.game_bottom .car_list img{position: absolute;bottom: 0;left: 0;z-index: 99;}
+
+.game_bottom .game_list{height: 0.86rem;text-align: center;margin-top: 0.05rem;padding:0.12rem 0;overflow: hidden;position: absolute;bottom: 2%;left: 0;right: 0;}
+.game_bottom .game_list ul{height:1rem;overflow: hidden;}
+.game_bottom .game_list ul li{line-height: 0.45rem;font-size: 0.22rem;color: #5a3d1b;}
+.game_bottom .game_list ul li span{color: #ed6f26;}
+
+.dis_none{display: none;}
+.layer_box{width: 100%;height: 100%;}
+.layer_rule{width:5.38rem;height:10.27rem;padding: 0 0.4rem;font-size:0.24rem;background: url(../image/layer_rule.png) no-repeat;z-index: 999; -webkit-background-size: 100% 100%;background-size: 100% 100%;position: absolute;top: -50%;left: 50%;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);-o-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);}
+.layer_rule h2{color:#5a3d1b;font-size:0.24rem;text-align: center;margin-top:  1.16rem;padding-bottom: 0.22rem;}
+.layer_rule p{color:#5a3d1b;margin-top: 0.18rem;text-align: justify;line-height:0.34rem;}
+.layer_rule p span{color:#5b4c3a;font-weight: bold;}
+.layer_rule div{text-align: center;}
+.layer_rule .play_game{margin-top: 0.32rem;}
+.layer_rule .play_game span{display: inline-block;width: 3.3rem;height: 0.62rem;background: url(../image/play_game.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_rule .rule_txt{margin-top: 0.1rem;color: #5a3d1b;font-size: 0.2rem;}
+.shade{position: fixed;left:0;top:0;right:0;bottom:0;background-color: #000;opacity: 0.3;z-index: 100;}
+
+.result {background: none;width: 2rem;height: 1rem;position: absolute;left: 50%;-webkit-transform: translateX(-50%) ;-moz-transform: translateX(-50%) ;-ms-transform: translateX(-50%) ;-o-transform: translateX(-50%);transform: translateX(-50%);}
+.result img{width: 1.9rem;height:1rem;z-index: 9;}
+
+.layer_award{height: 100%;width: 100%;}
+.layer_award .layer_cont{width: 6.19rem;height: 5.85rem;font-size:0;text-align: center;background: url(../image/award_bg.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;z-index: 999;position: absolute;top: -50%;left: 50%;-webkit-transform: translateX(-50%) ;-moz-transform: translateX(-50%) ;-ms-transform: translateX(-50%) ;-o-transform: translateX(-50%);transform: translateX(-50%);}
+.layer_award .layer_cont .award_box{height: 2rem;}
+.layer_award .layer_cont .money{display: inline-block;width: 1.4rem;height: 1.29rem;overflow: hidden;margin-top:0.45rem;background: url(../image/car_money.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .money span{color:#fff000;font-size: 0.5rem;display: inline-block;width: 100%;float: left;line-height: 1.4rem;font-weight: bold;}
+.layer_award .layer_cont .integral{display: inline-block;width: 1.28rem;height: 1.15rem;margin-top: 0.45rem;background: url(../image/game_integral.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .integral span{color:#ea3925;font-size: 0.32rem;display:inline-block;line-height: 0.9rem;font-weight: bold;}
+.layer_award .layer_cont .ticket{display: inline-block;width: 1.3rem;height: 1.2rem;font-size:0.2rem;color:#ea3925;margin-top: 0.45rem;background: url(../image/game_ticket.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .ticket span{font-size: 0.4rem;display:inline-block;line-height: 0.8rem;}
+.layer_award .layer_cont .coupon{display: inline-block;width: 1.72rem;height: 0.92rem;font-size:0.22rem;color:#fff000;margin-top: 0.6rem;background: url(../image/game_coupon.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .coupon span{font-size: 0.4rem;display:inline-block;line-height: 0.75rem;}
+.layer_award .layer_cont .cleaner{display: inline-block;width: 1.26rem;height: 1.23rem;margin-top: 0.4rem;background: url(../image/game_cleaner.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .macbook{display: inline-block;width: 1.86rem;height: 1.04rem;margin-top: 0.6rem;background: url(../image/game_macbook.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_award .layer_cont .cooker{display: inline-block;width: 0.99rem;height: 1.29rem;margin-top: 0.4rem;background: url(../image/game_cooker.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+
+.layer_login{height: 100%;width: 100%;}
+.layer_login .game_login{width: 6.18rem;height: 3.67rem;font-size:0;text-align: center;background: url(../image/game_login.png) no-repeat;webkit-background-size: 100% 100%;background-size: 100% 100%;z-index: 999;position: absolute;top: -50%;left: 50%;-webkit-transform: translateX(-50%) ;-moz-transform: translateX(-50%) ;-ms-transform: translateX(-50%) ;-o-transform: translateX(-50%);transform: translateX(-50%);}
+.layer_login .game_login h3{font-size: 0.24rem;color: #5a3d1b;margin-top: 1.5rem;}
+.layer_login .game_login .login{display: inline-block;width: 3.31rem;height: 0.6rem;margin-top: 0.3rem;background: url(../image/game_loginBtn.png) no-repeat;webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_login .game_login p{font-size: 0.2rem;color: #5a3d1b;margin-top: 0.4rem;}
+
+.layer_award .layer_cont h2{font-size: 0.24rem;color: #5a3d1b;margin-top: 1.12rem;}
+.layer_award .layer_cont p{color: #5a3d1b;font-size: 0.2rem;line-height: 0.56rem;}
+.layer_award .layer_cont .award_user{font-size: 0.16rem;}
+.layer_box .game_add{display: inline-block;width: 3.3rem;height: 0.5rem;background: url(../image/game_add.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+.layer_box .game_reset{display: inline-block;width: 3.3rem;height: 0.5rem;margin-top: 0.12rem;background: url(../image/game_reset.png) no-repeat;-webkit-background-size: 100% 100%;background-size: 100% 100%;}
+
+.layer_over{height: 100%;width: 100%;}
+.layer_over .game_over{width: 6.18rem;height: 4.07rem;font-size:0;text-align: center;background: url(../image/game_login.png) no-repeat;webkit-background-size: 100% 100%;background-size: 100% 100%;z-index: 999;position: absolute;top: 8%;left: 50%;-webkit-transform: translateX(-50%) ;-moz-transform: translateX(-50%) ;-ms-transform: translateX(-50%) ;-o-transform: translateX(-50%);transform: translateX(-50%);}
+.layer_over .game_over h3{font-size: 0.26rem;color: #5a3d1b;margin-top: 1.5rem;}
+.layer_over .game_over p{font-size: 0.2rem;color: #5a3d1b;margin-top: 0.16rem;}
+.layer_over .game_over .game_add{margin-top: 0.38rem;}
+.layer_over .game_over .game_reset{}
+
+
+
+
+

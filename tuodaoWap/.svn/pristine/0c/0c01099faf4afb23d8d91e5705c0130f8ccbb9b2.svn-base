@@ -1,0 +1,193 @@
+$(function(){
+var status = false; // 判断手机号合不合法
+$('.phoneNum').blur(function() {
+    if (/^1[34578]\d{9}$/.test($(this).val())) {
+        status = true;
+    } else {
+        if ($('.phoneNum').val() == '') {
+            layer.msg('请输入手机号码');
+        } else {
+            layer.msg('<div style="max-width:2.4rem">手机号码不合法，请重新输入</div>');
+        }
+        status = false;
+
+    }
+})
+// 跳转按钮
+$('.isInvited .first').click(function() {
+    $('.popup').fadeIn("fast");
+                        $('.resigers').fadeIn("fast");
+    $('.layui-layer-shade').css('opacity','0.4');
+    $('.layui-layer').css('backgroudColor','transparent');
+    if (status) {
+        // 验证手机号是否已经注册拓道金服
+        // 若未注册，则开始进行注册
+        $('.phoneVal').val($('.phoneNum').val())
+        $('.total').show();
+        $('.agree').show();
+        $(this).hide();
+        // $('.isInvited').height('25rem');
+        // $('.address').css({
+        //     'padding-bottom': '0.85rem',
+        //     'background': 'url(./img/isInvited/repeat.png)repeat-x'})
+        $('.isInvited .second').css('display', 'block');
+        $('.phoneNum').hide();
+        // 已注册，则提示用户已注册
+        layer.msg('您已是拓道用户<br />请勿重复注册');
+    } else {
+        if ($('.phoneNum').val() == '') {
+            layer.msg('请输入手机号码');
+        } else {
+            layer.msg('<div style="max-width:2.4rem">手机号码不合法，请重新输入</div>');
+        // layer.msg('手机号码不合法，请重新输入');
+        }
+        status = false;
+    }
+})
+
+
+
+// 验证规则，提示信息
+
+
+$('.imgCodeVal').blur(function() {
+    if ($(this).val() === '') {
+        layer.msg('请输入图形验证码');
+    }
+})
+$('.msgCodeVal').blur(function() {
+    if ($(this).val() === '') {
+        layer.msg('请输入短信验证码');
+    }
+})
+var pwdStatus = false;
+$('.psw').blur(function() {
+    if (!(/^\s*$/g.test($(this).val()))) {
+        if ($(this).val().length < 6 || $(this).val().length > 16) {
+            layer.msg('<div style="max-width:2.4rem">请设置6-16位登陆密码</div>');
+            pwdStatus = false
+        } else {
+            pwdStatus = true
+        }
+    } else {
+        pwdStatus = false
+        layer.msg('<div style="max-width:2.4rem">请设置6-16位登陆密码</div>');
+    }
+})
+// 相关协议同意与否对应样式
+$('#check1').click(function() {
+    if ($("#check1[type='checkbox']").is(':checked')) {
+        $('.agree label').css({
+            'background': 'url(./img/isInvited/select_2.png)center no-repeat',
+            'backgroundSize': '100%'
+        });
+    } else {
+        $('.agree label').css({
+            'background': 'url(./img/isInvited/select_1.png)center no-repeat',
+            'backgroundSize': '100%'
+        });
+    }
+})
+
+// 获取验证码功能逻辑
+
+// 点击获取短信验证码，并验证图形验证码是否正确
+var num = 60; // 倒计时60秒
+var timer = ''; // 用来清除计时器的赋值变量
+$('.msgCode').on('click', function() {
+    if (num != 60) {
+        return false;
+    }
+    clearInterval(timer);
+    if ($('.imgCodeVal').val() == '') {
+        layer.msg('请输入图形验证码');
+        $('.imgCodeVal').css('borderColor', 'red');
+    } else {
+        $('.imgCodeVal').css('borderColor', '#FBB67A');
+        // $('.imgCodeVal').val() 前端获取的图片验证码的值
+        // 开始判断$('.imgCodeVal').val()图片验证码是否正确
+        // $('.imgCodeVal').val()图片验证码的值正确：开始发送短信验证码，
+        // 若短信验证码成发送，弹窗提示
+        layer.msg('<div style="max-width:2.4rem">短信验证码已发送到您的手机</div>');
+        // 开始执行倒计时，60秒后短信验证码失效
+        timer = setInterval(function() {
+            num--;
+            $('.msgCode').html(num + 'S');
+            if (num < 0) {
+                clearInterval(timer);
+                num = 60;
+                $('.msgCode').html('重新获取验证码');
+            }
+        }, 1000);
+        // $('.imgCodeVal').val()图片验证码的值错误，弹窗提示：并更新图形验证码
+        layer.msg('<div style="max-width:2.4rem">图形验证码错误，请重新输入</div>');
+    }
+})
+
+// 跳转按钮
+$('.second').on('click', function() {
+    if ($("#check1[type='checkbox']").is(':checked')) {
+        if ($('.msgCodeVal').val() !== '') {
+            if ($('.psw').val() !== '') {
+                if (pwdStatus) {
+                    // 注册成功提示并跳转
+                    $('.popup').fadeIn("fast");
+                    $('.resigers').fadeIn("fast");
+                }
+            } else {
+                pwdStatus = false
+                layer.msg('<div style="max-width:2.4rem">请设置6-16位登陆密码</div>')
+            }
+        } else {
+            layer.msg('请输入验证码');
+        }
+    } else {
+        layer.msg('请阅读并同意协议');
+    }
+})
+
+// 是否是微信浏览器
+// var is_weixin = (function(){return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1})();
+// 注册成功弹窗领取红包跳转下载APP链接
+    // $('.resigers .open').click(function(){
+    //     if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    //         window.location.href = 'itms-apps://itunes.apple.com/app/id1030238074';
+    //     }else if (/(Android)/i.test(navigator.userAgent)) {
+    //         if (is_weixin) {
+    //             $('.popup').fadeOut("fast");
+    //             $('.resigers').fadeOut("fast");
+    //             $('.popupWX').fadeIn("fast");
+    //             $('.weixin').fadeIn("fast");
+    //         } else {
+    //             window.location.href = 'https://www.51tuodao.com/static/apk/tdjf.apk';
+    //         }
+    //     }
+    // })
+// 注册成功弹窗关闭按钮
+    $('.close').click(function(){
+        $('.popup').fadeOut("fast");
+        $('.resigers').fadeOut("fast");
+    })
+// 关闭微信选择浏览器提示弹框
+    $('.popupWX').click(function(){
+        $('.popupWX').fadeOut("fast");
+        $('.weixin').fadeOut("fast");
+    })
+    $('.weixin').click(function(){
+        $('.popupWX').fadeOut("fast");
+        $('.weixin').fadeOut("fast");
+    })
+// 下载拓道APP按钮
+    // $('.download').click(function(){
+    //     if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    //         window.location.href = 'itms-apps://itunes.apple.com/app/id1030238074';
+    //     }else if (/(Android)/i.test(navigator.userAgent)) {
+    //         if (is_weixin) {
+    //             $('.popupWX').fadeIn("fast");
+    //             $('.weixin').fadeIn("fast");
+    //         } else {
+    //             window.location.href = 'https://www.51tuodao.com/static/apk/tdjf.apk';
+    //         }
+    //     }
+    // })
+})

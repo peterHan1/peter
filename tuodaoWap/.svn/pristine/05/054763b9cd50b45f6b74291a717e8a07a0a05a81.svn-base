@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>邀请奖励记录</title>
+		<meta name="full-screen" content="yes">
+	    <meta name="x5-fullscreen" content="true">
+	    <link rel="stylesheet" type="text/css" href="css/reset.css">
+	    <link rel="stylesheet" href="css/mescroll.min.css" />
+		<link rel="stylesheet" href="css/mescroll-option.css" />
+	    <script src="js/base.js"></script>
+	    <style>
+	    	html,body{height:100%;overflow: hidden;}
+	    .dis_none{display: none;}
+		body{font-family: PingFangSC-Regular, sans-serif;background-color: #F2F3F7;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		a{outline:none;-moz-outline-style:none;}
+	    	.prize_record{height: 100%;overflow: hidden;}
+	    	.prize_record .prize_top{width:100%;background-color: #fff;padding: .22rem 0 .33rem 0;overflow: hidden;margin-bottom:.2rem;height:3.47rem;position: fixed;top:0;left:0;}
+	    	.prize_record .prize_top .tops .til{font-size: .64rem;text-align: center;font-weight: bold;color:#FF780E;}
+	    	.prize_record .prize_top .tops .font{font-size:.24rem;color:#666;text-align: center;}
+	    	.prize_record .prize_top dl{width:50%;float:left;text-align: center;margin: .18rem 0 .09rem 0;}
+	    	.prize_record .prize_top dl dt{font-size: .4rem;font-weight: bold;color:#FF780E;}
+	    	.prize_record .prize_top dl dd{font-size: .24rem;color:#666;position: relative;}
+	    	.prize_record .prize_top dl dd i{font-size: .24rem;vertical-align: middle;position: absolute;right:.9rem;top:.04rem;}
+	    	.prize_record .prize_bot{width:100%;overflow: hidden;}
+	    	.prize_record .prize_bot .tab{width:100%;height:.9rem;background-color: #fff;border-bottom:1px solid #E0E0E0;position: fixed;top:4.21rem;left:0;}
+	    	.prize_record .prize_bot .tab span{display: block;float:left;width:50%;height:.9rem;line-height: .9rem;font-size: .28rem;color:#333333;text-align: center;}
+	    	.prize_record .prize_bot .tab span.on{color:#FF780E;position: relative;}
+	    	.prize_record .prize_bot .tab span.on:after{content:'';position: absolute;width:.68rem;height:.06rem;background-color: #FF780E;border-radius:.03rem;bottom:0;left:50%;margin-left:-.34rem;}
+	    .prize_record .prize_bot .data_info{width: 100%;position: fixed;top: 5.14rem;left: 0;overflow: auto;}
+	    .prize_record .prize_bot .data_info .item{height:.79rem;overflow: hidden;background-color: #fff;border-bottom:1px solid #e0e0e0;padding: 0 .3rem;}
+	    .prize_record .prize_bot .data_info .item span{display: block;float:left;width:25%;height:100%;line-height: .79rem;font-size: .24rem;color:#666666;text-align: left;}
+	    .prize_record .prize_bot .data_info .item span:last-child{text-align: right;}
+	    .prize_record .prize_bot .data_info ul{padding: 0 .3rem;background-color: #fff;overflow: hidden;}
+	    .prize_record .prize_bot .data_info ul li{height:.9rem;color:#333333;font-size: .28rem;text-align: left;border-bottom:1px solid #e0e0e0;}
+	    .prize_record .prize_bot .data_info ul li:last-child{border:none;}
+	    .prize_record .prize_bot .data_info ul li span{display: block;float:left;width:25%;height:100%;line-height:.9rem;}
+	    .prize_record .prize_bot .data_info ul li span:last-child{text-align: right;}
+	    .prize_record .prize_bot .no_data {overflow: hidden;z-index: 99999;position: fixed;bottom:2.55rem;left:50%;margin-left:-1.6rem;}
+	    .prize_record .prize_bot .no_data .logo{width:3.2rem;height:3.2rem;background: url(img/no_data.png) no-repeat center; background-size:100%;}
+	    .prize_record .prize_bot .no_data p{font-size: .28rem;color:#666;text-align: center;}
+	    </style>
+	</head>
+	<body>
+		<div class="prize_record max_width">
+			<div class="prize_top">
+				<div class="tops">
+					<p class="til">400.00</p>
+					<p class="font">7月3日待收返现总奖励(元)</p>
+				</div>
+				<dl>
+					<dt>1288.5</dt>
+					<dd>已收返现奖励(元)</dd>
+				</dl>
+				<dl>
+					<dt>800</dt>
+					<dd>抵用券奖励(元)</dd>
+				</dl>
+				<a href="invest_record.html">
+					<dl>
+						<dt>6</dt>
+						<dd>直接邀请人数<i class="iconfont">&#xe83d;</i></dd>
+					</dl>
+				</a>
+				<a href="invest_record.html">
+					<dl>
+						<dt>3</dt>
+						<dd>间接邀请人数<i class="iconfont">&#xe83d;</i></dd>
+					</dl>
+				</a>
+			</div>
+			<div class="prize_bot">
+				<p class="tab"><span class="on">待收返现明细</span><span>已收返现明细</span></p>
+				<div class="data_info mescroll " id="mescroll">
+					<p class="item"><span>奖励金额(元)</span><span>奖励类型</span><span>奖励来源人</span><span>产生时间</span></p>
+					<div>
+						<ul id="prize_record">
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+							<li>
+								<span>1.23</span>
+								<span>直接奖励</span>
+								<span>152****2131</span>
+								<span>4月1日</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--无数据情况下，让类名为data_info的div隐藏，使no_data的div显示-->
+				<div class="no_data dis_none">
+					<div class="logo"></div>
+					<p>暂无待收明细</p>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/mescroll.min.js"></script>
+		<script>
+			$(function(){
+				$('.prize_bot .tab span').on('click',function(){
+					$('.prize_bot .tab span').removeClass('on');
+					$(this).addClass('on');
+				});
+//				上拉加载
+				var mescroll = new MeScroll('mescroll', {
+					down:{
+						auto:false,
+						use: false
+					},
+					up: {
+						callback: upCallback,
+						auto: false,//初始化完毕,是否自动触发上拉加载的回调
+						isBounce: false,
+						noMoreSize: 4,
+						page: {
+							num: 1,
+							size: 5,
+							time: null
+						}
+					}
+				});
+				/*上拉加载的回调 page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+				function upCallback(page){
+					//请求数据写在这里
+//						$.ajax({
+//							url: 'xxxxxx?num=' + page.num + "&size=" + page.size, //如何修改page.num从0开始 ?
+//							success: function(curPageData) {
+//								//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+//								//mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空,显示empty配置的内容;
+//								//列表如果无下一页数据,则提示无更多数据,(注意noMoreSize的配置)
+//								
+//								//方法一(推荐): 后台接口有返回列表的总页数 totalPage
+//								//必传参数(当前页的数据个数, 总页数)
+//								//mescroll.endByPage(curPageData.length, totalPage);
+//										
+//								//方法二(推荐): 后台接口有返回列表的总数据量 totalSize
+//								//必传参数(当前页的数据个数, 总数据量)
+//								//mescroll.endBySize(curPageData.length, totalSize);
+//										
+//								//方法三(推荐): 您有其他方式知道是否有下一页 hasNext
+//								//必传参数(当前页的数据个数, 是否有下一页true/false)
+//								//mescroll.endSuccess(curPageData.length, hasNext);
+//										
+//								//方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.
+//								//如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据
+//								//如果传了hasNext,则翻到第二页即可显示无更多数据.
+//								//mescroll.endSuccess(curPageData.length);
+//								
+//								//设置列表数据
+//								//setListData(curPageData);//自行实现 TODO
+//							},
+//							error: function(e) {
+//								//联网失败的回调,隐藏下拉刷新和上拉加载的状态
+//								mescroll.endErr();
+//							}
+//						});
+					//联网加载数据
+					getListDataFromNet(page.num, page.size, function(curPageData){
+						//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+						//mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+						console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+						
+						//方法一(推荐): 后台接口有返回列表的总页数 totalPage
+						//mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
+						
+						//方法二(推荐): 后台接口有返回列表的总数据量 totalSize
+						//mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
+						
+						//方法三(推荐): 您有其他方式知道是否有下一页 hasNext
+						//mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
+						
+						//方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
+						mescroll.endSuccess(curPageData.length);
+						
+						//设置列表数据
+						setListData(curPageData, true);
+					}, function(){
+						//联网失败的回调,隐藏上拉加载的状态
+		                mescroll.endErr();
+					});
+				}
+			
+				/*设置列表数据*/
+				function setListData(curPageData, isAppend) {
+					var listDom=document.getElementById("prize_record");
+					for (var i = 0; i < curPageData.length; i++) {
+						var newObj=curPageData[i];
+						var str='<span>1.23</span>';
+						str+='<span>直接奖励</span>';
+						str+= '<span>152****2131</span>';
+						str+='<span>4月1日</span>';
+						var liDom=document.createElement("li");
+						liDom.innerHTML=str;
+						if (isAppend) {
+							listDom.appendChild(liDom);//加在列表的后面,上拉加载
+						} else{
+							listDom.insertBefore(liDom, listDom.firstChild);//加在列表的前面,下拉刷新
+						}
+					}
+				}
+			
+			/*联网加载列表数据
+			 在您的实际项目中,请参考官方写法: http://www.mescroll.com/api.html#tagUpCallback
+			 请忽略getListDataFromNet的逻辑,这里仅仅是在本地模拟分页数据,本地演示用
+			 实际项目以您服务器接口返回的数据为准,无需本地处理分页.
+			 * */
+				function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
+					setTimeout(function() {
+						$.ajax({
+							type: 'GET',
+							url: 'js/pdlist1.json',
+							dataType: 'json',
+							success: function(data) {
+								var listData = [];
+								// 	模拟分页
+								for(var i = (pageNum - 1) * pageSize; i < pageNum * pageSize; i++) {
+									if(i == data.length) break;
+									listData.push(data[i]);
+								}
+								//回调
+								successCallback(listData);
+							},
+							error: errorCallback
+						});
+					}, 500)
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>邀请好友</title>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" href="css/inviteFriend.css">
+</head>
+
+<body>
+    <div class="max_width invite">
+        <div class="header">
+            <img class="record" src="img/invite/invite_12.png" alt="">
+            <div class="content">
+                <p class="lev"><img src="img/invite/lev_1.png" alt=""></p>
+                <p class="messages">您距中级理财师还差2个V1好友<br />未达到200万代收金额</p>
+            </div>
+        </div>
+        <div class="hongbao">
+            <div class="top">
+                <div><span>10</span>元</div>
+                <div><span>0.25</span>%</div>
+            </div>
+            <div class="middle"><div>直接好友每笔出借收益5%，间接好友每笔出借收益2%</div></div>
+            <div class="bottom">15位好友达到V1等级切好友总待收达400万</div>
+        </div>
+        <div class="rights"><img src="img/invite/invite_5.png" alt=""></div>
+        <div class="first">
+            <dt>好友首次出借，您将获得</dt>
+            <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+            <dt>好友第二次出借起，您将获得</dt>
+            <dd>直接好友每笔出借收益2%</dd>
+        </div>
+        <div class="second">
+            <dt>好友首次出借，您将获得</dt>
+            <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+            <dt>好友第二次出借起，您将获得</dt>
+            <dd>直接好友每笔出借收益3%，间接好友每笔出借收益1%<br />(6位好友达到v1且好友总待收达200万)</dd>
+        </div>
+        <div class="third">
+            <dt>好友首次出借，您将获得</dt>
+            <dd class="margin">10元抵用券，好友首次出借金额0.25%返现</dd>
+            <dt>好友第二次出借起，您将获得</dt>
+            <dd>直接好友每笔出借收益5%，间接好友每笔出借收益2%<br />(15位好友达到v1且好友总待收达400万)</dd>
+        </div>
+        <div class="rule"><a href="javascript:;">查看邀请规则></a></div>
+        <div class="inviteCode">
+            <div class="myCode"></div>
+            <p class="code">D6K7K</p>
+            <p class="title">长按邀请码复制</p>
+        </div>
+        <div class="footer">
+            <a class="btn">立即邀请</a>
+        </div>
+    </div> 
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<script src="./js/inviteFriend.js"></script>

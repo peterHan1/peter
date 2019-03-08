@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>邀请好友</title>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" href="css/inviteFriend.css">
+</head>
+
+<body>
+    <div class="max_width invite">
+        <div class="header">
+            <div class="top">
+                <img src="img/invite/invite_5.png" style="width: 2.2rem;height: 1.42rem;margin-right: 1.2rem;" alt="">
+                <img src="img/invite/invite_6.png" style="width: 2.06rem;height: 1.38rem;" alt="">
+            </div>
+            <div class="bottom">
+                <img src="img/invite/invite_7.png" style="width: 2.06rem;height: 1.38rem;margin-right: 1.42rem;" alt="">
+                <img src="img/invite/invite_8.png" style="width: 2.06rem;height: 1.38rem;" alt="">
+            </div>
+        </div>
+        <div class="inviteCode">
+            <div class="myCode"><img src="img/invite/invite_2.png" alt=""></div>
+            <p class="code">D6K7K</p>
+        </div>
+        <div class="inviteRecord">
+            <div class="top"><img src="img/invite/invite_3.png" alt=""></div>
+            <div class="middle">我已成功邀请<span class="num">3</span>位好友</div>
+            <div class="reward">
+                <p>共获取<span class="dyq">30</span>元抵用券</p>
+                <p><span class="money">128</span>元返现奖励</p>
+            </div>
+        </div>
+        <div class="point">
+            <div class="title"><img src="img/invite/invite_4.png" alt=""></div>
+            <p>1.被邀请人出借成功后即获得抵用券和返现奖励。</p>
+            <p>2.抵用券有效期为30天，有效期开始时间为抵用券发放时间。</p>
+            <p>3.抵用券使用条件为单笔出借金额满1000元且出借期限1个月及以上。</p>
+            <p>4.新规则上线前被邀请用户还有待收金额依然沿用旧邀请规则享有受益。</p>
+            <p>5.本平台对本邀请规则保留最终解释权，如有疑问敬请咨询本平台客服热线400-85-666-85。</p>
+        </div>
+        <div class="footer">
+            <a href="">立即邀请</a>
+        </div>
+    </div> 
+</body>
+</html>

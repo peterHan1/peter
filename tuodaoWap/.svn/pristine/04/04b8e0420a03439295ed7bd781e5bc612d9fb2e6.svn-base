@@ -1,0 +1,38 @@
+html,body{height:100%;}
+.appraPage{height:100%;width:100%;}
+.appraPage .page{height:100%;width:100%;background:url(../images/appraisal/pageIndex.png) no-repeat;background-size: 100% 100%;position:relative;}
+.appraPage .page a{display: inline-block;padding:0 1.35rem;line-height:0.8rem;color:#fff;font-size:0.28rem;position:absolute;bottom:1rem;left:24%;background-color:#ff8a10;border-radius:20px;}
+.dis_no{display:none;}
+.appraisal{height:100%;}
+.appraisal .tlt{font-size:0.34rem;color:#333;line-height:0.6rem;border-bottom:1px solid #d8d8d8;padding:0.27rem 0.4rem;}
+.appraisal .select li{font-size:0.28rem;padding:0 0.4rem;line-height:0.88rem;border-bottom:1px solid #d8d8d8;color:#333;}
+.appraisal .select li i{float:right;font-size:0.32rem;}
+.appraisal .select li.on{color:#FF7400}
+.appraisal .bars{padding:0 0.4rem;text-align:center;position:relative;margin-top:2rem;}
+.appraisal .bar{width:100%;height:0.16rem;border-radius: 20px;background-color: #ddd;}
+.appraisal .bar .plan{width:0;height:100%;border-radius: 20px;background-color: #ff7400;}
+.appraisal .bars .barTxt{font-size:0.26rem;color:#333;margin-top:0.28rem;}
+.appraisal .bars .getBack{color:#ff711c;font-size:0.26rem;position: absolute;left:0.4rem;bottom:0}
+.appraisal .subBtn{padding:0 0.7rem;font-size: 0.22rem;text-align: center;margin-top:0.8rem}
+.appraisal .subBtn .checkTxt{color:#a3a3a3;line-height:0.85rem;font-size:0.24rem;}
+.appraisal .subBtn .checkTxt i{font-size:0.28rem;}
+.appraisal .subBtn .checkTxt.on i{color:#ff711c;}
+.appraisal .subBtn .btn{display: inline-block;width:100%;font-size:0.32rem;text-align:center;color:#ff711c;border: 1px solid #ff711c;border-radius: 5px;line-height:0.86rem;}
+.appraisal .subBtn .submitBtn{background-color:#ff711c;color:#fff;}
+.resule{text-align: center;overflow: hidden;}
+.resule .resule_txt{color:#777;font-size:0.3rem;margin-top:1.16rem;}
+.resule .resule_time{color:#a3a3a3;font-size: 0.25rem;margin-top:0.6rem;}
+.resule .resule_accom{padding:0 0.4rem;}
+.resule .resule_btn{width:100%;background-color:#ff711c;color:#fff;font-size: 0.32rem;line-height:0.88rem;text-align: center;border-radius: 5px;margin-top:1.08rem;}
+.resule .resule_rest{font-size:0.26rem;color:#ff711c;margin-top:0.5rem;}
+.resule .resule_com{height:3.78rem;line-height:3.78rem;width:4.15rem;margin:0.55rem auto 0;color:#333;font-size:0.63rem;text-align:center;background:url(../images/appraisal/result_com.png) no-repeat;background-size: 100% 100%;}
+.resule .resule_com p{font-weight: bold;}
+.explain{padding:0 0.4rem;overflow: hidden;}
+.explain .explain_top,.explain_bot{color:#333;font-size:0.26rem;line-height:0.48rem;}
+.explain .explain_top{margin-top:0.5rem;}
+.explain .explain_bot{margin-top:0.4rem;}
+.explain li{margin-top:0.15rem;}
+.explain li div{color:#333;font-size:0.23rem;overflow: hidden;}
+.explain li div span{float:left;display: inline-block;width:0.1rem;height:0.1rem;border-radius: 50%;background-color:#a3a3a3;margin-right:0.2rem;margin-top:0.26rem;}
+.explain li div b{float:left;display:inline-block;font-weight: normal;line-height:0.64rem;}
+.explain li p{color:#777;font-size:0.23rem;line-height:0.36rem;}

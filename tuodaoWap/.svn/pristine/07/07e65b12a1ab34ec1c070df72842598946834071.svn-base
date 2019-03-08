@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>拓道</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+	<style>
+		html,body{
+			width : 100% ;
+			height : 100% ;
+			background-color: #fff;
+			overflow : hidden;
+		}
+		.box{
+    		position : absolute ;
+    		background-color: #000 ;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="box">
+		<video controls="controls" autoplay="autoplay" width="100%" height="200px"  webkit-playsinline="true" playsinline="true" >
+        	<source src="https://www.51tuodao.com/upload/data/upfiles/media/201611/23/td_release.mp4" type="video/mp4" />   
+    	</video>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<script>
+</script>
+<script type="text/javascript">
+	var width = document.documentElement.clientWidth;
+	var height =  document.documentElement.clientHeight;
+	if( width < height ){
+      var $_video =  $('.box');
+      $_video.width(height);
+      $_video.height(width);
+      $('video').width(height);
+      $('video').height(width);
+      $_video.css('top',  (height-width)/2 );
+      $_video.css('left',  0-(height-width)/2 );
+      $_video.css('transform' , 'rotate(90deg)');
+      $_video.css('transform-origin' , '50% 50%');
+	}
+   </script>

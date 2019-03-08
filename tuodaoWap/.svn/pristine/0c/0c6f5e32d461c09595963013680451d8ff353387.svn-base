@@ -1,0 +1,92 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+// 借款 start
+import Borrow from '@/components/Borrowing/borrow/borrow'
+import Cash from '@/components/Borrowing/cash/cash'
+import repay from '@/components/Borrowing/repayment/repay'
+import myCenter from '@/components/Borrowing/myCenter/myCenter'
+import CashDetails from '@/components/Borrowing/cash/cashDetails'
+import Login from '@/components/Borrowing/myCenter/login'
+import LoginNext from '@/components/Borrowing/myCenter/loginNext'
+import Register from '@/components/Borrowing/myCenter/register'
+import openDeposit from '@/components/Borrowing/openDeposit/openDeposit'
+// 借款 end
+Vue.use(Router)
+
+export default new Router({
+	mode: 'history',
+	routes: [
+		{
+			path: '/borrow',
+			name: 'borrow',
+			component: Borrow,
+			meta: {
+				title: '借款页'
+			}
+		},
+		{
+			path: '/cash',
+			name: 'cash',
+			component: Cash,
+			meta: {
+				title: '提现页'
+			}
+		},
+		{
+			path: '/repay',
+			name: 'repay',
+			component: repay,
+			meta: {
+				title: '还款页'
+			}
+		},
+		{
+			path: '/myCenter',
+			name: 'myCenter',
+			component: myCenter,
+			meta: {
+				title: '我的'
+			}
+		},
+		{
+			path: '/cashDetails',
+			name: 'cashDetails',
+			component: CashDetails,
+			meta: {
+				title: '提现页'
+			}
+		},
+		{
+			path: '/login',
+			name: 'login',
+			component: Login,
+			meta: {
+				title: '登录/注册'
+			}
+		},
+		{
+			path: '/loginNext',
+			name: 'loginNext',
+			component: LoginNext,
+			meta: {
+				title: '登录/注册'
+			}
+		},
+		{
+			path: '/register',
+			name: 'register',
+			component: Register,
+			meta: {
+				title: '注册'
+			}
+		},
+		{
+			path: '/openDeposit',
+			name: 'openDeposit',
+			component: openDeposit,
+			meta: {
+				title: '开通存管'
+			}
+		}
+	]
+})
