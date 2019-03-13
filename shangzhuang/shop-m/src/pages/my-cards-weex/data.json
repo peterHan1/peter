@@ -1,0 +1,39 @@
+{
+    "count": 0,
+    "data": {
+        "coupons": [
+            {   "aboutOverTime": true,
+                "consumptionLimit": 100,
+                "discountPrice": 1,
+                "duringTime": true,
+                "endTime": 1509010620000,
+                "exchangeRate": 1,
+                "id": 1750178,
+                "isAppPlatform": false,
+                "name": "满100元减1元",
+                "overdue": true,
+                "platform": 0,
+                "source": "满100-1 测试奖品",
+                "startTime": 1477388220000
+            },{
+                "aboutOverTime": false,
+                "consumptionLimit": 100,
+                "discountPrice": 1,
+                "duringTime": true,
+                "endTime": 1509010620000,
+                "exchangeRate": 1,
+                "id": 1750178,
+                "isAppPlatform": false,
+                "name": "满100元减1元",
+                "overdue": true,
+                "platform": 0,
+                "source": "满100-1 测试奖品",
+                "startTime": 1477388220000
+            }
+        ],
+        "tip": "您有1张优惠券，全部用完可省掉1.0元哦！"
+    },
+    "isRedirect": 0,
+    "isSuccess": 1,
+    "login": 0
+}

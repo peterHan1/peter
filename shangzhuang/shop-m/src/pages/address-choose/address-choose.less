@@ -1,0 +1,111 @@
+/*
+ * 选择地址
+ * @author yangcai@showjoy.com
+ */
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+  padding-top: 0;
+}
+#content {
+    .icon-chosed, .icon-add {
+        width: 33px;
+        height: 33px;
+        display: block;
+        background-repeat: no-repeat;
+    }
+    .icon-chosed {
+        background-image: url("//cdn1.showjoy.com/images/75/75668c9796894b0a95c2107019ed007a.png");
+        background-size: 30px;
+    }
+    .icon-plus {
+        margin-right: 10px;
+        font-size: 24px;
+        vertical-align: middle;
+        color: @grey3;
+    }
+    .address-area {
+        margin: 0 0 10px 0;
+        .click-area {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .click-area:nth-child(2n) {
+            background-color: #efefef;
+        }
+    }
+    .address__single {
+        & {
+            .mixin-select-disable();
+            position: relative;
+            font-size: 14px;
+            color: @black;
+            width: 100%;
+            padding: 20px;
+            line-height: 18px;
+        }
+
+        .click-area-grid(80%, 15%);
+    }
+    .address__new {
+        & {
+            display: block;
+            margin-top: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .icon-add {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .address__new-context {
+            font-size: 15px;
+            color: #8e8e8e;
+            text-decoration: underline;
+        }
+    }
+    .address__edit {
+        font-size: 14px;
+        color: #8e8e8e;
+        text-decoration: underline;
+    }
+
+}
+
+// mixins
+.click-area-grid(@leftWidth, @rightWidth) {
+    .grid-left {
+        width: @leftWidth;
+      .id-number{
+        line-height: 20px;
+        font-size: 14px;
+        margin-top: 6px;
+      }
+      .icon-profile:before {
+        margin-right: 4px;
+        color: @grey5;
+      }
+    }
+    .grid-right {
+        position: absolute;
+        top: 20px;
+        right: 0; // 继承全局.list .list__click-area 的右内边距
+        width: @rightWidth;
+        font-size: 25px;
+        line-height: 36px;
+    }
+}
+.mixin-select-disable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

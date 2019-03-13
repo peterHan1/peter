@@ -1,0 +1,90 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+
+body {
+  background-color: rgba(167, 111, 232, 0.74);
+}
+p {
+  line-height: 1;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 30px;
+}
+.rules-wrap {
+  width: 710px;
+  margin: 30px auto 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px 20px;
+  .title {
+    color: rgb(142, 70, 226);
+    font-size: 28px;
+    line-height: 37px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .desc {
+    font-size: 26px;
+    color: rgb(73, 73, 73);
+    line-height: 37px;
+    text-indent: 2em;
+  }
+}
+
+.examples-wrap {
+  width: 710px;
+  margin: 0 auto;
+  
+  .examples-list {
+    .clearfix();
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    .item {
+      float: left;
+      width: 355px;
+      &:first-child {
+        border-right: 1px solid rgb(190, 149, 238);
+      }
+
+      .title {
+        font-size: 28px;
+        height: 44px;
+        border-bottom: 1px solid rgb(190, 149, 238);
+        line-height: 44px;
+        color: rgb(142, 70, 226);
+        .weekday {
+          float: left;
+          margin-left: 15px;
+        }
+        .index {
+          float: right;
+          margin-right: 15px;
+        }
+      }
+      .content {
+        padding: 15px;
+        font-size: 26px;
+        line-height: 30px;
+        color: rgb(73, 73, 73);
+        .desc {
+          margin-bottom: 10px;
+          &.highlight {
+            color: rgb(142, 70, 226);
+          }
+        }
+      }
+    }
+  }
+}

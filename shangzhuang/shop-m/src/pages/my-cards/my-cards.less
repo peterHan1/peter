@@ -1,0 +1,518 @@
+/*
+ * 我的卡券列表页
+ * @author xiaochen@yunjee.com
+ */
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+#header {
+  .ui-toolbar-right {
+    display: none;
+  }
+}
+
+body{
+  background-color: #F5F5F5;
+}
+
+#content{
+  .mask-france-pc{
+    .mask-box{
+      height: 227px;
+      position: fixed;
+      left: 7%;
+      right: 7%;
+      top: 25%;
+      z-index: 99;
+      background: #fff;
+      border-radius: 15px;
+      .acti{
+        color: #333;
+        font-size: 22px;
+        padding-top: 62px;
+        text-align: center;
+      }
+      .acti-det{
+        margin-top: 5px;
+        font-size: 18px;
+        color: #333;
+        text-align: center;
+      }
+      .gonow{
+        width: 90%;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        font-size: 24px;
+        margin: 45px auto 0 auto;
+        border-top: 1px solid #ccc;
+        span{
+          color: #976DF7;
+        }
+      }
+    }
+    .bg{
+      position: fixed;
+      background: #2a282b;
+      opacity: .5;
+      z-index: 12;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .close{
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+      }
+    }
+  }
+  .voucher-list{
+    visibility: hidden;
+    .voucher-hd{
+      background-color: #FFFFFF;
+      .clearfix();
+      .voucher-hd-item{
+        float: left;
+        height: 50px;
+        width: 50%;
+        &:last-child{
+          margin-left: -1px;
+        }
+        a{
+          width: 96%;
+          height: 50px;
+          line-height: 47px;
+          display: block;
+          font-size: 17px;
+          color: #4c3855;
+          text-align: center;
+        }
+        .item-left{
+          float: left;
+        }
+        .item-right{
+          float: right;
+        }
+      }
+      .ui-state-active{
+        a{
+          border-bottom: 3px solid #000;
+        }
+      }
+      .seprate{
+        width: 0;
+        height: 30px;
+        float: left;
+        margin-top: 10px;
+      }
+    }
+    .voucher-bd{
+      //优惠券列表
+      .coupons{
+        .no-relate-item {
+          overflow: hidden;
+          .no-relate-item-img {
+            display: block;
+            width: 57px;
+            height: 57px;
+            margin: 116px auto 0;
+          }
+          .no-relate-item-desc {
+            text-align: center;
+            color: @grey5;
+            font-size: 14px;
+            margin-top: 10px;
+          }
+        }
+        .item {
+          & {
+            height: 110px;
+            width: 348px;
+            margin: 15px auto;
+            position: relative;
+            background: url("//cdn1.showjoy.com/images/c2/c25d4b4f780048059f99df2b6cc4f8ea.png") no-repeat center 0;
+            background-size: 348px auto;
+            .clearfix();
+          }
+          @media (max-width: 320px) {
+            & {
+              margin: 10px;
+            }
+          }
+          .left{
+            float: left;
+            height: 100%;
+            width: 125px;
+            text-align: center;
+            background: url(//cdn1.showjoy.com/images/d3/d38bd343c0014e6387729bfab54a0e10.png) no-repeat 0 0;
+            background-size: auto 110px;
+            .cost{
+              height: 100%;
+              color: #403C54;
+              font-size: 18px;
+              padding-top: 15px;
+              padding-left: 11px;
+              span{
+                font-size: 40px;
+                font-weight: bolder;
+              }
+              .use-infor{
+                width: 75px;
+                height: 21px;
+                border: 0.5px solid #000;
+                line-height: 20px;
+                color: #000;
+                font-size: 12px;
+                font-weight: lighter;
+                margin: 8px auto 0 auto;
+                border-radius: 10px;
+                text-align: center;
+              }
+            }
+            .scope-spe{
+              color: #fff;
+              font-size: 12px;
+              position: relative;
+              width: 120px;
+              left: 69px;
+              top: 11px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              a{
+                color: #fff;
+              }
+            }
+            .restrict{
+              float: left;
+              margin: 12px 0 0 4px;
+              font-size: 12px;
+            }
+          }
+          .deadline{
+            position: relative;
+            float: right;
+            height: 100%;
+            width: 210px;
+            color: #AAAAAA;
+            padding-top: 20px;
+            .app{
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 74px;
+              height: 73px;
+              background: url("//cdn1.showjoy.com/images/96/96419c839d30493ab88c1f674168b012.png") no-repeat right 0;
+              background-size: 74px 73px;
+            }
+            .use{
+              color: #000000;
+              padding: 0 24px;
+              font-size: 15px;
+              height: 20px;
+              line-height: 20px;
+              font-weight: bolder;
+              margin-bottom: 13px;
+              background: url(//cdn1.showjoy.com/images/9a/9af69eee4aa5473b9c5c6caeed92b2fb.png) no-repeat 0 0;
+              background-size: 20px 20px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            .condition{
+              line-height: 16px;
+              font-size: 15px;
+              margin-bottom: 8px;
+            }
+            .date{
+              font-size: 15px;
+              line-height: 15px;
+              font-weight: lighter;
+            }
+          }
+          .out-of-time{
+            //background: #e5e5e5;
+          }
+        }
+        .add-coupon{
+          background: url('//cdn1.showjoy.com/images/29/29b4d7389abc499095a0766ea4085d19.png') no-repeat;
+          background-size: 348px 110px;
+        }
+        .deadline-normal{
+          background: #61c3c6;
+        }
+        .limit-use{
+          .left{
+            background: url("//cdn1.showjoy.com/images/89/89097aaa48024316a48ea3ac02cd4675.png") no-repeat 0 0;
+            background-size: auto 110px;
+          }
+          .deadline{
+            .use{
+              background: url("//cdn1.showjoy.com/images/d6/d6025abc81254731bca06349a7655a1a.png") no-repeat 0 0;
+              background-size: 20px 20px;
+            }
+          }
+        }
+        .out-of-time{
+          .left{
+            background: url("//cdn1.showjoy.com/images/78/7862a921e4e041af922d75ac28e5c210.png") no-repeat 0 0;
+            background-size: auto 110px;
+            .cost{
+              color: #5e5c71;
+            }
+          }
+          .deadline{
+            .use{
+              color: #767675;
+              background: url("//cdn1.showjoy.com/images/56/568f368ed5ee4102967062431663d011.png") no-repeat 0 0;
+              background-size: 20px 20px;
+            }
+            .app{
+              background: url("//cdn1.showjoy.com/images/d0/d093cd51e29746ceaafc2caa0aba0437.png") no-repeat 0 0;
+              background-size: 74px 72px;
+            }
+          }
+        }
+        .limit-out-of-time{
+          .left{
+            background: url("//cdn1.showjoy.com/images/78/7862a921e4e041af922d75ac28e5c210.png") no-repeat 0 0;
+            background-size: auto 110px;
+            .cost{
+              color: #5e5c71;
+            }
+          }
+          .deadline{
+            .use{
+              color: #767675;
+              background: url("//cdn1.showjoy.com/images/04/044d86e4b2074cc79b290ba5ed5c94b7.png") no-repeat 0 0;
+              background-size: 20px 20px;
+            }
+            .app{
+              background: url("//cdn1.showjoy.com/images/d0/d093cd51e29746ceaafc2caa0aba0437.png") no-repeat 0 0;
+              background-size: 74px 72px;
+            }
+          }
+        }
+        // .cost-50{
+        //   background-position: 0 -160px;
+        // }
+        // .cost-20{
+        //   background-position: 0 -160px*2;
+        // }
+      }
+
+      .redbag-list{
+        margin: 10px 0;
+        .item {
+          & {
+            height: 110px;
+            max-width: 300px;
+            margin: 10px auto;
+            color: #fff;
+            background: #ef7373;
+            position: relative;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+          }
+          .out-of-time{
+            background: #e5e5e5;
+          }
+          @media (max-width: 320px) {
+            & {
+              margin: 10px;
+            }
+          }
+          .top{
+            height: 45px;
+            padding-top: 7px;
+            border-bottom: 1px dashed rgba(0,0,0,.2);
+            .cost{
+              font-size: 11px;
+              float: left;
+              padding-left: 10px;
+              margin-top: 4px;
+              span{
+                font-size: 22px;
+                font-style: normal;
+              }
+            }
+            .scope-spe{
+              color: #fff;
+              font-size: 12px;
+              position: relative;
+              width: 120px;
+              left: 69px;
+              top: 11px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              a{
+                color: #fff;
+              }
+            }
+            .restrict{
+              float: left;
+              margin: 12px 0 0 4px;
+              font-size: 12px;
+            }
+            .scope{
+              font-size: 12px;
+              float: right;
+              padding-right: 10px;
+              margin-top: 12px;
+            }
+          }
+          .deadline{
+            height: 55px;
+            padding-left: 10px;
+            font-size: 12px;
+            .condition,
+            .date{
+              line-height: 16px;
+            }
+          }
+          .vbox{
+            display: table;
+            .vbox-outer{
+              display: table-cell;
+              vertical-align: middle;
+            }
+          }
+          .mask{
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border: 7px solid #fff;
+            border-left: 0;
+            top: 37px;
+          }
+          .mask-left{
+            .mask;
+            left: 0;
+            -webkit-border-top-right-radius: 7px;
+            -webkit-border-bottom-right-radius: 7px;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
+          }
+          .mask-right{
+            .mask;
+            right: 0;
+            -webkit-border-top-left-radius: 7px;
+            -webkit-border-bottom-left-radius: 7px;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+          }
+        }
+        .add-coupon{
+          background: url('//cdn1.showjoy.com/images/29/29b4d7389abc499095a0766ea4085d19.png') no-repeat;
+          background-size: 348px auto;
+        }
+        .deadline-forever{
+          background: #ef7373;
+          .scope{
+            color: #993c38;
+          }
+        }
+        .deadline-normal{
+          background: #61c3c6;
+        }
+        .out-of-time{
+          background: #e5e5e5;
+          .scope{
+            color: #8c8c8c;
+          }
+        }
+
+        .item{
+          background: #e95751;
+          .scope{
+            color: #993c38;
+          }
+        }
+        .out-of-time{
+          background: #e5e5e5;
+          .scope{
+            color: #8c8c8c;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*Transition*/
+.ui-viewport-transitioning .ui-panel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-viewport-transitioning .ui-loading {
+  -webkit-animation-name: none;
+}
+.in {
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 350ms;
+}
+.out {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 225ms;
+}
+
+/* keyframes for slidein from sides */
+@-webkit-keyframes slideinfromright {
+  from { -webkit-transform: translateX(100%); }
+  to { -webkit-transform: translateX(0); }
+}
+
+@-webkit-keyframes slideinfromleft {
+  from { -webkit-transform: translateX(-100%); }
+  to { -webkit-transform: translateX(0); }
+}
+/* keyframes for slideout to sides */
+@-webkit-keyframes slideouttoleft {
+  from { -webkit-transform: translateX(0); }
+  to { -webkit-transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slideouttoright {
+  from { -webkit-transform: translateX(0); }
+  to { -webkit-transform: translateX(100%); }
+}
+.slide.out, .slide.in {
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-duration: 350ms;
+}
+.slide.out {
+  -webkit-animation-name: slideouttoleft;
+  -webkit-transform: translateX(-100%);
+}
+
+.slide.in {
+  -webkit-animation-name: slideinfromright;
+  -webkit-transform: translateX(0);
+}
+
+.slide.out.reverse {
+  -webkit-animation-name: slideouttoright;
+  -webkit-transform: translateX(100%);
+}
+
+.slide.in.reverse {
+  -webkit-animation-name: slideinfromleft;
+  -webkit-transform: translateX(0);
+}
+
+
+.ui-tabs-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 5;
+  position: relative;
+}

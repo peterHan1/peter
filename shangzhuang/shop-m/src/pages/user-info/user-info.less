@@ -1,0 +1,260 @@
+/*
+ * 我的信息页面
+ * @author yangcai@showjoy.com
+ * @last 2014/12/15
+ */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+@import "../../mixins/common/grid";
+@import "../../mixins/common/user-level";
+
+#header {
+  .ui-toolbar-right {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(//cdn1.showjoy.com/assets/fonts/roboto/100.woff) format('woff');
+}
+
+body {
+  background-color: #fff;
+}
+
+a {
+  //background-color: rgba(0, 0, 0, .5) // 触摸提示器;
+}
+
+#layout {
+  padding-top: 0;
+}
+
+.icon-list {
+  font-size: 40px;
+}
+
+.icon-bag-press {
+  font-size: 40px;
+}
+
+.btn-exit {
+  width: 570px;
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  border: 1px solid #9983A4;
+  background-color: #A595AD;
+  border-radius: 6px;
+  font-size: 33px;
+  color: #fff;
+  display: block;
+  padding: 0;
+}
+
+.module-list {
+  li {
+    padding: 0 80px;
+    height: 100px;
+    line-height: 100px;
+    color: #666;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAbAgMAAADe/z1UAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURZeXl6GhoaCgoJ+fn85n8pUAAAAEdFJOUwH4nE+Lb7qAAAAAOklEQVQI12O4wQAEYSBiagOQUE0AEpwRQIKJKMEYIMELIkwDgMRVBwYG5lCQUAgBIQaQEMMUEGEAxABKog+WJN2eDgAAAABJRU5ErkJggg==");
+    background-size: 15px 27px;
+    background-position-x: 92%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    &.active {
+      color: #863bc1;
+    } 
+    &.dark{
+      background-color: rgb(239, 239, 239);
+    }
+    .click-area {
+      display: block;
+      .usable {
+        float: right;
+        font-size: 28px;
+        color: rgb(248, 51, 79);
+        padding-right: 10px;
+        // display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  .tip-number {
+    background-color: #C72717;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 12px;
+  }
+}
+
+#content {
+  padding-bottom: 124px;
+  .section {
+    & {
+      background-color: #fff;
+    }
+    a {
+      color: inherit;
+      display: block;
+    }
+  }
+  .section.dashboard {
+    & {
+      background: #b9639a; // 降级
+      background: url(//cdn1.showjoy.com/images/7a/7afabe655054413c8a8470770c897b59.png) no-repeat center;
+      background-size: cover;
+      height: 400px;
+    }
+    .intro {
+      & {
+        text-align: center;
+      }
+      .edit {
+        right: 236px;
+        top: 196px;
+        width: 40px;
+        margin-left: 8px;
+        margin-top: -4px;
+      }
+      .avatar {
+        & {
+          width: 260px;
+          height: 260px;
+          margin: 0 auto ;
+          background: url(//cdn1.showjoy.com/images/61/61960f4f55944297a5436054ff8c777f.png) center center no-repeat;
+          background-size: 260px;
+          overflow: hidden;
+        }
+        > img {
+          width: 160px;
+          height: 160px;
+          margin: 50px;
+          border-radius: 50%;
+          border: 6px solid #fff;
+
+        }
+      }
+      .username {
+        a {
+          display: inline-block;
+        }
+        & {
+          margin-top: 12px;
+          font-size: 32px;
+          color: #000000;
+        }
+        .icon-edit {
+          margin-left: 15px;
+        }
+      }
+      .user-level {
+        & {
+          display: inline-block;
+          padding: 0 20px;
+          margin: 18px auto 0;
+          width: 160px;
+          height: 42px;
+          line-height: 42px;
+          border-radius: 50px;
+          font-size: 24px;
+          color: #9C9C9C;
+          background-color: @white;
+        }
+        &.level1 {
+          background-color: @white;
+        }
+        &.level2 {
+          color: @white;
+          background-color: @black;
+        }
+        &.level3 {
+          color: @white;
+          background-color: @yellow;
+        }
+        &.level4 {
+          color: @white;
+          background-color: @redPink;
+        }
+        .ui-icon-level {
+          width: 17px;
+          height: 14px;
+          display: inline-block;
+          background-size: 68px 13px;
+          vertical-align: middle;
+        }
+      }
+    }
+    .user-data {
+      & {
+        margin-top: 35px;
+      }
+      .col {
+        text-align: center;
+      }
+      .col:first-child {
+        border-right: 1px solid #D9B5DF;
+      }
+      .col-hd {
+        color: #DBBAE1;
+        font-size: 28px;
+      }
+      .col-bd {
+        color: #fff;
+        font-family: Roboto, sans-serif;
+        font-size: 48px;
+        font-weight: lighter;
+      }
+      .col-text {
+        display: block;
+        line-height: 80px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 28px;
+      }
+    }
+  }
+  .section.shortcut {
+    .grid > .col {
+      & {
+        text-align: center;
+        color: #000;
+        font-size: 28px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      span[class^="icon"] {
+        display: block;
+        margin: 0 auto 12px;
+      }
+    }
+  }
+  .section.menu-list {
+
+  }
+  .btn-exit {
+    margin: 28px auto;
+  }
+}

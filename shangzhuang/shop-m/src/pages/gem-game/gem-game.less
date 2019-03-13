@@ -1,0 +1,206 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+@import "../../mixins/mixins.less";
+
+html {
+  background-color: #fdd5de;
+}
+#layout {
+  padding-top: 0;
+}
+#content {  
+  padding-bottom: 0;
+  .scrolling { 
+    position: relative;
+    margin: 14px auto;
+    width: 540px;
+    height: 90px;
+    border-top: 2px dashed #e7c2ca;
+    border-bottom: 2px dashed #e7c2ca;
+    overflow: hidden;
+    .text {
+      display: none; 
+      position: absolute;
+      left: 25px;
+      top: 15px;  
+      width: 470px;
+      height: 60px;
+      border-radius: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      line-height: 60px;
+      color: #fff;
+      font-size: 20px;
+      animation: 'fadeInOut' 3s 0s ease  both;  
+      overflow: hidden;
+      .user-img {
+        margin: 5px 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+      .username {
+        margin-right: 4px;
+      }
+      .giftname {
+        margin: 0 4px; 
+      }
+    }
+  }
+  .title {
+    margin: 0 auto;
+    width: 647px;
+    height: 173px;
+    text-align: center;
+    .title-img {
+      width: 647px;
+      height: 173px;
+    }
+  }
+  .main {
+    margin: 20px auto;
+    width: 680px;
+    height: 680px;
+    padding: 52px;
+    .webpbg("//cdn1.showjoy.com/images/00/006d47a0e59048cb9ed1c0bf5e8f0c3d.png");
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    .item {
+      float: left;
+      margin: 2px;
+      width: 188px;
+      height: 188px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 188px;
+      overflow: hidden;
+      &.option {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAAC8CAMAAAD1lzSZAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABgUExURUxpceVqo+RpouVpo+Vqo+Vpo+VppOVqo+RrouVqo+VpouNqouVpo////+Vqo/zw8P309P/8/f75+frm7/319/zy8u6ZwOVrpPTB2el7ru+ew/rd6vfO4fGtzOuJtvvk7oKCch4AAAANdFJOUwBYh3jtrwaXGPrjN9Mq7la0AAACrklEQVR42u3dybqiMBQEYC6DDEIFSEBB0Pd/yyYyGLrtXuf0V7VzWPzGk5BdBcEp1ygp4xweJo/LJLoGf00WFvA8RZh9p6fLij/nSZum8jCN0dP8XP6B9Av/JwbGR+V5HiMQ//xGv6RA/6oE5NUD6eVkT4B7JSR3ILmc7IOuxEQPrj7FoCpBUQPSY6/ipitR0TdsuzaL5cz7Z+7jbBuavhKXfh2cLIeWh9fI7dKHGCuBGREu+AIPifgHiuUeiWclMk9cgwizTPyMKEgwycRPSIJS4lmznjdlEMPIxBvEQY5GJr5BHgCV0ADEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cT/Gy+uXqf5X/CtNHzr4Gtp+NrBd9LwnbvywuamdVe+FjY3tYtvlailX7nHUalETX2ntqNyLYDrlKAOO/NealsAt1bvGaXEPKga9V5pW723lh4ub0jR71RberjVTRopemt/j7itm9yLPpUMvbWv5dO26HOvWG3tu94fmI7SVqwe5bZ2cFTt9eI3tdqHZi23/dQKvz9R/t4U2g24vlprhbMcL1e//LTWu/VvWrPhNvtW6OxUae9fsOk8isPan6VblbZbYt4qz7PP9FFifqqPNz7TjyvMpz7eDs6gjukynZ/yzhw7UQ3b0NhcEgza3R117Re8rt0zRA9ILoGrv92lXMzut5N90adAL6KWWvdAerLbXRsDo/dF8o8RiH+CP5KlOfCcJ228vCI0Rk/zE8jTLPiWLCzgeYrwO/2da5SUce4jO4/LJLqetb8A4nUGgEO4hZUAAAAASUVORK5CYII=");        
+        &.active {
+          background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAAC8CAMAAAD1lzSZAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABgUExURUxpceVqo+NqouVpouVqo+Vpo+VppOVpo+RrouVqo+Vpo+Vpo/vhUOVqo//thP/rfvfMYv3lYf7obfzjWP/sgfrbVe2Siv/qdf/rfOh3m/O7buqEk++ggPKvdvOwdedxn9ZajHwAAAAMdFJOUwBYN+PtrwaSGPrTeLnk4lYAAAKoSURBVHja7d3JduIwFIRhg2084CvPA1O//2PG8oToDr3WPeevVQJZfEeUHHYVBB85X+M8ysTDZFEeX8/B16RJKJ4nTNIv9PnEH8971feFh+n76v58zJ/Ab/xTJDJUheepBpHo9Bf9kmig7/zk8mGPRV6FkrxE4suH/VYValLdXH2iyr7ok+Ouiqiyz3qR7damkZ6+v3sfpVtphkJdhrU4aaatNGtxslTrwe9HH2o8eHv04fw9Uh6FyjzkHFzlqRP/lGsQy10n/i5xkOusvC19HkTS68T3EgWZXnwWiBRKIwIePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4P+Pb7XBWwdfa8PXDr7Rhm8c/KgNPzr4Uhu+dPCTstLXk1ubSRd+cmvTGFVHXxv3wrZGVesnsz3n1wG40ih6WjbLUdsBuHV6rzF6ilOb5aTt9N46etga0yn5jtB2ZmmNHT3c5iYbLXprXypu5yb3oc/5tU5Bc2rrXH6yQ5/7xOrcJOP/rW2scj1jO7F6jNsur/v9r7ae3ie8jNu+Z4VH+44ZveXXG3D9bZ0Vfg86r2+abqy9u7ptPXbGtW+Dzs6ic2OOdKVH6d6u/VZuU9ruiHnt/JmPOZ6Hf/YRc3c+vm18tjd7nd/z8bY4t2NbuG1KP+XlQS+q21Yam0vs6K1/nLzqTzeNjfMMme3xJXD1R++9z0s+7LM+ERlUzFJXg0jyYbe3NtLAt/ToFPyTNMlEHs971Xs5T9331f35EMmSNPgtaRKK5wm/0Jecr3EeZT6ysyiPr+dP7Q/YdXvNxyDM7AAAAABJRU5ErkJggg==");
+        }
+      }
+      &.btn {         
+        background-image: url("//cdn1.showjoy.com/images/d5/d5ac7573061e4eef9cf3ffd057f597ea.png");
+        background-size: 184px 184px;
+        &.disable {
+          background-image: url("//cdn1.showjoy.com/images/a3/a3b2478559264a5a91ce652fd3246328.png");
+        }
+      }
+      .amount {
+        margin: 32px 0 0;
+        width: 100%;
+        height: 75px;
+        background-image: url("//cdn1.showjoy.com/images/da/da2b00098a894b66b9b6db24965efb12.png");
+        background-size: 153px 75px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        text-align: center;
+        font-size: 36px;
+        line-height: 75px;
+        font-weight: bolder;
+        color: #fff;
+        overflow: hidden;
+        &.thks {
+          background-image: url("//cdn1.showjoy.com/images/c1/c12409bb5baa4eeebf0a5351abcf655c.png");
+          background-size: 123px 75px;
+        }
+        &.gem {
+          background-image: url("//cdn1.showjoy.com/images/69/6915c841080846bca09afb902add6162.png");
+          background-size: 77px 75px;
+        }
+      }
+      .condition {
+        margin: 14px 0;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bolder;
+        color: #6c3f28;
+      }
+    }
+    .rule {
+      margin-top: 42px;
+      width: 100%;
+      .rule-img {
+        width: 100%;
+      }
+    }
+  }
+  .dialog {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: 'fadeIn' 0.6s 1.2s ease  both;
+    .dialog-main {
+      position: absolute;
+      width: 601px;
+      height: 688px;
+      padding: 93px 86px;
+      left: 50%;
+      top: 50%;
+      margin-left: -601/2px;
+      margin-top: -688/2px;
+      .webpbg("//cdn1.showjoy.com/images/8e/8e469e99c66347238f1dac52bd48cae7.png");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      &.nogift {
+        .webpbg("//cdn1.showjoy.com/images/67/67299d1fc10344e689037baa66c91b12.png");
+      }
+      .dialog-title {
+        margin: 76px 0 66px;
+        height: 80px;
+        line-height: 80px;
+        color: #fff;
+        font-size: 62px;
+        text-align: center;
+      }
+      .dialog-desc {
+        color: #fae05d;
+        text-align: center;
+        line-height: 58px;
+        font-size: 38px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: transLateY(100px);
+  }
+  20% {
+    opacity: 1;
+    transform: transLateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: transLateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: transLateY(-100px);
+  }
+}

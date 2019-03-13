@@ -1,0 +1,80 @@
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+  text-decoration: none;
+}
+.clear {
+  content: "";
+  display: block;
+  clear: both;
+}
+.title-img {
+  width: 375;
+  height: 225px;
+}
+.title-img img {
+  width: 100%;
+}
+.main-content {
+  padding-bottom: 35px;
+}
+.content {
+  width: 350px;
+  margin: 0 auto;
+}
+.content .for-name,
+.content .for-telephone,
+.content .for-address,
+.content .for-address-detail {
+  height: 56px;
+  overflow: hidden;
+  text-align: left;
+  border-bottom: 1px dashed #b9b9b9;
+}
+.content .for-name .for-label,
+.content .for-telephone .for-label,
+.content .for-address .for-label,
+.content .for-address-detail .for-label {
+  width: 86px;
+  height: 56px;
+  line-height: 56px;
+  float: left;
+  text-indent: 12px;
+}
+.content .for-name .for-input,
+.content .for-telephone .for-input,
+.content .for-address .for-input,
+.content .for-address-detail .for-input {
+  width: 256px;
+  float: left;
+}
+.content .for-name .for-input input,
+.content .for-telephone .for-input input,
+.content .for-address .for-input input,
+.content .for-address-detail .for-input input {
+  height: 56px;
+  width: 244px;
+  text-indent: 24px;
+  -webkit-appearance: none;
+}
+.content .for-name::after,
+.content .for-telephone::after,
+.content .for-address,
+.content .for-address-detail {
+  content: "";
+  display: block;
+  clear: both;
+}
+.submit-btn {
+  width: 345px;
+  height: 49px;
+  line-height: 49px;
+  margin: 40px auto 25px;
+  background: #976df7;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 50px;
+}

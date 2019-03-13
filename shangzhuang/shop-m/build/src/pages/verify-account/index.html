@@ -1,0 +1,237 @@
+
+
+
+
+  
+        
+        
+        
+    
+      
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/10/10d9270e34a640db804a8f6f453df597.png">
+  <meta name="apple-mobile-web-app-title" content="尚妆达人店">
+  <meta name="keywords" content="" />
+  <meta name="description" content="手机账号验证"/>
+  <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0" />
+  
+    
+    <script type="text/javascript">
+    ;(function(doc) {
+  
+        // 给html根节点加上webps类名
+        function addRootTag() {
+            doc.documentElement.className += " webpa";
+        }
+  
+        // 判断是否有webp_showjoy=available这个cookie
+        if (!/webp_showjoy=available/.test(document.cookie)) {
+            var image = new Image();
+  
+            // 图片加载完成时候的操作
+            image.onload = function() {
+  
+                // 图片加载成功且宽度为1，那么就代表支持webp了，因为这张base64图是webp格式。如果不支持会触发image.error方法
+                if (image.width == 1) {
+  
+                    // html根节点添加class，并且埋入cookie
+                    addRootTag();
+                    document.cookie = "webp_showjoy=available; max-age=31536000; domain=";
+                }
+            };
+  
+            // 一张支持alpha透明度的webp的图片，使用base64编码
+            image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
+        } else {
+            addRootTag();
+        }
+    }(document));
+  </script>
+  
+        <link rel="stylesheet" type="text/css" href="//assets.showjoy.net/joyf2e/vendor/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//assets.showjoy.net/joyf2e/vendor/gmu/gmu.min.css" />
+    <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-header/shop-header.min.css" rel="stylesheet" />
+    <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-footer/shop-footer.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.6/iconfont/talent-iconfont/icon.min.css" />
+    
+  <title> 账号验证 </title>
+
+      
+      <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/flexible/flexible-min.js"></script>
+    
+  
+    <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/verify-account/verify-account.min.css" rel="stylesheet" />
+    
+  
+</head>
+<body>
+<script type="text/javascript">
+  var $appendContainer = document.body;
+  var placeholderDiv = document.createElement('div');
+  placeholderDiv.innerHTML = '<div class="joy-ui-sync-loading">'+
+              '<div class="content-box">'+
+                  '<div class="circle"></div>'+
+              '</div>'+
+          '</div>';
+  var childDiv = placeholderDiv.firstChild;
+  $appendContainer.appendChild(childDiv); 
+
+  window.addEventListener('DOMContentLoaded', function () {
+    document.body.removeChild(childDiv);  
+  }, false);
+</script>
+<div id="layout" class="j_Layout">
+    <input type="hidden" class="j_ShopUserImage" value="//wx.qlogo.cn/mmopen/zZSYtpeVianRHfoXEXFc7JnllcoiamnCGhcCm2fibaoLBrs3bqE6oPcsUaxnDKZ4OwrHfxcIjby4B9SeHeqIPotQw/0.120x120.png">
+    <input type="hidden" class="j_ShopName" value="天线宝宝的便利店">
+          <input type="hidden" class="j_GlobalShopid" value="0">
+        
+    
+                  <input type="hidden" class="j_ShopUrl" value="//shop.m.showjoy.net/shop?shopId=4479" />
+          <div id="content" data-sjshop-nopullrefresh="true">
+      <!-- content starts here -->
+
+      <section class="container bind-area">
+        <p class="phone-desc">
+          <span class="symbol">*</span>
+          <span class="desc">请输入您店铺绑定手机号</span>
+        </p>
+
+        <input type="tel" class="j_InputPhone input-phone" name="" placeholder="点此处输入手机号">
+
+        <p class="verify-tips j_VerifyTips">该手机号码绑定店铺，店铺名：小猪**姐姐</p>
+
+        <div class="verify-btn j_VerifyBtn">账号验证</div>
+
+        <p class="unbind-tip j_UnbindTipBtn">店铺未绑定手机号怎么办？</p>
+      </section>
+
+      <section class="container chat j_CheckoutInfoTip">
+        <i class="chat-symbol"></i>在线客服
+      </section>
+
+    </div>
+
+    <script type="text/html" id="J_TempUnbindDialog">
+      <section class="unbind-tip-dialog">
+    <a href="/introduce" class="open-shop-btn j_OpenShopBtn">
+      还未开店？点击这里注册开店>>
+    </a>
+        <p class="desc">
+          <span class="hignlight">通知：</span>
+          <span>达人店2017年4月6日凌晨起进行账号维护升级，所有店铺账号实行手机账号验证，如果您之前店铺未绑定手机号码，为了保证您店铺正常使用，请按照以下步骤绑定手机和账号验证操作</span>
+        </p>
+        <img class="img-tip" src="//cdn1.showjoy.com/images/fd/fdebddeaa48846bcb219e1d5a16f137b.png">
+        <a href="//shop.m.showjoy.com/shop/chat?type=1" class="chat-bth">联系客服</a>
+      </section>
+    </script>
+
+    <script type="text/html" id="J_TempCheckcodeDialog">
+      <section class="checkcode-dialog">
+        <p class="phonenumber-notice">
+          <span class="number">{{phoneNumber}}</span>
+          <span>已发送短信验证码</span>
+        </p>
+        <div class="checkcode-area">
+          <input type="number" class="input-checkcode j_InputCheckcode" name="" placeholder="验证码">
+          <div class="checkcode-btn j_SubmitCheckcode">提交</div>
+        </div>
+      </section>
+    </script>
+
+    <script type="text/html" id="J_TempChatInfoDialog">
+      <section class="checkout-info">
+        <p class="info-list">1、请检查手机号码输入是否正确，请重新输入手机号重试。</p>
+        <p class="info-list">2、如果您手机安装了 安全管家、QQ管家、360卫士等软件，请进入软件查询拦截记录。</p>
+        <p class="info-list">3、手机短信在存满的情况下，可能会无法接收短信，请尝试删除一些短信再试。</p>
+        <p class="info-list">4、尚妆老会员如果对手机号码解绑与绑定可以咨询客服。</p>
+        <p class="info-list">5、其他登录或者绑定问题可以直接点击联系客服。</p>
+      </section>
+    </script>
+
+</div>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+      wx.config({
+          debug: false,
+          appId: 'wx6445a3a7da24ef44',
+          timestamp: 1490945922,
+          nonceStr: 'be67261c-b7d1-4ee3-a9d8-416d8c12ff99',
+          signature: '47f08f25fef9180eeda69e2bc7eb531f9d53e6ab',
+          jsApiList: ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','hideMenuItems','showMenuItems','hideAllNonBaseMenuItem','showAllNonBaseMenuItem','translateVoice','startRecord','stopRecord','onRecordEnd','playVoice','pauseVoice','stopVoice','uploadVoice','downloadVoice','chooseImage','previewImage','uploadImage','downloadImage','getNetworkType','openLocation','getLocation','hideOptionMenu','showOptionMenu','closeWindow','scanQRCode','chooseWXPay','openProductSpecificView','addCard','chooseCard','openCard']
+      });
+    </script>
+    
+  <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/gmu/zepto.min.js"></script>
+  <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/gmu/gmu.min.js"></script>
+  
+<script src="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-header/shop-header.min.js" type="text/javascript"></script>  
+  <script type="text/javascript" src="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/verify-account/verify-account.min.js"></script>  
+
+
+<script>
+$.ajax({
+  url:'//fp.showjoy.net/trace',
+  data: {
+        url: location.href,
+    refer: document.referrer
+    },
+  dataType: 'jsonp'
+});
+</script>
+
+<script>
+var fpClickTimer;
+var fpClickDelay = 200;
+$(window).on('click',function(ev){
+    if(fpClickTimer){
+      clearTimeout(fpClickTimer);
+    }
+    fpClickTimer = setTimeout(function(){
+      $.ajax({
+        url: '//fp.showjoy.net/click',
+        dataType: 'jsonp',
+        data: {
+          url: location.href,
+            coordinate: '(' + ev.clientX + ',' + ev.clientY + ')',
+        resolution: window.screen.width + ',' + window.screen.height
+        }
+      });
+    },fpClickDelay);
+});
+</script>
+
+<script type="text/javascript">
+  var Countly = Countly || {};
+  Countly.q = Countly.q || [];
+  Countly.app_key = 'c6e643a01e3c16fa81ca2296f5abb4592749bfba';
+  Countly.url = 'https://mobile-analytics.showjoy.net/';
+  
+  (function() {
+    var cly = document.createElement('script');
+    cly.type = 'text/javascript';
+    cly.async = true;
+    cly.src = 'https://mobile-analytics.showjoy.net/sdk/web/countly.min.js';
+    cly.onload = function(){
+      Countly.init()
+    };
+    var s = document.getElementsByTagName('script')[0]; 
+    s.parentNode.insertBefore(cly, s);
+  })();
+  
+  Countly.q.push(['track_sessions']);
+  Countly.q.push(['track_pageview']);
+  Countly.q.push(['track_errors']);
+  Countly.q.push(['track_links']);
+  Countly.q.push(['track_forms']);
+
+</script>
+<script src="http://10.1.2.6:8080/target/target-script-min.js#anonymous"></script>
+</body>
+</html>

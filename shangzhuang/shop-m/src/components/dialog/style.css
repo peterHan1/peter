@@ -1,0 +1,275 @@
+.joy-ui-dialog-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  opacity: 0;
+}
+.joy-ui-dialog-pop .joy-ui-dialog-pop-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 6.8rem;
+  min-height: 3.73333333rem;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  padding: 0.53333333rem 0.4rem 0.4rem;
+  background-color: #fff;
+}
+.joy-ui-dialog-pop .joy-ui-dialog-pop-window .joy-ui-dialog-pop-close-btn {
+  position: absolute;
+  top: 0.13333333rem;
+  right: 0.13333333rem;
+  width: 0.56rem;
+  height: 0.56rem;
+  background: url('//cdn1.showjoy.com/images/59/5954b558bd5e4d8fa5c40756099bc1f6.png') center no-repeat;
+  background-size: 0.56rem 0.56rem;
+}
+.joy-ui-dialog-pop .joy-ui-dialog-pop-window .joy-ui-dialog-pop-title {
+  margin-bottom: 0.26666667rem;
+  font: normal 0.42666667rem/0.53333333rem 'PingFang-SC-Regular';
+  color: #000;
+  text-align: center;
+}
+.joy-ui-dialog-pop .joy-ui-dialog-pop-window .joy-ui-dialog-pop-message {
+  font: normal 0.42666667rem/0.64rem 'PingFang-SC-Regular';
+  color: #9e9e9e;
+}
+.joy-ui-dialog-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+}
+.joy-ui-dialog-confirm .joy-ui-dialog-confirm-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 6.8rem;
+  -webkit-transform: translateX(-3.4rem) translateY(-50%);
+  -ms-transform: translateX(-3.4rem) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  padding: 0.4rem 0.4rem 1.73333333rem;
+  font: normal 0.42666667rem/0.53333333rem 'PingFang-SC-Regular';
+  text-align: center;
+  background-color: #fff;
+}
+.joy-ui-dialog-confirm .joy-ui-dialog-confirm-window .joy-ui-dialog-confirm-icon {
+  font: normal 0.66666667rem/0.66666667rem 'iconfont';
+  margin-bottom: 0.13333333rem;
+  color: #f93450;
+}
+.joy-ui-dialog-confirm .joy-ui-dialog-confirm-window .joy-ui-dialog-confirm-title {
+  color: #393836;
+}
+.joy-ui-dialog-confirm .joy-ui-dialog-confirm-window .joy-ui-dialog-confirm-subtitle {
+  margin-top: 0.24rem;
+  color: #9e9e9e;
+}
+.joy-ui-dialog-confirm .joy-ui-dialog-confirm-window .joy-ui-dialog-confirm-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.33333333rem;
+  background-color: #fb334f;
+  font: normal 0.42666667rem/1.33333333rem 'PingFang-SC-Regular';
+  color: #fff;
+}
+.joy-ui-dialog-confirm.hide {
+  display: none;
+}
+.joy-ui-dialog-toast {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 99999999;
+  margin-left: -3.2rem;
+  margin-top: -1.333334rem;
+  width: 6.4rem;
+  padding: 0.266666rem;
+  opacity: 0;
+  border-radius: 0.186666rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0.266666rem 0.266666rem 0.266666rem -0.266666rem rgba(0, 0, 0, 0.7);
+          box-shadow: 0.266666rem 0.266666rem 0.266666rem -0.266666rem rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 0.346666rem;
+  line-height: 1.4;
+  color: #fff;
+}
+.joy-ui-dialog-wxshare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+.joy-ui-dialog-wxshare .joy-ui-dialog-wxshare-icon {
+  position: absolute;
+  top: 0;
+  right: 0.13333333rem;
+  width: 1.14666667rem;
+  height: 1.14666667rem;
+  background: url('//cdn1.showjoy.com/images/8b/8bccc512b0fb479a8c0c36afafcad4c1.png') center no-repeat;
+  background-size: 1.14666667rem 1.14666667rem;
+}
+.joy-ui-dialog-wxshare .joy-ui-dialog-wxshare-text {
+  position: absolute;
+  top: 1.33333333rem;
+  right: 0.4rem;
+  width: 4rem;
+  height: 0.96rem;
+  font: normal 0.37333333rem/0.48rem 'PingFang-SC-Regular';
+  color: #fff;
+  text-align: center;
+}
+.joy-ui-dialog-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 6.8rem;
+  -webkit-transform: translateX(-3.4rem) translateY(-50%);
+  -ms-transform: translateX(-3.4rem) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  padding: 0.8rem 0.4rem 2.13333333rem;
+  font: normal 0.42666667rem/0.53333333rem 'PingFang-SC-Regular';
+  text-align: center;
+  background-color: #fff;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-title {
+  color: #393836;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.33333333rem;
+  font: normal 0.42666667rem/1.33333333rem 'PingFang-SC-Regular';
+  color: #fff;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group:after,
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group:before {
+  display: table;
+  content: "";
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group:after {
+  clear: both;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group .joy-ui-dialog-alert-btn {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group .joy-ui-dialog-alert-btn:nth-child(1) {
+  background-color: #000;
+}
+.joy-ui-dialog-alert .joy-ui-dialog-alert-window .joy-ui-dialog-alert-btn-group .joy-ui-dialog-alert-btn:nth-child(2) {
+  background-color: #f93450;
+}
+.joy-ui-dialog-select {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+}
+.joy-ui-dialog-select .joy-ui-dialog-select-window {
+  position: absolute;
+  width: 100%;
+  padding: 0 0.533333rem;
+  max-height: 5.94rem;
+  left: 0;
+  bottom: 0;
+  background-color: #fefefe;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  animation: 'joy-ui-sliderup-animate' 0.6s ease normal both;
+  -webkit-animation: 'joy-ui-sliderup-animate' 0.6s ease normal both;
+}
+.joy-ui-dialog-select .joy-ui-dialog-select-window .joy-ui-dialog-select-item {
+  height: 1.32rem;
+  line-height: 1.32rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.joy-ui-dialog-show {
+  animation: 'joy-ui-dialog-show-animate' 0.7s ease 1 normal both;
+  -webkit-animation: 'joy-ui-dialog-show-animate' 0.7s ease 1 normal both;
+}
+.joy-ui-dialog-hide {
+  animation: 'joy-ui-dialog-hide-animate' 0.7s ease 1 normal both;
+  -webkit-animation: 'joy-ui-dialog-hide-animate' 0.7s ease 1 normal both;
+}
+@-webkit-keyframes joy-ui-sliderup-animate {
+  0% {
+    -webkit-transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes joy-ui-sliderup-animate {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@-webkit-keyframes joy-ui-dialog-show-animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes joy-ui-dialog-show-animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes joy-ui-dialog-hide-animate {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes joy-ui-dialog-hide-animate {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

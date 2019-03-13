@@ -1,0 +1,123 @@
+/*
+ * 我的信息页面
+ * @author ben@yunjee.com
+ */
+
+ @import "../../mixins/mixins.less";
+ @import "../../mixins/common/color.less";
+
+ @-webkit-keyframes show-block {
+   0%{
+     opacity: 0;
+   }
+   100%{
+     opacity: 1;
+   }
+ }
+
+ @keyframes show-block {
+   0%{
+     opacity: 0;
+   }
+   100%{
+     opacity: 1;
+   }
+ }
+
+ #layout {
+   padding-top: 0;
+ }
+ p {
+   line-height: 1;
+ }
+ #content{
+   .addr-form{
+     margin-top: 0.106667rem;
+     .field{
+       margin: 0 auto;
+       height: 0.64rem *2;
+       width: 4.466667rem *2;
+       color: @grey5;
+       border-bottom: 1px solid @grey2;
+       overflow: hidden;
+       padding-top: 0.426667rem;
+       label {
+         font-size: 0.373333rem;
+         color: @black;
+         width: 1.28rem *2;
+         display: inline-block;
+         font-weight: bold;
+       }
+       .input {
+         height: 0.533333rem;
+         line-height: 0.533333rem;
+         color: @grey5;
+         width: 2.986666666666667rem *2;
+         font-size: 0.373333rem;
+         padding-left: 0.053333rem;
+         // vertical-align: middle;
+         color: @black;
+         display: inline-block;
+       }
+
+     }
+     .error-info {
+       display: none;
+       .fs2px(32);
+       color: @redPink;
+       position: relative;
+       text-align: center;
+       margin-top: 0.346667rem;
+       animation: 'show-block' 0.8s ease 1 normal both;
+       -webkit-animation: 'show-block' 0.8s ease 1 normal both;
+       &::after {
+         content: '';
+         position: absolute;
+         width: 0.666667rem;
+         height: 0.666667rem;
+         top: 50%;
+         margin-top: -0.333333rem;
+         margin-left: 0.133333rem;
+         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEUAAAD3OVb4OVb3OVX/P1f2OVT3OFX2OFT6O1f4PFj2OVX4NlP3OFT3OFT3OVX3OFT4OFX3OFb4OFT3OVX2OVT5Olf/Q1n2OVX8NFD3OFT5NFB7A7jFAAAAGXRSTlMAf0L0DOnbrTgk7uXDv6WZjYNtWlUsF5BJ42h9jgAAATZJREFUSMfVlsuygyAMhrkj3q3V9vf9H/RsOpZjRGg2nWbFQL7JBZIgvibV1HdOa9f1U1WirwaLSOygcgZaAG6cVTAmqHl0ANorU8EDVi7x1iIt4EPSpxpamuOukRp1wrsb4Nezg9UDt7ODByBT9iXwOLOh7+ko75raUUBMUAY4xBNq4hXxrf6fNw9/UNk2Ia5UKug1h6wa8Z22kIIg1LU2jt2aPGJslIHhbSRGqJlhX1ssJcgC+w7eiRJEuD0BE8YyZMT0WvWYy5AZ/WvVQZUhCt3uYihDwh60hilDDDQDYTjGCJ+ZZHqVVOhVVnBliENFnuW1LLD08efKf7gqsWfTPBMllirkZtsaWsikXRCEtAvScahjRIXd+sobLL+N84dFfiQxBx9/vPKHOP+rQD8kPyXmU+0/384aYTt5wgMAAAAASUVORK5CYII=) no-repeat;
+         background-size: contain;
+       }
+     }
+     // // 部分安卓手机input在focus后固定在底部的元素会上浮
+     // @media screen and (max-height: 400px) {
+     //   .action {
+     //     display: none !important;
+     //   }
+     // }
+     .action{
+       margin: 0.6666666666666666rem *2 auto;
+       width: 4.2rem *2;
+       height: 0.6666666666666666rem *2;
+       line-height: 0.6666666666666666rem *2;
+       font-size: 0.426667rem;
+       background-color: @black;
+       overflow: hidden;
+       border: none;
+       .submit-btn{
+         width: 100%;
+         height: 0.6666666666666666rem *2;
+         text-align: center;
+         font-size: 0.426667rem;
+         line-height: 0.6666666666666666rem *2;
+         text-align: center;
+         color: @white;
+         background-color: @black;
+         border: none;
+         margin: 0;
+         padding: 0;
+       }
+       .submit-btn-disable{
+         width: 100%;
+         height: 1.6rem;
+         text-align: center;
+         font-size: 0.426667rem;
+         line-height: 1.6rem;
+         background-color: @grey5;
+       }
+     }
+   }
+ }

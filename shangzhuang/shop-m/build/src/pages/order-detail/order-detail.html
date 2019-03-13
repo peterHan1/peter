@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=375, user-scalable=no" /> -->
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.21/flexible/flexible-min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.min.js" type="text/javascript"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.js" type="text/javascript"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>order-detail</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./order-detail.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+      <!-- content starts here -->
+      <div class="j_ContentArea"></div>
+
+      
+    </div>
+
+
+    <script type="text/html" id="J_TempPage">
+      <section class="container receive">
+        <p class="text">
+          <span class="title">收货人：</span>
+          <span class="desc">{{tradeOrder.fullName}}</span>
+          <span class="phone">{{tradeOrder.mobilePhone}}</span>
+        </p>
+        <p class="text icon-locate">
+          <span class="title">收货地址：</span>
+          <span class="desc">{{tradeOrder.prov}}{{tradeOrder.city}}{{tradeOrder.area}}{{tradeOrder.address}}</span>
+        </p>
+        <p class="bottom-bg"></p>
+      </section>
+
+
+      <!-- 订单信息 -->
+      <section class="container order-detail">
+        <p class="header">
+          <span class="title">订单号：</span>
+          <span class="desc">{{tradeOrder.orderNumber}}</span>
+          <span class="status">待支付</span>
+        </p>
+        <ul class="wrap">
+          <li class="wrap-list">
+            <p class="title">下单时间：</p>
+            <p class="desc">{{tradeOrder.gmtCreate}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">支付时间：</p>
+            <p class="desc">{{tradeOrder.payTime}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">支付方式：</p>
+            <p class="desc">{{tradeOrder.payType}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">总价：</p>
+            <p class="desc">￥{{tradeOrder.totalPrice}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">优惠劵：</p>
+            <p class="desc">￥{{tradeOrder.mDiscountPrice}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">运费：</p>
+            <p class="desc">￥{{tradeOrder.postFee}}</p>
+          </li>
+          <li class="wrap-list">
+            <p class="title">实付：</p>
+            <p class="desc highlight">￥{{tradeOrder.actualPrice}}</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 退货信息 -->
+      <section class="container return">
+        <a class="text header">
+          <span class="title">退货（退款）记录：</span>
+          <span class="desc highlight underline">退款说明</span>
+        </a>
+        <p class="text">
+          <span class="title">退货状态</span>
+          <span class="desc highlight">您申请的退货订单已退货成功</span>
+        </p>
+        <p class="text">
+          <span class="title">退货商品（数量）：</span>
+        </p>
+        <ul class="wrap-list">
+          {{each tradeOrder.refundRecordVOs as item}}
+            <li class="list">
+              <img class="image" src="{{item.productImg}}.250x250.png">
+              <div class="title">
+                <p>{{item.productName}}</p>
+                <p class="time">处理时间：{{item.gmtCreate}}</p>
+              </div>
+              <p class="num">x{{item.quantity}}</p>
+            </li>
+          {{each}}
+          
+        </ul>
+        <p class="text notice">
+          （退款将在三个工作日内打到您的退款账号，请注意查收）
+        </p>
+        <a class="text no-border inquire">
+          <span class="desc highlight underline">如有疑问，请联系客服</span>
+        </a>
+      </section>
+    </script>
+
+    <!-- local javascript files -->
+    <script src="./order-detail.min.js"></script>
+  </body>
+</html>

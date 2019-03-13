@@ -1,0 +1,516 @@
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+body {
+  background-color: @grey1;
+}
+#layout{
+  padding-top: 0;
+}
+.top-waring {
+  background-color: #f98b8b;
+  color: #fff;
+  font-size: 0.32rem;
+  padding: 0.266667rem;
+  margin: 0.266667rem;
+}
+
+.ad {
+  display: none;
+  position: relative;
+  padding: 0.16rem 0.4rem;
+  margin-bottom: 0;
+  background-color: rgb(233, 26, 73); 
+  color: @white;        
+  .adclose {
+    position: absolute;
+    left: 0.4rem;
+    top: 0;
+    width: 0.8rem;
+    height: 100%;
+    &:before {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 50%;
+      margin-top: -0.4rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      line-height: 0.8rem;
+      .fs2px(30);
+      font-family: 'iconfont' !important;
+      content: '\e603';
+    }
+  }
+  .adtext {
+    padding-left: 0.8rem;
+    line-height: 0.4rem;
+    .fs2px(24);
+  }
+}
+
+#content {
+  position: relative;
+  padding-bottom: 2.13rem;
+  .icon-arrow {
+    font-size: 0.426667rem;
+    line-height: 0.426667rem;
+    color: rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-showjoy-zip {
+    display: inline-block;
+    *zoom: 1;
+    vertical-align: middle;
+    width: 0.96rem;
+    height: 0.64rem;
+    background-image: url(//cdn1.showjoy.com/images/7b/7ba36ef33f9442338bf1b6c886d0d789.png);
+    background-size: 100%;
+  }
+  .text-lower {
+    color: #666;
+    font-size: 0.293333rem;
+  }
+  .text-red {
+    color: @redPink;
+  }
+  .text-gray{
+    color: #a7a7a7;
+  }
+  .list-area {
+    padding: 0 0.533333rem;
+    margin-bottom: 0.266667rem;
+    background-color: #fff;
+  }
+  .list {
+    > li {
+      &:first-child {
+        border: none;
+      }
+      & {
+        border-top: 1px solid #f4f4f4;
+        .mixin-select-disable();
+      }
+    }
+  }
+  .list__title {
+    font-size: 0.426667rem;
+    color: #1a1a1a;
+    height: 1.333333rem;
+    line-height: 1.333333rem;
+  }
+  .list__item {
+    font-size: 0.32rem;
+    line-height: 0.533333rem;
+    .coupon-tips {
+      margin: 0.4rem 0;
+    }
+    .ui-dialog-idnumb{
+      overflow: hidden;
+      margin: 0 auto;
+      z-index: 1002;
+      position: absolute;
+      -webkit-tap-highlight-color: rgba(255,255,255,0);
+      -webkit-transform: translateZ(0);
+      -webkit-user-select:none;
+      -webkit-user-drag: none;
+      background-color: transparent;
+      box-shadow: 0 1px 0.306667rem #2f2f2f;
+      border-radius: 0.08rem;
+      .ui-dialog-idnumb-content{
+        background-color: #fff;
+        text-align: center;
+        font-size: 0.4rem;
+        padding: 1.2rem 0.48rem 0.933333rem 0.586667rem;
+      }
+      .ui-dialog-btn{
+        background-color: #fff;
+        text-align: center;
+        color: #976DF7;
+        font-size: 0.533333rem;
+        .ui-dialog-btn-border{
+          width: 6.933333rem;
+          margin: 0 auto;
+          border-top: 1px solid #ccc;
+        }
+      }
+    }
+
+    .clearfix();
+    .oversea-warn{
+      float: left;
+      width: 100%;
+      font-size: 0.32rem;
+      color: #FC3B82;
+      padding: 0.213333rem 0;
+    }
+    .id-left{
+      float: left;
+      position: relative;
+      width: 77%;
+      #input{
+        border-radius: 0.08rem;
+        border: 1px solid #ccc;
+        height: 0.933333rem;
+        width: 100%;
+        padding-left: 0.133333rem;
+        &::-ms-clear{
+          display: none;
+        }
+        &:focus + #index-cross{
+          display: block;
+        }
+      }
+      #index-cross{
+        position: absolute;
+        top: -10%;
+        right: 2%;
+        width: 0.933333rem;
+        height: 1.12rem;
+        display: none;
+        background: url(//file.showjoy.com/images/f2/f2fbe32f87464972ba06787c240f5a18.png) no-repeat center;
+        background-size: 0.426667rem;
+        z-index: 2;
+      }
+    }
+    .id-right{
+      float: right;
+      width: 20%;
+      height: 0.933333rem;
+      background-color: #FC3B82;
+      border-radius: 0.106667rem;
+      text-align: center;
+      line-height: 0.933333rem;
+      color: #FFFFFF;
+    }
+  }
+  .list-id-number {
+    height: 1.0133333333333334rem;
+    line-height: 1.0133333333333334rem;
+    font-size: 0.37333333333333335rem;
+    .icon-profile {
+      color: @grey5;
+      padding-left: 0.13333333333333333rem;
+    }
+  }
+  .list__quantity {
+    width: 50%;
+    color: #a6a6a6;
+    text-align: left;
+    &.highlight {
+      color: @redPink;
+    }
+  }
+  .list__price {
+    display: block;
+    float: right;
+    color: #4a4a4a;
+    text-align: right;
+    margin-right: 0.253333rem;
+  }
+  .gifts {
+    color: @white;
+    background-color: @redPink;
+    padding: 0.08rem 0.133333rem;
+    border-radius: 3px;
+    margin-left: 0.053333rem;
+  }
+  .list__comment {
+    font-size: 0.32rem;
+    line-height: 0.533333rem;
+    padding: 0.266667rem;
+    width: 100%;
+    height: 2.666667rem;
+    border: 1px solid @grey2;
+    color: @grey5;
+    box-shadow: none;
+    -webkit-appearance: none;
+  }
+  .list__tip {
+    & {
+      font-size: 0.32rem;
+      text-align: center;
+      height: 0.666667rem;
+      line-height: 0.666667rem;
+    }
+    &.waring {
+      color: @redPink;
+    }
+  }
+  .list__click-area {
+    .highlight {
+      color: @redPink;
+    }
+    & {
+      .mixin-padding-TB(0.333333rem);
+      color: #4a4a4a;
+      min-height: 1.12rem;
+      position: relative;
+      display: block;
+    }
+    &.idnumb{
+      padding-top: 0.4rem;
+    }
+    &.no-pd {
+      padding-top: 0;
+    }
+    .switch{
+      position: absolute;
+      right: 0.533333rem;
+      top: -0.186667rem;
+      .switch-toggle{
+        position: absolute;
+        margin-left: -9999px;
+        visibility: hidden;
+        & + label{
+          .size(1.173333rem, 0.72rem);
+          display: block;
+          position: relative;
+          cursor: pointer;
+          outline: none;
+          user-select: none;
+        }
+      }
+      input.switch-toggle-round{
+        & + label:before,
+        & + label:after{
+          display: block;
+          position: absolute;
+          top: 0.026667rem;
+          left: 0.026667rem;
+          bottom: 0.026667rem;
+          content: "";
+        }
+        & + label:before{
+          top: 0;
+          right: 0.026667rem;
+          border: 2px solid #e4e4e4;
+          background-color: #fff;
+          border-radius: 1.6rem;
+          -webkit-transition: all .4s;
+          transition: all .4s;
+        }
+        & + label:after{
+          .square(0.64rem);
+          background-color: #fff;
+          border-radius: 100%;
+          -webkit-box-shadow: 0 0.053333rem 0.133333rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.053333rem 0.133333rem rgba(0, 0, 0, 0.3);
+          -webkit-transition: margin 0.4s;
+          transition: margin 0.4s;
+        }
+      }
+      input.switch-toggle-round:checked + label{
+        &:before{
+          background-color: @redPink;
+          border-color: @redPink;
+        }
+        &:after{
+          margin-left: 0.453333rem;
+        }
+      }
+    }
+    .icon-arrow {
+      margin-right: 0.266667rem;
+    }
+    .icon-car {
+      margin-right: 0.266667rem;
+      font-size: 0.64rem;
+      color: #000;
+    }
+    .use-coupon{
+      color: #000;
+      text-decoration: underline;
+    }
+    .groupon-tag {
+      display: inline-block;
+      width: 0.56rem;
+      height: 0.56rem;
+      text-align: center;
+      line-height: 0.56rem;
+      color: #fff;
+      font-size: 0.373333rem;
+      background-color: #f65634;
+    }
+    &.list__click-area--style1 {
+      .click-area-grid(85%, 15%);
+
+    }
+    &.list__click-area--style2 {
+      .click-area-grid(65%, 33%);
+      .oversea-title-type {
+        display: inline-block;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: @redPink;
+        line-height: 0.5rem;
+        text-align: center;
+        color: @white;
+      }
+    }
+    &.mjms{
+      color: #000;
+    }
+    &.card-id{
+      .grid-right{
+        margin-top: -0.453333rem;
+        .modify-btn{
+          height: 0.8rem;
+          margin-top: 0.053333rem;
+          width: 85%;
+          line-height: 0.8rem;
+          border-radius: 0.08rem;
+          text-align: center;
+          background-color: #FC3B82;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+  //底部悬浮提交订单区域
+  .bottom {
+    & {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+      border-top: 2px solid @black;
+      padding: 0 0 0 0.4rem;
+      height: 1.6rem;
+      z-index: 99;
+    }
+    .total {
+      padding-top: 0.213333rem;
+      float: left;
+      color: @grey5;
+      font-size: 0.346667rem;
+      line-height: 0.586667rem;
+      .symbol, .int {
+        font-size: 0.48rem;
+        color: @redPink;
+      }
+    }
+    .action {
+      & {
+        float: right;
+        height: 100%;
+        width: 2.4rem;
+        background-color: @redPink;
+      }
+      .submit-btn {
+        display: block;
+        line-height: 1.6rem;
+        text-align: center;
+        font-size: 0.373333rem;
+        color: #fff;
+        width: 2.4rem;
+        height: 100%;
+      }
+      .submit-btn-disable {
+        background-color: #bab7bc;
+      }
+    }
+  }
+
+  .hidden-avator-and-name-tip {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 1.066667rem;
+    background-color: rgb(254, 248, 216);
+    bottom: 0;
+    font-size: 0.32rem;
+    color: rgb(249, 52, 80);
+    line-height: 1.066667rem;
+    text-align: center;
+    z-index: 9;
+    transition: all 0.5s;
+    &.active {
+      bottom: 1.6rem;
+    }
+  }
+
+  .detail-tag {
+    background-image: url(//cdn1.showjoy.com/images/94/94ec4af5deda4c7891544d0e289c3ee6.png);
+    width: 0.506667rem;
+    height: 0.506667rem;
+    background-size: 100%;
+    display: inline-block;
+    margin-left: 0.133333rem;
+    vertical-align: -0.133333rem;
+  }
+}
+
+// mixins
+.click-area-grid(@leftWidth, @rightWidth) {
+  .grid-left {
+    width: @leftWidth;
+    font-size: 0.373333rem
+  }
+  .grid-right {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5866666666666667rem/2; // 不优雅
+    right: 0; // 继承全局.list .list__click-area 的右内边距
+    width: @rightWidth;
+    height: 0.5866666666666667rem;
+    text-align: right;
+    &.submit{
+      position: absolute;
+      top: 17%;
+      margin-top: -0.16rem;
+      right: 1%;
+      width: 15%;
+    }
+    .icon-go {
+      font-size: 0.533333rem;
+    }
+  }
+  .grid-full{
+    width: 100%;
+  }
+}
+
+.mixin-select-disable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mixin-padding-LR(@number) {
+  padding-left: @number;
+  padding-right: @number;
+}
+
+.mixin-padding-TB(@number) {
+  padding-top: @number;
+  padding-bottom: @number;
+}
+
+.coupons-info {
+  white-space: nowrap;
+  position: absolute;
+  right: 0.5333333333333333rem;
+  top: 50%;
+  height: 0.5866666666666667rem;
+  line-height: 0.5866666666666667rem;
+  transform: translateY(-50%);
+  font-size: 0.32rem;
+  color: rgb(77, 77, 77);
+}
+.coupons-tips {
+  width: 1.3333333333333333rem;
+  height: 0.4266666666666667rem;
+  border-radius: 0.21333333333333335rem;
+  border: 1px solid rgb(249, 52, 80);
+  line-height: 0.4266666666666667rem;
+  text-align: center;
+  font-size: 0.26666666666666666rem;
+  color: rgb(249, 52, 80);
+  display: inline-block;
+  margin-left: 0.13333333333333333rem;
+  vertical-align: text-bottom;
+}

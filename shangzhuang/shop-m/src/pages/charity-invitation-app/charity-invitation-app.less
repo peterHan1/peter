@@ -1,0 +1,243 @@
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+.introduce {
+  width: 100%;
+  height: 6.42666rem;
+}
+p {
+  line-height: 1;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 0;
+  background-color: #fbfbfb;
+  // img{
+  //   width: 100%;
+  // }
+}
+.gift {
+  width: 100%;
+  color: @redPink;
+  overflow: hidden;
+  position: relative;
+  .title {
+    margin: 0.8rem 0 1rem;
+    text-align: center;
+    color: @black;
+    .fs2px(36);
+  }
+  .gift-1 {
+    width: 5.8rem;
+    font-size: 0.32rem;
+    position: relative;
+    margin-top: 0.533333rem;
+    margin-left: 3.34rem;
+    .gift-style {
+      line-height: 0.453333rem;
+    }
+    &::after {
+      content: '';
+      width: 1.52rem;
+      height: 1.573333rem;
+      position: absolute;
+      top: 50%;
+      margin-top: -1.573333rem /2;
+      left: -1.82rem;
+      z-index: 99;
+      background: url("//cdn1.showjoy.com/images/93/931c8e5a52be427aadb8ad607690adaa.png") center center no-repeat;
+      background-size: 1.493333rem;
+    }
+  }
+  .gift-2 {
+    width: 5.8rem;
+    font-size: 0.32rem;
+    position: relative;
+    margin-top: 0.8rem;
+    margin-left: 1.36rem;
+    text-align: right;
+    .gift-style {
+      line-height: 0.453333rem;
+    }
+    &::after {
+      content: '';
+      width: 2.013333rem;
+      height: 1.253333rem;
+      position: absolute;
+      top: 50%;
+      margin-top: -1.253333rem /2;
+      right: -2.213333rem;
+      z-index: 99;
+      background: url("//cdn1.showjoy.com/images/72/725cda034b6c4f298fbff591a01adaf3.png") center center no-repeat;
+      background-size: 1.546667rem;
+    }
+    .right {
+      text-align: right;
+    }
+  }
+  .gift-3 {
+    width: 5.4rem;
+    font-size: 0.32rem;
+    position: relative;
+    margin-top: 0.666667rem;
+    margin-left: 3.253333rem;
+    .gift-style {
+      line-height: 0.453333rem;
+    }
+    &::after {
+      content: '';
+      width: 1.626667rem;
+      height: 1.6rem;
+      position: absolute;
+      top: 50%;
+      margin-top: -1.546667rem /2;
+      left: -1.826667rem;
+      z-index: 99;
+      background: url("//cdn1.showjoy.com/images/67/67b116a6a653491d92e7413e06f1b516.png") center center no-repeat;
+      background-size: 1.32rem;
+    }
+  }
+  .gift-4 {
+    width: 5.8rem;
+    font-size: 0.32rem;
+    position: relative;
+    margin-top: 0.8rem;
+    margin-left: 1.36rem;
+    text-align: right;
+    .gift-style {
+      line-height: 0.453333rem;
+    }
+    &::after {
+      content: '';
+      width: 2.013333rem;
+      height: 1.653333rem;
+      position: absolute;
+      top: 50%;
+      margin-top: -0.9253333rem /2;
+      right: -2.213333rem;
+      z-index: 99;
+      background: url("//cdn1.showjoy.com/images/e5/e52ac100f64d4341b8fc02effdb4353f.png") center center no-repeat;
+      background-size: 1.546667rem;
+    }
+    .right {
+      text-align: right;
+    }
+  }
+}
+.invite-info {
+  margin-top: 0.666667rem;
+  background-color: #fbfbfb;
+  .sum {
+    height: 1.573333rem;
+    line-height: 1.573333rem;
+    text-align: center;
+    .fs2px(26);
+    color: @grey5;
+    background: url("//cdn1.showjoy.com/images/18/18083a23807c4697af0e6721537c7c86.png") center center no-repeat;
+    background-size: 100%;
+    .num {
+      color: @black2;
+    }
+  }
+  .per {
+    &:last-child {
+      .clearfix();
+    }
+    .per-item {
+      float: left;
+      margin: 0 0.16rem 0.6rem;
+      width: 1.68rem;
+      height: 1.8rem;
+      overflow: hidden;
+      text-align: center;
+      .img {
+        width: 1.226667rem;
+        height: 1.226667rem;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+      .per-name {
+        margin-top: 0.16rem;
+        height: 0.346667rem;
+        line-height: 0.346667rem;
+        .fs2px(24);
+        .text-overflow();
+        color: @black2;
+      }
+      &.more {
+        .fs2px(60);
+        line-height: 1.8rem;
+        color: @black2;
+      }
+    }
+  }
+}
+.redirect{
+  position: relative;
+  width: 100%;
+  height: auto;
+  .main-redirect{
+    position: absolute;
+    top: 2.1rem;
+    left: 0;
+    width: 50%;
+    height: 1.2rem;
+  }
+  .pre-redirect{
+    position: absolute;
+    top: 2.1rem;
+    right: 0;
+    width: 50%;
+    height: 1.2rem;
+  }
+}
+.step {
+  margin-top: 0.8rem;
+  height: 13.333333rem;
+  position: relative;
+  background: url("//cdn1.showjoy.com/images/7c/7c40d02f28404cb9a25edc54d6e0c634.jpg") center top no-repeat;
+  background-size: 100%;
+  .price-box {
+    position: absolute;
+    width: 2.133333rem;
+    height: 1.933333rem;
+    top: 0;
+    left: 50%;
+    margin-left: -1.28rem;
+    text-align: center;
+    color: @white;
+    -webkit-user-select: none;
+    .price-area {
+      margin-top: 0.333333rem;
+      font-size: 0.186667rem;
+      .price {
+        font-size: 0.4rem;
+      }
+    }
+    .price-desc {
+      margin-top: 0.066667rem;
+      font-size: 0.213333rem;
+    }
+  }
+  .download {
+    margin-left: 0.5rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    img {
+      padding-top: 5.67rem;
+    }
+  }
+  .invite-code {
+    position: absolute;
+    left: 6rem;
+    top: 2.8rem;
+    color: @white;
+    font-weight: bolder;
+    font-size: 0.68rem;
+    text-shadow: 0 2px 6px #353575;
+    letter-spacing: 1px;
+    z-index: 9999999;
+  }
+}

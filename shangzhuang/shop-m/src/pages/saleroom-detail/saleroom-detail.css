@@ -1,0 +1,117 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+#content {
+  padding-bottom: 0;
+}
+#layout {
+  padding-top: 0;
+}
+.select {
+  height: 0.9333rem;
+  line-height: 0.9333rem;
+  font-size: 0.3733rem;
+  text-align: center;
+  color: #000000;
+  background-color: #f9f9f9;
+}
+.select:after {
+  margin-left: 0.0533rem;
+  font-size: 0.2133rem;
+  font-family: 'iconfont';
+  content: '\e604';
+  vertical-align: middle;
+}
+.no-details {
+  padding-top: 2.88rem;
+  text-align: center;
+  color: #6d6d6d;
+  font-size: 0.4267rem;
+  line-height: 0.88rem;
+}
+section.list-container .placeholder-img {
+  display: block;
+  margin: 0.5333rem auto;
+}
+section.list-container .list-item {
+  height: 2.4267rem;
+  padding-right: 0.5333rem;
+  padding-left: 0.5333rem;
+  list-style: none;
+  overflow: hidden;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #e9e9e9;
+}
+section.list-container .list-item .ordernum {
+  margin: 0.2133rem 0 0.1867rem;
+  font-size: 0.32rem;
+  line-height: 0.373333rem;
+}
+section.list-container .list-item .ordernum .title {
+  color: #25252d;
+}
+section.list-container .list-item .ordernum .time {
+  float: right;
+  color: #515456;
+}
+section.list-container .list-item .info {
+  position: relative;
+  overflow: hidden;
+}
+section.list-container .list-item .info:before,
+section.list-container .list-item .info:after {
+  display: table;
+  content: "";
+}
+section.list-container .list-item .info:after {
+  clear: both;
+}
+section.list-container .list-item .info .pic-box {
+  float: left;
+  width: 1.6533rem;
+  height: 1.6533rem;
+  overflow: hidden;
+  position: relative;
+}
+section.list-container .list-item .info .pic-box .pic {
+  width: 100%;
+  height: 100%;
+}
+section.list-container .list-item .info .intro {
+  position: relative;
+  float: left;
+  width: 7.2rem;
+  padding-left: 0.1333rem;
+}
+section.list-container .list-item .info .intro .goods-title {
+  font-size: 0.3467rem;
+  line-height: 0.4267rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #515456;
+  text-decoration: none;
+  margin-bottom: 0.1333rem;
+}
+section.list-container .list-item .info .intro .goods-price {
+  font-size: 0.32rem;
+  margin-bottom: 0.1333rem;
+  color: #26262f;
+}
+section.list-container .list-item .info .intro .goods-price .num {
+  margin-right: 0.3333rem;
+}
+section.list-container .list-item .info .intro .goods-price .refund {
+  color: #f93450;
+  font-size: 0.32rem;
+  float: right;
+}

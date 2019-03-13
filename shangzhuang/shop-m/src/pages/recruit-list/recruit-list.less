@@ -1,0 +1,293 @@
+/* generator by mobi */
+
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+@sprite-icon: "//cdn1.showjoy.com/images/01/019e7f83fe1441d389ac960ca0cc051a.png";
+@-webkit-keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+p {
+  line-height: 1;
+}
+
+#header {
+  display: none;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 1.6rem;
+}
+
+// 没有拉新用户时的全局样式
+.no-recruit {
+  .sales-status {
+    .total-sales {
+      border-color: @grey4;
+      color: @grey4;
+    }
+    .total-sales-info {
+      .total-income,
+      .direct-income,
+      .family-income {
+        color: @grey4;
+        .money-box {
+          &:after {
+            border-color: @grey4;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+section {
+  &.sales-status {
+    height: 4.386667rem *2;
+    width: 100%;
+    background: url(//cdn1.showjoy.com/images/d3/d3105bff486e4d22bba826e9bcced402.png) no-repeat;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    .edit-box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 50%;
+      background-color: transparent;
+    }
+    .total-sales {
+      .size(2.813333rem *2, 2.813333rem *2);
+      .center-block();
+      margin-top: 0.8rem;
+      border: 0.16rem solid @yellow;
+      border-radius: 2.813333rem;
+      .total-money {
+        // .fs2px(80);
+        font-size: 1.066667rem;
+        margin-top: 0.986667rem *2;
+        text-align: center;
+        font-weight: bold;
+      }
+      .desc {
+        .fs2px(24);
+        text-align: center;
+        margin-top: 0.133333rem;
+      }
+    }
+    .total-sales-info {
+      position: relative;
+      width: 100%;
+      .total-income,
+      .direct-income,
+      .family-income {
+        position: absolute;
+        line-height: 1;
+        top: 0.4rem;
+        text-align: center;
+        width: 33%;
+        .title {
+          // .fs2px(28);
+          font-size: 0.373333rem;
+          margin-top: 0.16rem;
+        }
+        .money-box {
+          margin-top: 0.32rem;
+          white-space: nowrap;
+          position: relative;
+          &:after {
+            content: '';
+            width: 0.266667rem ;
+            height: 0.266667rem ;
+            border-radius: 0.266667rem ;
+            border: 0.08rem solid @yellow;
+            position: absolute;
+            left: 50%;
+            margin-left: -0.213333rem;
+            top: -0.533333rem;
+            z-index: 99;
+          }
+          .money {
+            // .fs2px(40);
+            font-size: 0.533333rem;
+          }
+        }
+      }
+      .total-income {
+        left: 0;
+        color: @yellow;
+        .money-box {
+          &:after {
+            border-color: @yellow;
+          }
+        }
+        &.no-income {
+          color: @grey4;
+          .money-box {
+            &:after {
+              border-color: @grey4;
+            }
+          }
+        }
+      }
+      .direct-income {
+        left: 33%;
+        color: @black;
+        .money-box {
+          &:after {
+            border-color: @black;
+          }
+        }
+        &.no-income {
+          color: @grey4;
+          .money-box {
+            &:after {
+              border-color: @grey4;
+            }
+          }
+        }
+      }
+      .family-income {
+        left: 66%;
+        color: @black;
+        .money-box {
+          &:after {
+            border-color: @black;
+          }
+        }
+        &.no-income {
+          color: @grey4;
+          .money-box {
+            &:after {
+              border-color: @grey4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+section {
+  &.freshman-box {
+    padding-top: 0.533333rem;
+    position: relative;
+    width: 4.466667rem *2;
+    .placeholder-img {
+      width: 4.666667rem;
+      display: block;
+      .center-block()
+    }
+    .center-block();
+    .freshman-list {
+      width: 100%;
+      height: 0.733333rem *2;
+      border-bottom: 1px solid @grey2;
+      animation: 'show-block' 1s ease 1 normal both;
+      -webkit-animation: 'show-block' 1s ease 1 normal both;
+      .clearfix();
+      .userinfo {
+        width: 5.733333rem;
+        float: left;
+        position: relative;
+        .clearfix();
+        .avator {
+          width: 1.066667rem;
+          height: 1.066667rem;
+          border-radius: 1.066667rem;
+          margin-top: 0.2rem;
+          display: block;
+          float: left;
+        }
+        .userinfo-detail {
+          width: 4.266667rem;
+          float: left;
+          margin-left: 0.266667rem;
+          .name {
+            .fs2px(32);
+            height: 0.533333rem;
+            margin-top: 0.293333rem;
+            color: @grey5;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .date {
+            .fs2px(24);
+            margin-top: 0.093333rem;
+            color: @grey4;
+          }
+        }
+      }
+      .earning {
+        color: @grey4;
+        float: right;
+        margin-top: 0.8rem;
+        .desc {
+          .fs2px(24);
+        }
+        .symbol {
+          .fs2px(24);
+        }
+        .num {
+          .fs2px(32);
+        }
+      }
+    }
+  }
+}
+
+section {
+  &.no-freshman {
+    .no-freshman-intro {
+      padding: 0.8rem 1.226667rem;
+      color: @grey5;
+      .earning-rule-title {
+        .fs2px(28);
+        text-align: center;
+      }
+      .earning-rule {
+        margin-top: 0.533333rem;
+        .fs2px(24);
+      }
+    }
+  }
+}
+
+section {
+  &.invite-box {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.6rem;
+    .invite-button {
+      width: 100%;
+      height: 1.6rem;
+      display: block;
+      line-height: 1.6rem;
+      text-align: center;
+      color: @white;
+      .fs2px(32);
+      background-color: @redPink;
+    }
+  }
+}

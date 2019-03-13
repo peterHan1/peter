@@ -1,0 +1,113 @@
+/* generator by mobi */
+
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+#layout {
+  padding-top: 0;  
+}
+body {
+  background-color: rgb(239, 239, 239);
+}
+.grid-left() {
+  width: 25%;
+  float: left;
+  text-align: left;
+  padding-left: 0.4rem *2;
+}
+.grid-right() {
+  width: 75%;
+  float: left;
+  text-align: right;
+  padding-right: 0.5333333333333333rem *2;
+}
+
+.shop-avator {
+  height: 0.9866666666666667rem *2;
+  width: 100%;
+  border-top: 0.09333333333333334rem *2 solid @grey1;
+  border-bottom: 0.09333333333333334rem *2 solid @grey1;
+  line-height: 0.8rem *2;
+  background-color: @white;
+  .clearfix();
+  .grid-left {
+    .grid-left();
+    font-size: 0.37333333333333335rem;
+  }
+  .grid-right {
+    position: relative;
+    .grid-right();
+    .avator {
+      width: 0.68rem *2;
+      height: 0.68rem *2;
+      border: 0.10666666666666667rem *2 solid @white;
+      border-radius: 50%;
+      box-shadow: 0 0 0.16rem -0.08rem rgba(0,0,0,0.5);
+      margin-top: 0.05333333333333334rem *2;
+    }
+    .file-input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    .icon-go {
+      font-size: 0.5333333333333333rem;
+      vertical-align: middle;
+      margin-right: -0.5333333333333333rem;
+    }
+  }
+
+}
+
+section.shop-info,
+section.shop-code {
+  a {
+    color: @black;
+  }
+  .item {
+    height: 0.5866666666666667rem *2;
+    border-bottom: 1px solid @grey1;
+    line-height: 0.5866666666666667rem *2;
+    font-size: 0.37333333333333335rem;
+    display: block;
+    background-color: @white;
+    overflow: hidden;
+    .grid {
+      padding: 0 0.4rem *2;
+    }
+    .grid-left {
+      .grid-left();
+    }
+    .grid-right {
+      .grid-right();
+      .wechat-tip {
+        color: @redPink;
+      }
+      .icon-go {
+        font-size: 0.5333333333333333rem;
+        vertical-align: middle;
+        margin-right: -0.5333333333333333rem;
+      }
+    }
+
+      
+  }
+}
+section.shop-code {
+  margin-top: 0.09333333333333334rem *2;  
+  .item {
+    .highlight {
+      font-size: 0.32rem;
+      color: @redPink2;
+    }
+    .grid-right {
+      text-align: left;
+    }
+    .icon {
+      margin-left: 1.84rem;
+    }
+  }
+}

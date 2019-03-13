@@ -1,0 +1,368 @@
+/*
+ * 我的订单列表页
+ * @author ben@yunjee.com
+ */
+/*
+   @remSwitch: true;
+   @rootValue: 75;
+   @unitPrecision: 4;
+   @blackList: [];
+   @minPixelValue: 2;
+ */
+#header .ui-toolbar-right {
+  display: none;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+}
+.tab {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  background-color: #efefef;
+  overflow: hidden;
+}
+.tab .title {
+  width: 50%;
+  float: left;
+  font-size: 0.3733rem;
+  color: #9e9e9e;
+  text-align: center;
+}
+.tab .title .active {
+  display: inline-block;
+  width: auto;
+  height: 1.04rem;
+  color: #000000;
+  border-bottom: 0.0267rem solid #000000;
+}
+.cover {
+  position: relative;
+  height: auto;
+}
+.cover .ad {
+  display: none;
+  padding: 0.16rem 0.4rem;
+  margin-bottom: 0;
+  background-color: #e91a49;
+  color: #ffffff;
+}
+.cover .ad .adclose {
+  position: absolute;
+  left: 0.4rem;
+  top: 0;
+  width: 0.8rem;
+  height: 100%;
+}
+.cover .ad .adclose:before {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+  margin-top: -0.4rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.2rem;
+  /* @norem */
+  font-family: 'iconfont' !important;
+  content: '\e603';
+}
+[data-dpr="2"] .cover .ad .adclose:before {
+  font-size: 0.4rem;
+  /* @norem */
+}
+[data-dpr="3"] .cover .ad .adclose:before {
+  font-size: 0.6rem;
+  /* @norem */
+}
+.cover .ad .adtext {
+  padding-left: 0.8rem;
+  line-height: 0.4rem;
+  font-size: 0.16rem;
+  /* @norem */
+}
+[data-dpr="2"] .cover .ad .adtext {
+  font-size: 0.32rem;
+  /* @norem */
+}
+[data-dpr="3"] .cover .ad .adtext {
+  font-size: 0.48rem;
+  /* @norem */
+}
+.cover .notice {
+  display: none;
+  text-align: center;
+  background-color: #c00;
+  font-size: 0.1867rem;
+  /* @norem */
+  color: #fff;
+  padding: 0.2rem 0;
+  line-height: 0.48rem;
+}
+[data-dpr="2"] .cover .notice {
+  font-size: 0.3733rem;
+  /* @norem */
+}
+[data-dpr="3"] .cover .notice {
+  font-size: 0.56rem;
+  /* @norem */
+}
+.cover .notice .notice-title .tag {
+  padding: 0.026667rem 0.186667rem;
+  background-color: #fff;
+  color: #c00;
+  border-radius: 50%;
+}
+#content .close-tip {
+  width: 100%;
+  background-color: #fff8f6;
+  color: #f56d6d;
+  font-size: 0.1467rem;
+  text-align: center;
+  line-height: 0.3067rem;
+  border: 1px dashed #fbb19d;
+}
+#content .order-list li.order {
+  margin-bottom: 0.1333rem;
+  background-color: #fff;
+}
+#content .order-list li.order .order-header {
+  padding: 0 0.5333rem;
+  font-family: Roboto, sans-serif;
+  border-bottom: 1px solid #e9e9e9;
+  display: block;
+}
+#content .order-list li.order .order-header .tips {
+  font-size: 0.2667rem;
+  color: #f93450;
+  padding: 0.1733rem 0;
+}
+#content .order-list li.order .order-header .number {
+  font-size: 0.2667rem;
+  color: #9e9e9e;
+  padding: 0.1733rem 0;
+}
+#content .order-list li.order .order-hd {
+  padding: 0 0.5333rem;
+  line-height: 0.96rem;
+  height: 0.96rem;
+  position: relative;
+  border-bottom: 1px solid #e9e9e9;
+}
+#content .order-list li.order .order-hd > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#content .order-list li.order .order-hd .order-number {
+  float: left;
+  color: #9e9e9e;
+  font-size: 0.32rem;
+}
+#content .order-list li.order .order-hd .order-number > strong {
+  text-decoration: underline;
+}
+#content .order-list li.order .order-hd .order-number.package {
+  color: #000000;
+  font-size: 0.3733rem;
+}
+#content .order-list li.order .order-hd .order-detail {
+  float: right;
+  color: #f93450;
+  font-size: 0.3733rem;
+}
+#content .order-list li.order .order-hd .oversea {
+  margin-top: 0.2rem;
+  margin-left: 0.0667rem;
+}
+#content .order-list li.order .order-bd {
+  padding: 0 0.5333rem;
+}
+#content .order-list li.order .order-bd .tr {
+  display: table;
+  width: 100%;
+  height: 1.6rem;
+}
+#content .order-list li.order .order-bd .tr > * {
+  display: table-cell;
+}
+#content .order-list li.order .order-bd .tr .pic {
+  width: 1.6rem;
+  height: 1.6rem;
+  vertical-align: middle;
+}
+#content .order-list li.order .order-bd .tr .pic img {
+  vertical-align: middle;
+}
+#content .order-list li.order .order-bd .tr .name {
+  font-size: 0.3733rem;
+  color: #000000;
+  vertical-align: middle;
+}
+#content .order-list li.order .order-bd .tr .name img {
+  width: auto;
+  height: 0.4267rem;
+  margin-right: 0.08rem;
+}
+#content .order-list li.order .order-bd .tr .name.highlight {
+  color: #f93450;
+}
+#content .order-list li.order .order-bd .tr .amount {
+  font-size: 0.32rem;
+  color: #9e9e9e;
+  width: 2.2667rem;
+  text-align: right;
+  line-height: 0.64rem;
+  vertical-align: middle;
+}
+#content .order-list li.order .order-bd .item-list li.item {
+  height: 2.0533rem;
+  border-bottom: 1px solid #e9e9e9;
+  overflow: hidden;
+  padding-top: 0.3333rem;
+}
+#content .order-list li.order .order-bd .close-tip {
+  height: 0.6933rem;
+  background-color: #fbeae5;
+  font-size: 0.32rem;
+  color: #f56d6d;
+  text-align: center;
+  line-height: 0.6933rem;
+}
+#content .order-list li.order .order-logistic {
+  height: 1.0667rem;
+  padding: 0 0.5333rem;
+  border-bottom: 1px solid #e9e9e9;
+}
+#content .order-list li.order .order-logistic .logistic-btn {
+  width: 2.1333rem;
+  height: 0.6667rem;
+  border: 1px solid #000000;
+  line-height: 0.6667rem;
+  text-align: center;
+  font-size: 0.3733rem;
+  float: right;
+  margin-top: 0.1867rem;
+  display: block;
+  color: #000000;
+}
+#content .order-list li.order .order-ft {
+  width: 100%;
+  overflow: hidden;
+}
+#content .order-list li.order .order-ft .postfee {
+  height: 1.12rem;
+  line-height: 1.12rem;
+  border-bottom: 1px solid #e9e9e9;
+  padding: 0 0.5333rem;
+}
+#content .order-list li.order .order-ft .postfee .tr {
+  display: table;
+  width: 100%;
+  height: 1.6rem;
+}
+#content .order-list li.order .order-ft .postfee .tr > * {
+  display: table-cell;
+}
+#content .order-list li.order .order-ft .postfee .tr .amount {
+  font-size: 0.32rem;
+  color: #9e9e9e;
+  width: 2.2667rem;
+  text-align: right;
+}
+#content .order-list li.order .order-ft .postfee .name:before {
+  font-family: 'iconfont' !important;
+  content: '\e61c';
+  font-size: 0.64rem;
+  margin-right: 0.1333rem;
+  vertical-align: middle;
+}
+#content .order-list li.order .order-ft .summary {
+  vertical-align: middle;
+  font-size: 0.3733rem;
+  color: #000000;
+  height: 0.9867rem;
+  line-height: 0.9867rem;
+  padding: 0 0.5333rem;
+  border-bottom: 0.1333rem solid #efefef;
+}
+#content .order-list li.order .order-ft .summary .title {
+  float: left;
+}
+#content .order-list li.order .order-ft .summary .price {
+  float: right;
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  font-size: 0.3733rem;
+  color: #000000;
+}
+#content .order-list li.order .order-ft .action {
+  height: 1.3867rem;
+  background-color: #efefef;
+  overflow: hidden;
+}
+#content .order-list li.order .order-ft .action .btn {
+  display: block;
+  font-size: 0.4267rem;
+  color: #ffffff;
+  text-align: center;
+  width: 4.1067rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  background-color: #f93450;
+  margin: 0.2267rem auto 0;
+}
+#content .order-list li.order .order-ft .action .btn.confirm {
+  color: #ffffff;
+  background-color: #f93450;
+}
+#content .order-list li.order .overtime-tip {
+  margin-top: -0.1333rem;
+  position: relative;
+  width: 100%;
+  height: 0.48rem;
+  padding-left: 0.8rem;
+  padding-right: 0.4rem;
+  background: #F6F6F6 url("//cdn1.showjoy.com/images/77/77e30f33de6f4aaf8da16131dfd18580.png") no-repeat 0.12rem center;
+  background-size: 0.56rem 0.2133rem;
+  font-size: 0.16rem;
+  line-height: 0.5067rem;
+  color: #959595;
+  border-bottom: 1px solid #cecece;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#content .order-list li.order .overtime-tip span {
+  color: #A987F9;
+}
+#content .order-list li.order .overtime-tip .overtime-tip-show {
+  width: 0.2667rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("//cdn1.showjoy.com/images/a4/a4d2a41c8a0e41df8435ff2793087693.png") no-repeat center;
+}
+#content .no-order {
+  display: table;
+  width: 100%;
+  margin-top: 4.8rem;
+}
+#content .no-order .tip {
+  display: table-cell;
+  text-align: center;
+  color: #848383;
+  font-size: 0.4267rem;
+}
+#content .ui-refresh-down {
+  font-size: 0.3733rem;
+  padding: 0.2667rem;
+}

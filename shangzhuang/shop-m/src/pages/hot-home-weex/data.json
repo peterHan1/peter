@@ -1,0 +1,24 @@
+{
+    "count": 0,
+    "data": [
+        {
+            "pic": "//cdn1.showjoy.com/images/5c/5c5061f55eb746fc993b42de343473f5.jpg",
+            "url": "www.baidu.com"
+        },
+        {
+            "pic": "//cdn1.showjoy.com/images/5c/5c5061f55eb746fc993b42de343473f5.jpg",
+            "url": "www.showjoy.com"
+        },
+        {
+            "pic": "//cdn1.showjoy.com/images/5c/5c5061f55eb746fc993b42de343473f5.jpg",
+            "url": "www.bbbb.com"
+        },
+        {
+            "pic": "//cdn1.showjoy.com/images/5c/5c5061f55eb746fc993b42de343473f5.jpg",
+            "url": "www.bbbb.com"
+        }
+    ],
+    "isRedirect": 0,
+    "isSuccess": 1,
+    "login": 0
+}

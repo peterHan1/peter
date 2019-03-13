@@ -1,0 +1,61 @@
+{
+  "data": [
+          {
+            "commission": "1.25",
+            "imgUrl": "http://cdn1.showjoy.com/images/78/78e487205312467bb13dedd60e5edf2a.png",
+            "isDirect": "true",
+            "isReward": 1,
+            "orderNumber": "2147885844337176",
+            "price": 78,
+            "quantity": 1,
+            "skuId": 55673,
+            "sourceShopId": 4880,
+            "status": 23,
+            "timestamp": 1478858842000,
+            "title": "雅诗兰黛净莹柔肤洁面乳（2支装）套装",
+            "user": {
+              "email": "",
+              "gmtCreate": 1460444227000,
+              "gmtModified": 1476861613000,
+              "id": 714076,
+              "image": "http://file.showjoy.com/images/34/34addf09d9d84139b58ae68413baf2b3.png",
+              "isEnable": true,
+              "isFake": 0,
+              "nick": "tuwei",
+              "password": "e10adc3949ba59abbe56e057f20f883e",
+              "sexType": "",
+              "tel": "15757184650",
+              "userAuth": "ROLE_ADMIN,ROLE_SHOP_USER,ROLE_USER,ROLE_FINANCE_ADMIN,ROLE_SHOP_ADMIN,ROLE_WAREHOUSE_MASTER",
+              "username": "tuwei"
+            }
+          },{
+            "commission": "1.25",
+            "imgUrl": "http://cdn1.showjoy.com/images/78/78e487205312467bb13dedd60e5edf2a.png",
+            "isDirect": "true",
+            "isReward": 1,
+            "orderNumber": "2147885844337176",
+            "price": 78,
+            "quantity": 1,
+            "skuId": 55673,
+            "sourceShopId": 4880,
+            "status": -2,
+            "timestamp": 1478858842000,
+            "title": "雅诗兰黛净莹柔肤洁面乳（2支装）套装",
+            "user": {
+              "email": "",
+              "gmtCreate": 1460444227000,
+              "gmtModified": 1476861613000,
+              "id": 714076,
+              "image": "http://file.showjoy.com/images/34/34addf09d9d84139b58ae68413baf2b3.png",
+              "isEnable": true,
+              "isFake": 0,
+              "nick": "tuwei",
+              "password": "e10adc3949ba59abbe56e057f20f883e",
+              "sexType": "",
+              "tel": "15757184650",
+              "userAuth": "ROLE_ADMIN,ROLE_SHOP_USER,ROLE_USER,ROLE_FINANCE_ADMIN,ROLE_SHOP_ADMIN,ROLE_WAREHOUSE_MASTER",
+              "username": "tuwei"
+            }
+          }
+        ]
+}

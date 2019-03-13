@@ -1,0 +1,272 @@
+{
+    "count": 0,
+    "data": {
+        "shop": {
+            "gmtCreate": 1468989966000,
+            "gmtModified": 1468989966000,
+            "headImage": "",
+            "id": 5447,
+            "isProbation": false,
+            "isVip": 0,
+            "membersCount": 0,
+            "name": "米奇妙妙屋",
+            "paid": true,
+            "parentId": 0,
+            "payOrderId": -1,
+            "position": 0,
+            "source": "mac",
+            "userId": 661520,
+            "vipShopId": 0
+        },
+        "saleInfo": {
+            "endTime": "12月12日10:00",
+        "price": "2320",
+        "startTime" :"12月12日10:00"
+        },
+        "isSelect": true,
+        "pageName": "itemDetail",
+        "commentsNum": 106,
+        "attribute": {
+            "规格": "125g"
+        },
+        "skuList": [{
+            "classify": "选择规格",
+            "value": [{
+                "name": "125.0g",
+                "skuId": 46381
+            }]
+        }],
+        "type": "3",
+        "shopProductId": 0,
+        "recommend": [
+            [{
+                "id": "141224",
+                "price": "119.00",
+                "name": "AHC 玻尿酸B5原液面膜",
+                "image": "//cdn1.showjoy.com/images/09/0992c3c5bfe0457ba670a0ffb13ef047.png",
+                "discount": "4.10"
+            }, {
+                "id": "143596",
+                "price": "65.00",
+                "name": "兰蔻 光泽润养睡眠面膜15ml",
+                "image": "//cdn1.showjoy.com/images/fa/fa293f2d5a81402d80b298a188f0e0f3.png",
+                "discount": "4.10"
+            }, {
+                "id": "100374",
+                "price": "65.00",
+                "name": "SNP 燕窝面膜 5片装 (深层补水保湿美白)125g",
+                "image": "//cdn1.showjoy.com/images/d3/d3a361c9fad84500be7e14341913c6e6.png",
+                "discount": "4.30"
+            }, {
+                "id": "144818",
+                "price": "65.00",
+                "name": "可莱丝 卡通限量针剂补水面膜  天蓝色(5片人）\t\t",
+                "image": "//cdn1.showjoy.com/images/33/335921a52ffd462aa816cf8b4e35f643.png",
+                "discount": "4.30"
+            }, {
+                "id": "10134",
+                "price": "75.00",
+                "name": "SKII 青春敷面膜10ml",
+                "image": "//cdn1.showjoy.com/images/c7/c74d61ab558440f2bfaf2d6679609911.png",
+                "discount": "6.40"
+            }, {
+                "id": "147140",
+                "price": "116.00",
+                "name": "百雀羚 水嫩柔滑夜间精华面膜 睡眠型（2瓶装）220ml",
+                "image": "//cdn1.showjoy.com/images/e3/e3c3a565c81b4d12ab267aeebabfb410.png",
+                "discount": "8.50"
+            }], 1
+        ],
+        "discount": "3.2",
+        "skuCommission": {
+            "actPrice": 0,
+            "commissionRate": 0.1,
+            "isDelete": 0,
+            "limitCommissionRate": 0,
+            "limitInventory": 0,
+            "skuId": 0,
+            "type": 0
+        },
+        "ProductDeatilParam": {
+            "enName": "无",
+            "cate": "面膜",
+            "parentCompany": "暂无信息",
+            "cradle": "韩国",
+            "specifications": "套装"
+        },
+        "isFromHome": false,
+        "price": 68,
+        "shopId": "5447",
+        "isSpecialSell": true,
+        "shopName": "米奇妙妙屋",
+        "productTitle": "[婕尼佳]保湿面膜（5片）125g",
+        "tagSkus": [{
+            "discount": "3.2",
+            "id": 46381,
+            "inventory": 7,
+            "isCanSelect": false,
+            "originalPrice": "210.00",
+            "price": "68.00",
+            "tagMaps": {
+                "规格": "125.0g"
+            },
+            "unit": "g",
+            "volume": 125
+        }],
+        "itemDetail": {
+            "commentNum": 0,
+            "currentTime": 0,
+            "duringGatherOrderActivity": false,
+            "endTime": 0,
+            "isAppPrice": false,
+            "isCanTry": false,
+            "isValidateMobile": 0,
+            "item": {
+                "appPrice": 0,
+                "brand": {
+                    "cradle": "韩国",
+                    "enName": "GHINIGA",
+                    "id": 25371,
+                    "image": "//cdn1.showjoy.com/images/85/853aac4b92cc4c36966c0780986bf766.png",
+                    "parentCompany": "",
+                    "pathName": "ghiniga",
+                    "zhName": "婕尼佳"
+                },
+                "buyNum": 0,
+                "canBuyNum": 0,
+                "cateName": "面膜",
+                "commentsNum": 106,
+                "discount": "3.2",
+                "id": 46381,
+                "image": "//cdn1.showjoy.com/images/4c/4c1cacc209ca41ecbe1c4a9ffda3e7ec.png",
+                "images": ["//cdn1.showjoy.com/images/4c/4c1cacc209ca41ecbe1c4a9ffda3e7ec.png", "//cdn1.showjoy.com/images/ca/ca5eeb0dca67401e8ff74962bb7cd397.jpg"],
+                "inventory": 7,
+                "isCosmeticsCate": false,
+                "isFavor": false,
+                "isHaitao": false,
+                "isHaveTrial": false,
+                "isTried": false,
+                "isUsed": false,
+                "likedNum": 10,
+                "originalPrice": 210,
+                "price": 68,
+                "propMap": {
+                    "$ref": "$.data.attribute"
+                },
+                "spu": {
+                    "cateId": 95,
+                    "enName": "",
+                    "id": 55472,
+                    "introduction": "蕴含桑黄蘑提取物，黄豆发酵提取物，积雪草提取物等纯植物成分，清洁皮肤，保湿补水，减少皮肤压力；\n<br>使用日本BEMLIESE无纺布，纯棉原料，对肌肤没有刺激，附着力好且精华丰富。\n<br>使用方法：清洁皮肤后，将面膜展开覆与整个面部，手指轻压将面膜整理服帖，20-30分钟后揭下，轻轻拍打帮助吸收剩余精华液即可。\n<br><br>温馨提示：本产品是韩国原装进口，外包装全韩文，每片都有中文贴标",
+                    "isSuit": false,
+                    "stop": false,
+                    "zhName": "保湿面膜（5片）"
+                },
+                "tagSkus": [{
+                    "$ref": "$.data.tagSkus[0]"
+                }],
+                "trialSkuId": 0,
+                "trialSkuInventory": 0,
+                "trialSkuPointValue": 0,
+                "unit": "g",
+                "vipPrice": 0,
+                "volume": 125
+            },
+            "recommend": {
+                "relevantItems": [{
+                    "$ref": "$.data.recommend[0][0]"
+                }, {
+                    "$ref": "$.data.recommend[0][1]"
+                }, {
+                    "$ref": "$.data.recommend[0][2]"
+                }, {
+                    "$ref": "$.data.recommend[0][3]"
+                }, {
+                    "$ref": "$.data.recommend[0][4]"
+                }, {
+                    "$ref": "$.data.recommend[0][5]"
+                }],
+                "isSuccess": 1
+            },
+            "skuInventory": 7,
+            "tried": false,
+            "userId": 661520
+        },
+        "commission": "6.80",
+        "itempic": {
+            "item": {
+                "barCode": "4979006029284",
+                "delayDeliveryDate": 5,
+                "gmtCreate": 1378717309000,
+                "gmtModified": 1475499780000,
+                "id": 9801,
+                "inventory": 15,
+                "isDelete": false,
+                "isHaitao": false,
+                "isTrial": false,
+                "originalPrice": 460,
+                "price": 355,
+                "searchable": true,
+                "shopPrice": 355,
+                "spuId": 5952,
+                "subHead": "",
+                "unit": "g",
+                "unitId": 0,
+                "volume": 120
+            },
+            "packageImages": [
+                "//cdn1.showjoy.com/images/aa/aaf6d2d6925b48d9aefd96ffbcd5dad7.jpg",
+                "//cdn1.showjoy.com/images/57/5763df1d91ab4d0bbaff56c87c73e0b1.jpg",
+                "//cdn1.showjoy.com/images/31/310d7a7a89a7478caad8fa25f1d6ee7f.jpg",
+                "//cdn1.showjoy.com/images/78/7842f0efa67b4d019f90e8c298dbe1af.jpg",
+                "//cdn1.showjoy.com/images/fc/fc13c7677e804a3bbb44db01e053c978.jpg",
+                "//cdn1.showjoy.com/images/cd/cd3abf08284141de9ba0fde7e9dbe3f2.jpg",
+                "//cdn1.showjoy.com/images/a0/a042c5a33e66402a87a1396ba6b8184e.jpg",
+                "//cdn1.showjoy.com/images/68/685b7aace3754424b0d1fe45b9198d5f.jpg"
+            ],
+            "spu": {
+                "aliases": "洗面奶",
+                "brandId": 1149,
+                "cateId": 91,
+                "enName": "SK-II",
+                "gmtCreate": 1378717309000,
+                "gmtModified": 1444704479000,
+                "id": 5952,
+                "introduction": "温和洁面，优越洗净力与肌肤pH值相当的弱酸性配方﹐蕴含SK-II Pitera、水解亚麻子提取物及保湿成分。\n丰富而幼细的保湿泡沫可把污垢包围﹐然后从肌肤带走，给予您细腻通透照人的肌肤。\n高保湿功效让你使用过后肌肤保有光滑、不紧绷。亲水性配方更容易洗净，肌肤不会产生不适感，令肌肤表层柔滑清新。\n\n使用方法：将脸沾湿，加水使泡沫洁面剂形成许多泡沫，然后涂在前额、双颊和下巴处。轻轻在脸上由下至上，从内至外画圈按摩。尤其仔细清洗T区部分。用温水或冷水彻底冲洗净。",
+                "isDelete": 0,
+                "isStop": 0,
+                "isSuit": 0,
+                "seoDescription": "",
+                "sex": "fm",
+                "statusId": 1,
+                "zhName": "护肤洁面霜"
+            }
+        },
+        "comments": [{
+            "content": "东西真的一般，看着打折买来试试，其实没啥用，自我感觉还不如森田。原价真的不值啊。。。。",
+            "createTime": "2015-09-01 17:09:49.0",
+            "createorImage": "//cdn1.showjoy.com/images/90/90996c42e75f4c43bdc1ee6f295250b1.jpg",
+            "creatorId": 112103,
+            "creatorName": "毕油油",
+            "id": 0,
+            "images": [],
+            "replyList": [],
+            "replyNum": 0,
+            "skuId": 46381
+        }, {
+            "content": "期待，还没用",
+            "createTime": "2015-08-18 20:42:41.0",
+            "createorImage": "//cdn1.showjoy.com/images/4e/4ebb93040f1244649e325cd76346481b.jpg",
+            "creatorId": 119462,
+            "creatorName": "1712nGjhYj",
+            "id": 0,
+            "images": [],
+            "replyList": [],
+            "replyNum": 0,
+            "skuId": 46381
+        }]
+    },
+    "isRedirect": 0,
+    "isSuccess": 1,
+    "login": 0
+}

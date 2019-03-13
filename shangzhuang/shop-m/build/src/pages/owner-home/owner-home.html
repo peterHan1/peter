@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>    
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.21/flexible/flexible-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.1.7/iconfont/talent-iconfont/icon.min.css">
+    <!-- <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"> -->
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.20/art-template/art-template-min.js"></script>
+    <title>owner-home</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./owner-home.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+      <div class="banner">
+        <div class="top-block">
+            <p class="title">累计收益<span class="level">职级：系主任</span></p>
+            <p class="commis-all"><span class="dollar">￥</span>16889.34<span class="shop-bank">+12121</span></p>
+            <p class="commis-today">今日收益：￥12911.35</p>
+            <p class="num">
+              <span class="sale">今日销售额：￥12323232.22</span>
+              <span class="family">家族新增：8555</span>
+              </p>
+        </div>
+        <div class="entry-block">
+          <ul>
+              <a href="">
+                  <li class="entry">
+                      <p class="icon icon-order"></p>
+                      <p class="text">订单管理</p>
+                  </li>
+              </a>
+              <a href="">
+                  <li class="entry">
+                      <p class="icon icon-family"></p>
+                      <p class="text">家族成员</p>
+                  </li>
+              </a>
+              <a href="">
+                  <li class="entry">
+                      <p class="icon icon-shop"></p>
+                      <p class="text">我的店铺</p>
+                  </li>
+              </a>
+              <a href="">
+                  <li class="entry">
+                      <p class="icon icon-friend"></p>
+                      <p class="text">邀请好友</p>
+                  </li>
+              </a>
+          </ul>
+        </div>
+      </div>
+      <div class="sale-block j_SaleBlock">
+          <div class="title-block">
+              <div class="opt-btn prev j_Prev"><span class="icon icon-back"></span>前一天</div>
+              <div class="opt-btn next j_Next">后一天<span class="icon icon-go"></span></div>
+              <div class="center">
+                  <div class="cal">
+                      <p class="day j_Day"></p>
+                      <p class="date j_Date"></p>
+                  </div> 
+                  <p class="title j_Title">今日特卖</p>
+                  <p class="subtitle">ON SALE</p>                 
+              </div>
+          </div>
+          <div class="container j_Container">
+              <div class="goods-block loading j_GoodsBlock" data-id="-1">
+
+              </div>
+              <div class="goods-block loading j_GoodsBlock" data-id="0">
+                
+              </div>
+              <div class="goods-block loading j_GoodsBlock" data-id="1">
+              </div>
+          </div>
+
+      </div>
+    
+    </div>
+    <script type="text/html" id="time-tmpl">
+      <div class="time-area-scroll j_TimeAreaScroll">
+        <ul class="time-area j_TimerArea">
+          <div class="down-arrow-bar j_DownArrowBar">
+            <div class="down-arrow"></div>
+          </div>
+          {{each data as item i }}
+            <li class="j_TimeItem" data-id="{{i}}">{{item}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
+    <script type="text/html" id="goods-tmpl">
+      <div class="j_GoodsBlockDetail">
+        {{each data as item}}  
+        <div class="goods">
+            <a href="/shop/sku/{{item.skuId}}.html">
+                <div class="img-box">
+                    <img class="goods-img j_Lazyload" data-original="{{item.imgUrl}}.300x300.png" src="//cdn1.showjoy.com/images/a5/a560e106324d4670acd11b69aee0f11f.png">
+                </div>
+            </a>
+            <div class="info">
+        <a href="/shop/sku/{{item.skuId}}.html">
+                  <p class="tag"><span class="status">{{item.time}} {{item.tag}}</span>限量：{{item.limitInventory}}</p>
+                  <p class="goods-title">{{item.skuName}}</p>
+                  <p class="price">特卖价:
+                      <span class="high">￥{{item.price}}</span>
+                      <span class="original">平时:￥{{item.originalPrice}}</span>
+                  </p>
+        </a>
+            </div>
+            <div class="tail-box">
+                <p class="num">已被{{item.shelvesCount}}位店主上架</p>
+                <p class="commis-num">收益：<span class="high">{{item.commission}}</span></p>
+                <p class="shelf-info">
+                    {{if item.select == true}}
+                      <span class="shelf-text j_ShelfText">已上架</span>
+                      <span class="area j_ShelfBtn active"  data-id="{{item.skuId}}">
+                          <span class="slider j_Slider"></span>
+                      </span>
+                    {{else}}
+                      <span class="shelf-text j_ShelfText">上架</span>
+                      <span class="area j_ShelfBtn"  data-id="{{item.skuId}}">
+                          <span class="slider j_Slider"></span>
+                      </span>
+                    {{/if}}
+                </p>
+            </div>
+        </div>
+      {{/each}}
+      </div>
+    </script>
+
+    <!-- local javascript files -->
+    <!-- <script src="./owner-home.min.js"></script> -->
+    <script type="text/javascript" src="./../../../build/src/pages/owner-home/owner-home.min.js"></script>
+  </body>
+</html>

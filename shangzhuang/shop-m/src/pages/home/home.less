@@ -1,0 +1,469 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+  padding-top: 0;
+}
+#content {
+  position: relative;
+  padding-bottom: 60 * 2px;
+  background-color: #fff;
+  .mask{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.6);
+    .invite-dialog {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -140 * 2px;
+      margin-top: -70 * 2px;
+      width: 280 * 2px;
+      height: 140 * 2px;
+      background-color: #fff;
+      border-radius: 3 * 2px;
+      .close {
+        position: absolute;
+        right: 10 * 2px;
+        top: 0 * 2px;
+        font-size: 26 * 2px;
+        color: #888888;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .text {
+        padding: 36 * 2px 20 * 2px 0;
+        font-size: 16 * 2px;
+        line-height: 24 * 2px;
+        color: #26252c;
+      }
+      .invite-btn {
+        width: 110 * 2px;
+        height: 30 * 2px;
+        line-height: 30 * 2px;
+        text-align: center;
+        margin-top: 20 * 2px;
+        border-radius: 3 * 2px;
+        color: #fff;
+        background-color: #976cf6;
+        margin-left: 85 * 2px;
+      }
+    }
+  }
+  .cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.6);
+    .content {
+      position: absolute;
+      top: 50%;
+      margin-top: -150 * 2px;
+      left: 0;
+      width: 100%;
+      height: 300 * 2px;
+      .text {
+        color: #fff;
+        text-align: center;
+        line-height: 24 * 2px;
+        margin-bottom: 20 * 2px;
+      }
+      .open-btn,
+      .view-btn {
+        width: 146 * 2px;
+        margin: 20 * 2px auto;
+        height: 36 * 2px;
+        line-height: 36 * 2px;
+        color: #fff;
+        width: 200 * 2px;
+        text-align: center;
+        border-radius: 3 * 2px;
+        border: 1 * 2px solid #fff;
+      }
+    }
+  }
+  .slider {
+    .ui-slider-dots{
+      right: 8 * 2px;
+      text-align: right;
+      b{
+        background-color: rgba(255, 255, 255, 0.5);
+        &.ui-state-active {
+          background-color: #fff;
+        }
+      }
+    }
+    .slider-img {
+      max-width: 100%;
+    }
+    .avatar {
+      position: absolute;
+      width: 100 * 2px;
+      margin-left: 275 * 2px / 2;
+      margin-top: -35 * 2px;
+      z-index: 9;
+      height: 70 * 2px;
+      text-align: center;
+      overflow: hidden;
+      .user-pic {
+        width: 70 * 2px;
+        height: 70 * 2px;
+        border: 2 * 2px solid #fff;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .hot {
+    position: relative;
+    width: 100%;
+    height: 224 * 2px;
+    background: left top repeat;
+    .retinabg('//cdn1.showjoy.com/images/27/271c617896a54e7684a8f98a42813833.png', '750x448', '375x224', 'png');
+    background-size: 100%;
+    overflow: hidden;
+    .block {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      .icon-edit {
+        position: absolute;
+        top: 4 * 2px;
+        width: 40 * 2px;
+        height: 40 * 2px;
+        font-size: 24 * 2px;
+        text-align: center;
+        line-height: 46 * 2px;
+        color: @grey5;
+      }
+      &.best {
+        left: 0;
+        top: 0;
+        .icon-edit {
+          left: 0 * 2px;
+        }
+      }
+      &.new {
+        right: 0;
+        top: 0;
+        .icon-edit {
+          right: 0 * 2px;
+        }
+      }
+      .block-title {
+        margin: 12 * 2px 0 4 * 2px;
+        text-align: center;
+        color: #000000;
+        font-size: 13 * 2px;
+        line-height: 13 * 2px;
+      }
+      .eng-title {
+        color: #939393;
+        font-size: 10 * 2px;
+        line-height: 10 * 2px;
+        text-align: center;
+      }
+      .add-btn {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        .cir-area {
+          width: 90 * 2px;
+          height: 90 * 2px;
+          margin: 44 * 2px auto;
+          font-size: 40 * 2px;
+          color: #d5d5d5;
+          border-radius: 50%;
+          border: 2 * 2px solid #d5d5d5;
+          text-align: center;
+          line-height: 90 * 2px;
+        }
+      }
+      .pic-wrap {
+        position: relative;
+        margin: 8 * 2px 26 * 2px 0;
+        width: 132 * 2px;
+        height: 132 * 2px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 2 * 2px solid #e5e5e5;
+        overflow: hidden;
+        .discount-tag {
+          position: absolute;
+          right: 0;
+          top: 52 * 2px;
+          width: 40 * 2px;
+          height: 32 * 2px;
+          font-size: 10 * 2px;
+          font-weight: bold;
+          line-height: 32 * 2px;
+          text-align: center;
+          color: #fff;
+          background-color: #000;
+          .num {
+            font-size: 15 * 2px;
+          }
+        }
+      }
+      .price {
+        text-align: center;
+        height: 24 * 2px;
+        font-size: 16 * 2px;
+        line-height: 24 * 2px;
+        color: #000;
+        .groupon-tag {
+          padding: 3 * 2px;
+          font-size: 12 * 2px;
+          color: #fff;
+          background-color: #F65634;
+        }
+      }
+      .title {
+        padding: 0 10 * 2px;
+        text-align: center;
+        height: 16 * 2px;
+        line-height: 16 * 2px;
+        font-size: 12 * 2px;
+        color: #000;
+        .text-overflow();
+      }
+    }
+  }
+
+  .brand {
+    overflow: hidden;
+    border-bottom: 1 * 2px solid rgb(233,233,233);
+    .brand-list {
+      width: 93 * 2px;
+      height: 93 * 2px;
+      border-right: 1 * 2px solid rgb(233,233,233);
+      float: left;
+      border-top: 1 * 2px solid rgb(233,233,233);
+      box-sizing: content-box;
+      &:nth-child(4n) {
+        border-right: 0;
+      }
+      .brand-list-img {
+        width: 100%;
+        margin-top: 10 * 2px;
+      }
+    }
+  }
+
+  .rec {
+    padding-top: 10 * 2px;
+    background-color: #EFEFEF;
+    &.placeholder {
+      height: 200 * 2px;
+      background: url(//cdn1.showjoy.com/images/b1/b1781f3ed2d84b4195f0aa794cb63a9b.png) center center no-repeat;
+    }
+    .link {
+      display: none;
+    }
+    .empty {
+      width: 100%;
+      height: 120 * 2px;
+      color: @grey3;
+      text-align: center;
+      .add-btn {
+        margin-top: 40 * 2px;
+        height: 40 * 2px;
+        font-size: 60 * 2px;
+        line-height: 40 * 2px;
+      }
+      .text {
+        font-size: 14 * 2px;
+      }
+    }
+    .rec-title {
+      height: 68*2px;
+      line-height: 68*2px;
+      font-size: 36px;
+      font-weight: bolder;
+      text-align: center;
+      background-color: #fff;
+    }
+    .block {
+      position: relative;
+      margin-bottom: 10px;
+      background-color: #fff;
+      transition: height 0.4s;
+      -moz-transition: height 0.4s;
+      -webkit-transition: height 0.4s;
+      -o-transition: height 0.4s;    
+      &.slider-up {
+        visibility: hidden;
+        height: 0;
+      }
+      .goods-wrap {
+        width: 100%;
+        position: relative;
+        height: 200 * 2px;
+        overflow: hidden;
+        .info {
+          position: absolute;
+          z-index: 11;
+          left: 58 * 2px;
+          top: 80 * 2px;
+          color: #fff;
+          font-size: 20 * 2px;
+          line-height: 20 * 2px;
+          .brand {
+            color: @black;
+            width: 200 * 2px;
+            height: 26 * 2px;
+            line-height: 26 * 2px;
+            font-size: 26 * 2px;
+            font-weight: bolder;
+            border: none;
+          }
+          .title {
+            margin-top: 10 * 2px;
+            color: @warmGrey;
+            font-size: 12 * 2px;
+          }
+          .arrow {
+            position: absolute;
+            left: 30 * 2px;
+            top: 71 * 2px;
+            border-color: transparent transparent #fff;
+            border-style: solid;
+            border-width: 10 * 2px;
+            width: 0;
+            height: 0;
+          }
+        }
+        .goods-pic {
+          z-index: 9;
+          position: absolute;
+          right: 30 * 2px;
+          top: 22.5 * 2px;
+          height: 145 * 2px;
+          width: 145 * 2px;
+        }
+        .goods-pic-1 {
+          position: absolute;
+          right: -50 * 2px;
+          top: -6 * 2px;
+          height: 230 * 2px;
+          width: 230 * 2px;
+        }
+        &.bg-color1 {
+          background-color: @homebg1;
+        }
+        &.bg-color2 {
+          background-color: @homebg2;
+        }
+        &.bg-color3 {
+          background-color: @homebg3;
+        }
+        &.bg-color4 {
+          background-color: @homebg4;
+        }
+        &.bg-color5 {
+          background-color: @homebg5;
+        }
+        &.bg-color6 {
+          background-color: @homebg6;
+        }
+        &.bg-color7 {
+          background-color: @homebg7;
+        }
+      }
+      .desc-wrap {
+        padding: 12*2px 20*2px;        
+        color: @black;
+        font-size: 14*2px;
+        line-height: 20 * 2px;
+        .highlight {
+          color: @pinkishRed;
+        }
+      }      
+      .opt-box {        
+        padding: 4px 30px 20px;
+        line-height: 60px;
+        overflow: hidden;
+        color: @pinkishRed;
+        .price {
+
+        }
+        .original-price {
+          margin-left: 8px;
+          font-size: 12*2px;
+          text-decoration: line-through;
+          color: @grey5;
+        }
+        .comm {
+          margin-left: 8px;
+          padding: 6px 20px;
+          color: rgb(255, 127, 147);
+          border-radius: 20px;
+          border: 1px solid rgb(255, 127, 147);
+        }
+        .opt {
+          float: right;
+          margin-left: 20 * 2px;
+          background-color: @pinkishRed;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px; 
+          &:before {
+            font-family: 'iconfont' !important;
+            content: '\e610';
+            font-size: 16 * 2px;
+            line-height: 60px;
+            vertical-align: middle;
+            color: @white;
+            text-align: center;
+            margin-left: 14px;
+          }
+          &.rep-opt {
+            &:before {
+              text-align: center;
+              content: '\e613';
+            }
+          }
+          font-size: 14 * 2px;
+          line-height: 25 * 2px;
+          color: @black;
+        }
+        .buy-btn {
+          float: right;
+          width: 180px;
+          height: 60px;
+          line-height: 60px;
+          text-align: center;
+          background-color: @pinkishRed;
+          color: @white;
+          border-radius: 28px;
+        }
+      }
+    }
+    .msg {
+      height: 26 * 2px;
+      line-height: 26 * 2px;
+      font-size: 12 * 2px;
+      color: #ccc;
+      text-align: center;
+    }
+  }
+}
+#footer {
+  .nav-box {
+    z-index: 9999;
+  }
+}

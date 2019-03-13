@@ -1,0 +1,162 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+
+.bind-phone-dialog {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 999;
+  .phone-bind-content {
+    width: 7.866667rem;
+    height: 10.8rem;
+    background-color: #fff;
+    // margin: 2.88rem auto 0;
+    overflow: hidden;
+    position: fixed;
+    bottom: 1.333333rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    .skip-text {
+      font-size: 0.32rem;
+      color: #ccc;
+      position: absolute;
+      right: 0.266667rem;
+      top: 0.266667rem;
+
+    }
+    .title {
+      width: 7.866667rem;
+      height: 2.186667rem;
+      .webpbg('//cdn1.showjoy.com/images/e3/e3f9fa5ae0ea49a7a4370459d9de6c2b.png.590x164.png');
+      background-size: cover;
+      margin-top: 0.533333rem;
+    }
+    .number-container {
+      width: 5.306667rem;
+      height: 2.0rem;
+      margin: 0.293333rem auto 0;
+      background-color: #fff;
+      .webpbg('//cdn1.showjoy.com/images/4d/4d4db103cf024f0bb8d89842df5b73a5.png.398x150.png');
+      overflow: hidden;
+      .number-container-inner {
+        width: 4.613333rem;
+        height: 1.466667rem;
+        margin: 0.266667rem auto;
+        border: 0.026667rem solid #fff;
+        text-align: center;
+        line-height: 1.466667rem;
+        font-size: 0.853333rem;
+        color: #fff;
+        .num {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .coupon-desc {
+      text-align: center;
+      font-size: 0.32rem;
+      color: #999999;
+      margin-top: 0.213333rem;
+    }
+    .get-coupon {
+      width: 100%;
+      height: 1.173333rem;
+      line-height: 1.173333rem;
+      text-align: center;
+      background-color: #f93450;
+      color: #fff;
+      font-size: 0.453333rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+    }
+  }
+}
+
+section.bind-area {
+  margin-top: 0.4rem;
+  .mobile-form{
+    width: 6.533333rem;
+    .center-block();
+    position: relative;;
+    .field{
+      width: 100%;
+      height: 1.333333rem;
+      border-bottom: 1px solid @grey2;
+      overflow: hidden;
+      .label{
+        font-size: 0.32rem;
+        color: #a1a1a1;
+        height: 0.533333rem;
+        vertical-align: middle;
+        width: 1.546667rem;
+        display: inline-block;
+        text-align: right;
+        .text-star {
+          color: @redPink;
+          margin-right: 0.06666666666666667rem;
+          vertical-align: middle;
+        }
+      }
+      .input{
+        font-size: 0.32rem;
+        padding-left: 0.08rem;
+        height: 0.533333rem;
+        line-height: 0.533333rem;
+        margin-top: 0.666667rem;
+        width: 4.933333rem;
+      }
+      .checkcode{
+        .clearfix();
+        .checkcode-left{
+          width: 4.666667rem;
+          float: left;
+          .input{
+            width: 2.666667rem;
+          }
+        }
+        .checkcode-right{
+          width: 1.8rem;
+          float: right;
+          margin-right: 1px;
+          .getchk-btn{
+            .size(0.906667rem *2, 0.56rem);
+            font-size: 0.16rem *2;
+            line-height: 0.56rem;
+            color: #a1a1a1;
+            text-align: center;
+            border: 1px solid #a1a1a1;
+            margin-top: 0.56rem;
+            overflow: hidden;
+          }
+          .timer{
+            display: none;
+            .size(0.906667rem *2, 0.56rem);
+            font-size: 0.32rem;
+            line-height: 0.56rem;
+            color: #a1a1a1;
+            text-align: center;
+            border: 1px solid #a1a1a1;
+            margin-top: 0.56rem;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}

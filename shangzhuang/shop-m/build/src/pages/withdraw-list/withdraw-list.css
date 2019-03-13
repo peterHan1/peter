@@ -1,0 +1,210 @@
+/* generator by mobi */
+/* 导入全局方法 */
+p {
+  line-height: 1;
+}
+@-webkit-keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#header {
+  display: none;
+}
+#layout {
+  padding-top: 0;
+}
+.point-desc {
+  padding: 0.266667rem 0.533333rem;
+  color: #9e9e9e;
+  line-height: 1.4;
+  font-size: 12px;
+  /* @norem */
+}
+[data-dpr="2"] .point-desc {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .point-desc {
+  font-size: 36px;
+  /* @norem */
+}
+.withdraw-header {
+  width: 100%;
+  height: 1.066667rem;
+  background-color: #efefef;
+}
+.withdraw-header:before,
+.withdraw-header:after {
+  display: table;
+  content: "";
+}
+.withdraw-header:after {
+  clear: both;
+}
+.withdraw-header .tab-withdraw,
+.withdraw-header .tab-record {
+  text-align: center;
+}
+.withdraw-header .tab-withdraw .text,
+.withdraw-header .tab-record .text {
+  height: 1.066667rem;
+  font-size: 14px;
+  /* @norem */
+  line-height: 1.066667rem;
+  color: #9e9e9e;
+}
+[data-dpr="2"] .withdraw-header .tab-withdraw .text,
+[data-dpr="2"] .withdraw-header .tab-record .text {
+  font-size: 28px;
+  /* @norem */
+}
+[data-dpr="3"] .withdraw-header .tab-withdraw .text,
+[data-dpr="3"] .withdraw-header .tab-record .text {
+  font-size: 42px;
+  /* @norem */
+}
+.withdraw-header .tab-withdraw .text.active,
+.withdraw-header .tab-record .text.active {
+  position: relative;
+  color: #000000;
+}
+.withdraw-header .tab-withdraw .text.active::after,
+.withdraw-header .tab-record .text.active::after {
+  content: '';
+  width: 1.2rem;
+  height: 0.053333rem;
+  position: absolute;
+  background-color: #000000;
+  bottom: 0;
+  left: 50%;
+  margin-left: -0.6rem;
+  z-index: 99;
+}
+.withdraw-header .tab-withdraw {
+  width: 50%;
+  height: 100%;
+  float: left;
+  display: block;
+}
+.withdraw-header .tab-record {
+  width: 50%;
+  height: 100%;
+  float: left;
+  display: block;
+}
+.income-box {
+  width: 8.933334rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.income-box .placeholder-img {
+  width: 4.666667rem;
+  margin-top: 1.333333rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.income-box .income-list {
+  width: 100%;
+  height: 1.386667rem;
+  border-bottom: 1px solid #e9e9e9;
+  animation: 'show-block' 1s ease 1 normal both;
+  -webkit-animation: 'show-block' 1s ease 1 normal both;
+}
+.income-box .income-list:before,
+.income-box .income-list:after {
+  display: table;
+  content: "";
+}
+.income-box .income-list:after {
+  clear: both;
+}
+.income-box .income-list .account {
+  float: left;
+}
+.income-box .income-list .account .acc {
+  font-size: 16px;
+  /* @norem */
+  color: #9e9e9e;
+  height: 0.533333rem;
+  margin-top: 0.08rem;
+}
+[data-dpr="2"] .income-box .income-list .account .acc {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .income-box .income-list .account .acc {
+  font-size: 48px;
+  /* @norem */
+}
+.income-box .income-list .account .date {
+  font-size: 12px;
+  /* @norem */
+  color: #c4c4c4;
+  margin-top: 0.266667rem;
+  height: 0.373333rem;
+}
+[data-dpr="2"] .income-box .income-list .account .date {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .income-box .income-list .account .date {
+  font-size: 36px;
+  /* @norem */
+}
+.income-box .income-list .income {
+  float: right;
+}
+.income-box .income-list .income .income-money {
+  font-size: 12px;
+  /* @norem */
+  color: #c4c4c4;
+  margin-top: 0.266667rem;
+  height: 0.373333rem;
+}
+[data-dpr="2"] .income-box .income-list .income .income-money {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .income-box .income-list .income .income-money {
+  font-size: 36px;
+  /* @norem */
+}
+.income-box .income-list .income .income-money .symbol {
+  margin-right: -0.053333rem;
+}
+.income-box .income-list .income .status {
+  font-size: 12px;
+  /* @norem */
+  color: #c4c4c4;
+  margin-top: 0.24rem;
+  height: 0.373333rem;
+  text-align: right;
+}
+[data-dpr="2"] .income-box .income-list .income .status {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .income-box .income-list .income .status {
+  font-size: 36px;
+  /* @norem */
+}
+.income-box .income-list .income .status.withdrawing {
+  color: #fb1e67;
+}
+.income-box .income-list .income .status.finish {
+  color: #c4c4c4;
+}

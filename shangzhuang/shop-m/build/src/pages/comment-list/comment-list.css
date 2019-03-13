@@ -1,0 +1,121 @@
+/*
+ * 列表页
+ * @author ben@yunjee.com
+ */
+#header .ui-toolbar-right {
+  display: none;
+}
+#content .comment-list {
+  padding: 3px 6px 0;
+}
+#content .comment-list li.comment {
+  width: 100%;
+  padding: 12px 6px 10px;
+  border-bottom: 1px solid #EFEFEF;
+}
+#content .comment-list li.comment .comment-hd {
+  overflow: hidden;
+}
+#content .comment-list li.comment .comment-hd .user {
+  color: #1a1a1a;
+  font-size: 14px;
+  float: left;
+}
+#content .comment-list li.comment .comment-hd .time {
+  color: #848383;
+  font-size: 10px;
+  float: right;
+}
+#content .comment-list li.comment .comment-bd {
+  background-color: #EFEFEF;
+  position: relative;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+#content .comment-list li.comment .comment-bd:before {
+  content: "";
+  border-color: transparent transparent #EFEFEF transparent;
+  border-style: solid;
+  border-width: 5px 5px;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: -10px;
+  left: 17px;
+}
+#content .comment-list li.comment .comment-bd .content {
+  color: #666;
+  font-size: 11px;
+  line-height: 18px;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box {
+  position: relative;
+  width: 275px;
+  background-color: #fff;
+  margin-top: 9px;
+  border-radius: 4px;
+  padding-bottom: 1px;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box .reply-list {
+  width: 255px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box .reply-list .reply-msg {
+  width: 255px;
+  height: auto;
+  overflow: hidden;
+  line-height: 17px;
+  text-align: justify;
+  margin: 7px 0;
+  border-bottom: 1px dashed #ccc;
+  font-size: 11px;
+  color: #666;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box .reply-list .reply-msg:last-child {
+  border: none;
+  margin-bottom: 4px;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box .look-more-btn {
+  width: 254px;
+  height: 21px;
+  background: url(//cdn1.showjoy.com/images/99/99ecf9cd9e4444f8a580b90fd2eb26f3.png);
+  background-size: 254px 21px;
+  margin: 0 auto 10px;
+}
+#content .comment-list li.comment .comment-bd .content .reply-box:before {
+  content: "";
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 5px;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -10px;
+  left: 17px;
+}
+#content .comment-list li.comment .comment-bd .pic-list {
+  padding: 0 1px;
+  margin-top: 5px;
+  overflow: hidden;
+  border-top: 1px solid #e1dfe9;
+}
+#content .comment-list li.comment .comment-bd .pic-list .pic {
+  float: left;
+  width: 38px;
+  height: 38px;
+  border: 2px solid #baaec4;
+  margin: 5px 5px 0 0;
+}
+#content .no-comment {
+  display: table;
+  width: 100%;
+  margin-top: 180px;
+}
+#content .no-comment .tip {
+  display: table-cell;
+  text-align: center;
+  color: #848383;
+  font-size: 16px;
+}

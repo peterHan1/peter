@@ -1,0 +1,60 @@
+.joy-ui-loading {
+  display: none;
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.joy-ui-loading .content-box {
+  position: absolute;
+  width: 4.266666rem;
+  height: 1.386666rem;
+  left: 50%;
+  top: 50%;
+  line-height: 1.386666rem;
+  margin-top: -0.8rem;
+  margin-left: -2.133334rem;
+  color: #fff;
+  font-size: 0.426666rem;
+  background-color: #111;
+  border-radius: 0.133334rem;
+  overflow: hidden;
+}
+.joy-ui-loading .content-box .circle {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0.24rem 0.266666rem 0.24rem 0.8rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.4rem;
+  -webkit-animation: rotateO 0.6s 0s infinite normal linear;
+  animation: rotateO 0.6s 0s infinite normal linear;
+}
+@-webkit-keyframes rotateO {
+  0% {
+    -webkit-transform: rotate(-359deg);
+    -webkit-transform-origin: center;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+@keyframes rotateO {
+  0% {
+    -webkit-transform: rotate(-359deg);
+            transform: rotate(-359deg);
+    -webkit-transform-origin: center;
+            transform-origin: center;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}

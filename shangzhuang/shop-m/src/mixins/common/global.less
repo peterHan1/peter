@@ -1,0 +1,25 @@
+*{
+  .box-sizing(border-box);
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+img{
+  max-width: 100%;
+  vertical-align: top;
+}
+
+a{
+  text-decoration: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+#layout{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding-top: 44px; //比头部少一个像素修复iphone向上滑动时有时出现1px空隙问题
+}

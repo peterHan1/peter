@@ -1,0 +1,175 @@
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+  padding-top: 0;
+}
+.slider {
+  .ui-slider-dots{
+    right: 0.213333rem;
+    text-align: right;
+    b{
+      background-color: rgba(255, 255, 255, 0.5);
+      &.ui-state-active {
+        background-color: #fff;
+      }
+    }
+  }
+  .slider-img {
+    max-width: 100%;
+  }
+}
+.inputnum {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  text-align: center;
+  color: @redPink;
+  height: 0.693333rem;
+  line-height: 0.693333rem;
+  .fs2px(32);
+  width: 2.4rem;
+  margin: 0 4px;
+}
+.detail {
+  position: relative;
+  height: 8.426667rem;
+  .box {
+    width: 100%;
+    height: 8.426667rem;
+    position: relative;
+    .rule {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 1.066667rem;
+      line-height: 1.066667rem;
+      padding-right: 0.533333rem;
+      color: #ccc;
+    }
+    .webpbg("//cdn1.showjoy.com/images/0b/0b71367f542d424a9020df44e01bd2d4.png");
+    background-color: @white; 
+    background-position: 0.373333rem 1.12rem;
+    background-repeat: no-repeat;
+    background-size: 0.906667rem;
+    overflow: hidden;
+    .intro {
+      margin-top: 1.28rem;
+      margin-left: 1.6rem;
+      .list {
+        margin-bottom: 0.9rem;
+        .fs2px(32);
+        line-height: 0.586667rem;
+        .icon-help {
+          margin-left: 0.2rem;
+          color: @redPink;
+        }
+        .select {
+          .fs2px(28);
+          padding-left: 0.2rem;
+          width: 2.266667rem *2;
+          height: 0.453333rem *2;
+          line-height: 0.453333rem *2;
+          .webpbg("//cdn1.showjoy.com/images/b1/b1949d33e84d47d2980134a4856320fb.png");
+          background-color: #eee;
+          background-position: 3.8rem center;
+          background-repeat: no-repeat;
+          border: none;
+        }
+        .frozen {
+          .fs2px(20);
+          color: @grey5;
+        }
+      }
+    }
+  }
+}
+.mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: scroll;
+  .icon-wrong {
+    position: absolute;
+    padding: 0.266667rem;
+    right: 0.586667rem;
+    top: 0.933333rem;
+    height: 0.933333rem;
+    color: @white;
+    .fs2px(32);
+  }
+  .title,
+  .list {
+    color: @white;
+    .fs2px(32);
+    line-height: 0.533333rem;
+    padding: 0 1.173333rem;
+    margin: 0.266667rem 0;
+  }
+  .title {
+    margin-top: 2.666667rem;
+    text-align: center;
+    line-height: 1.066667rem;
+  }
+  &.show {
+    animation: 'show-block' 0.7s ease 1 normal both;
+    -webkit-animation: 'show-block' 0.7s ease 1 normal both;
+  }
+}
+.btns {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 0.8rem *2;
+  width: 100%;
+  .clearfix();
+  .donate,
+  .withdraw {
+    display: block;
+    float: left;
+    .fs2px(32);
+    width: 50%;
+    height: 0.8rem *2;
+    line-height: 0.8rem *2;
+    text-align: center;
+    background-color: @black;
+    color: @white;
+  }
+  .withdraw {
+    float: right;
+    background-color: @redPink;
+    border: 2px solid  @redPink;
+    &.full {
+      width: 100%;
+    }
+  }
+}
+.joy-ui-dialog-confirm-title {
+  .icon-title {
+    height: 1.493333rem;  
+  }  
+}
+.joy-ui-dialog-confirm-title {
+  font-family: 'iconfont';
+}
+
+@-webkit-keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

@@ -1,0 +1,266 @@
+/*
+ * 我的信息页面
+ * @author yangcai@showjoy.com
+ * @last 2014/12/15
+ */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+.grid {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.grid:before,
+.grid:after {
+  content: " ";
+  display: table;
+}
+.grid:after {
+  clear: both;
+}
+.grid .col {
+  float: left;
+}
+.grid.col-1 .col {
+  width: 100%;
+}
+.grid.col-2 .col {
+  width: 50%;
+}
+.grid.col-3 .col {
+  width: 33.33333333%;
+}
+.grid.col-4 .col {
+  width: 25%;
+}
+.grid.col-5 .col {
+  width: 20%;
+}
+/*
+ * 用户等级素材 for h5
+ * @author yangcai@showjoy.com
+ * @last 2014/12/15
+ */
+.ui-icon-level {
+  background-image: url("//cdn1.showjoy.com/images/b3/b3b049629cc34f5aa7341f77ca235638.png");
+  background-repeat: no-repeat;
+}
+.ui-icon-level.v0 {
+  background-position: -0.34rem 0;
+}
+.ui-icon-level.v1 {
+  background-position: 0 0;
+}
+.ui-icon-level.v2 {
+  background-position: -0.1133rem 0;
+}
+.ui-icon-level.v3 {
+  background-position: -0.2267rem 0;
+}
+#header .ui-toolbar-right {
+  display: none;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(//cdn1.showjoy.com/assets/fonts/roboto/100.woff) format('woff');
+}
+body {
+  background-color: #fff;
+}
+#layout {
+  padding-top: 0;
+}
+.icon-list {
+  font-size: 0.5333rem;
+}
+.icon-bag-press {
+  font-size: 0.5333rem;
+}
+.btn-exit {
+  width: 7.6rem;
+  height: 1.1733rem;
+  line-height: 1.1733rem;
+  text-align: center;
+  border: 1px solid #9983A4;
+  background-color: #A595AD;
+  border-radius: 0.08rem;
+  font-size: 0.44rem;
+  color: #fff;
+  display: block;
+  padding: 0;
+}
+.module-list li {
+  padding: 0 1.0667rem;
+  height: 1.3333rem;
+  line-height: 1.3333rem;
+  color: #666;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAbAgMAAADe/z1UAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURZeXl6GhoaCgoJ+fn85n8pUAAAAEdFJOUwH4nE+Lb7qAAAAAOklEQVQI12O4wQAEYSBiagOQUE0AEpwRQIKJKMEYIMELIkwDgMRVBwYG5lCQUAgBIQaQEMMUEGEAxABKog+WJN2eDgAAAABJRU5ErkJggg==");
+  background-size: 0.2rem 0.36rem;
+  background-position-x: 92%;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+}
+.module-list li.active {
+  color: #863bc1;
+}
+.module-list li.dark {
+  background-color: #efefef;
+}
+.module-list li .click-area {
+  display: block;
+}
+.module-list li .click-area .usable {
+  float: right;
+  font-size: 0.3733rem;
+  color: #f8334f;
+  padding-right: 0.1333rem;
+}
+.module-list li .click-area .usable.active {
+  display: block;
+}
+.module-list li:last-child {
+  border-bottom: none;
+}
+.module-list .tip-number {
+  background-color: #C72717;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.2667rem;
+  width: 0.2667rem;
+  height: 0.2667rem;
+  line-height: 0.2667rem;
+  text-align: center;
+  display: inline-block;
+  margin-left: 0.16rem;
+}
+#content {
+  padding-bottom: 1.6533rem;
+}
+#content .section {
+  background-color: #fff;
+}
+#content .section a {
+  color: inherit;
+  display: block;
+}
+#content .section.dashboard {
+  background: #b9639a;
+  background: url(//cdn1.showjoy.com/images/7a/7afabe655054413c8a8470770c897b59.png) no-repeat center;
+  background-size: cover;
+  height: 5.3333rem;
+}
+#content .section.dashboard .intro {
+  text-align: center;
+}
+#content .section.dashboard .intro .edit {
+  right: 3.1467rem;
+  top: 2.6133rem;
+  width: 0.5333rem;
+  margin-left: 0.1067rem;
+  margin-top: -0.0533rem;
+}
+#content .section.dashboard .intro .avatar {
+  width: 3.4667rem;
+  height: 3.4667rem;
+  margin: 0 auto ;
+  background: url(//cdn1.showjoy.com/images/61/61960f4f55944297a5436054ff8c777f.png) center center no-repeat;
+  background-size: 3.4667rem;
+  overflow: hidden;
+}
+#content .section.dashboard .intro .avatar > img {
+  width: 2.1333rem;
+  height: 2.1333rem;
+  margin: 0.6667rem;
+  border-radius: 50%;
+  border: 0.08rem solid #fff;
+}
+#content .section.dashboard .intro .username {
+  margin-top: 0.16rem;
+  font-size: 0.4267rem;
+  color: #000000;
+}
+#content .section.dashboard .intro .username a {
+  display: inline-block;
+}
+#content .section.dashboard .intro .username .icon-edit {
+  margin-left: 0.2rem;
+}
+#content .section.dashboard .intro .user-level {
+  display: inline-block;
+  padding: 0 0.2667rem;
+  margin: 0.24rem auto 0;
+  width: 2.1333rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  border-radius: 0.6667rem;
+  font-size: 0.32rem;
+  color: #9C9C9C;
+  background-color: #ffffff;
+}
+#content .section.dashboard .intro .user-level.level1 {
+  background-color: #ffffff;
+}
+#content .section.dashboard .intro .user-level.level2 {
+  color: #ffffff;
+  background-color: #000000;
+}
+#content .section.dashboard .intro .user-level.level3 {
+  color: #ffffff;
+  background-color: #ffcd40;
+}
+#content .section.dashboard .intro .user-level.level4 {
+  color: #ffffff;
+  background-color: #f93450;
+}
+#content .section.dashboard .intro .user-level .ui-icon-level {
+  width: 0.2267rem;
+  height: 0.1867rem;
+  display: inline-block;
+  background-size: 0.9067rem 0.1733rem;
+  vertical-align: middle;
+}
+#content .section.dashboard .user-data {
+  margin-top: 0.4667rem;
+}
+#content .section.dashboard .user-data .col {
+  text-align: center;
+}
+#content .section.dashboard .user-data .col:first-child {
+  border-right: 1px solid #D9B5DF;
+}
+#content .section.dashboard .user-data .col-hd {
+  color: #DBBAE1;
+  font-size: 0.3733rem;
+}
+#content .section.dashboard .user-data .col-bd {
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-size: 0.64rem;
+  font-weight: lighter;
+}
+#content .section.dashboard .user-data .col-text {
+  display: block;
+  line-height: 1.0667rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.3733rem;
+}
+#content .section.shortcut .grid > .col {
+  text-align: center;
+  color: #000;
+  font-size: 0.3733rem;
+  padding-top: 0.6667rem;
+  padding-bottom: 0.6667rem;
+}
+#content .section.shortcut .grid > .col span[class^="icon"] {
+  display: block;
+  margin: 0 auto 0.16rem;
+}
+#content .btn-exit {
+  margin: 0.3733rem auto;
+}

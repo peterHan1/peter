@@ -1,0 +1,44 @@
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+    padding-top: 0;
+}
+.per-box {
+  .placeholder-img {
+    width: 4.666667rem;
+    display: block;
+    padding-top: 1.333333rem;
+    .center-block();
+  }
+}
+.per {
+  padding: 0.213333rem 0.746667rem;
+  height: 1.78rem;
+  overflow: hidden;
+  &.high {
+      background-color: #fbfbfb;
+  }
+  .img {
+    float: left;
+    width: 1.36rem;
+    height: 1.36rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .info {
+    padding-left: 1.76rem;
+    .time {
+      height: 0.693333rem;
+      line-height: 0.693333rem;
+      color: @grey5;
+      .fs2px(24);
+    }
+    .per-name {
+      height: 0.533333rem;
+      line-height: 0.533333rem;
+      .fs2px(26);
+      color: @black2;
+    }
+  }
+}

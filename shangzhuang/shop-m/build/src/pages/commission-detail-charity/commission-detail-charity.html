@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="http://cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="http://cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.min.js" type="text/javascript"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.js" type="text/javascript"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.1.7/iconfont/talent-iconfont/icon.min.css">
+    <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/flexible/flexible-min.js"></script>
+    <title>commission-detail-charity</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./commission-detail-charity.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+    
+      <div class="sec slider">
+        <div class="slider-wrap j_Slider">
+          <a href="">
+            <img class="slider-img" src="//cdn1.showjoy.com/images/a4/a415b5c79f424a55859453204cad656d.jpg">
+          </a>
+          <a href="">
+            <img class="slider-img" src="//cdn1.showjoy.com/images/3f/3f38f911e0564daa925ace2ee6d58fdc.jpg">
+          </a>
+          <a href="">
+            <img class="slider-img" src="//cdn1.showjoy.com/images/a4/a415b5c79f424a55859453204cad656d.jpg">
+          </a>
+          <a href="">
+            <img class="slider-img" src="//cdn1.showjoy.com/images/3f/3f38f911e0564daa925ace2ee6d58fdc.jpg">
+          </a>
+        </div>
+      </div>
+
+      <div class="detail">
+        <div class="box">
+          <p class="rule j_Rule">收益规则</p>
+          <div class="intro">
+            <p class="list">累计收益：$!{totalCommission}元</p>
+            <p class="list">已向$!{donationCommonwealName}捐入<span class="j_DonatedNum">$!{totalDonation}</span>元<span class="j_OpenLink" data-hasdonate="$!{hasDonateRecord}" data-link="/shop/commission/withdraw/donationList"><span class="icon-help"></span></span></p>
+            <p class="list">选择公益组织：
+              <select class="select" id="J_Select">
+                #foreach($item in $col)           
+                  <option data-id="$!{item.id}" data-iconurl="$!{item.logo}" data-imgurl="$!{item.poster}">$!{item.name}</option>
+                #end
+              </select>
+            </p>
+            <p class="list">可捐款金额：<span class="j_CanDonateNum">$!{canWithdraw}</span>元
+              #if($!{frozen})
+                <br><span class="frozen">您还有$!{frozen}元处于冻结状态，用户确认收货后方可提现。</span>
+               #end
+            </p>
+             
+          </div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <div class="donate j_Donate">捐款</div>
+        <div class="withdraw j_Withdraw" data-haspaid="true">提现</div>
+      </div>
+
+      <div class="mask j_Mask">
+        <div class="icon-wrong j_Close"></div>        
+          <p class="title">收益规则说明</p>
+          <p class="list">1、本店售出的订单均会获得相应的收益（自购订单除外）。</p>
+          <p class="list">2、顾客确认收货后，收益解冻，可进行捐款或提现操作。</p>
+          <p class="list">3、订单收益及其他详细信息，请在首页的“订单管理”中查看。</p>
+          <p class="list">4、店铺付费升级后，可用公益版的账号直接登录达人店app进行提现。</p>        
+      </div>
+
+
+    </div>
+
+    
+    <script src="./../../../build/src/pages/commission-detail-charity/commission-detail-charity.min.js"></script>
+  </body>
+</html>

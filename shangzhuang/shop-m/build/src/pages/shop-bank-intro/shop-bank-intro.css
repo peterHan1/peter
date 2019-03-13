@@ -1,0 +1,87 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+body {
+  background-color: #ff5e71;
+}
+#content {
+  background-image: url('//cdn1.showjoy.com/images/4f/4ff4aa7605504d59a6c9d56cb417491b.jpg.750x1334.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+  height: 17.7867rem;
+  width: 100%;
+}
+.webpa #content {
+  background-image: url('//cdn1.showjoy.com/images/4f/4ff4aa7605504d59a6c9d56cb417491b.jpg.750x1334.jpg.webp');
+}
+#content {
+  overflow: hidden;
+}
+#layout {
+  padding-top: 0;
+}
+.intro-box {
+  margin-top: 10.9733rem;
+}
+.intro-box .text {
+  text-align: center;
+  font-size: 0.3467rem;
+  color: #fff;
+  line-height: 0.5333rem;
+}
+.intro-box .text .num {
+  color: #fbe17d;
+}
+.intro-box .text.highlight {
+  color: #fbe17d;
+  margin-top: 0.1333rem;
+}
+.intro-box .text.highlight:last-child {
+  margin-top: 0;
+}
+.open-shop-bank-btn {
+  position: absolute;
+  width: 10rem;
+  height: 1.3867rem;
+  top: 15.6667rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-image: url('//cdn1.showjoy.com/images/94/94351e2cd1a04e16a2501829e6602c2a.png.750x104.png');
+  background-repeat: no-repeat;
+  background-size: 10rem;
+}
+.webpa .open-shop-bank-btn {
+  background-image: url('//cdn1.showjoy.com/images/94/94351e2cd1a04e16a2501829e6602c2a.png.750x104.png.webp');
+}
+.open-shop-bank-text {
+  position: absolute;
+  width: 10rem;
+  height: 1.3867rem;
+  top: 14.9333rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  line-height: 1.3867rem;
+  text-align: center;
+  color: #ffe8a1;
+  font-size: 0.4rem;
+}
+.joy-ui-dialog-confirm-title::after {
+  content: '\e60b';
+  font-family: 'iconfont' !important;
+  margin-left: 0.1467rem;
+}
+.joy-ui-dialog-confirm-btn {
+  background-color: #9063f0 !important;
+}

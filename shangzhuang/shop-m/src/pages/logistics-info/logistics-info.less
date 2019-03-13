@@ -1,0 +1,120 @@
+/* generator by mobi */
+
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+body {
+  background-color: rgb(245, 245, 245);
+}
+#layout {
+  padding-top: 0;
+}
+.item-info {
+  width: 100%;
+  height: 1.8266666666666667rem *2;
+  border-bottom: 0.13333333333333333rem *2 solid rgb(245, 245, 245);
+  background-color: @white;
+  .clearfix();
+  .item-img {
+    width: 1.0666666666666667rem *2;
+    height: 1.0666666666666667rem *2;
+    box-shadow: 0 0 0.10666666666666667rem rgba(0,0,0,0.1);
+    float: left;
+    margin-top: 0.32rem *2;
+    margin-left: 0.26666666666666666rem *2;
+    .img {
+      width: 100%;
+    }
+  }
+  .logistics-info {
+    float: left;
+    overflow: hidden;
+    margin-top: 0.26666666666666666rem *2;
+    margin-left: 1.2666rem;
+    .fs2px(28);
+    .value {
+      margin-left: 0.13333333333333333rem;
+    }
+    .status {
+      .value {
+        color: @redPink;
+      }
+    }
+    .company, .number {
+      color: @grey5;
+    }
+    .phone {
+      .name {
+        color: @grey5;
+      }
+    }
+    .company, .number, .phone {
+      margin-top: 0.13333333333333333rem;
+    }
+    .company, .number, .phone, .status {
+      .px2px(line-height, 36);
+    }
+  }
+}
+
+.item-detail {
+  background-color: @white;
+  padding-top: 0.3333333333333333rem *2;
+  .detail-box {
+    margin-left: 0.6rem *2;
+    border-left: 1px solid @grey1;
+    color: @grey5;
+    padding-left: 0.25333333333333335rem *2;
+    .fs2px(24);
+    .px2px(line-height, 28);
+    .logistics-progress {
+      padding-top: 0.2rem *2;
+      border-top: 1px solid @grey1;
+      width: 3.8666666666666667rem *2;
+      position: relative;
+      &::before {
+        content: '';
+        width: 0.14666666666666667rem *2;
+        height: 0.14666666666666667rem *2;
+        background-color: @grey3;
+        margin-left: -0.33633333333333335rem *2;
+        left: 0;
+        position: absolute;
+        border-radius: 0.14666666666666667rem *2;
+      }
+    }
+    .logistics-time {
+      margin-top: 0.13333333333333333rem *2;
+      padding-bottom: 0.2rem *2;
+    }
+    &:nth-child(1) {
+      .logistics-progress {
+        padding-top: 0;
+        border-top: none;
+        width: 3.8666666666666667rem *2;
+        &::before {
+          content: '';
+          width: 0.25333333333333335rem *2;
+          height: 0.25333333333333335rem *2;
+          background-color: rgb(255, 162, 175);
+          margin-left: -0.38633333333333335rem *2;
+          left: 0;
+          position: absolute;
+          border-radius: 0.25333333333333335rem *2;
+        }
+        &::after {
+          content: '';
+          width: 0.2rem *2;
+          height: 0.2rem *2;
+          background-color: @redPink;
+          margin-left: -0.36333333333333335rem *2;
+          left: 0;
+          position: absolute;
+          margin-top: 0.05333333333333334rem;
+          border-radius: 0.2rem *2;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+"count": 0,
+"data": {
+"accountDate": 201610,
+"allCommission": 2000,
+"gmtCreate": 1480388282000,
+"gmtModified": 1480315244000,
+"id": 1,
+"isDelete": 0,
+"orderCommission": 1000,
+"orderPercent": "5.00",
+"recruitCommission": 1000,
+"recruitPercent": "5.00",
+"salesVolume": 1000,
+"shopId": 3
+},
+"isRedirect": 0,
+"isSuccess": 1,
+"login": 0
+}

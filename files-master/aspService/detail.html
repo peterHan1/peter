@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>卓望业务支撑服务介绍</title>
+    <link rel="stylesheet" type="text/css" href="animate.css?v=7">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        background: #0af;
+        font-family: "Microsoft Yahei";
+        font-size: 45px;
+        /*line-height: 1.5;*/
+    }
+
+    html {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        /* background: #03144c url(img/bg.png) center no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;*/
+        overflow: hidden;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #010920 center bottom url('img/bg.png');
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+
+    .detail {
+        padding: 0 .75em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail h2 {
+        font-size: 1.25em;
+        color: #1fffed;
+        font-weight: normal;
+        padding: .5em 0;
+
+        flex: none;
+    }
+
+    .detail p {
+        /*text-indent: 2em;*/
+        color: #fff;
+
+        flex: none;
+    }
+
+    .detail ul {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        justify-content: space-around;
+        /*align-items: center;*/
+        margin: .75em -.75em;
+    }
+
+    .detail ul li {
+        flex: 1;
+        display: flex;
+        margin: 0 .75em;
+
+        background: center no-repeat;
+        -webkit-background-size: contain;
+        background-size: contain;
+    }
+
+    .detail ul li img {
+        max-width: 100%;
+        box-shadow: 0.105rem 0.058rem 0.18rem 0rem rgba(7, 7, 27, 0.42);
+    }
+
+    .animated.duration10 {
+        -webkit-animation-duration: 10s;
+        animation-duration: 10s;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="bg animated duration10 pulse infinite"></div>
+    <div id="vue" class="detail animated bounceIn">
+        <h2 v-text="title"></h2>
+        <p v-text="content"></p>
+        <ul>
+            <li v-for="item in detailImgList" :style="{backgroundImage:'url(data/img/'+item+')'}">
+                <!-- <img :src="'data/img/'+item"> -->
+            </li>
+        </ul>
+    </div>
+    <script src="data/coords.js?v=7"></script>
+    <script src="data/data.js?v=7"></script>
+    <script src="data/catDesc.js?v=7"></script>
+    <script src="lib/vue.js?v=7"></script>
+    <script src="lib/Array.js?v=7"></script>
+    <script src="lib/$.js?v=7"></script>
+    <script>
+    var vue = new Vue({
+        el: '#vue',
+        data: {
+            title: '',
+            content: '',
+            detailImgList: [],
+        },
+    })
+    var params = new URLSearchParams((location.search))
+    if (params.get('isCat') == 'false') {
+        var item = json.get({ 省份: params.get('where'), 项目名称: params.get('name') })
+        vue.title = item['项目名称']
+        vue.content = item['项目介绍']
+
+        var imgs = item['配图说明'] || ''
+        vue.detailImgList = imgs.split('\n')
+    } else {
+        var item = catDesc.get({ 类别名称: params.get('name') })
+        vue.title = item['类别名称']
+        vue.content = item['类别介绍']
+
+        var imgs = item['配图'] || ''
+        vue.detailImgList = imgs.split('\n')
+    }
+    </script>
+</body>
+
+</html>

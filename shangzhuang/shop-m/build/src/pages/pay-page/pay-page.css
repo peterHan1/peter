@@ -1,0 +1,341 @@
+/* version 1.5 */
+body {
+  height: 100%;
+}
+#layout {
+  padding-top: 0;
+}
+.content {
+  padding-bottom: 1.6rem;
+}
+.content a.gift-box {
+  color: #000000;
+}
+.content a.gift-box .section-title {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  color: #f93450;
+  font-size: 0.4266666666666667rem;
+}
+.content a.gift-box .gift-area {
+  overflow: hidden;
+  padding-bottom: 0.26666666666666666rem;
+  border-bottom: 0.26666667rem solid #efefef;
+}
+.content a.gift-box .gift-area .gift-item {
+  float: left;
+  width: 3.33333333rem;
+  height: 2.69333333rem;
+  text-align: center;
+  background-repeat: no-repeat;
+}
+.content a.gift-box .gift-area .gift-item .pic {
+  width: 1.9733333333333334rem;
+}
+.content a.gift-box .gift-area .gift-item .desc {
+  font-size: 0.34666667rem;
+}
+.content a.gift-box .gift-area .gift-item .desc-sub {
+  font-size: 0.34666667rem;
+  color: #9e9e9e;
+}
+.content section.shop-auth {
+  border-bottom: 0.26666667rem solid #efefef;
+}
+.content section.shop-auth .section-title {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  color: #f93450;
+  font-size: 0.4266666666666667rem;
+}
+.content section.shop-auth .mobile-form {
+  width: 8.933334rem;
+  margin-top: -0.4rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.content section.shop-auth .mobile-form .field {
+  width: 100%;
+  height: 1.333333rem;
+  border-bottom: 1px solid #e9e9e9;
+  overflow: hidden;
+}
+.content section.shop-auth .mobile-form .field .invite {
+  font-size: 0.37333333rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  display: inline-block;
+  color: #9e9e9e;
+}
+.content section.shop-auth .mobile-form .field .label {
+  font-size: 0.37333333rem;
+  color: #000000;
+  height: 0.533333rem;
+  vertical-align: middle;
+  width: 2.533333333333333rem;
+  display: inline-block;
+  text-align: right;
+}
+.content section.shop-auth .mobile-form .field .label .text-star {
+  color: #f93450;
+  margin-right: 0.06666666666666667rem;
+  vertical-align: middle;
+}
+.content section.shop-auth .mobile-form .field .input {
+  font-size: 0.37333333rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  width: 4.533333rem;
+}
+.content section.shop-auth .mobile-form .field .checkcode:before,
+.content section.shop-auth .mobile-form .field .checkcode:after {
+  display: table;
+  content: "";
+}
+.content section.shop-auth .mobile-form .field .checkcode:after {
+  clear: both;
+}
+.content section.shop-auth .mobile-form .field .checkcode .checkcode-left {
+  width: 6.933334rem;
+  float: left;
+}
+.content section.shop-auth .mobile-form .field .checkcode .checkcode-left .input {
+  width: 2.666667rem;
+}
+.content section.shop-auth .mobile-form .field .checkcode .checkcode-right {
+  width: 1.866667rem;
+  float: right;
+}
+.content section.shop-auth .mobile-form .field .checkcode .checkcode-right .getchk-btn {
+  width: 1.813334rem;
+  height: 0.773333rem;
+  font-size: 0.37333333333333335rem;
+  line-height: 0.773333rem;
+  color: #f93450;
+  text-align: center;
+  border: 1px solid #f93450;
+  margin-top: 0.373333rem;
+  overflow: hidden;
+}
+.content section.shop-auth .mobile-form .field .checkcode .checkcode-right .timer {
+  display: none;
+  width: 1.813334rem;
+  height: 0.773333rem;
+  font-size: 0.32rem;
+  line-height: 0.773333rem;
+  color: #9e9e9e;
+  text-align: center;
+  border: 1px solid #9e9e9e;
+  margin-top: 0.373333rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.content section.choose-gift {
+  border-bottom: 0.26666667rem solid #efefef;
+}
+.content section.choose-gift .section-title {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  color: #f93450;
+  font-size: 0.4266666666666667rem;
+}
+.content section.choose-gift .item {
+  display: block;
+  margin-left: 1.066667rem;
+  font-size: 0.373333rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  position: relative;
+}
+.content section.choose-gift .item .radio-place {
+  width: 12px;
+  /* @norem */
+  height: 12px;
+  /* @norem */
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #979797;
+  position: relative;
+}
+[data-dpr="2"] .content section.choose-gift .item .radio-place {
+  width: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .content section.choose-gift .item .radio-place {
+  width: 36px;
+  /* @norem */
+}
+[data-dpr="2"] .content section.choose-gift .item .radio-place {
+  height: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .content section.choose-gift .item .radio-place {
+  height: 36px;
+  /* @norem */
+}
+.content section.choose-gift .item .radio-place.choose::after {
+  content: '';
+  width: 7px;
+  /* @norem */
+  height: 7px;
+  /* @norem */
+  background-color: #a5a5a5;
+  margin: auto;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+}
+[data-dpr="2"] .content section.choose-gift .item .radio-place.choose::after {
+  width: 14px;
+  /* @norem */
+}
+[data-dpr="3"] .content section.choose-gift .item .radio-place.choose::after {
+  width: 21px;
+  /* @norem */
+}
+[data-dpr="2"] .content section.choose-gift .item .radio-place.choose::after {
+  height: 14px;
+  /* @norem */
+}
+[data-dpr="3"] .content section.choose-gift .item .radio-place.choose::after {
+  height: 21px;
+  /* @norem */
+}
+.content section.choose-gift .item input {
+  width: 0.32rem;
+  height: 0.32rem;
+  margin-right: 0.066667rem;
+  opacity: 0;
+}
+.content section.choose-gift .gift-info-btn {
+  width: 4.266667rem;
+  height: 0.88rem;
+  background-color: #f93450;
+  line-height: 0.88rem;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.373333rem;
+  margin: 0.266667rem auto;
+  display: block;
+}
+.content section.gift-address .section-title {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  color: #f93450;
+  font-size: 0.4266666666666667rem;
+}
+.content section.gift-address .mobile-form {
+  width: 8.933334rem;
+  margin-top: -0.4rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.content section.gift-address .mobile-form .field {
+  width: 100%;
+  height: 1.333333rem;
+  border-bottom: 1px solid #e9e9e9;
+  overflow: hidden;
+}
+.content section.gift-address .mobile-form .field .invite {
+  font-size: 0.37333333rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  display: inline-block;
+  color: #9e9e9e;
+}
+.content section.gift-address .mobile-form .field .label {
+  font-size: 0.37333333rem;
+  color: #000000;
+  height: 0.533333rem;
+  vertical-align: middle;
+  width: 2.533333333333333rem;
+  display: inline-block;
+  text-align: right;
+}
+.content section.gift-address .mobile-form .field .label .text-star {
+  color: #f93450;
+  margin-right: 0.06666666666666667rem;
+  vertical-align: middle;
+}
+.content section.gift-address .mobile-form .field .input {
+  font-size: 0.37333333rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  width: 5.733333rem;
+}
+.content section.pay-option {
+  border-top: 0.26666667rem solid #efefef;
+}
+.content section.pay-option .section-title {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  color: #f93450;
+  font-size: 0.4266666666666667rem;
+}
+.content section.pay-option .pay-box {
+  width: 8.933334rem;
+  margin-top: -0.4rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content section.pay-option .pay-box .item {
+  height: 1.333333rem;
+  border-bottom: 1px solid #e9e9e9;
+  line-height: 1.333333rem;
+  font-size: 0.4266666666666667rem;
+}
+.content section.pay-option .pay-box .item:last-child {
+  border-bottom: none;
+}
+.content section.pay-option .pay-box .item .text {
+  position: relative;
+}
+.content section.pay-option .pay-box .item .icon-wechat {
+  color: #000000;
+  font-size: 0.64rem;
+  margin-right: 0.18666666666666668rem;
+}
+.content section.pay-option .pay-box .item .icon-pay-option {
+  text-align: right;
+  font-size: 0.6666666666666666rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.pay-info {
+  width: 100%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 0.5333333333333333rem;
+}

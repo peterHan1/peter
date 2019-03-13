@@ -1,0 +1,370 @@
+/*
+ * 我的订单列表页
+ * @author ben@yunjee.com
+ */
+ /*
+   @remSwitch: true;
+   @rootValue: 75;
+   @unitPrecision: 4;
+   @blackList: [];
+   @minPixelValue: 2;
+ */
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#header {
+  .ui-toolbar-right {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  // src: local('Roboto Regular'), local('Roboto-Regular'), url(//cdn1.showjoy.com/assets/fonts/roboto/100.woff) format('woff');
+}
+
+// 开店用户的tab
+.tab {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  background-color: @grey1;
+  overflow: hidden;
+  .title {
+    width: 50%;
+    float: left;
+    font-size: 28px;
+    color: @grey5;
+    text-align: center;
+    .active {
+      display: inline-block;
+      width: auto;;
+      height: 1.04rem;
+      color: @black;
+      border-bottom: 2px solid @black;
+    }
+  }
+}
+
+.cover {
+  position: relative;
+  height: auto;
+  .ad{
+    display: none;
+    padding: 0.16rem 0.4rem;
+    margin-bottom: 0;
+    background-color: rgb(233, 26, 73); 
+    color: @white;         
+    .adclose {
+      position: absolute;
+      left: 0.4rem;
+      top: 0;
+      width: 0.8rem;
+      height: 100%;
+      &:before {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 50%;
+        margin-top: -0.4rem;
+        width: 0.8rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        .fs2px(30);
+        font-family: 'iconfont' !important;
+        content: '\e603';
+      }
+    }
+    .adtext {
+      padding-left: 0.8rem;
+      line-height: 0.4rem;
+      .fs2px(24);
+    }
+  }
+  .notice {  
+    display: none;  
+    text-align:center;
+    background-color:#c00;
+    .fs2px(28);
+    color:#fff;
+    padding: 0.2rem 0;
+    line-height:0.48rem;
+    .notice-title {
+      .tag {
+        padding:0.026667rem 0.186667rem;
+        background-color:#fff;
+        color:#c00;
+        border-radius:50%;
+      }
+    }
+  }
+}
+
+#content {
+  .close-tip {
+    width: 100%;
+    background-color: #fff8f6;
+    color: #f56d6d;
+    font-size: 11px;
+    text-align: center;
+    line-height: 23px;
+    border: 1px dashed #fbb19d;
+  }
+  .order-list {
+    li.order {
+      & {
+        margin-bottom: 10px;
+        background-color: #fff;
+      }
+      .order-header {
+        padding: 0 40px;
+        font-family: Roboto, sans-serif;
+        border-bottom: 1px solid @grey2;
+        display: block;
+        .tips {
+          font-size: 20px;
+          color: @redPink;
+          padding: 13px 0;
+        }
+        .number {
+          font-size: 20px;
+          color: @grey5;
+          padding: 13px 0;
+        }
+      }
+      .order-hd {
+        & {
+          padding: 0 40px;
+          line-height: 36px *2;
+          height: 36px *2;
+          position: relative;
+          border-bottom: 1px solid @grey2;
+        }
+        > a {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        .order-number {
+          float: left;
+          color: @grey5;
+          font-size: 24px;
+          > strong {
+            text-decoration: underline;
+          }
+          &.package {
+            color: @black;
+            font-size: 28px;
+          }
+        }
+        .order-detail {
+          float: right;
+          color: @redPink;
+          font-size: 28px;
+        }
+        .oversea{
+          margin-top: 15px;
+          margin-left: 5px;
+        }
+      }
+      .order-bd {
+        padding: 0 40px;
+        .tr {
+          display: table;
+          width: 100%;
+          height: 60px *2;
+          & > * {
+            display: table-cell;
+          }
+          .pic {
+            width: 60px *2;
+            height: 60px *2;
+            vertical-align: middle;
+            img {
+              vertical-align: middle;
+            }
+          }
+          .name {
+            font-size: 28px;
+            color: @black;
+            vertical-align: middle;
+            img{
+              width: auto;
+              height: 16px *2;
+              margin-right: 3px *2;
+            }
+            &.highlight {
+              color: @redPink;
+            }
+          }
+          .amount {
+            font-size: 12px *2;
+            color: @grey5;
+            width: 85px *2;
+            text-align: right;
+            line-height: 24px *2;
+            vertical-align: middle;
+          }
+        }
+        .item-list {
+          li.item {
+            height: 77px *2;
+            border-bottom: 1px solid @grey2;
+            overflow: hidden;
+            padding-top: 25px;
+          }
+        }
+
+        .close-tip {
+          height: 26px *2;
+          background-color: #fbeae5;
+          font-size: 12px *2;
+          color: #f56d6d;
+          text-align: center;
+          line-height: 26px *2;
+        }
+      }
+      .order-logistic {
+        height: 40px *2;
+        padding: 0 40px;
+        border-bottom: 1px solid @grey2;
+        .logistic-btn {
+          width: 80px *2;
+          height: 25px *2;
+          border: 1px solid @black;
+          line-height: 25px *2;
+          text-align: center;
+          font-size: 28px;
+          float: right;
+          margin-top: 7px *2;
+          display: block;
+          color: @black;
+        }
+      }
+      .order-ft {
+        width: 100%;;
+        overflow: hidden;
+        .postfee {
+          height: 42px *2;
+          line-height: 42px *2;
+          border-bottom: 1px solid @grey2;
+          padding: 0 40px;
+          .tr {
+            display: table;
+            width: 100%;
+            height: 60px *2;
+            & > * {
+              display: table-cell;
+            }
+            .amount {
+              font-size: 12px *2;
+              color: @grey5;
+              width: 85px *2;
+              text-align: right;
+            }
+          }
+          .name{
+            &:before {
+              font-family: 'iconfont' !important;
+              content: '\e61c';
+              font-size: 24px *2;
+              margin-right: 5px *2;
+              vertical-align: middle;
+            }
+          }
+        }
+        .summary {
+          vertical-align: middle;
+          font-size: 14px *2;
+          color: @black;
+          height: 37px *2;
+          line-height: 37px *2;
+          padding: 0 40px;
+          border-bottom: 10px solid @grey1;
+          .title {
+            float: left;
+          }
+          .price {
+            float: right;;
+            font-family: Roboto, sans-serif;
+            font-weight: normal;
+            font-size: 14px *2;
+            color: @black;
+          }
+        }
+        .action {
+          height: 52px *2;
+          background-color: @grey1;
+          overflow: hidden;
+          .btn {
+            display: block;
+            font-size: 16px *2;
+            color: @white;
+            text-align: center;
+            width: 154px *2;
+            height: 30px *2;
+            line-height: 30px *2;
+            background-color: @redPink;
+            margin: 17px auto 0;
+          }
+          .btn.confirm {
+            color: @white;
+            background-color: @redPink;
+          }
+        }
+      }
+      .overtime-tip{
+        margin-top: -10px;
+        position: relative;
+        width: 100%;
+        height: 36px;
+        padding-left: 60px;
+        padding-right: 30px;
+        background: #F6F6F6 url("//cdn1.showjoy.com/images/77/77e30f33de6f4aaf8da16131dfd18580.png") no-repeat 9px center;
+        background-size: 42px 16px;
+        font-size: 12px;
+        line-height: 38px;
+        color: #959595;
+        border-bottom: 1px solid #cecece;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        span{
+          color: #A987F9;
+        }
+
+        .overtime-tip-show{
+          width: 20px;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: url("//cdn1.showjoy.com/images/a4/a4d2a41c8a0e41df8435ff2793087693.png") no-repeat center;
+        }
+      }
+
+    }
+  }
+  .no-order {
+    display: table;
+    width: 100%;
+    margin-top: 360px;
+    .tip {
+      display: table-cell;
+      text-align: center;
+      color: #848383;
+      font-size: 32px;
+    }
+  }
+  .ui-refresh-down {
+    font-size: 28px;
+    padding: 20px;
+  }
+}

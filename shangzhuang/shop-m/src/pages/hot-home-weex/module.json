@@ -1,0 +1,168 @@
+{
+"count": 0,
+"data": [
+{
+"mainTitle": "爆款主标题1",
+"shopId": 5447,
+"skuInfos": [
+{
+"brand": "香奈儿",
+"commission": "99.90",
+"imgUrl": "//cdn1.showjoy.com/images/a3/a38947bed236481f848af7ec663351e0.png",
+"inventory": 17,
+"originalPrice": 1200,
+"select": true,
+"shelvesCount": 931,
+"shopPrice": 999,
+"skuId": 7335,
+"skuName": "邂逅柔情女士淡香水（预售5天） 100.0ml"
+},
+{
+"brand": "杜蕾斯",
+"commission": "9.80",
+"imgUrl": "//cdn1.showjoy.com/images/a9/a9794f0ef5f347d083dbc436c86da8f6.png",
+"inventory": 33,
+"originalPrice": 108,
+"select": false,
+"shelvesCount": 935,
+"shopPrice": 98,
+"skuId": 148026,
+"skuName": "杜蕾斯27只高潮情动组合 "
+},
+{
+"brand": "雅诗兰黛",
+"commission": "6.80",
+"imgUrl": "//cdn1.showjoy.com/images/9d/9d0e8914be744de4a7d344e1a1ec97b8.png",
+"inventory": 0,
+"originalPrice": 158,
+"select": false,
+"shelvesCount": 4350,
+"shopPrice": 68,
+"skuId": 15815,
+"skuName": "鲜亮焕采泡沫洁面乳 30.0ml"
+},
+{
+"brand": "妖精的美丽日记",
+"commission": "6.50",
+"imgUrl": "//cdn1.showjoy.com/images/bd/bd917033be2e49908f9e3bbe2a3a2710.png",
+"inventory": 7571,
+"originalPrice": 288,
+"select": false,
+"shelvesCount": 1896,
+"shopPrice": 65,
+"skuId": 105692,
+"skuName": "红石榴美肤套装【赠价值59元卡姿兰大眼睛持久液体眼线笔】 320.0ml"
+},
+{
+"brand": "贝薇雅",
+"commission": "6.80",
+"imgUrl": "//cdn1.showjoy.com/images/05/0531885951894362af155ea6d8deea34.png",
+"inventory": 41,
+"originalPrice": 298,
+"select": false,
+"shelvesCount": 558,
+"shopPrice": 68,
+"skuId": 149209,
+"skuName": "粉色零束缚无钢圈内衣 "
+},
+{
+"brand": "尚妆",
+"commission": "28.20",
+"imgUrl": "//cdn1.showjoy.com/images/4b/4b083bba25b941b2b6dcb410e9c25376.png",
+"inventory": 0,
+"originalPrice": 288,
+"select": false,
+"shelvesCount": 827,
+"shopPrice": 188,
+"skuId": 149358,
+"skuName": "高档加绒自发热亲肤塑身保暖内衣套装（均码） "
+}
+],
+"subHead": "副标题1",
+"type": 0
+},
+{
+"mainTitle": "爆款主标题2",
+"shopId": 5447,
+"skuInfos": [
+{
+"brand": "香奈儿",
+"commission": "99.90",
+"imgUrl": "//cdn1.showjoy.com/images/a3/a38947bed236481f848af7ec663351e0.png",
+"inventory": 17,
+"originalPrice": 1200,
+"select": true,
+"shelvesCount": 931,
+"shopPrice": 999,
+"skuId": 7335,
+"skuName": "邂逅柔情女士淡香水（预售5天） 100.0ml"
+},
+{
+"brand": "杜蕾斯",
+"commission": "9.80",
+"imgUrl": "//cdn1.showjoy.com/images/a9/a9794f0ef5f347d083dbc436c86da8f6.png",
+"inventory": 33,
+"originalPrice": 108,
+"select": false,
+"shelvesCount": 935,
+"shopPrice": 98,
+"skuId": 148026,
+"skuName": "杜蕾斯27只高潮情动组合 "
+},
+{
+"brand": "雅诗兰黛",
+"commission": "6.80",
+"imgUrl": "//cdn1.showjoy.com/images/9d/9d0e8914be744de4a7d344e1a1ec97b8.png",
+"inventory": 0,
+"originalPrice": 158,
+"select": false,
+"shelvesCount": 4350,
+"shopPrice": 68,
+"skuId": 15815,
+"skuName": "鲜亮焕采泡沫洁面乳 30.0ml"
+},
+{
+"brand": "妖精的美丽日记",
+"commission": "6.50",
+"imgUrl": "//cdn1.showjoy.com/images/bd/bd917033be2e49908f9e3bbe2a3a2710.png",
+"inventory": 7571,
+"originalPrice": 288,
+"select": false,
+"shelvesCount": 1896,
+"shopPrice": 65,
+"skuId": 105692,
+"skuName": "红石榴美肤套装【赠价值59元卡姿兰大眼睛持久液体眼线笔】 320.0ml"
+},
+{
+"brand": "贝薇雅",
+"commission": "6.80",
+"imgUrl": "//cdn1.showjoy.com/images/05/0531885951894362af155ea6d8deea34.png",
+"inventory": 41,
+"originalPrice": 298,
+"select": false,
+"shelvesCount": 558,
+"shopPrice": 68,
+"skuId": 149209,
+"skuName": "粉色零束缚无钢圈内衣 "
+},
+{
+"brand": "尚妆",
+"commission": "28.20",
+"imgUrl": "//cdn1.showjoy.com/images/4b/4b083bba25b941b2b6dcb410e9c25376.png",
+"inventory": 0,
+"originalPrice": 288,
+"select": false,
+"shelvesCount": 827,
+"shopPrice": 188,
+"skuId": 149358,
+"skuName": "高档加绒自发热亲肤塑身保暖内衣套装（均码） "
+}
+],
+"subHead": "副标题2",
+"type": 1
+}
+],
+"isRedirect": 0,
+"isSuccess": 1,
+"login": 0
+}

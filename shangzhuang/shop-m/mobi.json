@@ -1,0 +1,1367 @@
+{
+  "version": "0.0.3",
+  "dependencies": {
+    "fecomponent/mobi-raphael": {
+      "alias": "fecomponent/mobi-raphael/0.0.5/index",
+      "url": "fecomponent/raphael/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-fastclick": {
+      "alias": "fecomponent/mobi-fastclick/0.0.5/index",
+      "url": "fecomponent/fastclick/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-deferred": {
+      "alias": "fecomponent/mobi-zepto-deferred/0.0.3/index",
+      "url": "fecomponent/zepto-deferred/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-callbacks": {
+      "alias": "fecomponent/mobi-zepto-callbacks/0.0.4/index",
+      "url": "fecomponent/zepto-callbacks/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jswebview": {
+      "alias": "fecomponent/mobi-jswebview/0.0.17/index",
+      "url": "fecomponent/jswebview/raw/publish/0.0.17/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-zepto-callbacks/0.0.3/index",
+          "url": "fecomponent/zepto-callbacks/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-zepto-deferred/0.0.2/index",
+          "url": "fecomponent/zepto-deferred/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-detect-ua/0.0.4/index",
+          "url": "fecomponent/detect-ua/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-lazyload": {
+      "alias": "fecomponent/mobi-lazyload/0.1.0/index",
+      "url": "fecomponent/lazyload/raw/publish/0.1.0/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-hammer": {
+      "alias": "fecomponent/mobi-hammer/0.0.1/index",
+      "url": "fecomponent/hammer/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-chart": {
+      "alias": "fecomponent/mobi-chart/0.0.1/index",
+      "url": "fecomponent/chart/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-art-template": {
+      "alias": "fecomponent/mobi-art-template/0.0.3/index",
+      "url": "fecomponent/art-template/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-say": {
+      "alias": "fecomponent/mobi-say/0.0.16/index",
+      "url": "fecomponent/say/raw/publish/0.0.16/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-answer": {
+      "alias": "fecomponent/mobi-answer/0.0.3/index",
+      "url": "fecomponent/answer/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-say/0.0.12/index",
+          "url": "fecomponent/say/raw/publish/0.0.12/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-learn": {
+      "alias": "fecomponent/mobi-learn/0.0.11/index",
+      "url": "fecomponent/learn/raw/publish/0.0.11/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-city": {
+      "alias": "fecomponent/mobi-city/0.0.1/index",
+      "url": "fecomponent/city/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-city-select": {
+      "alias": "fecomponent/mobi-zepto-city-select/0.0.9/index",
+      "url": "fecomponent/zepto-city-select/raw/publish/0.0.9/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-global-m": {
+      "alias": "fecomponent/mobi-global-m/0.0.1/index",
+      "url": "fecomponent/global-m/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-detect-ua": {
+      "alias": "fecomponent/mobi-detect-ua/0.0.4/index",
+      "url": "fecomponent/detect-ua/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-cookie": {
+      "alias": "fecomponent/mobi-cookie/0.0.1/index",
+      "url": "fecomponent/cookie/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-withcss": {
+      "alias": "fecomponent/mobi-withcss/0.0.4/index",
+      "url": "fecomponent/withcss/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-say/0.0.3/index",
+          "url": "fecomponent/say/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-dialog-event": {
+      "alias": "fecomponent/mobi-dialog-event/0.0.2/index",
+      "url": "fecomponent/dialog-event/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-elevator-event": {
+      "alias": "fecomponent/mobi-elevator-event/0.0.2/index",
+      "url": "fecomponent/elevator-event/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-drop-load": {
+      "alias": "fecomponent/mobi-drop-load/0.0.2/index",
+      "url": "fecomponent/drop-load/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-h5-slider-banner": {
+      "alias": "fecomponent/mobi-h5-slider-banner/0.0.1/index",
+      "url": "fecomponent/h5-slider-banner/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-fullpage": {
+      "alias": "fecomponent/mobi-jquery-fullpage/0.0.2/index",
+      "url": "fecomponent/jquery-fullpage/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-fullpage": {
+      "alias": "fecomponent/mobi-zepto-fullpage/0.0.4/index",
+      "url": "fecomponent/zepto-fullpage/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-mock": {
+      "alias": "fecomponent/mobi-mock/0.0.1/index",
+      "url": "fecomponent/mock/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-wait-for-start": {
+      "alias": "fecomponent/mobi-wait-for-start/0.0.2/index",
+      "url": "fecomponent/wait-for-start/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-city-select": {
+      "alias": "fecomponent/mobi-jquery-city-select/0.0.4/index",
+      "url": "fecomponent/jquery-city-select/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jcrop": {
+      "alias": "fecomponent/mobi-jcrop/0.0.1/index",
+      "url": "fecomponent/jcrop/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-ajaxupload": {
+      "alias": "fecomponent/mobi-ajaxupload/0.0.1/index",
+      "url": "fecomponent/ajaxupload/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-mcustomscrollbar": {
+      "alias": "fecomponent/mobi-jquery-mcustomscrollbar/0.0.2/index",
+      "url": "fecomponent/jquery-mcustomscrollbar/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-infinite-scroll": {
+      "alias": "fecomponent/mobi-jquery-infinite-scroll/0.0.3/index",
+      "url": "fecomponent/jquery-infinite-scroll/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-isotope": {
+      "alias": "fecomponent/mobi-jquery-isotope/0.0.1/index",
+      "url": "fecomponent/jquery-isotope/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jqform": {
+      "alias": "fecomponent/mobi-jqform/0.0.2/index",
+      "url": "fecomponent/jqform/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jqtransform": {
+      "alias": "fecomponent/mobi-jqtransform/0.0.5/index",
+      "url": "fecomponent/jqtransform/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-ajaxqueue": {
+      "alias": "fecomponent/mobi-jquery-ajaxqueue/0.0.1/index",
+      "url": "fecomponent/jquery-ajaxqueue/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-json": {
+      "alias": "fecomponent/mobi-jquery-json/0.0.1/index",
+      "url": "fecomponent/jquery-json/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-mousewheel": {
+      "alias": "fecomponent/mobi-jquery-mousewheel/0.0.1/index",
+      "url": "fecomponent/jquery-mousewheel/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-placeholder": {
+      "alias": "fecomponent/mobi-jquery-placeholder/0.0.1/index",
+      "url": "fecomponent/jquery-placeholder/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-raty": {
+      "alias": "fecomponent/mobi-jquery-raty/0.0.1/index",
+      "url": "fecomponent/jquery-raty/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-countdown": {
+      "alias": "fecomponent/mobi-countdown/0.0.15/index",
+      "url": "fecomponent/countdown/raw/publish/0.0.15/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-scrolld": {
+      "alias": "fecomponent/mobi-jquery-scrolld/0.0.1/index",
+      "url": "fecomponent/jquery-scrolld/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-ui-touch": {
+      "alias": "fecomponent/mobi-jquery-ui-touch/0.0.1/index",
+      "url": "fecomponent/jquery-ui-touch/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-ui-touch-punch": {
+      "alias": "fecomponent/mobi-jquery-ui-touch-punch/0.0.1/index",
+      "url": "fecomponent/jquery-ui-touch-punch/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-validation": {
+      "alias": "fecomponent/mobi-jquery-validation/0.0.4/index",
+      "url": "fecomponent/jquery-validation/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-zaccordion": {
+      "alias": "fecomponent/mobi-jquery-zaccordion/0.0.1/index",
+      "url": "fecomponent/jquery-zaccordion/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-juicer": {
+      "alias": "fecomponent/mobi-juicer/0.0.3/index",
+      "url": "fecomponent/juicer/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-onebyone": {
+      "alias": "fecomponent/mobi-onebyone/0.0.1/index",
+      "url": "fecomponent/onebyone/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-textfocus": {
+      "alias": "fecomponent/mobi-textfocus/0.0.2/index",
+      "url": "fecomponent/textfocus/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-countdown": {
+      "alias": "fecomponent/mobi-zepto-countdown/0.0.2/index",
+      "url": "fecomponent/zepto-countdown/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-carousel": {
+      "alias": "fecomponent/mobi-bass-ui-carousel/0.0.10/index",
+      "url": "fecomponent/bass-ui-carousel/raw/publish/0.0.10/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jqueryui": {
+      "alias": "fecomponent/mobi-jqueryui/0.0.7/index",
+      "url": "fecomponent/jqueryui/raw/publish/0.0.7/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-menu": {
+      "alias": "fecomponent/mobi-bass-ui-menu/0.0.4/index",
+      "url": "fecomponent/bass-ui-menu/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-dialog": {
+      "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+      "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-textfocus/0.0.1/index",
+          "url": "fecomponent/textfocus/raw/publish/0.0.1/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-rating": {
+      "alias": "fecomponent/mobi-bass-ui-rating/0.0.4/index",
+      "url": "fecomponent/bass-ui-rating/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-gallery": {
+      "alias": "fecomponent/mobi-bass-ui-gallery/0.0.4/index",
+      "url": "fecomponent/bass-ui-gallery/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-ui-slider": {
+      "alias": "fecomponent/mobi-bass-ui-slider/0.0.6/index",
+      "url": "fecomponent/bass-ui-slider/raw/publish/0.0.6/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass": {
+      "alias": "fecomponent/mobi-bass/0.0.4/index",
+      "url": "fecomponent/bass/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-common-util": {
+      "alias": "fecomponent/mobi-bass-util-common-util/0.0.8/index",
+      "url": "fecomponent/bass-util-common-util/raw/publish/0.0.8/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-cookie-util": {
+      "alias": "fecomponent/mobi-bass-util-cookie-util/0.0.5/index",
+      "url": "fecomponent/bass-util-cookie-util/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-form-util": {
+      "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+      "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-iamge-util": {
+      "alias": "fecomponent/mobi-bass-util-iamge-util/0.0.2/index",
+      "url": "fecomponent/bass-util-iamge-util/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-multiline-util": {
+      "alias": "fecomponent/mobi-bass-util-multiline-util/0.0.1/index",
+      "url": "fecomponent/bass-util-multiline-util/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-share-util": {
+      "alias": "fecomponent/mobi-bass-util-share-util/0.0.4/index",
+      "url": "fecomponent/bass-util-share-util/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-time-util": {
+      "alias": "fecomponent/mobi-bass-util-time-util/0.0.3/index",
+      "url": "fecomponent/bass-util-time-util/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zeroclipboard": {
+      "alias": "fecomponent/mobi-zeroclipboard/0.0.3/index",
+      "url": "fecomponent/zeroclipboard/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-comment-editor": {
+      "alias": "fecomponent/mobi-bass-editor-comment-editor/0.0.12/index",
+      "url": "fecomponent/bass-editor-comment-editor/raw/publish/0.0.12/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-image-util/0.0.1/index",
+          "url": "fecomponent/bass-util-image-util/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-commentmini-editor": {
+      "alias": "fecomponent/mobi-bass-editor-commentmini-editor/0.0.11/index",
+      "url": "fecomponent/bass-editor-commentmini-editor/raw/publish/0.0.11/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-image-util/0.0.1/index",
+          "url": "fecomponent/bass-util-image-util/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-loading": {
+      "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+      "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-moreviews": {
+      "alias": "fecomponent/mobi-bass-widget-moreviews/0.0.2/index",
+      "url": "fecomponent/bass-widget-moreviews/raw/publish/0.0.2/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-commentreply-editor": {
+      "alias": "fecomponent/mobi-bass-editor-commentreply-editor/0.0.9/index",
+      "url": "fecomponent/bass-editor-commentreply-editor/raw/publish/0.0.9/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-textfocus/0.0.1/index",
+          "url": "fecomponent/textfocus/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-moreviews/0.0.2/index",
+          "url": "fecomponent/bass-widget-moreviews/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-xiuxiu": {
+      "alias": "fecomponent/mobi-xiuxiu/0.0.2/index",
+      "url": "fecomponent/xiuxiu/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-uploader": {
+      "alias": "fecomponent/mobi-bass-widget-uploader/0.0.5/index",
+      "url": "fecomponent/bass-widget-uploader/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-xiuxiu/0.0.2/index",
+          "url": "fecomponent/xiuxiu/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-richtext-editor": {
+      "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.7/index",
+      "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.7/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-widget-uploader/0.0.5/index",
+          "url": "fecomponent/bass-widget-uploader/raw/publish/0.0.5/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-mail-editor": {
+      "alias": "fecomponent/mobi-bass-editor-mail-editor/0.0.11/index",
+      "url": "fecomponent/bass-editor-mail-editor/raw/publish/0.0.11/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-topic-editor": {
+      "alias": "fecomponent/mobi-bass-editor-topic-editor/0.0.10/index",
+      "url": "fecomponent/bass-editor-topic-editor/raw/publish/0.0.10/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-topicreply-editor": {
+      "alias": "fecomponent/mobi-bass-editor-topicreply-editor/0.0.10/index",
+      "url": "fecomponent/bass-editor-topicreply-editor/raw/publish/0.0.10/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-trade-editor": {
+      "alias": "fecomponent/mobi-bass-editor-trade-editor/0.0.9/index",
+      "url": "fecomponent/bass-editor-trade-editor/raw/publish/0.0.9/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-tradereply-editor": {
+      "alias": "fecomponent/mobi-bass-editor-tradereply-editor/0.0.9/index",
+      "url": "fecomponent/bass-editor-tradereply-editor/raw/publish/0.0.9/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-richtext-editor/0.0.6/index",
+          "url": "fecomponent/bass-editor-richtext-editor/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-form-util/0.0.2/index",
+          "url": "fecomponent/bass-util-form-util/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-action": {
+      "alias": "fecomponent/mobi-bass-widget-action/0.0.3/index",
+      "url": "fecomponent/bass-widget-action/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-ajaxdel": {
+      "alias": "fecomponent/mobi-bass-widget-ajaxdel/0.0.3/index",
+      "url": "fecomponent/bass-widget-ajaxdel/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-amountinput": {
+      "alias": "fecomponent/mobi-bass-widget-amountinput/0.0.1/index",
+      "url": "fecomponent/bass-widget-amountinput/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-backtop": {
+      "alias": "fecomponent/mobi-bass-widget-backtop/0.0.1/index",
+      "url": "fecomponent/bass-widget-backtop/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-knockout": {
+      "alias": "fecomponent/mobi-knockout/0.0.3/index",
+      "url": "fecomponent/knockout/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-cart": {
+      "alias": "fecomponent/mobi-bass-widget-cart/0.0.5/index",
+      "url": "fecomponent/bass-widget-cart/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-cartmenu": {
+      "alias": "fecomponent/mobi-bass-widget-cartmenu/0.0.2/index",
+      "url": "fecomponent/bass-widget-cartmenu/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-clipboard": {
+      "alias": "fecomponent/mobi-bass-widget-clipboard/0.0.2/index",
+      "url": "fecomponent/bass-widget-clipboard/raw/publish/0.0.2/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-zeroclipboard/0.0.1/index",
+          "url": "fecomponent/zeroclipboard/raw/publish/0.0.1/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-customnotice": {
+      "alias": "fecomponent/mobi-bass-widget-customnotice/0.0.1/index",
+      "url": "fecomponent/bass-widget-customnotice/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-drop": {
+      "alias": "fecomponent/mobi-bass-widget-drop/0.0.3/index",
+      "url": "fecomponent/bass-widget-drop/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-catmenu": {
+      "alias": "fecomponent/mobi-bass-widget-catmenu/0.0.9/index",
+      "url": "fecomponent/bass-widget-catmenu/raw/publish/0.0.9/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-ui-menu/0.0.3/index",
+          "url": "fecomponent/bass-ui-menu/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-feedback": {
+      "alias": "fecomponent/mobi-bass-widget-feedback/0.0.7/index",
+      "url": "fecomponent/bass-widget-feedback/raw/publish/0.0.7/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-infscroll": {
+      "alias": "fecomponent/mobi-bass-widget-infscroll/0.0.3/index",
+      "url": "fecomponent/bass-widget-infscroll/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-jquery-infinite-scroll/0.0.1/index",
+          "url": "fecomponent/jquery-infinite-scroll/raw/publish/0.0.1/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-infscrolllist": {
+      "alias": "fecomponent/mobi-bass-widget-infscrolllist/0.0.5/index",
+      "url": "fecomponent/bass-widget-infscrolllist/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-jquery-infinite-scroll/0.0.1/index",
+          "url": "fecomponent/jquery-infinite-scroll/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jquery-isotope/0.0.1/index",
+          "url": "fecomponent/jquery-isotope/raw/publish/0.0.1/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-message": {
+      "alias": "fecomponent/mobi-bass-widget-message/0.0.9/index",
+      "url": "fecomponent/bass-widget-message/raw/publish/0.0.9/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-editor-mail-editor/0.0.10/index",
+          "url": "fecomponent/bass-editor-mail-editor/raw/publish/0.0.10/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-postoffice": {
+      "alias": "fecomponent/mobi-bass-widget-postoffice/0.0.6/index",
+      "url": "fecomponent/bass-widget-postoffice/raw/publish/0.0.6/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-reader": {
+      "alias": "fecomponent/mobi-bass-widget-reader/0.0.13/index",
+      "url": "fecomponent/bass-widget-reader/raw/publish/0.0.13/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-custom-scrollbar/0.0.4/index",
+          "url": "fecomponent/custom-scrollbar/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-sensefilter": {
+      "alias": "fecomponent/mobi-bass-widget-sensefilter/0.0.7/index",
+      "url": "fecomponent/bass-widget-sensefilter/raw/publish/0.0.7/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-jquery-ui-touch-punch/0.0.1/index",
+          "url": "fecomponent/jquery-ui-touch-punch/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-knockout/0.0.3/index",
+          "url": "fecomponent/knockout/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-ajaxqueue/0.0.1/index",
+          "url": "fecomponent/ajaxqueue/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-ui-slider/0.0.4/index",
+          "url": "fecomponent/bass-ui-slider/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-widget-loading/0.0.2/index",
+          "url": "fecomponent/bass-widget-loading/raw/publish/0.0.2/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-share-util/0.0.4/index",
+          "url": "fecomponent/bass-util-share-util/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-suggest": {
+      "alias": "fecomponent/mobi-bass-widget-suggest/0.0.5/index",
+      "url": "fecomponent/bass-widget-suggest/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-trynotice": {
+      "alias": "fecomponent/mobi-bass-widget-trynotice/0.0.5/index",
+      "url": "fecomponent/bass-widget-trynotice/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-verification": {
+      "alias": "fecomponent/mobi-bass-widget-verification/0.0.7/index",
+      "url": "fecomponent/bass-widget-verification/raw/publish/0.0.7/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-ui-dialog/0.0.4/index",
+          "url": "fecomponent/bass-ui-dialog/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jquery-validation/0.0.1/index",
+          "url": "fecomponent/jquery-validation/raw/publish/0.0.1/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-bass-util-common-util/0.0.6/index",
+          "url": "fecomponent/bass-util-common-util/raw/publish/0.0.6/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-jqform/0.0.2/index",
+          "url": "fecomponent/jqform/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-sidebar": {
+      "alias": "fecomponent/mobi-bass-widget-sidebar/0.0.5/index",
+      "url": "fecomponent/bass-widget-sidebar/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass/0.0.4/index",
+          "url": "fecomponent/bass/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-side-bar": {
+      "alias": "fecomponent/mobi-bass-widget-side-bar/0.0.1/index",
+      "url": "fecomponent/bass-widget-side-bar/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-util-image-util": {
+      "alias": "fecomponent/mobi-bass-util-image-util/0.0.3/index",
+      "url": "fecomponent/bass-util-image-util/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jqueryui-less": {
+      "alias": "fecomponent/mobi-jqueryui-less/0.0.2/index",
+      "url": "fecomponent/jqueryui-less/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-widget-less": {
+      "alias": "fecomponent/mobi-bass-widget-less/0.0.4/index",
+      "url": "fecomponent/bass-widget-less/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bass-editor-less": {
+      "alias": "fecomponent/mobi-bass-editor-less/0.0.2/index",
+      "url": "fecomponent/bass-editor-less/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-list-less": {
+      "alias": "fecomponent/mobi-list-less/0.0.4/index",
+      "url": "fecomponent/list-less/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-bass-widget-less/0.0.2/index",
+          "url": "fecomponent/bass-widget-less/raw/publish/0.0.2/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-slidr": {
+      "alias": "fecomponent/mobi-slidr/0.0.1/index",
+      "url": "fecomponent/slidr/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-scrolld": {
+      "alias": "fecomponent/mobi-scrolld/0.0.1/index",
+      "url": "fecomponent/scrolld/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-mousewheel": {
+      "alias": "fecomponent/mobi-mousewheel/0.0.1/index",
+      "url": "fecomponent/mousewheel/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-custom-scrollbar": {
+      "alias": "fecomponent/mobi-custom-scrollbar/0.0.5/index",
+      "url": "fecomponent/custom-scrollbar/raw/publish/0.0.5/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-mousewheel/0.0.1/index",
+          "url": "fecomponent/mousewheel/raw/publish/0.0.1/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-countdown-ms": {
+      "alias": "fecomponent/mobi-countdown-ms/0.0.12/index",
+      "url": "fecomponent/countdown-ms/raw/publish/0.0.12/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-parallax": {
+      "alias": "fecomponent/mobi-parallax/0.0.1/index",
+      "url": "fecomponent/parallax/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-superplaceholder": {
+      "alias": "fecomponent/mobi-superplaceholder/0.0.1/index",
+      "url": "fecomponent/superplaceholder/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-imagehover": {
+      "alias": "fecomponent/mobi-imagehover/0.0.2/index",
+      "url": "fecomponent/imagehover/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-es6-promise": {
+      "alias": "fecomponent/mobi-es6-promise/0.0.1/index",
+      "url": "fecomponent/es6-promise/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-bluebird": {
+      "alias": "fecomponent/mobi-bluebird/0.0.1/index",
+      "url": "fecomponent/bluebird/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-ua-device": {
+      "alias": "fecomponent/mobi-ua-device/0.0.5/index",
+      "url": "fecomponent/ua-device/raw/publish/0.0.5/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-jquery-ajax-cache": {
+      "alias": "fecomponent/mobi-jquery-ajax-cache/0.0.1/index",
+      "url": "fecomponent/jquery-ajax-cache/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-m-picker": {
+      "alias": "fecomponent/mobi-m-picker/0.0.4/index",
+      "url": "fecomponent/m-picker/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-m-pulltorefresh": {
+      "alias": "fecomponent/mobi-m-pulltorefresh/0.0.3/index",
+      "url": "fecomponent/m-pulltorefresh/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-m-calendar": {
+      "alias": "fecomponent/mobi-m-calendar/0.0.3/index",
+      "url": "fecomponent/m-calendar/raw/publish/0.0.3/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-m-swipe": {
+      "alias": "fecomponent/mobi-m-swipe/0.0.11/index",
+      "url": "fecomponent/m-swipe/raw/publish/0.0.11/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "joyui/m-banner": {
+      "alias": "joyui/m-banner/0.0.8/index",
+      "url": "joyui/m-banner/raw/publish/0.0.8/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/m-scoll": {
+      "alias": "joyui/m-scoll/0.0.7/index",
+      "url": "joyui/m-scoll/raw/publish/0.0.7/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/m-pop": {
+      "alias": "joyui/m-pop/0.0.4/index",
+      "url": "joyui/m-pop/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/m-image": {
+      "alias": "joyui/m-image/0.0.20/index",
+      "url": "joyui/m-image/raw/publish/0.0.20/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/m-head": {
+      "alias": "joyui/m-head/0.0.4/index",
+      "url": "joyui/m-head/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        },
+        {
+          "alias": "fecomponent/mobi-detect-ua/0.0.4/index",
+          "url": "fecomponent/detect-ua/raw/publish/0.0.4/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-gallery": {
+      "alias": "fecomponent/mobi-gallery/0.0.2/index",
+      "url": "fecomponent/gallery/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-baguette-box": {
+      "alias": "fecomponent/mobi-baguette-box/0.0.8/index",
+      "url": "fecomponent/baguette-box/raw/publish/0.0.8/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-qrcode": {
+      "alias": "fecomponent/mobi-qrcode/0.0.1/index",
+      "url": "fecomponent/qrcode/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-timeago": {
+      "alias": "fecomponent/mobi-timeago/0.0.1/index",
+      "url": "fecomponent/timeago/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-granim": {
+      "alias": "fecomponent/mobi-granim/0.0.1/index",
+      "url": "fecomponent/granim/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-zepto-autocomplete": {
+      "alias": "fecomponent/mobi-zepto-autocomplete/0.0.2/index",
+      "url": "fecomponent/zepto-autocomplete/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "joyui/elite-english-m-header": {
+      "alias": "joyui/elite-english-m-header/0.0.3/index",
+      "url": "joyui/elite-english-m-header/raw/publish/0.0.3/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/elite-english-m-tips-cover": {
+      "alias": "joyui/elite-english-m-tips-cover/0.0.2/index",
+      "url": "joyui/elite-english-m-tips-cover/raw/publish/0.0.2/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "joyui/m-image2": {
+      "alias": "joyui/m-image2/0.0.4/index",
+      "url": "joyui/m-image2/raw/publish/0.0.4/index.js",
+      "requires": [
+        {
+          "alias": "fecomponent/mobi-art-template/0.0.3/index",
+          "url": "fecomponent/art-template/raw/publish/0.0.3/index.js"
+        }
+      ],
+      "labels": ""
+    },
+    "fecomponent/mobi-util": {
+      "alias": "fecomponent/mobi-util/0.0.1/index",
+      "url": "fecomponent/util/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-weex-components": {
+      "alias": "fecomponent/mobi-weex-components/0.0.4/index",
+      "url": "fecomponent/weex-components/raw/publish/0.0.4/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-weex-test": {
+      "alias": "fecomponent/mobi-weex-test/0.0.1/index",
+      "url": "fecomponent/weex-test/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-weex-tabbar-upper": {
+      "alias": "fecomponent/mobi-weex-tabbar-upper/0.0.1/index",
+      "url": "fecomponent/weex-tabbar-upper/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-wxc-tabbar-upper": {
+      "alias": "fecomponent/mobi-wxc-tabbar-upper/0.0.1/index",
+      "url": "fecomponent/wxc-tabbar-upper/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-g2-mobile": {
+      "alias": "fecomponent/mobi-g2-mobile/0.0.2/index",
+      "url": "fecomponent/g2-mobile/raw/publish/0.0.2/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-wxc-tabbar": {
+      "alias": "fecomponent/mobi-wxc-tabbar/0.0.1/index",
+      "url": "fecomponent/wxc-tabbar/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    },
+    "fecomponent/mobi-pull-element": {
+      "alias": "fecomponent/mobi-pull-element/0.0.1/index",
+      "url": "fecomponent/pull-element/raw/publish/0.0.1/index.js",
+      "requires": [],
+      "labels": ""
+    }
+  }
+}

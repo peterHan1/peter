@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="http://cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="http://cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.21/flexible/flexible-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.1.7/iconfont/talent-iconfont/icon.min.css">
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.20/art-template/art-template-min.js"></script>
+    <title>owner-home</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./month-bill.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">     
+      <input class="j_LastMonth" type="hidden"  value="{year:2016,month:10}">
+      <input class="j_StartTime" type="hidden" value="{year:2016,month:10}">
+      <input class="j_EndTime" type="hidden" value="{year:2018,month:11}">
+      <p class="select j_MonthSelect">2016年11月</p>    
+
+      <div class="bill-container j_BillContainer">
+
+        <!-- <div class="no-bill">  
+          <div class="icon"></div>      
+          <p class="msg">暂无收益</p>
+        </div>
+
+        <div class="bill-content">
+          <p class="total j_TotalSale">销售额<span class="num j_Num">126123.00</span></p>
+          <p class="per-box rec-per j_PerBox j_Recper" data-percent="90">纳新收益<span class="num j_Num">90%</span></p>
+          <p class="per-box sale-per j_PerBox j_Saleper">销售收益<span class="num j_Num">10%</span></p>
+          <p class="total-comm">总收益</p>
+          <p class="total-num j_TotalNum">+12121212.00</p>
+          <div class="circle">
+            <canvas class="canvas cir-canvas j_CirCanvas" width="350" height="350">
+            </canvas>
+            <canvas class="canvas cir-canvas j_CirCanvasCopy" width="350" height="350">
+            </canvas>
+            <canvas class="canvas cir-center-canvas j_CirCenterCanvas" width="350" height="350">
+            </canvas>
+          </div>
+        </div>
+
+        <div class="type">
+          <p class="text">收益类型</p>
+          <div class="comm sale-comm j_SaleComm"><p class="cont">销售收益<span class="num j_Num">+121212</span></p></div>
+          <div class="comm rec-comm j_RecComm"><p class="cont">纳新收益<span class="num j_Num">+12121212</span></p></div>
+        </div> -->
+      </div>
+
+    </div>
+
+    <script id="J_Tmpl" type="text/html">
+      {{if data.allCommission == 0}}      
+      <div class="no-bill">  
+        <div class="icon"></div>      
+        <p class="msg">暂无收益</p>
+      </div>
+      {{else}}
+      <div class="bill-content">
+        <p class="total j_TotalSale">销售额<span class="num j_Num">+{{data.orderCommission}}</span></p>
+        {{if data.recruitCommission != 0}}
+        <p class="per-box rec-per j_PerBox j_Recper" data-percent="90">纳新收益<span class="num j_Num">{{data.recruitPercent}}%</span></p>
+        {{/if}}
+        {{if data.orderCommission != 0}}
+        <p class="per-box sale-per j_PerBox j_Saleper">销售收益<span class="num j_Num">{{data.orderPercent}}%</span></p>
+        {{/if}}
+        <p class="total-comm">总收益</p>
+        <p class="total-num j_TotalNum">+{{data.allCommission}}</p>
+      </div>
+
+      <div class="type">
+        <p class="text">收益类型</p>
+        {{if data.orderCommission != 0}}
+        <div class="comm sale-comm j_SaleComm">
+          <a href="/shop/commission/commissionDetail?type=1&year={{data.year}}&month={{data.month}}">
+            <p class="cont">销售收益<span class="num j_Num">+{{data.orderCommission}}</span></p>
+          </a>
+        </div>
+        {{else}}
+        <div class="comm sale-comm j_SaleComm">          
+          <p class="cont">销售收益<span class="num j_Num">+{{data.orderCommission}}</span></p>
+        </div>
+        {{/if}}
+        {{if data.recruitCommission != 0}}
+        <div class="comm rec-comm j_RecComm">
+          <a href="/shop/commission/commissionDetail?type=2&year={{data.year}}&month={{data.month}}">
+            <p class="cont">纳新收益<span class="num j_Num">+{{data.recruitCommission}}</span></p>
+          </a>
+        </div>
+        {{else}}
+        <div class="comm rec-comm j_RecComm">          
+          <p class="cont">纳新收益<span class="num j_Num">+{{data.recruitCommission}}</span></p>          
+        </div>
+        {{/if}}
+        {{if data.salesReward != 0}}
+        <div class="comm item-icon other j_RecComm">
+          <a href="/shop/commission/commissionDetail?type=3&year={{data.year}}&month={{data.month}}">
+            <p class="cont">活动返现<span class="num j_Num">+{{data.salesReward}}</span></p>
+          </a>
+        </div>
+        {{else}}
+        <div class="comm item-icon other j_RecComm">          
+          <p class="cont">活动返现<span class="num j_Num">+{{data.salesReward}}</span></p>          
+        </div>
+        {{/if}}
+      </div>
+
+      {{/if}}
+
+    </script>
+
+    <!-- local javascript files -->
+    <!-- <script src="./../../../build/src/pages/month-bill/month-bill.min.js"></script> -->
+    <script type="text/javascript" src="./month-bill.min.js"></script>
+  </body>
+</html>

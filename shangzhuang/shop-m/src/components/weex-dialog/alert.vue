@@ -1,0 +1,2 @@
+<script>
+module.exports = {};</script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.21/flexible/flexible-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.1.7/iconfont/talent-iconfont/icon.min.css">
+    <!-- <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"> -->
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.20/art-template/art-template-min.js"></script>
+    <title>owner-home</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./shop-order.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+      <input class="j_SynToken" name="_synToken" type="hidden" value="${_synToken}" />
+      <div class="tab j_Tab">
+        <p class="title j_Title"><span class="active">本店订单<span></p>
+        <p class="title j_Title"><span>我的订单</span></p>
+      </div>
+      <ul class="list loading j_Container j_List">
+      </ul> 
+      <ul class="my-list loading j_Container j_Mylist">        
+      </ul>         
+    </div>
+
+    <script type="text/html" id="tmpl">
+      {{each data as item}}
+        <li class="list-item">
+          <p class="ordernum">订单号：{{item.orderNumber}}</p>
+          <div class="info">
+            <div class="pic-box">
+              <img class="pic" src="{{item.imgUrl}}.200x200.png"}>  
+            </div>
+            <div class="intro">
+              <a class="href-link" href="/shop/sku/{{item.skuId}}.html">
+                <img class="avatar" src="{{item.user.image}}">
+                <p class="goods-title">{{item.title}}</p>
+                <p class="detail">x{{item.quantity}} {{item.time}}</p>          
+              </a>
+              <p class="commis">收益：{{item.commission}}<span class="user-name">{{item.user.nick}}</span></p>
+            </div>
+          </div>
+          {{if item.status == 20}}
+            <p class="status">已收货<a class="href-link" href="/trade/getLogistics?skuId={{item.skuId}}"><span class="link">查看物流</span></a></p>
+          {{else if item.status == 22}}
+            <p class="status">未收货<a class="href-link" href="/trade/getLogistics?skuId={{item.skuId}}"><span class="link">查看物流</span></a></p>
+          {{else}}
+            <p class="status">已退货</p>
+          {{/if}}          
+        </li> 
+      {{/each}}
+    </script>
+
+    <script type="text/html" id="my-tmpl">
+      {{each data as item}}
+      <li class="order">
+        <div class="order-hd">
+          <a href="/u/order/detail/?orderNumber={{item.orderNumber}}">
+            <span class="order-number">订单号：<strong>{{item.orderNumber}}</strong></span>  
+            {{if item.status == -2}}          
+            <span class="order-detail">交易失败</span>
+            {{else if item.status == 20}}
+            <span class="order-detail">交易成功</span>
+            {{else if item.status == 21}}
+            <span class="order-detail">等待付款</span>
+            {{else if item.status == 22 || item.status == 33}}
+            <span class="order-detail">等待配送</span>
+            {{else if item.status == 23}}
+            <span class="order-detail">配送中</span>
+            {{else if item.status == 24}}
+            <span class="order-detail">售后处理中</span>
+            {{else if item.status == 25}}
+            <span class="order-detail">退货关闭</span>
+            {{else if item.status == 26}}
+            <span class="order-detail">退货成功</span>
+            {{else if item.status == 31}}
+            <span class="order-detail">海关审核失败</span>
+            {{/if}}
+          </a>
+        </div>
+        <div class="order-bd">
+          <ul class="item-list">
+            {{each item.skus as list}}
+            <li class="item">
+              <div class="tr">
+                <div class="pic">
+                  <img src="{{list.image}}.70x70.png" width="70" height="70">
+                </div>
+                <div class="name">{{list.skuZhName}}</div>                
+                <div class="amount">
+                  <div class="price"><span class="symbol">￥</span><span class="int">{{list.price}}</span></div>
+                  <div class="quantity">x{{list.quantity}}</div>
+                </div>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+          <div class="postfee">
+            <div class="tr">
+              <div class="name">邮费</div>
+              <div class="amount"><span class="symbol">￥</span>{{item.postFee}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="order-ft">
+          <div class="summary">
+            实付金额：<span class="price"><span class="symbol">￥</span><span class="int">{{item.actualPrice}}</span></span>
+          </div>
+          <div class="action">
+            {{if item.status == 21}}
+            <a href="/pay/option?orderNumber={{item.orderNumber}}&hasHaiTao={{item.skus[0].isHaitao}}" class="btn">付款</a>
+            {{else if item.status == 23}}
+            <a class="btn confirm j_ConfirmReceipt" data-id="'{{item.orderNumber}}'">确认收货</a>
+            {{/if}}
+          </div>
+        </div>
+      </li>
+    {{/each}}
+    </script>
+    <!-- local javascript files -->
+    <script src="./shop-order.js"></script>
+  </body>
+</html>

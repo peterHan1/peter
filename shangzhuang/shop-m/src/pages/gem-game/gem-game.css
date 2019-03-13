@@ -1,0 +1,246 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+html {
+  background-color: #fdd5de;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 0;
+}
+#content .scrolling {
+  position: relative;
+  margin: 0.1867rem auto;
+  width: 7.2rem;
+  height: 1.2rem;
+  border-top: 0.0267rem dashed #e7c2ca;
+  border-bottom: 0.0267rem dashed #e7c2ca;
+  overflow: hidden;
+}
+#content .scrolling .text {
+  display: none;
+  position: absolute;
+  left: 0.3333rem;
+  top: 0.2rem;
+  width: 6.2667rem;
+  height: 0.8rem;
+  border-radius: 0.4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  line-height: 0.8rem;
+  color: #fff;
+  font-size: 0.2667rem;
+  -webkit-animation: 'fadeInOut' 3s 0s ease both;
+          animation: 'fadeInOut' 3s 0s ease both;
+  overflow: hidden;
+}
+#content .scrolling .text .user-img {
+  margin: 0.0667rem 0.1333rem;
+  width: 0.6667rem;
+  height: 0.6667rem;
+  border-radius: 0.3333rem;
+}
+#content .scrolling .text .username {
+  margin-right: 0.0533rem;
+}
+#content .scrolling .text .giftname {
+  margin: 0 0.0533rem;
+}
+#content .title {
+  margin: 0 auto;
+  width: 8.6267rem;
+  height: 2.3067rem;
+  text-align: center;
+}
+#content .title .title-img {
+  width: 8.6267rem;
+  height: 2.3067rem;
+}
+#content .main {
+  margin: 0.2667rem auto;
+  width: 9.0667rem;
+  height: 9.0667rem;
+  padding: 0.6933rem;
+  background-image: url("//cdn1.showjoy.com/images/00/006d47a0e59048cb9ed1c0bf5e8f0c3d.png");
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.webpa #content .main {
+  background-image: url('//cdn1.showjoy.com/images/00/006d47a0e59048cb9ed1c0bf5e8f0c3d.png.webp');
+}
+#content .main .item {
+  float: left;
+  margin: 0.0267rem;
+  width: 2.5067rem;
+  height: 2.5067rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 2.5067rem;
+  overflow: hidden;
+}
+#content .main .item.option {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAAC8CAMAAAD1lzSZAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABgUExURUxpceVqo+RpouVpo+Vqo+Vpo+VppOVqo+RrouVqo+VpouNqouVpo////+Vqo/zw8P309P/8/f75+frm7/319/zy8u6ZwOVrpPTB2el7ru+ew/rd6vfO4fGtzOuJtvvk7oKCch4AAAANdFJOUwBYh3jtrwaXGPrjN9Mq7la0AAACrklEQVR42u3dybqiMBQEYC6DDEIFSEBB0Pd/yyYyGLrtXuf0V7VzWPzGk5BdBcEp1ygp4xweJo/LJLoGf00WFvA8RZh9p6fLij/nSZum8jCN0dP8XP6B9Av/JwbGR+V5HiMQ//xGv6RA/6oE5NUD6eVkT4B7JSR3ILmc7IOuxEQPrj7FoCpBUQPSY6/ipitR0TdsuzaL5cz7Z+7jbBuavhKXfh2cLIeWh9fI7dKHGCuBGREu+AIPifgHiuUeiWclMk9cgwizTPyMKEgwycRPSIJS4lmznjdlEMPIxBvEQY5GJr5BHgCV0ADEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cQTTzzxxBNPPPHEE0888cT/Gy+uXqf5X/CtNHzr4Gtp+NrBd9LwnbvywuamdVe+FjY3tYtvlailX7nHUalETX2ntqNyLYDrlKAOO/NealsAt1bvGaXEPKga9V5pW723lh4ub0jR71RberjVTRopemt/j7itm9yLPpUMvbWv5dO26HOvWG3tu94fmI7SVqwe5bZ2cFTt9eI3tdqHZi23/dQKvz9R/t4U2g24vlprhbMcL1e//LTWu/VvWrPhNvtW6OxUae9fsOk8isPan6VblbZbYt4qz7PP9FFifqqPNz7TjyvMpz7eDs6gjukynZ/yzhw7UQ3b0NhcEgza3R117Re8rt0zRA9ILoGrv92lXMzut5N90adAL6KWWvdAerLbXRsDo/dF8o8RiH+CP5KlOfCcJ228vCI0Rk/zE8jTLPiWLCzgeYrwO/2da5SUce4jO4/LJLqetb8A4nUGgEO4hZUAAAAASUVORK5CYII=");
+}
+#content .main .item.option.active {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAAC8CAMAAAD1lzSZAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABgUExURUxpceVqo+NqouVpouVqo+Vpo+VppOVpo+RrouVqo+Vpo+Vpo/vhUOVqo//thP/rfvfMYv3lYf7obfzjWP/sgfrbVe2Siv/qdf/rfOh3m/O7buqEk++ggPKvdvOwdedxn9ZajHwAAAAMdFJOUwBYN+PtrwaSGPrTeLnk4lYAAAKoSURBVHja7d3JduIwFIRhg2084CvPA1O//2PG8oToDr3WPeevVQJZfEeUHHYVBB85X+M8ysTDZFEeX8/B16RJKJ4nTNIv9PnEH8971feFh+n76v58zJ/Ab/xTJDJUheepBpHo9Bf9kmig7/zk8mGPRV6FkrxE4suH/VYValLdXH2iyr7ok+Ouiqiyz3qR7damkZ6+v3sfpVtphkJdhrU4aaatNGtxslTrwe9HH2o8eHv04fw9Uh6FyjzkHFzlqRP/lGsQy10n/i5xkOusvC19HkTS68T3EgWZXnwWiBRKIwIePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4P+Pb7XBWwdfa8PXDr7Rhm8c/KgNPzr4Uhu+dPCTstLXk1ubSRd+cmvTGFVHXxv3wrZGVesnsz3n1wG40ih6WjbLUdsBuHV6rzF6ilOb5aTt9N46etga0yn5jtB2ZmmNHT3c5iYbLXprXypu5yb3oc/5tU5Bc2rrXH6yQ5/7xOrcJOP/rW2scj1jO7F6jNsur/v9r7ae3ie8jNu+Z4VH+44ZveXXG3D9bZ0Vfg86r2+abqy9u7ptPXbGtW+Dzs6ic2OOdKVH6d6u/VZuU9ruiHnt/JmPOZ6Hf/YRc3c+vm18tjd7nd/z8bY4t2NbuG1KP+XlQS+q21Yam0vs6K1/nLzqTzeNjfMMme3xJXD1R++9z0s+7LM+ERlUzFJXg0jyYbe3NtLAt/ToFPyTNMlEHs971Xs5T9331f35EMmSNPgtaRKK5wm/0Jecr3EeZT6ysyiPr+dP7Q/YdXvNxyDM7AAAAABJRU5ErkJggg==");
+}
+#content .main .item.btn {
+  background-image: url("//cdn1.showjoy.com/images/d5/d5ac7573061e4eef9cf3ffd057f597ea.png");
+  background-size: 2.4533rem 2.4533rem;
+}
+#content .main .item.btn.disable {
+  background-image: url("//cdn1.showjoy.com/images/a3/a3b2478559264a5a91ce652fd3246328.png");
+}
+#content .main .item .amount {
+  margin: 0.4267rem 0 0;
+  width: 100%;
+  height: 1rem;
+  background-image: url("//cdn1.showjoy.com/images/da/da2b00098a894b66b9b6db24965efb12.png");
+  background-size: 2.04rem 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 0.48rem;
+  line-height: 1rem;
+  font-weight: bolder;
+  color: #fff;
+  overflow: hidden;
+}
+#content .main .item .amount.thks {
+  background-image: url("//cdn1.showjoy.com/images/c1/c12409bb5baa4eeebf0a5351abcf655c.png");
+  background-size: 1.64rem 1rem;
+}
+#content .main .item .amount.gem {
+  background-image: url("//cdn1.showjoy.com/images/69/6915c841080846bca09afb902add6162.png");
+  background-size: 1.0267rem 1rem;
+}
+#content .main .item .condition {
+  margin: 0.1867rem 0;
+  text-align: center;
+  font-size: 0.2933rem;
+  font-weight: bolder;
+  color: #6c3f28;
+}
+#content .main .rule {
+  margin-top: 0.56rem;
+  width: 100%;
+}
+#content .main .rule .rule-img {
+  width: 100%;
+}
+#content .dialog {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-animation: 'fadeIn' 0.6s 1.2s ease both;
+          animation: 'fadeIn' 0.6s 1.2s ease both;
+}
+#content .dialog .dialog-main {
+  position: absolute;
+  width: 8.0133rem;
+  height: 9.1733rem;
+  padding: 1.24rem 1.1467rem;
+  left: 50%;
+  top: 50%;
+  margin-left: -4.0067rem;
+  margin-top: -4.5867rem;
+  background-image: url("//cdn1.showjoy.com/images/8e/8e469e99c66347238f1dac52bd48cae7.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.webpa #content .dialog .dialog-main {
+  background-image: url('//cdn1.showjoy.com/images/8e/8e469e99c66347238f1dac52bd48cae7.png.webp');
+}
+#content .dialog .dialog-main.nogift {
+  background-image: url("//cdn1.showjoy.com/images/67/67299d1fc10344e689037baa66c91b12.png");
+}
+.webpa #content .dialog .dialog-main.nogift {
+  background-image: url('//cdn1.showjoy.com/images/67/67299d1fc10344e689037baa66c91b12.png.webp');
+}
+#content .dialog .dialog-main .dialog-title {
+  margin: 1.0133rem 0 0.88rem;
+  height: 1.0667rem;
+  line-height: 1.0667rem;
+  color: #fff;
+  font-size: 0.8267rem;
+  text-align: center;
+}
+#content .dialog .dialog-main .dialog-desc {
+  color: #fae05d;
+  text-align: center;
+  line-height: 0.7733rem;
+  font-size: 0.5067rem;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    -webkit-transform: transLateY(1.3333rem);
+            transform: transLateY(1.3333rem);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: transLateY(0);
+            transform: transLateY(0);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: transLateY(0);
+            transform: transLateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: transLateY(-1.3333rem);
+            transform: transLateY(-1.3333rem);
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    -webkit-transform: transLateY(1.3333rem);
+            transform: transLateY(1.3333rem);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: transLateY(0);
+            transform: transLateY(0);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: transLateY(0);
+            transform: transLateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: transLateY(-1.3333rem);
+            transform: transLateY(-1.3333rem);
+  }
+}

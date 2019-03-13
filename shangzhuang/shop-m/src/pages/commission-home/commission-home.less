@@ -1,0 +1,420 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+@sprite-icon: "//cdn1.showjoy.com/images/7e/7ee1255676a64b73a6ad14d1ceff1134.png";
+@font-face {
+  font-family: 'CenturyGothic';
+  font-style: normal;
+  src: url(//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.4/fonts/CenturyGothic.ttf) format('ttf');
+}
+p {
+  line-height: 1;
+}
+#header {
+  display: none;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 1.6rem;
+}
+@-webkit-keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes show-block {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+.num {
+  font-family: CenturyGothic;
+}
+// 累计收益为0时的样式
+.total-commission-null {
+  .sales-status {
+    .total-sales {
+      border-color: @grey3;
+      .total-money {
+        color: @grey4;
+      }
+      .desc {
+        color: @grey4;
+      }
+    }
+    .total-sales-info {
+      .recruit-income {
+        background-color: @grey4;
+      }
+      .sale-income {
+        background-color: @grey3;
+      }
+      .family-income {
+        background-color: @grey4;
+      }
+    }
+  }
+  .withdraw {
+    .withdraw-money {
+      .can-withdraw {
+        .title {
+          color: @grey5;
+        }
+        .price {
+          color: @grey4;
+          &:after {
+            border-color: @grey4;
+          }
+        }
+      }
+    }
+  }
+}
+
+section {
+  &.sales-status {
+    width: 100%;
+    height: 790px;
+    .webpbg('//cdn1.showjoy.com/images/06/0634dc34448746e0a4bd92420809a970.png.750x868.png');
+    background-size: 750px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+    .saleroom-button {
+      width: 2.7rem;
+      height: 0.666667rem;
+      line-height: 0.666667rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.32rem;
+      padding-right: 0.8rem;
+      position: absolute;
+      right: 0;
+      top: 0.266667rem;
+      &:after {
+        content: '';
+        width: 0.613333rem;
+        height: 0.586667rem;
+        font-size: 0.413333rem;
+        position: absolute;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAUVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////8IN+deAAAAGnRSTlMAECAwP0BQX2Bwf4CPkJ+gr7C/wM/Q3+Dv8Lt0OWcAAAD2SURBVEjH7ZXBbsMgEER3waS01IlTEwfe/39oD24V7DiBSs3NczLyPImF2UVk1+tkPr8qelv4baKqoQQmch+eaoT3YkNwqG16ZLwtHLgaEHbgn4FOmwHtPoYJzs3ANMdobAau5PwnQIwF6NsBm8gQmgGTyHaOchOgEQ46/2wBNIIXCaH14oayyx4D2v18HOHUEA2NRBUR6Rf+h4CJQFQRD5eG8NkEZ4jWw0XrgE3gxUOCq9bjPftFPJBtvR9+/SIur/1bwM0vYky940r/hvoSEDi6RH7iN2lxKz2rMrfGd1mVnlbHcm/Pq3Ft/KLMu3HvdH91X6lv+LklgraEWl0AAAAASUVORK5CYII=);
+        background-repeat: no-repeat;
+        background-size: 40px;
+        background-position: center;
+      }
+    }
+    .income-detail-button {
+      position: absolute;
+      left: 0.433333rem;
+      top: 0.266667rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.32rem;
+      padding-left: 0.6666666666666666rem;
+      height: 0.666667rem;
+      line-height: 0.666667rem;
+      &::before {
+        content: '';
+        width: 0.6666666666666666rem;
+        height: 0.6666666666666666rem;
+        left: 0;
+        top: 50%;
+        margin-top: -0.3333333333333333rem;
+        font-size: 0.4333333333333333rem;
+        position: absolute;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAAwCAMAAABzC0lBAAAAS1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////+DmQsHAAAAGHRSTlMAECAwP0BQX2Bwf4CPkJ+gsL/Az9Dg7/C0nWOpAAAAqklEQVQYGe3BQWKDIBRF0StUS0LbRDT69r/S+iEL4DvIyHOANM9/Ab+HDlvE66Zqw6uoiRh1Q28TRt0oaiKmdGNSVXD71WEN+MWcE5fLB8UvzoiLtCXc4iaT8Hqoobp346VmxKgbu5oRo2481QRM7kbYZTJucZX2G2cMgcvlg8b7zzcnJB2WAa+kasGrqAmYuRt6mzDqxqpmxKgbWdULt6LDHvFLz5IHvP4BmUMvzWgqasYAAAAASUVORK5CYII=);
+        background-repeat: no-repeat;
+        background-size: 36px;
+        background-position: center;
+      }
+    }
+    .income-wrap {
+      margin-top: 144px;
+      text-align: center;
+      color: #fff;
+      .income {
+        font-size: 88px;
+        font-family: CenturyGothic;
+        position: relative;
+        .add-shop-bank {
+          display: none;
+          position: absolute;
+          color: rgb(239, 115, 232);
+          font-size: 30px;
+          left: 50%;
+          top: 50%;
+          transform: translate3d(0, -50%, 0);
+        }
+      }
+      .desc {
+        font-size: 30px;
+        margin-top: 10px;
+        position: relative;
+        &:after {
+          content: '\e606';
+          font-family: 'iconfont' !important;
+          width: 0.613333rem;
+          height: 0.586667rem;
+          font-size: 0.413333rem;
+          position: absolute;
+        }
+      }
+    }
+    .slider-item {
+      width: 530px;
+      height: 267px;
+      box-shadow: 0 0 32px  rgba(60, 35, 99, 0.71);
+      background: linear-gradient(to right, #9462fc, #754ab8); 
+      position: relative;
+      margin: 66px auto 0;
+      .clip-path {
+        width: 310px;
+        height: 267px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9;
+        clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
+        background: linear-gradient(to right, #b5a5fd, #8369d1); 
+        opacity: 0.5;
+      }
+      .bank-info {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #fff;
+        z-index: 99;
+        padding-top: 80px;
+        .desc {
+          text-align: center;
+          font-size: 28px;
+          margin-top: 20px;
+          display: block;
+          .highlight {
+            color: rgb(115, 239, 199); 
+          }
+        }
+        .link {
+          display: block;
+          text-align: right;
+          line-height: 28px;
+          font-size: 28px;
+          color: rgb(115, 239, 199);
+          margin-top: 20px;
+          margin-right: 20px;
+          text-decoration: underline;
+        }
+      }
+    }
+    .account-info {
+      height: 99px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      .clearfix();
+      font-size: 28px;
+      line-height: 99px;
+      color: #fff;
+      .balance {
+        float: left;
+        .desc {
+          padding-left: 74px;
+          position: relative;
+          &::before {
+            content: '';
+            width: 33px;
+            height: 30px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate3d(100%, -50%, 0);
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAAwCAMAAABtwnnyAAAAVFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////8wXzyWAAAAG3RSTlMAECAwP0BQX2BvcH+Aj5CfoK+wv8DP0N/g7/CN3MwKAAAB6ElEQVRIx8WWy5arIBBFC9BolE5s37D//z/vAJMWNWL35NbEBYsN1OuIyCVTT+e+5LdWOwCbWqazrLhnWRZGtwkAhjPE1B1vG76KIgw9zJ+PqSeObMwb6KPNlX529wA9Dxl8KdJDs8J6Hm5xNziOb6tci4iovHyMMFdKRKY4JBbwLZPoAYD2tgm9CV+gXE/PMFm8cQCN/uQ1kEeRGwEcwGg+B3iLibSL581ZXjwMKo66h83V9/bY5ztPU6LGXXk9gEeymseNe4a4Aj5VHdCtxh14faEPbOSKTvSE+nJ8KxGReR2VBrw6wbp305RA8cqtO8+YCUm9iYgCwOWv6fwEywNml4sBGBGpgNNOD0tzERE9h3IPO/TJ+qCNhiLSJ1Ndtn0VXzpg9jcq9r+w9g+YTehmZEVdD+CXilEXqfJHBnS6Rd8WxG1UIiJj3EaJghlfOayWKktbs/ZHcfE4HaubXfoiZd/ASgWUB5cOZrUVqhs77Txu140KtEB3zhm3b2c1ps4z7ii9gTvB+mMFVuO5Nnwq+DyJ2VOsKNY+mnutr2AWmJ51XWR1HZ4a0xWs3z8UzjANDF3XuT02dF0HVIdOj+9l1vYzgO9bm8/vx8nxT8m8FsRJNf7nSXP8QyqttdZuN1WVtdZW8fQ/2BU+FRZQeBcAAAAASUVORK5CYII=);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+          }
+        }
+      }
+      .control {
+        float: right;
+        .link {
+          margin-right: 87px;
+          position: relative;
+          color: #fff;
+          &::after {
+            content: '\e605';
+            font-family: 'iconfont' !important;
+            font-size: 24px;
+            position: absolute;
+            right: -35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+section.sub-page-list {
+  .item {
+    height: 100px;
+    display: block;
+    .clearfix();
+    border-bottom: 1px solid rgb(239, 237, 244);
+    font-size: 28px;
+    line-height: 99px;
+    .bar-name {
+      float: left;
+      .desc {
+        padding-left: 74px;
+        position: relative;
+        color: rgb(112, 103, 134);
+        &::before {
+          content: '';
+          width: 32px;
+          height: 32px;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translate3d(100%, -50%, 0);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+        &.family {
+          &::before {
+        
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAS1BMVEUAAACPYO+PaO+PZe+Sae+PaO+PZuyPaOyPZu2RaO2PaO2QZ+2PZ+2QaO2PaO2PZ+yQaOyPaOyQZ+2PZ+2QaO2PaO2QZ+2PZ+2QaO14cW82AAAAGHRSTlMAECAwP0BQYHB/gI+Qn6Cwv8DP0N/g7/CxczatAAABfElEQVRIx9VWSxaDIAw0WIRSqwgVuf9J+9FCIkFfl51dSaaZScLDpvkHXK7WxRecvV7Os8U9RIRwbw/TWxsL2APKNbK41dS4WIETrJwQqwjtb/kcQxzmvxh7VS6ewNF8Q4J+mkuGIYJQYNHwOpFznLuuxwwsakDnX3sm3G6dGHNg4AvkY/8eM0xcCVxZUV+9yqE+hR6IINPpJ3WSqLVpZrFOwBWSPY0JmkpSPRMb+HZ/GqQM05CJl/RJ7TBh4giKDGciO/ZdD7J3D4FbQWcdtxBdHOzM75aYkxQD5AJ4Cm8+S4hdthxgjIxpqnPr09odK9qhbKsi+eMqSfj1513mjdXcsubL222JNulKsdSmHuhFX92N2z/OKaCLoeUFnKWUzX5rgLm1aaGsta64o0NxaZMR9oo2sKA5EuTJLcSfjqfQe60nGHelwR/ne2h+YixQ2jtieOAaAlUfI1TeILWwcnT9kQNTUBYDh+8oaGLFazh/qkGZcXrDKPEXXyJP4i9l3L6GoHgAAAAASUVORK5CYII=);
+          }
+        }
+        &.sales {
+          &::before {
+        
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAV1BMVEUAAACPYO+PaO+PZe+Sae+PaO+RZ++PZuyRaeyPaOyRZ+2PZu2RaO2PaO2QZ+2PZ+2QaO2PaO2QZ+yPZ+yQaOyPaOyQZ+2PZ+2QaO2PaO2QZ+2PZ+2QaO0bxAMjAAAAHHRSTlMAECAwP0BPUF9gb3B/gI+Qn6CvsL/Az9Df4O/wQqu59AAAAflJREFUGBmNwYuiqioUBdAJyDbUVXqVFJj//53XEjqVvcbAjj4cp4WrZer+FL5QzZkPzgeF93QfuRM7hTe6yJdig1fMmW+dNXZc5AfR4InjFw4PHL9yuOP4A4MbE/mDqFCc+ZMJmfBHDlc68iV/xTtR4UK4N7camWkDC8FKRT5LFg/qxM2CleOOxRPHrAZw5g6eaWYjoHiTBmcBCHs8OTGLQM0stdgIh8nijp1OLCyEmUEmhKSlP1SVNlXV9EtqwULgufEohBrKDTOv5qEGLIsTPDODTOgVHuiRhUfkZg4HbIQuHg1uTJ9qFh7MvAnLsVIAhDAj49RdHKfIQYOFB7Mz4MZExmmhBVQto1+NUiugZeERmDmstLWtZzjgQeNZeHhu/NwbXAlNWpoKWXVckmHhMXLj1cClb6qq6gklgVymVSSDKMVCINwsgHLDzIsWgHYiw0mk1gCERQvLrFfYCFOncEcdZxYGYBE7jQthnWJ/qHBVNf8xGWYJwMh/4nTsuonQQ+JNEq2YDQAcd2oAthW/ktYAaJlZrBJ3GtxTHbOAC+Fe7P80rvRfH1k4XKjEN6aJDwI2NX9kkY38yQmFCvzBrHBjEr9KBncsv0kGD0ziR8ngiQn8YDbYUSPfOim8YgNfmi3ecYE7weETOyTeCYPBV8aJvxKnsfM/oyyY6skaTC0AAAAASUVORK5CYII=);
+          }
+        }
+        &.recruit {
+          &::before {
+        
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAVFBMVEUAAACPYO+PaO+PZe+Sae+PaO+RZ++PZuyPaOyRZ+2PZu2RaO2PaO2QZ+2PZ+2QaO2PaO2QZ+yPZ+yQaOyPaOyQZ+2PZ+2QaO2PaO2QZ+2PZ+2QaO3aysB5AAAAG3RSTlMAECAwP0BPUGBvcH+Aj5CfoK+wv8DP0N/g7/D2siHpAAABf0lEQVQYGdXB25aiMABFwR1iOoymASVih/P//zmK4aKi9NusqeKf2B3q9qY+7Njm6qRZqh0f+VbPzp63ilZr2oJ1Pmld8qwp9d4fXlX6pOZZqc9KHjltcSyZpC3JsFBpW8WsULZnVvzoUcGkUcZS1KOGkdGIpagnhqzU6Hs3+0p6sic76XciWVLmme31ijurLLKkV5aBUxZZcFIX44+WPIOg0ReTUqeCKxc1CwyC1pRYC76g0SQwCJpULksn2LeY5KDTKDAImpB5GTC9DxHwGgUGpSZkVQRcfU4HC/TKSgZOkwN3sQLb66oHojLHnV5V3MTATVRmuOuUdS5rzlC0bbq0R0BZR1YpC2RWBSaEnxj24JVVZIWywKg7chUDYC7KLKOouyMjq2/AFmBqZZGJ04rWcvV11sgxi1pzadukSWTBaptlKWhL4NFJn0WemE6fdIZnptN7neGVafROY1hV9lrTl7xjGr1qDB8UVa+lvinY4qvY66aPlee3jDP8L/4CRth0/Qnh0ZMAAAAASUVORK5CYII=);
+          }
+        }
+        &.bank {
+          &::before {
+        
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAV1BMVEUAAACPYO+PaO+PZe+Sae+PaO+RZ++PZuyRaeyPaOyRZ+2PZu2RaO2PaO2QZ+2PZ+2QaO2PaO2QZ+yPZ+yQaOyPaOyQZ+2PZ+2QaO2PaO2QZ+2PZ+2QaO0bxAMjAAAAHHRSTlMAECAwP0BPUF9gb3B/gI+Qn6CvsL/Az9Df4O/wQqu59AAAAZ5JREFUSMeVVouygiAQFYnMlIwEMeH/v/OaFrHsQtcz06Syh31ytKoQ6nN/1yvu/YlVP8Fvs48w3eqi+Vl7BC3yu0+ehM54ufksesKcTb4AjdLniy9iYsfsvV8Ag/20T3zE8T+dHxm3rx9kPL72Q/wclB2sdCEBWJB4SkCoy6cfSXuHbKnfQYk0vfZDeKQrgnKw4roVhN3Rgtri9AfA0kLssGbDE690SQ8ix6+YLFoy69OsPckgaqTikVG4TrJgv0KhksuiPWLIyqRJpQfLlghuH2HWr//83fDawbkxkL9jXC90876RkDCmjdynlIkQXQ23jPljiFzKmYcbCwgdEVE1TMuiW6pQDWhcIHBhlQjyFQfBwWgEQtvPuhcEwa23huga9GBglh3ZNiO/1zM8jHHVSNWt08aOhUlKiqSQCHBsL3AEkYsFMfiMBSger6XJq7QL6toBtYoyr4HSRHuNUOAup9eMn646o4jkaacE4xDDsuoQw6CXHFaUXPwBrcuZu4Z+UeecDPlPjlohL06VvzZYO7rYuq3+AS7kBkHt/Qfd3I/+HZ2qVwAAAABJRU5ErkJggg==);
+          }
+        }
+      }
+    }
+    .bar-detail {
+      float: right;
+      .num {
+        color: rgb(144, 104, 237);
+        margin-right: 87px;
+        position: relative;
+        &.highlight {
+          color: rgb(239, 115, 232);
+        }
+        &::after {
+          content: '\e605';
+          font-family: 'iconfont' !important;
+          font-size: 24px;
+          position: absolute;
+          right: -35px;
+          color: rgb(112, 103, 134);
+        }
+      }
+      .text {
+        color: rgb(239, 115, 232);
+        margin-right: 57px;
+      }
+    }
+  }
+}
+
+
+section {
+  &.invite-box {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.6rem;
+    .invite-button {
+      width: 100%;
+      height: 1.6rem;
+      display: block;
+      line-height: 1.6rem;
+      text-align: center;
+      color: @white;
+      font-size: 32px;
+      background-color: @redPink;
+    }
+  }
+}
+
+section {
+  &.mask-rule {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    color: @white;
+    display: none;
+    overflow-y: scroll;
+    padding-bottom: 0.533333rem;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 99;
+    &.show {
+      animation: 'show-block' 0.7s ease 1 normal both;
+      -webkit-animation: 'show-block' 0.7s ease 1 normal both;
+    }
+    .title {
+      margin-top: 1.066667rem;
+      text-align: center;
+      font-size: 32px;
+      line-height: 40px;
+    }
+    .desc {
+      padding: 0 1.2rem;
+      .center-block();
+      margin-top:0.266667rem;
+      font-size: 32px;
+      line-height: 40px;
+    }
+    .close-icon {
+      width: 0.48rem;
+      height: 0.506667rem;
+      font-family: 'iconfont' !important;
+      &::after {
+        content: '\e603';
+      }
+      font-size: 0.48rem;
+      position: absolute;
+      right: 0.4rem;
+      top: 0.4rem;
+    }
+  }
+}

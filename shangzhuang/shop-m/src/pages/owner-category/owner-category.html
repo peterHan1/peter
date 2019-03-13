@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="http://cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.6/iconfont/talent-iconfont/icon.min.css">
+    <script type="text/javascript" src="http://cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.1/flexible/flexible-min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <!-- <script src="https://assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-header/shop-header.min.js" type="text/javascript"></script> -->
+    <!-- <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.js" type="text/javascript"></script> -->
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>owner-category</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./owner-category.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+      <!-- content starts here -->
+      <div class="banner">
+        
+        <section class="sec slider">
+          <div class="slider-wrap j_SliderImg">
+            <a href="$!{banner.recordMap.get('链接').value}">
+              <img class="slider-img" src="//cdn1.showjoy.com/images/ef/efb23c2c3bac47b2b72370d3ccf95be7.png">
+            </a>
+            <a href="$!{banner.recordMap.get('链接').value}">
+              <img class="slider-img" src="//cdn1.showjoy.com/images/ef/efb23c2c3bac47b2b72370d3ccf95be7.png">
+            </a>
+          </div>
+        </section>
+
+        <div id="J_SearchToolbar" class="category-search">
+      		<form action="/search" method="get" class="search-form">
+      			<span class="clear-content" id="J_ClearContent"></span>
+      			<input type="hidden" name="shopId" value="$!{shopId}" />
+      			<input type="hidden" name="type" value="$!{type}" />
+      			<input type="hidden" name="shopProductId" value="$!{shopProductId}" />
+      			<input type="hidden" name="isFromHome" value="$!{isFromHome}" />
+      			<input class="search-input" name="keyword" type="text" value="$!{keyword}" placeholder="搜索你想要的宝贝">
+      			<button type="submit" class="search-btn" id="J_CallSearchToolbar">
+      			  <span class="search-text">搜索</span>
+            </button>
+            <i class="search-icon icon icon-search"></i>
+      		</form>
+      	</div>
+      </div>
+
+      <!-- 分类展示页面 -->
+
+      <section class="category">
+        <ul class="side-bar">
+          <li data-index="0" class="j_SidebarItem item active">美容护肤</li>
+          <li data-index="1" class="j_SidebarItem item">彩妆香薰</li>
+          <li data-index="2" class="j_SidebarItem item">身体护理</li>
+        </ul>
+        <div class="side-content">
+          <div class="item j_SideContentItem active">
+            <a href="#addQueryParam($url,$!{EncodeUtil.toEnCodeUrl("$qName:$!{cateValue}")})" class="tag">
+              <div class="page-card">
+                <div class="card-img">
+                  <img src="//cdn1.showjoy.com/images/42/42ea2a9f31104676b38785465d8e9e6b.jpg">
+                </div>
+                <p class="card-title">
+                  $!{cateValue}
+                </p>
+              </div>
+              <div class="page-card">
+                <div class="card-img">
+                  <img src="//cdn1.showjoy.com/images/6e/6e8527844a3d475ab464973250c6c22d.jpg">
+                </div>
+                <p class="card-title">
+                  $!{cateValue}
+                </p>
+              </div>
+              <div class="page-card">
+                <div class="card-img">
+                  <img src="//cdn1.showjoy.com/images/6e/6e8527844a3d475ab464973250c6c22d.jpg">
+                </div>
+                <p class="card-title">
+                  $!{cateValue}
+                </p>
+              </div>
+              <div class="page-card">
+                <div class="card-img">
+                  <img src="//cdn1.showjoy.com/images/6e/6e8527844a3d475ab464973250c6c22d.jpg">
+                </div>
+                <p class="card-title">
+                  $!{cateValue}
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="item j_SideContentItem">
+            <a href="#addQueryParam($url,$!{EncodeUtil.toEnCodeUrl("$qName:$!{cateValue}")})" class="tag">
+              <div class="page-card">
+                <div class="card-img">
+                  <img src="//cdn1.showjoy.com/images/42/42ea2a9f31104676b38785465d8e9e6b.jpg">
+                </div>
+                <p class="card-title">
+                  $!{cateValue}
+                </p>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- local javascript files -->
+    <script src="./owner-category.js"></script>
+  </body>
+</html>

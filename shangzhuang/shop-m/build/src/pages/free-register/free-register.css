@@ -1,0 +1,57 @@
+.content {
+  width: 345px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.content .wxname,
+.content .username,
+.content .shopname,
+.content .userpic {
+  text-align: left;
+}
+.content .wxname .text,
+.content .username .text,
+.content .shopname .text,
+.content .userpic .text {
+  height: 36px;
+  line-height: 36px;
+  margin-top: 5px;
+}
+.content .wxname .user-input,
+.content .username .user-input,
+.content .shopname .user-input,
+.content .userpic .user-input {
+  margin: 5px 0px;
+}
+.content .wxname .user-input input,
+.content .username .user-input input,
+.content .shopname .user-input input,
+.content .userpic .user-input input {
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  padding: 12px 10px;
+  width: 325px;
+  -webkit-appearance: none;
+}
+.content .wxname .user-input input.wx-input,
+.content .username .user-input input.wx-input,
+.content .shopname .user-input input.wx-input,
+.content .userpic .user-input input.wx-input {
+  color: #abaaaa;
+}
+.content .userpic {
+  margin-top: 10px;
+}
+.content .userpic .userimg img {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+}
+.content .submit-btn {
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  background: #976df7;
+}

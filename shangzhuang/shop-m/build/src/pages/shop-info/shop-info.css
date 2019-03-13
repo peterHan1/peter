@@ -1,0 +1,115 @@
+/* generator by mobi */
+/* 导入全局方法 */
+#layout {
+  padding-top: 0;
+}
+body {
+  background-color: #efefef;
+}
+.shop-avator {
+  height: 1.97333333rem;
+  width: 100%;
+  border-top: 0.18666667rem solid #efefef;
+  border-bottom: 0.18666667rem solid #efefef;
+  line-height: 1.6rem;
+  background-color: #ffffff;
+}
+.shop-avator:before,
+.shop-avator:after {
+  display: table;
+  content: "";
+}
+.shop-avator:after {
+  clear: both;
+}
+.shop-avator .grid-left {
+  width: 25%;
+  float: left;
+  text-align: left;
+  padding-left: 0.8rem;
+  font-size: 0.37333333333333335rem;
+}
+.shop-avator .grid-right {
+  position: relative;
+  width: 75%;
+  float: left;
+  text-align: right;
+  padding-right: 1.06666667rem;
+}
+.shop-avator .grid-right .avator {
+  width: 1.36rem;
+  height: 1.36rem;
+  border: 0.21333333rem solid #ffffff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0.16rem -0.08rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 0.16rem -0.08rem rgba(0, 0, 0, 0.5);
+  margin-top: 0.10666667rem;
+}
+.shop-avator .grid-right .file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.shop-avator .grid-right .icon-go {
+  font-size: 0.5333333333333333rem;
+  vertical-align: middle;
+  margin-right: -0.53333333rem;
+}
+section.shop-info a,
+section.shop-code a {
+  color: #000000;
+}
+section.shop-info .item,
+section.shop-code .item {
+  height: 1.17333333rem;
+  border-bottom: 1px solid #efefef;
+  line-height: 1.17333333rem;
+  font-size: 0.37333333333333335rem;
+  display: block;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+section.shop-info .item .grid,
+section.shop-code .item .grid {
+  padding: 0 0.8rem;
+}
+section.shop-info .item .grid-left,
+section.shop-code .item .grid-left {
+  width: 25%;
+  float: left;
+  text-align: left;
+  padding-left: 0.8rem;
+}
+section.shop-info .item .grid-right,
+section.shop-code .item .grid-right {
+  width: 75%;
+  float: left;
+  text-align: right;
+  padding-right: 1.06666667rem;
+}
+section.shop-info .item .grid-right .wechat-tip,
+section.shop-code .item .grid-right .wechat-tip {
+  color: #f93450;
+}
+section.shop-info .item .grid-right .icon-go,
+section.shop-code .item .grid-right .icon-go {
+  font-size: 0.5333333333333333rem;
+  vertical-align: middle;
+  margin-right: -0.53333333rem;
+}
+section.shop-code {
+  margin-top: 0.18666667rem;
+}
+section.shop-code .item .highlight {
+  font-size: 0.32rem;
+  color: #ff2e77;
+}
+section.shop-code .item .grid-right {
+  text-align: left;
+}
+section.shop-code .item .icon {
+  margin-left: 1.84rem;
+}

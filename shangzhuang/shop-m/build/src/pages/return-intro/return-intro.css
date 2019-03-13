@@ -1,0 +1,70 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+#layout {
+  padding-top: 0;
+}
+body {
+  background-color: #f1f1f1;
+}
+#content {
+  overflow: hidden;
+}
+section.container {
+  width: 9.4933rem;
+  margin: 0.4rem auto;
+  background-color: #fff;
+  border: 0.0533rem solid #acacac;
+  border-radius: 0.1867rem;
+}
+section.container .container-wrap {
+  width: 100%;
+  height: 100%;
+  border: 0.0533rem solid #dadada;
+  border-radius: 0.1333rem;
+  padding: 0.48rem 0.4rem;
+  position: relative;
+}
+section.container .container-wrap .circle {
+  width: 0.1333rem;
+  height: 0.1333rem;
+  border-radius: 50%;
+  border: 0.0533rem solid #acacac;
+  position: absolute;
+}
+section.container .container-wrap .circle.circle-1 {
+  left: 0.16rem;
+  top: 0.16rem;
+}
+section.container .container-wrap .circle.circle-2 {
+  right: 0.16rem;
+  top: 0.16rem;
+}
+section.container .container-wrap .circle.circle-3 {
+  left: 0.16rem;
+  bottom: 0.16rem;
+}
+section.container .container-wrap .circle.circle-4 {
+  right: 0.16rem;
+  bottom: 0.16rem;
+}
+section.container .container-wrap .question {
+  font-size: 0.4rem;
+  line-height: 0.56rem;
+  color: #333333;
+}
+section.container .container-wrap .answer {
+  font-size: 0.3733rem;
+  line-height: 0.56rem;
+  color: #454545;
+}
+section.container .container-wrap .answer .highlight {
+  font-size: 0.4rem;
+  color: #333333;
+}

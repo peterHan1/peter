@@ -1,0 +1,424 @@
+{
+"count": 0,
+"data": {
+"currentPage": 1,
+"seckillOrders": [],
+"totalPage": 9,
+"totalPages": 9,
+"tradeOrders": [
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503270846576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503258878176,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503252670576,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503249771176,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 289,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 9147503245702876,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 23649,
+"image": "//cdn1.showjoy.com/images/11/116cb68b987a4ed180e125ec97e27da1.png",
+"isHaitao": false,
+"originalPrice": 890,
+"price": 289,
+"quantity": 1,
+"skuZhName": "三宅一生一生之水女士香水50ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 80,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147503208834976,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 654,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 9147503180999476,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 23649,
+"image": "//cdn1.showjoy.com/images/11/116cb68b987a4ed180e125ec97e27da1.png",
+"isHaitao": false,
+"originalPrice": 890,
+"price": 289,
+"quantity": 1,
+"skuZhName": "三宅一生一生之水女士香水50ml",
+"type": 1
+},
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+},
+{
+"id": 26902,
+"image": "//cdn1.showjoy.com/images/79/79cadcaea5d44ec7b61e4fff2a81ecaa.png",
+"isHaitao": false,
+"originalPrice": 710,
+"price": 285,
+"quantity": 1,
+"skuZhName": "洛丽塔诗香水50ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 435,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 7147502668701976,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 28657,
+"image": "//cdn1.showjoy.com/images/0f/0f00a55305b2449a8ef3ebd07a9b3d7b.png",
+"isHaitao": false,
+"originalPrice": 290,
+"price": 195,
+"quantity": 1,
+"skuZhName": "迪奥魅惑唇彩 绿色 6ml",
+"type": 1
+},
+{
+"id": 104472,
+"image": "//cdn1.showjoy.com/images/fe/fe6541973220485ab2ff3297dabbcebe.png",
+"isHaitao": false,
+"originalPrice": 300,
+"price": 170,
+"quantity": 1,
+"skuZhName": "资生堂安热沙防晒露（日版）60ml",
+"type": 1
+},
+{
+"id": 112772,
+"image": "//cdn1.showjoy.com/images/66/66abc874feb9401c9670f1cea7d8f5f5.png",
+"isHaitao": false,
+"originalPrice": 388,
+"price": 70,
+"quantity": 1,
+"skuZhName": "九朵云气垫BB霜15g",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 180,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147497990804476,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 9721,
+"image": "//cdn1.showjoy.com/images/8b/8bb98feebb0141baad0e338b973d4ab1.png",
+"isHaitao": false,
+"originalPrice": 415,
+"price": 10,
+"quantity": 1,
+"skuZhName": "安娜苏梦镜成真女士淡香水30ml",
+"type": 1
+},
+{
+"id": 104472,
+"image": "//cdn1.showjoy.com/images/fe/fe6541973220485ab2ff3297dabbcebe.png",
+"isHaitao": false,
+"originalPrice": 300,
+"price": 170,
+"quantity": 1,
+"skuZhName": "资生堂安热沙防晒露（日版）60ml",
+"type": 1
+}
+],
+"status": 21
+},
+{
+"actualPrice": 445,
+"isOverWeekTime": false,
+"mirabellPay": false,
+"orderNumber": 1147497966693976,
+"payType": 10,
+"postFee": 0,
+"skus": [
+{
+"id": 26351,
+"image": "//cdn1.showjoy.com/images/3a/3a14491334534880a9e44206a299cf34.png",
+"isHaitao": false,
+"originalPrice": 95,
+"price": 80,
+"quantity": 1,
+"skuZhName": "美体小铺接骨木眼胶15ml",
+"type": 1
+},
+{
+"id": 104472,
+"image": "//cdn1.showjoy.com/images/fe/fe6541973220485ab2ff3297dabbcebe.png",
+"isHaitao": false,
+"originalPrice": 300,
+"price": 170,
+"quantity": 1,
+"skuZhName": "资生堂安热沙防晒露（日版）60ml",
+"type": 1
+},
+{
+"id": 112772,
+"image": "//cdn1.showjoy.com/images/66/66abc874feb9401c9670f1cea7d8f5f5.png",
+"isHaitao": false,
+"originalPrice": 388,
+"price": 70,
+"quantity": 2,
+"skuZhName": "九朵云气垫BB霜15g",
+"type": 1
+},
+{
+"id": 124418,
+"image": "//cdn1.showjoy.com/images/44/4462a5712d344ca4ab7fc3bf4fa74888.png",
+"isHaitao": false,
+"originalPrice": 100,
+"price": 55,
+"quantity": 1,
+"skuZhName": "汤姆农场蜂蜜黄油扁桃仁 超级辣 1片",
+"type": 1
+}
+],
+"status": 21
+}
+],
+"user": {
+"email": "",
+"gmtCreate": 1460444227000,
+"gmtModified": 1474968962000,
+"id": 714076,
+"image": "//file.showjoy.com/images/7f/7f06936400c542cd9d1f7792ec486313.png",
+"isEnable": true,
+"isFake": 0,
+"nick": "tuwei",
+"password": "e10adc3949ba59abbe56e057f20f883e",
+"sexType": "",
+"tel": "18768197429",
+"userAuth": "ROLE_ADMIN,ROLE_SHOP_USER,ROLE_USER,ROLE_FINANCE_ADMIN,ROLE_SHOP_ADMIN,ROLE_WAREHOUSE_MASTER",
+"username": "tuwei"
+}
+},
+"isRedirect": 0,
+"isSuccess": 1,
+"login": 0
+}

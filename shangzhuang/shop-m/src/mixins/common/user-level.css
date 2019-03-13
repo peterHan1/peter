@@ -1,0 +1,21 @@
+/*
+ * 用户等级素材 for h5
+ * @author yangcai@showjoy.com
+ * @last 2014/12/15
+ */
+.ui-icon-level {
+  background-image: url("//cdn1.showjoy.com/images/b3/b3b049629cc34f5aa7341f77ca235638.png");
+  background-repeat: no-repeat;
+}
+.ui-icon-level.v0 {
+  background-position: -25.5px 0;
+}
+.ui-icon-level.v1 {
+  background-position: 0 0;
+}
+.ui-icon-level.v2 {
+  background-position: -8.5px 0;
+}
+.ui-icon-level.v3 {
+  background-position: -17px 0;
+}

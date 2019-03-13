@@ -1,0 +1,318 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 2.133333rem;
+}
+.sale-block  {
+  width: 100%;
+  overflow-x: hidden;
+  .title-block {
+    position: relative;
+    width: 100%;
+    height: 1.386667rem;
+    background-color: #fff;
+    border-bottom: 1px solid @grey1;
+    overflow: hidden;
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+    .opt-btn {
+      position: absolute;
+      width: 1.333333rem;
+      height: 0.8rem;
+      top: 0.32rem;
+      color: @grey5;
+      font-size: 24px;
+      line-height: 0.8rem;
+      .icon {
+        font-size: 20px;
+      }
+      &.prev {
+        left: 0.4rem;
+      }
+      &.next {
+        right: 0.4rem;
+      }
+    }
+    .center {
+      padding: 0.266667rem 3.466667rem;
+      .cal {
+        position: absolute;
+        width: 0.906667rem;
+        height: 0.906667rem;
+        color: @white;
+        text-align: center;
+        overflow: hidden;
+        border-radius: 50%;
+        background-color: black;
+        .day {
+          // background-color: @grey5;
+          line-height: 0.36rem;
+          height: 0.36rem;
+          font-size: 16px;
+        }
+        .date {
+          height: 0.5rem;
+          line-height: 0.5rem;
+          font-size: 44px;
+          // background-color: @black;
+        }
+      }
+      .title {
+        padding-left: 1rem;
+        color: @black;
+        height: 0.666667rem;
+        line-height: 0.666667rem;
+        font-size: 36px;
+        text-align: center;
+      }
+      .subtitle {
+        padding-left: 1rem;
+        font-size: 16px;
+        height: 0.293333rem;
+        line-height: 0.293333rem;
+        text-align: center;
+        font-family: 'Micro YaHei';
+      }
+    }
+  }
+  .container {
+    position: relative;
+    left: 0;
+    width: 300%;
+    -webkit-transition: left 0.4s;
+    overflow: hidden;
+    &.fixed {
+      padding-top: 1.386667rem;
+    }
+    .goods-block {    
+      float: left;
+      width: 10.0rem;
+      min-height: 4.053333rem;
+      &.fixed {
+        padding-top: 80px;
+      }
+      &.loading {     
+        background-repeat: no-repeat;
+        background-position: center 1.333333rem;
+        .webpbg("//cdn1.showjoy.com/images/b1/b1781f3ed2d84b4195f0aa794cb63a9b.png");
+        background-size: 2.4rem;
+      }
+      .end {
+        line-height: 1.066667rem;
+        text-align: center;
+      }
+      .goods {
+        position: relative;
+        padding: 0.266667rem 0.4rem;
+        background-color: #fff;       
+        overflow: hidden;
+        transition: opacity 1.5s;
+        .high {
+          color: @redPinkTwo;
+        } 
+        .img-box {
+          position: relative;
+          float: left;
+          width: 2.533333rem;
+          height: 2.533333rem;
+          overflow: hidden;
+          .goods-img {
+            width: 2.933333rem;
+            max-width: 2.933333rem;
+            height: 2.933333rem;
+            margin-top: -0.2rem;
+            margin-left: -0.2rem;
+          }
+        }
+        .info {
+          padding: 0 0 0 2.8rem;
+          color: @black;  
+          .clearfix();
+          .tag {
+            color: @black;
+            height: 0.666667rem;
+            line-height: 0.666667rem;
+            font-size: 24px;
+            .status {
+              margin-right: 0.266667rem;
+              color: @white;
+              font-size: 24px;
+              padding: 0.16rem 0.293333rem;
+              background-color: rgb(252, 110, 160);
+              border-radius: 0.32rem;
+              &.end {
+                text-align: center;
+                background-color: @grey5;
+                color: @white;
+              }
+              &.unstart {
+                background-color: #FC7789;
+              }
+            }
+          }
+          .goods-title {
+            color: rgb(36, 38, 59);
+            margin-top: 0.24rem;
+            line-height: 0.533333rem;
+            font-size: 30px;
+            font-weight: lighter;
+            .text-overflow-multi(2);
+          }
+          .price {
+            margin-top: 0.133333rem;
+            line-height: 0.533333rem;
+            font-size: 25px;
+            color: rgb(2, 2, 2);
+            .original {
+              color: @grey5;
+              font-size: 24px;
+              margin-left: 0.853333rem;
+              text-decoration: line-through;
+            }
+          }
+        }
+        .tail-box {
+          position: relative;
+          height: 0.853333rem;
+          overflow: hidden;
+          line-height: 0.666667rem;
+          font-size: 28px;         
+          color: @black;
+          background-position: left top;
+          background-repeat: no-repeat;
+          .webpbg("//cdn1.showjoy.com/images/06/066539aa57634a9d92193fd126120ab0.png");
+          background-size: 100%;      
+          .num {
+            float: left;
+            margin-top: 0.186667rem;
+            margin-left: 0.233333rem;
+            line-height: 0.696667rem;
+            color: @grey6;
+          }       
+          .commis-num {
+            float: right;
+            margin-top: 0.186667rem;
+            margin-right: 2.853333rem;
+            line-height: 0.696667rem;
+            color: @grey6;
+          }
+          .shelf-info {
+            position: absolute;
+            right: 0;
+            top: 0.186667rem;         
+            height: 0.673333rem;
+            line-height: 0.696667rem;
+            width: 2.346667rem;
+            font-size: 24px;
+            border-top-right-radius: 0.673333 / 2rem;
+            border-bottom-right-radius: 0.673333 / 2rem;
+            background-color: @grey2;
+            overflow: hidden;
+            .shelf-text {   
+              float: left;                    
+              text-align: center;
+              width: 1.1rem;
+            }
+            .area {
+              position: absolute;
+              right: 0.18 / 2rem;
+              top: 0.05rem;
+              height: 0.566rem;
+              border-radius: 0.566 / 2rem;
+              width: 1.2rem;
+              background-color: @grey3;
+              .slider {
+                position: absolute;
+                width: 1.6rem;
+                left: -0.2rem;
+                top: -0.22rem;
+                height: 1rem;
+                background-position: 0.24rem center;
+                background-repeat: no-repeat;
+                .webpbg("//cdn1.showjoy.com/images/2d/2dd6dccc67d741a2bc5e4eb25cadbcc7.png");
+                background-size: 0.5rem;
+                transition: background .4s;
+              }           
+              &.active {
+                background-color: rgb(252, 110, 160);
+                -webkit-transition: left 0.4s;
+                .slider {
+                  background-position: 0.87rem center;        
+                }
+              }
+            }         
+          }
+        }
+      }
+      .time-area-scroll {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        z-index: 9999;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        height: 90px;
+        background-color: #fff;
+        &.fixed {
+          position: fixed;
+          left: 0;
+          top: 104px;
+        }
+      }
+      .time-area {
+        height: 90px;
+        white-space: nowrap;
+        position: relative;
+        border-top: 5px solid rgb(214, 214, 214);
+        // border-bottom: 10px solid transparent;
+        // background-color: rgb(40, 39, 39);
+        background-clip: content-box;
+        .down-arrow-bar {
+          width: 135px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          // transition: left 0.8s;
+          .down-arrow {
+            .arr-down(rgb(214, 214, 214), 20px, 10px);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+          }
+        }
+        li {
+          float: left;
+          height: 100%;
+          line-height: 80px;
+          width: 135px;
+          font-weight: bolder;
+          text-align: center;
+          font-size: 30px;
+          // color: #fff;
+          &.active {
+            // background-color: rgb(251, 30, 103);
+            border-bottom: 2px solid #000;
+          }
+        }
+      }
+    }
+  } 
+}
+

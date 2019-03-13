@@ -1,0 +1,106 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+@font-face {
+  font-family: 'CenturyGothic';
+  font-style: normal;
+  src: url(//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.4/fonts/CenturyGothic.ttf) format('ttf');
+}
+p {
+  line-height: 1;
+}
+@-webkit-keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#header {
+  display: none;
+}
+#layout {
+  padding-top: 0;
+}
+.point-desc {
+  height: 0.3067rem;
+  background-color: #dedcde;
+}
+.income-box {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.income-box .placeholder-img {
+  width: 4.666667rem;
+  margin-top: 1.333333rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.income-box .income-list {
+  width: 100%;
+  height: 1.72rem;
+  border-bottom: 1px solid #dedcde;
+  animation: 'show-block' 1s ease 1 normal both;
+  -webkit-animation: 'show-block' 1s ease 1 normal both;
+  padding: 0 0.32rem;
+}
+.income-box .income-list:before,
+.income-box .income-list:after {
+  display: table;
+  content: "";
+}
+.income-box .income-list:after {
+  clear: both;
+}
+.income-box .income-list .account {
+  float: left;
+}
+.income-box .income-list .account .acc {
+  font-size: 0.3733rem;
+  color: #171616;
+  margin-top: 0.3467rem;
+}
+.income-box .income-list .account .date {
+  font-size: 0.32rem;
+  color: #847f7f;
+  margin-top: 0.48rem;
+  font-family: CenturyGothic;
+}
+.income-box .income-list .income {
+  float: right;
+}
+.income-box .income-list .income .income-money {
+  font-size: 0.3733rem;
+  color: #9063f0;
+  margin-top: 0.3467rem;
+  text-align: right;
+  font-family: CenturyGothic;
+}
+.income-box .income-list .income .income-money .symbol {
+  margin-right: -0.053333rem;
+  vertical-align: middle;
+}
+.income-box .income-list .income .account {
+  font-size: 0.32rem;
+  color: #847f7f;
+  margin-top: 0.48rem;
+  text-align: right;
+  font-family: CenturyGothic;
+}

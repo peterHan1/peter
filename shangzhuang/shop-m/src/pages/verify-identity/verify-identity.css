@@ -1,0 +1,222 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+p {
+  line-height: 1;
+}
+#layout {
+  padding-top: 0;
+  height: 100% !important;
+}
+#content {
+  height: 100%;
+}
+@-webkit-keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+  }
+}
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+  }
+}
+section.bind-area .mobile-form {
+  width: 8.933334rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+section.bind-area .mobile-form .field {
+  width: 100%;
+  height: 1.333333rem;
+  border-bottom: 0.0267rem solid #d5d5d5;
+  overflow: hidden;
+}
+section.bind-area .mobile-form .field .invite {
+  font-size: 0.37333333rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  display: inline-block;
+  color: #9e9e9e;
+}
+section.bind-area .mobile-form .field .label {
+  height: 0.5867rem;
+  width: 0.5867rem;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+section.bind-area .mobile-form .field .label.label-phone {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAKlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKE86IAAAADXRSTlMAECAwYG9wgK+wv+/w7RON1AAAAG1JREFUOMtjYKAyYF57Fw5uGCBJaN9FAhuRJHKRJa4gSdQiS1xHkbheDgW1aBIXYEzeUYlRCTpI4Eyi5EkUqWOXuI6gUSUuMTDoYpW4iEviGjTLYUjcDhTFsBxn5pRBljiIXADMRYjfNKB28QIAvcMVmvuyv/IAAAAASUVORK5CYII=);
+}
+section.bind-area .mobile-form .field .label.label-checkcode {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAQlBMVEUAAAAgICAoKCgrKyssLCwqKiopKSkrKyssLCwsLCwrKysrKysrKyssLCwsLCwrKysrKysrKysrKyssLCwsLCwsLCyKvNenAAAAFXRSTlMAECAwQE9QYH+An6Cwv8DP0N/g7/B2PVBDAAAA1klEQVRIx+1W2Q6DIBCsiByKIi78/69WwKYeza40Jo1J58mdzLgHCD4ev0DVtD1A3zbVOb2CsADUCTmzYQXLKH0NYQOoifJd1o3GjPnJ4Y10SdSlQtgSYHoeFV68QuFjzKkE8h1LKkXseFgTQ+ybqEiuGYnXlAybqVS4Ib1vS+EG/TdcbBAuoHBi951BIADsuMY45LF6HPpmhmkeovQFhnQY1ecNJpPmtEEj5DUZ8nbjBU3DPCUBJeugP1L3Mlil7M23N20oPgSYp/R+d8WLCddP/Ns/lyesa1TkLwHQoQAAAABJRU5ErkJggg==);
+}
+section.bind-area .mobile-form .field .label .text-star {
+  color: #f93450;
+  margin-right: 0.06666666666666667rem;
+  vertical-align: middle;
+}
+section.bind-area .mobile-form .field .input {
+  font-size: 0.4267rem;
+  padding-left: 0.08rem;
+  height: 0.533333rem;
+  line-height: 0.533333rem;
+  margin-top: 0.533333rem;
+  width: 8rem;
+}
+section.bind-area .mobile-form .field .checkcode:before,
+section.bind-area .mobile-form .field .checkcode:after {
+  display: table;
+  content: "";
+}
+section.bind-area .mobile-form .field .checkcode:after {
+  clear: both;
+}
+section.bind-area .mobile-form .field .checkcode .checkcode-left {
+  width: 6.933334rem;
+  float: left;
+}
+section.bind-area .mobile-form .field .checkcode .checkcode-left .input {
+  width: 5.6rem;
+}
+section.bind-area .mobile-form .field .checkcode .checkcode-right {
+  width: 1.8667rem;
+  float: right;
+}
+section.bind-area .mobile-form .field .checkcode .checkcode-right .getchk-btn {
+  width: 1.8667rem;
+  height: 0.7733rem;
+  font-size: 0.32rem;
+  line-height: 0.7733rem;
+  color: #000000;
+  text-align: center;
+  border: 0.0267rem solid #000000;
+  margin-top: 0.373333rem;
+  overflow: hidden;
+}
+section.bind-area .mobile-form .field .checkcode .checkcode-right .timer {
+  display: none;
+  width: 1.8667rem;
+  height: 0.7733rem;
+  font-size: 0.32rem;
+  line-height: 0.7733rem;
+  color: #9e9e9e;
+  text-align: center;
+  border: 0.0267rem solid #9e9e9e;
+  margin-top: 0.373333rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+section.checkout-info-tip {
+  color: #6d6d6d;
+  font-size: 0.3733rem;
+  text-align: right;
+  padding-right: 0.4267rem;
+  margin-top: 0.4667rem;
+}
+section.bind-phone-btn {
+  position: fixed;
+  width: 100%;
+  height: 1.6rem;
+  left: 0;
+  bottom: 0;
+  line-height: 1.62666667rem;
+  text-align: center;
+  font-size: 0.48rem;
+  color: #ffffff;
+  background-color: #000000;
+}
+section.bind-phone-btn.disable {
+  background-color: #9e9e9e;
+}
+section.bind-phone-btn.loading {
+  background-color: #f93450;
+}
+section.bind-phone-btn.loading::after {
+  content: '';
+  width: 0.666667rem;
+  height: 0.666667rem;
+  position: absolute;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAS1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////+DmQsHAAAAGHRSTlMAZl3MmUJAFQ4a5rmmDQuKjYMM7bwchEOhomOfAAAA70lEQVRIx+2U0Q6DIAxFWbeCiog4p/7/l87REZeKOsLb5nm7JMfQa4P4eR51VdWPJOM+zdxTnHry1AlKRUqVr+RfTA29duU7lDR+iAUCYMeNUl9ntArxVXIwOrjMgGGKu3oGEQEvHsmONSl9TAFSgB33pOgEZSDFxRRJCsbHL2NKQeOvK3O6d0pE6RBAFuIkDwW2BSU2KSSvWdnbjCVn+2d+OnDzwJYi17vckmIpfbWYlpT2UEm/WMb4VHJ7UPJf7LIZAbBZcoMAo9kzGvYuGsrhGzvvIkby0WLwnKnkX4yP27B3khNKRbNkg770kzye8mYLEERgadMAAAAASUVORK5CYII=) no-repeat;
+  background-size: contain;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.333333rem;
+  margin-left: 0.633333rem;
+  animation: 'rotate-circle' 0.8s linear infinite normal both;
+  -webkit-animation: 'rotate-circle' 0.8s linear infinite normal both;
+}
+section.bind-phone-btn.finish {
+  background-color: #f93450;
+}
+section.tips {
+  width: 100%;
+  padding: 0.9867rem 0.5333rem;
+  color: #f93450;
+  font-size: 0.3733rem;
+  position: absolute;
+  left: 0;
+  bottom: 1.7333rem;
+}
+section.checkout-info {
+  width: 100%;
+  padding: 0 0.4rem;
+  border-top: 1px solid #e9e9e9;
+}
+section.checkout-info .info-list {
+  margin: 0.5333rem 0;
+  color: #393836;
+  font-size: 0.3733rem;
+  line-height: 0.48rem;
+  text-align: left;
+}
+section.unbind-tips {
+  margin-top: 1.28rem;
+  font-size: 0.3733rem;
+  color: #393836;
+  padding: 0 0.5333rem;
+  display: none;
+}
+section.unbind-tips.active {
+  display: block;
+}
+section.unbind-tips .unbind-tips-list {
+  line-height: 0.64rem;
+  margin-bottom: 1.0667rem;
+  text-indent: 2em;
+}
+.kefu-icon {
+  width: 0.5067rem;
+  height: 0.5067rem;
+  background-image: url('//cdn1.showjoy.com/images/8b/8bad1d96b404463b9412828a82fd508f.png.48x48.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: sub;
+  margin-right: 0.1867rem;
+}
+.webpa .kefu-icon {
+  background-image: url('//cdn1.showjoy.com/images/8b/8bad1d96b404463b9412828a82fd508f.png.48x48.png.webp');
+}

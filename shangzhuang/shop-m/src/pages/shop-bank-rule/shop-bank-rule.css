@@ -1,0 +1,92 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+body {
+  background-color: rgba(167, 111, 232, 0.74);
+}
+p {
+  line-height: 1;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 0.4rem;
+}
+.rules-wrap {
+  width: 9.4667rem;
+  margin: 0.4rem auto 0.5333rem;
+  background-color: #fff;
+  border-radius: 0.1333rem;
+  padding: 0.3333rem 0.2667rem;
+}
+.rules-wrap .title {
+  color: #8e46e2;
+  font-size: 0.3733rem;
+  line-height: 0.4933rem;
+  margin-bottom: 0.1333rem;
+  margin-top: 0.1333rem;
+}
+.rules-wrap .desc {
+  font-size: 0.3467rem;
+  color: #494949;
+  line-height: 0.4933rem;
+  text-indent: 2em;
+}
+.examples-wrap {
+  width: 9.4667rem;
+  margin: 0 auto;
+}
+.examples-wrap .examples-list {
+  background-color: #fff;
+  border-radius: 0.0667rem;
+  margin-bottom: 0.0667rem;
+}
+.examples-wrap .examples-list:before,
+.examples-wrap .examples-list:after {
+  display: table;
+  content: "";
+}
+.examples-wrap .examples-list:after {
+  clear: both;
+}
+.examples-wrap .examples-list .item {
+  float: left;
+  width: 4.7333rem;
+}
+.examples-wrap .examples-list .item:first-child {
+  border-right: 1px solid #be95ee;
+}
+.examples-wrap .examples-list .item .title {
+  font-size: 0.3733rem;
+  height: 0.5867rem;
+  border-bottom: 1px solid #be95ee;
+  line-height: 0.5867rem;
+  color: #8e46e2;
+}
+.examples-wrap .examples-list .item .title .weekday {
+  float: left;
+  margin-left: 0.2rem;
+}
+.examples-wrap .examples-list .item .title .index {
+  float: right;
+  margin-right: 0.2rem;
+}
+.examples-wrap .examples-list .item .content {
+  padding: 0.2rem;
+  font-size: 0.3467rem;
+  line-height: 0.4rem;
+  color: #494949;
+}
+.examples-wrap .examples-list .item .content .desc {
+  margin-bottom: 0.1333rem;
+}
+.examples-wrap .examples-list .item .content .desc.highlight {
+  color: #8e46e2;
+}

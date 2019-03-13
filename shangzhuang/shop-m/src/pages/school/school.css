@@ -1,0 +1,44 @@
+body {
+  background: url(//cdn1.showjoy.com/images/00/0072109a4c534d2e93a16632c6a19e82.png.x.jpg) top center repeat;
+  background-size: 10.0rem;
+}
+#content {
+  min-height: 100%;
+}
+#content .box {
+  position: absolute;
+  left: 1.266667rem;
+  width: 7.466667rem;
+  height: 2.666667rem;
+  top: 4rem;
+  margin-top: -1.333333rem;
+}
+#content .box .item {
+  float: left;
+  width: 2.666667rem;
+  height: 2.666667rem;
+  margin: 0.4rem 0.533333rem;
+}
+#content .box .item .img-box {
+  margin: 0 auto;
+  width: 1.866667rem;
+  height: 1.866667rem;
+  background-color: #f93450;
+  border-radius: 50%;
+}
+#content .box .item .title {
+  margin-top: 0.266667rem;
+  line-height: 0.533333rem;
+  font-size: 14px;
+  /* @norem */
+  text-align: center;
+  color: #000000;
+}
+[data-dpr="2"] #content .box .item .title {
+  font-size: 28px;
+  /* @norem */
+}
+[data-dpr="3"] #content .box .item .title {
+  font-size: 42px;
+  /* @norem */
+}

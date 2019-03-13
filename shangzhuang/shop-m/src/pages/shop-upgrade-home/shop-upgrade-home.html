@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0"/>
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.min.js" type="text/javascript"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.js" type="text/javascript"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.20/art-template/art-template-min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.6/flexible/flexible-min.js"></script>
+    <title>shop-upgrade-home</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./shop-upgrade-home.css"/>
+
+  </head>
+
+  <body>
+
+    <div id="content">
+
+      <!-- 店铺信息 -->
+      <div class="header">
+          <p class="shop-name">{{shopName}}的达人店</p>
+      </div>
+
+      <!-- 店铺升级详情 -->
+      <div class="container">
+        <section class="recruit">
+          {{if childrenLeft == 0}}
+            <div class="icon-status-unfinished finished"></div>
+          {{else}}
+            <div class="icon-status-unfinished"></div>
+          {{/if}}
+          <div class="upgrade-info">
+            <p class="sort-name">
+              <span class="name">纳新人数</span>
+              {{if childrenLeft != 0}}
+                <span class="left">还差{{childrenLeft}}人</span>
+              {{/if}}
+            </p>
+            <div class="sort-info">
+              <span class="need-num">{{childrenLimit}}人</span>
+              <div class="progress-box">
+                <div class="progress-unfinished progress"></div>
+                {{if childrenLeft == 0}}
+                  <div style="width: 100%" class="progress-finished progress finished"></div>
+                {{else}}
+                  <div style="width: {{childrenRate}}" class="progress-finished progress"></div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="order">
+          {{if ordersLeft == 0}}
+            <div class="icon-status-unfinished finished"></div>
+          {{else}}
+            <div class="icon-status-unfinished"></div>
+          {{/if}}
+          <div class="upgrade-info">
+            <p class="sort-name">
+              <span class="name">订单数量</span>
+              {{if ordersLeft != 0}}
+                <span class="left">还差{{ordersLeft}}单</span>
+              {{/if}}
+            </p>
+            <div class="sort-info">
+              <span class="need-num">{{ordersLimit}}单</span>
+              <div class="progress-box">
+                <div class="progress-unfinished progress"></div>
+                {{if ordersLeft == 0}}
+                  <div style="width: 100%" class="progress-finished progress finished"></div>
+                {{else}}
+                  <div style="width: {{ordersRate}}" class="progress-finished progress"></div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="duration">
+          {{if openedDaysLeft == 0}}
+            <div class="icon-status-unfinished finished"></div>
+          {{else}}
+            <div class="icon-status-unfinished"></div>
+          {{/if}}
+          <div class="upgrade-info">
+            <p class="sort-name">
+              <span class="name">实习时间</span>
+              {{if openedDaysLeft != 0}}
+                <span class="left">还差{{openedDaysLeft}}天</span>
+              {{/if}}
+            </p>
+            <div class="sort-info">
+              <span class="need-num">{{openedDaysLimit}}天</span>
+              <div class="progress-box">
+                <div class="progress-unfinished progress"></div>
+                {{if openedDaysLeft == 0}}
+                  <div style="width: 100%" class="progress-finished progress finished"></div>
+                {{else}}
+                  <div style="width: {{openedDaysRate}}" class="progress-finished progress"></div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 提示 -->
+      <p class="tip">提示: 如果纳新人数或订单数量达到标准可以提前升级为标准店铺</p>
+
+      <!-- 升级按钮 -->
+      {{if canApply}}
+        <div class="j_UpgradeButton upgrade-button active">
+          升级为标准店
+        </div>
+      {{else}}
+        <div class="upgrade-button">
+          升级为标准店
+        </div>
+      {{/if}}
+
+
+    </div>
+
+    <!-- local javascript files -->
+
+    <script src="./shop-upgrade-home.js"></script>
+  </body>
+</html>

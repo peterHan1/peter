@@ -1,0 +1,84 @@
+/* generator by mobi */
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+
+body {
+  background-color: #ff5e71;
+}
+#content {
+  .webpbg('//cdn1.showjoy.com/images/4f/4ff4aa7605504d59a6c9d56cb417491b.jpg.750x1334.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+  height: 1334px;
+  width: 100%;
+}
+#content {
+  overflow: hidden;
+}
+#layout {
+  padding-top: 0;
+}
+.intro-box {
+  margin-top: 823px;
+  .text {
+    text-align: center;
+    font-size: 26px;
+    color: #fff;
+    line-height: 40px;
+    .num {
+      color: rgb(251, 225, 125);
+    }
+    &.highlight {
+      color: rgb(251, 225, 125);
+      margin-top: 10px;
+      &:last-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.open-shop-bank-btn {
+  position: absolute;
+  width: 750px;
+  height: 104px;
+  top: 1175px;
+  left: 50%;
+  transform: translateX(-50%);
+  .webpbg('//cdn1.showjoy.com/images/94/94351e2cd1a04e16a2501829e6602c2a.png.750x104.png');
+  background-repeat: no-repeat;
+  background-size: 750px;
+}
+.open-shop-bank-text {
+  position: absolute;
+  width: 750px;
+  height: 104px;
+  top: 1120px;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 104px;
+  text-align: center;
+  color: rgb(255, 232, 161);
+  font-size: 30px;
+}
+
+// 弹框做兼容性修改
+.joy-ui-dialog-confirm-title {
+  &::after {
+    content: '\e60b';
+    font-family: 'iconfont' !important;
+    margin-left: 11px;
+  }
+}
+.joy-ui-dialog-confirm-btn {
+  background-color: rgb(144, 99, 240) !important;
+}

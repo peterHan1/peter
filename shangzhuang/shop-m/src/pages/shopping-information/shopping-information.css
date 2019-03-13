@@ -1,0 +1,35 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @minPixelValue: 2;
+*/
+body {
+  background-color: #fff;
+}
+#layout {
+  padding-top: 0;
+}
+#header {
+  display: none;
+}
+.content {
+  width: 100%;
+  height: auto;
+  padding: 0.1333rem 0.2rem;
+}
+.content .title {
+  margin: 0.4rem 0.2rem;
+  padding-left: 0.0667rem;
+  border-left: 0.1067rem solid #000;
+  font-size: 0.4267rem;
+  color: #000;
+  height: 0.5867rem;
+  line-height: 0.5867rem;
+}
+.content .detail-data {
+  margin: 0.08rem 0.2rem 0.2667rem;
+  color: #444;
+  font-size: 0.3733rem;
+  line-height: 0.7333rem;
+}

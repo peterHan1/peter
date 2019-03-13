@@ -1,0 +1,30 @@
+.grid {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.grid:before,
+.grid:after {
+  content: " ";
+  display: table;
+}
+.grid:after {
+  clear: both;
+}
+.grid .col {
+  float: left;
+}
+.grid.col-1 .col {
+  width: 100%;
+}
+.grid.col-2 .col {
+  width: 50%;
+}
+.grid.col-3 .col {
+  width: 33.33333333%;
+}
+.grid.col-4 .col {
+  width: 25%;
+}
+.grid.col-5 .col {
+  width: 20%;
+}

@@ -1,0 +1,103 @@
+/* version 1.5 */
+
+/*for placeholder*/
+::-webkit-input-placeholder { /* WebKit browsers */ 
+  color: rgba(118,118,118,1);
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: rgba(118,118,118,1); 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: rgba(118,118,118,1); 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: rgba(118,118,118,1); 
+}
+
+body{
+  height: 100%;
+  background: url(//cdn1.showjoy.com/images/08/08332a576fc04975a80ba5696f3552c6.jpg) top left repeat;
+}
+
+.content{
+  margin: -60px 0 0;
+  padding: 80px 0px;
+  background: url(//cdn1.showjoy.com/images/08/08332a576fc04975a80ba5696f3552c6.jpg) top left repeat;
+  .user-info{
+    width: 100%;
+    height: 186px;
+    .user-pic{
+      width: 130px;
+      height: 130px;
+      margin: 0 auto;
+      background-image:radial-gradient(65px at 50% 50%,transparent 0,transparent 76%,#fff 76%,#fff 78%,transparent 78%,transparent 85%,rgba(255,255,255,.7) 85%,rgba(255,255,255,.7) 87%,transparent 87%,transparent 95%,rgba(255,255,255,.3) 95%,rgba(255,255,255,.3) 98%,transparent 95%,transparent 99%);
+      position: relative;
+      img{
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        margin: 0 auto;
+        position: absolute;
+        left: 21px;
+        top: 21px;
+      }
+      .file-input{
+        width: 88px;
+        height: 88px;
+        position: absolute;
+        top: 21px;
+        left: 21px;
+        opacity: 0;
+      }
+    }
+    .user-name{
+      text-align: center;
+      color: rgba(118,118,118,1);
+      line-height: 28px;
+      .label{
+        font-size: 16px;
+      }
+      .name{
+        font-size: 22px;  
+      }
+    }
+  }
+  .shop-name{
+    width:100%;
+    height: 80px;
+    background: rgba(0,0,0,0.1);
+    margin:48px 0px 80px 0px;
+    color: rgba(118,118,118,1);
+    .label{
+      height: 35px;
+      line-height: 36px;
+      font-size: 16px;
+      width: 340px;
+      margin-left: 24px;
+    }
+    .shopname-ipt{
+      height: 40px;
+      width: 340px;
+      margin-left: 24px;
+      input{
+        width: 100%;
+        font-size: 22px;
+        padding: 5px 0px;
+        background: transparent;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent; 
+      }
+    }
+  }
+} 
+.submit-btn{
+  width:100%;
+  margin-top: -60px;
+  height: 60px;
+  line-height: 48px;
+  text-align: center;
+  background: rgba(255,255,255,1);
+  font-size: 24px;
+  color: rgba(0,0,0,1);
+}

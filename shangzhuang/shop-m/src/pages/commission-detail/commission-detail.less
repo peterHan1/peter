@@ -1,0 +1,78 @@
+/* generator by mobi */
+
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+
+#layout {
+  padding-top: 0;
+}
+
+.month-bill {
+  padding: 0 0.4rem;
+  height: 0.933333rem;
+  .fs2px(26);
+  color: @white;
+  background-color: @redPink;
+  line-height: 0.933333rem;
+  text-align: right;
+  &:after {
+    font-family: 'iconfont';
+    content: '\e605';
+  }
+}
+
+.income-detail-box { 
+  .placeholder-img {
+    width: 4.666667rem;
+    display: block;
+    .center-block();
+    padding-top: 2.6666666666666665rem;
+  }
+}
+.income-detail-item {
+  border-bottom: 1px solid @grey2;
+  height: 1.6rem;
+  padding: 0 0.266667rem;
+  overflow: hidden;
+  .avatar {
+    float: left;
+    margin: 0.32rem 0.266667rem 0.213333rem 0;
+    width: 1.066667rem;
+    height: 1.066667rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .title { 
+    margin-top: 0.32rem;
+    height: 0.56rem;
+    line-height: 0.56rem; 
+    .fs2px(30);  
+    overflow: hidden;
+    .shop-name {
+      display: inline-block;
+      height: 0.56rem;
+      width: 2.4rem;
+      .text-overflow();
+    }
+    .origin-time {      
+      float: right;
+      color: @grey5;
+      font-size: 0.32rem;
+      width: 5.333333rem;
+    }
+  }
+  .order-info {
+    height: 0.48rem;
+    line-height: 0.48rem;
+    color: @grey5;
+    .fs2px(24);
+    .comm-info {
+      color: @black;
+      float: right;
+      &.out {
+        color: @grey5;
+      }      
+    }
+  }
+}

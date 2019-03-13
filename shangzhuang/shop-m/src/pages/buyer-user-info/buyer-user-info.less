@@ -1,0 +1,250 @@
+@import "../../mixins/mixins.less";
+@import "../../mixins/common/color.less";
+@import "../../mixins/common/grid";
+@import "../../mixins/common/user-level";
+
+#header {
+  .ui-toolbar-right {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(//cdn1.showjoy.com/assets/fonts/roboto/100.woff) format('woff');
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+a {
+  //background-color: rgba(0, 0, 0, .5) // 触摸提示器;
+}
+
+#layout {
+  padding-top: 0;
+}
+
+.icon-edit {
+  background: url("//cdn1.showjoy.com/images/de/de97a1c450a14fc4b9ec6b153d109195.png") no-repeat;
+  background-size: contain;
+  width: 30px / 2;
+  height: 32px / 2;
+  display: inline-block;
+}
+
+.icon-order {
+  background: url("//cdn1.showjoy.com/images/ea/ea65a19acf6d41d3aa4a35e3c6e58af4.png") no-repeat;
+  width: 52px / 2;
+  height: 68px / 2;
+  background-position: -18px -40px;
+  background-size: 375px;
+}
+
+
+.icon-quan {
+  background: url("//cdn1.showjoy.com/images/ea/ea65a19acf6d41d3aa4a35e3c6e58af4.png") no-repeat;
+  width: 76px / 2;
+  height: 68px / 2;
+  background-position: -215px -40px;
+  background-size: 375px;
+}
+
+.btn-exit {
+  width: 570px / 2;
+  height: 88px / 2;
+  line-height: 88px / 2;
+  text-align: center;
+  border: 1px solid #9983A4;
+  background-color: #A595AD;
+  border-radius: 3px;
+  font-size: 33px / 2;
+  color: #fff;
+  display: block;
+  padding: 0;
+}
+
+.module-list {
+  li {
+    padding: 0 30px;
+    height: 52px;
+    line-height: 52px;
+    color: #666;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAbAgMAAADe/z1UAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURZeXl6GhoaCgoJ+fn85n8pUAAAAEdFJOUwH4nE+Lb7qAAAAAOklEQVQI12O4wQAEYSBiagOQUE0AEpwRQIKJKMEYIMELIkwDgMRVBwYG5lCQUAgBIQaQEMMUEGEAxABKog+WJN2eDgAAAABJRU5ErkJggg==");
+    background-size: 15px / 2 27px / 2;
+    background-position-x: 92%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    &.active {
+      color: #863bc1;
+    }
+    &.dark{
+      background-color: #F8F8F9;
+    }
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  .tip-number {
+    background-color: #C72717;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 6px;
+  }
+}
+
+#content {
+  .section {
+    & {
+      background-color: #fff;
+    }
+    a {
+      color: inherit;
+      display: block;
+    }
+  }
+  .section.dashboard {
+    & {
+      background: #b9639a; // 降级
+      background: url(//cdn1.showjoy.com/images/7a/7afabe655054413c8a8470770c897b59.png) no-repeat center;
+      background-size: cover;
+      height: 200px;
+    }
+    .intro {
+      & {
+        text-align: center;
+      }
+      .edit {
+        right: 118px;
+        top: 98px;
+        width: 20px;
+        margin-left: 4px;
+        margin-top: -2px;
+      }
+      .avatar {
+        & {
+          width: 130px;
+          height: 130px;
+          margin: 0 auto ;
+          background: url(//cdn1.showjoy.com/images/61/61960f4f55944297a5436054ff8c777f.png) center center no-repeat;
+          background-size: 130px;
+          overflow: hidden;
+        }
+        > img {
+          width: 80px;
+          height: 80px;
+          margin: 25px;
+          border-radius: 50%;
+          border: 3px solid #fff;
+
+        }
+      }
+      .username {
+        a {
+          display: inline-block;
+        }
+        & {
+          margin-top: 6px;
+          font-size: 32px / 2;
+          color: #000000;
+        }
+        .icon-edit {
+          margin-left: 15px / 2;
+        }
+      }
+      .user-level {
+        & {
+          display: inline-block;
+          padding: 0 10px;
+          margin: 18px /2 auto 0;
+          width: 80px;
+          height: 42px / 2;
+          line-height: 42px / 2;
+          border-radius: 50px / 2;
+          font-size: 24px / 2;
+          color: #9C9C9C;
+          background-color: @white;
+        }
+        &.level1 {
+          background-color: @white;
+        }
+        &.level2 {
+          color: @white;
+          background-color: @black;
+        }
+        &.level3 {
+          color: @white;
+          background-color: @yellow;
+        }
+        &.level4 {
+          color: @white;
+          background-color: @redPink;
+        }
+        .ui-icon-level {
+          width: 17px / 2;
+          height: 14px / 2;
+          display: inline-block;
+          background-size: 68px / 2 13px / 2;
+          vertical-align: middle;
+        }
+      }
+    }
+    .user-data {
+      & {
+        margin-top: 35px / 2;
+      }
+      .col {
+        text-align: center;
+      }
+      .col:first-child {
+        border-right: 1px solid #D9B5DF;
+      }
+      .col-hd {
+        color: #DBBAE1;
+        font-size: 28px / 2;
+      }
+      .col-bd {
+        color: #fff;
+        font-family: Roboto, sans-serif;
+        font-size: 48px / 2;
+        font-weight: lighter;
+      }
+      .col-text {
+        display: block;
+        line-height: 80px / 2;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 28px / 2;
+      }
+    }
+  }
+  .section.shortcut {
+    .grid > .col {
+      & {
+        text-align: center;
+        color: #000;
+        font-size: 28px / 2;
+        padding-top: 30px / 2;
+        padding-bottom: 30px / 2;
+      }
+      span[class^="icon"] {
+        display: block;
+        margin: 0 auto 12px / 2;
+      }
+    }
+  }
+  .section.menu-list {
+
+  }
+  .btn-exit {
+    margin: 28px / 2 auto;
+  }
+}

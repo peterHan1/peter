@@ -1,0 +1,211 @@
+/* generator by mobi */
+/*
+  @remSwitch: false;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+/* 导入全局方法 */
+@import "../../mixins/mixins.less";
+@font-face {
+  font-family: 'CenturyGothic';
+  font-style: normal;
+  src: url(//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.4/fonts/CenturyGothic.ttf) format('ttf');
+}
+body {
+  .webpbg('//cdn1.showjoy.com/images/66/66cece623702424ca3acc04a95acea59.jpg');
+  background-repeat: no-repeat;
+  background-size: 375px;
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+#layout {
+  padding-top: 30px;
+}
+p {
+  line-height: 1;
+}
+.rule {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  z-index: 9999;
+  display: block;
+  right: 0;
+  top: 0;
+  .circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    .text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      color: #fff;
+      font-size: 14px;
+    }
+  }
+}
+
+.slider {
+  width: 375px;
+  height: 325px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  .slider-tips-wrap {
+    width: 100px;
+    height: 56px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    .slider-tips {
+      width: 100px;
+      height: 36px;
+      margin-top: 10px;
+      .webpbg('//cdn1.showjoy.com/images/34/3418dc3a71da43539f0ed153e48b2f1d.png');
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: 30px;
+      animation: 'show-block' 1.5s ease infinite normal both;
+    }
+    .tips {
+      font-size: 9px;
+      color: #fff;
+      text-align: center;
+      margin-top: -6px;
+    }
+  }
+  .slider-item {
+    width: 294px;
+    height: 148px;
+    box-shadow: 0 0 32px  rgba(60, 35, 99, 0.71);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -147px;
+    margin-top: -74px;
+    background: linear-gradient(to right, #9462fc, #754ab8); 
+    .clip-path {
+      width: 172px;
+      height: 148px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 9;
+      clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
+      background: linear-gradient(to right, #b5a5fd, #8369d1); 
+      opacity: 0.5;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    .bank-info {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #fff;
+      z-index: 99;
+      .number-box {
+        text-align: center;
+        margin-top: 30px;
+
+        .symbol {
+          font-size: 22px;
+        }
+        .number {
+          font-size: 42px;
+          font-family: CenturyGothic;
+        }
+        .text {
+          font-size: 38px;
+        }
+      }
+      .desc {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        display: block;
+        &.link {
+          display: block;
+          width: 120px;
+          height: 30px;
+          border: 1px solid #fff;
+          border-radius: 3px;
+          line-height: 28px;
+          margin: 14px auto 0;
+          color: #fff;
+        }
+      }
+    }
+    &.item-1 {
+
+    }
+    &.item-2 {
+      transform: translateY(-23px) translateZ(-55px);
+    }
+    &.item-3 {
+      transform: translateY(-45px) translateZ(-105px);
+    }
+  }
+}
+.bank-graph {
+
+}
+.guideWapper {
+  top: 325px !important;
+}
+
+
+.bank-graph-title-wrap {
+  height: 40px;
+  margin-top: -40px;
+  .bank-graph-title {
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 12px;
+  }
+  .bank-graph-desc {
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 14px;
+    .num {
+      color: rgb(233, 102, 68);
+      font-size: 16px;
+      font-family: CenturyGothic;
+      vertical-align: middle;
+      padding: 0 2px;
+    }
+  }  
+}
+
+// keyframs
+@keyframes show-block {
+  0% {
+    // transform: translateY(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+  // 70% {
+  //   transform: translateY(-10px);
+  // }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0.3;
+  }
+}

@@ -1,0 +1,69 @@
+.m-swipe {
+  width: 100%;
+  overflow: hidden;
+}
+.m-swipe .swipe-header {
+  width: 100%;
+  height: 0.96rem;
+  overflow: hidden;
+  border-bottom: 1px solid #cccccc;
+  background-color: #fff;
+}
+.m-swipe .swipe-header .header-wrapper {
+  width: 53rem;
+  border-bottom: #efefef;
+  background-color: #fff;
+}
+.m-swipe .swipe-header .header-wrapper text {
+  visibility: hidden;
+  position: absolute;
+  z-index: -10;
+}
+.m-swipe .swipe-header .header-wrapper ul li {
+  text-decoration: none;
+  text-align: center;
+  float: left;
+  width: 2.8rem;
+  line-height: 0.96rem;
+  background-color: #ffffff;
+  color: #ccc;
+  font-size: 0.43rem;
+}
+.m-swipe .swipe-header .header-wrapper ul li span {
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+  -webkit-transition: transform 0.2s linear;
+}
+.m-swipe .swipe-header .header-wrapper .active {
+  color: #000;
+}
+.m-swipe .swipe-header .header-wrapper .slider-line {
+  width: 1.6rem;
+  height: 1px;
+  background-color: #000000;
+  position: absolute;
+  margin: 0.9rem 0 0 0.6rem;
+}
+.m-swipe .swipe-body {
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.m-swipe .swipe-body .page-wrapper {
+  width: 80rem;
+  height: 13.3rem;
+}
+.m-swipe .swipe-body .page-wrapper .m-page {
+  float: left;
+  width: 10rem;
+  height: 13.3rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.m-swipe .swipe-body .page-wrapper .m-page::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}

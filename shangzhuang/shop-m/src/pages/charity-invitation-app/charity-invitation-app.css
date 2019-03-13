@@ -1,0 +1,279 @@
+.introduce {
+  width: 100%;
+  height: 6.42666rem;
+}
+p {
+  line-height: 1;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 0;
+  background-color: #fbfbfb;
+}
+.gift {
+  width: 100%;
+  color: #f93450;
+  overflow: hidden;
+  position: relative;
+}
+.gift .title {
+  margin: 0.8rem 0 1rem;
+  text-align: center;
+  color: #000000;
+  font-size: 18px;
+  /* @norem */
+}
+[data-dpr="2"] .gift .title {
+  font-size: 36px;
+  /* @norem */
+}
+[data-dpr="3"] .gift .title {
+  font-size: 54px;
+  /* @norem */
+}
+.gift .gift-1 {
+  width: 5.8rem;
+  font-size: 0.32rem;
+  position: relative;
+  margin-top: 0.533333rem;
+  margin-left: 3.34rem;
+}
+.gift .gift-1 .gift-style {
+  line-height: 0.453333rem;
+}
+.gift .gift-1::after {
+  content: '';
+  width: 1.52rem;
+  height: 1.573333rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.7866665rem;
+  left: -1.82rem;
+  z-index: 99;
+  background: url("//cdn1.showjoy.com/images/93/931c8e5a52be427aadb8ad607690adaa.png") center center no-repeat;
+  background-size: 1.493333rem;
+}
+.gift .gift-2 {
+  width: 5.8rem;
+  font-size: 0.32rem;
+  position: relative;
+  margin-top: 0.8rem;
+  margin-left: 1.36rem;
+  text-align: right;
+}
+.gift .gift-2 .gift-style {
+  line-height: 0.453333rem;
+}
+.gift .gift-2::after {
+  content: '';
+  width: 2.013333rem;
+  height: 1.253333rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.6266665rem;
+  right: -2.213333rem;
+  z-index: 99;
+  background: url("//cdn1.showjoy.com/images/72/725cda034b6c4f298fbff591a01adaf3.png") center center no-repeat;
+  background-size: 1.546667rem;
+}
+.gift .gift-2 .right {
+  text-align: right;
+}
+.gift .gift-3 {
+  width: 5.4rem;
+  font-size: 0.32rem;
+  position: relative;
+  margin-top: 0.666667rem;
+  margin-left: 3.253333rem;
+}
+.gift .gift-3 .gift-style {
+  line-height: 0.453333rem;
+}
+.gift .gift-3::after {
+  content: '';
+  width: 1.626667rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.7733335rem;
+  left: -1.826667rem;
+  z-index: 99;
+  background: url("//cdn1.showjoy.com/images/67/67b116a6a653491d92e7413e06f1b516.png") center center no-repeat;
+  background-size: 1.32rem;
+}
+.gift .gift-4 {
+  width: 5.8rem;
+  font-size: 0.32rem;
+  position: relative;
+  margin-top: 0.8rem;
+  margin-left: 1.36rem;
+  text-align: right;
+}
+.gift .gift-4 .gift-style {
+  line-height: 0.453333rem;
+}
+.gift .gift-4::after {
+  content: '';
+  width: 2.013333rem;
+  height: 1.653333rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.46266665rem;
+  right: -2.213333rem;
+  z-index: 99;
+  background: url("//cdn1.showjoy.com/images/e5/e52ac100f64d4341b8fc02effdb4353f.png") center center no-repeat;
+  background-size: 1.546667rem;
+}
+.gift .gift-4 .right {
+  text-align: right;
+}
+.invite-info {
+  margin-top: 0.666667rem;
+  background-color: #fbfbfb;
+}
+.invite-info .sum {
+  height: 1.573333rem;
+  line-height: 1.573333rem;
+  text-align: center;
+  font-size: 13px;
+  /* @norem */
+  color: #9e9e9e;
+  background: url("//cdn1.showjoy.com/images/18/18083a23807c4697af0e6721537c7c86.png") center center no-repeat;
+  background-size: 100%;
+}
+[data-dpr="2"] .invite-info .sum {
+  font-size: 26px;
+  /* @norem */
+}
+[data-dpr="3"] .invite-info .sum {
+  font-size: 39px;
+  /* @norem */
+}
+.invite-info .sum .num {
+  color: #373737;
+}
+.invite-info .per:last-child:before,
+.invite-info .per:last-child:after {
+  display: table;
+  content: "";
+}
+.invite-info .per:last-child:after {
+  clear: both;
+}
+.invite-info .per .per-item {
+  float: left;
+  margin: 0 0.16rem 0.6rem;
+  width: 1.68rem;
+  height: 1.8rem;
+  overflow: hidden;
+  text-align: center;
+}
+.invite-info .per .per-item .img {
+  width: 1.226667rem;
+  height: 1.226667rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.invite-info .per .per-item .per-name {
+  margin-top: 0.16rem;
+  height: 0.346667rem;
+  line-height: 0.346667rem;
+  font-size: 12px;
+  /* @norem */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #373737;
+}
+[data-dpr="2"] .invite-info .per .per-item .per-name {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .invite-info .per .per-item .per-name {
+  font-size: 36px;
+  /* @norem */
+}
+.invite-info .per .per-item.more {
+  font-size: 30px;
+  /* @norem */
+  line-height: 1.8rem;
+  color: #373737;
+}
+[data-dpr="2"] .invite-info .per .per-item.more {
+  font-size: 60px;
+  /* @norem */
+}
+[data-dpr="3"] .invite-info .per .per-item.more {
+  font-size: 90px;
+  /* @norem */
+}
+.redirect {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.redirect .main-redirect {
+  position: absolute;
+  top: 2.1rem;
+  left: 0;
+  width: 50%;
+  height: 1.2rem;
+}
+.redirect .pre-redirect {
+  position: absolute;
+  top: 2.1rem;
+  right: 0;
+  width: 50%;
+  height: 1.2rem;
+}
+.step {
+  margin-top: 0.8rem;
+  height: 13.333333rem;
+  position: relative;
+  background: url("//cdn1.showjoy.com/images/7c/7c40d02f28404cb9a25edc54d6e0c634.jpg") center top no-repeat;
+  background-size: 100%;
+}
+.step .price-box {
+  position: absolute;
+  width: 2.133333rem;
+  height: 1.933333rem;
+  top: 0;
+  left: 50%;
+  margin-left: -1.28rem;
+  text-align: center;
+  color: #ffffff;
+  -webkit-user-select: none;
+}
+.step .price-box .price-area {
+  margin-top: 0.333333rem;
+  font-size: 0.186667rem;
+}
+.step .price-box .price-area .price {
+  font-size: 0.4rem;
+}
+.step .price-box .price-desc {
+  margin-top: 0.066667rem;
+  font-size: 0.213333rem;
+}
+.step .download {
+  margin-left: 0.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
+}
+.step .download img {
+  padding-top: 5.67rem;
+}
+.step .invite-code {
+  position: absolute;
+  left: 6rem;
+  top: 2.8rem;
+  color: #ffffff;
+  font-weight: bolder;
+  font-size: 0.68rem;
+  text-shadow: 0 2px 6px #353575;
+  letter-spacing: 1px;
+  z-index: 9999999;
+}

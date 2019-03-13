@@ -1,0 +1,530 @@
+body {
+  background-color: #efefef;
+}
+#layout {
+  padding-top: 0;
+}
+.top-waring {
+  background-color: #f98b8b;
+  color: #fff;
+  font-size: 0.32rem;
+  padding: 0.266667rem;
+  margin: 0.266667rem;
+}
+.ad {
+  display: none;
+  position: relative;
+  padding: 0.16rem 0.4rem;
+  margin-bottom: 0;
+  background-color: #e91a49;
+  color: #ffffff;
+}
+.ad .adclose {
+  position: absolute;
+  left: 0.4rem;
+  top: 0;
+  width: 0.8rem;
+  height: 100%;
+}
+.ad .adclose:before {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+  margin-top: -0.4rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 15px;
+  /* @norem */
+  font-family: 'iconfont' !important;
+  content: '\e603';
+}
+[data-dpr="2"] .ad .adclose:before {
+  font-size: 30px;
+  /* @norem */
+}
+[data-dpr="3"] .ad .adclose:before {
+  font-size: 45px;
+  /* @norem */
+}
+.ad .adtext {
+  padding-left: 0.8rem;
+  line-height: 0.4rem;
+  font-size: 12px;
+  /* @norem */
+}
+[data-dpr="2"] .ad .adtext {
+  font-size: 24px;
+  /* @norem */
+}
+[data-dpr="3"] .ad .adtext {
+  font-size: 36px;
+  /* @norem */
+}
+#content {
+  position: relative;
+  padding-bottom: 2.13rem;
+}
+#content .icon-arrow {
+  font-size: 0.426667rem;
+  line-height: 0.426667rem;
+  color: rgba(255, 255, 255, 0.1);
+}
+#content .icon-showjoy-zip {
+  display: inline-block;
+  *zoom: 1;
+  vertical-align: middle;
+  width: 0.96rem;
+  height: 0.64rem;
+  background-image: url(//cdn1.showjoy.com/images/7b/7ba36ef33f9442338bf1b6c886d0d789.png);
+  background-size: 100%;
+}
+#content .text-lower {
+  color: #666;
+  font-size: 0.293333rem;
+}
+#content .text-red {
+  color: #f93450;
+}
+#content .text-gray {
+  color: #a7a7a7;
+}
+#content .list-area {
+  padding: 0 0.533333rem;
+  margin-bottom: 0.266667rem;
+  background-color: #fff;
+}
+#content .list > li {
+  border-top: 1px solid #f4f4f4;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#content .list > li:first-child {
+  border: none;
+}
+#content .list__title {
+  font-size: 0.426667rem;
+  color: #1a1a1a;
+  height: 1.333333rem;
+  line-height: 1.333333rem;
+}
+#content .list__item {
+  font-size: 0.32rem;
+  line-height: 0.533333rem;
+}
+#content .list__item .coupon-tips {
+  margin: 0.4rem 0;
+}
+#content .list__item .ui-dialog-idnumb {
+  overflow: hidden;
+  margin: 0 auto;
+  z-index: 1002;
+  position: absolute;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-transform: translateZ(0);
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  background-color: transparent;
+  -webkit-box-shadow: 0 1px 0.306667rem #2f2f2f;
+          box-shadow: 0 1px 0.306667rem #2f2f2f;
+  border-radius: 0.08rem;
+}
+#content .list__item .ui-dialog-idnumb .ui-dialog-idnumb-content {
+  background-color: #fff;
+  text-align: center;
+  font-size: 0.4rem;
+  padding: 1.2rem 0.48rem 0.933333rem 0.586667rem;
+}
+#content .list__item .ui-dialog-idnumb .ui-dialog-btn {
+  background-color: #fff;
+  text-align: center;
+  color: #976DF7;
+  font-size: 0.533333rem;
+}
+#content .list__item .ui-dialog-idnumb .ui-dialog-btn .ui-dialog-btn-border {
+  width: 6.933333rem;
+  margin: 0 auto;
+  border-top: 1px solid #ccc;
+}
+#content .list__item:before,
+#content .list__item:after {
+  display: table;
+  content: "";
+}
+#content .list__item:after {
+  clear: both;
+}
+#content .list__item .oversea-warn {
+  float: left;
+  width: 100%;
+  font-size: 0.32rem;
+  color: #FC3B82;
+  padding: 0.213333rem 0;
+}
+#content .list__item .id-left {
+  float: left;
+  position: relative;
+  width: 77%;
+}
+#content .list__item .id-left #input {
+  border-radius: 0.08rem;
+  border: 1px solid #ccc;
+  height: 0.933333rem;
+  width: 100%;
+  padding-left: 0.133333rem;
+}
+#content .list__item .id-left #input::-ms-clear {
+  display: none;
+}
+#content .list__item .id-left #input:focus + #index-cross {
+  display: block;
+}
+#content .list__item .id-left #index-cross {
+  position: absolute;
+  top: -10%;
+  right: 2%;
+  width: 0.933333rem;
+  height: 1.12rem;
+  display: none;
+  background: url(//file.showjoy.com/images/f2/f2fbe32f87464972ba06787c240f5a18.png) no-repeat center;
+  background-size: 0.426667rem;
+  z-index: 2;
+}
+#content .list__item .id-right {
+  float: right;
+  width: 20%;
+  height: 0.933333rem;
+  background-color: #FC3B82;
+  border-radius: 0.106667rem;
+  text-align: center;
+  line-height: 0.933333rem;
+  color: #FFFFFF;
+}
+#content .list-id-number {
+  height: 1.0133333333333334rem;
+  line-height: 1.0133333333333334rem;
+  font-size: 0.37333333333333335rem;
+}
+#content .list-id-number .icon-profile {
+  color: #9e9e9e;
+  padding-left: 0.13333333333333333rem;
+}
+#content .list__quantity {
+  width: 50%;
+  color: #a6a6a6;
+  text-align: left;
+}
+#content .list__quantity.highlight {
+  color: #f93450;
+}
+#content .list__price {
+  display: block;
+  float: right;
+  color: #4a4a4a;
+  text-align: right;
+  margin-right: 0.253333rem;
+}
+#content .gifts {
+  color: #ffffff;
+  background-color: #f93450;
+  padding: 0.08rem 0.133333rem;
+  border-radius: 3px;
+  margin-left: 0.053333rem;
+}
+#content .list__comment {
+  font-size: 0.32rem;
+  line-height: 0.533333rem;
+  padding: 0.266667rem;
+  width: 100%;
+  height: 2.666667rem;
+  border: 1px solid #e9e9e9;
+  color: #9e9e9e;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-appearance: none;
+}
+#content .list__tip {
+  font-size: 0.32rem;
+  text-align: center;
+  height: 0.666667rem;
+  line-height: 0.666667rem;
+}
+#content .list__tip.waring {
+  color: #f93450;
+}
+#content .list__click-area {
+  padding-top: 0.333333rem;
+  padding-bottom: 0.333333rem;
+  color: #4a4a4a;
+  min-height: 1.12rem;
+  position: relative;
+  display: block;
+}
+#content .list__click-area .highlight {
+  color: #f93450;
+}
+#content .list__click-area.idnumb {
+  padding-top: 0.4rem;
+}
+#content .list__click-area.no-pd {
+  padding-top: 0;
+}
+#content .list__click-area .switch {
+  position: absolute;
+  right: 0.533333rem;
+  top: -0.186667rem;
+}
+#content .list__click-area .switch .switch-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+#content .list__click-area .switch .switch-toggle + label {
+  width: 1.173333rem;
+  height: 0.72rem;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+#content .list__click-area .switch input.switch-toggle-round + label:before,
+#content .list__click-area .switch input.switch-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 0.026667rem;
+  left: 0.026667rem;
+  bottom: 0.026667rem;
+  content: "";
+}
+#content .list__click-area .switch input.switch-toggle-round + label:before {
+  top: 0;
+  right: 0.026667rem;
+  border: 2px solid #e4e4e4;
+  background-color: #fff;
+  border-radius: 1.6rem;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+#content .list__click-area .switch input.switch-toggle-round + label:after {
+  width: 0.64rem;
+  height: 0.64rem;
+  background-color: #fff;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0.053333rem 0.133333rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.053333rem 0.133333rem rgba(0, 0, 0, 0.3);
+  -webkit-transition: margin 0.4s;
+  transition: margin 0.4s;
+}
+#content .list__click-area .switch input.switch-toggle-round:checked + label:before {
+  background-color: #f93450;
+  border-color: #f93450;
+}
+#content .list__click-area .switch input.switch-toggle-round:checked + label:after {
+  margin-left: 0.453333rem;
+}
+#content .list__click-area .icon-arrow {
+  margin-right: 0.266667rem;
+}
+#content .list__click-area .icon-car {
+  margin-right: 0.266667rem;
+  font-size: 0.64rem;
+  color: #000;
+}
+#content .list__click-area .use-coupon {
+  color: #000;
+  text-decoration: underline;
+}
+#content .list__click-area .groupon-tag {
+  display: inline-block;
+  width: 0.56rem;
+  height: 0.56rem;
+  text-align: center;
+  line-height: 0.56rem;
+  color: #fff;
+  font-size: 0.373333rem;
+  background-color: #f65634;
+}
+#content .list__click-area.list__click-area--style1 .grid-left {
+  width: 85%;
+  font-size: 0.373333rem;
+}
+#content .list__click-area.list__click-area--style1 .grid-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.29333333rem;
+  right: 0;
+  width: 15%;
+  height: 0.5866666666666667rem;
+  text-align: right;
+}
+#content .list__click-area.list__click-area--style1 .grid-right.submit {
+  position: absolute;
+  top: 17%;
+  margin-top: -0.16rem;
+  right: 1%;
+  width: 15%;
+}
+#content .list__click-area.list__click-area--style1 .grid-right .icon-go {
+  font-size: 0.533333rem;
+}
+#content .list__click-area.list__click-area--style1 .grid-full {
+  width: 100%;
+}
+#content .list__click-area.list__click-area--style2 .grid-left {
+  width: 65%;
+  font-size: 0.373333rem;
+}
+#content .list__click-area.list__click-area--style2 .grid-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.29333333rem;
+  right: 0;
+  width: 33%;
+  height: 0.5866666666666667rem;
+  text-align: right;
+}
+#content .list__click-area.list__click-area--style2 .grid-right.submit {
+  position: absolute;
+  top: 17%;
+  margin-top: -0.16rem;
+  right: 1%;
+  width: 15%;
+}
+#content .list__click-area.list__click-area--style2 .grid-right .icon-go {
+  font-size: 0.533333rem;
+}
+#content .list__click-area.list__click-area--style2 .grid-full {
+  width: 100%;
+}
+#content .list__click-area.list__click-area--style2 .oversea-title-type {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #f93450;
+  line-height: 0.5rem;
+  text-align: center;
+  color: #ffffff;
+}
+#content .list__click-area.mjms {
+  color: #000;
+}
+#content .list__click-area.card-id .grid-right {
+  margin-top: -0.453333rem;
+}
+#content .list__click-area.card-id .grid-right .modify-btn {
+  height: 0.8rem;
+  margin-top: 0.053333rem;
+  width: 85%;
+  line-height: 0.8rem;
+  border-radius: 0.08rem;
+  text-align: center;
+  background-color: #FC3B82;
+  color: #FFFFFF;
+}
+#content .bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 2px solid #000000;
+  padding: 0 0 0 0.4rem;
+  height: 1.6rem;
+  z-index: 99;
+}
+#content .bottom .total {
+  padding-top: 0.213333rem;
+  float: left;
+  color: #9e9e9e;
+  font-size: 0.346667rem;
+  line-height: 0.586667rem;
+}
+#content .bottom .total .symbol,
+#content .bottom .total .int {
+  font-size: 0.48rem;
+  color: #f93450;
+}
+#content .bottom .action {
+  float: right;
+  height: 100%;
+  width: 2.4rem;
+  background-color: #f93450;
+}
+#content .bottom .action .submit-btn {
+  display: block;
+  line-height: 1.6rem;
+  text-align: center;
+  font-size: 0.373333rem;
+  color: #fff;
+  width: 2.4rem;
+  height: 100%;
+}
+#content .bottom .action .submit-btn-disable {
+  background-color: #bab7bc;
+}
+#content .hidden-avator-and-name-tip {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 1.066667rem;
+  background-color: #fef8d8;
+  bottom: 0;
+  font-size: 0.32rem;
+  color: #f93450;
+  line-height: 1.066667rem;
+  text-align: center;
+  z-index: 9;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+#content .hidden-avator-and-name-tip.active {
+  bottom: 1.6rem;
+}
+#content .detail-tag {
+  background-image: url(//cdn1.showjoy.com/images/94/94ec4af5deda4c7891544d0e289c3ee6.png);
+  width: 0.506667rem;
+  height: 0.506667rem;
+  background-size: 100%;
+  display: inline-block;
+  margin-left: 0.133333rem;
+  vertical-align: -0.133333rem;
+}
+.mixin-select-disable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.coupons-info {
+  white-space: nowrap;
+  position: absolute;
+  right: 0.5333333333333333rem;
+  top: 50%;
+  height: 0.5866666666666667rem;
+  line-height: 0.5866666666666667rem;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 0.32rem;
+  color: #4d4d4d;
+}
+.coupons-tips {
+  width: 1.3333333333333333rem;
+  height: 0.4266666666666667rem;
+  border-radius: 0.21333333333333335rem;
+  border: 1px solid #f93450;
+  line-height: 0.4266666666666667rem;
+  text-align: center;
+  font-size: 0.26666666666666666rem;
+  color: #f93450;
+  display: inline-block;
+  margin-left: 0.13333333333333333rem;
+  vertical-align: text-bottom;
+}

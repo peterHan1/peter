@@ -1,0 +1,21 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: ["font", "border"];
+  @minPixelValue: 2;
+*/
+.text {
+  margin-top: 0.3467rem;
+  text-align: center;
+  font-size: 0.1867rem;
+  /* @norem */
+}
+[data-dpr="2"] .text {
+  font-size: 0.3733rem;
+  /* @norem */
+}
+[data-dpr="3"] .text {
+  font-size: 0.56rem;
+  /* @norem */
+}

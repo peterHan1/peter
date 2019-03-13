@@ -1,0 +1,9 @@
+#layout {
+  padding-top: 0;
+}
+#header {
+  display: none;
+}
+#content .pic {
+  width: 100%;
+}

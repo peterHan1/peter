@@ -1,0 +1,109 @@
+/*
+ * 商品库页面
+ * @author yangcai@showjoy.com
+ * @last 2014/12/15
+ */
+
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+@import "../../mixins/mixins.less";
+
+@import "../../mixins/common/grid";
+@import "../../mixins/common/animation-slide";
+
+#layout {
+  height: 100% !important;
+}
+#content {
+  height: 100%;
+  padding-bottom: 98px;
+}
+.global-search {
+  display: block;
+}
+.ui-toolbar-wrap {
+  display: none;
+}
+
+.ui-dropmenu{
+  z-index: 999;
+}
+
+
+.page-card {
+  width: 184px;
+  // height: 165px;
+  float: left;
+  text-align: center;
+
+  .card-img {
+    width: 120px;
+    height: 160px;
+    margin: 30px auto 0;
+    img {
+      max-width: 100%;
+    }
+  }
+  .card-title {
+    line-height: 80px;
+    text-align: center;
+    font-size: 24px;
+    color: rgb(109, 109, 109);
+  }
+}
+
+section.category {
+  height: 100%;
+  width: 100%;
+  .clearfix();
+  .side-bar {
+    width: 188px;
+    height: 100%;
+    background-color: rgb(245, 245, 245);
+    float: left;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    .item {
+      height: 96px;
+      width: 100%;
+      border-bottom: 1px solid rgb(228, 228, 228);
+      line-height: 95px;
+      text-align: center;
+      color: #000;
+      font-size: 28px;
+      &.active {
+        background-color: #fff;
+        color: rgb(248, 75, 100);
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
+  .side-content {
+    width: 560px;
+    float: right;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    .item {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+      opacity: 0;
+      &.active {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

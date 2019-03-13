@@ -1,0 +1,432 @@
+/*
+  @remSwitch: true;
+  @rootValue: 75;
+  @unitPrecision: 4;
+  @blackList: [];
+  @minPixelValue: 2;
+*/
+
+@import "./../../mixins/common/color.less";
+@import "./../../mixins/mixins.less";
+
+.href-link {
+  text-decoration: none;
+}
+#layout {
+
+  // 暂时为了配合安卓端的bug 解决无法上拉
+  padding-top: 1px;
+}
+#content {
+  padding-bottom: 0;
+}
+.tab {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  background-color: @grey1;
+  overflow: hidden;
+  .title {
+    width: 50%;
+    float: left;
+    font-size: 28px;
+    color: @grey5;
+    text-align: center;
+    .active {
+      display: inline-block;
+      width: auto;;
+      height: 1.04rem;
+      color: @black;
+      border-bottom: 2px solid @black;
+    }
+  }
+}
+.list,
+.my-list {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-top: 1.066667rem;
+  -webkit-overflow-scrolling: touch;
+  background-color: @grey1;
+  &.no-order {
+    background-color: @white;
+    width: 100%;
+    height: 2.026667rem;
+    margin-top: 1.893333rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    .webpbg("//cdn1.showjoy.com/images/91/9123c3914b02497c9300cb231fd3cb87.png");
+    background-size: 2.4rem;
+  }
+  &.loading {
+    background-repeat: no-repeat;
+    background-position: center 1.333333rem;
+    .webpbg("//cdn1.showjoy.com/images/b1/b1781f3ed2d84b4195f0aa794cb63a9b.png");
+    background-size: 2.4rem;
+  }
+  .end {
+    text-align: center;
+    font-size: 24px;
+    color: @grey5;
+    line-height: 0.4rem;
+  }
+}
+.my-list {
+  display: none;
+}
+.list {
+  .list-item {
+    height: 3.893333rem;
+    background-color: @white;
+    padding: 0 0.533333rem;
+    overflow: hidden;
+    margin-bottom: 0.266667rem;
+    .ordernum {
+      margin: 0.48rem 0 0.16rem;
+      font-size: 28px;
+      line-height: 0.373333rem;
+    }
+    .info {
+      position: relative;
+      height: 1.89rem;
+      border-bottom: 1px solid @grey1;
+      overflow: hidden;
+      .pic-box {
+        float: left;
+        width: 1.6rem;
+        height: 1.6rem;
+        overflow: hidden;
+        position: relative;
+        .pic {
+          width: 1.8rem;
+          height: 1.8rem;
+        }
+        .order-belong {
+          height: 0.56rem;
+          width: 100%;
+          font-size: 24px;
+          line-height: 0.56rem;
+          text-align: center;
+          color: @white;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          &.me {
+            background-color: @black;
+          }
+          &.other {
+            background-color: @redPink;
+          }
+        }
+      }
+      .intro {
+        position: relative;
+        padding-left: 1.733333rem;
+        .goods-title {
+          width: 80%;
+          font-size: 28px;
+          line-height: 32px;
+          .text-overflow-multi(2);
+          color: @black;
+          text-decoration: none;
+        }
+        .detail {
+          width: 80%;
+          margin: 0.066667rem 0;
+          color: @grey5;
+          font-size: 28px;
+          line-height: 32px;
+          .text-overflow();
+          color: @black;
+          text-decoration: none;
+        }
+        .commis {
+          color: @redPink;
+          font-size: 28px;
+          line-height: 0.373333rem;
+          .user-name {
+            color: @black;
+            font-size: 24px;
+            float: right;
+            line-height: 0.373333rem;
+          }
+        }
+        .avatar {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 0.933333rem;
+          height: 0.933333rem;
+          border-radius: 50%;
+        }
+      }
+    }
+    .status {
+      height: 1.12rem;
+      line-height: 1.12rem;
+      font-size: 28px;
+      color: @redPink;
+      overflow: hidden;
+      .link {
+        margin-top: 0.186667rem;
+        width: 2.133333rem;
+        height: 0.666667rem;
+        line-height: 0.666667rem;
+        float: right;
+        text-align: center;
+        color: @black;
+        border: 1px solid @black;
+      }
+    }
+  }
+}
+.my-list {
+  li.order {
+    & {
+      margin-bottom: 10px;
+      background-color: #fff;
+    }
+    .order-header {
+      padding: 0 40px;
+      font-family: Roboto, sans-serif;
+      border-bottom: 1px solid @grey2;
+      display: block;
+      .tips {
+        font-size: 20px;
+        color: @redPink;
+        padding: 13px 0;
+      }
+      .number {
+        font-size: 20px;
+        color: @grey5;
+        padding: 13px 0;
+      }
+    }
+    .order-hd {
+      & {
+        padding: 0 40px;
+        line-height: 36px *2;
+        height: 36px *2;
+        position: relative;
+        border-bottom: 1px solid @grey2;
+      }
+      > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .order-number {
+        float: left;
+        color: @grey5;
+        font-size: 24px;
+        > strong {
+          text-decoration: underline;
+        }
+        &.package {
+          color: @black;
+          font-size: 28px;
+        }
+      }
+      .order-detail {
+        float: right;
+        color: @redPink;
+        font-size: 28px;
+      }
+      .oversea{
+        margin-top: 15px;
+        margin-left: 5px;
+      }
+    }
+    .order-bd {
+      padding: 0 40px;
+      .tr {
+        display: table;
+        width: 100%;
+        height: 60px *2;
+        & > * {
+          display: table-cell;
+        }
+        .pic {
+          width: 60px *2;
+          height: 60px *2;
+          vertical-align: middle;
+          img {
+            vertical-align: middle;
+          }
+        }
+        .name {
+          font-size: 28px;
+          color: @black;
+          vertical-align: middle;
+          img{
+            width: auto;
+            height: 16px *2;
+            margin-right: 3px *2;
+          }
+        }
+        .amount {
+          font-size: 12px *2;
+          color: @grey5;
+          width: 85px *2;
+          text-align: right;
+          line-height: 24px *2;
+          vertical-align: middle;
+        }
+      }
+      .item-list {
+        li.item {
+          height: 77px *2;
+          border-bottom: 1px solid @grey2;
+          overflow: hidden;
+          padding-top: 25px;
+        }
+      }
+
+      .close-tip {
+        height: 26px *2;
+        background-color: #fbeae5;
+        font-size: 12px *2;
+        color: #f56d6d;
+        text-align: center;
+        line-height: 26px *2;
+      }
+    }
+    .order-logistic {
+      height: 40px *2;
+      padding: 0 40px;
+      border-bottom: 1px solid @grey2;
+      .logistic-btn {
+        width: 80px *2;
+        height: 25px *2;
+        border: 1px solid @black;
+        line-height: 25px *2;
+        text-align: center;
+        font-size: 28px;
+        float: right;
+        margin-top: 7px *2;
+        display: block;
+        color: @black;
+      }
+    }
+    .order-ft {
+      width: 100%;;
+      overflow: hidden;
+      .postfee {
+        height: 42px *2;
+        line-height: 42px *2;
+        border-bottom: 1px solid @grey2;
+        padding: 0 40px;
+        .tr {
+          display: table;
+          width: 100%;
+          height: 60px *2;
+          & > * {
+            display: table-cell;
+          }
+          .amount {
+            font-size: 12px *2;
+            color: @grey5;
+            width: 85px *2;
+            text-align: right;
+          }
+        }
+        .name{
+          &:before {
+            font-family: 'iconfont' !important;
+            content: '\e61c';
+            font-size: 24px *2;
+            margin-right: 5px *2;
+            vertical-align: middle;
+          }
+        }
+      }
+      .summary {
+        vertical-align: middle;
+        font-size: 14px *2;
+        color: @black;
+        height: 37px *2;
+        line-height: 37px *2;
+        padding: 0 40px;
+        border-bottom: 10px solid @grey1;
+        .title {
+          float: left;
+        }
+        .price {
+          float: right;;
+          font-family: Roboto, sans-serif;
+          font-weight: normal;
+          font-size: 14px *2;
+          color: @black;
+        }
+      }
+      .action {
+        height: 52px *2;
+        background-color: @grey1;
+        overflow: hidden;
+        .btn {
+          display: block;
+          font-size: 16px *2;
+          color: @white;
+          text-align: center;
+          width: 154px *2;
+          height: 30px *2;
+          line-height: 30px *2;
+          background-color: @redPink;
+          margin: 17px auto 0;
+        }
+        .btn.confirm {
+          color: @white;
+          background-color: @redPink;
+        }
+      }
+    }
+    .overtime-tip{
+      margin-top: -10px;
+      position: relative;
+      width: 100%;
+      height: 36px;
+      padding-left: 60px;
+      padding-right: 30px;
+      background: #F6F6F6 url("//cdn1.showjoy.com/images/77/77e30f33de6f4aaf8da16131dfd18580.png") no-repeat 9px center;
+      background-size: 42px 16px;
+      font-size: 12px;
+      line-height: 38px;
+      color: #959595;
+      border-bottom: 1px solid #cecece;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      span{
+        color: #A987F9;
+      }
+
+      .overtime-tip-show{
+        width: 20px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: url("//cdn1.showjoy.com/images/a4/a4d2a41c8a0e41df8435ff2793087693.png") no-repeat center;
+      }
+    }
+
+  }
+}
+
+.no-order {
+  display: table;
+  width: 100%;
+  margin-top: 4.8rem;
+  .tip {
+    display: table-cell;
+    text-align: center;
+    color: #848383;
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,246 @@
+#layout {
+  padding-top: 0;
+}
+.slider .ui-slider-dots {
+  right: 0.213333rem;
+  text-align: right;
+}
+.slider .ui-slider-dots b {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.slider .ui-slider-dots b.ui-state-active {
+  background-color: #fff;
+}
+.slider .slider-img {
+  max-width: 100%;
+}
+.inputnum {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  text-align: center;
+  color: #f93450;
+  height: 0.693333rem;
+  line-height: 0.693333rem;
+  font-size: 16px;
+  /* @norem */
+  width: 2.4rem;
+  margin: 0 4px;
+}
+[data-dpr="2"] .inputnum {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .inputnum {
+  font-size: 48px;
+  /* @norem */
+}
+.detail {
+  position: relative;
+  height: 8.426667rem;
+}
+.detail .box {
+  width: 100%;
+  height: 8.426667rem;
+  position: relative;
+  background-image: url("//cdn1.showjoy.com/images/0b/0b71367f542d424a9020df44e01bd2d4.png");
+  background-color: #ffffff;
+  background-position: 0.373333rem 1.12rem;
+  background-repeat: no-repeat;
+  background-size: 0.906667rem;
+  overflow: hidden;
+}
+.detail .box .rule {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  padding-right: 0.533333rem;
+  color: #ccc;
+}
+.webpa .detail .box {
+  background-image: url('//cdn1.showjoy.com/images/0b/0b71367f542d424a9020df44e01bd2d4.png.webp');
+}
+.detail .box .intro {
+  margin-top: 1.28rem;
+  margin-left: 1.6rem;
+}
+.detail .box .intro .list {
+  margin-bottom: 0.9rem;
+  font-size: 16px;
+  /* @norem */
+  line-height: 0.586667rem;
+}
+[data-dpr="2"] .detail .box .intro .list {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .detail .box .intro .list {
+  font-size: 48px;
+  /* @norem */
+}
+.detail .box .intro .list .icon-help {
+  margin-left: 0.2rem;
+  color: #f93450;
+}
+.detail .box .intro .list .select {
+  font-size: 14px;
+  /* @norem */
+  padding-left: 0.2rem;
+  width: 4.533334rem;
+  height: 0.906666rem;
+  line-height: 0.906666rem;
+  background-image: url("//cdn1.showjoy.com/images/b1/b1949d33e84d47d2980134a4856320fb.png");
+  background-color: #eee;
+  background-position: 3.8rem center;
+  background-repeat: no-repeat;
+  border: none;
+}
+[data-dpr="2"] .detail .box .intro .list .select {
+  font-size: 28px;
+  /* @norem */
+}
+[data-dpr="3"] .detail .box .intro .list .select {
+  font-size: 42px;
+  /* @norem */
+}
+.webpa .detail .box .intro .list .select {
+  background-image: url('//cdn1.showjoy.com/images/b1/b1949d33e84d47d2980134a4856320fb.png.webp');
+}
+.detail .box .intro .list .frozen {
+  font-size: 10px;
+  /* @norem */
+  color: #9e9e9e;
+}
+[data-dpr="2"] .detail .box .intro .list .frozen {
+  font-size: 20px;
+  /* @norem */
+}
+[data-dpr="3"] .detail .box .intro .list .frozen {
+  font-size: 30px;
+  /* @norem */
+}
+.mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: scroll;
+}
+.mask .icon-wrong {
+  position: absolute;
+  padding: 0.266667rem;
+  right: 0.586667rem;
+  top: 0.933333rem;
+  height: 0.933333rem;
+  color: #ffffff;
+  font-size: 16px;
+  /* @norem */
+}
+[data-dpr="2"] .mask .icon-wrong {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .mask .icon-wrong {
+  font-size: 48px;
+  /* @norem */
+}
+.mask .title,
+.mask .list {
+  color: #ffffff;
+  font-size: 16px;
+  /* @norem */
+  line-height: 0.533333rem;
+  padding: 0 1.173333rem;
+  margin: 0.266667rem 0;
+}
+[data-dpr="2"] .mask .title,
+[data-dpr="2"] .mask .list {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .mask .title,
+[data-dpr="3"] .mask .list {
+  font-size: 48px;
+  /* @norem */
+}
+.mask .title {
+  margin-top: 2.666667rem;
+  text-align: center;
+  line-height: 1.066667rem;
+}
+.mask.show {
+  animation: 'show-block' 0.7s ease 1 normal both;
+  -webkit-animation: 'show-block' 0.7s ease 1 normal both;
+}
+.btns {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 1.6rem;
+  width: 100%;
+}
+.btns:before,
+.btns:after {
+  display: table;
+  content: "";
+}
+.btns:after {
+  clear: both;
+}
+.btns .donate,
+.btns .withdraw {
+  display: block;
+  float: left;
+  font-size: 16px;
+  /* @norem */
+  width: 50%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+}
+[data-dpr="2"] .btns .donate,
+[data-dpr="2"] .btns .withdraw {
+  font-size: 32px;
+  /* @norem */
+}
+[data-dpr="3"] .btns .donate,
+[data-dpr="3"] .btns .withdraw {
+  font-size: 48px;
+  /* @norem */
+}
+.btns .withdraw {
+  float: right;
+  background-color: #f93450;
+  border: 2px solid #f93450;
+}
+.btns .withdraw.full {
+  width: 100%;
+}
+.joy-ui-dialog-confirm-title .icon-title {
+  height: 1.493333rem;
+}
+.joy-ui-dialog-confirm-title {
+  font-family: 'iconfont';
+}
+@-webkit-keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes show-block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

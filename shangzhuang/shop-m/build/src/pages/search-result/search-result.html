@@ -1,0 +1,648 @@
+
+
+
+
+
+
+  
+        
+        
+        
+        
+          
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/10/10d9270e34a640db804a8f6f453df597.png">
+    <meta name="apple-mobile-web-app-title" content="尚妆达人店">
+    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0" />
+    
+        
+        <script type="text/javascript">
+        ;(function(doc) {
+    
+            // 给html根节点加上webps类名
+            function addRootTag() {
+                doc.documentElement.className += " webpa";
+            }
+    
+            // 判断是否有webp_showjoy=available这个cookie
+            if (!/webp_showjoy=available/.test(document.cookie)) {
+                var image = new Image();
+    
+                // 图片加载完成时候的操作
+                image.onload = function() {
+    
+                    // 图片加载成功且宽度为1，那么就代表支持webp了，因为这张base64图是webp格式。如果不支持会触发image.error方法
+                    if (image.width == 1) {
+    
+                        // html根节点添加class，并且埋入cookie
+                        addRootTag();
+                        document.cookie = "webp_showjoy=available; max-age=31536000; domain=";
+                    }
+                };
+    
+                // 一张支持alpha透明度的webp的图片，使用base64编码
+                image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
+            } else {
+                addRootTag();
+            }
+        }(document));
+    </script>
+    
+                <link rel="stylesheet" type="text/css" href="//assets.showjoy.net/joyf2e/vendor/gmu/reset.css" />
+        <link rel="stylesheet" type="text/css" href="//assets.showjoy.net/joyf2e/vendor/gmu/gmu.min.css" />
+        <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-header/shop-header.min.css" rel="stylesheet" />
+        <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-footer/shop-footer.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.3.6/iconfont/talent-iconfont/icon.min.css" />
+        
+    <title> 列表 </title>
+
+                <script>
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+        var placeholderDiv = document.createElement('div');
+        if (isAndroid) {
+            placeholderDiv.innerHTML = "<meta name='viewport' content='width=375' />";
+        } else{
+            placeholderDiv.innerHTML = "<meta name='viewport' content='width=375, user-scalable=no' />";
+        }
+        document.querySelector('head').insertBefore(placeholderDiv.firstChild, document.querySelector('title'));
+        </script>
+        
+            <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/flexible/flexible-min.js"></script>
+        
+    
+        <link href="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/search-result/search-result.min.css" rel="stylesheet" />
+        
+    
+</head>
+<body>
+<script type="text/javascript">
+  var $appendContainer = document.body;
+  var placeholderDiv = document.createElement('div');
+  placeholderDiv.innerHTML = '<div class="joy-ui-sync-loading">'+
+              '<div class="content-box">'+
+                  '<div class="circle"></div>'+
+              '</div>'+
+          '</div>';
+  var childDiv = placeholderDiv.firstChild;
+  $appendContainer.appendChild(childDiv); 
+
+  window.addEventListener('DOMContentLoaded', function () {
+    document.body.removeChild(childDiv);  
+  }, false);
+</script>
+<div id="layout" class="j_Layout">
+    <input type="hidden" class="j_ShopUserImage" value="//file.showjoy.com/images/21/215e91d6dd8341fe84c76ce14a089d3a.jpg.120x120.png">
+    <input type="hidden" class="j_ShopName" value="Xinkf">
+                        <input type="hidden" class="j_ShopUrl" value="//shop.m.showjoy.net/shop?shopId=30019" />
+            
+<div id="header" class="ui-toolbar j_Header">
+    <div class="ui-toolbar-wrap">
+        <h1 class="ui-toolbar-title j_Title">搜索</h1>
+    </div>
+    
+    <div id="J_SearchToolbar" class="global-search">
+        <form action="/search" method="get" class="search-form j_SearchForm">
+            <span class="clear-content" id="J_ClearContent"></span>
+            <input type="hidden" name="shopId" value="30019" />
+            <input type="hidden" name="type" value="3" />
+            <input type="hidden" name="shopProductId" value="0" />
+            <input type="hidden" name="isFromHome" value="false" />
+            <input class="search-input j_AutocompleteInput" name="keyword" type="text" value="" placeholder="搜索你想要的宝贝">
+            <button type="submit" class="search-btn" id="J_CallSearchToolbar">
+            <span class="search-text">搜索</span></button>
+            <i class="search-icon icon icon-search"></i>
+        </form>
+    </div>
+    <div class="autocomplete-result j_AutocompleteResult"></div>
+</div>
+
+
+<a href="/shopCart.html">
+    <div class="shopping-bag icon-bag-press j_ShoppingBag">
+        <span class="item-num j_ItemNum" >1</span>
+    </div>
+</a>
+<input type="hidden" class="j_IsFromHome" value="false" >
+<input type="hidden" class="j_ShopProductId" value="0">
+<div class="backtop j_BackTop" style="display: none;"><img style="display: none;" class="j_Pic" src="//cdn1.showjoy.com/images/1c/1c648ece98284c8491a1ec05e5903e04.png" width="50" height="50"></div>
+<div id="content">
+    
+    <div class="msg j_Msg"></div>
+    
+        <div class="multi-nav">
+        <ul class="nav-parent">
+
+            <a href="baidu.com">
+                <li class="nav-child">
+                    <span class="context">热度<span class="arrow"></span></span>
+                </li>
+            </a>
+            <a href="baidu.com">
+                <li class="nav-child">
+                    <span class="context">销量<span class="arrow"></span></span>
+                </li>
+            </a>
+            <a href="baidu.com">
+                <li class="nav-child active-up">
+                    <span class="context">价格<span class="arrow"></span><span class="arrow-up"></span></span>
+                </li>
+            </a>
+            <a href="baidu.com">
+                <li class="nav-child">
+                    <span class="context">收益<span class="arrow"></span></span>
+                </li>
+            </a>
+            <li class="nav-child j_OrderBtn" id="J_P2">
+                <span class="context"><span class="arrow special"></span>筛选品牌</span>
+            </li>
+        </ul>
+
+        
+        
+        <ul class="nav-sub J_P2">
+                                                                                                                        <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3AABS%7CAustralianBotanicalSoap&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">ABS|AustralianBotanicalSoap</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E5%B7%B4%E9%BB%8E%E6%AC%A7%E8%8E%B1%E9%9B%85%7CL%E2%80%99oreal+Paris&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">巴黎欧莱雅|L’oreal Paris</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E7%8F%80%E8%8E%B1%E9%9B%85%7CProya&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">珀莱雅|Proya</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E7%A7%91%E9%A2%9C%E6%B0%8F%7CKiehl%27s&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">科颜氏|Kiehl's</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E8%82%8C%E8%82%A4%E4%B9%8B%E9%92%A5%7CCPB&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">肌肤之钥|CPB</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E5%85%B0%E8%94%BB%7CLancome&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">兰蔻|Lancome</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E8%89%BE%E5%B0%BC%E5%B0%A4%7CI+NEED+YOU&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">艾尼尤|I NEED YOU</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E8%AF%97%E7%95%99%E7%BE%8E%E5%B1%8B%7CROSETTE&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">诗留美屋|ROSETTE</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E5%AE%9D%E9%9C%B2%E9%9C%B2%7CPororo&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">宝露露|Pororo</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E7%A2%A7%E6%AC%A7%E6%B3%89%7CBiotherm&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">碧欧泉|Biotherm</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E9%A6%99%E5%A5%88%E5%84%BF%7CChanel&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">香奈儿|Chanel</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E8%8F%B2%E8%AF%97%E5%B0%8F%E9%93%BA%7CThe+Face+Shop&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">菲诗小铺|The Face Shop</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E5%B8%8C%E6%80%9D%E9%BB%8E%7CSisley&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">希思黎|Sisley</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E9%AB%98%E4%B8%9D%7CKose&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">高丝|Kose</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E6%98%8E%E8%89%B2%7CDetclear&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">明色|Detclear</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E8%B5%84%E7%94%9F%E5%A0%82%7CShiseido&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">资生堂|Shiseido</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E5%80%A9%E7%A2%A7%7CClinique&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">倩碧|Clinique</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E4%BC%8A%E6%80%9D%7Cit%C2%B0s+skin&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">伊思|it°s skin</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E9%A6%A5%E8%95%BE%E8%AF%97%7CFresh&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">馥蕾诗|Fresh</span></a>
+                                </li>
+                                                            <li class="sub-nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,brandZhName%3A%E6%82%A6%E8%AF%97%E9%A3%8E%E5%90%9F%7CInnisfree&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">悦诗风吟|Innisfree</span></a>
+                                </li>
+                                                                                                                                                                                        </ul>
+        <ul class="nav-sub J_P4">
+                                                                                                                                                                                                </ul>
+        <ul class="nav-sub J_P5">
+                                                                                                                                                                                                </ul>
+        <ul class="nav-sub J_P6">
+                                                                                                                                                                                                                
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%B8%85%E6%B4%81&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">清洁</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E4%BF%9D%E6%B9%BF&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">保湿</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%8E%A7%E6%B2%B9&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">控油</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%B7%B1%E5%B1%82%E6%B8%85%E6%B4%81&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">深层清洁</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E5%8D%B8%E5%A6%86&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">卸妆</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E8%A1%A5%E6%B0%B4&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">补水</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%B0%B4%E6%B2%B9%E5%B9%B3%E8%A1%A1&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">水油平衡</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%BB%8B%E5%85%BB&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">滋养</span></a>
+                                </li>
+                                                            
+                                <li class="nav-child">
+                                    <a href="/search/?comeFrom=cate&q=cateName%3A%E6%B4%81%E9%9D%A2,effect%3A%E6%94%B6%E7%BC%A9%E6%AF%9B%E5%AD%94&isFromHome=false&shopProductId=0&type=3&shopId=30019"><span class="context">收缩毛孔</span></a>
+                                </li>
+                                                                                                </ul>
+    </div>
+        <div class="override"></div>
+    
+        <div class="search-tips">为您搜索到 <span class="num">80</span> 个结果</div>
+    <div class="ui-refresh" id="J_Refresh" data-page-num="4">
+        <ul class="item-list j_RefreshList">
+                  <li class="item j_RefreshItem">
+                        <img class="item-oversea" src="//cdn1.showjoy.com/images/2b/2b585b62601043e8a3c8392a4d423ae1.png">
+                    <a class="" href="/shop/sku/121175.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src=".200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[自然乐园]芦荟胶</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>122.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">14.63</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="121175" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <img class="item-oversea" src="//cdn1.showjoy.com/images/2b/2b585b62601043e8a3c8392a4d423ae1.png">
+                    <a class="" href="/shop/sku/141517.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/34/349b5980d5744a08af6f814157e2adee.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[欧树]蜂蜜洁面凝胶400ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>138.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">6.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="141517" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/10274.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/71/711a656cf8a44ce18e0048e66e29235b.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[倩碧]温和型液体洁面皂（预售3天）200ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>165.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">16.50</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="10274" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/145175.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/25/25f923f9f6ae40a8809d422a62ee4db6.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[肌肤之钥]奢华泡沫洁面乳( 清爽型 )125g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>388.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">38.80</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="145175" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/144759.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/bd/bde6c2411af74e36805e70036df73a3d.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[肌肤之钥]奢华泡沫洁面乳( 滋润型 )125g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>399.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">39.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="144759" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <img class="item-oversea" src="//cdn1.showjoy.com/images/2b/2b585b62601043e8a3c8392a4d423ae1.png">
+                    <a class="" href="/shop/sku/121879.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/ac/acda2f5423c3488c9d83b13c20489aa2.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[科颜氏]天气好</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>199.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">19.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="121879" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/24630.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/1a/1a2b46825a8b432195e5d84556c86fe5.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[兰蔻]根源补养洁颜啫哩125ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>230.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">23.00</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="24630" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/118799.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/a2/a236aecdcd684ef29294a5b4db8ffd80.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[明色]鲜果净化脸部去角质啫喱180ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>128.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">12.80</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="118799" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/149249.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/53/5351623fba384019b1daaad73e55b843.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[AHC]高效B5水合舒缓保湿洗面奶180ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>99.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">9.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="149249" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/140258.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/91/9150bd8207744590ac422a960873298a.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[科颜氏]金盏花洁面啫喱230ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>275.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">27.50</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="140258" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/81872.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/3f/3f15d62d00074604a70461ee78c7c0e2.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[珀莱雅]水漾肌密净透洁面露（清爽型）120ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>58.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">5.80</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="81872" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/143429.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/b2/b2f43db7eded4e6392c353e190ed3082.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[明色]日本cosme大赏果酸去角质凝胶/啫喱【鲜果香型】180ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>128.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">12.80</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="143429" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/10079.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/08/08ce044588f144aeb4cd1c3c4e7bae1d.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[希思黎]焕白洁面乳200ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>770.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">77.00</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="10079" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/121877.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/52/52942d986fd94ca8ba01ab672aed0769.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[大宝]不错的好的200ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>99.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">9.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="121877" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/58616.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/f7/f7f4532ab228415083004fdc096f0693.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[酷雅]去角质水凝露250g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>238.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">23.80</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="58616" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/146942.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/f0/f02fa608bc1341eabdd730d60435839b.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[艾尼尤]氨基酸胶原蛋白洁颜膏100g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>198.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">49.50</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="146942" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/146943.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/0a/0a66a7282c7342bf919d0b47623c98f5.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[艾尼尤]男士竹炭冰爽醒肤洁面乳100g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>128.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">32.00</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="146943" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/9892.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/83/83284d95fa2e487f92604167eebcc922.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[高丝]雪肌精洁肤霜151ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>199.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">19.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="9892" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/9897.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/63/634589e2db2342dcb659a97b1f5d8582.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[高丝]雪肌精美白洗颜乳（预售5天）140ml</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>230.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">23.00</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="9897" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                   <li class="item j_RefreshItem">
+                        <a class="" href="/shop/sku/150222.html?type=3&isFromHome=false&shopProductId=0&shopId=30019">
+              <div class="pic">
+                                <img src="//cdn1.showjoy.com/images/0c/0c3a890a7d9840738e4100956503a92d.png.200x200.png">
+                              </div>
+              <div class="detail">
+                <div class="title">[宝露露]儿童洗发沐浴护发三合一送捏捏水枪400g</div>
+                <div class="price">
+                  <span class="current"><span class="symbol">￥</span>69.00</span>                </div>
+                                    <p class="commission">收益：<span class="num">6.90</span></p>
+                                            <span class="shelve j_Shelve" data-itemid="150222" data-type="3">上架</span>
+                                                  </div>
+            </a>
+          </li>
+                </ul>
+                    <div class="ui-refresh-down"></div>
+              </div>
+</div>
+
+</div>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+      wx.config({
+          debug: false,
+          appId: 'wx6445a3a7da24ef44',
+          timestamp: 1488349503,
+          nonceStr: 'e7c0cd76-ebde-49b7-8cf4-3c2bbd38319e',
+          signature: '4d3c76f864e88ab919a7a9b47e7441aa470f9f0b',
+          jsApiList: ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','hideMenuItems','showMenuItems','hideAllNonBaseMenuItem','showAllNonBaseMenuItem','translateVoice','startRecord','stopRecord','onRecordEnd','playVoice','pauseVoice','stopVoice','uploadVoice','downloadVoice','chooseImage','previewImage','uploadImage','downloadImage','getNetworkType','openLocation','getLocation','hideOptionMenu','showOptionMenu','closeWindow','scanQRCode','chooseWXPay','openProductSpecificView','addCard','chooseCard','openCard']
+      });
+    </script>
+    
+    <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//assets.showjoy.net/joyf2e/vendor/gmu/gmu.min.js"></script>
+    
+<script src="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/shop-header/shop-header.min.js" type="text/javascript"></script>    
+    <script type="text/javascript" src="//assets.showjoy.net/showjoy-assets/shop-m/build/src/pages/search-result/search-result.min.js"></script>    
+
+
+<script>
+$.ajax({
+    url:'//fp.showjoy.net/trace',
+    data: {
+        url: location.href,
+        refer: document.referrer
+    },
+    dataType: 'jsonp'
+});
+</script>
+
+<script>
+var fpClickTimer;
+var fpClickDelay = 200;
+$(window).on('click',function(ev){
+    if(fpClickTimer){
+      clearTimeout(fpClickTimer);
+    }
+    fpClickTimer = setTimeout(function(){
+      $.ajax({
+        url: '//fp.showjoy.net/click',
+        dataType: 'jsonp',
+        data: {
+            url: location.href,
+            coordinate: '(' + ev.clientX + ',' + ev.clientY + ')',
+            resolution: window.screen.width + ',' + window.screen.height
+        }
+      });
+    },fpClickDelay);
+});
+</script>
+
+<script type="text/javascript">
+  var Countly = Countly || {};
+  Countly.q = Countly.q || [];
+  Countly.app_key = 'c6e643a01e3c16fa81ca2296f5abb4592749bfba';
+  Countly.url = 'https://mobile-analytics.showjoy.net/';
+  
+  (function() {
+    var cly = document.createElement('script');
+    cly.type = 'text/javascript';
+    cly.async = true;
+    cly.src = 'https://mobile-analytics.showjoy.net/sdk/web/countly.min.js';
+    cly.onload = function(){
+      Countly.init()
+    };
+    var s = document.getElementsByTagName('script')[0]; 
+    s.parentNode.insertBefore(cly, s);
+  })();
+  
+  Countly.q.push(['track_sessions']);
+  Countly.q.push(['track_pageview']);
+  Countly.q.push(['track_errors']);
+  Countly.q.push(['track_links']);
+  Countly.q.push(['track_forms']);
+
+</script>
+</body>
+</html>

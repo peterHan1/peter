@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="//cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <meta name="keywords" content="尚妆,云集网,化妆品免费试用,尚妆网,香水网站,化妆品特卖" />
+    <meta name="description" content="尚妆网是国内知名化妆品正品销售平台,女性购买化妆品的首选网站,尚妆大牌云集专注于香水彩妆,个护化妆、香氛等品类,尚妆首创“先试后买”第一家支持全场免费试用的化妆品特卖网站。" />
+    <meta name="alexaVerifyID" content="CQ9MFqujDWRsB8dm3rfIrhLYva0" />
+    <meta name="apple-mobile-web-app-title" content="尚妆">
+    <link rel="apple-touch-icon" href="//cdn1.showjoy.com/images/5c/5c0fc2a2999a4f7789ae9fe35e47bb49.png">
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.css" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.css" rel="stylesheet" />
+    <link href="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdn1.showjoy.com/assets/f2e/joyf2e/vendor/0.0.2/gmu/gmu.min.js"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-header/m-header.min.js" type="text/javascript"></script>
+    <script src="//cdn1.showjoy.com/assets/f2e/showjoy-assets/common-m/0.0.4/m-footer/m-footer.min.js" type="text/javascript"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>commonweal-rank-list</title>
+
+    <!-- local css files -->
+    <link rel="stylesheet" href="./commonweal-rank-list.css" />
+
+</head>
+
+<body>
+    <div id="layout">
+        <div class="content">
+            <div class="top-banner">
+                <a href="#">
+                    <img src="//cdn1.showjoy.com/images/f1/f1c62e9af86e45f6aba98fe0ee9725bc.jpg" />
+                </a>
+            </div>
+            <div class="count-down j_CountDown" data-servertime="1477016251735" data-endtime="1478620800000">
+                <span>距离活动结束还剩:</span><span class="time-span j_CountDay">--</span><span>天</span><span class="time-span j_CountHour">--</span><span>时</span><span class="time-span j_CountMin">--</span><span>分</span>
+            </div>
+            <div class="middle-nav">
+                <a href="#">我不想改图了</a>
+                <a href="#">我不想改图了</a>
+                <a href="#">我不想改图了</a>
+            </div>
+            <div class="mid-p">
+                店主通过报名公益战队队长，邀请好友<span class="yellow">免费注册达人店公益版店主</span>，一起组建公益战队参加达人店11月9号公益购物节活动。活动当天，不仅有<span class="yellow">超值秒杀商品</span>，<span class="yellow">全场买贵包赔</span>，更携手免费午餐举办达人店公益爱心捐助活动（<span class="yellow">指当天所有参与公益战队的店主每成功销售一笔订单的同时，官方都会以达人店店主的名义向免费午餐进行一次爱心善款的捐助</span>）。
+            </div>
+            <div class="middle-title">
+                <div class="refresh-btn j_Refresh">刷新</div>
+            </div>
+            <ul class="rank-table j_RankTable"></ul>
+            <div class="my-team-title commonweal"></div>
+            <!-- <div class="add-team-tips j_AddTeamTips hide">
+                 对不起，你没有报名战队队长，所以活动排行榜没有您的战队~但仍可以邀请好友注册公益达人店哦~
+            </div> -->
+            <div class="add-team-tips j_AddTeamTips hide">
+                 对不起，你还没有参与公益战队，可以点击排行榜上“查看”按钮，输入队长邀请码即可参与活动~
+            </div>
+            <div class="my-team-info j_MyTeamInfo hide commonweal"></div>
+            <div class="rules">
+                <div class="rules-content">
+                    已有<span class="yellow">$!{teamCount}</span>只公益战队，共计<span class="yellow">$!{shopCount}</span>名店主参与，排行榜根据公益指数高低排名，实时刷新显示前十名战队名称。<br/><span class="yellow">注：（公益指数的计算公式=基础爱心指数+店主数量*订单数总和）参与的战队可以获得基础公益指数1000分；</span> <br/>订单数只计算11月9日活动当天个战队店铺内支付成功的订单。
+                    <br/>店主数从战队组建成功时，即可开始计算。 </div>
+                <a href="#">
+                    <img class="rule-btn" src="//cdn1.showjoy.com/images/91/913e64b1c21b477f9c19cd64f03732b0.png" />
+                </a>
+            </div>
+            <div class="join-cover j_JoinCover hide">
+                <div class="cover-content">
+                    <div class="close-btn j_CloseBtn"></div>
+                    <div class="team-name"><span class="j_CoverTeamName">买买买队</span><br/>邀请函</div>
+                    <div class="avator-block">
+                        <div class="out-block-1"></div>
+                        <div class="out-block-2"></div>
+                        <div class="out-block-3"></div>
+                        <div class="out-block-4"></div>
+                        <img class="avator j_CoverAvator" src="//cdn1.showjoy.com/images/9d/9d1dc628d36c4511a15f997c1477e6dc.jpeg" />
+                    </div>
+                    <div class="cover-shop-name j_CoverShopName">
+                        悟空的小卖铺
+                    </div>
+                    <div class="cover-shop-id j_CoverShopId">
+                        ID:35543
+                    </div>
+                    <div class="tips-content">
+                        1. 复制战队邀请码:<span class="purple j_CoverInviteCode">wstr42</span>
+                    </div>
+                    <div class="tips-content">
+                        2.下载达人店公益版APP，输入邀<br/>请码注册，即可加入成功
+                    </div>
+                    <a href="#">
+                        <div class="invite-button">
+                            下载达人店公益版
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="rankListTmpl" type="text/html">
+        <li>
+            <span></span>
+            <div><span>排行</span></div>
+            <div><span>队名</span></div>
+            <div><span>店主数</span></div>
+            <div><span>订单</span></div>
+            <div><span>指数</span></div>
+            <div><span>邀请码</span></div>
+        </li>
+        {{each data as item}}
+        <li>
+            <span class="rank-left"><span class="rank-num">{{item.rankNum}}</span></span>
+            <div><span class="avator"><img src="{{item.headImg}}"/></span></div>
+            <div><span>{{item.teamName}}</span></div>
+            <div><span>{{item.shopCount}}</span></div>
+            <div><span>{{item.orderCount}}</span></div>
+            <div><span>{{item.luckNumber}}</span></div>
+            <div><span><button class="join-btn j_JoinBtn" data-teamname="{{item.teamName}}" data-avator="{{item.headImg}}" data-shopname="{{item.shopName}}" data-id="{{item.shopId}}" data-invite="{{item.inviteCode}}">查看</button></span></div>
+        </li>
+        {{/each}}
+    </script>
+    <!-- <script id="myTeamTmpl" type="text/html">
+        <div class="top-info">
+            <div class="info">排行：{{item.rankNum}}</div>
+            <div class="info">队名：{{item.teamName}}</div>
+            <div class="info">店主：{{item.shopCount}}</div>
+            <div class="info">订单：{{item.orderCount}}</div>
+            <div class="info">指数 ：{{item.luckNumber}}</div>
+            <div class="info">邀请码：{{item.inviteCode}}</div>
+        </div>
+        <div class="share-info">
+            邀请更多好友“益”起参与，冲刺榜首！
+        </div>
+        <img class="share-btn j_ShareBtn" src="//cdn1.showjoy.com/images/67/67a59b6222bc49b684b2da172e17f084.png" data-invite="{{item.inviteCode}}" />
+    </script> -->
+    <script id="myTeamTmpl" type="text/html">
+        <div class="top-info">
+            <div class="info">排行：{{item.rankNum}}</div>
+            <div class="info">队名：{{item.teamName}}</div>
+            <div class="info">店主：{{item.shopCount}}</div>
+            <div class="info">订单：{{item.orderCount}}</div>
+            <div class="info">指数 ：{{item.luckNumber}}</div>
+            <div class="info">邀请码：{{item.inviteCode}}</div>
+        </div>
+    </script>
+    <script src="../../../build/src/pages/commonweal-rank-list/commonweal-rank-list.min.js"></script>
+</body>
+
+</html>

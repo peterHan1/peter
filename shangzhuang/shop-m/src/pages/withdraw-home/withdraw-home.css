@@ -1,0 +1,290 @@
+/* generator by mobi */
+/* 导入全局方法 */
+#header {
+  display: none;
+}
+#layout {
+  padding-top: 0;
+}
+#content {
+  padding-bottom: 1.6rem;
+}
+@-webkit-keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+  }
+}
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+  }
+}
+.withdraw-header {
+  width: 100%;
+  height: 1.066667rem;
+  background-color: #efefef;
+}
+.withdraw-header:before,
+.withdraw-header:after {
+  display: table;
+  content: "";
+}
+.withdraw-header:after {
+  clear: both;
+}
+.withdraw-header .tab-withdraw,
+.withdraw-header .tab-record {
+  text-align: center;
+}
+.withdraw-header .tab-withdraw .text,
+.withdraw-header .tab-record .text {
+  height: 1.066667rem;
+  font-size: 0.373333rem;
+  line-height: 1.066667rem;
+  color: #9e9e9e;
+}
+.withdraw-header .tab-withdraw .text.active,
+.withdraw-header .tab-record .text.active {
+  position: relative;
+  color: #000000;
+}
+.withdraw-header .tab-withdraw .text.active::after,
+.withdraw-header .tab-record .text.active::after {
+  content: '';
+  width: 1.2rem;
+  height: 0.053333rem;
+  position: absolute;
+  background-color: #000000;
+  bottom: 0;
+  left: 50%;
+  margin-left: -0.6rem;
+  z-index: 99;
+}
+.withdraw-header .tab-withdraw {
+  width: 50%;
+  height: 100%;
+  float: left;
+  display: block;
+}
+.withdraw-header .tab-record {
+  width: 50%;
+  height: 100%;
+  float: left;
+  display: block;
+}
+.withdraw-box {
+  list-style: none;
+  width: 8.933334rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.withdraw-box li {
+  height: 1.333333rem;
+  border-bottom: 1px solid #e9e9e9;
+}
+.withdraw-box .account .info {
+  width: 5.866667rem;
+  line-height: 1.333333rem;
+  float: left;
+  font-size: 0.426667rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.withdraw-box .account .info.change {
+  width: 6.666667rem;
+}
+.withdraw-box .account .info .title {
+  width: 2.56rem;
+  display: inline-block;
+  text-align: right;
+}
+.withdraw-box .account .account-control {
+  display: block;
+  float: left;
+  width: 3.066667rem;
+  color: #9e9e9e;
+  height: 0.48rem;
+  font-size: 0.373333rem;
+  margin-top: 0.533333rem;
+  position: relative;
+  line-height: 0.48rem;
+  padding-right: 0.333333rem;
+  padding-left: 0.2rem;
+}
+.withdraw-box .account .account-control::after {
+  content: '\e605';
+  font-family: 'iconfont' !important;
+  width: 0.666667rem;
+  height: 0.666667rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.3333335rem;
+  font-size: 0.613333rem;
+  line-height: 0.666667rem;
+}
+.withdraw-box .account .account-control-change {
+  display: block;
+  float: right;
+  text-align: center;
+  position: relative;
+  margin-top: 0.4rem;
+  width: 1.866667rem;
+  height: 0.773333rem;
+  border: 1px solid #000000;
+  line-height: 0.773333rem;
+  font-size: 0.32rem;
+  color: #000000;
+}
+.withdraw-box .income .info {
+  width: 100%;
+  line-height: 1.333333rem;
+  float: left;
+  font-size: 0.426667rem;
+  position: relative;
+  white-space: nowrap;
+}
+.withdraw-box .income .info .symbol {
+  margin-right: -4px;
+}
+.withdraw-box .income .info .title {
+  width: 2.56rem;
+  display: inline-block;
+  text-align: right;
+}
+.withdraw-box .income .info .num-input {
+  width: 6.0rem;
+}
+.withdraw-box .intro {
+  border-bottom: none;
+  margin-top: 0.346667rem;
+}
+.withdraw-box .intro .freeze {
+  color: #a6a0a0;
+  margin-bottom: 0.48rem;
+  text-align: center;
+  font-size: 0.346667rem;
+}
+.withdraw-box .intro .desc {
+  font-size: 0.373333rem;
+  line-height: 0.533333rem;
+  color: #fa657b;
+  text-align: center;
+}
+section.withdraw-button {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.6rem;
+}
+section.withdraw-button .button {
+  width: 100%;
+  height: 1.6rem;
+  display: block;
+  line-height: 1.6rem;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.426667rem;
+  background-color: #000000;
+}
+section.withdraw-button.disable .button {
+  background-color: #9e9e9e;
+}
+section.withdraw-button.loading .button {
+  position: relative;
+  text-indent: -999999px;
+}
+section.withdraw-button.loading .button::after {
+  content: '';
+  width: 0.666667rem;
+  height: 0.666667rem;
+  position: absolute;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAS1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////+DmQsHAAAAGHRSTlMAZl3MmUJAFQ4a5rmmDQuKjYMM7bwchEOhomOfAAAA70lEQVRIx+2U0Q6DIAxFWbeCiog4p/7/l87REZeKOsLb5nm7JMfQa4P4eR51VdWPJOM+zdxTnHry1AlKRUqVr+RfTA29duU7lDR+iAUCYMeNUl9ntArxVXIwOrjMgGGKu3oGEQEvHsmONSl9TAFSgB33pOgEZSDFxRRJCsbHL2NKQeOvK3O6d0pE6RBAFuIkDwW2BSU2KSSvWdnbjCVn+2d+OnDzwJYi17vckmIpfbWYlpT2UEm/WMb4VHJ7UPJf7LIZAbBZcoMAo9kzGvYuGsrhGzvvIkby0WLwnKnkX4yP27B3khNKRbNkg770kzye8mYLEERgadMAAAAASUVORK5CYII=) no-repeat;
+  background-size: contain;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.333333rem;
+  margin-left: -0.333333rem;
+  animation: 'rotate-circle' 0.8s linear infinite normal both;
+  -webkit-animation: 'rotate-circle' 0.8s linear infinite normal both;
+}
+section.withdraw-button.finish .button {
+  position: relative;
+  background-color: #f93450;
+}
+section.withdraw-button.finish .button::after {
+  content: '';
+  width: 0.666667rem;
+  height: 0.666667rem;
+  position: absolute;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAmVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VHQRUAAAAMnRSTlMAA/sQDCEY9u/m4dzYt4dpRigdFAXQzMjEvad9dTgt8+3q1LCgmpSPb2NdWFNNPzIJB5F0R48AAAFNSURBVEjHzZWJboMwDIaXcBZa7h60lN73/b//wy0VCMbSUVxpWxOJBPAnO7Zjf9wHyx8sX8SsDvbtkUllSwlW59cNfbDXqBfFidjvniV0qQYpXbg0w5Qe2jpJh9qHrZOUqAPYAclj1xiWRvLYrYOWRjpHJAi/sIo1IRaY+bSADzFNSdEXhHkpiSaGLWGOaWmywkQQFC1rGGda7m9geLK8UxMjB9yTdSSwghriVJdv8hiBHyWX51n9+B4k4IdHBMvuTigTW/B93Q2dS4wL7IoXOS7hHF2l+m8HuLUVSW+jV2H2HNsndUy30VfLrweO5GnZCywMCubIMWpQLTUL8TXbniRCks+ZFjq3+8bjcH4kqpQvmEgQBjaNq3g6wyI6G1gTqn46RTzBilT5LyawJPaXsTlk1Hbks//pYnJc6Myf9H32fn2/9BgjaskgwvwEdKsV+LsGk/AAAAAASUVORK5CYII=) no-repeat;
+  background-size: contain;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.333333rem;
+  margin-left: 0.933333rem;
+}
+.dialog-option-container {
+  width: 5.333333rem;
+  margin: 0 auto;
+}
+.dialog-option-container .dialog-option {
+  font-size: 0.373333rem;
+  position: relative;
+  padding-left: 0.666667rem;
+  text-align: left;
+}
+.dialog-option-container .dialog-option:first-child {
+  margin-bottom: 0.4rem;
+  margin-top: 0.666667rem;
+}
+.dialog-option-container .dialog-option .right {
+  width: 0.5rem;
+  height: 0.5rem;
+  display: inline-block;
+  background-color: #bfbfc0;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 0.546667rem;
+  margin-right: 0.096667rem;
+  margin-left: -0.5rem;
+  color: #fff;
+  font-size: 0.293333rem;
+  vertical-align: middle;
+}
+.dialog-option-container .dialog-option .right .icon {
+  width: 100%;
+  height: 100%;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAP1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////9Du/pqAAAAFHRSTlMAECAwQFBgcI+Qn6CvwM/Q3+Dv8NqipfcAAACFSURBVEjH7dK7DsIwDEZhuykuEOj1vP+zMrQSCkJJvECH/GP1nQxWRdrafrjLfPV5wOPDCk+nn/Q8vlthcXgdYQt/8xq+eDLvb9zTDxNgmXtAWsS8F7mlRdF/FBEYSlexdxGBWL6jAQ+t93sxqlitP4qh3u8Frh/UnF7EnF6k61Xa2k64F6lKCRtDaJKpAAAAAElFTkSuQmCC);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.dialog-option-container .dialog-option.active .right {
+  background-color: #9063f0;
+}
+.dialog-option-container .dialog-option.list::before {
+  content: '';
+  width: 0.13rem;
+  height: 0.13rem;
+  text-align: center;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.15rem;
+  background-color: #9063f0;
+  border-radius: 50%;
+}
