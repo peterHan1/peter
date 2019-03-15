@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="zoom.css">
+    </head>
+    <body>
+        <ul class="picView-magnify-list" style="padding: 30px">
+            <li>
+                <img src="http://td-business.oss-cn-hangzhou.aliyuncs.com/FF88D210-C59E-4CA0-9EC6-7E8AF0EFB7E71547087564449904.png" >
+            </li>
+            <li>
+                <img src="./img/a2.png">
+            </li>
+            <li>
+                <img src="./img/a3.png">
+            </li>
+            <li>
+                <img src="./img/a4.png" >
+            </li>
+            <li>
+                <img src="./img/a5.png">
+            </li>
+        </ul>
+        <script src="jquery-2.1.1.js"></script>
+        <script src="zoom.js"></script>
+        <!-- <script src="jqueryRotate.js"></script> -->
+        <script type="text/javascript">
+            $(function () {
+                $('img').Magnify({
+                    Toolbar: [
+                        'prev',
+                        'next',
+                        'rotateLeft',
+                        'rotateRight',
+                        'zoomIn',
+                        'actualSize',
+                        'zoomOut'
+                    ],
+                    keyboard:true,
+                    draggable:true,
+                    movable:true,
+                    modalSize:[document.body.clientWidth,window.innerHeight]
+                });
+
+            })
+        </script>
+    </body>
+</html>

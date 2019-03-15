@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>jQuery支持图片放大缩小查看效果</title>
+<style>
+*{ margin:0; padding:0;}
+body {background: #333;}
+#pageContent {
+    width: 980px;
+    height: 500px;
+    overflow: hidden;
+    position:relative;
+    margin:50px auto;
+}
+#imgContainer {
+    width: 980px;
+    height: 500px;
+}
+#positionButtonDiv {
+    background: rgb(58, 56, 63);
+    background: rgba(58, 56, 63, 0.8);
+    border: solid 1px #100000;
+    color: #fff;
+    padding: 8px;
+    text-align: left;
+    position: absolute;
+    right:35px;
+    top:35px;
+}
+#positionButtonDiv .positionButtonSpan img {float: right;border: 0;}
+
+.positionMapClass area {cursor: pointer;}
+
+.zoomButton {border: 0;	cursor: pointer;}
+
+.zoomableContainer { background-image: url("transparent.png"); }
+
+</style>
+</head>
+<body>
+
+<div id="pageContent">
+    <div id="imgContainer">
+        <img id="imageFullScreen" src="http://td-business.oss-cn-hangzhou.aliyuncs.com/201805111921184%E8%BD%A6%E5%B0%BE.jpg" />
+    </div>
+    <!-- <div id="positionButtonDiv">
+    <p>
+        <span> 
+            <img id="zoomInButton" class="zoomButton" src="zoomIn.png" title="zoom in" alt="zoom in" />
+            <img id="zoomOutButton" class="zoomButton" src="zoomOut.png" title="zoom out" alt="zoom out" />
+        </span> 
+    </p>
+    </div> -->
+</div>
+<script src="jquery-2.1.1.js"></script>
+<script src="e-smart-zoom-jquery.min.js"></script>
+<script>
+$(document).ready(function() {        
+    $('#imageFullScreen').smartZoom({'containerClass':'zoomableContainer'});
+    $('#zoomInButton,#zoomOutButton').bind("click", zoomButtonClickHandler);
+    function zoomButtonClickHandler(e){
+        var scaleToAdd = 0.8;
+        if(e.target.id == 'zoomOutButton')
+            scaleToAdd = -scaleToAdd;
+        $('#imageFullScreen').smartZoom('zoom', scaleToAdd);
+    }
+});
+</script>
+
+</body>
+</html>
