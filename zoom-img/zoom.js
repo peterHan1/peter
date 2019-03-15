@@ -103,20 +103,32 @@
     };
     magnify.prototype = {
         init: function(ele) {
-            var imgSrc = getImgSrc(ele);
-            var groupList = $D.find('img');
-            this.getImgGroup(groupList, imgSrc);
-            this.open();
-            this.loadImg(imgSrc);
-            if (this.settings.draggable) {
-                this.draggable(this.$magnify, this.dragHandle, cssSelector.btn)
-            }
-            if (this.settings.movable) {
-                this.movable(this.$stage, this.$image);
-            }
-            if (this.settings.resizable) {
-                this.resizable(this.$magnify, this.$stage, this.$image, this.settings.modalSize);
-            }
+        	if($(ele).attr("zoomNo")){
+        		return false;
+        	}else{
+	            var imgSrc = getImgSrc(ele);
+	            if(imgSrc){
+	            	var imgArr = $D.find('img')
+		            var groupList = [];
+		            imgArr.each(function(i){
+		            	if($(this).attr("src")){
+		            		groupList.push($(this))
+		            	}
+		            })
+		            this.getImgGroup(groupList, imgSrc);
+		            this.open();
+		            this.loadImg(imgSrc);
+		            if (this.settings.draggable) {
+		                this.draggable(this.$magnify, this.dragHandle, cssSelector.btn)
+		            }
+		            if (this.settings.movable) {
+		                this.movable(this.$stage, this.$image);
+		            }
+		            if (this.settings.resizable) {
+	                	this.resizable(this.$magnify, this.$stage, this.$image, this.settings.modalSize);
+	            	}
+	            }
+	        }    
         },
         open: function() {
             if ($(cssSelector.modal)) {
@@ -164,7 +176,7 @@
                 rotateLeft: '<a href="javascript:void(0)" class="magnify-btn magnify-btn-rotateLeft" title="' + this.settings.i18n.rotateLeft + '"></a>',
                 rotateRight: '<a href="javascript:void(0)" class="magnify-btn magnify-btn-rotateRight" title="' + this.settings.i18n.rotateRight + '"></a>'
             };
-            return '<div class="magnify-modal">' + '<div class="magnify-header">' + this.createTitle() + '<a href="javascript:void(0)" class="magnify-btn-close" title="' + this.settings.i18n.close + '"></a>' + '</div>' + '<div class="magnify-stage"><img src="" alt="" class="magnify-image" style="transform: rotate(0deg); transform-origin: 50% 50% 0px;"></div>' + '<div class="magnify-footer"><div class="magnify-toolbar">' + this.createBtn(this.settings.Toolbar, btnTpl) + '</div></div>' + '</div>';
+            return '<div class="magnify-modal">' + '<div class="magnify-header">' + this.createTitle() + '<a href="javascript:void(0)" class="magnify-btn-close" title="' + this.settings.i18n.close + '"></a>' + '</div>' + '<div class="magnify-stage"><img src="" alt="" class="magnify-image" style="transform: rotate(0deg); transform-origin: 50% 50% 0px;"></div>' + '<div class="magnify-footer"><div class="magnify-toolbar">' + this.createBtn(this.settings.Toolbar, btnTpl) + '</div></div>' + '<div class="shade"></div></div>';
         },
         createTitle: function() {
             return this.settings.title ? '<div class="magnify-title"></div>': '';
@@ -195,21 +207,21 @@
         },
         setModalPos: function(modal) {
             var winWidth = $W.width(),
-            winHeight = $W.height(),
+            winHeight = $('body', parent.document).parent().parent().scrollTop(),
             modalSize = this.settings.modalSize,
             modalWidth = modalSize[0],
             modalHeight = modalSize[1];
             modal.css({
                 width: modalWidth,
-                height: modalHeight,
+                height: winHeight<=0?modalHeight-80:modalHeight,
                 left: (winWidth - modalWidth) / 2,
-                top: (winHeight - modalHeight) / 2
+                top: winHeight<=0?winHeight:winHeight-80
             });
             $.extend(this.modalData, {
                 width: modalWidth,
-                height: modalHeight,
+                height: winHeight<=0?modalHeight-80:modalHeight,
                 left: (winWidth - modalWidth) / 2,
-                top: (winHeight - modalHeight) / 2
+                top: winHeight<=0?winHeight:winHeight-80
             });
             this.isOpened = true;
         },
