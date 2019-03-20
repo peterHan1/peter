@@ -62,7 +62,6 @@ DropLoad.prototype.init = function(options){
 function fnScroll(me) {
     var contentScrollHeight = (me.opts.scrollArea == window) ? $(document)[0].body.scrollHeight : me.$element.children().height();
     if (me.$scrollArea.scrollTop() >= contentScrollHeight - me.$scrollArea.height() - me.opts.distance) {
-
         if (me.canGet) {
             me.canGet = false;
             if (me.page != 1) {
